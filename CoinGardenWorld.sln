@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33402.96
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5A954599-DAE6-45A3-A4EE-E938E3CE529C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{79C78861-C41F-4656-AF3F-D31DEFB6A5EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mobile-app", "mobile-app", "{C82FB067-799A-46EA-B6D9-A28406C710E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nft-market", "nft-market", "{9710BD16-0709-4F6E-8813-DEE82F5DC586}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "charities", "charities", "{63059FC5-3711-41CA-A054-5E92F02E8817}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "metaverse", "metaverse", "{B9C86247-2C81-404E-A648-757D3E7EA2FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "official-website", "official-website", "{7A9EFF7D-7B83-4776-BB35-A00EBA755F84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.Web", "src\official-website\CoinGardenWorld.Web\CoinGardenWorld.Web.csproj", "{E42ECBC4-7574-4DDB-9D76-19E7CFF229FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E42ECBC4-7574-4DDB-9D76-19E7CFF229FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E42ECBC4-7574-4DDB-9D76-19E7CFF229FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E42ECBC4-7574-4DDB-9D76-19E7CFF229FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E42ECBC4-7574-4DDB-9D76-19E7CFF229FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C82FB067-799A-46EA-B6D9-A28406C710E2} = {5A954599-DAE6-45A3-A4EE-E938E3CE529C}
+		{9710BD16-0709-4F6E-8813-DEE82F5DC586} = {5A954599-DAE6-45A3-A4EE-E938E3CE529C}
+		{63059FC5-3711-41CA-A054-5E92F02E8817} = {5A954599-DAE6-45A3-A4EE-E938E3CE529C}
+		{B9C86247-2C81-404E-A648-757D3E7EA2FC} = {5A954599-DAE6-45A3-A4EE-E938E3CE529C}
+		{7A9EFF7D-7B83-4776-BB35-A00EBA755F84} = {5A954599-DAE6-45A3-A4EE-E938E3CE529C}
+		{E42ECBC4-7574-4DDB-9D76-19E7CFF229FF} = {7A9EFF7D-7B83-4776-BB35-A00EBA755F84}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}
+	EndGlobalSection
+EndGlobal
