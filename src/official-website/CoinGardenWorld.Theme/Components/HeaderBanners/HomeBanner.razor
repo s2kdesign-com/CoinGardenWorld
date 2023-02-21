@@ -1,4 +1,4 @@
-﻿@inject IJSRuntime jsRuntime
+﻿
 <!-- Banner -->
 <div class="header-banner bg-theme-grad">
     <div class="nk-banner">
@@ -52,17 +52,4 @@
     [Parameter]
     public string Description { get; set; }
     
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-
-        await base.OnAfterRenderAsync(firstRender);
-        
-        if(!firstRender)
-            await jsRuntime.InvokeAsync<string>("NioApp.Plugins.particles");
-    //var module = await jsRuntime.InvokeAsync<IJSInProcessObjectReference>(
-    //    "import", "./_content/CoinGardenWorld.Theme/assets/js/scripts.js");
-    //await module.InvokeAsync<string>("NioApp.winLoad");
-    //await module.InvokeAsync<string>("NioApp.Plugins.particles");
-        
-    }
 }
