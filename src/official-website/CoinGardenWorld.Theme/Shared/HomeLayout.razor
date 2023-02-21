@@ -4,17 +4,16 @@
 <CascadingValue Value="this">
 
     <div class="nk-wrap">
+        
+        <header class="nk-header page-header is-transparent is-sticky is-shrink" id="header">
 
-        <CascadingValue Value="@Banner" Name="Banner">
-
-            <header class="nk-header page-header is-transparent is-sticky is-shrink" id="header">
-
-                <TopMenu />
+            <TopMenu />
+            
+            <CascadingValue Value="@Banner" Name="Banner">
 
                 @Banner
-
-            </header>
-        </CascadingValue>
+            </CascadingValue>
+        </header>
 
         <main class="nk-pages">
             @Body

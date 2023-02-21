@@ -1,5 +1,5 @@
 ﻿@page "/counter"
-@inject IJSRuntime jsRuntime
+@inherits ThemeComponentBase<PageBanner>
 
 
 <PageTitle>Counter</PageTitle>
@@ -11,24 +11,9 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
+    protected override string BannerTitle { get => "Counter";  }
+    protected override string BannerDescription { get => "description from the counter page and so on "; }
 
-    [CascadingParameter]
-    public HomeLayout HomeLayout { get; set; }
-
-    protected override void OnInitialized()
-    {
-        HomeLayout.Banner = AddContent();
-        base.OnInitialized();
-    }
-
-    private RenderFragment AddContent() => builder =>
-    {
-        builder.OpenComponent(0, typeof(PageBanner));
-
-        builder.AddAttribute(1, "Title", "Counter");
-        builder.AddAttribute(1, "Description", "test page for clicking a button and enjoy");
-        builder.CloseComponent();
-    };
 
     private int currentCount = 0;
 
@@ -37,17 +22,5 @@
         currentCount++;
     }
 
-    
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-
-        await base.OnAfterRenderAsync(firstRender);
-            var module = await jsRuntime.InvokeAsync<IJSInProcessObjectReference>(
-                "import", "./_content/CoinGardenWorld.Theme/assets/js/scripts.js");
-            await module.InvokeAsync<string>("NioApp.winLoad");
-    //await theme.LoadScript();
-    //await theme.DocReady();
-    //await theme.WinLoad();
-    }
 
 }

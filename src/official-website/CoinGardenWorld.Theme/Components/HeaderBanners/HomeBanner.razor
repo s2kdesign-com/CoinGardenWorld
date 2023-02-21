@@ -1,4 +1,4 @@
-﻿
+﻿@inherits BannerBase
 <!-- Banner -->
 <div class="header-banner bg-theme-grad">
     <div class="nk-banner">
@@ -8,7 +8,10 @@
                     <div class="row gutter-vr-30px align-items-center justify-content-lg-between justify-content-center">
                         <div class="col-lg-5 col-sm-9 order-lg-last">
                             <div class="banner-gfx-re-s3 my-0 animated" data-animate="fadeInUp" data-delay="1">
-                                <img src="_content/CoinGardenWorld.Theme/images/header/gfx-i.png" alt="header">
+                                <img src="images/growing_flower_with_crypto_coins_around_it__transparent_.png" alt="header">
+                                <img class="banner-gfx-icon banner-gfx-icon-1" 
+                                     src="_content/CoinGardenWorld.Theme/images/icons/icon-custom.png" alt="">
+                                <img class="banner-gfx-icon banner-gfx-icon-2" src="_content/CoinGardenWorld.Theme/images/icons/icon-bitcoin.png" alt="">
                             </div>
                         </div><!-- .col -->
                         <div class="col-lg-7 col-xl-6 col-sm-10 text-center text-lg-start">
@@ -46,10 +49,5 @@
 
 @code {
 
-    [Parameter]
-    public string Title { get; set; }
-
-    [Parameter]
-    public string Description { get; set; }
     
 }

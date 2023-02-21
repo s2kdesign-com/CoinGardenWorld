@@ -12,7 +12,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 //builder.Services.AddScoped(typeof(ThemeJsInterop));
 
-builder.RootComponents.Add<TopMenu>(".header-main");
+//builder.RootComponents.Add<TopMenu>(".header-main");
 
 
 builder.Services.AddMsalAuthentication(options =>

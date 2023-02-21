@@ -1,7 +1,7 @@
 ﻿@page "/"
-@inject IJSRuntime jsRuntime
+@inherits ThemeComponentBase<HomeBanner>
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Home - CoinGarden.World</PageTitle>
 
 <section class="section bg-transparent over-up over-up-xl-s2 pdt-0">
     <div class="ui-mask-right ui-mask-s8"></div>
@@ -475,34 +475,7 @@
 </section>
 
 @code {
-    [CascadingParameter]
-    public HomeLayout HomeLayout { get; set; }
+    protected override string BannerTitle { get => "CoinGarden.World <br class='d-none d-md-block'> 'World of Flowers'"; }
+    protected override string BannerDescription { get => "🌼🌷 Web3 Infrastructure for gardening, growing, <br class='d-none d-md-block'> selling and earning crypto from your flowers 🌺 🌻"; }
 
-    private RenderFragment AddContent() => builder =>
-    {
-        builder.OpenComponent(0, typeof(HomeBanner));
-
-        builder.AddAttribute(1, "Title", "CoinGarden.World <br class='d-none d-md-block'> 'World of Flowers'");
-        builder.AddAttribute(1, "Description", "🌼🌷 Web3 Infrastructure for gardening, growing, <br class='d-none d-md-block'> selling and earning crypto from your flowers 🌺 🌻");
-        builder.CloseComponent();
-    };
-
-    protected override void OnInitialized()
-    {
-        HomeLayout.Banner = AddContent();
-        base.OnInitialized();
-    }
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        await base.OnAfterRenderAsync(firstRender);
-
-
-        var module = await jsRuntime.InvokeAsync<IJSInProcessObjectReference>(
-            "import", "./_content/CoinGardenWorld.Theme/assets/js/scripts.js");
-        //await module.InvokeAsync<string>("NioApp.docReady");
-        await module.InvokeAsync<string>("NioApp.winLoad");
-        //await theme.LoadScript();
-        //await theme.DocReady();
-        //await theme.WinLoad();
-    }
 }
