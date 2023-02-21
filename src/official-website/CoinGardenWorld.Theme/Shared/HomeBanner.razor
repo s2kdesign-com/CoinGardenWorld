@@ -1,0 +1,68 @@
+﻿@inject IJSRuntime jsRuntime
+<!-- Banner -->
+<div class="header-banner bg-theme-grad">
+    <div class="nk-banner">
+        <div class="banner banner-fs banner-pd-lg">
+            <div class="banner-wrap">
+                <div class="container">
+                    <div class="row gutter-vr-30px align-items-center justify-content-lg-between justify-content-center">
+                        <div class="col-lg-5 col-sm-9 order-lg-last">
+                            <div class="banner-gfx-re-s3 my-0 animated" data-animate="fadeInUp" data-delay="1">
+                                <img src="_content/CoinGardenWorld.Theme/images/header/gfx-i.png" alt="header">
+                            </div>
+                        </div><!-- .col -->
+                        <div class="col-lg-7 col-xl-6 col-sm-10 text-center text-lg-start">
+                            <div class="banner-caption cpn tc-light">
+                                <div class="cpn-head">
+                                    <h1 class="title title-md animated" data-animate="fadeInUp" data-delay="1.1">
+                                        @((MarkupString)Title)
+                                    </h1>
+                                </div>
+                                <div class="cpn-text cpn-text-light">
+                                    <p class="lead animated" data-animate="fadeInUp" data-delay="1.2">
+                                        @((MarkupString)Description)
+                                    </p>
+                                </div>
+                                <div class="cpn-action mt-0">
+                                    <div class="cpn-btns pt-4 animated" data-animate="fadeInUp" data-delay="1.3">
+                                        <ul class="btn-grp">
+                                            <li><a href="#" class="btn btn-primary btn-lg">Get Started</a></li>
+                                            <li><a href="#" class="btn btn-outline btn-primary on-bg-theme-alt btn-lg">Contact Us</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- .col -->
+                    </div><!-- .row -->
+                </div>
+            </div>
+        </div>
+    </div><!-- .nk-banner -->
+    <div class="nk-ovm mask-f mask-contain-bottom shape-a2"></div>
+    <!-- Place Particle Js -->
+    <div id="particles-bg" class="particles-container particles-bg"></div>
+</div>
+<!-- .header-banner -->
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public string Description { get; set; }
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+
+        await base.OnAfterRenderAsync(firstRender);
+        
+        if(!firstRender)
+            await jsRuntime.InvokeAsync<string>("NioApp.Plugins.particles");
+    //var module = await jsRuntime.InvokeAsync<IJSInProcessObjectReference>(
+    //    "import", "./_content/CoinGardenWorld.Theme/assets/js/scripts.js");
+    //await module.InvokeAsync<string>("NioApp.winLoad");
+    //await module.InvokeAsync<string>("NioApp.Plugins.particles");
+        
+    }
+}

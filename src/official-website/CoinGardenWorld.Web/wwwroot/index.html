@@ -3,35 +3,46 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
     <title>CoinGardenWorld.Web</title>
+
     <base href="/" />
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/app.css" rel="stylesheet" />
+    
     <link rel="icon" type="image/png" href="favicon.png" />
-    <link href="CoinGardenWorld.Web.styles.css" rel="stylesheet" />
+
     <link href="manifest.json" rel="manifest" />
+    
+    
+    <!-- Bundle and Base CSS -->
+    <link rel="stylesheet" href="./_content/CoinGardenWorld.Theme/assets/css/vendor.bundle.css?ver=210">
+    <link rel="stylesheet" href="./_content/CoinGardenWorld.Theme/assets/css/style-lobelia.css?ver=210">
+    <!-- Extra CSS -->
+    <link rel="stylesheet" href="./_content/CoinGardenWorld.Theme/assets/css/theme.css?ver=210">
+
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
     <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
 </head>
 
-<body>
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
+<body class="nk-body body-wider mode-onepage bg-light">
+    <div id="app" >
+
+        <!-- preloader -->
+        <div class="preloader preloader-alt no-split"><span class="spinner spinner-alt"><img class="spinner-brand" src="./_content/CoinGardenWorld.Theme/images/logo-full-white.png" alt=""></span></div>
+
     </div>
 
-    <div id="blazor-error-ui">
+   <!-- <div id="blazor-error-ui">
         An unhandled error has occurred.
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
-    </div>
+    </div>-->
     <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
+
+    <script src="./_content/CoinGardenWorld.Theme/assets/js/jquery.bundle.js?ver=210"></script>
+    <!--
+    <script src="./_content/CoinGardenWorld.Theme/assets/js/scripts.js?ver=210"></script>-->
 </body>
 
 </html>

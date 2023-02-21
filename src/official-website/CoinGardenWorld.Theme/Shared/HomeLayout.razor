@@ -1,0 +1,49 @@
+﻿@inherits LayoutComponentBase
+@inject IJSRuntime jsRuntime
+
+<CascadingValue Value="this">
+
+    <div class="nk-wrap">
+
+        <CascadingValue Value="@Banner" Name="Banner">
+
+            <header class="nk-header page-header is-transparent is-sticky is-shrink" id="header">
+
+                <TopMenu />
+
+                @Banner
+
+            </header>
+        </CascadingValue>
+
+        <main class="nk-pages">
+            @Body
+        </main>
+
+        <Footer></Footer>
+
+    </div>
+
+</CascadingValue>
+<!-- preloader -->
+<div class="preloader preloader-alt no-split"><span class="spinner spinner-alt"><img class="spinner-brand" src="./_content/CoinGardenWorld.Theme/images/logo-full-white.png" alt=""></span></div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? Banner { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (!firstRender)
+        {
+            var module = await jsRuntime.InvokeAsync<IJSInProcessObjectReference>(
+                "import", "./_content/CoinGardenWorld.Theme/assets/js/scripts.js");
+            //await module.InvokeAsync<string>("NioApp.winLoad");
+            await module.InvokeAsync<string>("NioApp.Plugins.particles");
+        }
+    }
+}
