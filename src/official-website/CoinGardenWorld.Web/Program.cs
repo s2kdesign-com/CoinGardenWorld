@@ -1,6 +1,7 @@
 using CoinGardenWorld.Theme;
 using CoinGardenWorld.Theme.Shared;
 using CoinGardenWorld.Web;
+using CoinGardenWorld.Web.Extensions;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.JSInterop;
@@ -24,22 +25,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 
 var host = builder.Build();
-
-CultureInfo culture;
-var js = host.Services.GetRequiredService<IJSRuntime>();
-var result = await js.InvokeAsync<string>("blazorCulture.get");
-
-if (result != null)
-{
-    culture = new CultureInfo(result);
-}
-else
-{
-    culture = new CultureInfo("en-US");
-    await js.InvokeVoidAsync("blazorCulture.set", "en-US");
-}
-
-CultureInfo.DefaultThreadCurrentCulture = culture;
-CultureInfo.DefaultThreadCurrentUICulture = culture;
+// Extension method
+await host.SetDefaultCulture();
 
 await builder.Build().RunAsync();

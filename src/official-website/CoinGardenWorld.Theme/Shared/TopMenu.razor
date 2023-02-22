@@ -1,5 +1,6 @@
 ﻿@inject IJSRuntime jsRuntime
 @using System.Globalization
+@using System.Web
 @inject NavigationManager Navigation
 <!-- Header -->
 <div class="header-main">
@@ -80,7 +81,7 @@
                                 @foreach (var culture in supportedCultures.Where(c => c.Name != CultureInfo.CurrentCulture.Name))
                                 {
                                     <li>
-                                        <a href="@Navigation.Uri" @onclick="() => onClick(culture)">@culture.DisplayName</a>
+                                        <a @onclick="() => onClick(culture)">@culture.DisplayName</a>
                                     </li>
                                 }
                             </ul>
@@ -97,6 +98,29 @@
     </div>
 </div><!-- .header-main -->
 @code {
+    
+    protected override Task OnInitializedAsync()
+    {
+        
+
+        var query = HttpUtility.ParseQueryString(new Uri(Navigation.Uri).Query);
+        if (!string.IsNullOrEmpty(query["culture"]))
+        {
+            var cultureInfo = CultureInfo.GetCultures(CultureTypes.NeutralCultures)
+                .ToList().FirstOrDefault(c => c.TwoLetterISOLanguageName == query["culture"]);
+            if (cultureInfo != null && CultureInfo.CurrentCulture.Name != cultureInfo.Name)
+            {
+                var js = (IJSInProcessRuntime)jsRuntime;
+                js.InvokeVoid("blazorCulture.set", cultureInfo.Name);
+
+                Navigation.NavigateTo(Navigation.Uri.Split('?')[0], forceLoad: true);
+
+            }
+        }
+
+        return base.OnInitializedAsync();
+    }
+
     private void onClick(CultureInfo culture)
     {
         if (CultureInfo.CurrentCulture != culture)
@@ -118,18 +142,4 @@
         new CultureInfo("bg-BG"),
     };
 
-    private CultureInfo Culture
-    {
-        get => CultureInfo.CurrentCulture;
-        set
-        {
-            if (CultureInfo.CurrentCulture != value)
-            {
-                var js = (IJSInProcessRuntime)jsRuntime;
-                js.InvokeVoid("blazorCulture.set", value.Name);
-
-                Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
-            }
-        }
-    }
 }

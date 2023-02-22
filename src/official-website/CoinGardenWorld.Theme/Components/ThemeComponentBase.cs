@@ -4,9 +4,12 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CoinGardenWorld.Theme.Components
 {
@@ -25,9 +28,7 @@ namespace CoinGardenWorld.Theme.Components
         public HomeLayout HomeLayout { get; set; } = default!;
 
         private IJSObjectReference? themeModule;
-
         
-
         private RenderFragment AddContent() => builder =>
         {
             builder.OpenComponent(0, typeof(TBanner));
@@ -42,6 +43,7 @@ namespace CoinGardenWorld.Theme.Components
         {
             try
             {
+                base.OnInitialized();
 
                 await base.OnInitializedAsync();
                 HomeLayout.Banner = AddContent();
