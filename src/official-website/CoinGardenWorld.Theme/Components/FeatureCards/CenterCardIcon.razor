@@ -1,0 +1,30 @@
+﻿
+<div class="col-lg-4 col-md-10">
+    <div class="feature feature-center card card-lg-y animated" data-animate="fadeInUp" data-delay="@FeatureCardDelay">
+        <div class="feature-icon feature-icon-bg-grd feature-icon-bg-grd-s1">
+            <img src="@FeatureCardImageSrc" alt="feature">
+        </div>
+        <div class="feature-text">
+            <h4 class="title title-md title-dark mb-4">
+                @FeatureCardTitle
+            </h4>
+            <p>
+                @FeatureCardDescription
+            </p>
+        
+        </div>
+        <a href="#" class="link link-primary link-feature-s1"><em class="link-icon icon-circle icon-circle-md ti ti-arrow-right"></em></a>
+    </div>
+</div><!-- .col -->
+@code {
+
+    [Parameter]
+    public RenderFragment? FeatureCardTitle { get; set; }
+    [Parameter]
+    public RenderFragment? FeatureCardDescription { get; set; }
+
+    [Parameter]
+    public string FeatureCardDelay { get; set; }
+    [Parameter]
+    public string FeatureCardImageSrc { get; set; }
+}
