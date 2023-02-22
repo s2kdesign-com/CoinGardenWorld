@@ -1,4 +1,5 @@
 ﻿@inherits BannerBase
+@inject IStringLocalizer<HomeBanner> _localizer
 <!-- Banner -->
 <div class="header-banner bg-theme-grad">
     <div class="nk-banner">
@@ -9,7 +10,7 @@
                         <div class="col-lg-5 col-sm-9 order-lg-last">
                             <div class="banner-gfx-re-s3 my-0 animated" data-animate="fadeInUp" data-delay="1">
                                 <img src="images/colorful_animated_picture_little_futuristic_flowers_a_multip_transparernt-600x600.png" alt="header">
-                                <img class="banner-gfx-icon banner-gfx-icon-1" 
+                                <img class="banner-gfx-icon banner-gfx-icon-1"
                                      src="_content/CoinGardenWorld.Theme/images/icons/icon-custom.png" alt="">
                                 <img class="banner-gfx-icon banner-gfx-icon-2" src="_content/CoinGardenWorld.Theme/images/icons/icon-bitcoin.png" alt="">
                             </div>
@@ -29,8 +30,16 @@
                                 <div class="cpn-action mt-0">
                                     <div class="cpn-btns pt-4 animated" data-animate="fadeInUp" data-delay="1.3">
                                         <ul class="btn-grp">
-                                            <li><a href="#" class="btn btn-primary btn-lg">Get Started</a></li>
-                                            <li><a href="#" class="btn btn-outline btn-primary on-bg-theme-alt btn-lg">Contact Us</a></li>
+                                            <li>
+                                                <a href="#" class="btn btn-primary btn-lg">
+                                                    @_localizer["Download the App"]
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="btn btn-outline btn-primary on-bg-theme-alt btn-lg">
+                                                    @_localizer["Chat with the BOT"]
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -46,8 +55,7 @@
     <div id="particles-bg" class="particles-container particles-bg"></div>
 </div>
 <!-- .header-banner -->
-
 @code {
 
-    
+
 }

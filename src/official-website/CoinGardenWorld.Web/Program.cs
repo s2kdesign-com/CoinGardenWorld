@@ -23,6 +23,7 @@ builder.Services.AddMsalAuthentication(options =>
     builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
 });
 
+// TODO: Move to WebAssemblyHostExtension
 builder.Services.AddLocalization(options => options.ResourcesPath = "Localization");
 
 var host = builder.Build();
