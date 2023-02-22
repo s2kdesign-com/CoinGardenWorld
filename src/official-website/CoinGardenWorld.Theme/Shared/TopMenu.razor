@@ -116,6 +116,11 @@
                 Navigation.NavigateTo(Navigation.Uri.Split('?')[0], forceLoad: true);
 
             }
+            else
+            {
+                Navigation.NavigateTo(Navigation.Uri.Split('?')[0], forceLoad: false);
+
+            }
         }
 
         return base.OnInitializedAsync();
