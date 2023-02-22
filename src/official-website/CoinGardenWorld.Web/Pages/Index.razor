@@ -1,7 +1,11 @@
 ﻿@page "/"
 @inherits ThemeComponentBase<HomeBanner>
 
-<PageTitle>Home - CoinGarden.World</PageTitle>
+@*@inject Microsoft.Extensions.Localization.IStringLocalizer<Index> _localizer*@
+
+<PageTitle>Home - CoinGarden.World
+
+</PageTitle>
 
 <section class="section bg-transparent over-up over-up-xl-s2 pdt-0" style="z-index: 48">
     <div class="ui-mask-right ui-mask-s8"></div>
@@ -12,7 +16,7 @@
 
                 <CenterCardIcon FeatureCardDelay="1.6" FeatureCardImageSrc="images/animated_picture_for_a_website_-_a_hand_holding_a-230x230.png">
                     <FeatureCardTitle>
-                        Mobile Application
+                        @*@_localizer["Mobile Application"]*@
                     </FeatureCardTitle>
                     <FeatureCardDescription>
                         The mobile application is a way to identify flowers and plan their best cultivation according to their type, season and weather conditions where the flower is located.

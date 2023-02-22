@@ -12,6 +12,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.2" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="7.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +21,16 @@
 
   <ItemGroup>
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\Shared\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Pages\Index.bg.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

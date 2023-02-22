@@ -67,25 +67,7 @@
                         </li>
                     </ul>
                     <ul class="menu-btns">
-                      @*  <select class="select" @bind="supportedCultures">
-                            @foreach (var culture in supportedCultures)
-                            {
-                                <option value="@culture">@culture.DisplayName</option>
-                            }
-                        </select>*@
-                        <li class="language-switcher language-switcher-s3 toggle-wrap">
-                            <a class="toggle-tigger" @onclick="() => onClick(CultureInfo.CurrentCulture)">
-                                @CultureInfo.CurrentCulture.DisplayName
-                            </a>
-                            <ul class="toggle-class toggle-drop toggle-drop-left drop-list drop-list-sm">
-                                @foreach (var culture in supportedCultures.Where(c => c.Name != CultureInfo.CurrentCulture.Name))
-                                {
-                                    <li>
-                                        <a @onclick="() => onClick(culture)">@culture.DisplayName</a>
-                                    </li>
-                                }
-                            </ul>
-                        </li>
+                        <CoinGardenWorld.Theme.Components.LanguageSwitcher.HeaderLanguageSwitcher/>
                         @* <li>
                             <a href="page-login.html" class="btn btn-md btn-auto btn-primary no-change">
                                 <span>Login</span>
@@ -98,53 +80,5 @@
     </div>
 </div><!-- .header-main -->
 @code {
-    
-    protected override Task OnInitializedAsync()
-    {
-        
-
-        var query = HttpUtility.ParseQueryString(new Uri(Navigation.Uri).Query);
-        if (!string.IsNullOrEmpty(query["culture"]))
-        {
-            var cultureInfo = CultureInfo.GetCultures(CultureTypes.NeutralCultures)
-                .ToList().FirstOrDefault(c => c.TwoLetterISOLanguageName == query["culture"]);
-            if (cultureInfo != null && CultureInfo.CurrentCulture.Name != cultureInfo.Name)
-            {
-                var js = (IJSInProcessRuntime)jsRuntime;
-                js.InvokeVoid("blazorCulture.set", cultureInfo.Name);
-
-                Navigation.NavigateTo(Navigation.Uri.Split('?')[0], forceLoad: true);
-
-            }
-            else
-            {
-                Navigation.NavigateTo(Navigation.Uri.Split('?')[0], forceLoad: false);
-
-            }
-        }
-
-        return base.OnInitializedAsync();
-    }
-
-    private void onClick(CultureInfo culture)
-    {
-        if (CultureInfo.CurrentCulture != culture)
-        {
-            var js = (IJSInProcessRuntime)jsRuntime;
-            js.InvokeVoid("blazorCulture.set", culture.Name);
-
-           // Navigation.NavigateTo( "/" + culture.TwoLetterISOLanguageName, forceLoad: true);
-             Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
-            Console.WriteLine(culture.Name);
-            Console.WriteLine(Navigation.Uri);
-        }
-
-    }
-
-    private CultureInfo[] supportedCultures = new[]
-    {
-        new CultureInfo("en-US"),
-        new CultureInfo("bg-BG"),
-    };
 
 }

@@ -1,0 +1,80 @@
+﻿@inject IJSRuntime jsRuntime
+@using System.Globalization
+@using System.Web
+@inject NavigationManager Navigation
+
+<li class="language-switcher language-switcher-s3 toggle-wrap">
+    <a class="toggle-tigger" @onclick="() => onClick(CultureInfo.CurrentCulture)">
+        @CultureInfo.CurrentCulture.DisplayName
+    </a>
+    <ul class="toggle-class toggle-drop toggle-drop-left drop-list drop-list-sm">
+        @foreach (var culture in supportedCultures.Where(c => c.TwoLetterISOLanguageName != CultureInfo.CurrentCulture.TwoLetterISOLanguageName))
+        {
+            <li>
+                <a @onclick="() => onClick(culture)">@culture.DisplayName</a>
+            </li>
+        }
+    </ul>
+</li>
+
+@code {
+    private string _queryParamName = "language";
+    // Blazor: add parm to URL
+    string AddQueryParm(string parmName, string parmValue)
+    {
+        var uriBuilder = new UriBuilder(Navigation.Uri);
+        var q = System.Web.HttpUtility.ParseQueryString(uriBuilder.Query);
+        q[parmName] = parmValue;
+        uriBuilder.Query = q.ToString();
+        var newUrl = uriBuilder.ToString();
+        return newUrl;
+    }
+
+    // Blazor: get query parm from the URL
+    string GetQueryParm(string parmName)
+    {
+        var uriBuilder = new UriBuilder(Navigation.Uri);
+        var q = System.Web.HttpUtility.ParseQueryString(uriBuilder.Query);
+        return q[parmName] ?? "";
+    }
+    protected override Task OnInitializedAsync()
+    {
+        var query = HttpUtility.ParseQueryString(new Uri(Navigation.Uri).Query);
+        if (!string.IsNullOrEmpty(query[_queryParamName]))
+        {
+            var cultureInfo = CultureInfo.GetCultures(CultureTypes.NeutralCultures)
+                .ToList().FirstOrDefault(c => c.TwoLetterISOLanguageName == query[_queryParamName]);
+
+            Console.WriteLine(query[_queryParamName]);
+
+            if (cultureInfo != null && CultureInfo.CurrentCulture.TwoLetterISOLanguageName != cultureInfo.TwoLetterISOLanguageName)
+            {
+                Console.WriteLine(cultureInfo.Name);
+
+                var js = (IJSInProcessRuntime)jsRuntime;
+                js.InvokeVoid("blazorCulture.set", cultureInfo.Name);
+                CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(cultureInfo.Name);
+                CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(cultureInfo.Name);
+                //Navigation.NavigateTo(Navigation.Uri, forceLoad: false);
+            }
+        }
+
+        return base.OnInitializedAsync();
+    }
+
+    private void onClick(CultureInfo culture)
+    {
+        if (CultureInfo.CurrentCulture != culture)
+        {
+            Navigation.NavigateTo(AddQueryParm(_queryParamName, culture.TwoLetterISOLanguageName), forceLoad: true);
+        }
+
+    }
+
+    private CultureInfo[] supportedCultures = new[]
+    {
+        new CultureInfo("en-US"),
+        new CultureInfo("bg-BG"),
+    };
+
+}
