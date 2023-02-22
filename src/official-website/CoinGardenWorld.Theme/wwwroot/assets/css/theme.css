@@ -8,3 +8,9 @@ Theme	 :  Default
 .bg-theme-grad {
     background-image: linear-gradient(to bottom, #1FC511 0%, #22577a 50%, #b711c5 100%) !important;
 }
+
+/* unvisited link */
+.language-switcher a {
+    text-decoration: none;
+    cursor: pointer;
+}
