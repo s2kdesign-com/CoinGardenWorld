@@ -21,6 +21,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.Web", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.Theme", "src\official-website\CoinGardenWorld.Theme\CoinGardenWorld.Theme.csproj", "{60A91CC8-892A-477E-B7BF-80E2A758C4ED}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{AC85AF5C-1D1B-4437-9FE3-0E4D4B76BDE7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{FE1146FC-6058-40A1-B983-9D9B8D3104FC}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\azure-static-web-apps-gentle-bush-0cb584f03.yml = .github\workflows\azure-static-web-apps-gentle-bush-0cb584f03.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +54,7 @@ Global
 		{7A9EFF7D-7B83-4776-BB35-A00EBA755F84} = {5A954599-DAE6-45A3-A4EE-E938E3CE529C}
 		{E42ECBC4-7574-4DDB-9D76-19E7CFF229FF} = {7A9EFF7D-7B83-4776-BB35-A00EBA755F84}
 		{60A91CC8-892A-477E-B7BF-80E2A758C4ED} = {7A9EFF7D-7B83-4776-BB35-A00EBA755F84}
+		{FE1146FC-6058-40A1-B983-9D9B8D3104FC} = {AC85AF5C-1D1B-4437-9FE3-0E4D4B76BDE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}

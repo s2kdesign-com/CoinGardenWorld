@@ -56,8 +56,15 @@
     <script>navigator.serviceWorker.register('service-worker.js');</script>
 
     <script src="./_content/CoinGardenWorld.Theme/assets/js/jquery.bundle.js?ver=210"></script>
-    <!--
-    <script src="./_content/CoinGardenWorld.Theme/assets/js/scripts.js?ver=210"></script>-->
+<!--
+<script src="./_content/CoinGardenWorld.Theme/assets/js/scripts.js?ver=210"></script>-->
+
+<script>
+    window.blazorCulture = {
+        get: () => window.localStorage['BlazorCulture'],
+        set: (value) => window.localStorage['BlazorCulture'] = value
+    };
+</script>
 </body>
 
 </html>

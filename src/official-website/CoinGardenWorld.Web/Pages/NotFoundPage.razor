@@ -1,0 +1,30 @@
+﻿@inherits ThemeComponentBase<PageBanner>
+@page "/notfound"
+<PageTitle>Not found</PageTitle>
+
+
+
+<!-- // -->
+<section class="section bg-transparent pdt-0 ov-v">
+    <div class="ui-mask-right ui-mask-s10"></div>
+    <div class="container">
+        <!-- Section Head  -->
+
+        <div class="nk-block nk-block-features-s3">
+            <div class="row justify-content-center">
+
+                <div class="col-xl-6 col-md-7 col-sm-9">
+                    <div class="position-relative">
+                        <h2 class="title-xxl-grad">404</h2><h5 class="pb-2">Opps! Why you’re here?</h5><p class="">We are very sorry for inconvenience. It looks like you’re try to access a page that either has been deleted or never existed.</p><a href="#" class="btn btn-grad btn-md btn-round">Back to home</a>
+                    </div>
+                </div>
+
+            </div><!-- .row -->
+        </div><!-- .block  -->
+    </div>
+</section>
+@code {
+
+    protected override string BannerTitle { get => "Not found"; }
+    protected override string BannerDescription { get => "Sorry, there's nothing at this address."; }
+}
