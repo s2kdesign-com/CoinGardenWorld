@@ -1,7 +1,6 @@
 ﻿@page "/"
 @inherits ThemeComponentBase<HomeBanner>
-
-@*@inject Microsoft.Extensions.Localization.IStringLocalizer<Index> _localizer*@
+@inject IStringLocalizer<Index> _localizer
 
 <PageTitle>Home - CoinGarden.World
 
@@ -16,31 +15,29 @@
 
                 <CenterCardIcon FeatureCardDelay="1.6" FeatureCardImageSrc="images/animated_picture_for_a_website_-_a_hand_holding_a-230x230.png">
                     <FeatureCardTitle>
-                        @*@_localizer["Mobile Application"]*@
+                        @_localizer["Mobile Application"]
                     </FeatureCardTitle>
                     <FeatureCardDescription>
-                        The mobile application is a way to identify flowers and plan their best cultivation according to their type, season and weather conditions where the flower is located.
+                        @_localizer["The mobile application is a way to identify flowers and plan their best cultivation according to their type, season and weather conditions where the flower is located."]
                     </FeatureCardDescription>
                 </CenterCardIcon>
 
                 <CenterCardIcon FeatureCardDelay="1.4" FeatureCardImageSrc="images/island_with_nature_and_flowers_for_farming_game_on_a_wh_transparent-250x250.png">
                     <FeatureCardTitle>
-                        Metaverse
+                        @_localizer["Metaverse"]
                     </FeatureCardTitle>
                     <FeatureCardDescription>
-                        "World of Flowers" is a game where every single user who uses the app or takes
-                        care of at least one flower will get their own island where
-                        they can arrange and "plant" their real flowers in the metaverse.
+                        @_localizer["\"World of Flowers\" is a system equipped with artificial intelligence and automatic recognition of types and varieties of flowers."]
                     </FeatureCardDescription>
                 </CenterCardIcon>
 
                 <CenterCardIcon FeatureCardDelay="1.4" FeatureCardImageSrc="images/happy_colorfull_animated_picture_for_charity_website400x400.png">
                     <FeatureCardTitle>
-                        Charities
+                        @_localizer["Charities"]
                     </FeatureCardTitle>
                     <FeatureCardDescription>
-                        The donation system in "World of Flowers" is a unique way that users,
-                        together, can save endangered places or clear a polluted forest of waste.
+                        @_localizer["The donation system in \"World of Flowers\" is a unique way that users,together, can save endangered places or clear a polluted forest of waste."]
+
                     </FeatureCardDescription>
                 </CenterCardIcon>
 
@@ -65,30 +62,28 @@
                 <!-- Block  -->
                 <CenterCardIcon FeatureCardDelay=".3" FeatureCardImageSrc="images/colorfull_animated_picture_of_a_flower_shop_on_a_transparent-300x300.png">
                     <FeatureCardTitle>
-                        Flower Store
+                        @_localizer["Flower Store"]
                     </FeatureCardTitle>
                     <FeatureCardDescription>
-                        When you take good care of your garden, let it take care of you. Go to the NFT store and sell your collection of photos of your most beautiful flower, and if you continue to take care of it, each subsequent photo will be of a higher level and that will make it more valuable.
+                        @_localizer["When you take good care of your garden, let it take care of you. Go to the NFT store and sell your collection of photos of your most beautiful flower, and if you continue to take care of it, each subsequent photo will be of a higher level and that will make it more valuable."]
                     </FeatureCardDescription>
                 </CenterCardIcon>
 
                 <CenterCardIcon FeatureCardDelay=".4" FeatureCardImageSrc="images/colorful_animated_picture_little_futuristic_a_happy_ch_transparent-300x300.png">
                     <FeatureCardTitle>
-                        Garden BOT
+                        @_localizer["Garden BOT"]
                     </FeatureCardTitle>
                     <FeatureCardDescription>
-                        Chat with our flower recognition bot and send him pictures of flowers, he immediately will respond with the sort of the  and information how to take care of it.
+                        @_localizer["Chat with our flower recognition bot and send him pictures of flowers, he immediately will respond with the sort of the  and information how to take care of it."]
                     </FeatureCardDescription>
                 </CenterCardIcon>
 
                 <CenterCardIcon FeatureCardDelay=".4" FeatureCardImageSrc="images/colorfull_animated_picture_little_futuristic_of_a_crypt_fb_tranparent-300x300.png">
                     <FeatureCardTitle>
-                        Crypto Token
+                        @_localizer["Crypto Token"]
                     </FeatureCardTitle>
                     <FeatureCardDescription>
-                        GRDN token is the base currency in the entire infrastructure.
-                        All donations and causes, all rewards received for taking care of the flowers,
-                        as well as the metaverse are in the main crypto currency GRDN.
+                    @_localizer["GRDN token is the base currency in the entire infrastructure. All donations and causes, all rewards received for taking care of the flowers, as well as the metaverse are in the main crypto currency GRDN."]
                     </FeatureCardDescription>
                 </CenterCardIcon>
 
@@ -267,7 +262,7 @@
 </section>
 
 @code {
-    protected override string BannerTitle { get => "🌼 World of Flowers 🌺 "; }
-    protected override string BannerDescription { get => " Web3 Infrastructure for gardening, growing, <br class='d-none d-md-block'> selling and earning crypto from your flowers "; }
+    protected override string BannerTitle { get => _localizer["🌼 World of Flowers 🌺"]; }
+    protected override string BannerDescription { get => _localizer["Web3 Infrastructure for gardening, growing, <br class='d-none d-md-block'> selling and earning crypto from your flowers"]; }
 
 }
