@@ -3,7 +3,7 @@ name: Deploy LandingPage.Web Azure
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 jobs:
