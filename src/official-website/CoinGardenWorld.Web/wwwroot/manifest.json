@@ -10,6 +10,12 @@
 
   "icons": [
     {
+      "src": "maskable-icons/maskable_icon_x192.png",
+      "type": "image/png",
+      "purpose": "maskable any",
+      "sizes": "192x192"
+    },
+    {
       "src": "windows11/SmallTile.scale-100.png",
       "sizes": "71x71"
     },
