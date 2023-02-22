@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{AC85
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{FE1146FC-6058-40A1-B983-9D9B8D3104FC}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\azure-static-web-apps-gentle-bush-0cb584f03.yml = .github\workflows\azure-static-web-apps-gentle-bush-0cb584f03.yml
+		.github\workflows\official-site-azure-static-web-apps.yml = .github\workflows\official-site-azure-static-web-apps.yml
 	EndProjectSection
 EndProject
 Global
