@@ -12,42 +12,7 @@
                 </div>
                 <div class="col-lg-7">
                     <div class="nk-block-text animated" data-animate="fadeInUp" data-delay=".2">
-                        <div class="nk-block-shade"></div>
-                        <h3 class="title title-dark title-regular">
-                            "World of Flowers" is a system equipped with artificial intelligence and automatic recognition of types and varieties of flowers.
-                        </h3>
-                        <h4 class="title title-md">The flower application</h4>
-                        <p>
-                            In it, users not only grow but can also develop and sell their best photos of their most beautiful flowers.
-                            Every single photo in the system can be created as an NFT and thus either sold in the shop or used in the flower metaverse.
-                        </p>
-                        <p>
-                            The user starts their journey by downloading the flower app. Immediately after, he will be prompted to take a photo or upload a photo of the flower he wishes to add and will receive a QR code for quick information that he can use to put on the pot or to sell real flowers in a shop.
-                            The app will automatically recognize the type of flower and start reminding the user when it needs watering.
-                        </p>
-                        <div class="nk-block-note nk-block-note-s2">
-                            <em class="icon ti ti-mobile"></em>
-                            <p>
-                                The mobile application will keep reminding you when you need to water your plants and you will never forget to leave them dry again.
-                            </p>
-
-                        </div>
-                        <ul class="btn-grp justify-content-center justify-content-md-start">
-                            <li><a href="#" class="btn btn-grad btn-round btn-md">Get the app now</a></li>
-                            <li>
-                                <ul class="btn-grp gutter-15px">
-                                    <li><a href="#"><em class="fab fa-apple"></em></a></li>
-                                    <li><a href="#"><em class="fab fa-android"></em></a></li>
-                                    <li>
-                                        <a href="#">
-
-                                            <em class="fab fa-windows">
-                                            </em>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                        @Content
                     </div>
                 </div>
             </div><!-- .row -->
@@ -59,4 +24,8 @@
 
     [Parameter]
     public string SectionId { get; set; }
+
+    [Parameter]
+    public RenderFragment? Content { get; set; }
+
 }
