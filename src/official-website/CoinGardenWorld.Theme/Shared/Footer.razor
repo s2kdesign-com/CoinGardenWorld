@@ -39,13 +39,16 @@
                             <li><a href="#"><em class="social-icon social-icon-transparent fab fa-twitter"></em></a></li>
                             <li><a href="#"><em class="social-icon social-icon-transparent fab fa-youtube"></em></a></li>
                             <li><a href="#"><em class="social-icon social-icon-transparent fab fa-github"></em></a></li>
-                            <li><a href="#"><em class="social-icon social-icon-transparent fab fa-bitcoin"></em></a></li>
                             <li><a href="#"><em class="social-icon social-icon-transparent fab fa-medium-m"></em></a></li>
                         </ul>
                     </div>
                     <div class="col-lg-5 col-sm-8">
                         <div class="copyright-text copyright-text-s4">
-                            <p>&copy; Copyright 2022, ICO Crypto. All Rights Reserved.</p>
+                            <p>&copy; Copyright @dt.Year,
+                                <a href="https://coingarden.world/" target="_blank">
+                                    CoinGarden.World
+                                </a>. All Rights Reserved.
+                            </p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-4 text-sm-end">
@@ -64,13 +67,15 @@
 
 @code {
 
+    private DateTime dt = DateTime.Now;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
 
         await base.OnAfterRenderAsync(firstRender);
 
-        if (!firstRender)
-            await jsRuntime.InvokeAsync<string>("NioApp.Plugins.particles");
+        //if (!firstRender)
+        //    await jsRuntime.InvokeAsync<string>("NioApp.Plugins.particles");
         //var module = await jsRuntime.InvokeAsync<IJSInProcessObjectReference>(
         //    "import", "./_content/CoinGardenWorld.Theme/assets/js/scripts.js");
         //await module.InvokeAsync<string>("NioApp.winLoad");
