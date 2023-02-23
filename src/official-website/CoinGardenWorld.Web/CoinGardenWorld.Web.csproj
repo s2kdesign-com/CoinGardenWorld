@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Localization\Pages\Index.bg.resx~RF100fb191.TMP" />
+    <None Remove="Localization\Pages\Index.bg.resx~RF10788e89.TMP" />
   </ItemGroup>
 
   <ItemGroup>
