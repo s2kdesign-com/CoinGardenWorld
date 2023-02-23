@@ -121,7 +121,7 @@
     <value>"Свят на цветята" е игра в която всеки един потребител, който използва приложението или се грижи за поне едно цвете, ще получи свой собствен остров, който може да аранжира и да "посади" реалните си цветя в метавселената.</value>
   </data>
   <data name="&quot;World of Flowers&quot; is a system equipped with artificial intelligence and automatic recognition of types and varieties of flowers." xml:space="preserve">
-    <value>"Светът на цветята" е система, оборудвана с изкуствен интелект и автоматично разпознаване на видовете и сортовете цветя.</value>
+    <value>"Свят на цветята" е система, оборудвана с изкуствен интелект и автоматично разпознаване на видовете и сортовете цветя.</value>
   </data>
   <data name="&lt;span class=&quot;title-dark&quot;&gt;Own the future!&lt;/span&gt; &lt;br /&gt; &lt;span&gt;&quot;World of Flowers&quot;&lt;/span&gt; &lt;span class=&quot;title-dark&quot;&gt;is your portal to the blockchain world.&lt;/span&gt;" xml:space="preserve">
     <value>&lt;span class="title-dark"&gt;Притежавайте бъдещето!&lt;/span&gt; &lt;br /&gt; &lt;span&gt;"Свят на Цветята"&lt;/span&gt; &lt;span class="title-dark"&gt;е вашият портал към блокчейн вселената.&lt;/span&gt;</value>
@@ -152,6 +152,9 @@
   </data>
   <data name="GRDN token is the base currency in the entire infrastructure. All donations and causes, all rewards received for taking care of the flowers, as well as the metaverse are in the main crypto currency GRDN." xml:space="preserve">
     <value>GRDN токена е основата валута в цялата инфраструктура. Всички дарения и каузи, всички награди получени при грижа за цветята, както и метавърса са в основната крипто валута GRDN.</value>
+  </data>
+  <data name="Home - World of Flowers" xml:space="preserve">
+    <value>Начало - Свят на цветята</value>
   </data>
   <data name="In it, users not only grow but can also develop and sell their best photos of their most beautiful flowers. Every single photo in the system can be created as an NFT and thus either sold in the shop or used in the flower metaverse." xml:space="preserve">
     <value>В нея потребителите не само отглеждат но могат и да развиват и продават своите най – добри снимки на най - красивите си цветя.
@@ -188,7 +191,7 @@
     <value>Мобилното приложение ще ви напомня кога трябва да полеете растенията си и никога повече няма да забравите да ги оставите сухи.</value>
   </data>
   <data name="The more flowers you have in the &quot;World of Flowers&quot;, the more GRDN Coin you will earn per day if you play." xml:space="preserve">
-    <value>Колкото повече цветя имате в „Светът на цветята“, толкова повече GRDN криптовалута ще печелите на ден, ако играете.</value>
+    <value>Колкото повече цветя имате в „Свят на цветята“, толкова повече GRDN криптовалута ще печелите на ден, ако играете.</value>
   </data>
   <data name="The user starts their journey by downloading the flower app. Immediately after, he will be prompted to take a photo or upload a photo of the flower he wishes to add and will receive a QR code for quick information that he can use to put on the pot or to sell real flowers in a shop. The app will automatically recognize the type of flower and start reminding the user when it needs watering." xml:space="preserve">
     <value>Потребителя започва своя път със сваляне на приложението за цветя. 
