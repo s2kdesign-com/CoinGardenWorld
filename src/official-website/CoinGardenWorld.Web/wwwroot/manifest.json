@@ -1,7 +1,7 @@
 {
   "name": "World of Flowers - CoinGardenWorld.Web",
   "short_name": "World of Flowers",
-  "description": "Web3 Infrastructure for gardening, growing, selling and earning crypto from your flowers",
+  "description": "Web3 Infrastructure for gardening, growing, selling and earning crypto from your flowers.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
