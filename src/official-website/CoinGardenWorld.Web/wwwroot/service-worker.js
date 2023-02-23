@@ -17,7 +17,7 @@ Copyright 2015, 2019 Google Inc. All Rights Reserved.
 
 // Incrementing OFFLINE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
-const OFFLINE_VERSION = 5;
+const OFFLINE_VERSION = 7;
 const CACHE_NAME = 'offline';
 // Customize this with a different URL if needed.
 //const OFFLINE_URL = 'offline.html';
@@ -68,4 +68,6 @@ const CACHE_NAME = 'offline';
     // chance to call event.respondWith(). If no fetch handlers call
     // event.respondWith(), the request will be handled by the browser as if there
     // were no service worker involvement.
-});
+
+
+//});
