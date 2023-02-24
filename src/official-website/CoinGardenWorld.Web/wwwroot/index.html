@@ -54,24 +54,6 @@
 </head>
 
 <body class="nk-body body-wider mode-onepage bg-light">
-    <script>
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '874602667164734',
-                xfbml: true,
-                version: 'v16.0'
-            });
-            FB.AppEvents.logPageView();
-        };
-
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
     <div id="app">
 
         <!-- preloader -->
@@ -106,8 +88,31 @@
             return (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.userLanguage || navigator.language || navigator.browserLanguage || 'en';
         }
     </script>
+    
+<div id="fb-root"></div>
 
-    <!-- Messenger Chat Plugin Code
+<div id="fb-customer-chat" class="fb-customerchat"></div>
+
+
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '874602667164734',
+            xfbml: true,
+            version: 'v16.0'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<!-- Messenger Chat Plugin Code
     <div id="fb-root"></div>
 
     <div id="fb-customer-chat" class="fb-customerchat"></div>
