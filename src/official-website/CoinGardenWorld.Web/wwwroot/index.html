@@ -10,7 +10,7 @@
 
     <link rel="icon" type="image/png" href="favicon.png" />
 
-    <link href="manifest.json" rel="manifest"  />
+    <link href="manifest.json" rel="manifest" />
 
 
     <!-- Bundle and Base CSS -->
@@ -23,7 +23,7 @@
 
     <link rel="apple-touch-icon" sizes="512x512" href="ios/512.png" />
     <link rel="apple-touch-icon" sizes="192x192" href="ios/192.png" />
-    
+
     <meta name="theme-color" content="#1FC511" />
 
     <meta property="fb:app_id" content="874602667164734" />
@@ -54,6 +54,24 @@
 </head>
 
 <body class="nk-body body-wider mode-onepage bg-light">
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '874602667164734',
+                xfbml: true,
+                version: 'v16.0'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div id="app">
 
         <!-- preloader -->
@@ -66,10 +84,10 @@
     </div>
 
     <!-- <div id="blazor-error-ui">
-         An unhandled error has occurred.
-         <a href="" class="reload">Reload</a>
-         <a class="dismiss">🗙</a>
-     </div>-->
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>-->
     <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="true"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
@@ -85,8 +103,7 @@
         };
 
         window.getBrowserLanguage = function () {
-            return (navigator.languages && navigator.languages.length) ? navigator.languages[0] :
-                navigator.userLanguage || navigator.language || navigator.browserLanguage || 'en';
+            return (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.userLanguage || navigator.language || navigator.browserLanguage || 'en';
         }
     </script>
 
@@ -96,54 +113,54 @@
     <div id="fb-customer-chat" class="fb-customerchat"></div>
 
     <script>
-        var chatbox = document.getElementById('fb-customer-chat');
-        chatbox.setAttribute("page_id", "874602667164734");
-        chatbox.setAttribute("attribution", "biz_inbox");
-    </script>
+            var chatbox = document.getElementById('fb-customer-chat');
+            chatbox.setAttribute("page_id", "874602667164734");
+            chatbox.setAttribute("attribution", "biz_inbox");
+        </script>
 
 
     <script>
-        window.fbAsyncInit = function () {
-            FB.init({
-                xfbml: true,
-                version: 'v16.0'
-            });
-        };
+            window.fbAsyncInit = function () {
+                FB.init({
+                    xfbml: true,
+                    version: 'v16.0'
+                });
+            };
 
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>-->
-<!-- Messenger Chat Plugin Code -->
-
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>-->
+    <!-- Messenger Chat Plugin Code -->
     <!-- Blazor Brotli/Gzip compression -->
-   <!-- <script type="module">
-        import { BrotliDecode } from './decode.min.js';
-        Blazor.start({
-            loadBootResource: function (type, name, defaultUri, integrity) {
-        if (type !== 'dotnetjs' && location.hostname !== 'localhost') {
-                    return (async function () {
-                        const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        }
-                        const originalResponseBuffer = await response.arrayBuffer();
-                        const originalResponseArray = new Int8Array(originalResponseBuffer);
-                        const decompressedResponseArray = BrotliDecode(originalResponseArray);
-                        const contentType = type ===
-                            'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
-                        return new Response(decompressedResponseArray,
-                            { headers: { 'content-type': contentType } });
-                    })();
+    <!-- <script type="module">
+            import { BrotliDecode } from './decode.min.js';
+            Blazor.start({
+                loadBootResource: function (type, name, defaultUri, integrity) {
+            if (type !== 'dotnetjs' && location.hostname !== 'localhost') {
+                        return (async function () {
+                            const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
+                            if (!response.ok) {
+                                throw new Error(response.statusText);
+                            }
+                            const originalResponseBuffer = await response.arrayBuffer();
+                            const originalResponseArray = new Int8Array(originalResponseBuffer);
+                            const decompressedResponseArray = BrotliDecode(originalResponseArray);
+                            const contentType = type ===
+                                'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
+                            return new Response(decompressedResponseArray,
+                                { headers: { 'content-type': contentType } });
+                        })();
+                    }
                 }
-            }
-        });
-    </script>-->
-<!-- Blazor Brotli/Gzip compression -->
+            });
+        </script>-->
+    <!-- Blazor Brotli/Gzip compression -->
+
 </body>
 
 </html>

@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/src/garden-bot/CoreWithLanguage/local.settings.json
+/src/official-website/CoinGardenWorld.Web/wwwroot/appsettings.Development.json
+/src/garden-bot/CoreWithLanguage/settings/appsettings.Development.json
+/src/garden-bot/GardenBotFrameworkComposer/settings/appsettings.Development.json
