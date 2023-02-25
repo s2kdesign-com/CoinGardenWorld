@@ -365,3 +365,4 @@ FodyWeavers.xsd
 /src/official-website/CoinGardenWorld.Web/wwwroot/appsettings.Development.json
 /src/garden-bot/CoreWithLanguage/settings/appsettings.Development.json
 /src/garden-bot/GardenBotFrameworkComposer/settings/appsettings.Development.json
+/src/garden-bot/CoinGardenBotCore/CoinGardenBotCore/local.settings.json
