@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "LUIS_HelpDialog",
+  "recognizers": {
+    "en-us": "HelpDialog.en-us.lu",
+    "": "HelpDialog.en-us.lu"
+  }
+}

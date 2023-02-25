@@ -17,9 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "metaverse", "metaverse", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "official-website", "official-website", "{7A9EFF7D-7B83-4776-BB35-A00EBA755F84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.Web", "src\official-website\CoinGardenWorld.Web\CoinGardenWorld.Web.csproj", "{E42ECBC4-7574-4DDB-9D76-19E7CFF229FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.Web", "src\official-website\CoinGardenWorld.Web\CoinGardenWorld.Web.csproj", "{E42ECBC4-7574-4DDB-9D76-19E7CFF229FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.Theme", "src\official-website\CoinGardenWorld.Theme\CoinGardenWorld.Theme.csproj", "{60A91CC8-892A-477E-B7BF-80E2A758C4ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.Theme", "src\official-website\CoinGardenWorld.Theme\CoinGardenWorld.Theme.csproj", "{60A91CC8-892A-477E-B7BF-80E2A758C4ED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{AC85AF5C-1D1B-4437-9FE3-0E4D4B76BDE7}"
 EndProject
@@ -27,6 +27,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\official-site-azure-static-web-apps.yml = .github\workflows\official-site-azure-static-web-apps.yml
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "garden-bot", "garden-bot", "{8974AD58-BA97-411E-86FC-958DE2F20E8D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GardenBotFrameworkComposer", "src\garden-bot\GardenBotFrameworkComposer\GardenBotFrameworkComposer.csproj", "{216DF3A6-FF4E-4AF5-BCF2-72567704A27C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenBotCore", "src\garden-bot\CoinGardenBotCore\CoinGardenBotCore\CoinGardenBotCore.csproj", "{B8CDCF6A-275F-44CC-8D64-42B3E17D9186}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +48,14 @@ Global
 		{60A91CC8-892A-477E-B7BF-80E2A758C4ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60A91CC8-892A-477E-B7BF-80E2A758C4ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60A91CC8-892A-477E-B7BF-80E2A758C4ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{216DF3A6-FF4E-4AF5-BCF2-72567704A27C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{216DF3A6-FF4E-4AF5-BCF2-72567704A27C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{216DF3A6-FF4E-4AF5-BCF2-72567704A27C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{216DF3A6-FF4E-4AF5-BCF2-72567704A27C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8CDCF6A-275F-44CC-8D64-42B3E17D9186}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8CDCF6A-275F-44CC-8D64-42B3E17D9186}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8CDCF6A-275F-44CC-8D64-42B3E17D9186}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8CDCF6A-275F-44CC-8D64-42B3E17D9186}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +69,9 @@ Global
 		{E42ECBC4-7574-4DDB-9D76-19E7CFF229FF} = {7A9EFF7D-7B83-4776-BB35-A00EBA755F84}
 		{60A91CC8-892A-477E-B7BF-80E2A758C4ED} = {7A9EFF7D-7B83-4776-BB35-A00EBA755F84}
 		{FE1146FC-6058-40A1-B983-9D9B8D3104FC} = {AC85AF5C-1D1B-4437-9FE3-0E4D4B76BDE7}
+		{8974AD58-BA97-411E-86FC-958DE2F20E8D} = {5A954599-DAE6-45A3-A4EE-E938E3CE529C}
+		{216DF3A6-FF4E-4AF5-BCF2-72567704A27C} = {8974AD58-BA97-411E-86FC-958DE2F20E8D}
+		{B8CDCF6A-275F-44CC-8D64-42B3E17D9186} = {8974AD58-BA97-411E-86FC-958DE2F20E8D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}

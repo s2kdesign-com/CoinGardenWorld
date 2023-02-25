@@ -1,0 +1,11 @@
+[import](common.lg)
+
+# SendActivity_HelpOverview()
+[Activity
+    Text = ${SendActivity_HelpOverview_text()}
+]
+
+# SendActivity_HelpOverview_text()
+- I am always here to help! 
+
+> Imported: 95949fcc5eb2077f9cffd10817a11340

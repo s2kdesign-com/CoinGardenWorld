@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "LUIS_FlowerRecognitionDialog",
+  "recognizers": {
+    "en-us": "FlowerRecognitionDialog.en-us.lu",
+    "": "FlowerRecognitionDialog.en-us.lu"
+  }
+}

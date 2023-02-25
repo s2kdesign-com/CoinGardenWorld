@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "luis:endpointKey": "0cce9473e994471aa2c662f62d92c3a5",
+    "SkillHostEndpoint": "http://127.0.0.1:3980/api/skills",
+    "MicrosoftAppPassword": "dco8Q~2EW1hZKkG2w4Z2sSZKm_vSO-IodWfnucKu"
+  },
+  "ConnectionStrings": {}
+}
