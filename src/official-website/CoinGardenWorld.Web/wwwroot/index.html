@@ -65,12 +65,25 @@
 
     </div>
 
-    <!-- <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>-->
-    <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
+<!-- <div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>-->
+
+
+<script>
+    window.blazorCulture = {
+        get: () => window.localStorage['BlazorCulture'],
+        set: (value) => window.localStorage['BlazorCulture'] = value
+    };
+
+    window.getBrowserLanguage = function () {
+        return (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.userLanguage || navigator.language || navigator.browserLanguage || 'en';
+    }
+</script>
+
+<script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="true"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
 
@@ -78,16 +91,6 @@
     <!--
     <script src="./_content/CoinGardenWorld.Theme/assets/js/scripts.js?ver=210"></script>-->
 
-    <script>
-        window.blazorCulture = {
-            get: () => window.localStorage['BlazorCulture'],
-            set: (value) => window.localStorage['BlazorCulture'] = value
-        };
-
-        window.getBrowserLanguage = function () {
-            return (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.userLanguage || navigator.language || navigator.browserLanguage || 'en';
-        }
-    </script>
     
 <!-- Messenger Chat Plugin Code -->
 <div id="fb-root"></div>
