@@ -10,6 +10,9 @@
       ],
       "Help": [
         "HelpDialog.en-us"
+      ],
+      "FlowerRecognizer": [
+        "RecognizerDialog.en-us"
       ]
     }
   }

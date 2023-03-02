@@ -31,6 +31,20 @@
                 "id": "PsAJ3p"
               },
               "activity": "${SendActivity_WelcomeReturningUser()}"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "gb7lpV"
+              },
+              "activity": "${SendActivity_gb7lpV()}"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "fVRrgV"
+              },
+              "activity": "${SendActivity_fVRrgV()}"
             }
           ],
           "elseActions": [
@@ -47,6 +61,13 @@
                 "id": "nqBhB6"
               },
               "activity": "${SendActivity_nqBhB6()}"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "A60GOc"
+              },
+              "activity": "${SendActivity_A60GOc()}"
             },
             {
               "$kind": "Microsoft.SetProperty",

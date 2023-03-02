@@ -145,6 +145,24 @@
           "activity": "${SendActivity_DidNotUnderstand()}"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "xO3uzs",
+        "name": "FlowerRecognizer"
+      },
+      "intent": "FlowerRecognizer",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "0hdvbC"
+          },
+          "activityProcessed": true,
+          "dialog": "RecognizerDialog"
+        }
+      ]
     }
   ],
   "generator": "CoinGardenBotCore.lg",

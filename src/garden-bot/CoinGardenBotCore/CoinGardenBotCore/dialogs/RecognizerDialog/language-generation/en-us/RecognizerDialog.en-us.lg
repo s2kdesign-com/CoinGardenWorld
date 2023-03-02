@@ -1,0 +1,24 @@
+[import](common.lg)
+
+# ChoiceInput_Prompt_z8F9Be()
+[Activity
+    Text = ${ChoiceInput_Prompt_z8F9Be_text()}
+]
+
+# ChoiceInput_Prompt_z8F9Be_text()
+- Lets look at some flowers 💐 
+# SendActivity_iFCLZ3()
+[Activity
+    Text = ${SendActivity_iFCLZ3_text()}
+]
+
+# SendActivity_iFCLZ3_text()
+- Looking at pictures of flowers is my favorite thing, please send me the image.
+# SendActivity_LwBECw()
+[Activity
+    Text = ${SendActivity_LwBECw_text()}
+]
+
+# SendActivity_LwBECw_text()
+- ```Okay, lets start with the flower name.
+Just write me a message like: tell me more about flower_name```

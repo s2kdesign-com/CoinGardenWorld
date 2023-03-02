@@ -11,6 +11,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Bot.Builder.Community.Adapters.Facebook" Version="4.13.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.OData" Version="7.5.2" />
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
@@ -27,9 +28,16 @@
     <Content Update="local.settings.json">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </Content>
+    <Content Update="settings\appsettings.Development.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <None Include="wwwroot/**/*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="settings\appsettings.Development.json" />
   </ItemGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />

@@ -30,3 +30,26 @@
 
 # SendActivity_nqBhB6_text()
 - I am here to answer any questions that you may have about flowers. 
+# SendActivity_n6kFWj()
+[Activity
+    Text = ${SendActivity_n6kFWj_text()}
+]
+
+# SendActivity_n6kFWj_text()
+- Send me a message like: can you tell me more about flowers
+# SendActivity_fVRrgV()
+[Activity
+    SuggestedActions = lets recognize some flowers
+]
+
+# SendActivity_gb7lpV()
+[Activity
+    Text = ${SendActivity_gb7lpV_text()}
+]
+
+# SendActivity_gb7lpV_text()
+- I know you know the drill 😊
+# SendActivity_A60GOc()
+[Activity
+    SuggestedActions = can you tell me more about flowers
+]

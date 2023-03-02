@@ -22,6 +22,20 @@
             "id": "5JQ9rf"
           },
           "activity": "${SendActivity_HelpOverview()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "pmT0Ve"
+          },
+          "activity": "${SendActivity_pmT0Ve()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "y8RwTB"
+          },
+          "activity": "${SendActivity_y8RwTB()}"
         }
       ]
     }

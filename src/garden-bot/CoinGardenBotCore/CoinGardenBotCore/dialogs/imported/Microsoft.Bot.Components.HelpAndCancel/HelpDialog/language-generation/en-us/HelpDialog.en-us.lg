@@ -9,3 +9,14 @@
 - I am always here to help! 
 
 > Imported: 95949fcc5eb2077f9cffd10817a11340
+# SendActivity_pmT0Ve()
+[Activity
+    Text = ${SendActivity_pmT0Ve_text()}
+]
+
+# SendActivity_pmT0Ve_text()
+- Send me a message like: can you tell me more about flowers
+# SendActivity_y8RwTB()
+[Activity
+    SuggestedActions = can you tell me more about flowers
+]

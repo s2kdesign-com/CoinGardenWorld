@@ -1,0 +1,86 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "8mCwsx",
+    "name": "RecognizerDialog",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "lE04DR"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "z8F9Be"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ChoiceInput_Prompt_z8F9Be()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "property": "dialog.ChoosenRecognition",
+          "outputFormat": "index",
+          "style": "heroCard",
+          "choices": [
+            "I want to recognize flower by name 🌺",
+            "I will send you a picture to recognize 🖼️"
+          ]
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "6c5yDM"
+          },
+          "condition": "dialog.ChoosenRecognition",
+          "cases": [
+            {
+              "value": "0",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "LwBECw"
+                  },
+                  "activity": "${SendActivity_LwBECw()}"
+                }
+              ]
+            },
+            {
+              "value": "1",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "iFCLZ3"
+                  },
+                  "activity": "${SendActivity_iFCLZ3()}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "RecognizerDialog.lg",
+  "recognizer": "RecognizerDialog.lu.qna",
+  "id": "RecognizerDialog"
+}
