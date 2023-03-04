@@ -30,7 +30,7 @@ jobs:
 
 
       - name: Set version
-        id: get_version
+        id: set_version
         run: |
           echo $VERSION > file.log 
 
