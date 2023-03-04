@@ -1,5 +1,4 @@
 name: Deploy GardenBOT Site - Azure
-run-name: ${{ github.actor }} triggered build version - ${{ env.VERSION_CI }}
 
 on:
   push:
@@ -45,7 +44,7 @@ jobs:
           # New version
           version: "${{ env.VERSION_CI }}"
 
-      - name: Build And Deploy
+      - name: Build And Deploy version - ${{ env.VERSION_CI }}
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
