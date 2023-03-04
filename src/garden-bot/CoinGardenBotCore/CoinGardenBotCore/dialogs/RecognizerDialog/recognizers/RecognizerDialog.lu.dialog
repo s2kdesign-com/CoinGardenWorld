@@ -2,6 +2,7 @@
   "$kind": "Microsoft.MultiLanguageRecognizer",
   "id": "LUIS_RecognizerDialog",
   "recognizers": {
+    "bg-bg": "RecognizerDialog.en-us.lu",
     "en-us": "RecognizerDialog.en-us.lu",
     "": "RecognizerDialog.en-us.lu"
   }

@@ -34,6 +34,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenBotCore", "src\ga
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenBotCore_Api", "src\garden-bot\CoinGardenBotCore.Api\CoinGardenBotCore_Api.csproj", "{0A546DB2-1E49-4E01-8CB2-45C447458C3E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C5FE5DF1-B6A8-447F-9C6D-61D4EFE1A265}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenBotCore.Web", "src\garden-bot\CoinGardenBotCore.Web\CoinGardenBotCore.Web.csproj", "{9B10727A-514D-40E2-AD2F-E5A756198F0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +63,10 @@ Global
 		{0A546DB2-1E49-4E01-8CB2-45C447458C3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A546DB2-1E49-4E01-8CB2-45C447458C3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A546DB2-1E49-4E01-8CB2-45C447458C3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B10727A-514D-40E2-AD2F-E5A756198F0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B10727A-514D-40E2-AD2F-E5A756198F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B10727A-514D-40E2-AD2F-E5A756198F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B10727A-514D-40E2-AD2F-E5A756198F0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +83,7 @@ Global
 		{8974AD58-BA97-411E-86FC-958DE2F20E8D} = {5A954599-DAE6-45A3-A4EE-E938E3CE529C}
 		{B8CDCF6A-275F-44CC-8D64-42B3E17D9186} = {8974AD58-BA97-411E-86FC-958DE2F20E8D}
 		{0A546DB2-1E49-4E01-8CB2-45C447458C3E} = {8974AD58-BA97-411E-86FC-958DE2F20E8D}
+		{9B10727A-514D-40E2-AD2F-E5A756198F0C} = {8974AD58-BA97-411E-86FC-958DE2F20E8D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}
