@@ -1,4 +1,5 @@
-﻿@inject IJSRuntime jsRuntime
+﻿@using System.Reflection
+@inject IJSRuntime jsRuntime
 @inject IStringLocalizer<Footer> _localizer
 <!-- Footer -->
 <footer class="nk-footer bg-theme-grad ov-h">
@@ -58,12 +59,16 @@
                                 <a href="https://coingarden.world/" target="_blank">
                                     CoinGarden.World
                                 </a>. All Rights Reserved.
+                                
                             </p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-4 text-sm-end">
                         <ul class="footer-links">
+
                             <li><a href="terms-and-conditions">Terms &amp; Conditions</a></li>
+
+                            <li><a href="#">Version - @GetPackageVersion()</a></li>
                         </ul>
                     </div>
                 </div>
@@ -91,5 +96,11 @@
         //await module.InvokeAsync<string>("NioApp.winLoad");
         //await module.InvokeAsync<string>("NioApp.Plugins.particles");
 
+    }
+
+
+    public static string GetPackageVersion() {
+        Version version = Assembly.GetExecutingAssembly().GetName().Version;
+        return version.ToString();
     }
 }
