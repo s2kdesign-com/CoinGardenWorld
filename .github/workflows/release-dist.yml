@@ -32,7 +32,7 @@ jobs:
       - name: Set version
         id: set_version
         run: |
-          echo "$VERSION" > VERSION
+          echo "${{ env.VERSION_CI }}" > VERSION
           cat VERSION
 
 
@@ -48,7 +48,7 @@ jobs:
 
           # Optional. Tag name being created in the local repository and 
           # pushed to remote repository and defined branch.
-          tagging_message: 'v${{ env.VERSION_CI }}'
+          tagging_message: ${{ env.VERSION_CI }}
           
       #- name: Download artifact
       #  id: download-artifact
