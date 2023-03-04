@@ -4,8 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33402.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5A954599-DAE6-45A3-A4EE-E938E3CE529C}"
+	ProjectSection(SolutionItems) = preProject
+		src\README.md = src\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{79C78861-C41F-4656-AF3F-D31DEFB6A5EB}"
+	ProjectSection(SolutionItems) = preProject
+		docs\GETTING_STARTED.md = docs\GETTING_STARTED.md
+		docs\README.md = docs\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mobile-app", "mobile-app", "{C82FB067-799A-46EA-B6D9-A28406C710E2}"
 EndProject
@@ -39,7 +46,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenBotCore.Web", "src\garden-bot\CoinGardenBotCore.Web\CoinGardenBotCore.Web.csproj", "{9B10727A-514D-40E2-AD2F-E5A756198F0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenBotCore.Web", "src\garden-bot\CoinGardenBotCore.Web\CoinGardenBotCore.Web.csproj", "{9B10727A-514D-40E2-AD2F-E5A756198F0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
