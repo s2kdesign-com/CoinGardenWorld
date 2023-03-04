@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject IConfiguration Configuration
 
 <PageTitle>Index</PageTitle>
 
@@ -8,8 +9,19 @@ Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
 
-<iframe src="https://webchat.botframework.com/embed/coingardenBotCore?s=YOUR_SECRET_HERE" style="height: 502px; max-height: 502px;"></iframe>
+<iframe src="@webchatUrl" style="height: 502px; max-height: 502px;"></iframe>
 
-<a href='https://www.messenger.com/t/113273648357885'><img src='https://facebook.botframework.com/Content/MessageUs.png'></a>
+<a href='https://www.messenger.com/t/113273648357885'><img src='messenger-6062243_1280.webp'></a>
 
 <a href='https://join.skype.com/bot/535a8898-78db-4fc2-ad41-131be2f17b0e'><img src='https://dev.botframework.com/Client/Images/Add-To-Skype-Buttons.png' /></a>  
+
+@code{
+
+    private string webchatUrl;
+
+    protected override void OnInitialized() {
+        base.OnInitialized();
+        webchatUrl = $"https://webchat.botframework.com/embed/coingardenBotCore?s={Configuration["BotFramework:WebChatSecret"]}";
+    }
+
+}
