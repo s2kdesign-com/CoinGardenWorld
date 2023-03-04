@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.LuisRecognizer",
+  "id": "LUIS_RecognizeFlowerByPicture",
+  "applicationId": "=settings.luis.RecognizeFlowerByPicture_bg_bg_lu.appId",
+  "version": "=settings.luis.RecognizeFlowerByPicture_bg_bg_lu.version",
+  "endpoint": "=settings.luis.endpoint",
+  "endpointKey": "=settings.luis.endpointKey"
+}

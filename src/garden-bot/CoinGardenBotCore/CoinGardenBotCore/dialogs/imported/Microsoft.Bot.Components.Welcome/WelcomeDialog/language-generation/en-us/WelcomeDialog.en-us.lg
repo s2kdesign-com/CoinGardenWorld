@@ -53,3 +53,11 @@
 [Activity
     SuggestedActions = can you tell me more about flowers
 ]
+
+# SendActivity_m8frfm()
+[Activity
+    Text = ${SendActivity_m8frfm_text()}
+]
+
+# SendActivity_m8frfm_text()
+- At any point, when you talk to me, you can say Cancel to stop all active dialogs. ✋

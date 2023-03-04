@@ -1,0 +1,30 @@
+[import](common.lg)
+
+# SendActivity_iyHnw1()
+[Activity
+    Text = ${SendActivity_iyHnw1_text()}
+]
+
+# SendActivity_iyHnw1_text()
+- Okay, i am looking at my deep knowledge to give you more information about ${@flowername}
+# LogAction_Text_71Dehs()
+[Activity
+    Text = ${LogAction_Text_71Dehs_text()}
+]
+
+# LogAction_Text_71Dehs_text()
+- {@flowername}
+# ConfirmInput_Prompt_auHsyC()
+[Activity
+    Text = ${ConfirmInput_Prompt_auHsyC_text()}
+]
+
+# ConfirmInput_Prompt_auHsyC_text()
+- Do you want to recognize another flower? 🌻
+# SendActivity_siWMQt()
+[Activity
+    Text = ${SendActivity_siWMQt_text()}
+]
+
+# SendActivity_siWMQt_text()
+- Okay, if you want me to recognize anything else, just send me a Hello message 👋

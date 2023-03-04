@@ -13,7 +13,7 @@
 ]
 
 # SendActivity_iFCLZ3_text()
-- Looking at pictures of flowers is my favorite thing, please send me the image.
+- Looking at pictures of flowers is my favorite thing, please send me the image. 📸
 # SendActivity_LwBECw()
 [Activity
     Text = ${SendActivity_LwBECw_text()}
@@ -21,4 +21,8 @@
 
 # SendActivity_LwBECw_text()
 - ```Okay, lets start with the flower name.
-Just write me a message like: tell me more about flower_name```
+Just write me a message like: tell me more about Roses```
+# SendActivity_CjZlh4()
+[Activity
+    SuggestedActions = Tell me about Roses | Tell me about Chrysanthemum | Tell me about Orchid
+]

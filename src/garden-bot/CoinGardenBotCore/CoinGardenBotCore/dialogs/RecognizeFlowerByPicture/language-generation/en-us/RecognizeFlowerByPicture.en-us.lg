@@ -1,0 +1,30 @@
+[import](common.lg)
+
+# SendActivity_0UaMRu()
+[Activity
+    Text = ${SendActivity_0UaMRu_text()}
+]
+
+# SendActivity_0UaMRu_text()
+- Okay, i am currently looking at the image 😊
+# AttachmentInput_Prompt_2ExWkf()
+[Activity
+    Text = ${AttachmentInput_Prompt_2ExWkf_text()}
+]
+
+# AttachmentInput_Prompt_2ExWkf_text()
+- Please attach the picture of the flower 🌸
+# ConfirmInput_Prompt_cZPstm()
+[Activity
+    Text = ${ConfirmInput_Prompt_cZPstm_text()}
+]
+
+# ConfirmInput_Prompt_cZPstm_text()
+- Do you want to attach another picture?
+# SendActivity_wUfUss()
+[Activity
+    Text = ${SendActivity_wUfUss_text()}
+]
+
+# SendActivity_wUfUss_text()
+- Okay, if you want me to recognize anything else, just send me a Hello message 👋

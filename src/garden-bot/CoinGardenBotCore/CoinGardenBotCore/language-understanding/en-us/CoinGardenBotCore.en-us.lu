@@ -30,3 +30,18 @@
 # FlowerRecognizer
 - can you tell me more about flowers
 - lets recognize some flowers
+
+# RecognizeFlowerByName
+- tell me about {flowername=Rose}
+- tell me about {flowername=koki4e}
+- tell me about {flowername=Lily}
+- tell me about {flowername=Orchid}
+- tell me about {flowername=Tulip}
+
+@ ml flowername
+
+# SayHello
+- hi
+- hello 
+- what you doing
+- how are you

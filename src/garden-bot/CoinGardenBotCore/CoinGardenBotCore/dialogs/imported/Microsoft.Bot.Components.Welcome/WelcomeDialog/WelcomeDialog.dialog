@@ -65,6 +65,13 @@
             {
               "$kind": "Microsoft.SendActivity",
               "$designer": {
+                "id": "m8frfm"
+              },
+              "activity": "${SendActivity_m8frfm()}"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
                 "id": "A60GOc"
               },
               "activity": "${SendActivity_A60GOc()}"

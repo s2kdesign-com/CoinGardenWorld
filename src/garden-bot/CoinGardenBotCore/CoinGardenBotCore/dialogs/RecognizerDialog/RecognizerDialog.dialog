@@ -60,6 +60,13 @@
                     "id": "LwBECw"
                   },
                   "activity": "${SendActivity_LwBECw()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "CjZlh4"
+                  },
+                  "activity": "${SendActivity_CjZlh4()}"
                 }
               ]
             },
@@ -72,6 +79,14 @@
                     "id": "iFCLZ3"
                   },
                   "activity": "${SendActivity_iFCLZ3()}"
+                },
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "sgGcp4"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "RecognizeFlowerByPicture"
                 }
               ]
             }

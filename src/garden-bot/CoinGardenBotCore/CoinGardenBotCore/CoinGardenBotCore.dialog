@@ -163,6 +163,43 @@
           "dialog": "RecognizerDialog"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "iYsc66",
+        "name": "RecognizeFlowerByName"
+      },
+      "intent": "RecognizeFlowerByName",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "j4TXrM"
+          },
+          "activityProcessed": true,
+          "dialog": "RecognizeFlowerByName",
+          "options": {}
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "YGzZwx",
+        "name": "SayHello"
+      },
+      "intent": "SayHello",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "G2MwW3"
+          },
+          "activityProcessed": true,
+          "dialog": "WelcomeDialog"
+        }
+      ]
     }
   ],
   "generator": "CoinGardenBotCore.lg",
