@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "metaverse", "metaverse", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "official-website", "official-website", "{7A9EFF7D-7B83-4776-BB35-A00EBA755F84}"
 	ProjectSection(SolutionItems) = preProject
-		src\garden-bot\version = src\garden-bot\version
+		src\official-website\VERSION = src\official-website\VERSION
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.Web", "src\official-website\CoinGardenWorld.Web\CoinGardenWorld.Web.csproj", "{E42ECBC4-7574-4DDB-9D76-19E7CFF229FF}"
@@ -40,7 +40,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "garden-bot", "garden-bot", "{8974AD58-BA97-411E-86FC-958DE2F20E8D}"
 	ProjectSection(SolutionItems) = preProject
-		src\garden-bot\version = src\garden-bot\version
+		src\garden-bot\VERSION = src\garden-bot\VERSION
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenBotCore", "src\garden-bot\CoinGardenBotCore\CoinGardenBotCore\CoinGardenBotCore.csproj", "{B8CDCF6A-275F-44CC-8D64-42B3E17D9186}"

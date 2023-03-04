@@ -20,7 +20,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          submodules: true                  
+          submodules: true
+          
+      - name: Set VERSION variable
+        run: |
+          VER=$(cat ~/src/garden-bot/VERSION)
+          echo "VERSION=$VER" >> $GITHUB_ENV
+          
+      - name: Show VERSION variable
+        run: |
+          echo "Building version - ${{ env.VERSION_HASH_DATE }}"
 
       - name: Build And Deploy
         id: builddeploy
@@ -34,6 +43,8 @@ jobs:
           app_location: "src/garden-bot/CoinGardenBotCore.Web" # App source code path
           api_location: "src/garden-bot/CoinGardenBotCore.Api" # Api source code path - optional
           output_location: "wwwroot" # Built app content directory - optional
+          app_build_command: 'npm run build-ui-prod'
+          api_build_command: 'npm run build-api-prod'
           ###### End of Repository/Build Configurations ######
   
   close_pull_request_job:
