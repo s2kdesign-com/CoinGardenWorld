@@ -32,7 +32,9 @@ jobs:
       - name: Set version
         id: set_version
         run: |
-          echo $VERSION > file.log 
+          echo $VERSION > VERSION
+          CAT VERSION
+
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
