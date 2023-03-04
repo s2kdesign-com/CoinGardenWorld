@@ -26,7 +26,7 @@ jobs:
         run: |
           VER=$(cat src/garden-bot/VERSION)
           VER_LONG="$VER.${{github.run_number}}"
-          echo "VERSION_CI=$VER" >> $GITHUB_ENV
+          echo "VERSION_CI=$VER_LONG" >> $GITHUB_ENV
           
       - name: Show VERSION variable
         run: |
