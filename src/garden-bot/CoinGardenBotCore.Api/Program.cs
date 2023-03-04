@@ -19,7 +19,6 @@ var host = new HostBuilder()
             var options = new ApiConfigurationOptions()
             {
                 Servers = DefaultOpenApiConfigurationOptions.GetHostNames(),
-                OpenApiVersion = DefaultOpenApiConfigurationOptions.GetOpenApiVersion(),
                 IncludeRequestingHostName =
                     DefaultOpenApiConfigurationOptions.IsFunctionsRuntimeEnvironmentDevelopment(),
                 ForceHttps = DefaultOpenApiConfigurationOptions.IsHttpsForced(),
