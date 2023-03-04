@@ -23,7 +23,7 @@ namespace CoinGardenBotCore.Api
         [OpenApiOperation(operationId: nameof(RecognizeFlowerHttpTrigger.RecognizeFlowerByName), tags: new[] { nameof(RecognizeFlowerByNameRequest) }, Summary = "Recognizes flowers by name", Description = "", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiRequestBody(contentType: "application/json", bodyType: typeof(RecognizeFlowerByNameRequest), Required = true, Description = "Recognize Flower By Name Request")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(RecognizeFlowerByNameResponse), Summary = "successful operation", Description = "successful operation")]
-        public HttpResponseData RecognizeFlowerByName([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
+        public HttpResponseData RecognizeFlowerByName([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 

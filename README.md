@@ -17,12 +17,12 @@ https://docs.coingarden.world/v/bg/
 ### Azure cloud 🚀
 | - | Application | Cloud | Url | Status |
 | - | - | - | - | - |
-| 🖼️ | Official Site | Azure Cloud | [https://coingarden.world](https://coingarden.world) | [![Deploy Official Site - Azure Static Web Apps CI/CD](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml) |
+| 🖼️ | Official Site | Azure Cloud | [https://coingarden.world](https://coingarden.world) | [![Deploy Official Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml) |
 | 📱 | Mobile App | Azure Cloud | [https://app.coingarden.world](https://app.coingarden.world)  |
 | 🏪 | NFT Store | Azure Cloud | [https://store.coingarden.world](https://store.coingarden.world) |  |
 | 🧑‍🌾 | Charity Page | Azure Cloud | [https://charity.coingarden.world](https://charity.coingarden.world/) |  |
 | 🌐 | Metaverse Page | Azure Cloud | [https://metaverse.coingarden.world](https://metaverse.coingarden.world/) |  |
-| 🤖 | GardenBOT Page | Azure Cloud | [https://bot.coingarden.world](https://bot.coingarden.world/) | [![Deploy GardenBOT Site - Azure Static Web Apps CI/CD](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml) |
+| 🤖 | GardenBOT Page | Azure Cloud | [https://bot.coingarden.world](https://bot.coingarden.world/) | [![Deploy GardenBOT Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml) |
 
 ### IPFS (Fleek) 🚀
 | Application | Cloud | Url | Status |
