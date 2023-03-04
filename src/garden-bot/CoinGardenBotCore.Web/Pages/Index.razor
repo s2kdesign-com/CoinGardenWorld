@@ -5,15 +5,44 @@
 
 <h1>Hello, world!</h1>
 
-Welcome to your new app.
+Welcome to GardenBOT Website.
+<div class="row">
+    <div class="col-md-8">
+        <div class="card" style="">
+            <div class="card-header">
+                🤖 Chat with our Bot (BETA)
+            </div>
+            <div class="card-body">
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+                <iframe src="@webchatUrl" style="height: 502px; max-height: 502px; width: 100%;"></iframe>
+            </div>
+        </div>
 
-<iframe src="@webchatUrl" style="height: 502px; max-height: 502px;"></iframe>
+    </div>
+    <div class=" col-md-4">
+        <div class="card" style="">
+            <div class="card-header">
+                Other Channels
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
 
-<a href='https://www.messenger.com/t/113273648357885'><img src='messenger-6062243_1280.webp'></a>
+                    <a href='https://www.messenger.com/t/113273648357885'>
+                        <img src='messenger-6062243_1280.webp' style="width: 50px; height: 50px;">
+                        Facebook Messenger
+                    </a>
+                </li>
+                <li class="list-group-item">
 
-<a href='https://join.skype.com/bot/535a8898-78db-4fc2-ad41-131be2f17b0e'><img src='https://dev.botframework.com/Client/Images/Add-To-Skype-Buttons.png' /></a>  
+                    <a href='https://join.skype.com/bot/535a8898-78db-4fc2-ad41-131be2f17b0e'>
+                        <img style=" height: 30px;" src='https://dev.botframework.com/Client/Images/Add-To-Skype-Buttons.png'/>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
 
 @code{
 

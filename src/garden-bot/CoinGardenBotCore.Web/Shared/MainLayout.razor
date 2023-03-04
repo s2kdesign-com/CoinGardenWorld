@@ -29,7 +29,16 @@
     private string APIversion = "";
 
     protected override async Task OnInitializedAsync() {
-        APIversion = await httpClient.GetStringAsync("api/version");
+        try
+        {
+            
+            APIversion = await httpClient.GetStringAsync("api/version");
+        }
+        catch (Exception e)
+        {
+            APIversion = "GardenBOT API is not available, check the console for more details.";
+            Console.WriteLine(e);
+        }
 
     }
     public static string GetSiteVersion()
