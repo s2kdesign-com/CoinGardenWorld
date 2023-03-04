@@ -47,7 +47,7 @@ https://docs.coingarden.world/v/bg/
 | Mobile App - GRPC | 1.0.0 |  |  | |
 | NFT Store - PWA | 1.0.0 | | |
 | NFT Store API - Azure Function | 1.0.0 | | |
-| GardenBOT Site - PWA | 1.0.0 | | |
+| GardenBOT Site - PWA | 1.0.0 | https://localhost:7089 | |
 | GardenBOT Conversation API - Azure Function | 1.0.0 | http://localhost:3980/api/messages | |
 | GardenBOT API - Azure Function | 1.0.0 | http://localhost:7274/api/swagger/ui | |
 
