@@ -1,0 +1,74 @@
+name: Release Distribution Packages
+
+on:
+  repository_dispatch:
+    types: [build_success]
+  workflow_dispatch:
+
+# Allow one concurrent deployment
+concurrency:
+  group: "release"
+  cancel-in-progress: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    name: Release Mobile Artifacts
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+    
+      - name: Get version
+        id: get_version
+        run: |
+          VER=$(cat VERSION)
+          VERSION="$VER.${{github.run_number}}"
+          echo "::set-output name=VERSION::$VERSION"
+
+      - name: Download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          # Optional, GitHub token, a Personal Access Token with `public_repo` scope if needed
+          # Required, if the artifact is from a different repo
+          # Required, if the repo is private a Personal Access Token with `repo` scope is needed
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          # Optional, workflow file name or ID
+          # If not specified, will be inferred from run_id (if run_id is specified), or will be the current workflow
+          workflow: build-mobile-apps.yml
+          # Optional, the status or conclusion of a completed workflow to search for
+          # Can be one of a workflow conclusion:
+          #   "failure", "success", "neutral", "cancelled", "skipped", "timed_out", "action_required"
+          # Or a workflow status:
+          #   "completed", "in_progress", "queued"
+          # Use the empty string ("") to ignore status or conclusion in the search
+          workflow_conclusion: success
+
+      - name: Create Release
+        id: create_release
+        # Drafts your next Release notes as Pull Requests are merged into "master"
+        uses: release-drafter/release-drafter@v5
+        # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
+        with:
+          # config-name: my-config.yml
+          # disable-autolabeler: true
+          publish: true
+          version: ${{ steps.get_version.outputs.VERSION }}
+          tag: ${{ steps.get_version.outputs.VERSION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      
+    # - name: Release Upload Assets
+    #   uses: softprops/action-gh-release@v1
+    #   with:
+    #     tag_name: ${{ steps.get_version.outputs.VERSION }}
+    #     draft: false
+    #     # TODO: Missing Apple app, the build is with a lot of files 
+    #      # src/mobile-apps/CoinGardenWorld.Maui/bin/Release/net6.0-ios/iossimulator-x64/**/*.app
+    #     files: |
+    #       coingarden-android-ci-build/*Signed.a*
+    #       coingarden-windows-ci-build/CoinGardenWorld*/CoinGardenWorld*.msix
+    #       coingarden-macos-ci-build/*.pkg
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
