@@ -1,5 +1,8 @@
 ﻿@using System.Reflection
 @inherits LayoutComponentBase
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@inject HttpClient httpClient
 
 <div class="page">
     <div class="sidebar">
@@ -15,16 +18,26 @@
             @Body
         </article>
         <footer>
-            @GetPackageVersion()
+            Site version: @GetSiteVersion()
+            <br />
+            API version:  @APIversion
         </footer>
     </main>
 </div>
 @code{
 
-    public static string GetPackageVersion()
+    private string APIversion = "";
+
+    protected override async Task OnInitializedAsync() {
+        APIversion = await httpClient.GetStringAsync("api/version");
+
+    }
+    public static string GetSiteVersion()
     {
         Version version = Assembly.GetExecutingAssembly().GetName().Version;
         return version.ToString();
     }
+
+
 
 }

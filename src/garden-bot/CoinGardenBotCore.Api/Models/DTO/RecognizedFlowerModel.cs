@@ -10,6 +10,6 @@ namespace CoinGardenBotCore_Api.Models.DTO {
 
         public string Region { get; set; }
 
-        public decimal Probability { get; set; }
+        public double Probability { get; set; }
     }
 }

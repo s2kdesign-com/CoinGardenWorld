@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace CoinGardenBotCore_Api.Models.Requests {
     public class RecognizeFlowerByNameRequest {
-        public List<string> FlowerNames { get; set; }
+        public List<string> FlowerName { get; set; }
     }
 }
