@@ -25,11 +25,11 @@ jobs:
       - name: Set VERSION variable
         run: |
           VER=$(cat src/garden-bot/VERSION)
-          echo "VERSION=$VER" >> $GITHUB_ENV
+          echo "VERSION_CI=$VER" >> $GITHUB_ENV
           
       - name: Show VERSION variable
         run: |
-          echo "Building version - ${{ env.VERSION_HASH_DATE }}"
+          echo "Building version - ${{ env.VERSION_CI }}"
 
       - name: Build And Deploy
         id: builddeploy
