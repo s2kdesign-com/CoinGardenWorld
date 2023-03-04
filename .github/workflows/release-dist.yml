@@ -28,6 +28,26 @@ jobs:
           VERSION="$VER.${{github.run_number}}"
           echo "::set-output name=VERSION::$VERSION"
 
+
+      - name: Set version
+        id: get_version
+        run: |
+          echo $VERSION > file.log 
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          # Optional. Commit message for the created commit.
+          # Defaults to "Apply automatic changes"
+          commit_message: New Release - ${{ steps.get_version.outputs.VERSION }}
+                    
+          # Optional. Local file path to the repository.
+          # Defaults to the root of the repository.
+          repository: .
+
+          # Optional. Tag name being created in the local repository and 
+          # pushed to remote repository and defined branch.
+          tagging_message: 'v1.0.0'
+          
       #- name: Download artifact
       #  id: download-artifact
       #  uses: dawidd6/action-download-artifact@v2
