@@ -24,7 +24,7 @@ jobs:
           
       - name: Set VERSION variable
         run: |
-          VER=$(cat ~/src/garden-bot/VERSION)
+          VER=$(cat src/garden-bot/VERSION)
           echo "VERSION=$VER" >> $GITHUB_ENV
           
       - name: Show VERSION variable
