@@ -1,0 +1,5 @@
+{
+  "globalHeaders": {
+    "Blazor-Environment": "Production"
+  }
+}
