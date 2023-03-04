@@ -25,7 +25,9 @@ jobs:
         id: get_version
         run: |
           VER=$(cat VERSION)
-          VER_LONG="$VER.${{github.run_number}}"
+          IFS='.' #setting comma as delimiter  
+          read -a splittedversion <<<"VER" #reading str as an array as tokens separated by IFS  
+          VER_LONG="${splittedversion[0]}.${splittedversion[1]}.${{github.run_number}}"
           echo "VERSION_CI=$VER_LONG" >> $GITHUB_ENV
 
 
