@@ -24,6 +24,11 @@ https://docs.coingarden.world/v/bg/
 | 🌐 | Metaverse Page | Azure Cloud | [https://metaverse.coingarden.world](https://metaverse.coingarden.world/) |  |
 | 🤖 | GardenBOT Page | Azure Cloud | [https://bot.coingarden.world](https://bot.coingarden.world/) | [![Deploy GardenBOT Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml) |
 
+### Azure Functions 🚀
+| Application | Cloud | Url | Status |
+| - | - | - | - |
+| GardenBOT API | Azure Cloud Function | https://bot.coingarden.world/api/swagger/ui | [![Deploy GardenBOT Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml) |
+
 ### IPFS (Fleek) 🚀
 | Application | Cloud | Url | Status |
 | - | - | - | - |
@@ -31,10 +36,6 @@ https://docs.coingarden.world/v/bg/
 | Mobile App | IPFS / Fleek | [https://coingardenworld-app.on.fleek.co](https://coingardenworld-app.on.fleek.co) |  |
 | NFT Store | IPFS / Fleek | [https://coingardenworld-store.on.fleek.co](https://coingardenworld-store.on.fleek.co) |  |
 
-### Azure Functions 🚀
-| Application | Cloud | Url | Status |
-| - | - | - | - |
-| NFT Store API | Azure Cloud Function |  |
 
 ---
 ### 🚢 Docker Images

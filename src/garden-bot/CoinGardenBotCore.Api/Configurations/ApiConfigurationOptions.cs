@@ -4,13 +4,14 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CoinGardenBotCore_Api.Configurations {
     public class ApiConfigurationOptions : DefaultOpenApiConfigurationOptions {
         public override OpenApiInfo Info { get; set; } = new OpenApiInfo() {
-            Version = GetOpenApiDocVersion(),
+            Version = GetPackageVersion(),
             Title = GetOpenApiDocTitle(),
             Description = GetOpenApiDocDescription(),
             TermsOfService = new Uri("https://coingarden.world/terms-and-conditions"),
@@ -27,5 +28,9 @@ namespace CoinGardenBotCore_Api.Configurations {
 
         public override OpenApiVersionType OpenApiVersion { get; set; } = GetOpenApiVersion();
 
+        public static string GetPackageVersion() {
+            Version version = Assembly.GetExecutingAssembly().GetName().Version;
+            return version.ToString();
+        }
     }
 }
