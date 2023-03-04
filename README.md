@@ -15,8 +15,8 @@ https://docs.coingarden.world/v/bg/
 ---
 ### 🚀  Site Deployments
 ### Azure cloud 🚀
-|  | Application | Cloud | Url | Status |
-|  | - | - | - | - |
+| - | Application | Cloud | Url | Status |
+| - | - | - | - | - |
 | 🖼️ | Official Site | Azure Cloud | [https://coingarden.world](https://coingarden.world) |  |
 | 📱 | Mobile App | Azure Cloud | [https://app.coingarden.world](https://app.coingarden.world)  |
 | 🏪 | NFT Store | Azure Cloud | [https://store.coingarden.world](https://store.coingarden.world) |  |
