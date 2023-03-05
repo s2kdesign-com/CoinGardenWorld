@@ -28,3 +28,17 @@
 
 # SendActivity_siWMQt_text()
 - Okay, if you want me to recognize anything else, just send me a Hello message 👋
+# SendActivity_wOw5Ot()
+[Activity
+    Text = ${SendActivity_wOw5Ot_text()}
+]
+
+# SendActivity_wOw5Ot_text()
+- ${turn.results}
+# LogAction_Text_j9Huh0()
+[Activity
+    Text = ${LogAction_Text_j9Huh0_text()}
+]
+
+# LogAction_Text_j9Huh0_text()
+- API Url = ${settings.GardenBotApiUrl}/api/flower/findByName?name=${@flowername}

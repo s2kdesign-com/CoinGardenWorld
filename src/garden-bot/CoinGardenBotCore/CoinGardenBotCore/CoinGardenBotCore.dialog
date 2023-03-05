@@ -200,6 +200,24 @@
           "dialog": "WelcomeDialog"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "OXSnUz",
+        "name": "RecognizeFlowerByPicture"
+      },
+      "intent": "RecognizeFlowerByPicture",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "wa4y7J"
+          },
+          "activityProcessed": true,
+          "dialog": "RecognizeFlowerByPicture"
+        }
+      ]
     }
   ],
   "generator": "CoinGardenBotCore.lg",

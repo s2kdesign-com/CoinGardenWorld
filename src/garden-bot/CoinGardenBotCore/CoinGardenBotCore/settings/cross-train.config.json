@@ -19,6 +19,9 @@
       ],
       "SayHello": [
         "WelcomeDialog.en-us"
+      ],
+      "RecognizeFlowerByPicture": [
+        "RecognizeFlowerByPicture.en-us"
       ]
     }
   },

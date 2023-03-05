@@ -83,7 +83,7 @@
                 {
                   "$kind": "Microsoft.BeginDialog",
                   "$designer": {
-                    "id": "sgGcp4"
+                    "id": "uvruSd"
                   },
                   "activityProcessed": true,
                   "dialog": "RecognizeFlowerByPicture"

@@ -33,9 +33,14 @@ namespace CoinGardenBotCore.Api
 
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
-            var response = req.CreateResponse(HttpStatusCode.OK);
-
             var name = req.Query("name");
+            var response = req.CreateResponse(HttpStatusCode.OK);
+            if (string.IsNullOrEmpty(name))
+            {
+                response = req.CreateResponse(HttpStatusCode.BadRequest);
+                return await Task.FromResult(response).ConfigureAwait(false);
+            }
+
             var flowers = new List<RecognizedFlowerModel> { new RecognizedFlowerModel {  Name = name, Region = "Bulgaria", Probability = 99.5 } };
             await response.WriteAsJsonAsync(flowers).ConfigureAwait(false);
 

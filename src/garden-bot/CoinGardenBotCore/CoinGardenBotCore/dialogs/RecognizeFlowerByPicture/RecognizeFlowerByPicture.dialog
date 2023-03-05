@@ -50,7 +50,6 @@
           "allowInterruptions": false,
           "unrecognizedPrompt": "",
           "invalidPrompt": "",
-          "defaultValueResponse": "",
           "choiceOptions": {
             "includeNumbers": true,
             "inlineOrMore": ", or ",
@@ -68,12 +67,19 @@
           "condition": "=dialog.addAnotherPicture",
           "actions": [
             {
-              "$kind": "Microsoft.BeginDialog",
+              "$kind": "Microsoft.SetProperty",
               "$designer": {
-                "id": "yUCY4h"
+                "id": "K4DZ5g"
               },
-              "activityProcessed": true,
-              "dialog": "RecognizerDialog"
+              "property": "user.flowerPictures",
+              "value": "=null"
+            },
+            {
+              "$kind": "Microsoft.RepeatDialog",
+              "$designer": {
+                "id": "PI04Tk"
+              },
+              "activityProcessed": true
             }
           ],
           "elseActions": [
