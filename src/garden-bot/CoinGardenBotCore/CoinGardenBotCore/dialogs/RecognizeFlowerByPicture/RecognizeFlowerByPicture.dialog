@@ -39,6 +39,32 @@
           "activity": "${SendActivity_0UaMRu()}"
         },
         {
+          "$kind": "Microsoft.TraceActivity",
+          "$designer": {
+            "id": "bgLnjE"
+          },
+          "value": "API Url = ${settings.GardenBotApiUrl}/api/flower/findByName?name=${@flowername}"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "gRHcyX"
+          },
+          "resultProperty": "turn.results",
+          "url": "${settings.GardenBotApiUrl}/api/flower/findByPicture",
+          "body": {
+            "File": "${user.flowerPictures}"
+          },
+          "method": "POST"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "i1s1Jp"
+          },
+          "activity": "${SendActivity_i1s1Jp()}"
+        },
+        {
           "$kind": "Microsoft.ConfirmInput",
           "$designer": {
             "id": "cZPstm"

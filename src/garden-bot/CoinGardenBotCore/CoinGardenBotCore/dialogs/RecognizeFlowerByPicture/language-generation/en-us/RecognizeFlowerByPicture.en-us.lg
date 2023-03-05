@@ -28,3 +28,10 @@
 
 # SendActivity_wUfUss_text()
 - Okay, if you want me to recognize anything else, just send me a Hello message 👋
+# SendActivity_i1s1Jp()
+[Activity
+    Text = ${SendActivity_i1s1Jp_text()}
+]
+
+# SendActivity_i1s1Jp_text()
+- ${turn.results}
