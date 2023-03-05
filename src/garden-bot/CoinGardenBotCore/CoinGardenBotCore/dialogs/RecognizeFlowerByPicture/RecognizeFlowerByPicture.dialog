@@ -43,7 +43,7 @@
           "$designer": {
             "id": "bgLnjE"
           },
-          "value": "API Url = ${settings.GardenBotApiUrl}/api/flower/findByName?name=${@flowername}"
+          "value": "API Url = ${settings.GardenBotApiUrl}/api/flower/findByPicture"
         },
         {
           "$kind": "Microsoft.HttpRequest",

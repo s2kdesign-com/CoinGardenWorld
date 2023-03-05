@@ -8,6 +8,8 @@ using Microsoft.Azure.Functions.Worker.Extensions.OpenApi.Extensions;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
+using CoinGardenWorld.AzureAI.Extensions;
+using CoinGardenWorld.AzureAI.Configurations;
 
 var host = new HostBuilder()
     .ConfigureFunctionsWorkerDefaults(worker => worker.UseNewtonsoftJson())
@@ -28,7 +30,12 @@ var host = new HostBuilder()
             return options;
         });
 
-
+        services.AddOptions<AzureAISettings>().BindConfiguration("AzureAISettings");
+        //CoinGardenWorld.AzureAI
+        services.AddAzureComputerVision();
     })
     .Build();
+
 host.Run();
+
+

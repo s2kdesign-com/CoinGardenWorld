@@ -6,7 +6,10 @@
 
     "OpenApi__Version": "v3",
     "OpenApi__DocTitle": "GardenBOT API",
-    "OpenApi__DocDescription": "Backend service API for all external functions of CoinGarden Bot."
+    "OpenApi__DocDescription": "Backend service API for all external functions of CoinGarden Bot.",
+
+    "AzureAISettings__SubscriptionKey": "",
+    "AzureAISettings__Endpoint": ""
   },
   "Host": {
     "LocalHttpPort": 7274,

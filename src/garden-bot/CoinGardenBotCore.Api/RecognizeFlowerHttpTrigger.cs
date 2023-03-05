@@ -3,6 +3,7 @@ using System.Net;
 using CoinGardenBotCore_Api.Models.DTO;
 using CoinGardenBotCore_Api.Models.Requests;
 using CoinGardenBotCore_Api.Models.Responses;
+using CoinGardenWorld.AzureAI;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Extensions.OpenApi.Extensions;
 using Microsoft.Azure.Functions.Worker.Http;
@@ -15,9 +16,11 @@ using Newtonsoft.Json;
 namespace CoinGardenBotCore.Api {
     public class RecognizeFlowerHttpTrigger {
         private readonly ILogger _logger;
+        private readonly AzureComputerVision _azureComputerVision;
 
-        public RecognizeFlowerHttpTrigger(ILoggerFactory loggerFactory) {
+        public RecognizeFlowerHttpTrigger(ILoggerFactory loggerFactory, AzureComputerVision azureComputerVision) {
             _logger = loggerFactory.CreateLogger<RecognizeFlowerHttpTrigger>();
+            _azureComputerVision = azureComputerVision;
         }
 
 
@@ -53,10 +56,13 @@ namespace CoinGardenBotCore.Api {
 
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
+            var imageVisionResults = await _azureComputerVision.AnalyzeImageUrl(
+                "https://img.freepik.com/free-photo/still-life-close-up-flower-indoors_23-2148965612.jpg");
+
+
             var response = req.CreateResponse(HttpStatusCode.OK);
 
-            var flowers = new List<RecognizedFlowerModel> { new RecognizedFlowerModel { Name = "test flower from image", Region = "Bulgaria", Probability = 99.5 } };
-            await response.WriteAsJsonAsync(flowers).ConfigureAwait(false);
+            await response.WriteAsJsonAsync(imageVisionResults).ConfigureAwait(false);
 
             return await Task.FromResult(response).ConfigureAwait(false);
         }
