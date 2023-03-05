@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CoinGardenBotCore_Api.Models.Responses {
-    public class RecognizeFlowerByNameResponse {
+    public class RecognizedFlowerResponse {
         public List<RecognizedFlowerModel> RecognizedFlowers { get; set; }
     }
 }

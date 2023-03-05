@@ -12,21 +12,19 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 
-namespace CoinGardenBotCore.Api
-{
+namespace CoinGardenBotCore.Api {
     public class RecognizeFlowerHttpTrigger {
         private readonly ILogger _logger;
 
-        public RecognizeFlowerHttpTrigger(ILoggerFactory loggerFactory)
-        {
+        public RecognizeFlowerHttpTrigger(ILoggerFactory loggerFactory) {
             _logger = loggerFactory.CreateLogger<RecognizeFlowerHttpTrigger>();
         }
-        
+
 
         [Function(nameof(RecognizeFlowerHttpTrigger.RecognizeFlowerByName))]
-        [OpenApiOperation(operationId: "findFlowersByName", tags: new[] { nameof(RecognizeFlowerByNameRequest) }, Summary = "Recognizes flowers by name", Description = "Multiple flower names can be provided with comma separated strings.", Visibility = OpenApiVisibilityType.Important)]
+        [OpenApiOperation(operationId: "findFlowersByName", tags: new[] { "flowers" }, Summary = "Recognizes flowers by name", Description = "Multiple flower names can be provided with comma separated strings.", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiParameter(name: "name", In = ParameterLocation.Query, Required = true, Type = typeof(RecognizeFlowerByNameRequest), Explode = true, Summary = "Flower Name", Description = "Name values that need to be considered for filter", Visibility = OpenApiVisibilityType.Important)]
-        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(RecognizeFlowerByNameRequest), Summary = "successful operation", Description = "successful operation")]
+        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(RecognizedFlowerResponse), Summary = "successful operation", Description = "successful operation")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.BadRequest, Summary = "Invalid flower name", Description = "Invalid flower name")]
         public async Task<HttpResponseData> RecognizeFlowerByName(
       [HttpTrigger(AuthorizationLevel.Anonymous, "GET", Route = "flower/findByName")] HttpRequestData req) {
@@ -35,17 +33,32 @@ namespace CoinGardenBotCore.Api
 
             var name = req.Query("name");
             var response = req.CreateResponse(HttpStatusCode.OK);
-            if (string.IsNullOrEmpty(name))
-            {
+            if (string.IsNullOrEmpty(name)) {
                 response = req.CreateResponse(HttpStatusCode.BadRequest);
                 return await Task.FromResult(response).ConfigureAwait(false);
             }
 
-            var flowers = new List<RecognizedFlowerModel> { new RecognizedFlowerModel {  Name = name, Region = "Bulgaria", Probability = 99.5 } };
+            var flowers = new List<RecognizedFlowerModel> { new RecognizedFlowerModel { Name = name, Region = "Bulgaria", Probability = 99.5 } };
             await response.WriteAsJsonAsync(flowers).ConfigureAwait(false);
 
             return await Task.FromResult(response).ConfigureAwait(false);
         }
 
+        [Function(nameof(RecognizeFlowerHttpTrigger.RecognizeFlowerByPicture))]
+        [OpenApiOperation(operationId: "uploadFile", tags: new[] { "flowers" }, Summary = "Uploads an image", Description = "This uploads an image.", Visibility = OpenApiVisibilityType.Important)]
+        [OpenApiRequestBody(contentType: "multipart/form-data", bodyType: typeof(RecognizeFlowerByPictureRequest))]
+        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(RecognizedFlowerResponse), Summary = "successful operation", Description = "successful operation")]
+        public async Task<HttpResponseData> RecognizeFlowerByPicture(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "POST", Route = "flower/findByPicture")] HttpRequestData req) {
+
+            _logger.LogInformation("C# HTTP trigger function processed a request.");
+
+            var response = req.CreateResponse(HttpStatusCode.OK);
+
+            var flowers = new List<RecognizedFlowerModel> { new RecognizedFlowerModel { Name = "test flower from image", Region = "Bulgaria", Probability = 99.5 } };
+            await response.WriteAsJsonAsync(flowers).ConfigureAwait(false);
+
+            return await Task.FromResult(response).ConfigureAwait(false);
+        }
     }
 }
