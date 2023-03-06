@@ -73,9 +73,9 @@
         {
           "$kind": "Microsoft.SendActivity",
           "$designer": {
-            "id": "i1s1Jp"
+            "id": "IkYFgd"
           },
-          "activity": "${SendActivity_i1s1Jp()}"
+          "activity": "${SendActivity_IkYFgd()}"
         },
         {
           "$kind": "Microsoft.ConfirmInput",

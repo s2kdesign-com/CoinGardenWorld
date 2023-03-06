@@ -21,13 +21,6 @@
 
 # SendActivity_wUfUss_text()
 - Okay, if you want me to recognize anything else, just send me a Hello message 👋
-# SendActivity_i1s1Jp()
-[Activity
-    Text = ${SendActivity_i1s1Jp_text()}
-]
-
-# SendActivity_i1s1Jp_text()
-- ${turn.results}
 # AttachmentInput_Prompt_DGhqtk()
 [Activity
     Text = ${AttachmentInput_Prompt_DGhqtk_text()}
@@ -49,3 +42,10 @@
 
 # LogAction_Text_iAVMGd_text()
 - ${turn.results}
+# SendActivity_IkYFgd()
+[Activity
+    Text = ${SendActivity_IkYFgd_text()}
+]
+
+# SendActivity_IkYFgd_text()
+- ${turn.results.content}
