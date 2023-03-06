@@ -39,14 +39,16 @@ namespace CoinGardenWorld.BingSearch {
         }
 
 
-        public async Task<SearchResponse> SearchByTextAsync(string text) {
+        public async Task<SearchResponse> SearchByTextAsync(string text, int countPages = 1, string language = "en-us") {
             Console.WriteLine("----------------------------------------------------------");
             Console.WriteLine("SEARCHING WEB FOR TEXT");
             Console.WriteLine();
 
             var queryString = QUERY_PARAMETER + Uri.EscapeDataString(text);
-            queryString += MKT_PARAMETER + "en-us";
+            queryString += MKT_PARAMETER + language;
             queryString += RESPONSE_FILTER_PARAMETER + "Webpages";
+            queryString += COUNT_PARAMETER + countPages;
+
             var response = await _httpClient.GetAsync("/v7.0/search" + queryString);
 
             SearchResponse results = JsonConvert.DeserializeObject<SearchResponse>(await response.Content.ReadAsStringAsync());

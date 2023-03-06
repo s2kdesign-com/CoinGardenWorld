@@ -52,7 +52,9 @@ namespace CoinGardenBotCore.Api {
 
             var webSearchResult = await _azureWebSearch.SearchByTextAsync(name);
 
-            await response.WriteAsJsonAsync(webSearchResult).ConfigureAwait(false);
+            // get the first page webSearchResult.WebPages.Value[0]
+            await response.WriteAsJsonAsync(webSearchResult.WebPages.Value[0]).ConfigureAwait(false);
+
             return await Task.FromResult(response).ConfigureAwait(false);
         }
 
