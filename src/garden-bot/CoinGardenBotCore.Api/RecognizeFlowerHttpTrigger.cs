@@ -4,6 +4,7 @@ using CoinGardenBotCore_Api.Models.DTO;
 using CoinGardenBotCore_Api.Models.Requests;
 using CoinGardenBotCore_Api.Models.Responses;
 using CoinGardenWorld.AzureAI;
+using CoinGardenWorld.BingSearch;
 using HttpMultipartParser;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Extensions.OpenApi.Extensions;
@@ -19,10 +20,16 @@ namespace CoinGardenBotCore.Api {
     public class RecognizeFlowerHttpTrigger {
         private readonly ILogger _logger;
         private readonly AzureComputerVision _azureComputerVision;
+        private readonly AzureWebSearch _azureWebSearch;
 
-        public RecognizeFlowerHttpTrigger(ILoggerFactory loggerFactory, AzureComputerVision azureComputerVision) {
+        public RecognizeFlowerHttpTrigger(
+            ILoggerFactory loggerFactory
+            , AzureComputerVision azureComputerVision
+            , AzureWebSearch azureWebSearch
+            ) {
             _logger = loggerFactory.CreateLogger<RecognizeFlowerHttpTrigger>();
             _azureComputerVision = azureComputerVision;
+            _azureWebSearch = azureWebSearch;
         }
 
         //RecognizeFlowerByName
@@ -43,9 +50,9 @@ namespace CoinGardenBotCore.Api {
                 return await Task.FromResult(response).ConfigureAwait(false);
             }
 
-            var flowers = new List<RecognizedFlowerModel> { new RecognizedFlowerModel { Name = name, Region = "Bulgaria", Probability = 99.5 } };
-            await response.WriteAsJsonAsync(flowers).ConfigureAwait(false);
+            var webSearchResult = await _azureWebSearch.SearchByTextAsync(name);
 
+            await response.WriteAsJsonAsync(webSearchResult).ConfigureAwait(false);
             return await Task.FromResult(response).ConfigureAwait(false);
         }
 

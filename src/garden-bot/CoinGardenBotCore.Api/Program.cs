@@ -30,9 +30,12 @@ var host = new HostBuilder()
             return options;
         });
 
-        services.AddOptions<AzureAISettings>().BindConfiguration("AzureAISettings");
         //CoinGardenWorld.AzureAI
+        services.AddOptions<AzureAISettings>().BindConfiguration("AzureAISettings");
         services.AddAzureComputerVision();
+
+        //CoinGardenWorld.BingSearch
+        services.AddAzureWebSearch();
     })
     .Build();
 

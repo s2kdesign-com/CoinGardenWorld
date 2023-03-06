@@ -53,7 +53,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenBotCore.Web", "sr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cognitive-services", "cognitive-services", "{F6600691-A088-433F-8999-418390B2FADC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.AzureAI", "src\cognitive-services\CoinGardenWorld.AzureAI\CoinGardenWorld.AzureAI.csproj", "{906C3DBA-6FFF-4387-A153-DBA20A2D189E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.AzureAI", "src\cognitive-services\CoinGardenWorld.AzureAI\CoinGardenWorld.AzureAI.csproj", "{906C3DBA-6FFF-4387-A153-DBA20A2D189E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.BingSearch", "src\cognitive-services\CoinGardenWorld.BingSearch\CoinGardenWorld.BingSearch.csproj", "{FC53CCD2-0691-4D85-AD3F-411933D2EBA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +87,10 @@ Global
 		{906C3DBA-6FFF-4387-A153-DBA20A2D189E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{906C3DBA-6FFF-4387-A153-DBA20A2D189E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{906C3DBA-6FFF-4387-A153-DBA20A2D189E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC53CCD2-0691-4D85-AD3F-411933D2EBA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC53CCD2-0691-4D85-AD3F-411933D2EBA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC53CCD2-0691-4D85-AD3F-411933D2EBA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC53CCD2-0691-4D85-AD3F-411933D2EBA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +110,7 @@ Global
 		{9B10727A-514D-40E2-AD2F-E5A756198F0C} = {8974AD58-BA97-411E-86FC-958DE2F20E8D}
 		{F6600691-A088-433F-8999-418390B2FADC} = {5A954599-DAE6-45A3-A4EE-E938E3CE529C}
 		{906C3DBA-6FFF-4387-A153-DBA20A2D189E} = {F6600691-A088-433F-8999-418390B2FADC}
+		{FC53CCD2-0691-4D85-AD3F-411933D2EBA6} = {F6600691-A088-433F-8999-418390B2FADC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}

@@ -17,6 +17,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\cognitive-services\CoinGardenWorld.AzureAI\CoinGardenWorld.AzureAI.csproj" />
+    <ProjectReference Include="..\..\cognitive-services\CoinGardenWorld.BingSearch\CoinGardenWorld.BingSearch.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
