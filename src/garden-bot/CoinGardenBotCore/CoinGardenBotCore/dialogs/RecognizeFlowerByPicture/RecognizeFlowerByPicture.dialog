@@ -78,6 +78,13 @@
           "activity": "${SendActivity_IkYFgd()}"
         },
         {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "o037RD"
+          },
+          "activity": "${SendActivity_o037RD()}"
+        },
+        {
           "$kind": "Microsoft.ConfirmInput",
           "$designer": {
             "id": "cZPstm"

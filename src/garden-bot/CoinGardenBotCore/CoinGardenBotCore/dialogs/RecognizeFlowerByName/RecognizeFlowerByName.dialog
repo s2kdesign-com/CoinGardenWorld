@@ -47,6 +47,20 @@
           "activity": "${SendActivity_wOw5Ot()}"
         },
         {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "s8G0yO"
+          },
+          "activity": "${SendActivity_s8G0yO()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "xWDNIN"
+          },
+          "activity": "${SendActivity_xWDNIN()}"
+        },
+        {
           "$kind": "Microsoft.ConfirmInput",
           "$designer": {
             "id": "auHsyC"

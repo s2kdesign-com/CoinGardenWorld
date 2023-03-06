@@ -48,4 +48,11 @@
 ]
 
 # SendActivity_IkYFgd_text()
-- ${turn.results.content}
+- I think this is a ${turn.results.content.tags[0].name}
+# SendActivity_o037RD()
+[Activity
+    Text = ${SendActivity_o037RD_text()}
+]
+
+# SendActivity_o037RD_text()
+- More specifically a ${turn.results.content.description.captions[0].text}

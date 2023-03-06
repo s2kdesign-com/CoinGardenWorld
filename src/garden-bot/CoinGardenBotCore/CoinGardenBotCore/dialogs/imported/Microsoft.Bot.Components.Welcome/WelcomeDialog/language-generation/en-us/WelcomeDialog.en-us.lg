@@ -29,7 +29,10 @@
 ]
 
 # SendActivity_nqBhB6_text()
-- I am here to answer any questions that you may have about flowers. 
+- ```I am here to answer any questions that you may have about flowers.
+Just send me a message like: 
+lets recognize some flowers 
+can you tell me more about flowers```
 # SendActivity_n6kFWj()
 [Activity
     Text = ${SendActivity_n6kFWj_text()}
@@ -48,7 +51,8 @@
 ]
 
 # SendActivity_gb7lpV_text()
-- I know you know the drill 😊
+- ```I know you know the drill 😊
+lets recognize some flowers```
 # SendActivity_A60GOc()
 [Activity
     SuggestedActions = can you tell me more about flowers
