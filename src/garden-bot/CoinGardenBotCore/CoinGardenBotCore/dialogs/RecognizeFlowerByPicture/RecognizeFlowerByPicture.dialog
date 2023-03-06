@@ -19,17 +19,25 @@
         {
           "$kind": "Microsoft.AttachmentInput",
           "$designer": {
-            "id": "2ExWkf"
+            "id": "DGhqtk"
           },
           "disabled": false,
           "maxTurnCount": 3,
           "alwaysPrompt": false,
           "allowInterruptions": false,
-          "prompt": "${AttachmentInput_Prompt_2ExWkf()}",
+          "prompt": "${AttachmentInput_Prompt_DGhqtk()}",
           "unrecognizedPrompt": "",
           "invalidPrompt": "",
           "defaultValueResponse": "",
-          "property": "user.flowerPictures"
+          "property": "user.flowerPictures",
+          "outputFormat": "all"
+        },
+        {
+          "$kind": "Microsoft.LogAction",
+          "$designer": {
+            "id": "xKcQFd"
+          },
+          "text": "${LogAction_Text_xKcQFd()}"
         },
         {
           "$kind": "Microsoft.SendActivity",
@@ -43,7 +51,7 @@
           "$designer": {
             "id": "bgLnjE"
           },
-          "value": "API Url = ${settings.GardenBotApiUrl}/api/flower/findByPicture"
+          "value": "API Url = ${settings.GardenBotApiUrl}"
         },
         {
           "$kind": "Microsoft.HttpRequest",
@@ -51,11 +59,15 @@
             "id": "gRHcyX"
           },
           "resultProperty": "turn.results",
-          "url": "${settings.GardenBotApiUrl}/api/flower/findByPicture",
-          "body": {
-            "File": "${user.flowerPictures}"
-          },
-          "method": "POST"
+          "url": "${settings.GardenBotApiUrl}/api/flower/findByUrl",
+          "method": "POST",
+          "body": "=user.flowerPictures"
+        },
+        {
+          "$kind": "Microsoft.LogAction",
+          "$designer": {
+            "id": "iAVMGd"
+          }
         },
         {
           "$kind": "Microsoft.SendActivity",

@@ -7,13 +7,6 @@
 
 # SendActivity_0UaMRu_text()
 - Okay, i am currently looking at the image 😊
-# AttachmentInput_Prompt_2ExWkf()
-[Activity
-    Text = ${AttachmentInput_Prompt_2ExWkf_text()}
-]
-
-# AttachmentInput_Prompt_2ExWkf_text()
-- Please attach the picture of the flower 🌸
 # ConfirmInput_Prompt_cZPstm()
 [Activity
     Text = ${ConfirmInput_Prompt_cZPstm_text()}
@@ -35,3 +28,17 @@
 
 # SendActivity_i1s1Jp_text()
 - ${turn.results}
+# AttachmentInput_Prompt_DGhqtk()
+[Activity
+    Text = ${AttachmentInput_Prompt_DGhqtk_text()}
+]
+
+# AttachmentInput_Prompt_DGhqtk_text()
+- Please attach the picture of the flower 🌸
+# LogAction_Text_xKcQFd()
+[Activity
+    Text = ${LogAction_Text_xKcQFd_text()}
+]
+
+# LogAction_Text_xKcQFd_text()
+- ${user.flowerPictures}
