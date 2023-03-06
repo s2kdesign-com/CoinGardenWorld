@@ -1,6 +1,11 @@
 using System;
+using System.Configuration;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Azure.Blobs;
 using Microsoft.Bot.Builder.Dialogs.Adaptive.Runtime.Extensions;
+using Microsoft.Extensions.Azure;
+using Microsoft.Extensions.DependencyInjection;
 
 [assembly: FunctionsStartup(typeof(CoinGardenBotCore.Startup))]
 
@@ -10,6 +15,14 @@ namespace CoinGardenBotCore
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
+            //Use Azure Blob storage, instead of in-memory storage.
+            
+            
+            builder.Services.AddSingleton<IStorage>(
+                new BlobsStorage(
+                    Environment.GetEnvironmentVariable("BlobConnectionString"),
+                    Environment.GetEnvironmentVariable("BlobContainerName")
+                ));
             builder.Services.AddBotRuntime(builder.GetContext().Configuration);
         }
 

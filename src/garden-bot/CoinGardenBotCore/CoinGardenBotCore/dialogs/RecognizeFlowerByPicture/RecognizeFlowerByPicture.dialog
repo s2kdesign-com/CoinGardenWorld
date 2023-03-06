@@ -33,11 +33,11 @@
           "outputFormat": "all"
         },
         {
-          "$kind": "Microsoft.LogAction",
+          "$kind": "Microsoft.TraceActivity",
           "$designer": {
-            "id": "xKcQFd"
+            "id": "Ia53o7"
           },
-          "text": "${LogAction_Text_xKcQFd()}"
+          "value": "${user.flowerPictures}"
         },
         {
           "$kind": "Microsoft.SendActivity",
@@ -67,7 +67,8 @@
           "$kind": "Microsoft.LogAction",
           "$designer": {
             "id": "iAVMGd"
-          }
+          },
+          "text": "${LogAction_Text_iAVMGd()}"
         },
         {
           "$kind": "Microsoft.SendActivity",

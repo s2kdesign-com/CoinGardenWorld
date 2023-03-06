@@ -27,7 +27,7 @@ namespace CoinGardenBotCore.Api {
 
         //RecognizeFlowerByName
         [Function(nameof(RecognizeFlowerHttpTrigger.RecognizeFlowerByName))]
-        [OpenApiOperation(operationId: "findFlowersByName", tags: new[] { "flowers" }, Summary = "Recognizes flowers by name", Description = "Multiple flower names can be provided with comma separated strings.", Visibility = OpenApiVisibilityType.Important)]
+        [OpenApiOperation(operationId: "findByName", tags: new[] { "flowers" }, Summary = "Recognizes flowers by name", Description = "Multiple flower names can be provided with comma separated strings.", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiParameter(name: "name", In = ParameterLocation.Query, Required = true, Type = typeof(RecognizeFlowerByNameRequest), Explode = true, Summary = "Flower Name", Description = "Name values that need to be considered for filter", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(RecognizedFlowerResponse), Summary = "successful operation", Description = "successful operation")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.BadRequest, Summary = "Invalid flower name", Description = "Invalid flower name")]
@@ -51,7 +51,7 @@ namespace CoinGardenBotCore.Api {
 
         //RecognizeFlowerByPicture
         [Function(nameof(RecognizeFlowerHttpTrigger.RecognizeFlowerByPicture))]
-        [OpenApiOperation(operationId: "uploadFile", tags: new[] { "flowers" }, Summary = "Uploads an image", Description = "This uploads an image.", Visibility = OpenApiVisibilityType.Important)]
+        [OpenApiOperation(operationId: "findByPicture", tags: new[] { "flowers" }, Summary = "Recognizes Flower By Pictures", Description = "", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiRequestBody(contentType: "multipart/form-data", bodyType: typeof(RecognizeFlowerByPictureRequest))]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(RecognizedFlowerResponse), Summary = "successful operation", Description = "successful operation")]
         public async Task<HttpResponseData> RecognizeFlowerByPicture(
@@ -77,7 +77,7 @@ namespace CoinGardenBotCore.Api {
 
         //RecognizeFlowerByUrl
         [Function(nameof(RecognizeFlowerHttpTrigger.RecognizeFlowerByUrl))]
-        [OpenApiOperation(operationId: "findFlowersByUrl", tags: new[] { "flowers" }, Summary = "Finds flowers by picture url", Description = "", Visibility = OpenApiVisibilityType.Important)]
+        [OpenApiOperation(operationId: "findByUrl", tags: new[] { "flowers" }, Summary = "Finds flowers by picture url", Description = "", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiRequestBody(contentType: "application/json", bodyType: typeof(RecognizeFlowerByUrlRequest))]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(RecognizedFlowerResponse), Summary = "successful operation", Description = "successful operation")]
         public async Task<HttpResponseData> RecognizeFlowerByUrl(

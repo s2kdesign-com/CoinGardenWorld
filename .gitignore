@@ -369,3 +369,4 @@ FodyWeavers.xsd
 /src/garden-bot/CoinGardenBotCore/CoinGardenBotCore/settings/appsettings.Development.json
 /src/garden-bot/CoinGardenBotCore.Web/wwwroot/appsettings.Development.json
 /src/garden-bot/CoinGardenBotCore.Api/Settings/appsettings.Development.json
+/src/garden-bot/CoinGardenBotCore/CoinGardenBotCore/code.zip
