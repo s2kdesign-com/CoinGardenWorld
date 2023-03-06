@@ -99,7 +99,7 @@
     }
     
     public static string GetPackageVersion() {
-        Version version = Assembly.GetExecutingAssembly().GetName().Version;
+        Version version = Assembly.GetEntryAssembly().GetName().Version;
         return version.ToString();
     }
 }
