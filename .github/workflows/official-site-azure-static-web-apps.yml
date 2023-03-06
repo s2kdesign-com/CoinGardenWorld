@@ -5,6 +5,7 @@ on:
   push:
     paths:
     - 'src/official-website/**'
+    - 'src/shared/**'
     branches:
       - main
   pull_request:

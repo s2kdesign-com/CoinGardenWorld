@@ -7,7 +7,6 @@
   "background_color": "#ffffff",
   "theme_color": "#1FC511",
   "prefer_related_applications": false,
-
   "icons": [
     {
       "src": "android/android-launchericon-512-512.png",

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoinGardenWorld.Theme\CoinGardenWorld.Theme.csproj" />
+    <ProjectReference Include="..\..\shared\front-end\CoinGardenWorld.Theme\CoinGardenWorld.Theme.csproj" />
   </ItemGroup>
 
   <ItemGroup>
