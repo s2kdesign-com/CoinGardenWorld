@@ -25,7 +25,7 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Extensions {
 
                 return options;
             });
-
+            
             return services;
         }
     }
