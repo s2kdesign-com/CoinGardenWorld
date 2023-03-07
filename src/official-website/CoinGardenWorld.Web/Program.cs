@@ -1,11 +1,11 @@
 using CoinGardenWorld.Theme;
 using CoinGardenWorld.Theme.Shared;
 using CoinGardenWorld.Web;
-using CoinGardenWorld.Web.Extensions;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.JSInterop;
 using System.Globalization;
+using CoinGardenWorld.Theme.Extensions;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -23,10 +23,11 @@ builder.Services.AddMsalAuthentication(options =>
     builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
 });
 
-// TODO: Move to WebAssemblyHostExtension
-builder.Services.AddLocalization(options => options.ResourcesPath = "Localization");
+// CoinGardenWorld.Theme
+builder.Services.AddCgwThemeExtensions();
 
 var host = builder.Build();
+
 // Extension method
 await host.SetDefaultCulture();
 

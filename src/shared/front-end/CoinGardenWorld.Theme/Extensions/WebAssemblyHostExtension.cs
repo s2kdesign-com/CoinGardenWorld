@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.JSInterop;
 using System.Globalization;
 using System.Web;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace CoinGardenWorld.Web.Extensions
-{
+namespace CoinGardenWorld.Theme.Extensions {
     public static class WebAssemblyHostExtension
     {
         private static string _queryParamName = "language";
