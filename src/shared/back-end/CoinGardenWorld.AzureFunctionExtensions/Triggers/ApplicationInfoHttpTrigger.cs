@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Reflection;
-using CoinGardenBotCore_Api.Models.DTO;
-using CoinGardenBotCore_Api.Models.Requests;
-using CoinGardenBotCore_Api.Models.Responses;
+using CoinGardenWorld.AzureFunctionExtensions.Configurations;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Extensions.OpenApi.Extensions;
 using Microsoft.Azure.Functions.Worker.Http;
@@ -13,8 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 
-namespace CoinGardenBotCore.Api
-{
+namespace CoinGardenWorld.AzureFunctionExtensions.Triggers {
     public class ApplicationInfoHttpTrigger {
         private readonly ILogger _logger;
 
@@ -44,7 +41,9 @@ namespace CoinGardenBotCore.Api
             var response = req.CreateResponse(HttpStatusCode.OK);
             response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
 
-            Version version = Assembly.GetExecutingAssembly().GetName().Version;
+            // Send API Version
+            Version version = ApiConfigurationOptions.GetPackageVersion();
+
             await response.WriteStringAsync(version.ToString()).ConfigureAwait(false);
 
             return await Task.FromResult(response).ConfigureAwait(false);

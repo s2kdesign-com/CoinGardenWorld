@@ -1,4 +1,3 @@
-using CoinGardenBotCore_Api.Configurations;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Abstractions;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Configurations;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,25 +9,15 @@ using System.Reflection;
 using System.Threading.Tasks;
 using CoinGardenWorld.AzureAI.Extensions;
 using CoinGardenWorld.AzureAI.Configurations;
+using CoinGardenWorld.AzureFunctionExtensions.Extensions;
 
 var host = new HostBuilder()
     .ConfigureFunctionsWorkerDefaults(worker => worker.UseNewtonsoftJson())
     .ConfigureOpenApi()
     .ConfigureServices(services =>
     {
-        services.AddSingleton<IOpenApiConfigurationOptions>(_ =>
-        {
-            var options = new ApiConfigurationOptions()
-            {
-                Servers = DefaultOpenApiConfigurationOptions.GetHostNames(),
-                IncludeRequestingHostName =
-                    DefaultOpenApiConfigurationOptions.IsFunctionsRuntimeEnvironmentDevelopment(),
-                ForceHttps = DefaultOpenApiConfigurationOptions.IsHttpsForced(),
-                ForceHttp = DefaultOpenApiConfigurationOptions.IsHttpForced(),
-            };
-
-            return options;
-        });
+        // CoinGardenWorld.AzureFunctionExtensions
+        services.AddCgwAzureFunctionExtensions();
 
         //CoinGardenWorld.AzureAI
         services.AddOptions<AzureAISettings>().BindConfiguration("AzureAISettings");

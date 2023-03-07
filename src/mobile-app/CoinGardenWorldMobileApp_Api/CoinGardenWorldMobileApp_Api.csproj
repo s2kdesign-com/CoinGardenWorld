@@ -5,17 +5,13 @@
     <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	  <Version>1.0.0.11</Version>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="HttpMultipartParser" Version="8.1.0" />
-    <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.10.1" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.10.0" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.0.13" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.7.0" OutputItemType="Analyzer" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\cognitive-services\CoinGardenWorld.AzureAI\CoinGardenWorld.AzureAI.csproj" />
-    <ProjectReference Include="..\..\cognitive-services\CoinGardenWorld.BingSearch\CoinGardenWorld.BingSearch.csproj" />
     <ProjectReference Include="..\..\shared\back-end\CoinGardenWorld.AzureFunctionExtensions\CoinGardenWorld.AzureFunctionExtensions.csproj" />
   </ItemGroup>
   <ItemGroup>

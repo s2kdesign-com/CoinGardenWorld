@@ -4,6 +4,7 @@ on:
   push:
     paths:
     - 'src/garden-bot/**'
+    - 'src/shared/**'
     branches:
       - main
   pull_request:

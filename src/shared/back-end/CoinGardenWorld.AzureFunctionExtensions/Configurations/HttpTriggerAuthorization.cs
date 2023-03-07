@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoinGardenBotCore_Api.Configurations {
+namespace CoinGardenWorld.AzureFunctionExtensions.Configurations {
     public class HttpTriggerAuthorization : DefaultOpenApiHttpTriggerAuthorization 
     {
         public override async Task<OpenApiAuthorizationResult> AuthorizeAsync(IHttpRequestDataObject req) {

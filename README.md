@@ -26,6 +26,7 @@ https://docs.coingarden.world/v/bg/
 | Application | Cloud | Url | Status |
 | - | - | - | - |
 | GardenBOT API | Azure Cloud Function | https://bot.coingarden.world/api/swagger/ui | [![Deploy GardenBOT Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml) |
+| MobileAPP API | Azure Cloud Function | | |
 
 ### IPFS (Fleek) 🚀
 | Application | Cloud | Url | Status |
@@ -42,7 +43,7 @@ https://docs.coingarden.world/v/bg/
 | Official Site - PWA | 1.0.0 | https://localhost:7215  | |
 | Official Site - API/GRPC | 1.0.0 |  |  |  |
 | Mobile App - PWA | 1.0.0 |   |  |  |
-| Mobile App - GRPC | 1.0.0 |  |  | |
+| Mobile App - API - Azure Function | 1.0.0 | http://localhost:7250/api/swagger/ui |  | |
 | NFT Store - PWA | 1.0.0 | | |
 | NFT Store API - Azure Function | 1.0.0 | | |
 | GardenBOT Site - PWA | 1.0.0 | https://localhost:7089 | |

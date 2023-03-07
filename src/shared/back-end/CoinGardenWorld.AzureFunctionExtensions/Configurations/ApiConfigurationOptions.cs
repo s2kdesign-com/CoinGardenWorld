@@ -8,10 +8,10 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoinGardenBotCore_Api.Configurations {
+namespace CoinGardenWorld.AzureFunctionExtensions.Configurations {
     public class ApiConfigurationOptions : DefaultOpenApiConfigurationOptions {
         public override OpenApiInfo Info { get; set; } = new OpenApiInfo() {
-            Version = GetPackageVersion(),
+            Version = GetPackageVersion().ToString(),
             Title = GetOpenApiDocTitle(),
             Description = GetOpenApiDocDescription(),
             TermsOfService = new Uri("https://coingarden.world/terms-and-conditions"),
@@ -26,9 +26,9 @@ namespace CoinGardenBotCore_Api.Configurations {
             }
         };
 
-        public static string GetPackageVersion() {
-            Version version = Assembly.GetExecutingAssembly().GetName().Version;
-            return version.ToString();
+        public static Version GetPackageVersion() {
+            Version version = Assembly.GetEntryAssembly().GetName().Version;
+            return version;
         }
     }
 }
