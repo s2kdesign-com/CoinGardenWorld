@@ -3,13 +3,11 @@
 ### 🌷 Web3 Infrastructure for gardening, growing,  🌺
 ### 🌻 selling and earning crypto from your flowers 🌼
 ---
-## 🔗 Official site : https://coingarden.world/ 🌱
-## 🔗 Mobile Application : https://app.coingarden.world/ 🪴
-## 🔗 NFT Store : https://store.coingarden.world/ 🌴
+## 🔗 Official site : https://coingarden.world/ 🪴
 ---
-> Documentation English:
+> 🌱 Documentation English:
 https://docs.coingarden.world/  
-> Documentation Bulgarian: 
+> 🌴 Documentation Bulgarian: 
 https://docs.coingarden.world/v/bg/
 
 ---
