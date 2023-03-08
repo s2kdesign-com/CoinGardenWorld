@@ -2,7 +2,7 @@
 
 @inherits LayoutComponentBase
 
-@inject HttpClient httpClient
+@inject IHttpClientFactory ClientFactory
 
 <div class="page">
     <div class="sidebar">
@@ -34,7 +34,8 @@
 
     protected override async Task OnInitializedAsync() {
         try {
-
+            
+            var httpClient = ClientFactory.CreateClient("CGW.MobileAppApi.NoAuthenticationClient");
             APIversion = await httpClient.GetStringAsync("api/version");
         }
         catch (Exception e) {
@@ -44,7 +45,7 @@
 
     }
     public static string GetSiteVersion() {
-        Version version = Assembly.GetExecutingAssembly().GetName().Version;
+        Version version = Assembly.GetExecutingAssembly().GetName().Version??new Version(1,0,0);
         return version.ToString();
     }
 
