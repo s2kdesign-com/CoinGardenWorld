@@ -26,7 +26,7 @@ namespace CoinGardenWorldMobileApp_Api {
         [Function(nameof(MobileAppWebHttpTrigger.TestAuthenticatedEndpoint))]
         [OpenApiOperation(operationId: "testAuthenticationEndpoint", tags: new[] { "authentication" }, Summary = "Returns success if valid bearer token", Description = "Validates the user bearer to token against azure b2c.", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiSecurity("CoinGardenWorld_Auth", SecuritySchemeType.OAuth2, Flows = typeof(CgwAuthFlow))]
-        public async Task<HttpResponseData> TestAuthenticatedEndpoint([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req) {
+        public async Task<HttpResponseData> TestAuthenticatedEndpoint([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req) {
 
             var response = req.CreateResponse(HttpStatusCode.OK);
 
