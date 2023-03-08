@@ -62,7 +62,7 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Services
             var validationParameters = new TokenValidationParameters
             {
                 ValidAudiences = new string[] { Environment.GetEnvironmentVariable("AzureAd__ClientId") ??"" },
-                ValidateAudience = true,
+                ValidateAudience = Boolean.Parse(Environment.GetEnvironmentVariable("AzureAd__ValidateAudience") ??"true") ,
                 IssuerSigningKeys = OIDconfig.SigningKeys,
                 ValidIssuer = OIDconfig.Issuer
             };
