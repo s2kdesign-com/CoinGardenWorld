@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 namespace CoinGardenWorld.AzureFunctionExtensions.SecurityFlows {
     public class CgwAuthFlow : OpenApiOAuthSecurityFlows
     {
-        private readonly string _scopesUrlPrefix = $"https://coingardenworld.onmicrosoft.com/{Environment.GetEnvironmentVariable("AzureADB2C__OpenID__ClientId")}";
+        private readonly string _scopesUrlPrefix = new Uri(new Uri(Environment.GetEnvironmentVariable("AzureAd__ScopesPrefix") ?? ""), Environment.GetEnvironmentVariable("AzureAd__ClientId")).ToString();
         public CgwAuthFlow() {
 
             this.Implicit = new OpenApiOAuthFlow() {
-                AuthorizationUrl = new Uri(new Uri(Environment.GetEnvironmentVariable("AzureADB2C__OpenID__Url") ?? ""), "oauth2/v2.0/authorize"),
-                TokenUrl = new Uri(new Uri(Environment.GetEnvironmentVariable("AzureADB2C__OpenID__Url") ?? ""), "oauth2/v2.0/token"),
+                AuthorizationUrl = new Uri(new Uri(Environment.GetEnvironmentVariable("AzureAd__Authority") ?? ""), "oauth2/v2.0/authorize"),
+                TokenUrl = new Uri(new Uri(Environment.GetEnvironmentVariable("AzureAd__Authority") ?? ""), "oauth2/v2.0/token"),
                 Scopes = {
                 {
                     $"{_scopesUrlPrefix}/flowers.readbyname", "Get Flowers by name"
