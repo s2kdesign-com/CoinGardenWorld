@@ -52,8 +52,9 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Services
             }
             
             var ConfigManager = new ConfigurationManager<OpenIdConnectConfiguration>(
-                new Uri(new Uri(Environment.GetEnvironmentVariable("AzureAd__Authority") ??""), "v2.0/.well-known/openid-configuration").ToString(),
+                Environment.GetEnvironmentVariable("AzureAd__Authority") + "v2.0/.well-known/openid-configuration",
                 new OpenIdConnectConfigurationRetriever());
+
             var OIDconfig = await ConfigManager.GetConfigurationAsync();
 
             var tokenValidator = new JwtSecurityTokenHandler();
