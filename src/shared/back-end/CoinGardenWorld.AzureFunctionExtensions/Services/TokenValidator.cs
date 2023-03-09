@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Azure.Functions.Worker.Http;
+using Microsoft.IdentityModel.Logging;
 
 namespace CoinGardenWorld.AzureFunctionExtensions.Services
 {
@@ -59,10 +60,13 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Services
 
             var tokenValidator = new JwtSecurityTokenHandler();
 
+            IdentityModelEventSource.ShowPII = true;
+
             var validationParameters = new TokenValidationParameters
             {
                 ValidAudiences = new string[] { Environment.GetEnvironmentVariable("AzureAd__ClientId") ??"" },
                 ValidateAudience = Boolean.Parse(Environment.GetEnvironmentVariable("AzureAd__ValidateAudience") ??"true") ,
+                ValidateIssuerSigningKey = false,
                 IssuerSigningKeys = OIDconfig.SigningKeys,
                 ValidIssuer = OIDconfig.Issuer
             };
