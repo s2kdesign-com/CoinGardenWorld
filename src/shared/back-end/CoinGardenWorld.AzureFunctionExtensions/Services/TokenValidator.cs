@@ -51,7 +51,6 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Services
                 return null;
             }
             
-            var jwtHandler = new JwtSecurityTokenHandler();
             var ConfigManager = new ConfigurationManager<OpenIdConnectConfiguration>(
                 new Uri(new Uri(Environment.GetEnvironmentVariable("AzureAd__Authority") ??""), "v2.0/.well-known/openid-configuration").ToString(),
                 new OpenIdConnectConfigurationRetriever());
