@@ -76,6 +76,7 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Services
             catch (Exception ex)
             {
                 log.LogError(ex.ToString());
+                throw ex;
             }
 
             return null;
