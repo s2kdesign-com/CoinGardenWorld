@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.IdentityModel.Logging;
+using HttpRequestData = Microsoft.Azure.Functions.Worker.Http.HttpRequestData;
 
 namespace CoinGardenWorld.AzureFunctionExtensions.Services
 {
@@ -66,7 +67,7 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Services
             {
                 ValidAudiences = new string[] { Environment.GetEnvironmentVariable("AzureAd__ClientId") ??"" },
                 ValidateAudience = Boolean.Parse(Environment.GetEnvironmentVariable("AzureAd__ValidateAudience") ??"true") ,
-                ValidateIssuerSigningKey = false,
+                ValidateIssuerSigningKey = Boolean.Parse(Environment.GetEnvironmentVariable("AzureAd__ValidateIssuerSigningKey") ?? "true"),
                 IssuerSigningKeys = OIDconfig.SigningKeys,
                 ValidIssuer = OIDconfig.Issuer
             };
