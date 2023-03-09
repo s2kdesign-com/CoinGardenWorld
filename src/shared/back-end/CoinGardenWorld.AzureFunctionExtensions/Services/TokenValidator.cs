@@ -68,8 +68,8 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Services
                 ValidAudiences = new string[] { Environment.GetEnvironmentVariable("AzureAd__ClientId") ??"" },
                 ValidateAudience = Boolean.Parse(Environment.GetEnvironmentVariable("AzureAd__ValidateAudience") ??"true") ,
                 ValidateIssuerSigningKey = Boolean.Parse(Environment.GetEnvironmentVariable("AzureAd__ValidateIssuerSigningKey") ?? "true"),
-                IssuerSigningKeys = OIDconfig.SigningKeys,
-                ValidIssuer = OIDconfig.Issuer
+             //   IssuerSigningKeys = OIDconfig.SigningKeys,
+               // ValidIssuer = OIDconfig.Issuer
             };
 
             try
