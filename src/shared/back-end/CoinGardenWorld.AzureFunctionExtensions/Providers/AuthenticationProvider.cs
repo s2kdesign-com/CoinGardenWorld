@@ -22,14 +22,13 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Providers {
         {
             var tenantId = configuration["AzureAd:TenantId"];
             var clientId = configuration["AzureAd:ClientId"];
-            var instance = configuration["AzureAd:Instance"];
             var clientSecret = configuration["AzureAd:ClientSecret"];
 
             _azureAdJwtBearerValidation = azureAdJwtBearerValidation;
             if (_application == null)
             {
                 _application = ConfidentialClientApplicationBuilder.Create(clientId)
-                    .WithAuthority($"{instance}{tenantId}/v2.0/")
+                    .WithAuthority($"https://login.microsoftonline.com/{tenantId}/v2.0/")
                     .WithClientSecret(clientSecret)
                     .Build();
             }

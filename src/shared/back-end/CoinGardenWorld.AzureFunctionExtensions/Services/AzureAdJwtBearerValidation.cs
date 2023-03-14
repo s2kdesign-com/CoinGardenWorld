@@ -19,16 +19,12 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Services {
         private static ConfigurationManager<OpenIdConnectConfiguration> _configurationManager;
 
         private string _wellKnownEndpoint = string.Empty;
-        private string _tenantId = string.Empty;
         private string _audience = string.Empty;
-        private string _instance = string.Empty;
 
         public AzureAdJwtBearerValidation(IConfiguration configuration) {
             _configuration = configuration;
 
-            _tenantId = _configuration["AzureAd:TenantId"];
             _audience = _configuration["AzureAd:ClientId"];
-            _instance = _configuration["AzureAd:Instance"];
             _wellKnownEndpoint = $"{_configuration["AzureAd:Authority"]}/v2.0/.well-known/openid-configuration";
         }
 
