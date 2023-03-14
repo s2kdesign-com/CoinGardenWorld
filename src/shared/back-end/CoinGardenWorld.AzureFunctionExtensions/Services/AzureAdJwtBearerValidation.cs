@@ -50,10 +50,16 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Services {
                 IssuerSigningKeys = oidcWellknownEndpoints.SigningKeys,
                 // Number of keys in TokenValidationParameters: '2'. 
                 // Number of keys in Configuration: '0'.
-                ValidateIssuerSigningKey = false,
+                SignatureValidator = delegate (string token, TokenValidationParameters parameters)
+                {
+                    var jwt = new JwtSecurityToken(token);
+
+                    return jwt;
+                },
+                ValidateIssuerSigningKey = true,
 
                 ValidateLifetime = true,
-                RequireSignedTokens = false,
+                RequireSignedTokens = true,
             };
 
             try {
