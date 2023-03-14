@@ -42,9 +42,11 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Services {
             var validationParameters = new TokenValidationParameters {
 
                 ValidAudiences = new string[] { _audience },
-                ValidateAudience = true,
+                // Azure static app is erroring if true
+                ValidateAudience = false,
 
-                ValidateIssuer = true,
+                // Azure static app is erroring if true
+                ValidateIssuer = false,
                 ValidIssuers = new[] { oidcWellknownEndpoints.Issuer },
 
                 IssuerSigningKeys = oidcWellknownEndpoints.SigningKeys,
