@@ -47,6 +47,7 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Services {
                 ValidateIssuer = true,
                 ValidIssuers = new[] { oidcWellknownEndpoints.Issuer },
 
+                IssuerSigningKey = oidcWellknownEndpoints.SigningKeys.First(),
                 IssuerSigningKeys = oidcWellknownEndpoints.SigningKeys,
                 ValidateIssuerSigningKey = true,
 
