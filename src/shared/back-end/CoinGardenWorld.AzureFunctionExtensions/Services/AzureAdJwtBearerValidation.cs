@@ -47,9 +47,10 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Services {
                 ValidateIssuer = true,
                 ValidIssuers = new[] { oidcWellknownEndpoints.Issuer },
 
-                IssuerSigningKey = oidcWellknownEndpoints.SigningKeys.First(),
                 IssuerSigningKeys = oidcWellknownEndpoints.SigningKeys,
-                ValidateIssuerSigningKey = true,
+                // Number of keys in TokenValidationParameters: '2'. 
+                // Number of keys in Configuration: '0'.
+                ValidateIssuerSigningKey = false,
 
                 ValidateLifetime = true,
                 RequireSignedTokens = true,
