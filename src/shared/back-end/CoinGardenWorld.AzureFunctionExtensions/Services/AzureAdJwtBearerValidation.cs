@@ -61,7 +61,7 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Services {
                 ValidateIssuerSigningKey = true,
 
                 ValidateLifetime = true,
-                RequireSignedTokens = true,
+                RequireSignedTokens = false,
             };
 
             try {
