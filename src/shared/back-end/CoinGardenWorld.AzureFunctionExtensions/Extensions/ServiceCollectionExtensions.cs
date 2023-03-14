@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CoinGardenWorld.AzureFunctionExtensions.Configurations;
+using CoinGardenWorld.AzureFunctionExtensions.Providers;
+using CoinGardenWorld.AzureFunctionExtensions.Services;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Abstractions;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Configurations;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,7 +27,11 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Extensions {
 
                 return options;
             });
-            
+
+            // Add JWT bearer and 
+            services.AddScoped<AzureAdJwtBearerValidation>();
+            services.AddScoped<AuthenticationProvider>();
+
             return services;
         }
     }
