@@ -53,6 +53,7 @@ namespace CoinGardenWorldMobileApp_Api {
             response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
 
             var userName = principal.Claims.First(c => c.Type == "name").Value;
+            var userName = principal.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
             response.WriteString($"{userName} - Welcome to Azure Functions!");
 
             return response;
