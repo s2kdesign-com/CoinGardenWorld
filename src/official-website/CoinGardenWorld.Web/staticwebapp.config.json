@@ -49,6 +49,12 @@
       }
     },
     {
+      "route": "/_framework/*",
+      "headers": {
+        "cache-control": "must-revalidate, max-age=15770000"
+      }
+    },
+    {
       "route": "/login",
       "rewrite": "/.auth/login/github"
     },
