@@ -18,10 +18,10 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 //builder.RootComponents.Add<TopMenu>(".header-main");
 
 
-builder.Services.AddMsalAuthentication(options =>
-{
-    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
-});
+//builder.Services.AddMsalAuthentication(options =>
+//{
+//    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
+//});
 
 // CoinGardenWorld.Theme
 builder.Services.AddCgwThemeExtensions();

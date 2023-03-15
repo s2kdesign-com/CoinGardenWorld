@@ -21,7 +21,7 @@ namespace CoinGardenWorld.Theme.Extensions {
             CultureInfo? queryCulture = CultureInfo.GetCultures(CultureTypes.NeutralCultures)
                 .ToList().FirstOrDefault(c => c.TwoLetterISOLanguageName == query[_queryParamName]);
 
-            // If there is a query param , set the language it
+            // If there is a query param , set the language to it
             if (queryCulture != null && CultureInfo.CurrentCulture.TwoLetterISOLanguageName != queryCulture.TwoLetterISOLanguageName)
             {
                 localStorage.SetItemAsync<string>("culture", queryCulture.Name);
@@ -49,4 +49,5 @@ namespace CoinGardenWorld.Theme.Extensions {
             CultureInfo.DefaultThreadCurrentUICulture = setCulture;
         }
     }
+
 }
