@@ -3,6 +3,8 @@
 @using System.Web
 @inject NavigationManager Navigation
 
+@inject ILocalStorageService _localStorage
+
 <li class="language-switcher language-switcher-s3 toggle-wrap">
     <a class="toggle-tigger" @onclick="() => onClick(CultureInfo.CurrentCulture)">
         @CultureInfo.CurrentCulture.DisplayName
@@ -47,8 +49,8 @@
                 
             if (cultureInfo != null && CultureInfo.CurrentCulture.TwoLetterISOLanguageName != cultureInfo.TwoLetterISOLanguageName)
             {
-                var js = (IJSInProcessRuntime)jsRuntime;
-                js.InvokeVoid("blazorCulture.set", cultureInfo.Name);
+                _localStorage.SetItemAsync<string>("culture", cultureInfo.Name);
+
                 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(cultureInfo.Name);
                 CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(cultureInfo.Name);
                 //Navigation.NavigateTo(Navigation.Uri, forceLoad: false);
@@ -62,10 +64,8 @@
     {
         if (CultureInfo.CurrentCulture != culture)
         {
-            var js = (IJSInProcessRuntime)jsRuntime;
+            _localStorage.SetItemAsync<string>("culture", culture.Name);
 
-            // TODO: Copy/Paste from upper one. Needed because the upper component is loaded before OnInitializedAsync
-            js.InvokeVoid("blazorCulture.set", culture.Name);
             Navigation.NavigateTo(AddQueryParm(_queryParamName, culture.TwoLetterISOLanguageName), forceLoad: true);
         }
 
@@ -76,5 +76,8 @@
         new CultureInfo("en-US"),
         new CultureInfo("bg-BG"),
     };
+
+    public static readonly (string, string)[] SupportedCulturesWithName = new[] { ("English", "en-US"), ("Bulgarian", "bg-BG"), ("French", "fr-CA"), ("Português", "pt-PT"), ("Spanish", "es-MX") };
+}
 
 }
