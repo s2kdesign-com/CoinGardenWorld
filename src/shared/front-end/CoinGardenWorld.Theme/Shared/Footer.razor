@@ -89,13 +89,6 @@
 
         await base.OnAfterRenderAsync(firstRender);
 
-        //if (!firstRender)
-        //    await jsRuntime.InvokeAsync<string>("NioApp.Plugins.particles");
-        //var module = await jsRuntime.InvokeAsync<IJSInProcessObjectReference>(
-        //    "import", "./_content/CoinGardenWorld.Theme/assets/js/scripts.js");
-        //await module.InvokeAsync<string>("NioApp.winLoad");
-        //await module.InvokeAsync<string>("NioApp.Plugins.particles");
-
     }
     
     public static string GetPackageVersion() {

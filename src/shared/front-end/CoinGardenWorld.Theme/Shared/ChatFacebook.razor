@@ -1,0 +1,25 @@
+﻿@inject IJSRuntime JS
+@implements IAsyncDisposable
+
+<!-- Messenger Chat Plugin Code -->
+<div id="fb-root"></div>
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+
+
+@code {
+
+    private Lazy<IJSObjectReference> ExampleModule = new();
+    protected override async Task OnAfterRenderAsync(bool firstRender) {
+        if (firstRender) {
+    //    "import", "./_content/CoinGardenWorld.Theme/assets/js/scripts.js");
+            ExampleModule = new(await JS.InvokeAsync<IJSObjectReference>("import", "./_content/CoinGardenWorld.Theme/Shared/ChatFacebook.razor.js"));
+        }
+    }
+
+    public async ValueTask DisposeAsync() {
+        if (ExampleModule.IsValueCreated) {
+            await ExampleModule.Value.DisposeAsync();
+        }
+    }
+}

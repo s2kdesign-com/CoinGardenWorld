@@ -1,12 +1,17 @@
 {
   "forwardingGateway": {
     "allowedForwardedHosts": [
-      "coingarden.world"
+      "coingarden.world",
+      "app.coingarden.world",
+      "store.coingarden.world",
+      "bot.coingarden.world",
+      "metaverse.coingarden.world",
+      "charity.coingarden.world"
     ]
   },
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": [ "/images/*.{png,jpg,gif}", "/assets/*", "/lib/*" ]
+    "exclude": [ "/images/*.{png,jpg,gif}", "/_content/CoinGardenWorld.Theme/assets/*"]
   },
   "trailingSlash": "auto",
   "responseOverrides": {

@@ -56,11 +56,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.Theme", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldMobileApp.Web", "src\mobile-app\CoinGardenWorldMobileApp.Web\CoinGardenWorldMobileApp.Web.csproj", "{2531EC45-2B3C-4D2D-90AD-7E295D4C12C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorldMobileApp_Api", "src\mobile-app\CoinGardenWorldMobileApp_Api\CoinGardenWorldMobileApp_Api.csproj", "{07CAF76A-2A09-4D8F-8E5B-24C4A9153048}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldMobileApp_Api", "src\mobile-app\CoinGardenWorldMobileApp_Api\CoinGardenWorldMobileApp_Api.csproj", "{07CAF76A-2A09-4D8F-8E5B-24C4A9153048}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "back-end", "back-end", "{E89AAC35-6366-4DCB-8CFD-3BA3B3B8DC65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.AzureFunctionExtensions", "src\shared\back-end\CoinGardenWorld.AzureFunctionExtensions\CoinGardenWorld.AzureFunctionExtensions.csproj", "{2C0405E0-235C-4FB1-B543-82F9AD60B79E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.AzureFunctionExtensions", "src\shared\back-end\CoinGardenWorld.AzureFunctionExtensions\CoinGardenWorld.AzureFunctionExtensions.csproj", "{2C0405E0-235C-4FB1-B543-82F9AD60B79E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
