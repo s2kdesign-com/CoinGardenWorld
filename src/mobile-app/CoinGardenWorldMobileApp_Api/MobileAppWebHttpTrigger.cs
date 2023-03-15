@@ -1,4 +1,5 @@
 using System.Net;
+using System.Security.Claims;
 using CoinGardenWorld.AzureFunctionExtensions.Providers;
 using CoinGardenWorld.AzureFunctionExtensions.SecurityFlows;
 using CoinGardenWorld.AzureFunctionExtensions.Services;
@@ -41,20 +42,18 @@ namespace CoinGardenWorldMobileApp_Api {
             var principal = await _authentication.AuthenticateAsync(req.FunctionContext, req);
             if (principal == null) return _authentication.ReplyUnauthorized(req);
 
-            //var token = await _authentication.GetAccessTokenForUserAsync(req, new string[] { "https://graph.microsoft.com/openid" });
+            //var microsoftGraphToken = new BaseBearerTokenAuthenticationProvider(new TokenProvider(req, _authentication,
+            //    new [] {"openid", "offline_access" }));
 
-            //var microsoftGraph = new GraphServiceClient(new BaseBearerTokenAuthenticationProvider(new TokenProvider(token)));
-            //var name = principal.Claims.Where(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name").First().Value;
-            //_logger.LogInformation($"User is {name}!");
+            //var microsoftGraph = new GraphServiceClient(microsoftGraphToken);
 
-            //var inbox = await microsoftGraph.Me.MailFolders["inbox"].GetAsync();
-            //_logger.LogInformation($"{name} has {inbox.UnreadItemCount} unread e-mails!");
+            //var inbox = await microsoftGraph.Me.GetAsync();
 
             var response = req.CreateResponse(HttpStatusCode.OK);
-
             response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
 
-            response.WriteString("Welcome to Azure Functions!");
+            var userName = principal.Claims.First(c => c.Type == "name").Value;
+            response.WriteString($"{userName} - Welcome to Azure Functions!");
 
             return response;
         }

@@ -34,13 +34,17 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Providers {
             }
         }
 
-        public async Task<ClaimsPrincipal> AuthenticateAsync(FunctionContext context, HttpRequestData req)
+        public async Task<ClaimsPrincipal?> AuthenticateAsync(FunctionContext context, HttpRequestData req)
         {
+            var token = GetJwtFromHeader(req);
+            if (string.IsNullOrEmpty(token))
+                return null;
+
             var logger = context.GetLogger("WorkerAuthentication");
-            return await _azureAdJwtBearerValidation.ValidateTokenAsync(getAccessTokenFromHeaders(req), logger);
+            return await _azureAdJwtBearerValidation.ValidateTokenAsync(token, logger);
         }
 
-        public async Task<ClaimsPrincipal> AuthenticateAsync(FunctionContext context, string token)
+        public async Task<ClaimsPrincipal?> AuthenticateAsync(FunctionContext context, string token)
         {
             var logger = context.GetLogger("WorkerAuthentication");
             return await _azureAdJwtBearerValidation.ValidateTokenAsync(token, logger);
@@ -49,8 +53,12 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Providers {
         public async Task<string> GetAccessTokenForUserAsync(HttpRequestData req, IEnumerable<string> scopes,
             string? tenantId = null, string? userFlow = null)
         {
+            var token = GetJwtFromHeader(req);
+            if (string.IsNullOrEmpty(token))
+                return "";
+
             var result = await _application
-                .AcquireTokenOnBehalfOf(scopes, new UserAssertion(getAccessTokenFromHeaders(req))).ExecuteAsync();
+                .AcquireTokenOnBehalfOf(scopes, new UserAssertion(token)).ExecuteAsync();
 
             return result.AccessToken;
         }
@@ -69,12 +77,15 @@ namespace CoinGardenWorld.AzureFunctionExtensions.Providers {
             return response;
         }
 
-        private string getAccessTokenFromHeaders(HttpRequestData req)
-        {
-            var token = req.Headers.Where(x => x.Key == "Authorization").First().Value.First()
-                .Substring("Bearer ".Length);
+        public string GetJwtFromHeader(HttpRequestData req) {
+            if (req.Headers.TryGetValues("Authorization", out var authHeaders)) {
 
-            return token;
+                var authorizationHeader = authHeaders.First();
+                string[] parts = authorizationHeader?.ToString().Split(null) ?? new string[0];
+                return (parts.Length == 2 && parts[0].Equals("Bearer")) ? parts[1] : string.Empty;
+            }
+
+            return "";
         }
     }
 }
