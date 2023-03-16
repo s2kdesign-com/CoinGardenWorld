@@ -12,28 +12,6 @@
       "charity.coingarden.world"
     ]
   },
-  "auth": {
-    "identityProviders": {
-      "customOpenIdConnectProviders": {
-        "aadb2c": {
-          "registration": {
-            "clientIdSettingName": "AADB2C_PROVIDER_CLIENT_ID",
-            "clientCredential": {
-              "clientSecretSettingName": "AADB2C_PROVIDER_CLIENT_SECRET"
-            },
-            "openIdConnectConfiguration": {
-              "wellKnownOpenIdConfiguration": "https://coingardenworld.b2clogin.com/coingardenworld.onmicrosoft.com/B2C_1_SignUpSignInLandingPage/v2.0/.well-known/openid-configuration"
-            }
-          },
-          "login": {
-            "nameClaimType": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
-            "scopes": [],
-            "loginParameterNames": []
-          }
-        }
-      }
-    }
-  },
   "navigationFallback": {
     "rewrite": "/index.html",
     "exclude": [ "/images/*.{png,jpg,gif}", "/_content/CoinGardenWorld.Theme/assets/*" ]
