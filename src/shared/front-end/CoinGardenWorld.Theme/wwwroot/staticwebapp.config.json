@@ -9,7 +9,8 @@
       "metaverse.coingarden.world",
       // The actual game
       "play.coingarden.world",
-      "charity.coingarden.world"
+      "charity.coingarden.world",
+      "web.facebook.com"
     ]
   },
   "navigationFallback": {
