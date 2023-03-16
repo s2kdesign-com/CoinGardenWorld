@@ -5,38 +5,13 @@ Theme	 :  Default
 * Updated	 :	11/22/2022
 */
 /*! WRITE YOUR CUSTOM STYLE **/
-.bg-theme-grad {
-    background-image: linear-gradient(to bottom, #1FC511 0%, #22577a 50%, #b711c5 100%) !important;
-}
 
 /* unvisited link */
 .language-switcher a {
     text-decoration: none;
     cursor: pointer;
 }
-/* ===== Scrollbar CSS ===== */
-/* Firefox */
-* {
-    scrollbar-width: auto;
-    scrollbar-color: #1fc511 #ffffff;
-}
 
-    /* Chrome, Edge, and Safari */
-    *::-webkit-scrollbar {
-        background-color: transparent;
-        width: 10px;
-    }
-
-    *::-webkit-scrollbar-track {
-        -webkit-box-shadow: none !important;
-        background-color: transparent;
-    }
-
-    *::-webkit-scrollbar-thumb {
-        background-image: linear-gradient(to bottom, #1FC511 0%, #22577a 50%, #b711c5 100%) !important;
-        border-radius: 2px;
-        border: 0px solid #ffffff;
-    }
 
 @media (min-width: 992px) {
     .logo img { height: 30px; }
