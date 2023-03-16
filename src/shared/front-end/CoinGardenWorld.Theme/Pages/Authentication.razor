@@ -1,5 +1,7 @@
 ﻿@page "/authentication/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inherits ThemeComponentBase<PageBanner>
+
 <RemoteAuthenticatorView Action="@Action" />
 
 @code{

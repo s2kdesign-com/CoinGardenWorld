@@ -117,28 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Application" xml:space="preserve">
-    <value>Приложение</value>
+  <data name="Log out" xml:space="preserve">
+    <value>Отписване</value>
   </data>
-  <data name="Documentation" xml:space="preserve">
-    <value>Документация</value>
-  </data>
-  <data name="Github" xml:space="preserve">
-    <value>Github</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Начало</value>
-  </data>
-  <data name="Information" xml:space="preserve">
-    <value>Информация</value>
-  </data>
-  <data name="Litepaper" xml:space="preserve">
-    <value>Litepaper</value>
-  </data>
-  <data name="Metaverse" xml:space="preserve">
-    <value>Метавселена</value>
-  </data>
-  <data name="Token" xml:space="preserve">
-    <value>Криптовалута</value>
+  <data name="Login" xml:space="preserve">
+    <value>Вписване</value>
   </data>
 </root>

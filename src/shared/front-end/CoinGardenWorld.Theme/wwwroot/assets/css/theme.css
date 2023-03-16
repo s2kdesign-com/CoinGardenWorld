@@ -21,7 +21,7 @@ Theme	 :  Default
     scrollbar-color: #1fc511 #ffffff;
 }
 
-/* Chrome, Edge, and Safari */
+    /* Chrome, Edge, and Safari */
     *::-webkit-scrollbar {
         background-color: transparent;
         width: 10px;
@@ -37,3 +37,17 @@ Theme	 :  Default
         border-radius: 2px;
         border: 0px solid #ffffff;
     }
+
+@media (min-width: 992px) {
+    .logo img { height: 30px; }
+
+    .menu-login-button-custom {
+        margin-left: 15px !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .menu-btns {
+        margin-bottom: 0px;
+    }
+}
