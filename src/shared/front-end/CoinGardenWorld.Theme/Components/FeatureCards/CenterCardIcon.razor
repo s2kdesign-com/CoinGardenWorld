@@ -13,7 +13,7 @@
             </p>
         
         </div>
-        <a href="#" class="link link-primary link-feature-s1"><em class="link-icon icon-circle icon-circle-md ti ti-arrow-right"></em></a>
+        <a href="@FeatureCardUrl" target="_blank" class="link link-primary link-feature-s1"><em class="link-icon icon-circle icon-circle-md ti ti-arrow-right"></em></a>
     </div>
 </div><!-- .col -->
 @code {
@@ -27,4 +27,6 @@
     public string FeatureCardDelay { get; set; }
     [Parameter]
     public string FeatureCardImageSrc { get; set; }
+    [Parameter]
+    public string FeatureCardUrl { get; set; }
 }
