@@ -14,11 +14,13 @@
 
   <ItemGroup>
 	  <PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
+	  <PackageReference Include="MailKit" Version="3.6.0" />
 	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.2" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.3" />
 	  <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="7.0.2" />
+	  <PackageReference Include="MimeKit" Version="3.6.0" />
   </ItemGroup>
 
   <ItemGroup>
