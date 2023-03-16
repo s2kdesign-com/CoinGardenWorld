@@ -1,5 +1,9 @@
 {
   "globalHeaders": {
     "Blazor-Environment": "Production"
+  },
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [ "/images/*.{png,jpg,gif}", "/_content/CoinGardenWorld.Theme/assets/*" ]
   }
 }

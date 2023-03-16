@@ -20,10 +20,14 @@ namespace CoinGardenWorld.Theme
                 "import", "./_content/CoinGardenWorld.Theme/themeJsInterop.js").AsTask());
         }
 
-        public async ValueTask<string> SetParticles()
+        public async ValueTask<string> GetBrowserLanguage()
         {
             var module = await moduleTask.Value;
-            return await module.InvokeAsync<string>("NioApp.Plugins.particles");
+            return await module.InvokeAsync<string>("getBrowserLanguage");
+        }
+        public async ValueTask<string> FullyRendered(bool isRendered) {
+            var module = await moduleTask.Value;
+            return await module.InvokeAsync<string>("fullyRendered", isRendered);
         }
 
         public async ValueTask DisposeAsync()

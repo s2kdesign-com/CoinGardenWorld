@@ -72,13 +72,6 @@
 </div>-->
 
 
-<script>
-    // TODO: move this to js interop
-    window.getBrowserLanguage = function() {
-        return (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.userLanguage || navigator.language || navigator.browserLanguage || 'en';
-    }
-</script>
-
 <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="true"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>

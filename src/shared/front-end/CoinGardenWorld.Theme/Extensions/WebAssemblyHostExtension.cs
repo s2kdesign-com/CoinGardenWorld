@@ -38,8 +38,8 @@ namespace CoinGardenWorld.Theme.Extensions {
             }
             else {
                 // First time opening the site, set the language to browser default
-                var js = host.Services.GetRequiredService<IJSRuntime>();
-                var browserLanguage = await js.InvokeAsync<string>("getBrowserLanguage");
+                var js = host.Services.GetRequiredService<ThemeJsInterop>();
+                var browserLanguage = await js.GetBrowserLanguage();
                 setCulture = new CultureInfo(browserLanguage);
             }
 

@@ -1,0 +1,72 @@
+﻿@inject IStringLocalizer<HomeLayout> _localizer
+@inject ThemeJsInterop js
+<HeadContent>
+    <title>@_localizer[Title]</title>
+
+    <link rel="apple-touch-icon" sizes="512x512" href="ios/512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="ios/192.png" />
+
+    <meta name="theme-color" content="#1FC511" />
+
+    <meta property="fb:app_id" content="874602667164734" />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="coingarden.world" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@_localizer[Title]" />
+    <meta property="og:description" content="@_localizer[Description]" />
+    <meta property="og:url" content="https://coingarden.world/" />
+    <meta property="og:image" content="https://coingarden.world/social-logo-1276x739.png" />
+    <meta property="og:image:secure_url" content="https://coingarden.world/social-logo-1276x739.png" />
+    <meta property="og:image:width" content="1276" />
+    <meta property="og:image:height" content="739" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="@_localizer[Title]" />
+    <meta name="twitter:description" content="@_localizer[Description]" />
+    <meta name="twitter:image" content="https://coingarden.world/social-logo-1276x739.png" />
+
+</HeadContent>
+
+@code {
+    private string _brand = "CoinGarden.World";
+
+    [Parameter]
+    public string Title { get; set; } = "World of Flowers";
+
+    [Parameter]
+    public string Description { get; set; } = "Web3 Infrastructure for gardening, growing, selling and earning crypto from your flowers.";
+
+    [Parameter]
+    public IEnumerable<string> Keywords { get; set; } = new List<string>();
+
+    string GetTitle() => Title;
+
+    string GetSubTitle() {
+        if (string.IsNullOrEmpty(Description))
+            return "";
+        return Description.TrimEnd('.') + ".";
+    }
+
+    string GetKeywords() {
+        var keywords = new List<string>();
+
+        keywords.AddRange(Keywords);
+
+        keywords.Add(_brand);
+
+        return string.Join(", ", keywords);
+    }
+
+
+    private bool _parametersSet;
+    protected override void OnParametersSet() => _parametersSet = true;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender) {
+        if (_parametersSet && firstRender) {
+            await js.FullyRendered(true);
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}

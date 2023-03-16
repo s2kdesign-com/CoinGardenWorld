@@ -117,4 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Web3 Infrastructure for gardening, growing, selling and earning crypto from your flowers." xml:space="preserve">
+    <value>Web3 инфраструктура, за опазване, отглеждане, продаване и печелене на криптовалута от прекрасни цветя.</value>
+  </data>
+  <data name="World of Flowers" xml:space="preserve">
+    <value>Свят на цветята</value>
+  </data>
 </root>

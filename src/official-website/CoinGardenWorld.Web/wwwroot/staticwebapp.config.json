@@ -5,7 +5,10 @@
       "app.coingarden.world",
       "store.coingarden.world",
       "bot.coingarden.world",
+      // Site for the metaverse
       "metaverse.coingarden.world",
+      // The actual game
+      "play.coingarden.world",
       "charity.coingarden.world"
     ]
   },

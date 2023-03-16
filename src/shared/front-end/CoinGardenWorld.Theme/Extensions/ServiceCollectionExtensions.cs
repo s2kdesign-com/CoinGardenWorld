@@ -9,6 +9,8 @@ namespace CoinGardenWorld.Theme.Extensions {
 
             services.AddBlazoredLocalStorage();
 
+            services.AddScoped(typeof(ThemeJsInterop));
+
             return services;
         }
     }
