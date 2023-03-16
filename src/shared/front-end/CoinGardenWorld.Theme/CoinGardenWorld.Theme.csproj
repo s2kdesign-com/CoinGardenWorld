@@ -29,6 +29,12 @@
     <ProjectReference Include="..\..\CoinGardenWorld.Constants\CoinGardenWorld.Constants.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\staticwebapp.config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 	<Target Name="DebugEnsureLibManEnv" BeforeTargets="BeforeBuild" Condition=" '$(Configuration)' == 'Debug' ">
 		<!-- Ensure libman is installed -->
 		<Exec Command="libman --version" ContinueOnError="true">
