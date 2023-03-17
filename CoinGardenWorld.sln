@@ -52,6 +52,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenBotCore.Web", "src\garden-bot\CoinGardenBotCore.Web\CoinGardenBotCore.Web.csproj", "{9B10727A-514D-40E2-AD2F-E5A756198F0C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cognitive-services", "cognitive-services", "{F6600691-A088-433F-8999-418390B2FADC}"
+	ProjectSection(SolutionItems) = preProject
+		src\cognitive-services\README.md = src\cognitive-services\README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.AzureAI", "src\cognitive-services\CoinGardenWorld.AzureAI\CoinGardenWorld.AzureAI.csproj", "{906C3DBA-6FFF-4387-A153-DBA20A2D189E}"
 EndProject
