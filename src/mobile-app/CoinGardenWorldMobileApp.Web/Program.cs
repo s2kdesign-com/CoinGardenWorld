@@ -1,4 +1,5 @@
 using CoinGardenWorld.Theme.Configurations;
+using CoinGardenWorld.Theme.Extensions;
 using CoinGardenWorldMobileApp.Web;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -38,5 +39,14 @@ builder.Services.AddMsalAuthentication(options => {
     }
 
 });
+
+
+// CoinGardenWorld.Theme
+builder.Services.AddCgwThemeExtensions();
+
+var host = builder.Build();
+
+// Extension method
+await host.SetDefaultCulture();
 
 await builder.Build().RunAsync();

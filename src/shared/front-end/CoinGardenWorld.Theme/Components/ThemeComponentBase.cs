@@ -39,12 +39,10 @@ namespace CoinGardenWorld.Theme.Components
         };
 
 
-        protected sealed override async Task OnInitializedAsync()
+        protected override async Task OnInitializedAsync()
         {
             try
             {
-                base.OnInitialized();
-
                 await base.OnInitializedAsync();
                 HomeLayout.Banner = AddContent();
             }
@@ -55,7 +53,7 @@ namespace CoinGardenWorld.Theme.Components
             }
         }
 
-        protected sealed override async Task OnParametersSetAsync()
+        protected override async Task OnParametersSetAsync()
         {
             try
             {

@@ -51,6 +51,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{68D0C00C-0E1D-4B90-8A78-FB6E8C8248FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "front-end", "front-end", "{1537DEAB-EE3C-422C-B3D0-D8F7AAA49B98}"
+	ProjectSection(SolutionItems) = preProject
+		src\shared\front-end\README.md = src\shared\front-end\README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.Theme", "src\shared\front-end\CoinGardenWorld.Theme\CoinGardenWorld.Theme.csproj", "{4E54C779-1B8E-4810-B6D9-E90807BC07D5}"
 EndProject
@@ -62,7 +65,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "back-end", "back-end", "{E8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.AzureFunctionExtensions", "src\shared\back-end\CoinGardenWorld.AzureFunctionExtensions\CoinGardenWorld.AzureFunctionExtensions.csproj", "{2C0405E0-235C-4FB1-B543-82F9AD60B79E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.Constants", "src\shared\CoinGardenWorld.Constants\CoinGardenWorld.Constants.csproj", "{2F86EBED-8CDD-4E70-B370-0EB23831F0C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.Constants", "src\shared\CoinGardenWorld.Constants\CoinGardenWorld.Constants.csproj", "{2F86EBED-8CDD-4E70-B370-0EB23831F0C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
