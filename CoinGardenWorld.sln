@@ -15,6 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{79C78861-C
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mobile-app", "mobile-app", "{C82FB067-799A-46EA-B6D9-A28406C710E2}"
+	ProjectSection(SolutionItems) = preProject
+		src\mobile-app\README.md = src\mobile-app\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nft-market", "nft-market", "{9710BD16-0709-4F6E-8813-DEE82F5DC586}"
 EndProject
@@ -23,10 +26,16 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "metaverse", "metaverse", "{B9C86247-2C81-404E-A648-757D3E7EA2FC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "official-website", "official-website", "{7A9EFF7D-7B83-4776-BB35-A00EBA755F84}"
+	ProjectSection(SolutionItems) = preProject
+		src\official-website\README.md = src\official-website\README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.Web", "src\official-website\CoinGardenWorld.Web\CoinGardenWorld.Web.csproj", "{E42ECBC4-7574-4DDB-9D76-19E7CFF229FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "garden-bot", "garden-bot", "{8974AD58-BA97-411E-86FC-958DE2F20E8D}"
+	ProjectSection(SolutionItems) = preProject
+		src\garden-bot\README.md = src\garden-bot\README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenBotCore", "src\garden-bot\CoinGardenBotCore\CoinGardenBotCore\CoinGardenBotCore.csproj", "{B8CDCF6A-275F-44CC-8D64-42B3E17D9186}"
 EndProject
