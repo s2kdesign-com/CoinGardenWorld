@@ -52,6 +52,7 @@
 	<script src="./_content/CoinGardenWorld.Theme/assets/js/jquery.bundle.js?ver=210"></script>
 </body>
 ```
+10. Delete all files in `Shared` folder like `MainLayout.razor` and `NavMenu.razor` 
 10. If you used to create your project with authentication, remove:
    - `Shared/RedirectToLogin.razor` 
    - `Shared/LoginDisplay.razor`
