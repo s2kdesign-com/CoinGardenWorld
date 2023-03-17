@@ -74,10 +74,15 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldMobileApp_Api", "src\mobile-app\CoinGardenWorldMobileApp_Api\CoinGardenWorldMobileApp_Api.csproj", "{07CAF76A-2A09-4D8F-8E5B-24C4A9153048}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "back-end", "back-end", "{E89AAC35-6366-4DCB-8CFD-3BA3B3B8DC65}"
+	ProjectSection(SolutionItems) = preProject
+		src\shared\back-end\README.md = src\shared\back-end\README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.AzureFunctionExtensions", "src\shared\back-end\CoinGardenWorld.AzureFunctionExtensions\CoinGardenWorld.AzureFunctionExtensions.csproj", "{2C0405E0-235C-4FB1-B543-82F9AD60B79E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.Constants", "src\shared\CoinGardenWorld.Constants\CoinGardenWorld.Constants.csproj", "{2F86EBED-8CDD-4E70-B370-0EB23831F0C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.Api", "src\official-website\CoinGardenWorld.Api\CoinGardenWorld.Api.csproj", "{3319BE47-92E8-485C-BD59-94775326078F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,6 +134,10 @@ Global
 		{2F86EBED-8CDD-4E70-B370-0EB23831F0C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F86EBED-8CDD-4E70-B370-0EB23831F0C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F86EBED-8CDD-4E70-B370-0EB23831F0C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3319BE47-92E8-485C-BD59-94775326078F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3319BE47-92E8-485C-BD59-94775326078F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3319BE47-92E8-485C-BD59-94775326078F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3319BE47-92E8-485C-BD59-94775326078F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -155,6 +164,7 @@ Global
 		{E89AAC35-6366-4DCB-8CFD-3BA3B3B8DC65} = {68D0C00C-0E1D-4B90-8A78-FB6E8C8248FF}
 		{2C0405E0-235C-4FB1-B543-82F9AD60B79E} = {E89AAC35-6366-4DCB-8CFD-3BA3B3B8DC65}
 		{2F86EBED-8CDD-4E70-B370-0EB23831F0C8} = {68D0C00C-0E1D-4B90-8A78-FB6E8C8248FF}
+		{3319BE47-92E8-485C-BD59-94775326078F} = {7A9EFF7D-7B83-4776-BB35-A00EBA755F84}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}
