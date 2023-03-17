@@ -15,7 +15,7 @@
   },
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": [ "/images/*.{png,jpg,gif}", "/_content/CoinGardenWorld.Theme/assets/*" ]
+    "exclude": [ "/images/*.{png,jpg,gif}", "/css/*", "/_content/CoinGardenWorld.Theme/assets/*" ]
   },
   "trailingSlash": "auto",
   "responseOverrides": {
