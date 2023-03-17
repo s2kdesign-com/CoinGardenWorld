@@ -1,4 +1,5 @@
 using CoinGardenBotCore.Web;
+using CoinGardenWorld.Theme.Configurations;
 using CoinGardenWorld.Theme.Extensions;
 using CoinGardenWorld.Theme.Shared;
 using Microsoft.AspNetCore.Components.Web;
@@ -9,7 +10,11 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.Configuration.GetValue<string>("GardenBOT_API_Url")) });
+// Add External APIs Http clients 
+var externalApisConfig = new ExternalApisSettings();
+builder.Configuration.Bind(externalApisConfig);
+// CoinGardenWorld.Theme
+await builder.AddCgwHttpClientExtensions(externalApisConfig);
 
 builder.Services.AddMsalAuthentication(options => {
     builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);

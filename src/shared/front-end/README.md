@@ -19,12 +19,19 @@
 		@using CoinGardenWorld.Theme.Components.FeatureCards
 		@using CoinGardenWorld.Theme.Components.FeaturePanels
 		```
-5. Open Program.cs and add this lines before `await builder.Build().RunAsync();`
-   - ```c#   
-		builder.Services.AddCgwThemeExtensions();
-		var host = builder.Build();
-		await host.SetDefaultCulture();
-		```
+5. Open Program.cs and add: 
+	- before `builder.Services.AddMsalAuthentication` or just add it with the other one if you don`t have authentication
+	   - ```c# 	   
+			var externalApisConfig = new ExternalApisSettings();
+			builder.Configuration.Bind(externalApisConfig);
+			await builder.AddCgwHttpClientExtensions(externalApisConfig);
+	     ```
+	- before `await builder.Build().RunAsync();`
+	   - ```c#   
+			builder.Services.AddCgwThemeExtensions();
+			var host = builder.Build();
+			await host.SetDefaultCulture();
+			```
 6. In Index.razor add `@inherits ThemeComponentBase<HomeBanner>`
 7. In all other pages add `@inherits ThemeComponentBase<PageBanner>` 
 8. Add in the `<head>` element `wwwroot/index.html` the css for the theme:

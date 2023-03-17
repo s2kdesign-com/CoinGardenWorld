@@ -1,7 +1,7 @@
 ﻿
 namespace CoinGardenWorld.Theme.Configurations {
     public class ExternalApisSettings {
-        public Dictionary<string, ExternalApiSettings> ExternalApis { get; set; }
+        public Dictionary<string, ExternalApiSettings>? ExternalApis { get; set; }
     }
 
     public class ExternalApiSettings

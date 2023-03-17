@@ -6,12 +6,17 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.JSInterop;
 using System.Globalization;
 using CoinGardenWorld.Theme.Extensions;
+using CoinGardenWorld.Theme.Configurations;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+// Add External APIs Http clients 
+var externalApisConfig = new ExternalApisSettings();
+builder.Configuration.Bind(externalApisConfig);
+// CoinGardenWorld.Theme
+await builder.AddCgwHttpClientExtensions(externalApisConfig);
 
 //builder.Services.AddScoped(typeof(ThemeJsInterop));
 

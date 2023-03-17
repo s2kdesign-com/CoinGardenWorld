@@ -7,6 +7,11 @@ Theme	 :  Default
 /*! WRITE YOUR CUSTOM STYLE **/
 
 /* unvisited link */
+
+.footer-links li {
+    display: block;
+}
+
 .language-switcher a {
     text-decoration: none;
     cursor: pointer;

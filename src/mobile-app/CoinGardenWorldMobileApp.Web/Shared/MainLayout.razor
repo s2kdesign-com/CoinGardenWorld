@@ -34,8 +34,7 @@
 
     protected override async Task OnInitializedAsync() {
         try {
-            
-            var httpClient = ClientFactory.CreateClient("CGW.MobileAppApi.NoAuthenticationClient");
+            var httpClient = ClientFactory.CreateClient("CGW.Api.NoAuthenticationClient");
             APIversion = await httpClient.GetStringAsync("api/version");
         }
         catch (Exception e) {
