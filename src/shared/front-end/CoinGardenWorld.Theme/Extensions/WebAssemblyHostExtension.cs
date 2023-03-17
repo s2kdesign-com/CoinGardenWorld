@@ -11,7 +11,7 @@ namespace CoinGardenWorld.Theme.Extensions {
     {
         private static string _queryParamName = "language";
 
-        public async static Task SetDefaultCulture(this WebAssemblyHost host)
+        public static async Task SetDefaultCulture(this WebAssemblyHost host)
         {
             var navigation = host.Services.GetRequiredService<NavigationManager>();
             var query = HttpUtility.ParseQueryString(new Uri(navigation.Uri).Query);
@@ -24,7 +24,7 @@ namespace CoinGardenWorld.Theme.Extensions {
             // If there is a query param , set the language to it
             if (queryCulture != null && CultureInfo.CurrentCulture.TwoLetterISOLanguageName != queryCulture.TwoLetterISOLanguageName)
             {
-                localStorage.SetItemAsync<string>("culture", queryCulture.Name);
+                await localStorage.SetItemAsync<string>("culture", queryCulture.Name);
                 CultureInfo.DefaultThreadCurrentCulture = queryCulture;
                 CultureInfo.DefaultThreadCurrentUICulture = queryCulture;
                 return;
@@ -43,7 +43,7 @@ namespace CoinGardenWorld.Theme.Extensions {
                 setCulture = new CultureInfo(browserLanguage);
             }
 
-            localStorage.SetItemAsync<string>("culture", setCulture.Name);
+            await localStorage.SetItemAsync<string>("culture", setCulture.Name);
 
             CultureInfo.DefaultThreadCurrentCulture = setCulture;
             CultureInfo.DefaultThreadCurrentUICulture = setCulture;

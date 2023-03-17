@@ -1,11 +1,11 @@
 ﻿@using System.Reflection
 @using CoinGardenWorld.Theme.Configurations
-@using Microsoft.Extensions.Options
+@using Microsoft.Extensions.Configuration
 
 @inject IJSRuntime jsRuntime
 @inject IStringLocalizer<Footer> _localizer
+@inject IConfiguration configuration;
 @inject HttpClient httpClient
-@inject IOptions<ExternalApisSettings> config
 
 <!-- Footer -->
 <footer class="nk-footer bg-theme-grad ov-h">
@@ -62,7 +62,7 @@
                         <div class="copyright-text copyright-text-s4">
                             <p>
                                 &copy; Copyright @dt.Year,
-                                <a href="https://coingarden.world/" target="_blank">
+                                <a href="@Constants.UrlConstants.OfficialSite" target="_blank">
                                     CoinGarden.World
                                 </a>. All Rights Reserved.
                                 
@@ -72,10 +72,10 @@
                     <div class="col-lg-3 col-sm-4 text-sm-end">
                         <ul class="footer-links">
 
-                            <li><a href="terms-and-conditions">Terms &amp; Conditions</a></li>
+                            <li><a href="terms-and-conditions" target="_blank">Terms &amp; Conditions</a></li>
 
-                            <li><a href="#">Version - @GetSiteVersion()</a></li>
-                            <li><a href="#">API Version - @_apiVersion</a></li>
+                            <li><a href="@Constants.UrlConstants.Changelog" target="_blank">Site Version - @GetSiteVersion()</a></li>
+                            <li><a href="@_apiUrl" target="_blank">API Version - @_apiVersion</a></li>
                         </ul>
                     </div>
                 </div>
@@ -92,10 +92,16 @@
     private DateTime dt = DateTime.Now;
 
     private string _apiVersion = "API is not available.";
+    private string _apiUrl = "#";
 
     protected override async Task OnInitializedAsync() {
-        try {
-            if (config != null) {
+        try
+        {
+            var externalApis = configuration.Get<ExternalApisSettings>();
+            if (externalApis != null && externalApis.ExternalApis != null && externalApis.ExternalApis.Any())
+            {
+                _apiUrl = externalApis.ExternalApis.FirstOrDefault().Value.Api_Url + "/api/swagger/ui";
+
                 var apiVersionRequest = await httpClient.GetAsync("api/version");
                 if (apiVersionRequest.IsSuccessStatusCode)
                 {

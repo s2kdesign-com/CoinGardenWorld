@@ -12,7 +12,7 @@ using Microsoft.Extensions.Configuration;
 namespace CoinGardenWorld.Theme.Extensions {
     public static class WebAssemblyHostBuilderExtension {
 
-        public async static Task AddCgwHttpClientExtensions(this WebAssemblyHostBuilder builder, ExternalApisSettings? settings = null)
+        public async static Task<WebAssemblyHostBuilder> AddCgwHttpClientExtensions(this WebAssemblyHostBuilder builder, ExternalApisSettings? settings = null)
         {
             // Add External APIs Http clients 
             if (settings != null && settings.ExternalApis != null )
@@ -43,6 +43,7 @@ namespace CoinGardenWorld.Theme.Extensions {
                 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             }
             // END Add API Http clients 
+            return builder;
         }
     }
 

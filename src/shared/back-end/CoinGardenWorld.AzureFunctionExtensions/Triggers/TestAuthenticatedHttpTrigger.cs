@@ -14,8 +14,8 @@ using Microsoft.Kiota.Abstractions.Authentication;
 using Microsoft.OpenApi.Models;
 using static System.Reflection.Metadata.BlobBuilder;
 
-namespace CoinGardenWorldMobileApp_Api {
-    public class MobileAppWebHttpTrigger {
+namespace CoinGardenWorld.Api {
+    public class TestAuthenticatedHttpTrigger {
         private readonly ILogger _logger;
 
         private readonly AuthenticationProvider _authentication;
@@ -25,14 +25,17 @@ namespace CoinGardenWorldMobileApp_Api {
             //"Data.Read", "Data.ReadWrite"
         };
 
-        public MobileAppWebHttpTrigger(ILoggerFactory loggerFactory, AuthenticationProvider authentication) {
-            _logger = loggerFactory.CreateLogger<MobileAppWebHttpTrigger>();
+        public TestAuthenticatedHttpTrigger(ILoggerFactory loggerFactory, AuthenticationProvider authentication) {
+            _logger = loggerFactory.CreateLogger<TestAuthenticatedHttpTrigger>();
 
             _authentication = authentication;
         }
 
-        [Function(nameof(MobileAppWebHttpTrigger.TestAuthenticatedEndpoint))]
-        [OpenApiOperation(operationId: "testAuthenticationEndpoint", tags: new[] { "authentication" }, Summary = "Returns success if valid bearer token", Description = "Validates the user bearer to token against azure b2c.", Visibility = OpenApiVisibilityType.Important)]
+        [Function(nameof(TestAuthenticatedHttpTrigger.TestAuthenticatedEndpoint))]
+        [OpenApiOperation(
+            operationId: "testAuthenticationEndpoint"
+            , tags: new[] { "authentication" }
+            , Summary = "Returns success if valid bearer token", Description = "Validates the user bearer to token against azure b2c.", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiSecurity("CoinGardenWorld_Auth", SecuritySchemeType.OAuth2, Flows = typeof(CgwAuthFlow))]
         public async Task<HttpResponseData> TestAuthenticatedEndpoint([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req) {
 
@@ -42,12 +45,12 @@ namespace CoinGardenWorldMobileApp_Api {
             var principal = await _authentication.AuthenticateAsync(req.FunctionContext, req);
             if (principal == null) return _authentication.ReplyUnauthorized(req);
 
-            //var microsoftGraphToken = new BaseBearerTokenAuthenticationProvider(new TokenProvider(req, _authentication,
-            //    new [] {"openid", "offline_access" }));
+            var microsoftGraphToken = new BaseBearerTokenAuthenticationProvider(new TokenProvider(req, _authentication,
+                new [] {"openid", "offline_access" }));
 
-            //var microsoftGraph = new GraphServiceClient(microsoftGraphToken);
+            var microsoftGraph = new GraphServiceClient(microsoftGraphToken);
 
-            //var inbox = await microsoftGraph.Me.GetAsync();
+            var inbox = await microsoftGraph.Me.GetAsync();
 
             var response = req.CreateResponse(HttpStatusCode.OK);
             response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
