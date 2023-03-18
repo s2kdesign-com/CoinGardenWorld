@@ -23,18 +23,13 @@
 	- after `builder.RootComponents.Add<HeadOutlet>("head::after");`
 	   - ```c#
 			builder.Services.AddSingleton<ITopMenu, TopMenu>();
-	     ```
-	- before `builder.Services.AddMsalAuthentication` or just add it with the other one if you don`t have authentication
-	   - ```c# 	   
-			var externalApisConfig = new ExternalApisSettings();
-			builder.Configuration.Bind(externalApisConfig);
-			await builder.AddCgwHttpClientExtensions(externalApisConfig);
-	     ```
-	- before `await builder.Build().RunAsync();`
-	   - ```c#   
+
+			await builder.AddCgwHttpClientExtensions();
 			builder.Services.AddCgwThemeExtensions();
+
 			var host = builder.Build();
 			await host.SetDefaultCulture();
+			await builder.Build().RunAsync();
 			```
 6. In Index.razor add `@inherits ThemeComponentBase<HomeBanner>`
 7. In all other pages add `@inherits ThemeComponentBase<PageBanner>` 

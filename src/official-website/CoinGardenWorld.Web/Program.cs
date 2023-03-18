@@ -7,6 +7,7 @@ using System.Globalization;
 using CoinGardenWorld.Theme.Extensions;
 using CoinGardenWorld.Theme.Configurations;
 using CoinGardenWorld.Theme.Models.Shared;
+using CoinGardenWorld.Theme.Shared;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -16,15 +17,12 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 // TODO: Move this to Theme library - you can scan the entry assembly for classes that implement ITopMenu
 builder.Services.AddSingleton<ITopMenu, TopMenu>();
 
-// Add External APIs Http clients 
-var externalApisConfig = new ExternalApisSettings();
-builder.Configuration.Bind(externalApisConfig);
 // CoinGardenWorld.Theme
-await builder.AddCgwHttpClientExtensions(externalApisConfig);
+await builder.AddCgwHttpClientExtensions();
 
 //builder.Services.AddScoped(typeof(ThemeJsInterop));
 
-//builder.RootComponents.Add<TopMenu>(".header-main");
+//builder.RootComponents.Add<Footer>("footer");
 
 builder.Services.AddMsalAuthentication(options =>
 {

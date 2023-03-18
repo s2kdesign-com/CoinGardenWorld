@@ -14,15 +14,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 // TODO: Move this to Theme library - you can scan the entry assembly for classes that implement ITopMenu
 builder.Services.AddSingleton<ITopMenu, TopMenu>();
 
-// Add External APIs Http clients 
-var externalApisConfig = new ExternalApisSettings();
-builder.Configuration.Bind(externalApisConfig);
 // CoinGardenWorld.Theme
-await builder.AddCgwHttpClientExtensions(externalApisConfig);
-
-builder.Services.AddMsalAuthentication(options => {
-    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
-});
+await builder.AddCgwHttpClientExtensions();
 
 // CoinGardenWorld.Theme
 builder.Services.AddCgwThemeExtensions();
