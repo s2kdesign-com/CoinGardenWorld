@@ -21,6 +21,7 @@
     <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.3" />
 	  <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="7.0.2" />
 	  <PackageReference Include="MimeKit" Version="3.6.0" />
+	  <PackageReference Include="Toolbelt.Blazor.PWA.Updater" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>

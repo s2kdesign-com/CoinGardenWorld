@@ -62,22 +62,25 @@
 
 
 <body class="nk-body body-wider mode-onepage bg-light">
-<div id="app">
+    <div id="app">
 
-    <!-- preloader -->
-    <div class="preloader preloader-alt no-split">
-        <span class="spinner spinner-alt">
-            <img class="spinner-brand" src="./images/logo_for_a_flowers_farming_game_globe_with_multiple_islnds-230x230.webp" alt="">
-        </span>
+        <!-- preloader -->
+        <div class="preloader preloader-alt no-split">
+            <span class="spinner spinner-alt">
+                <img class="spinner-brand" src="./images/logo_for_a_flowers_farming_game_globe_with_multiple_islnds-230x230.webp" alt="">
+            </span>
+        </div>
+
     </div>
-
-</div>
 
     <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
-<script>navigator.serviceWorker.register('service-worker.js');</script>
 
-<script src="./_content/CoinGardenWorld.Theme/assets/js/jquery.bundle.js?ver=210"></script>
+    <!--<script>navigator.serviceWorker.register('service-worker.js');</script>-->
+
+    <script src="_content/Toolbelt.Blazor.PWA.Updater.Service/script.min.js"></script>
+
+    <script src="./_content/CoinGardenWorld.Theme/assets/js/jquery.bundle.js?ver=210"></script>
 </body>
 
 </html>

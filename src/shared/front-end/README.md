@@ -1,4 +1,4 @@
-## CoinGarden.World.Theme
+﻿## CoinGarden.World.Theme
 
 ### How to use it 
 
@@ -72,5 +72,22 @@
 ### DONE
 
 ### Little extra: 
-
+#### 1. Multilingual support
 If you want to add Multilingual support, just add folder `Localization` and resource `TopMenu.bg.resx` TopMenu.{LanguangeTwoLetterIsoName}.resx
+#### 2. Provide "Update Now" UI and feature to your Blazor PWA that appears when the next version of one is available.
+More info: https://github.com/jsakamoto/Toolbelt.Blazor.PWA.Updater
+1. Modify the "service-worker.published.js" file
+```js
+// 👇 Add these line to accept the message from this library.
+self.addEventListener('message', event => { 
+  if (event.data?.type === 'SKIP_WAITING') self.skipWaiting();
+});
+```
+2. Modify the "index.html" file
+```html
+  <!-- 👇 Remove this script, and...
+  <script>navigator.serviceWorker.register('service-worker.js');</script> -->
+
+  <!-- 👇 add this script element instead. -->
+  <script src="_content/Toolbelt.Blazor.PWA.Updater.Service/script.min.js"></script>
+  ```
