@@ -20,6 +20,10 @@
 		@using CoinGardenWorld.Theme.Components.FeaturePanels
 		```
 5. Open Program.cs and add: 
+	- after `builder.RootComponents.Add<HeadOutlet>("head::after");`
+	   - ```c#
+			builder.Services.AddSingleton<ITopMenu, TopMenu>();
+	     ```
 	- before `builder.Services.AddMsalAuthentication` or just add it with the other one if you don`t have authentication
 	   - ```c# 	   
 			var externalApisConfig = new ExternalApisSettings();
@@ -66,3 +70,7 @@
    - `Shared/Authentication.razor`
 
 ### DONE
+
+### Little extra: 
+
+If you want to add Multilingual support, just add folder `Localization` and resource `TopMenu.bg.resx` TopMenu.{LanguangeTwoLetterIsoName}.resx
