@@ -22,13 +22,13 @@ namespace CoinGardenWorldMobileApp.Web {
                         new MenuItem
                         {
                             Title = _localizer["Documentation"],
-                            Url = "https://docs.coingarden.world/",
+                            Url = CoinGardenWorld.Constants.UrlConstants.Documentation,
                             IsExternalUrl = true
                         },
                         new MenuItem
                         {
                             Title = _localizer["Github"],
-                            Url = "https://github.com/s2kdesign-com/CoinGardenWorld/",
+                            Url = CoinGardenWorld.Constants.UrlConstants.GithubRepo,
                             IsExternalUrl = true
                         },
                         new MenuItem

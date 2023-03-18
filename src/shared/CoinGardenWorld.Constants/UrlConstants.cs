@@ -21,6 +21,10 @@ namespace CoinGardenWorld.Constants {
 
         public const string TokenSite = "https://token.coingarden.world";
 
+        public const string Documentation = "https://docs.coingarden.world";
+
+        public const string GithubRepo = "https://github.com/s2kdesign-com/CoinGardenWorld";
+
         public const string Changelog = "https://github.com/s2kdesign-com/CoinGardenWorld/releases";
 
 
