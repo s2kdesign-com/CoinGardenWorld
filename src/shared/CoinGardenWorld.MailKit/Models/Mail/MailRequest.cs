@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CoinGardenWorld.Theme.Models.Mail {
+﻿namespace CoinGardenWorld.MailKit.Models.Mail {
 
     public class MailRequest {
         public string To { get; set; }

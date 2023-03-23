@@ -82,7 +82,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.AzureFuncti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.Constants", "src\shared\CoinGardenWorld.Constants\CoinGardenWorld.Constants.csproj", "{2F86EBED-8CDD-4E70-B370-0EB23831F0C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.Api", "src\official-website\CoinGardenWorld.Api\CoinGardenWorld.Api.csproj", "{3319BE47-92E8-485C-BD59-94775326078F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.Api", "src\official-website\CoinGardenWorld.Api\CoinGardenWorld.Api.csproj", "{3319BE47-92E8-485C-BD59-94775326078F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.MailKit", "src\shared\CoinGardenWorld.MailKit\CoinGardenWorld.MailKit.csproj", "{2FBD8A11-5E2E-4D01-9A58-A059582B1C81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -138,6 +140,10 @@ Global
 		{3319BE47-92E8-485C-BD59-94775326078F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3319BE47-92E8-485C-BD59-94775326078F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3319BE47-92E8-485C-BD59-94775326078F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FBD8A11-5E2E-4D01-9A58-A059582B1C81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FBD8A11-5E2E-4D01-9A58-A059582B1C81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FBD8A11-5E2E-4D01-9A58-A059582B1C81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FBD8A11-5E2E-4D01-9A58-A059582B1C81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,6 +171,7 @@ Global
 		{2C0405E0-235C-4FB1-B543-82F9AD60B79E} = {E89AAC35-6366-4DCB-8CFD-3BA3B3B8DC65}
 		{2F86EBED-8CDD-4E70-B370-0EB23831F0C8} = {68D0C00C-0E1D-4B90-8A78-FB6E8C8248FF}
 		{3319BE47-92E8-485C-BD59-94775326078F} = {7A9EFF7D-7B83-4776-BB35-A00EBA755F84}
+		{2FBD8A11-5E2E-4D01-9A58-A059582B1C81} = {68D0C00C-0E1D-4B90-8A78-FB6E8C8248FF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}

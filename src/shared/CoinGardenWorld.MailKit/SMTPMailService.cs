@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CoinGardenWorld.Theme.Configurations;
-using CoinGardenWorld.Theme.Infrastructure.Services.Interfaces;
-using CoinGardenWorld.Theme.Models.Mail;
+﻿using CoinGardenWorld.MailKit.Configurations;
+using CoinGardenWorld.MailKit.Interfaces;
+using CoinGardenWorld.MailKit.Models.Mail;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
-namespace CoinGardenWorld.Theme.Infrastructure.Services {
+namespace CoinGardenWorld.MailKit {
     public class SMTPMailService : IMailService {
         private readonly MailConfiguration _config;
         private readonly ILogger<SMTPMailService> _logger;

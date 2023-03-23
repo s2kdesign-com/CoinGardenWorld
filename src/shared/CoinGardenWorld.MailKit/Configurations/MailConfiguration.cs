@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoinGardenWorld.Theme.Configurations {
+namespace CoinGardenWorld.MailKit.Configurations {
     public class MailConfiguration {
         public string From { get; set; }
         public string Host { get; set; }
