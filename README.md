@@ -11,8 +11,8 @@ https://docs.coingarden.world/
 https://docs.coingarden.world/v/bg/
 
 ---
-### 🚀  Site Deployments
-### Azure cloud 🚀
+## 🚀 Deployments  
+### Azure cloud ☁️
 | - | Application | Url | Status |
 | - | - | - | - |
 | 🖼️ | Official Site | [https://coingarden.world](https://coingarden.world) | [![Deploy Official Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml) |
@@ -23,14 +23,14 @@ https://docs.coingarden.world/v/bg/
 | 🤖 | GardenBOT Page | [https://bot.coingarden.world](https://bot.coingarden.world/) | [![Deploy GardenBOT Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml) |
 | 🔐 | Identity Server | [https://coingarden-identity.azurewebsites.net](https://coingarden-identity.azurewebsites.net) | [![Deploy Identity Server - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml) |
 
-### Azure Functions 🚀
+### Azure Functions ⚡
 | - | Application | Url | Status |
 | - | - | - | - |
 | 🖼️ | Official Site API | [https://coingarden.world/api/swagger/ui](https://coingarden.world/api/swagger/ui) | [![Deploy Official Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml) |
 | 🤖 | GardenBOT API | https://bot.coingarden.world/api/swagger/ui | [![Deploy GardenBOT Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml) |
 | 📱 | MobileAPP API | https://app.coingarden.world/api/swagger/ui | [![Deploy MobileAPP Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-azure-static-web-apps.yml) |
 
-### IPFS (Fleek) 🚀
+### IPFS ([fleek.co](https://fleek.co/)) 🌐
 | Application | Url | Status |
 | - | - | - |
 | Landing Page | IPFS / Fleek | [https://coingardenworld.on.fleek.co](https://coingardenworld.on.fleek.co) |  |
@@ -51,6 +51,7 @@ https://docs.coingarden.world/v/bg/
 | GardenBOT Site - PWA | 1.0.0 | https://localhost:7089 | |
 | GardenBOT Conversation API - Azure Function | 1.0.0 | http://localhost:3980/api/messages | |
 | GardenBOT API - Azure Function | 1.0.0 | http://localhost:7274/api/swagger/ui | |
+| Identity Server - .NET APP | 1.0.0 | https://localhost:5001 | |
 
 ---
 ### 📱 Mobile Applications
