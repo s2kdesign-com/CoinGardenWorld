@@ -22,4 +22,8 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoinGardenWorld.IdentityServer.Theme\CoinGardenWorld.IdentityServer.Theme.csproj" />
+  </ItemGroup>
+
 </Project>

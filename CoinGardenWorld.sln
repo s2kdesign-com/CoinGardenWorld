@@ -93,6 +93,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "identityserver", "identitys
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.IdentityServer", "src\identityserver\CoinGardenWorld.IdentityServer\CoinGardenWorld.IdentityServer.csproj", "{47E9AD61-3D89-4FDF-9048-3482CF7F8CB5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.IdentityServer.Theme", "src\identityserver\CoinGardenWorld.IdentityServer.Theme\CoinGardenWorld.IdentityServer.Theme.csproj", "{5FACDD3C-1464-4BFE-94D5-3CAE8E5EEDDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -155,6 +157,10 @@ Global
 		{47E9AD61-3D89-4FDF-9048-3482CF7F8CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47E9AD61-3D89-4FDF-9048-3482CF7F8CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47E9AD61-3D89-4FDF-9048-3482CF7F8CB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FACDD3C-1464-4BFE-94D5-3CAE8E5EEDDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FACDD3C-1464-4BFE-94D5-3CAE8E5EEDDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FACDD3C-1464-4BFE-94D5-3CAE8E5EEDDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FACDD3C-1464-4BFE-94D5-3CAE8E5EEDDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -185,6 +191,7 @@ Global
 		{2FBD8A11-5E2E-4D01-9A58-A059582B1C81} = {68D0C00C-0E1D-4B90-8A78-FB6E8C8248FF}
 		{7F96FE4D-7D01-4BD2-9EA9-CC204D859321} = {5A954599-DAE6-45A3-A4EE-E938E3CE529C}
 		{47E9AD61-3D89-4FDF-9048-3482CF7F8CB5} = {7F96FE4D-7D01-4BD2-9EA9-CC204D859321}
+		{5FACDD3C-1464-4BFE-94D5-3CAE8E5EEDDE} = {7F96FE4D-7D01-4BD2-9EA9-CC204D859321}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}

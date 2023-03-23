@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "SelfHost": {
+    "CoinGardenWorld.IdentityServer": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

@@ -1,5 +1,5 @@
-## CoinGarden.World Identity server
-Used template:
+## CoinGarden.World IdentityServer (version 6.2.0)
+Used template: 
 https://github.com/DuendeSoftware/IdentityServer.Templates
 
 How to update it 
@@ -37,6 +37,9 @@ How to update it
 
 --- 
 P.S
+
+Update the content for images: `<img src="~/_Content/CoinGardenWorld.IdentityServer.Theme/images/logo_250x250.png" class="logo">`
+
 Don't forget to enable server session 
 ```c#
 // if you want to use server-side sessions: https://blog.duendesoftware.com/posts/20220406_session_management/
