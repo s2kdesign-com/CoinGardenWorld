@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="&quot;Flower World&quot; is a game where every single user who uses the app or takes care of at least one flower will get their own island where they can arrange and &quot;plant&quot; their real flowers in the metaverse." xml:space="preserve">
+    <value>"Свят на цветята" е игра в която всеки един потребител, който използва приложението или се грижи за поне едно цвете, ще получи свой собствен остров, който може да аранжира и да "посади" реалните си цветя в метавселената.</value>
+  </data>
+  <data name="&quot;World of Flowers&quot; is a system equipped with artificial intelligence and automatic recognition of types and varieties of flowers." xml:space="preserve">
+    <value>"Свят на цветята" е система, оборудвана с изкуствен интелект и автоматично разпознаване на видовете и сортовете цветя.</value>
+  </data>
+  <data name="Anyone who takes care of at least one flower will receive a free island in the Metaverse." xml:space="preserve">
+    <value>Всеки, който се погрижи за поне едно цвете, ще получи безплатен остров в Метавселената.</value>
+  </data>
+  <data name="Charities" xml:space="preserve">
+    <value>Дарения и Каузи</value>
+  </data>
+  <data name="Chat with our flower recognition bot and send him pictures of flowers, he immediately will respond with the sort of the  and information how to take care of it." xml:space="preserve">
+    <value>Пиши си с нашия бот или изпрати сними на цвете, които искаш да разпознаеш като вид или сорт. Той ще разпознае цветето и ще ти отговори как най-добре да се грижиш за тях.</value>
+  </data>
+  <data name="Crypto Token" xml:space="preserve">
+    <value>Криптовалута</value>
+  </data>
+  <data name="Even if you don't have plants, you can buy some from the NFT shop and still continue playing." xml:space="preserve">
+    <value>Дори и да нямате растения, можете да закупите някои от NFT магазина и да продължите да играете.</value>
+  </data>
+  <data name="Flower Store" xml:space="preserve">
+    <value>Магазин за Цветя</value>
+  </data>
+  <data name="Garden BOT" xml:space="preserve">
+    <value>Градинарски БОТ</value>
+  </data>
+  <data name="Get the app now" xml:space="preserve">
+    <value>Свали приложението сега</value>
+  </data>
+  <data name="GRDN token is the base currency in the entire infrastructure. All donations and causes, all rewards received for taking care of the flowers, as well as the metaverse are in the main crypto currency GRDN." xml:space="preserve">
+    <value>GRDN токена е основата валута в цялата инфраструктура. Всички дарения и каузи, всички награди получени при грижа за цветята, както и метавърса са в основната крипто валута GRDN.</value>
+  </data>
+  <data name="Home - World of Flowers" xml:space="preserve">
+    <value>Начало - Свят на цветята</value>
+  </data>
+  <data name="In it, users not only grow but can also develop and sell their best photos of their most beautiful flowers. Every single photo in the system can be created as an NFT and thus either sold in the shop or used in the flower metaverse." xml:space="preserve">
+    <value>В нея потребителите не само отглеждат но могат и да развиват и продават своите най – добри снимки на най - красивите си цветя.
+Всяка една снимка в системата, може да бъде създадена като НФТ и с това или да бъде продадена в магазина или да бъде използвана в мета вселената на цветята.</value>
+  </data>
+  <data name="Login to Metaverse" xml:space="preserve">
+    <value>Влизане в Метавселената</value>
+  </data>
+  <data name="Metaverse" xml:space="preserve">
+    <value>Метавселена</value>
+  </data>
+  <data name="Mobile Application" xml:space="preserve">
+    <value>Мобилно приложение</value>
+  </data>
+  <data name="Open platform for everyone" xml:space="preserve">
+    <value>Отворена платформа за всички</value>
+  </data>
+  <data name="Own the future! &quot;World of Flowers&quot; is your portal to the blockchain world." xml:space="preserve">
+    <value>&lt;span class="title-dark"&gt;Притежавайте бъдещето!&lt;/span&gt; &lt;br /&gt; &lt;span&gt;"Свят на Цветята"&lt;/span&gt; &lt;span class="title-dark"&gt;е вашият портал към блокчейн вселената.&lt;/span&gt;</value>
+  </data>
+  <data name="Supported Currencies" xml:space="preserve">
+    <value>Поддържани Криптовалути</value>
+  </data>
+  <data name="The donation system in &quot;World of Flowers&quot; is a unique way that users,together, can save endangered places or clear a polluted forest of waste." xml:space="preserve">
+    <value>Системата за дарения в "Свят на цветята" представлява уникален начин с който потребителите , заедно , могат да спасят застрашени места или да изчистят замърсена гора от отпадъци.</value>
+  </data>
+  <data name="The Metaverse can be played freely by all flower lovers." xml:space="preserve">
+    <value>Метавселената може да се играе свободно от всички любители на цветята.</value>
+  </data>
+  <data name="The mobile application for flowers" xml:space="preserve">
+    <value>Мобилното приложение за цветя</value>
+  </data>
+  <data name="The mobile application is a way to identify flowers and plan their best cultivation according to their type, season and weather conditions where the flower is located." xml:space="preserve">
+    <value>Мобилното приложение представлява начин за идентифициране на цветя и планиране тяхното най – добро отглеждане според вида им, сезона и метеорологичните условия, където цветето се намира.</value>
+  </data>
+  <data name="The mobile application will keep reminding you when you need to water your plants and you will never forget to leave them dry again." xml:space="preserve">
+    <value>Мобилното приложение ще ви напомня кога трябва да полеете растенията си и никога повече няма да забравите да ги оставите сухи.</value>
+  </data>
+  <data name="The more flowers you have in the &quot;World of Flowers&quot;, the more GRDN Coin you will earn per day if you play." xml:space="preserve">
+    <value>Колкото повече цветя имате в „Свят на цветята“, толкова повече GRDN криптовалута ще печелите на ден, ако играете.</value>
+  </data>
+  <data name="The user starts their journey by downloading the flower app. Immediately after, he will be prompted to take a photo or upload a photo of the flower he wishes to add and will receive a QR code for quick information that he can use to put on the pot or to sell real flowers in a shop. The app will automatically recognize the type of flower and start reminding the user when it needs watering." xml:space="preserve">
+    <value>Потребителя започва своя път със сваляне на приложението за цветя. 
+Веднага след това ще бъде подканен да снима или да качи снимка на цветето което желае да добави и ще получи QR код за бърза информация, който може да използва за да постави на саксията или за да продава реални цветя в магазин.
+Приложението автоматично ще разпознае вида на цветето и ще започне да напомня на потребителя, когато има нужда от поливане.</value>
+  </data>
+  <data name="Web3 Infrastructure for gardening, growing, &lt;br class='d-none d-md-block'&gt; selling and earning crypto from your flowers" xml:space="preserve">
+    <value>Web3 инфраструктура, за опазване, отглеждане, продаване и печелене на криптовалута от прекрасни цветя</value>
+  </data>
+  <data name="When you take good care of your garden, let it take care of you. Go to the NFT store and sell your collection of photos of your most beautiful flower, and if you continue to take care of it, each subsequent photo will be of a higher level and that will make it more valuable." xml:space="preserve">
+    <value>Когато се грижиш добре за своята градина, нека и тя да се погрижи за теб. Отиди в магазина и продай своята колекция от снимки на най - красивото ти цвете и ако продължиш да се грижиш за него, всяка следваща снимка ще бъде с по - високо ниво и това ще я прави по - ценна.</value>
+  </data>
+  <data name="World of Flowers (with icons)" xml:space="preserve">
+    <value>🌼 Свят на Цветята 🌺</value>
+  </data>
+  <data name="Your island will grow with the number of flowers that you have. You can even add decorations to your island and invite other players to visit it." xml:space="preserve">
+    <value>Вашият остров ще расте с броя на цветята, които имате. Можете дори да добавите декорации към вашия остров и да поканите други играчи да го посетят.</value>
+  </data>
+</root>

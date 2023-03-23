@@ -1,9 +1,9 @@
 ﻿@page "/"
 @inherits ThemeComponentBase<HomeBanner>
-@inject IStringLocalizer<Index> _localizer
+@using CoinGardenWorld.Web.Localization.Pages
 
 <PageTitle>
-    @_localizer["Home - World of Flowers"]
+    @Index_Resource.Home___World_of_Flowers
 
 </PageTitle>
 
@@ -16,28 +16,28 @@
 
                 <CenterCardIcon FeatureCardUrl="@UrlConstants.MobileAppSite" FeatureCardDelay="1.4" FeatureCardImageSrc="images/colorful_animated_picture_-_iphone_with_open_application.webp">
                     <FeatureCardTitle>
-                        @_localizer["Mobile Application"]
+                        @Index_Resource.Mobile_Application
                     </FeatureCardTitle>
                     <FeatureCardDescription>
-                        @_localizer["The mobile application is a way to identify flowers and plan their best cultivation according to their type, season and weather conditions where the flower is located."]
+                        @Index_Resource.The_mobile_application_is_a_way_to_identify_flowers_and_plan_their_best_cultivation_according_to_their_type__season_and_weather_conditions_where_the_flower_is_located_
                     </FeatureCardDescription>
                 </CenterCardIcon>
 
                 <CenterCardIcon FeatureCardUrl="@UrlConstants.GardenBotSite" FeatureCardDelay="1.5" FeatureCardImageSrc="images/colorful_animated_picture_little_futuristic_a_happy_ch_transparent-300x300.webp">
                     <FeatureCardTitle>
-                        @_localizer["Garden BOT"]
+                        @Index_Resource.Garden_BOT
                     </FeatureCardTitle>
                     <FeatureCardDescription>
-                        @_localizer["Chat with our flower recognition bot and send him pictures of flowers, he immediately will respond with the sort of the  and information how to take care of it."]
+                        @Index_Resource.Chat_with_our_flower_recognition_bot_and_send_him_pictures_of_flowers__he_immediately_will_respond_with_the_sort_of_the__and_information_how_to_take_care_of_it_
                     </FeatureCardDescription>
                 </CenterCardIcon>
 
                 <CenterCardIcon FeatureCardUrl="@UrlConstants.MetaverseSite" FeatureCardDelay="1.6" FeatureCardImageSrc="images/island_with_nature_and_flowers_for_farming_game_on_a_wh_transparent-250x250.webp">
                     <FeatureCardTitle>
-                        @_localizer["Metaverse"]
+                        @Index_Resource.Metaverse
                     </FeatureCardTitle>
                     <FeatureCardDescription>
-                        @_localizer["\"Flower World\" is a game where every single user who uses the app or takes care of at least one flower will get their own island where they can arrange and \"plant\" their real flowers in the metaverse."]
+                        @Index_Resource._Flower_World__is_a_game_where_every_single_user_who_uses_the_app_or_takes_care_of_at_least_one_flower_will_get_their_own_island_where_they_can_arrange_and__plant__their_real_flowers_in_the_metaverse_
                     </FeatureCardDescription>
                 </CenterCardIcon>
             </div><!-- .row -->
@@ -49,28 +49,28 @@
     <Content>
         <div class="nk-block-shade"></div>
         <h3 class="title title-dark title-regular">
-            @_localizer["\"World of Flowers\" is a system equipped with artificial intelligence and automatic recognition of types and varieties of flowers."]
+            @Index_Resource._World_of_Flowers__is_a_system_equipped_with_artificial_intelligence_and_automatic_recognition_of_types_and_varieties_of_flowers_
         </h3>
         <h4 class="title title-md">
-            @_localizer["The mobile application for flowers"]
+            @Index_Resource.The_mobile_application_for_flowers
         </h4>
         <p>
-            @_localizer["In it, users not only grow but can also develop and sell their best photos of their most beautiful flowers. Every single photo in the system can be created as an NFT and thus either sold in the shop or used in the flower metaverse."]
+            @Index_Resource.In_it__users_not_only_grow_but_can_also_develop_and_sell_their_best_photos_of_their_most_beautiful_flowers__Every_single_photo_in_the_system_can_be_created_as_an_NFT_and_thus_either_sold_in_the_shop_or_used_in_the_flower_metaverse_
         </p>
         <p>
-            @_localizer["The user starts their journey by downloading the flower app. Immediately after, he will be prompted to take a photo or upload a photo of the flower he wishes to add and will receive a QR code for quick information that he can use to put on the pot or to sell real flowers in a shop. The app will automatically recognize the type of flower and start reminding the user when it needs watering."]
+            @Index_Resource.The_user_starts_their_journey_by_downloading_the_flower_app__Immediately_after__he_will_be_prompted_to_take_a_photo_or_upload_a_photo_of_the_flower_he_wishes_to_add_and_will_receive_a_QR_code_for_quick_information_that_he_can_use_to_put_on_the_pot_or_to_sell_real_flowers_in_a_shop__The_app_will_automatically_recognize_the_type_of_flower_and_start_reminding_the_user_when_it_needs_watering_
         </p>
         <div class="nk-block-note nk-block-note-s2">
             <em class="icon ti ti-mobile"></em>
             <p>
-                @_localizer["The mobile application will keep reminding you when you need to water your plants and you will never forget to leave them dry again."]
+                @Index_Resource.The_mobile_application_will_keep_reminding_you_when_you_need_to_water_your_plants_and_you_will_never_forget_to_leave_them_dry_again_
             </p>
              
         </div>
         <ul class="btn-grp justify-content-center justify-content-md-start">
             <li>
                 <a href="@UrlConstants.MobileAppSite" target="_blank" class="btn btn-grad btn-round btn-md">
-                    @_localizer["Get the app now"]
+                    @Index_Resource.Get_the_app_now
                 </a>
             </li>
             <li>
@@ -102,20 +102,20 @@
                 <!-- Block  -->
                 <CenterCardIcon FeatureCardUrl="@UrlConstants.NftStoreSite" FeatureCardDelay=".3" FeatureCardImageSrc="images/colorfull_animated_picture_of_a_flower_shop_on_a_transparent-300x300.webp">
                     <FeatureCardTitle>
-                        @_localizer["Flower Store"]
+                        @Index_Resource.Flower_Store
                     </FeatureCardTitle>
                     <FeatureCardDescription>
-                        @_localizer["When you take good care of your garden, let it take care of you. Go to the NFT store and sell your collection of photos of your most beautiful flower, and if you continue to take care of it, each subsequent photo will be of a higher level and that will make it more valuable."]
+                        @Index_Resource.When_you_take_good_care_of_your_garden__let_it_take_care_of_you__Go_to_the_NFT_store_and_sell_your_collection_of_photos_of_your_most_beautiful_flower__and_if_you_continue_to_take_care_of_it__each_subsequent_photo_will_be_of_a_higher_level_and_that_will_make_it_more_valuable_
                     </FeatureCardDescription>
                 </CenterCardIcon>
 
 
                 <CenterCardIcon FeatureCardUrl="@UrlConstants.CharitySite" FeatureCardDelay=".4" FeatureCardImageSrc="images/happy_colorfull_animated_picture_for_charity_website400x400.webp">
                     <FeatureCardTitle>
-                        @_localizer["Charities"]
+                        @Index_Resource.Charities
                     </FeatureCardTitle>
                     <FeatureCardDescription>
-                        @_localizer["The donation system in \"World of Flowers\" is a unique way that users,together, can save endangered places or clear a polluted forest of waste."]
+                        @Index_Resource.The_donation_system_in__World_of_Flowers__is_a_unique_way_that_users_together__can_save_endangered_places_or_clear_a_polluted_forest_of_waste_
 
                     </FeatureCardDescription>
                 </CenterCardIcon>
@@ -123,10 +123,10 @@
 
                 <CenterCardIcon FeatureCardUrl="@UrlConstants.TokenSite" FeatureCardDelay=".4" FeatureCardImageSrc="images/colorfull_animated_picture_little_futuristic_of_a_crypt_fb_tranparent-300x300.webp">
                     <FeatureCardTitle>
-                        @_localizer["Crypto Token"]
+                        @Index_Resource.Crypto_Token
                     </FeatureCardTitle>
                     <FeatureCardDescription>
-                        @_localizer["GRDN token is the base currency in the entire infrastructure. All donations and causes, all rewards received for taking care of the flowers, as well as the metaverse are in the main crypto currency GRDN."]
+                        @Index_Resource.GRDN_token_is_the_base_currency_in_the_entire_infrastructure__All_donations_and_causes__all_rewards_received_for_taking_care_of_the_flowers__as_well_as_the_metaverse_are_in_the_main_crypto_currency_GRDN_
                     </FeatureCardDescription>
                 </CenterCardIcon>
 
@@ -143,7 +143,7 @@
         <!-- Section Head  -->
         <div class="section-head text-center wide-sm animated" data-animate="fadeInUp" data-delay=".1">
             <h2 class="title  title-regular">
-                @((MarkupString)_localizer["<span class=\"title-dark\">Own the future!</span> <br /> <span>\"World of Flowers\"</span> <span class=\"title-dark\">is your portal to the blockchain world.</span>"].ToString())
+                @((MarkupString)Index_Resource.Own_the_future___World_of_Flowers__is_your_portal_to_the_blockchain_world_)
             </h2>
         </div>
         <div class="nk-block">
@@ -158,10 +158,10 @@
                     <div class="col-lg-5">
                         <div class="nk-block-text mgb-m30">
                             <h2 class="title title-md">
-                                @_localizer["Open platform for everyone"]
+                                @Index_Resource.Open_platform_for_everyone
                             </h2>
                             <p>
-                                @_localizer["The Metaverse can be played freely by all flower lovers."]
+                                @Index_Resource.The_Metaverse_can_be_played_freely_by_all_flower_lovers_
                             </p>
                             <div class=" feature-inline feature-middle">
                                 <div class="feature-icon feature-icon-md">
@@ -169,7 +169,7 @@
                                 </div>
                                 <div class="feature-text">
                                     <p>
-                                        @_localizer["Anyone who takes care of at least one flower will receive a free island in the Metaverse."]
+                                        @Index_Resource.Anyone_who_takes_care_of_at_least_one_flower_will_receive_a_free_island_in_the_Metaverse_
                                     </p>
                                 </div>
                             </div>
@@ -179,7 +179,7 @@
                                 </div>
                                 <div class="feature-text">
                                     <p>
-                                        @_localizer["Even if you don't have plants, you can buy some from the NFT shop and still continue playing."]
+                                        @Index_Resource.Even_if_you_don_t_have_plants__you_can_buy_some_from_the_NFT_shop_and_still_continue_playing_
                                     </p>
                                 </div>
                             </div>
@@ -189,7 +189,7 @@
                                 </div>
                                 <div class="feature-text">
                                     <p>
-                                        @_localizer["The more flowers you have in the \"World of Flowers\", the more GRDN Coin you will earn per day if you play."]
+                                        @Index_Resource.The_more_flowers_you_have_in_the__World_of_Flowers___the_more_GRDN_Coin_you_will_earn_per_day_if_you_play_
 
                                     </p>
                                 </div>
@@ -200,7 +200,7 @@
                                 </div>
                                 <div class="feature-text">
                                     <p>
-                                        @_localizer["Your island will grow with the number of flowers that you have. You can even add decorations to your island and invite other players to visit it."]
+                                        @Index_Resource.Your_island_will_grow_with_the_number_of_flowers_that_you_have__You_can_even_add_decorations_to_your_island_and_invite_other_players_to_visit_it_
                                     </p>
                                 </div>
                             </div>
@@ -208,7 +208,7 @@
                             <ul class=" btn-grp justify-content-center justify-content-md-start">
                                 <li>
                                     <a href="@UrlConstants.MetaverseSite" target="_blank" class="btn btn-grad btn-round btn-md">
-                                    @_localizer["Login to Metaverse"]
+                                        @Index_Resource.Login_to_Metaverse
                                 </a></li>
                                 <li>
                                     <ul class="btn-grp gutter-15px">
@@ -233,12 +233,12 @@
 </section>
 
 <!-- // -->
-<HomeSupportedCrypto Title="@_localizer[supportedCryptoTitle]" />
+<HomeSupportedCrypto Title="@Index_Resource.Supported_Currencies" />
 <!-- // -->
 @code {
     private string supportedCryptoTitle = "Supported Currencies";
 
-    protected override string BannerTitle { get => _localizer["🌼 World of Flowers 🌺"]; }
-    protected override string BannerDescription { get => _localizer["Web3 Infrastructure for gardening, growing, <br class='d-none d-md-block'> selling and earning crypto from your flowers"]; }
+    protected override string BannerTitle { get => Index_Resource.World_of_Flowers__with_icons_; }
+    protected override string BannerDescription { get => Index_Resource._World_of_Flowers__is_a_system_equipped_with_artificial_intelligence_and_automatic_recognition_of_types_and_varieties_of_flowers_; }
 
 }

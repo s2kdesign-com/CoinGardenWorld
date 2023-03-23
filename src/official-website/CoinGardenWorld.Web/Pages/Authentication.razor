@@ -1,7 +1,6 @@
 ﻿@page "/authentication/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inherits ThemeComponentBase<PageBanner>
-@inject IStringLocalizer<Authentication> _localizer
 
 <section class="section">
 
@@ -32,9 +31,9 @@
         {
             if (Action == "logged-out")
             {
-                return _localizer["Goodbye 🌻"];
+                return  Localization.Pages.Authentication_Resource.Goodbye;
             }
-            return _localizer["Welcome 🌹"];
+            return Localization.Pages.Authentication_Resource.Welcome;
         }
     }
 
@@ -44,9 +43,9 @@
         {
 
             if (Action == "logged-out") {
-                return _localizer["Please return soon"];
+                return Localization.Pages.Authentication_Resource.Please_return_soon;
             }
-            return _localizer["We are getting your account ready"];
+            return Localization.Pages.Authentication_Resource.We_are_getting_your_account_ready;
         }
     }
 

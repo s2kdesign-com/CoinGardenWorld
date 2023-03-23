@@ -1,40 +1,39 @@
-﻿using CoinGardenWorld.Theme.Models.Shared;
+﻿using CoinGardenBotCore.Web.Localization;
+using CoinGardenWorld.Theme.Models.Shared;
 using Microsoft.Extensions.Localization;
 
 namespace CoinGardenBotCore.Web {
     public class TopMenu : ITopMenu {
-        private readonly IStringLocalizer<TopMenu> _localizer;
-        public TopMenu(IStringLocalizer<TopMenu> localizer) {
-            _localizer = localizer;
+        public TopMenu() {
 
             MenuItems = new List<MenuItem>
             {
                 new MenuItem
                 {
-                    Title = _localizer["Home"],
+                    Title = TopMenu_Resource.Home,
                     Url = "#header"
                 },
                 new MenuItem
                 {
-                    Title = _localizer["Information"],
+                    Title = TopMenu_Resource.Information,
                     SubMenuItems = new List<MenuItem>
                     {
                         new MenuItem
                         {
-                            Title = _localizer["Documentation"],
+                            Title = TopMenu_Resource.Documentation,
                             Url = CoinGardenWorld.Constants.UrlConstants.Documentation,
                             IsExternalUrl = true
                             
                         },
                         new MenuItem
                         {
-                            Title = _localizer["Github"],
+                            Title = TopMenu_Resource.Github,
                             Url = CoinGardenWorld.Constants.UrlConstants.GithubRepo,
                             IsExternalUrl = true
                         },
                         new MenuItem
                         {
-                            Title = _localizer["Litepaper"],
+                            Title = TopMenu_Resource.Litepaper,
                             Url = "#"
                         }
                     }

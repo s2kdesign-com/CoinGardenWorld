@@ -117,16 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Goodbye 🌻" xml:space="preserve">
-    <value>Довиждане 🌻</value>
+  <data name="Application" xml:space="preserve">
+    <value>Application</value>
   </data>
-  <data name="Please return soon" xml:space="preserve">
-    <value>Надяваме се да се върнете скоро</value>
+  <data name="Documentation" xml:space="preserve">
+    <value>Documentation</value>
   </data>
-  <data name="We are getting your account ready" xml:space="preserve">
-    <value>Подготвяме акаунта ви</value>
+  <data name="Github" xml:space="preserve">
+    <value>Github</value>
   </data>
-  <data name="Welcome 🌹" xml:space="preserve">
-    <value>Здравейте 🌹</value>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Litepaper" xml:space="preserve">
+    <value>Litepaper</value>
+  </data>
+  <data name="Metaverse" xml:space="preserve">
+    <value>Metaverse</value>
+  </data>
+  <data name="Token" xml:space="preserve">
+    <value>Token</value>
   </data>
 </root>
