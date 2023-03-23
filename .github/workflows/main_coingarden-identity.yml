@@ -30,19 +30,16 @@ jobs:
         with:
           dotnet-version: '6.0.x'
           include-prerelease: true
-
-      - name: Read Version contents
-        id: read_version
-        uses: andstor/file-reader-action@v1
-        with:
-          path: "VERSION"
           
-        # In windows github uses powershell for default shell - https://github.com/actions/runner/issues/1636#issuecomment-1024531638
       - name: Set VERSION variable
+        shell: cmd
         run: |
-          echo "VERSION_CI=${{steps.read_version.outputs.contents}}.${{github.run_number}}" | Out-File -FilePath $env:GITHUB_ENV -Append
+          VER=$(cat VERSION)
+          VER_LONG="$VER.${{github.run_number}}"
+          echo "VERSION_CI=$VER_LONG" >> $GITHUB_ENV
           
       - name: Show VERSION variable
+        shell: cmd
         run: |
           echo "Building version - ${{ env.VERSION_CI }}"
 
