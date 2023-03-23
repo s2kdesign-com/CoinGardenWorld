@@ -23,7 +23,7 @@ env:
 jobs:
   build_and_deploy_job:
     environment:
-      name: azure
+      name: Azure
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     name: GardenBOT Site - Build and Deploy Job
