@@ -2,15 +2,24 @@ name-template: 'v$RESOLVED_VERSION 🌈'
 tag-template: 'v$RESOLVED_VERSION'
 
 categories:
-  - title: '🖼️ Web Site'
+  - title: '🖼️ Official Site'
     labels:
-      - 'Web Site'
+      - 'Official Site'
   - title: '📱 Mobile Apps'
     labels:
       - 'Mobile Apps'
-  - title: '🖥️ Back End'
+  - title: '🏪 NFT Store'
     labels:
-      - 'Back End'
+      - 'NFT Store'
+  - title: '🤖 GardenBOT'
+    labels:
+      - 'GardenBOT'
+  - title: '🧑‍🌾 Charities'
+    labels:
+      - 'Charities Site'
+  - title: '🌐 Metaverse'
+    labels:
+      - 'Metaverse'
   - title: '🚀 Features'
     labels:
       - 'feature'
@@ -21,7 +30,8 @@ categories:
       - 'bugfix'
       - 'bug'
   - title: '🧰 Maintenance'
-    label: 'chore'
+    labels:
+      - 'DevOps'
 
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
