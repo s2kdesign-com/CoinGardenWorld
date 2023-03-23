@@ -24,22 +24,36 @@
 
                             </p>
                         </div>
-                        <form action="form/subscribe.php" class="nk-form-submit" method="post">
-                            <div class="field-inline field-split bg-white shadow-soft">
-                                <div class="field-wrap d-flex align-items-center">
-                                    <label class="label-inline mb-0 d-none d-sm-block"><i class="mt-1 icon fas fa-envelope"></i></label>
-                                    <input class="input-solid input-solid-lg required email" type="text" name="contact-email" 
-                                           placeholder="@_localizer["Enter your email"]">
-                                    <input type="text" class="d-none" name="form-anti-honeypot" value="">
+
+                        <!-- Begin Mailchimp Signup Form -->
+                        <div id="mc_embed_signup">
+                            <form target="_self" name="mc-embedded-subscribe-form" action="https://world.us21.list-manage.com/subscribe/post?u=6a83fd2ece711e17db9673441&amp;id=4c47a1e030&amp;f_id=00c58fe1f0"  id="mc-embedded-subscribe-form" method="post">
+                                <div class="field-inline field-split bg-white shadow-soft">
+                                    <div class="field-wrap d-flex align-items-center">
+                                        <label class="label-inline mb-0 d-none d-sm-block"><i class="mt-1 icon fas fa-envelope"></i></label>
+                                        <input class="input-solid input-solid-lg required email" type="email" name="EMAIL" id="mce-EMAIL"
+                                               placeholder="@_localizer["Enter your email"]">
+                                        <input type="text" class="d-none" name="form-anti-honeypot" value="">
+                                        <span id="mce-EMAIL-HELPERTEXT" class="helper_text"></span>
+                                    </div>
+                                    <div id="mce-responses" class="clear foot">
+                                        <div class="response" id="mce-error-response" style="display:none"></div>
+                                        <div class="response" id="mce-success-response" style="display:none"></div>
+                                    </div>
+                                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                    <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                        <input type="text" name="b_6a83fd2ece711e17db9673441_4c47a1e030" tabindex="-1" value="">
+                                    </div>
+                                    <div class="submit-wrap">
+                                        <input type="submit" value="@_localizer["Subscribe"]" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary" />
+
+                                    </div>
                                 </div>
-                                <div class="submit-wrap">
-                                    <button class="btn btn-primary">
-                                        @_localizer["Subscribe"]
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="form-results"></div>
-                        </form>
+                                <div class="form-results"></div>
+                            </form>
+                        </div>
+
+                        <!--End mc_embed_signup-->
                     </div>
                 </div>
             </div><!-- .block -->
@@ -65,7 +79,7 @@
                                 <a href="@Constants.UrlConstants.OfficialSite" target="_blank">
                                     CoinGarden.World
                                 </a>. All Rights Reserved.
-                                
+
                             </p>
                         </div>
                     </div>
@@ -95,17 +109,14 @@
     private string _apiUrl = "#";
 
     protected override async Task OnInitializedAsync() {
-        try
-        {
+        try {
             var externalApis = configuration.Get<ExternalApisSettings>();
-            if (externalApis != null && externalApis.ExternalApis != null && externalApis.ExternalApis.Any())
-            {
+            if (externalApis != null && externalApis.ExternalApis != null && externalApis.ExternalApis.Any()) {
                 _apiUrl = externalApis.ExternalApis.FirstOrDefault().Value.Api_Url + "/api/swagger/ui";
 
                 var apiVersionRequest = await httpClient.GetAsync("api/version");
-                if (apiVersionRequest.IsSuccessStatusCode)
-                {
-                _apiVersion = await apiVersionRequest.Content.ReadAsStringAsync();
+                if (apiVersionRequest.IsSuccessStatusCode) {
+                    _apiVersion = await apiVersionRequest.Content.ReadAsStringAsync();
                 }
             }
         }
