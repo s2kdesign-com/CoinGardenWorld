@@ -30,12 +30,16 @@ jobs:
         with:
           dotnet-version: '6.0.x'
           include-prerelease: true
+
+      - name: Read Version contents
+        id: read_version
+        uses: andstor/file-reader-action@v1
+        with:
+          path: "VERSION"
           
       - name: Set VERSION variable
         run: |
-          set /p VER=<VERSION
-          set /p VER_LONG="%VER%.${{github.run_number}}"
-          echo "VERSION_CI=%VER_LONG%" >> $GITHUB_ENV
+          echo "VERSION_CI=${{github.run_number}}.${ steps.read_version.outputs.contents }" >> $GITHUB_ENV
           
       - name: Show VERSION variable
         run: |
