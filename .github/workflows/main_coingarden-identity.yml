@@ -39,7 +39,7 @@ jobs:
           
       - name: Set VERSION variable
         run: |
-          echo "VERSION_CI=${{github.run_number}}.${ steps.read_version.outputs.contents }" >> $GITHUB_ENV
+          echo "VERSION_CI=${{steps.read_version.outputs.contents}}.${{github.run_number}}" >> $GITHUB_ENV
           
       - name: Show VERSION variable
         run: |
