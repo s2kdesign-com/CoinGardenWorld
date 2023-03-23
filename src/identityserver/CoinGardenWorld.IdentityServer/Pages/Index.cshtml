@@ -1,0 +1,37 @@
+@page
+@model CoinGardenWorld.IdentityServer.Pages.Home.Index
+
+<div class="welcome-page">
+    <h1 class="text-center">
+        <img src="~/_Content/CoinGardenWorld.IdentityServer.Theme/images/logo_250x250.png" class="logo">
+        <br />
+        Welcome to <a href="https://coingarden.world" target="_blank" title="World of Flowers">CoinGarden.World</a>
+    </h1>
+    <h3 class="text-center">
+        IdentityServer <small class="text-muted">(version @Model.Version)</small>
+        -
+        Build <small class="text-muted">(version @Model.ProductVersion)</small>
+    </h3>
+    <ul>
+        <li>
+            CGW IdentityServer publishes a
+            <a href="~/.well-known/openid-configuration">discovery document</a>
+            where you can find metadata and links to all the endpoints, key material, etc.
+        </li>
+        <li>
+            Click <a href="~/diagnostics">here</a> to see the claims for your current session.
+        </li>
+        <li>
+            Click <a href="~/grants">here</a> to manage your stored grants.
+        </li>
+        <li>
+            Click <a href="~/serversidesessions">here</a> to view the server side sessions.
+        </li>
+        <li>
+            Click <a href="~/ciba/all">here</a> to view your pending CIBA login requests.
+        </li>
+        <li>
+            Click <a href="~/admin">here</a> to view the admin page.
+        </li>
+    </ul>
+</div>
