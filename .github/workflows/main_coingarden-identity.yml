@@ -34,8 +34,8 @@ jobs:
       - name: Set VERSION variable
         run: |
           set /p VER=<VERSION
-          set /p VER_LONG="$VER.${{github.run_number}}"
-          echo "VERSION_CI=$VER_LONG" >> $GITHUB_ENV
+          set /p VER_LONG="%VER%.${{github.run_number}}"
+          echo "VERSION_CI=%VER_LONG%" >> $GITHUB_ENV
           
       - name: Show VERSION variable
         run: |
