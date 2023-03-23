@@ -32,14 +32,14 @@ jobs:
           include-prerelease: true
           
       - name: Set VERSION variable
-        shell: cmd
+        shell: bash
         run: |
           VER=$(cat VERSION)
           VER_LONG="$VER.${{github.run_number}}"
           echo "VERSION_CI=$VER_LONG" >> $GITHUB_ENV
           
       - name: Show VERSION variable
-        shell: cmd
+        shell: bash
         run: |
           echo "Building version - ${{ env.VERSION_CI }}"
 
