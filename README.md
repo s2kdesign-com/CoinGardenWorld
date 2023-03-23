@@ -40,25 +40,30 @@ https://docs.coingarden.world/v/bg/
 
 ---
 ### 🚢 Docker Images
-| Image | Version | Url | Tag | Status | 
-| ------------- | ------------- | ------------- | ------------- | ------------- | 
-| Official Site - PWA | 1.0.0 | https://localhost:7215  | |
-| Official Site - API | 1.0.0 | http://localhost:7139/api/swagger/ui |  |  |
-| Mobile App - PWA | 1.0.0 | https://localhost:7119 |  |  |
-| Mobile App - API - Azure Function | 1.0.0 | http://localhost:7250/api/swagger/ui |  | |
-| NFT Store - PWA | 1.0.0 | | |
-| NFT Store API - Azure Function | 1.0.0 | | |
-| GardenBOT Site - PWA | 1.0.0 | https://localhost:7089 | |
-| GardenBOT Conversation API - Azure Function | 1.0.0 | http://localhost:3980/api/messages | |
-| GardenBOT API - Azure Function | 1.0.0 | http://localhost:7274/api/swagger/ui | |
-| Identity Server - .NET APP | 1.0.0 | https://localhost:5001 | |
+| - | Image | Version | Url | Tag | Status | 
+| - | - | - | - | - | - | 
+|   | Official Site |  |  |  |  |  
+| 🖼️ | Official Site - PWA | 1.0.0 | https://localhost:7215  | |
+| 🖼️ | Official Site - API | 1.0.0 | http://localhost:7139/api/swagger/ui |  |  |
+|   | Mobile App |  |  |  |  |  
+| 📱 | Mobile App - PWA | 1.0.0 | https://localhost:7119 |  |  |
+| 📱 | Mobile App - API - Azure Function | 1.0.0 | http://localhost:7250/api/swagger/ui |  | |
+|   | NFT Store |  |  |  |  |  
+| 🏪 | NFT Store - PWA | 1.0.0 | | |
+| 🏪 | NFT Store API - Azure Function | 1.0.0 | | |
+|   | GardenBOT |  |  |  |  |  
+| 🤖 | GardenBOT Site - PWA | 1.0.0 | https://localhost:7089 | |
+| 🤖 | GardenBOT Conversation API - Azure Function | 1.0.0 | http://localhost:3980/api/messages | |
+| 🤖 | GardenBOT API - Azure Function | 1.0.0 | http://localhost:7274/api/swagger/ui | |
+|   | Identity Server |  |  |  |  |  
+| 🔐 | Identity Server - .NET APP | 1.0.0 | https://localhost:5001 | |
 
 ---
 ### 📱 Mobile Applications
 .NET MAUI (Multi-platform App UI ) - 
 
 | Supported OS Platform | Version | Download | 
-| ------------- | ------------- | ------------- | 
+| - | - | - | 
 | Android - 24.0 | 1.0.0 |  | 
 | IOS - 14.2 | 1.0.0 |  | 
 | Mac Catalyst - 14.0 | 1.0.0 | | 
