@@ -27,6 +27,25 @@ namespace CoinGardenWorld.Constants {
 
         public const string Changelog = "https://github.com/s2kdesign-com/CoinGardenWorld/releases";
 
+        #region Social Networks 
+        
+        public const string FacebookPage = "https://www.facebook.com/CoinGarden.World";
+        
+        public const string TwitterPage = "#";
 
+        public const string MeduimPage = "#";
+
+        public const string DiscordChannel = "https://discord.gg/KZqFK3D4Mw";
+
+        public const string YoutubeChannel = "https://www.youtube.com/@CoinGarden-World";
+
+        #endregion
+
+
+#if DEBUG
+        // TODO: Add localhost urls
+#else
+        // TODO: Move the values for public site here
+#endif
     }
 }
