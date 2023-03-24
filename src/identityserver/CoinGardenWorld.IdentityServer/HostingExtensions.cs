@@ -28,7 +28,9 @@ internal static class HostingExtensions
                 // see https://docs.duendesoftware.com/identityserver/v5/fundamentals/resources/
                 options.EmitStaticAudienceClaim = true;
             })
+#if DEBUG
             .AddTestUsers(TestUsers.Users)
+#endif
             // this adds the config data from DB (clients, resources, CORS)
             .AddConfigurationStore(options =>
             {
