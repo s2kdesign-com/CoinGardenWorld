@@ -15,6 +15,8 @@ internal static class HostingExtensions
     {
         builder.Services.AddRazorPages();
 
+        builder.Services.AddApplicationInsightsTelemetry();
+
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
         var isBuilder = builder.Services
