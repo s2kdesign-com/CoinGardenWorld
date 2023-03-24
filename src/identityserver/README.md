@@ -33,6 +33,7 @@ How to update it
 7. Run migrations in folder `cd .\CoinGardenWorld.IdentityServer` 
  - `dotnet ef migrations add InitialCreate --context ConfigurationDbContext  --output-dir Migrations/ConfigurationDb -- --provider SqlServer `
  - `dotnet ef migrations add InitialCreate --context PersistedGrantDbContext  --output-dir Migrations/PersistedGrantDb -- --provider SqlServer` 
+ - `dotnet ef migrations add InitialCreate --context ApplicationDbContext  --output-dir Migrations/ApplicationDb -- --provider SqlServer` 
 8. Finally run `dotnet run /seed`
 
 --- 
@@ -50,3 +51,5 @@ isBuilder.AddServerSideSessions();
 builder.Services.Configure<RazorPagesOptions>(options =>
     options.Conventions.AuthorizeFolder("/ServerSideSessions", "admin"));
 ```
+
+and use ASPNET Identity: https://stackoverflow.com/a/66686348/5030622

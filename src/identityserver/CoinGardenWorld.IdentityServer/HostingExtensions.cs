@@ -6,6 +6,9 @@ using CoinGardenWorld.IdentityServer.Pages.Admin.IdentityScopes;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using CoinGardenWorld.IdentityServer.Migrations;
+using CoinGardenWorld.IdentityServer.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace CoinGardenWorld.IdentityServer;
 
@@ -16,6 +19,13 @@ internal static class HostingExtensions
         builder.Services.AddRazorPages();
         
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(connectionString));
+
+        builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
 
         var isBuilder = builder.Services
             .AddIdentityServer(options =>
@@ -28,9 +38,7 @@ internal static class HostingExtensions
                 // see https://docs.duendesoftware.com/identityserver/v5/fundamentals/resources/
                 options.EmitStaticAudienceClaim = true;
             })
-#if DEBUG
-            .AddTestUsers(TestUsers.Users)
-#endif
+
             // this adds the config data from DB (clients, resources, CORS)
             .AddConfigurationStore(options =>
             {
@@ -51,7 +59,8 @@ internal static class HostingExtensions
                 // this enables automatic token cleanup. this is optional.
                 options.EnableTokenCleanup = true;
                 options.RemoveConsumedTokens = true;
-            });
+            })
+            .AddAspNetIdentity<ApplicationUser>();
 
         builder.Services.AddAuthentication()
             .AddGoogle(options =>
@@ -70,7 +79,7 @@ internal static class HostingExtensions
         {
             builder.Services.AddAuthorization(options =>
                 options.AddPolicy("admin",
-                    policy => policy.RequireClaim("sub", "1"))
+                    policy => policy.RequireClaim("role", "admin"))
             );
 
             builder.Services.Configure<RazorPagesOptions>(options =>
