@@ -9,6 +9,11 @@
 https://docs.coingarden.world/  
 > 🌴 Documentation Bulgarian: 
 https://docs.coingarden.world/v/bg/
+---
+
+![Latest Release](https://img.shields.io/github/v/release/s2kdesign-com/CoinGardenWorld?style=for-the-badge)
+![Feature Issues](https://img.shields.io/github/issues/s2kdesign-com/CoinGardenWorld/feature?color=green&style=for-the-badge)
+![Bug issues](https://img.shields.io/github/issues/s2kdesign-com/CoinGardenWorld/bug?color=red&style=for-the-badge)
 
 ---
 ## 🚀 Deployments  
