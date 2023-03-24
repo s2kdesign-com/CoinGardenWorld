@@ -15,8 +15,6 @@ try {
         .Enrich.FromLogContext()
         .ReadFrom.Configuration(ctx.Configuration));
 
-    builder.Services.AddApplicationInsightsTelemetry();
-
     var app = builder
         .ConfigureServices()
         .ConfigurePipeline();
