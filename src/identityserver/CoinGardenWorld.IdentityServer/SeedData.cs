@@ -9,9 +9,9 @@ namespace CoinGardenWorld.IdentityServer;
 public class SeedData {
     public static void MigrateDatabase(WebApplication app, bool addTestData = false) {
         using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope()) {
-            scope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
+            scope.ServiceProvider.GetService<PersistedGrantDbContext>().Database.Migrate();
 
-            var context = scope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
+            var context = scope.ServiceProvider.GetService<ConfigurationDbContext>();
             context.Database.Migrate();
 
             // Even if addTestData=true we will not populate the data if there is existing rows in the tables

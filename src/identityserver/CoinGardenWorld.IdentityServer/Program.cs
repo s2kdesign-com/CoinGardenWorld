@@ -18,7 +18,7 @@ try {
     var app = builder
         .ConfigureServices()
         .ConfigurePipeline();
-
+#if DEBUG
     Log.Information("Seeding database...");
     if (args.Contains("/seed"))
         SeedData.MigrateDatabase(app, true);
@@ -26,7 +26,7 @@ try {
         SeedData.MigrateDatabase(app);
 
     Log.Information("Done seeding database. Exiting.");
-
+#endif
     app.Run();
 }
 catch (Exception ex) when (ex.GetType().Name is not "StopTheHostException") // https://github.com/dotnet/runtime/issues/60600
