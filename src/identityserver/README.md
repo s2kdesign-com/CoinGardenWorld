@@ -52,4 +52,5 @@ builder.Services.Configure<RazorPagesOptions>(options =>
     options.Conventions.AuthorizeFolder("/ServerSideSessions", "admin"));
 ```
 
-and use ASPNET Identity: https://stackoverflow.com/a/66686348/5030622
+and use ASPNET Identity: (check commit: [eb56022f420d293ef6bf8cf32169f2815fe3a4aa [eb56022]](https://github.com/s2kdesign-com/CoinGardenWorld/commit/eb56022f420d293ef6bf8cf32169f2815fe3a4aa)) for details and all needed changes
+https://stackoverflow.com/a/66686348/5030622
