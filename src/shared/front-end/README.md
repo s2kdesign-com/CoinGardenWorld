@@ -19,7 +19,7 @@
 		@using CoinGardenWorld.Theme.Components.FeatureCards
 		@using CoinGardenWorld.Theme.Components.FeaturePanels
 		```
-5. Open Program.cs and add: 
+5. Open Program.cs and add:  
 	- after `builder.RootComponents.Add<HeadOutlet>("head::after");`
 	   - ```c#
 			builder.Services.AddSingleton<ITopMenu, TopMenu>();
