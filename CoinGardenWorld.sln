@@ -46,6 +46,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.github\PULL_REQUEST_TEMPLATE.md = .github\PULL_REQUEST_TEMPLATE.md
 		README.md = README.md
 		.github\release-drafter.yml = .github\release-drafter.yml
+		SECURITY.md = SECURITY.md
 		VERSION = VERSION
 	EndProjectSection
 EndProject
@@ -93,7 +94,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "identityserver", "identitys
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.IdentityServer", "src\identityserver\CoinGardenWorld.IdentityServer\CoinGardenWorld.IdentityServer.csproj", "{47E9AD61-3D89-4FDF-9048-3482CF7F8CB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.IdentityServer.Theme", "src\identityserver\CoinGardenWorld.IdentityServer.Theme\CoinGardenWorld.IdentityServer.Theme.csproj", "{5FACDD3C-1464-4BFE-94D5-3CAE8E5EEDDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.IdentityServer.Theme", "src\identityserver\CoinGardenWorld.IdentityServer.Theme\CoinGardenWorld.IdentityServer.Theme.csproj", "{5FACDD3C-1464-4BFE-94D5-3CAE8E5EEDDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
