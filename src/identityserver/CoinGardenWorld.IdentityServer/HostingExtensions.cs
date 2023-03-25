@@ -17,7 +17,8 @@ internal static class HostingExtensions
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
         builder.Services.AddRazorPages();
-        
+
+        var configuration = builder.Configuration;
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -72,6 +73,26 @@ internal static class HostingExtensions
                 // set the redirect URI to https://localhost:5001/signin-google
                 options.ClientId = "copy client ID from Google here";
                 options.ClientSecret = "copy client secret from Google here";
+            })
+            .AddOpenIdConnect("oidc", options =>
+            {
+                builder.Configuration.GetSection("OpenIDConnectSettings").Bind(options);
+                options.Authority = configuration["OpenIDConnectSettings:Authority"];
+                options.ClientId = configuration["OpenIDConnectSettings:ClientId"];
+                options.ClientSecret = configuration["OpenIDConnectSettings:ClientSecret"];
+
+                options.ResponseType = "code";
+                options.ResponseMode = "query";
+
+                options.Scope.Clear();
+                options.Scope.Add("openid");
+                options.Scope.Add("profile");
+                options.Scope.Add("api");
+                options.Scope.Add("offline_access");
+
+                options.MapInboundClaims = false;
+                options.GetClaimsFromUserInfoEndpoint = true;
+                options.SaveTokens = true;
             });
 
 
