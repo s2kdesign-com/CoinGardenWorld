@@ -1,5 +1,8 @@
-# 🌍 CoinGarden.World 🌏
+ ---
+# 🌍 [CoinGarden.World](https://coingarden.world/) 🌏 [![License](https://img.shields.io/github/license/s2kdesign-com/CoinGardenWorld?color=%23FF9C14&style=for-the-badge)](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/LICENSE.txt)
+
 ---
+
 ### 🌷 Web3 Infrastructure for gardening, growing,  🌺
 ### 🌻 selling and earning crypto from your flowers 🌼
 ---
@@ -11,9 +14,10 @@ https://docs.coingarden.world/
 https://docs.coingarden.world/v/bg/
 ---
 
-![Latest Release](https://img.shields.io/github/v/release/s2kdesign-com/CoinGardenWorld?style=for-the-badge)
-![Feature Issues](https://img.shields.io/github/issues/s2kdesign-com/CoinGardenWorld/feature?color=green&style=for-the-badge)
-![Bug issues](https://img.shields.io/github/issues/s2kdesign-com/CoinGardenWorld/bug?color=red&style=for-the-badge)
+[![Latest Release](https://img.shields.io/github/v/release/s2kdesign-com/CoinGardenWorld?style=for-the-badge)](https://github.com/s2kdesign-com/CoinGardenWorld/releases/latest)
+[![Commits](https://img.shields.io/github/commits-since/s2kdesign-com/CoinGardenWorld/latest?color=%2320BEC9&style=for-the-badge)](https://github.com/s2kdesign-com/CoinGardenWorld/commits/main)
+[![Feature Issues](https://img.shields.io/github/issues/s2kdesign-com/CoinGardenWorld/feature?color=green&style=for-the-badge)](https://github.com/s2kdesign-com/CoinGardenWorld/issues?q=is%3Aopen+is%3Aissue+label%3Afeature)
+[![Bug issues](https://img.shields.io/github/issues/s2kdesign-com/CoinGardenWorld/bug?color=red&style=for-the-badge)](https://github.com/s2kdesign-com/CoinGardenWorld/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 
 ---
 ## 🚀 Deployments  
