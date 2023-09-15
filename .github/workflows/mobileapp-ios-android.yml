@@ -40,7 +40,7 @@ jobs:
       
       - name: Set VERSION variable
         run: |
-          echo ("VERSION_CI=$(type version).${{github.run_number}}") >> $GITHUB_ENV          
+          echo "VERSION_CI=$(type version).${{github.run_number}}" | Out-File -FilePath $env:GITHUB_ENV -Append          
 
       - name: .NET project version updater - ${{ env.VERSION_CI }}
         uses: vers-one/dotnet-project-version-updater@v1.2
@@ -80,7 +80,7 @@ jobs:
 
       - name: Set VERSION variable
         run: |
-          echo ("VERSION_CI=$(type version).${{github.run_number}}") >> $GITHUB_ENV    
+          echo "VERSION_CI=$(type version).${{github.run_number}}" | Out-File -FilePath $env:GITHUB_ENV -Append  
       - name: .NET project version updater - ${{ env.VERSION_CI }}
         uses: vers-one/dotnet-project-version-updater@v1.2
         with:
