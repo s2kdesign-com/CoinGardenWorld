@@ -40,9 +40,8 @@ jobs:
       
       - name: Set VERSION variable
         run: |
-          VER=$(type VERSION)
-          VER_LONG="$VER.${{github.run_number}}"
-          echo "VERSION_CI=$VER_LONG" >> $GITHUB_ENV          
+          echo "VERSION_CI=$(type version).${{github.run_number}}" >> $GITHUB_ENV          
+
       - name: .NET project version updater - ${{ env.VERSION_CI }}
         uses: vers-one/dotnet-project-version-updater@v1.2
         with:
@@ -81,9 +80,7 @@ jobs:
 
       - name: Set VERSION variable
         run: |
-          VER=$(type VERSION)
-          VER_LONG="$VER.${{github.run_number}}"
-          echo "VERSION_CI=$VER_LONG" >> $GITHUB_ENV          
+          echo "VERSION_CI=$(type version).${{github.run_number}}" >> $GITHUB_ENV     
       - name: .NET project version updater - ${{ env.VERSION_CI }}
         uses: vers-one/dotnet-project-version-updater@v1.2
         with:
