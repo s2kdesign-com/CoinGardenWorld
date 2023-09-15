@@ -20,7 +20,8 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true       # Disable sending .NET CLI telemetry
   PROJECT_SRC: src/mobile-app/app/CoinGardenWorldMobileApp.Maui
   PROJECT_NAME: CoinGardenWorldMobileApp.Maui.csproj
- 
+  DOTNET_VERSION: 8.x
+
 jobs:
   build_and_deploy_job:
     environment:
@@ -65,7 +66,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@c0d4ad69d8bd405d234f1c9166d383b7a4f69ed8
         with:
-          dotnet-version: 8
+          dotnet-version: ${{ env.DOTNET_VERSION }}
           dotnet-quality: 'preview'
           
       - name: Install MAUI Workload
@@ -95,7 +96,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@c0d4ad69d8bd405d234f1c9166d383b7a4f69ed8
         with:
-          dotnet-version: 8
+          dotnet-version: ${{ env.DOTNET_VERSION }}
           dotnet-quality: 'preview'
 
       - name: Install MAUI Workload
@@ -125,7 +126,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@c0d4ad69d8bd405d234f1c9166d383b7a4f69ed8
         with:
-          dotnet-version: 8
+          dotnet-version: ${{ env.DOTNET_VERSION }}
           dotnet-quality: 'preview'
 
       - name: Install MAUI Workload
@@ -155,7 +156,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@c0d4ad69d8bd405d234f1c9166d383b7a4f69ed8
         with:
-          dotnet-version: 8
+          dotnet-version: ${{ env.DOTNET_VERSION }}
           dotnet-quality: 'preview'
 
       - name: Install MAUI Workload
