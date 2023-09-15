@@ -177,7 +177,7 @@ jobs:
         run: dotnet restore ${{ env.PROJECT_SRC }}/${{ env.PROJECT_NAME }}
 
       - name: Build MAUI MacCatalyst
-        run: dotnet publish ${{ env.PROJECT_SRC }}/${{ env.PROJECT_NAME }} -c Release -f net8.0-maccatalyst -r maccatalyst-x64;maccatalyst-arm64 --no-restore -p:BuildIpa=True
+        run: dotnet publish ${{ env.PROJECT_SRC }}/${{ env.PROJECT_NAME }} -c Release -f net8.0-maccatalyst -r maccatalyst-x64 --no-restore -p:BuildIpa=True
 
       - name: Upload MacCatalyst Artifact
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8
