@@ -19,6 +19,7 @@
         <SingleProject>true</SingleProject>
         <ImplicitUsings>enable</ImplicitUsings>
         <EnableDefaultCssItems>false</EnableDefaultCssItems>
+        <Version>1.0.0.11</Version>
 
         <!-- Display name -->
         <ApplicationTitle>CoinGardenWorldMobileApp.Maui</ApplicationTitle>
