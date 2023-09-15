@@ -1,4 +1,4 @@
-name: Deploy MobileAPP Site - Azure
+name: Build Mobile APP - IOS, Android, Windows
 
 on:
   push:
