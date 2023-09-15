@@ -122,7 +122,7 @@ jobs:
           
       - name: Set VERSION variable
         run: |
-          VER=$(type VERSION)
+          VER=$(cat VERSION)
           VER_LONG="$VER.${{github.run_number}}"
           echo "VERSION_CI=$VER_LONG" >> $GITHUB_ENV          
       - name: .NET project version updater - ${{ env.VERSION_CI }}
@@ -163,7 +163,7 @@ jobs:
           
       - name: Set VERSION variable
         run: |
-          VER=$(type VERSION)
+          VER=$(cat VERSION)
           VER_LONG="$VER.${{github.run_number}}"
           echo "VERSION_CI=$VER_LONG" >> $GITHUB_ENV          
       - name: .NET project version updater - ${{ env.VERSION_CI }}
