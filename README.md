@@ -65,7 +65,7 @@ https://docs.coingarden.world/v/bg/
 | 🏪 | NFT Store - PWA |  | 1.0.0 | |
 | 🏪 | NFT Store API |  | 1.0.0 | |
 |   | - |  |  |  |  |  
-| 🤖 | GardenBOT Site - PWA | [localhost:7089](https://localhost:7089) |  1.0.0 | |
+| 🤖 | GardenBOT Site - PWA | [localhost:7089](https://localhost:7089) |  ![Version](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.gardenbot_site/latest_tag?color=%2344cc11&ignore=latest&label=version&trim=) | ![Size](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.gardenbot_site/size?color=%2344cc11&tag=latest&label=size&trim=) | [![Build GardenBot Site - Docker](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-docker-github.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-docker-github.yml) | 
 | 🤖 | GardenBOT Message API | [localhost:3980](http://localhost:3980/api/messages) | 1.0.0 | |
 | 🤖 | GardenBOT API | [localhost:7274](http://localhost:7274/api/swagger/ui) | 1.0.0 |  |
 |   | -|  |  |  |  |  

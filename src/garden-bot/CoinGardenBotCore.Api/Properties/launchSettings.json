@@ -2,8 +2,13 @@
   "profiles": {
     "CoinGardenBotCore_Api": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7274",
-      "launchBrowser": false
+      "commandLineArgs": "--port 7274"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 34195,
+      "useSSL": false
     }
   }
 }
