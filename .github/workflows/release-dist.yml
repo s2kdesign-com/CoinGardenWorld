@@ -86,16 +86,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       
-    # - name: Release Upload Assets
-    #   uses: softprops/action-gh-release@v1
-    #   with:
-    #     tag_name: ${{ steps.get_version.outputs.VERSION }}
-    #     draft: false
-    #     # TODO: Missing Apple app, the build is with a lot of files 
-    #      # src/mobile-apps/CoinGardenWorld.Maui/bin/Release/net6.0-ios/iossimulator-x64/**/*.app
-    #     files: |
-    #       coingarden-android-ci-build/*Signed.a*
-    #       coingarden-windows-ci-build/CoinGardenWorld*/CoinGardenWorld*.msix
-    #       coingarden-macos-ci-build/*.pkg
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release Upload Assets
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.get_version.outputs.VERSION }}
+          draft: false
+          # TODO: Missing Apple app, the build is with a lot of files 
+           # src/mobile-apps/CoinGardenWorld.Maui/bin/Release/net6.0-ios/iossimulator-x64/**/*.app
+          files: |
+            coingarden-android-ci-build/*Signed.a*
+            coingarden-windows-ci-build/CoinGardenWorld*/CoinGardenWorld*.msix
+            coingarden-macos-ci-build/*.pkg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

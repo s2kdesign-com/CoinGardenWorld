@@ -45,16 +45,6 @@
 		<ArchiveOnBuild>true</ArchiveOnBuild>
 	</PropertyGroup>
 	
-	<!-- For maccatalyst publish-->
-	<PropertyGroup Condition="$(TargetFramework.Contains('maccatalyst')) and '$(Configuration)' == 'Release'">
-		
-		<!-- Note for MacCatalyst:
-            The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
-            When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifer>.
-            The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
-            either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
-		<RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64;</RuntimeIdentifiers>
-	</PropertyGroup>
 
     <ItemGroup>
         <!-- App Icon -->
@@ -88,11 +78,31 @@
   <!-- Build Properties must be defined within these property groups to ensure successful publishing
        to the Mac App Store. See: https://aka.ms/maui-publish-app-store#define-build-properties-in-your-project-file -->
   <PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst')) and '$(Configuration)' == 'Debug'">
-    <CodesignEntitlements>Platforms/MacCatalyst/Entitlements.Debug.plist</CodesignEntitlements>
+	  <!--TODO-->
+	  <!--https://learn.microsoft.com/en-us/xamarin/ios/troubleshooting/questions/no-codesigning-keys-->
+	  <!--<CodesignEntitlements>Platforms/MacCatalyst/Entitlements.Debug.plist</CodesignEntitlements>-->
+
+      
+	  <!-- Note for MacCatalyst:
+            The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+            When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifer>.
+            The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+            either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+	  <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64;</RuntimeIdentifiers>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst')) and '$(Configuration)' == 'Release'">
-    <CodesignEntitlements>Platforms/MacCatalyst/Entitlements.Release.plist</CodesignEntitlements>
+      <!--TODO-->
+	  <!--https://learn.microsoft.com/en-us/xamarin/ios/troubleshooting/questions/no-codesigning-keys-->
+	  <!--<CodesignEntitlements>Platforms/MacCatalyst/Entitlements.Release.plist</CodesignEntitlements>-->
+
+      
+      <!-- Note for MacCatalyst:
+            The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+            When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifer>.
+            The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+            either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+      <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64;</RuntimeIdentifiers>
     <UseHardenedRuntime>true</UseHardenedRuntime>
   </PropertyGroup>
 </Project>
