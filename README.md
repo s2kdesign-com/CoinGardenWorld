@@ -45,7 +45,7 @@ https://docs.coingarden.world/v/bg/
 | 📱 | MobileAPP API | https://app.coingarden.world/api/swagger/ui | [![Deploy MobileAPP Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-azure-static-web-apps.yml) |
 
 ### IPFS ([fleek.co](https://fleek.co/)) 🌐
-| Application | Url | Status |
+| Application | Provider | Url | Status |
 | - | - | - |
 | Landing Page | IPFS / Fleek | [https://coingardenworld.on.fleek.co](https://coingardenworld.on.fleek.co) |  |
 | Mobile App | IPFS / Fleek | [https://coingardenworld-app.on.fleek.co](https://coingardenworld-app.on.fleek.co) |  |
