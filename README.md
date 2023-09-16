@@ -59,7 +59,7 @@ https://docs.coingarden.world/v/bg/
 | 🖼️ | Official Site - PWA |  [localhost:7215](https://localhost:7215)  | ![Version](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.official_website/latest_tag?color=%2344cc11&ignore=latest&label=version&trim=) | ![Size](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.official_website/size?color=%2344cc11&tag=latest&label=size&trim=) | [![Build Official Site - Docker](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-docker-github.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-docker-github.yml) |
 | 🖼️ | Official Site - API | [localhost:7139](http://localhost:7139/api/swagger/ui) |  1.0.0 | |  |
 |   | - |  |  |  |  |  
-| 📱 | Mobile App - PWA |  [localhost:7119](https://localhost:7119) |  1.0.0 | |  |
+| 📱 | Mobile App - PWA |  [localhost:7119](https://localhost:7119) |  ![Version](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.mobileapp_site/latest_tag?color=%2344cc11&ignore=latest&label=version&trim=) | ![Size](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.mobileapp_site/size?color=%2344cc11&tag=latest&label=size&trim=) | [![Build Mobile APP Site - Docker](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-docker-github.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-docker-github.yml) |
 | 📱 | Mobile App - API | [localhost:7250](http://localhost:7250/api/swagger/ui) | 1.0.0 | | |
 |   |  - |  |  |  |  |  
 | 🏪 | NFT Store - PWA |  | 1.0.0 | |
