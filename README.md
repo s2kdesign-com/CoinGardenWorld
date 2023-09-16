@@ -46,7 +46,7 @@ https://docs.coingarden.world/v/bg/
 
 ### IPFS ([fleek.co](https://fleek.co/)) 🌐
 | Application | Provider | Url | Status |
-| - | - | - |
+| - | - | - | - |
 | Landing Page | IPFS / Fleek | [https://coingardenworld.on.fleek.co](https://coingardenworld.on.fleek.co) |  |
 | Mobile App | IPFS / Fleek | [https://coingardenworld-app.on.fleek.co](https://coingardenworld-app.on.fleek.co) |  |
 | NFT Store | IPFS / Fleek | [https://coingardenworld-store.on.fleek.co](https://coingardenworld-store.on.fleek.co) |  |
