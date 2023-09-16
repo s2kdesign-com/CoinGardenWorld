@@ -17,7 +17,7 @@
         <ApplicationTitle>CoinGardenWorldMobileApp.Maui</ApplicationTitle>
 
         <!-- App Identifier -->
-        <ApplicationId>com.companyname.coingardenworldmobileapp.maui</ApplicationId>
+        <ApplicationId>com.CoinGardenWorld.MobileApp</ApplicationId>
 
         <!-- Versions -->
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -42,6 +42,9 @@
 		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
 		<!-- <CodesignKey>iPhone Distribution: John Smith (AY2GDE9QM7)</CodesignKey>
 		<CodesignProvision>MyMauiApp</CodesignProvision> -->
+
+		<CodesignKey>Svetlin Krastanov</CodesignKey>
+		<CodesignProvision>com.CoinGardenWorld.MobileApp Development</CodesignProvision>
 		<ArchiveOnBuild>true</ArchiveOnBuild>
 	</PropertyGroup>
 	
