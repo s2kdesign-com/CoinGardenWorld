@@ -14,6 +14,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   
+# Allow one concurrent deployment
+concurrency:
+  group: "mobile-apps"
+  cancel-in-progress: true
+
 env:
   DOTNET_NOLOGO: true                     # Disable the .NET logo
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Disable the .NET first time experience
