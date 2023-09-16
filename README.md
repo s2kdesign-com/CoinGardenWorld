@@ -56,21 +56,20 @@ https://docs.coingarden.world/v/bg/
 ###  Docker Images 🚢
 | - | Image | Url | Version | Size | Status | 
 | - | - | - | - | - | - | 
-|   | Official Site |  |  |  |  |  
-| 🖼️ | Official Site - PWA |  https://localhost:7215  | ![Version](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.official_website/latest_tag?color=%2344cc11&ignore=latest&label=version&trim=) | ![Size](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.official_website/size?color=%2344cc11&tag=latest&label=size&trim=) | [![Build Official Site - Docker](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-docker-github.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-docker-github.yml) |
-| 🖼️ | Official Site - API | http://localhost:7139/api/swagger/ui |  1.0.0 | |  |
-|   | Mobile App |  |  |  |  |  
-| 📱 | Mobile App - PWA |  https://localhost:7119 |  1.0.0 | |  |
-| 📱 | Mobile App - API - Azure Function | http://localhost:7250/api/swagger/ui | 1.0.0 | | |
-|   | NFT Store |  |  |  |  |  
+| 🖼️ | Official Site - PWA |  [localhost:7215](https://localhost:7215)  | ![Version](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.official_website/latest_tag?color=%2344cc11&ignore=latest&label=version&trim=) | ![Size](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.official_website/size?color=%2344cc11&tag=latest&label=size&trim=) | [![Build Official Site - Docker](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-docker-github.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-docker-github.yml) |
+| 🖼️ | Official Site - API | [localhost:7139](http://localhost:7139/api/swagger/ui) |  1.0.0 | |  |
+|   | - |  |  |  |  |  
+| 📱 | Mobile App - PWA |  [localhost:7119](https://localhost:7119) |  1.0.0 | |  |
+| 📱 | Mobile App - API | [localhost:7250](http://localhost:7250/api/swagger/ui) | 1.0.0 | | |
+|   |  - |  |  |  |  |  
 | 🏪 | NFT Store - PWA |  | 1.0.0 | |
-| 🏪 | NFT Store API - Azure Function |  | 1.0.0 | |
-|   | GardenBOT |  |  |  |  |  
-| 🤖 | GardenBOT Site - PWA | https://localhost:7089 |  1.0.0 | |
-| 🤖 | GardenBOT Conversation API - Azure Function | http://localhost:3980/api/messages | 1.0.0 | |
-| 🤖 | GardenBOT API - Azure Function | http://localhost:7274/api/swagger/ui | 1.0.0 |  |
-|   | Identity Server |  |  |  |  |  
-| 🔐 | Identity Server - .NET APP | https://localhost:5001 | 1.0.0 |  |
+| 🏪 | NFT Store API |  | 1.0.0 | |
+|   | - |  |  |  |  |  
+| 🤖 | GardenBOT Site - PWA | [localhost:7089](https://localhost:7089) |  1.0.0 | |
+| 🤖 | GardenBOT Message API | [localhost:3980](http://localhost:3980/api/messages) | 1.0.0 | |
+| 🤖 | GardenBOT API | [localhost:7274](http://localhost:7274/api/swagger/ui) | 1.0.0 |  |
+|   | -|  |  |  |  |  
+| 🔐 | Identity Server - .NET APP | [localhost:5001](https://localhost:5001) | 1.0.0 |  |
 
 ---
 ### 📱 Mobile Applications
