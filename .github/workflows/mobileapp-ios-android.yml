@@ -20,6 +20,7 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true       # Disable sending .NET CLI telemetry
   PROJECT_SRC: src/mobile-app/app/CoinGardenWorldMobileApp.Maui
   PROJECT_NAME: CoinGardenWorldMobileApp.Maui.csproj
+  SOLUTION_PATH: CoinGardenWorld.sln
   DOTNET_VERSION: 8.0.x
   TARGET_WINDOWS: net8.0-windows10.0.19041.0
 
@@ -39,6 +40,13 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
           dotnet-quality: 'preview'
       
+      - name: Install .NET MAUI
+        shell: bash
+        run: |
+          dotnet nuget locals all --clear 
+          dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+          
       - name: Set VERSION variable
         run: |
           echo "VERSION_CI=$(type version).${{github.run_number}}" | Out-File -FilePath $env:GITHUB_ENV -Append          
@@ -48,12 +56,9 @@ jobs:
         with:
           file: "src/mobile-app/**/*.csproj"
           version: "${{ env.VERSION_CI }}"
-          
-      - name: Install MAUI Workload
-        run: dotnet workload install maui --ignore-failed-sources
 
       - name: Restore Dependencies
-        run: dotnet restore ${{ env.PROJECT_SRC }}/${{ env.PROJECT_NAME }}
+        run: dotnet restore ${{ env.SOLUTION_PATH }}
 
       - name: Build MAUI Android
         run: dotnet publish ${{ env.PROJECT_SRC }}/${{ env.PROJECT_NAME }} -c Release -f net8.0-android --no-restore
@@ -79,6 +84,13 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
           dotnet-quality: 'preview'
 
+      - name: Install .NET MAUI
+        shell: pwsh
+        run: |
+          & dotnet nuget locals all --clear
+          & dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+          & dotnet workload install android ios maccatalyst tvos macos maui wasm-tools maui-maccatalyst --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+      
       - name: Set VERSION variable
         run: |
           echo "VERSION_CI=$(type version).${{github.run_number}}" | Out-File -FilePath $env:GITHUB_ENV -Append  
@@ -88,14 +100,12 @@ jobs:
           file: "src/mobile-app/**/*.csproj"
           version: "${{ env.VERSION_CI }}"
 
-      - name: Install MAUI Workload
-        run: dotnet workload install maui --ignore-failed-sources
 
       - name: Restore Dependencies
-        run: dotnet restore ${{ env.PROJECT_SRC }}/${{ env.PROJECT_NAME }}
+        run: dotnet restore ${{ env.SOLUTION_PATH }}
 
       - name: Build MAUI Windows
-        run: dotnet publish ${{ env.PROJECT_SRC }}/${{ env.PROJECT_NAME }} -c Release -f ${{ env.TARGET_WINDOWS }} -r win-x64 --no-restore
+        run: dotnet publish ${{ env.PROJECT_SRC }}/${{ env.PROJECT_NAME }} -c Release -f ${{ env.TARGET_WINDOWS }}
 
       - name: Upload Windows Artifact
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8
@@ -117,7 +127,14 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
           dotnet-quality: 'preview'
-          
+
+      - name: Install .NET MAUI
+        shell: bash
+        run: |
+          dotnet nuget locals all --clear 
+          dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+    
       - name: Set VERSION variable
         run: |
           VER=$(cat VERSION)
@@ -128,15 +145,12 @@ jobs:
         with:
           file: "src/mobile-app/**/*.csproj"
           version: "${{ env.VERSION_CI }}"
-
-      - name: Install MAUI Workload
-        run: dotnet workload install maui --ignore-failed-sources
-
+          
       - name: Restore Dependencies
-        run: dotnet restore ${{ env.PROJECT_SRC }}/${{ env.PROJECT_NAME }}
+        run: dotnet restore ${{ env.SOLUTION_PATH }}
 
       - name: Build MAUI iOS
-        run: dotnet build ${{ env.PROJECT_SRC }}/${{ env.PROJECT_NAME }} -c Release -f net8.0-ios --no-restore /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
+        run: dotnet build ${{ env.PROJECT_SRC }}/${{ env.PROJECT_NAME }} -c Release -f net8.0-ios /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
 
       - name: Upload iOS Artifact
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8
@@ -158,7 +172,14 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
           dotnet-quality: 'preview'
-          
+                    
+      - name: Install .NET MAUI
+        shell: bash
+        run: |
+          dotnet nuget locals all --clear 
+          dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+    
       - name: Set VERSION variable
         run: |
           VER=$(cat VERSION)
@@ -170,14 +191,11 @@ jobs:
           file: "src/mobile-app/**/*.csproj"
           version: "${{ env.VERSION_CI }}"
 
-      - name: Install MAUI Workload
-        run: dotnet workload install maui --ignore-failed-sources
-
       - name: Restore Dependencies
-        run: dotnet restore ${{ env.PROJECT_SRC }}/${{ env.PROJECT_NAME }}
+        run: dotnet restore ${{ env.SOLUTION_PATH }}
 
       - name: Build MAUI MacCatalyst
-        run: dotnet publish ${{ env.PROJECT_SRC }}/${{ env.PROJECT_NAME }} -c Release -f net8.0-maccatalyst -r maccatalyst-x64 --no-restore -p:BuildIpa=True
+        run: dotnet publish ${{ env.PROJECT_SRC }}/${{ env.PROJECT_NAME }} -c Release -f net8.0-maccatalyst --no-restore -p:BuildIpa=True
 
       - name: Upload MacCatalyst Artifact
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8
