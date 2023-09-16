@@ -53,7 +53,7 @@ jobs:
           tagging_message: ${{ env.VERSION_CI }}
  # Mobile APP Windows         
       - name: Download artifact
-        id: download-artifact
+        id: download-artifact-windows
         uses: dawidd6/action-download-artifact@v2
         with:
           # Optional, GitHub token, a Personal Access Token with `public_repo` scope if needed
@@ -73,7 +73,7 @@ jobs:
 
 # Mobile APP IOS
       - name: Download artifact
-        id: download-artifact
+        id: download-artifact-ios
         uses: dawidd6/action-download-artifact@v2
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
@@ -81,7 +81,7 @@ jobs:
           workflow_conclusion: success
 # Mobile APP Android          
       - name: Download artifact
-        id: download-artifact
+        id: download-artifact-android
         uses: dawidd6/action-download-artifact@v2
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
@@ -89,7 +89,7 @@ jobs:
           workflow_conclusion: success
 # Mobile APP Mac
       - name: Download artifact
-        id: download-artifact
+        id: download-artifact-mac
         uses: dawidd6/action-download-artifact@v2
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
