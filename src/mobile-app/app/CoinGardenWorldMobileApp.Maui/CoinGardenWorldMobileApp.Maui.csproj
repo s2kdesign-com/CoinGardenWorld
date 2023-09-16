@@ -48,7 +48,7 @@
 		<ArchiveOnBuild>true</ArchiveOnBuild>
 		<ProvisioningType>automatic</ProvisioningType>
 	</PropertyGroup>
-	
+	 
 
     <ItemGroup>
         <!-- App Icon -->

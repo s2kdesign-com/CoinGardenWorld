@@ -1,4 +1,4 @@
-name: Build Mobile APP - IOS, Android, Windows
+name: Build Mobile APP - Windows
 
 on:
   push:
@@ -16,7 +16,7 @@ on:
   
 # Allow one concurrent deployment
 concurrency:
-  group: "mobile-apps"
+  group: "mobile-apps-windows"
   cancel-in-progress: true
 
 env:
