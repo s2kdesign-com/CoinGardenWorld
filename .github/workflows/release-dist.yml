@@ -51,7 +51,7 @@ jobs:
           # Optional. Tag name being created in the local repository and 
           # pushed to remote repository and defined branch.
           tagging_message: ${{ env.VERSION_CI }}
-          
+ # Mobile APP Windows         
       - name: Download artifact
         id: download-artifact
         uses: dawidd6/action-download-artifact@v2
@@ -62,13 +62,38 @@ jobs:
           github_token: ${{secrets.GITHUB_TOKEN}}
           # Optional, workflow file name or ID
           # If not specified, will be inferred from run_id (if run_id is specified), or will be the current workflow
-          workflow: mobileapp-ios-android.yml
+          workflow: mobileapp-windows.yml
           # Optional, the status or conclusion of a completed workflow to search for
           # Can be one of a workflow conclusion:
           #   "failure", "success", "neutral", "cancelled", "skipped", "timed_out", "action_required"
           # Or a workflow status:
           #   "completed", "in_progress", "queued"
           # Use the empty string ("") to ignore status or conclusion in the search
+          workflow_conclusion: success
+
+# Mobile APP IOS
+      - name: Download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: mobileapp-ios.yml
+          workflow_conclusion: success
+# Mobile APP Android          
+      - name: Download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: mobileapp-android.yml
+          workflow_conclusion: success
+# Mobile APP Mac
+      - name: Download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: mobileapp-mac.yml
           workflow_conclusion: success
 
       - name: Create Release

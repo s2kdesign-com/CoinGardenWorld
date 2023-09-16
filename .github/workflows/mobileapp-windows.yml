@@ -1,0 +1,76 @@
+name: Build Mobile APP - IOS, Android, Windows
+
+on:
+  push:
+    paths:
+    - 'src/mobile-app/app/**'
+    - 'src/shared/**'
+    branches:
+      - main
+  pull_request:
+    branches: [ main ]
+
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+# Allow one concurrent deployment
+concurrency:
+  group: "mobile-apps"
+  cancel-in-progress: true
+
+env:
+  DOTNET_NOLOGO: true                     # Disable the .NET logo
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Disable the .NET first time experience
+  DOTNET_CLI_TELEMETRY_OPTOUT: true       # Disable sending .NET CLI telemetry
+  PROJECT_SRC: src/mobile-app/app/CoinGardenWorldMobileApp.Maui
+  PROJECT_NAME: CoinGardenWorldMobileApp.Maui.csproj
+  SOLUTION_PATH: CoinGardenWorld.sln
+  DOTNET_VERSION: 8.0.x
+  TARGET_WINDOWS: net8.0-windows10.0.19041.0
+
+jobs:
+# MAUI Windows Build
+  build-windows:
+    runs-on: windows-2022
+    name: Windows Build
+    steps:
+    
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-quality: 'preview'
+
+      - name: Install .NET MAUI
+        shell: pwsh
+        run: |
+          & dotnet nuget locals all --clear
+          & dotnet workload install maui --skip-sign-check --source https://api.nuget.org/v3/index.json
+          & dotnet workload install android ios maccatalyst tvos macos maui wasm-tools maui-maccatalyst --source https://api.nuget.org/v3/index.json
+      
+      - name: Set VERSION variable
+        run: |
+          echo "VERSION_CI=$(type version).${{github.run_number}}" | Out-File -FilePath $env:GITHUB_ENV -Append  
+      - name: .NET project version updater - ${{ env.VERSION_CI }}
+        uses: vers-one/dotnet-project-version-updater@v1.2
+        with:
+          file: "src/mobile-app/**/*.csproj"
+          version: "${{ env.VERSION_CI }}"
+
+
+      - name: Restore Dependencies
+        run: dotnet restore ${{ env.SOLUTION_PATH }}
+
+      - name: Build MAUI Windows
+        run: dotnet publish ${{ env.PROJECT_SRC }}/${{ env.PROJECT_NAME }} -c Release -f ${{ env.TARGET_WINDOWS }}
+
+      - name: Upload Windows Artifact
+        uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8
+        with:
+          name: coingarden-windows-ci-build
+          path: ${{ env.PROJECT_SRC }}/bin/Release/${{ env.TARGET_WINDOWS }}/win10-x64/AppPackages/CoinGardenWorld*/CoinGardenWorld*.msix
+          
