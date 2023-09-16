@@ -19,8 +19,7 @@ env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Disable the .NET first time experience
   DOTNET_CLI_TELEMETRY_OPTOUT: true       # Disable sending .NET CLI telemetry
   DOCKERFILE: src/official-website/CoinGardenWorld.Web/Dockerfile
-  TAGS_PR: ghcr.io/s2kdesign-com/coingardenworld.official_website:dev
-  TAGS: ghcr.io/s2kdesign-com/coingardenworld.official_website:latest
+  TAG: ghcr.io/s2kdesign-com/coingardenworld.official_website
   VERSION_UPDATER_PATH: src/official-website/**/*.csproj
  
 jobs:
@@ -80,8 +79,8 @@ jobs:
         builder: ${{ steps.buildx.outputs.name }}
         push: true
         tags: |
-            ${{ env.TAGS_PR }}
-            ${{ env.VERSION_CI }}
+            ${{ env.TAG }}:dev
+            ${{ env.TAG }}:${{ env.VERSION_CI }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache
       if: github.event_name == 'pull_request'
@@ -95,8 +94,8 @@ jobs:
         builder: ${{ steps.buildx.outputs.name }}
         push: true
         tags: |
-            ${{ env.TAGS_PR }}
-            ${{ env.VERSION_CI }}
+            ${{ env.TAG }}:latest
+            ${{ env.TAG }}:${{ env.VERSION_CI }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache
       if: github.ref == 'refs/heads/main'

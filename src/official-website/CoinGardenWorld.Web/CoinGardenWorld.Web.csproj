@@ -39,7 +39,7 @@
       <DependentUpon>TopMenu.Resource.resx</DependentUpon>
     </Compile>
   </ItemGroup>
- 
+  
   <ItemGroup>
     <EmbeddedResource Update="Localization\Pages\Authentication.Resource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
