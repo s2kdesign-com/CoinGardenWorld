@@ -4,23 +4,14 @@ FROM mcr.microsoft.com/azure-functions/dotnet-isolated:4-dotnet-isolated7.0 AS b
 WORKDIR /home/site/wwwroot
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS publish
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/garden-bot/CoinGardenBotCore.Api/CoinGardenBotCore_Api.csproj", "src/garden-bot/CoinGardenBotCore.Api/"]
-COPY ["src/cognitive-services/CoinGardenWorld.AzureAI/CoinGardenWorld.AzureAI.csproj", "src/cognitive-services/CoinGardenWorld.AzureAI/"]
-COPY ["src/cognitive-services/CoinGardenWorld.BingSearch/CoinGardenWorld.BingSearch.csproj", "src/cognitive-services/CoinGardenWorld.BingSearch/"]
-COPY ["src/shared/back-end/CoinGardenWorld.AzureFunctionExtensions/CoinGardenWorld.AzureFunctionExtensions.csproj", "src/shared/back-end/CoinGardenWorld.AzureFunctionExtensions/"]
-RUN dotnet restore "src/garden-bot/CoinGardenBotCore.Api/CoinGardenBotCore_Api.csproj"
 COPY . .
-WORKDIR "/src/src/garden-bot/CoinGardenBotCore.Api"
-RUN dotnet build "CoinGardenBotCore_Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "CoinGardenBotCore_Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "garden-bot/CoinGardenBotCore.Api/CoinGardenBotCore_Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /home/site/wwwroot
 COPY --from=publish /app/publish .
 ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
-    AzureFunctionsJobHost__Logging__Console__IsEnabled=true
+	AzureFunctionsJobHost__Logging__Console__IsEnabled=true
