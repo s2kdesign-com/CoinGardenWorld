@@ -43,9 +43,10 @@
 		<!-- <CodesignKey>iPhone Distribution: John Smith (AY2GDE9QM7)</CodesignKey>
 		<CodesignProvision>MyMauiApp</CodesignProvision> -->
 
-		<CodesignKey>Svetlin Krastanov</CodesignKey>
-		<CodesignProvision>com.CoinGardenWorld.MobileApp Development</CodesignProvision>
+		<!--<CodesignKey>Svetlin Krastanov</CodesignKey>
+		<CodesignProvision>com.CoinGardenWorld.MobileApp Development</CodesignProvision>-->
 		<ArchiveOnBuild>true</ArchiveOnBuild>
+		<ProvisioningType>automatic</ProvisioningType>
 	</PropertyGroup>
 	
 
