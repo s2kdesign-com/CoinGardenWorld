@@ -77,7 +77,7 @@ https://docs.coingarden.world/v/bg/
 .NET MAUI (Multi-platform App UI ) - [![Build Mobile APP - IOS, Android, Windows](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-ios-android.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-ios-android.yml)
 
 | Supported OS Platform | Version | 🎛️ Operating System  | Download | 
-| - | - | - | 
+| - | - | - | - |
 | Android - 24.0 | [![Latest Release](https://img.shields.io/github/v/release/s2kdesign-com/CoinGardenWorld?label=📱&style=for-the-badge&color=white)](https://github.com/s2kdesign-com/CoinGardenWorld/releases/latest) | ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white) | Latest Version | 
 | IOS - 14.2 | [![Latest Release](https://img.shields.io/github/v/release/s2kdesign-com/CoinGardenWorld?label=🍏&style=for-the-badge&color=white)](https://github.com/s2kdesign-com/CoinGardenWorld/releases/latest)| ![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white) | Latest Version | 
 | Mac Catalyst - 14.0 | [![Latest Release](https://img.shields.io/github/v/release/s2kdesign-com/CoinGardenWorld?label=📺&style=for-the-badge&color=white)](https://github.com/s2kdesign-com/CoinGardenWorld/releases/latest) | ![macOS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0) | Latest Version | 
