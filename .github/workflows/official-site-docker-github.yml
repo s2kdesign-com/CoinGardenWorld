@@ -79,7 +79,9 @@ jobs:
         file: ${{ env.DOCKERFILE }}
         builder: ${{ steps.buildx.outputs.name }}
         push: true
-        tags: ${{ env.TAGS_PR }}
+        tags: |
+            ${{ env.TAGS_PR }}
+            ${{ env.VERSION_CI }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache
       if: github.event_name == 'pull_request'
@@ -92,7 +94,9 @@ jobs:
         file: ${{ env.DOCKERFILE }}
         builder: ${{ steps.buildx.outputs.name }}
         push: true
-        tags: ${{ env.TAGS }}
+        tags: |
+            ${{ env.TAGS_PR }}
+            ${{ env.VERSION_CI }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache
       if: github.ref == 'refs/heads/main'

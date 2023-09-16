@@ -6,6 +6,14 @@
 ### 🌷 Web3 Infrastructure for gardening, growing,  🌺
 ### 🌻 selling and earning crypto from your flowers 🌼
 ---
+
+## 🕶️ Social Profiles
+
+| ![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?style=for-the-badge&logo=Facebook&logoColor=white) | ![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white) | ![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white) | ![TikTok](https://img.shields.io/badge/TikTok-%23000000.svg?style=for-the-badge&logo=TikTok&logoColor=white) | ![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white) |
+| - | - |
+
+
+---
 ## 🔗 Official site : https://coingarden.world/ 🪴
 ---
 > 🌱 Documentation English:
@@ -14,14 +22,11 @@ https://docs.coingarden.world/
 https://docs.coingarden.world/v/bg/
 ---
 
-[![Latest Release](https://img.shields.io/github/v/release/s2kdesign-com/CoinGardenWorld?style=for-the-badge)](https://github.com/s2kdesign-com/CoinGardenWorld/releases/latest)
-[![Commits](https://img.shields.io/github/commits-since/s2kdesign-com/CoinGardenWorld/latest?color=%2320BEC9&style=for-the-badge)](https://github.com/s2kdesign-com/CoinGardenWorld/commits/main)
-[![Feature Issues](https://img.shields.io/github/issues/s2kdesign-com/CoinGardenWorld/feature?color=green&style=for-the-badge)](https://github.com/s2kdesign-com/CoinGardenWorld/issues?q=is%3Aopen+is%3Aissue+label%3Afeature)
-[![Bug issues](https://img.shields.io/github/issues/s2kdesign-com/CoinGardenWorld/bug?color=red&style=for-the-badge)](https://github.com/s2kdesign-com/CoinGardenWorld/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+[![Latest Release](https://img.shields.io/github/v/release/s2kdesign-com/CoinGardenWorld?style=for-the-badge)](https://github.com/s2kdesign-com/CoinGardenWorld/releases/latest) [![Commits](https://img.shields.io/github/commits-since/s2kdesign-com/CoinGardenWorld/latest?color=%2320BEC9&style=for-the-badge)](https://github.com/s2kdesign-com/CoinGardenWorld/commits/main) [![Feature Issues](https://img.shields.io/github/issues/s2kdesign-com/CoinGardenWorld/feature?color=green&style=for-the-badge)](https://github.com/s2kdesign-com/CoinGardenWorld/issues?q=is%3Aopen+is%3Aissue+label%3Afeature) [![Bug issues](https://img.shields.io/github/issues/s2kdesign-com/CoinGardenWorld/bug?color=red&style=for-the-badge)](https://github.com/s2kdesign-com/CoinGardenWorld/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 
 ---
 ## 🚀 Deployments  
-### Azure cloud ☁️
+### Azure cloud ☁️ 
 | - | Application | Url | Status |
 | - | - | - | - |
 | 🖼️ | Official Site | [https://coingarden.world](https://coingarden.world) | [![Deploy Official Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml) |
@@ -48,7 +53,7 @@ https://docs.coingarden.world/v/bg/
 
 
 ---
-### 🚢 Docker Images
+###  Docker Images 🚢
 | - | Image | Version | Url | Tag | Status | 
 | - | - | - | - | - | - | 
 |   | Official Site |  |  |  |  |  
@@ -69,14 +74,14 @@ https://docs.coingarden.world/v/bg/
 
 ---
 ### 📱 Mobile Applications
-.NET MAUI (Multi-platform App UI ) - 
+.NET MAUI (Multi-platform App UI ) - [![Build Mobile APP - IOS, Android, Windows](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-ios-android.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-ios-android.yml)
 
-| Supported OS Platform | Version | Download | 
+| Supported OS Platform | Version | 🎛️ Operating System  | Download | 
 | - | - | - | 
-| Android - 24.0 | 1.0.0 |  | 
-| IOS - 14.2 | 1.0.0 |  | 
-| Mac Catalyst - 14.0 | 1.0.0 | | 
-| Windows - 10 | 1.0.0 |  | 
+| Android - 24.0 | [![Latest Release](https://img.shields.io/github/v/release/s2kdesign-com/CoinGardenWorld?label=📱&style=for-the-badge&color=white)](https://github.com/s2kdesign-com/CoinGardenWorld/releases/latest) | ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white) | Latest Version | 
+| IOS - 14.2 | [![Latest Release](https://img.shields.io/github/v/release/s2kdesign-com/CoinGardenWorld?label=🍏&style=for-the-badge&color=white)](https://github.com/s2kdesign-com/CoinGardenWorld/releases/latest)| ![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white) | Latest Version | 
+| Mac Catalyst - 14.0 | [![Latest Release](https://img.shields.io/github/v/release/s2kdesign-com/CoinGardenWorld?label=📺&style=for-the-badge&color=white)](https://github.com/s2kdesign-com/CoinGardenWorld/releases/latest) | ![macOS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0) | Latest Version | 
+| Windows - 10 | [![Latest Release](https://img.shields.io/github/v/release/s2kdesign-com/CoinGardenWorld?label=💻&style=for-the-badge&color=white)](https://github.com/s2kdesign-com/CoinGardenWorld/releases/latest) | ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)  | Latest Version | 
 
 ---
 
