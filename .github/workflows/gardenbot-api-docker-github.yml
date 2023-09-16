@@ -3,7 +3,7 @@ name: Build GardenBot API - Docker
 on:
   push:
     paths:
-    - 'src/garden-bot/CoinGardenBotCore_Api/**'
+    - 'src/garden-bot/CoinGardenBotCore.Api/**'
     - 'src/shared/**'
     branches:
       - main
@@ -18,7 +18,7 @@ env:
   DOTNET_NOLOGO: true                     # Disable the .NET logo
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Disable the .NET first time experience
   DOTNET_CLI_TELEMETRY_OPTOUT: true       # Disable sending .NET CLI telemetry
-  DOCKERFILE: src/garden-bot/CoinGardenBotCore_Api/Dockerfile
+  DOCKERFILE: src/garden-bot/CoinGardenBotCore.Api/Dockerfile
   TAG: ghcr.io/s2kdesign-com/coingardenworld.gardenbot_api
   VERSION_UPDATER_PATH: src/garden-bot/**/*.csproj
  

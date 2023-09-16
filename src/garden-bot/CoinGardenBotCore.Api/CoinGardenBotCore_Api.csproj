@@ -8,7 +8,7 @@
 	  <Version>1.0.0.11</Version>
 	  <DockerFastModeProjectMountDirectory>/home/site/wwwroot</DockerFastModeProjectMountDirectory>
 	  <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-	  <DockerfileContext>..\..\..</DockerfileContext>
+	  <DockerfileContext>..\..\..</DockerfileContext> 
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="HttpMultipartParser" Version="8.1.0" />
