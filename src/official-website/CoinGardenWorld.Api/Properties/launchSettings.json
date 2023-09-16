@@ -2,8 +2,13 @@
   "profiles": {
     "CoinGardenWorld.Api": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7139",
-      "launchBrowser": false
+      "commandLineArgs": "--port 7139"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 33727,
+      "useSSL": false
     }
   }
 }

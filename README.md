@@ -57,19 +57,19 @@ https://docs.coingarden.world/v/bg/
 | - | Image | Url | Version | Size | Status | 
 | - | - | - | - | - | - | 
 | 🖼️ | Official Site - PWA |  [localhost:7215](https://localhost:7215)  | ![Version](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.official_website/latest_tag?color=%2344cc11&ignore=latest&label=version&trim=) | ![Size](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.official_website/size?color=%2344cc11&tag=latest&label=size&trim=) | [![Build Official Site - Docker](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-docker-github.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-docker-github.yml) |
-| 🖼️ | Official Site - API | [localhost:7139](http://localhost:7139/api/swagger/ui) |  1.0.0 | |  |
+| 🖼️ | Official Site - API | [localhost:7139](http://localhost:7139/api/swagger/ui) |  | |  |
 |   | - |  |  |  |  |  
 | 📱 | Mobile App - PWA |  [localhost:7119](https://localhost:7119) |  ![Version](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.mobileapp_site/latest_tag?color=%2344cc11&ignore=latest&label=version&trim=) | ![Size](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.mobileapp_site/size?color=%2344cc11&tag=latest&label=size&trim=) | [![Build Mobile APP Site - Docker](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-docker-github.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-docker-github.yml) |
-| 📱 | Mobile App - API | [localhost:7250](http://localhost:7250/api/swagger/ui) | 1.0.0 | | |
+| 📱 | Mobile App - API | [localhost:7250](http://localhost:7250/api/swagger/ui) | | | |
 |   |  - |  |  |  |  |  
-| 🏪 | NFT Store - PWA |  | 1.0.0 | |
-| 🏪 | NFT Store API |  | 1.0.0 | |
+| 🏪 | NFT Store - PWA |  |  | |
+| 🏪 | NFT Store API |  |  | |
 |   | - |  |  |  |  |  
 | 🤖 | GardenBOT Site - PWA | [localhost:7089](https://localhost:7089) |  ![Version](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.gardenbot_site/latest_tag?color=%2344cc11&ignore=latest&label=version&trim=) | ![Size](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.gardenbot_site/size?color=%2344cc11&tag=latest&label=size&trim=) | [![Build GardenBot Site - Docker](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-docker-github.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-docker-github.yml) | 
-| 🤖 | GardenBOT Message API | [localhost:3980](http://localhost:3980/api/messages) | 1.0.0 | |
-| 🤖 | GardenBOT API | [localhost:7274](http://localhost:7274/api/swagger/ui) | 1.0.0 |  |
+| 🤖 | GardenBOT Message API | [localhost:3980](http://localhost:3980/api/messages) | | | |
+| 🤖 | GardenBOT API | [localhost:7274](http://localhost:7274/api/swagger/ui) |  ![Version](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.gardenbot_api/latest_tag?color=%2344cc11&ignore=latest&label=version&trim=) | ![Size](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.gardenbot_api/size?color=%2344cc11&tag=latest&label=size&trim=) | [![Build GardenBot API - Docker](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-api-docker-github.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-api-docker-github.yml) |
 |   | -|  |  |  |  |  
-| 🔐 | Identity Server - .NET APP | [localhost:5001](https://localhost:5001) | 1.0.0 |  |
+| 🔐 | Identity Server - .NET APP | [localhost:5001](https://localhost:5001) | |  |
 
 ---
 ### 📱 Mobile Applications
