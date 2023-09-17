@@ -36,7 +36,7 @@ https://docs.coingarden.world/v/bg/
 | 🌐 | Metaverse Page | [https://metaverse.coingarden.world](https://metaverse.coingarden.world/) |  |
 | 🤖 | GardenBOT Page | [https://bot.coingarden.world](https://bot.coingarden.world/) | [![Deploy GardenBOT Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml) |
 | 🔐 | Identity Server | [https://coingarden-identity.azurewebsites.net](https://coingarden-identity.azurewebsites.net) | [![Deploy Identity Server - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml) |
- | 👨‍⚕️ | Status/Health Check Site |  | | 
+ | 👨‍⚕️ | Status Site |  | | 
 
 
 ### Azure Functions ⚡
@@ -73,7 +73,7 @@ https://docs.coingarden.world/v/bg/
 |   | -|  |  |  |  |  
 | 🔐 | Identity Server - .NET APP | [localhost:5001](https://localhost:5001) | | | |
 |   | -|  |  |  |  | 
-| 👨‍⚕️ | Status/Health Check Site | [localhost:7000](https://localhost:7000) | | |  |
+| 👨‍⚕️ | Status Site | [localhost:7000](https://localhost:7000) | | |  |
 
 ---
 ### 📱 Mobile Applications

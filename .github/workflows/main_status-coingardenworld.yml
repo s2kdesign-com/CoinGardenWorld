@@ -27,17 +27,14 @@ jobs:
         with:
           dotnet-version: '7.x'
           include-prerelease: true
-
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
-
+          
       - name: dotnet publish
         run: dotnet publish "src/monitoring/CoinGardenWorld.HealthChecksUi/CoinGardenWorld.HealthChecksUi.csproj" -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: .net-app
+          name: .status-site
           path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
@@ -51,7 +48,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: .net-app
+          name: .status-site
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
