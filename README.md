@@ -36,7 +36,7 @@ https://docs.coingarden.world/v/bg/
 | 🌐 | Metaverse Page | [https://metaverse.coingarden.world](https://metaverse.coingarden.world/) |  |
 | 🤖 | GardenBOT Page | [https://bot.coingarden.world](https://bot.coingarden.world/) | [![Deploy GardenBOT Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml) |
 | 🔐 | Identity Server | [https://coingarden-identity.azurewebsites.net](https://coingarden-identity.azurewebsites.net) | [![Deploy Identity Server - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml) |
- | 👨‍⚕️ | Status Site |  | | 
+ | 👨‍⚕️ | Status Site | https://status-coingardenworld.azurewebsites.net/ | [![Deploy Status Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_status-coingardenworld.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_status-coingardenworld.yml) | 
 
 
 ### Azure Functions ⚡
