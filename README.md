@@ -30,14 +30,16 @@ https://docs.coingarden.world/v/bg/
 | - | Application | Url | Status |
 | - | - | - | - |
 | 🖼️ | Official Site | [https://coingarden.world](https://coingarden.world) | [![Deploy Official Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml) |
-| 📱 | Mobile App | [https://app.coingarden.world](https://app.coingarden.world)  | [![Deploy MobileAPP Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-azure-static-web-apps.yml) | 
-| 🏪 | NFT Store | [https://store.coingarden.world](https://store.coingarden.world) |  |
-| 🧑‍🌾 | Charity Page | [https://charity.coingarden.world](https://charity.coingarden.world/) |  |
-| 🌐 | Metaverse Page | [https://metaverse.coingarden.world](https://metaverse.coingarden.world/) |  |
-| 🤖 | GardenBOT Page | [https://bot.coingarden.world](https://bot.coingarden.world/) | [![Deploy GardenBOT Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml) |
+| 📱 | Mobile App Website | [https://app.coingarden.world](https://app.coingarden.world)  | [![Deploy MobileAPP Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-azure-static-web-apps.yml) |
+| 🏪 | NFT Store Website | [https://store.coingarden.world](https://store.coingarden.world) |  |
+| 🧑‍🌾 | Charity Website | [https://charity.coingarden.world](https://charity.coingarden.world/) |  |
+| 🌐 | Metaverse Website | [https://metaverse.coingarden.world](https://metaverse.coingarden.world/) |  |
+| 🤖 | GardenBOT Website | [https://bot.coingarden.world](https://bot.coingarden.world/) | [![Deploy GardenBOT Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml) |
 | 🔐 | Identity Server | [https://coingarden-identity.azurewebsites.net](https://coingarden-identity.azurewebsites.net) | [![Deploy Identity Server - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml) |
- | 👨‍⚕️ | Status Site | https://status-coingardenworld.azurewebsites.net/ | [![Deploy Status Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_status-coingardenworld.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_status-coingardenworld.yml) | 
-
+ | 👨‍⚕️ | Status Website | https://status-coingardenworld.azurewebsites.net/ | [![Deploy Status Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_status-coingardenworld.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_status-coingardenworld.yml) | 
+ |  - |   |   |   |
+ | 🏪 | NFT Store Web3 | buy.coingarden.world |  |
+ | 🌐 | Metaverse Game | play.coingarden.world |  |
 
 ### Azure Function APIs ⚡
 | - | Application | Url | Status |
