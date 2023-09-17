@@ -72,7 +72,7 @@ https://docs.coingarden.world/v/bg/
 | 🤖 | GardenBOT Message API | [localhost:7071](http://localhost:7071/api/messages) | | | |
 | 🤖 | GardenBOT API | [localhost:7274](http://localhost:7274/api/swagger/ui) |  ![Version](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.gardenbot_api/latest_tag?color=steelblue&ignore=latest&label=latest&trim=) | ![Size](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.gardenbot_api/size?color=steelblue&tag=latest&label=size&trim=) | [![Build GardenBot API - Docker](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-api-docker-github.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-api-docker-github.yml) |
 |   | -|  |  |  |  |  
-| 🔐 | Identity Server - .NET APP | [localhost:5001](https://localhost:5001) | | | |
+| 🔐 | Identity Server - .NET APP | [localhost:5001](https://localhost:5001) |  ![Version](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.identity_server/latest_tag?color=steelblue&ignore=latest&label=latest&trim=) | ![Size](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.identity_server/size?color=steelblue&tag=latest&label=size&trim=) | [![Build Identity Server - Docker](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/identity-server-docker-github.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/identity-server-docker-github.yml) |
 |   | -|  |  |  |  | 
 | 👨‍⚕️ | Status Site | [localhost:7000](https://localhost:7000) | | |  |
 
