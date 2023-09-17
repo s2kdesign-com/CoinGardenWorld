@@ -1,4 +1,4 @@
-name: Build Mobile APP Site - Docker
+name: Build Identity Server - Docker
 
 on:
   push:

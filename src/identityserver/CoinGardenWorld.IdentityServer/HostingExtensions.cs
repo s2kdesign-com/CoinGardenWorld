@@ -126,7 +126,8 @@ internal static class HostingExtensions
         // Add HealthChecks 
         builder.Services.AddHealthChecks().AddCheck("self", () =>
             HealthCheckResult.Healthy("Build Version: " + Assembly.GetExecutingAssembly()?.GetName().Version))
-            .AddSqlServer(connectionString, "SELECT TOP (1) * FROM [dbo].[Clients]");
+            .AddSqlServer(connectionString, "SELECT TOP (1) * FROM [dbo].[Clients]")
+            ;
         
         return builder.Build();
     }
