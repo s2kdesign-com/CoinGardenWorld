@@ -1,21 +1,25 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/azure/functions-action
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy dotnet core app to Azure Function App - coingardenBotCore
-
+name: Deploy GardenBot Messaging API - Azure
 on:
   push:
+    paths:
+    - 'src/garden-bot/CoinGardenBotCore/**'
     branches:
       - main
   workflow_dispatch:
 
+
 env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'src/garden-bot/CoinGardenBotCore/CoinGardenBotCore' # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: 'v4.0' # set this to the dotnet version to use
 
 jobs:
   build-and-deploy:
     runs-on: windows-latest
+    environment:
+      name: 'Azure'
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@v2
