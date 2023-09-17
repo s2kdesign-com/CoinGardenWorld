@@ -2,11 +2,13 @@ using System.Collections.Generic;
 using System.Net;
 using System.Reflection;
 using CoinGardenWorld.AzureFunctionExtensions.Configurations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Extensions.OpenApi.Extensions;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Enums;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
@@ -14,21 +16,24 @@ using Newtonsoft.Json;
 namespace CoinGardenWorld.AzureFunctionExtensions.Triggers {
     public class ApplicationInfoHttpTrigger {
         private readonly ILogger _logger;
+        private readonly HealthCheckService _healthCheck;
 
-        public ApplicationInfoHttpTrigger(ILoggerFactory loggerFactory)
+        public ApplicationInfoHttpTrigger(ILoggerFactory loggerFactory, HealthCheckService healthCheck)
         {
             _logger = loggerFactory.CreateLogger<ApplicationInfoHttpTrigger>();
+            _healthCheck = healthCheck;
         }
 
-        [Function(nameof(ApplicationInfoHttpTrigger.Ping))]
-        [OpenApiOperation(operationId: "ping", tags: new[] { "ping" }, Summary = "Pings for health check", Description = "This pings for health check.", Visibility = OpenApiVisibilityType.Important)]
-        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/plain", bodyType: typeof(string), Summary = "Successful operation", Description = "Successful operation")]
-        public async Task<HttpResponseData> Ping(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "GET", Route = "ping")] HttpRequestData req) {
+        [Function(nameof(ApplicationInfoHttpTrigger.Health))]
+        [OpenApiOperation(operationId: "health", tags: new[] { "health" }, Summary = "Health check", Description = "This pings for health check.", Visibility = OpenApiVisibilityType.Important)]
+        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(HealthReport), Summary = "Successful operation", Description = "Successful operation")]
+        public async Task<HttpResponseData> Health(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "GET", Route = "Health")] HttpRequestData req) {
             var response = req.CreateResponse(HttpStatusCode.OK);
-            response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
 
-            await response.WriteStringAsync("pong").ConfigureAwait(false);
+            var healthStatus = await _healthCheck.CheckHealthAsync();
+            
+            await response.WriteAsJsonAsync(healthStatus).ConfigureAwait(false);
 
             return await Task.FromResult(response).ConfigureAwait(false);
         }

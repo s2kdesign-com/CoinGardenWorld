@@ -106,6 +106,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldMobileApp.We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldMobileApp.MobileAppTheme", "src\mobile-app\app\CoinGardenWorldMobileApp.MobileAppTheme\CoinGardenWorldMobileApp.MobileAppTheme.csproj", "{CF63FC94-FB3F-4BC1-8664-C357E97ADF7B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "monitoring", "monitoring", "{F1EA17DC-FEDA-42BA-981A-42B3A869F9BF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.HealthChecksUi", "src\monitoring\CoinGardenWorld.HealthChecksUi\CoinGardenWorld.HealthChecksUi.csproj", "{63CF0D16-DCF1-48AE-94F8-22581B9221EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -186,6 +190,10 @@ Global
 		{CF63FC94-FB3F-4BC1-8664-C357E97ADF7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF63FC94-FB3F-4BC1-8664-C357E97ADF7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF63FC94-FB3F-4BC1-8664-C357E97ADF7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63CF0D16-DCF1-48AE-94F8-22581B9221EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63CF0D16-DCF1-48AE-94F8-22581B9221EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63CF0D16-DCF1-48AE-94F8-22581B9221EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63CF0D16-DCF1-48AE-94F8-22581B9221EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -222,6 +230,8 @@ Global
 		{B0AC8052-E9E0-49D5-BBA7-E3B1A3E3A85B} = {3C4D4071-981D-4A7D-B5DD-5EF3E3FFE9F4}
 		{D56EC38E-87F7-4707-8342-6112617D1792} = {3C4D4071-981D-4A7D-B5DD-5EF3E3FFE9F4}
 		{CF63FC94-FB3F-4BC1-8664-C357E97ADF7B} = {3C4D4071-981D-4A7D-B5DD-5EF3E3FFE9F4}
+		{F1EA17DC-FEDA-42BA-981A-42B3A869F9BF} = {5A954599-DAE6-45A3-A4EE-E938E3CE529C}
+		{63CF0D16-DCF1-48AE-94F8-22581B9221EB} = {F1EA17DC-FEDA-42BA-981A-42B3A869F9BF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}
