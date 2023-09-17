@@ -9,6 +9,10 @@ using Serilog;
 using CoinGardenWorld.IdentityServer.Migrations;
 using CoinGardenWorld.IdentityServer.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System.Reflection;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 namespace CoinGardenWorld.IdentityServer;
 
@@ -119,6 +123,11 @@ internal static class HostingExtensions
         builder.Services.Configure<RazorPagesOptions>(options =>
             options.Conventions.AuthorizeFolder("/ServerSideSessions", "admin"));
 
+        // Add HealthChecks 
+        builder.Services.AddHealthChecks().AddCheck("self", () =>
+            HealthCheckResult.Healthy("Build Version: " + Assembly.GetExecutingAssembly()?.GetName().Version))
+            .AddSqlServer(connectionString, "SELECT TOP (1) * FROM [dbo].[Clients]");
+        
         return builder.Build();
     }
     
@@ -138,6 +147,17 @@ internal static class HostingExtensions
         
         app.MapRazorPages()
             .RequireAuthorization();
+
+        app
+            .UseHealthChecks("/health", new HealthCheckOptions
+            {
+                Predicate = _ => true,
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            })
+            .UseHealthChecks("/healthz", new HealthCheckOptions
+            {
+                Predicate = _ => true
+            });
 
         return app;
     }
