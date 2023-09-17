@@ -38,7 +38,7 @@ jobs:
           version: "${{ env.VERSION_CI }}"
           
       - name: dotnet publish
-        run: dotnet publish "${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}" -c Release -o ${{env.DOTNET_ROOT}}/CoinGardenWorld.GardenBotMessagingAPI
+        run: dotnet publish "${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}" -c Release -o ${{env.DOTNET_ROOT}}\CoinGardenWorld.GardenBotMessagingAPI
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2

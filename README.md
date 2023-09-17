@@ -63,7 +63,7 @@ https://docs.coingarden.world/v/bg/
 |   | - |  |  |  |  |  
 | 📱 | Mobile App Site - PWA |  [localhost:7119](https://localhost:7119) |  ![Version](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.mobileapp_site/latest_tag?color=%2344cc11&ignore=latest&label=version&trim=) | ![Size](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.mobileapp_site/size?color=%2344cc11&tag=latest&label=size&trim=) | [![Build Mobile APP Site - Docker](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-docker-github.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-docker-github.yml) |
 | 📱 | Mobile App - API | [localhost:7250](http://localhost:7250/api/swagger/ui) | | | |
-|   |  - |  |  |  |  |  
+|   |  - |  |  |  |  |   
 | 🏪 | NFT Store - PWA |  |  | |
 | 🏪 | NFT Store API |  |  | |
 |   | - |  |  |  |  |  
