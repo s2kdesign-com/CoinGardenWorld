@@ -37,14 +37,14 @@ jobs:
           file: "src/garden-bot/**/*.csproj"
           version: "${{ env.VERSION_CI }}"
           
-      - name: dotnet build
-        run: dotnet build "src/garden-bot/CoinGardenBotCore/CoinGardenBotCore/CoinGardenBotCore.csproj" -c Release -o ${{env.DOTNET_ROOT}}/CoinGardenWorld.GardenBotMessagingAPI
+      - name: dotnet publish
+        run: dotnet publish "src/garden-bot/CoinGardenBotCore/CoinGardenBotCore/CoinGardenBotCore.csproj" -c Release -o CoinGardenWorld.GardenBotMessagingAPI
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: .gardenbot-messagingapi
-          path: ${{env.DOTNET_ROOT}}/CoinGardenWorld.GardenBotMessagingAPI 
+          path: CoinGardenWorld.GardenBotMessagingAPI 
 
 
   deploy:
