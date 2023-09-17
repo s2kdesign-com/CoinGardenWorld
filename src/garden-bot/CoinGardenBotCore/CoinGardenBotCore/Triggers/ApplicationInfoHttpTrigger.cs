@@ -27,13 +27,13 @@ namespace CoinGardenBotCore.Triggers {
 
 
         [FunctionName("getVersion")]
-        public async Task<IActionResult> GetVersion([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "api/getVersion")] HttpRequest req)
+        public async Task<IActionResult> GetVersion([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "app/getVersion")] HttpRequest req)
         {
             return new OkObjectResult(Assembly.GetExecutingAssembly().GetName().Version);
         }
 
         [FunctionName("health")]
-        public async Task<IActionResult> Health([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "api/health")] HttpRequest req)
+        public async Task<IActionResult> Health([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "app/health")] HttpRequest req)
         {
 
             var healthStatus = await _healthCheck.CheckHealthAsync();
