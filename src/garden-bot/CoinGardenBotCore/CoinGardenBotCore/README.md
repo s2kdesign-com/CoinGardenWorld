@@ -13,7 +13,7 @@ Another great resource if you're just getting started is the **[guided tutorial]
 ### Connect with your users
 
 Your bot comes pre-configured to connect to our Web Chat and DirectLine channels, but there are many more places you can connect your bot to - including Microsoft Teams, Telephony, DirectLine Speech, Slack, Facebook, Outlook and more. Check out all of the places you can connect to on the bot settings page.
-   
+    
 ### Publish your bot to Azure from Composer
 
 Composer can help you provision the Azure resources necessary for your bot, and publish your bot to them. To get started, create a publishing profile from your bot settings page in Composer (the wrench icon on the left navigation rail). Make sure you only provision the optional Azure resources you need!
