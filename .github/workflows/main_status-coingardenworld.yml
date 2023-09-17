@@ -41,7 +41,7 @@ jobs:
     runs-on: windows-latest
     needs: build
     environment:
-      name: 'Production'
+      name: 'Azure'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'status-coingardenworld'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_STATUS_DEPLOY_TOKEN }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9CF88FE15D2F416AA62EF25DE0DED2A1 }}
           package: .
