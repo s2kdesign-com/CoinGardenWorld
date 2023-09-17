@@ -3,7 +3,7 @@
 This bot project was created using the Core Bot with Azure Language Understanding template, and contains support for a base set of conversational flows.
 
 ## Next steps
- 
+  
 ### Start building your bot
 
 Composer can help guide you through getting started building your bot. From your bot settings page (the wrench icon on the left navigation rail), click on the rocket-ship icon on the top right for some quick navigation links.
