@@ -28,14 +28,36 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
           
+      - name: Set VERSION variable
+        shell: bash
+        run: |
+          VER=$(cat VERSION)
+          VER_LONG="$VER.${{github.run_number}}"
+          echo "VERSION_CI=$VER_LONG" >> $GITHUB_ENV
+          
+      - name: Show VERSION variable
+        shell: bash
+        run: |
+          echo "Building version - ${{ env.VERSION_CI }}"
+
+      - name: .NET project version updater
+        # You may pin to the exact commit or the version.
+        # uses: vers-one/dotnet-project-version-updater@4838bb90da42ab72f272a9dde7888c1b7fb361f1
+        uses: vers-one/dotnet-project-version-updater@v1.2
+        with:
+          # Project file path
+          file: "src/monitoring/**/*.csproj"
+          # New version
+          version: "${{ env.VERSION_CI }}"
+          
       - name: dotnet publish
-        run: dotnet publish "src/monitoring/CoinGardenWorld.HealthChecksUi/CoinGardenWorld.HealthChecksUi.csproj" -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish "src/monitoring/CoinGardenWorld.HealthChecksUi/CoinGardenWorld.HealthChecksUi.csproj" -c Release -o ${{env.DOTNET_ROOT}}/CoinGardenWorld.StatusSite
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: .status-site
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ${{env.DOTNET_ROOT}}/CoinGardenWorld.StatusSite
 
   deploy:
     runs-on: windows-latest
