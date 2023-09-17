@@ -3,7 +3,7 @@ name: Build Mobile APP Site API - Docker
 on:
   push:
     paths:
-    - 'src/garden-bot/CoinGardenWorldMobileApp_Api/**'
+    - 'src/mobile-app/site/CoinGardenWorldMobileApp_Api/**'
     - 'src/shared/back-end/**'
     branches:
       - main
