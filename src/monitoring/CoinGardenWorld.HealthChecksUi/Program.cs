@@ -10,7 +10,7 @@ namespace CoinGardenWorld.HealthChecksUi
             startup.ConfigureServices(builder.Services); // Add services to the container.
 
             var app = builder.Build();
-
+             
             startup.Configure(app, app.Environment); // Configure the HTTP request pipeline.
 
             app.MapGet("/", async opt => opt.Response.Redirect("status"));
