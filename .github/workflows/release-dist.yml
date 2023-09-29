@@ -73,6 +73,7 @@ jobs:
 
 # Mobile APP IOS
       - name: Download artifact
+        continue-on-error: true
         id: download-artifact-ios
         uses: dawidd6/action-download-artifact@v2
         with:
@@ -81,6 +82,7 @@ jobs:
           workflow_conclusion: success
 # Mobile APP Android          
       - name: Download artifact
+        continue-on-error: true
         id: download-artifact-android
         uses: dawidd6/action-download-artifact@v2
         with:
@@ -89,6 +91,7 @@ jobs:
           workflow_conclusion: success
 # Mobile APP Mac
       - name: Download artifact
+        continue-on-error: true
         id: download-artifact-mac
         uses: dawidd6/action-download-artifact@v2
         with:
@@ -97,7 +100,6 @@ jobs:
           workflow_conclusion: success
 
       - name: Create Release
-        if: always()
         id: create_release
         # Drafts your next Release notes as Pull Requests are merged into "master"
         uses: release-drafter/release-drafter@v5
@@ -113,7 +115,6 @@ jobs:
       
       
       - name: Release Upload Assets
-        if: always()
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.get_version.outputs.VERSION }}
