@@ -117,7 +117,7 @@ jobs:
       - name: Release Upload Assets
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.get_version.outputs.VERSION }}
+          tag_name: ${{ steps.get_version.outputs.VERSION_CI }}
           draft: false
           # TODO: Missing Apple app, the build is with a lot of files 
            # src/mobile-apps/CoinGardenWorld.Maui/bin/Release/net6.0-ios/iossimulator-x64/**/*.app
