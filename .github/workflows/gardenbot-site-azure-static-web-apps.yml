@@ -31,7 +31,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-          
+      
       - name: Set VERSION variable
         run: |
           VER=$(cat VERSION)
@@ -41,7 +41,14 @@ jobs:
       - name: Show VERSION variable
         run: |
           echo "Building version - ${{ env.VERSION_CI }}"
-
+          
+      - name: Find and Replace frond-end Version
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "Build Version: 1.0.0.0"
+          replace: "Build Version: ${{ env.VERSION_CI }}"
+          include: "**healthcheck.json"
+          
       - name: .NET project version updater
         # You may pin to the exact commit or the version.
         # uses: vers-one/dotnet-project-version-updater@4838bb90da42ab72f272a9dde7888c1b7fb361f1

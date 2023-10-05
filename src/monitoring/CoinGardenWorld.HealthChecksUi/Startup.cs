@@ -28,6 +28,7 @@ namespace CoinGardenWorld.HealthChecksUi
             app.UseHealthChecksUI(config =>
             {
                // config.ResourcesPath = string.IsNullOrEmpty(pathBase) ? "/ui/resources" : $"{pathBase}/ui/resources";
+
                 config.UIPath = "/status";
                 config.AddCustomStylesheet(Path.Join("wwwroot", "css", "coingarden.css"));
             });
