@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "CoinGardenWorldCharities_Api": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7282"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 34175,
+      "useSSL": false
+    }
+  }
+}

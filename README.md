@@ -69,7 +69,10 @@ https://docs.coingarden.world/v/bg/
 | 📱 | Mobile App - API | [localhost:7250](http://localhost:7250/api/swagger/ui) | ![Version](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.mobileapp_site_api/latest_tag?color=darkblue&ignore=latest&label=latest&trim=) | ![Size](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.mobileapp_site_api/size?color=royalblue&tag=latest&label=size&trim=) | [![Build Mobile APP Site API - Docker](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-api-docker-github.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-api-docker-github.yml) |
 |   |  - |  |  |  |  |   
 | 🏪 | NFT Store - PWA | [localhost:7259](https://localhost:7259) |  | |
-| 🏪 | NFT Store API | [localhost:7258](https://localhost:7258) |  | |
+| 🏪 | NFT Store - API | [localhost:7258](https://localhost:7258) |  | |
+|   |  - |  |  |  |  |   
+| 🧑‍🌾 | Charity - PWA | [localhost:2492](https://localhost:2492) |  | |
+| 🧑‍🌾 | Charity - API | [localhost:7282](https://localhost:7282) |  | |
 |   | - |  |  |  |  |  
 | 🤖 | GardenBOT Site - PWA | [localhost:7089](https://localhost:7089) |  ![Version](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.gardenbot_site/latest_tag?color=darkblue&ignore=latest&label=latest&trim=) | ![Size](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.gardenbot_site/size?color=royalblue&tag=latest&label=size&trim=) | [![Build GardenBot Site - Docker](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-docker-github.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-docker-github.yml) | 
 | 🤖 | GardenBOT Message API | [localhost:7071](http://localhost:7071/api/messages) | | | |
@@ -93,7 +96,7 @@ All applications are build with .NET MAUI (Multi-platform App UI ) - ![Blazor](h
 ---
 ### 🎨 Color Schemes
 
-| Official Site | GardenAPP | GardenBOT | GardenSTORE | GardenVERSE | GRDN Token | GardenCHARITY |
+| Official Site | Garden APP | Garden BOT | Garden STORE | Garden VERSE | GRDN Token | Garden CHARITY |
 | - | - | - | - | - | - | - |
 | <span style='color:#1FC511'>#1FC511</span> | <span style='color:#0094ff'>#0094ff</span> |  <span style='color:#FF6A00'>#FF6A00</span> | <span style='color:#1BE4A8'>#1BE4A8</span> | <span style='color:#FF00C9'>#FF00C9</span> | <span style='color:#E1D11E'>#E1D11E</span> | <span style='color:#FF0058'>#FF0058</span>  | 
 | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/official-site-gradient.png?raw=true) | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/mobileapp-site-gradient.png?raw=true)  | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/bot-site-gradient.png?raw=true) | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/store-gradient.png?raw=true)  | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/metaverse-gradient.png?raw=true) | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/token-gradient.png?raw=true) | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/charities-gradient.png?raw=true) |

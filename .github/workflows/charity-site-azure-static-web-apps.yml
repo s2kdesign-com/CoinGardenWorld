@@ -1,0 +1,86 @@
+name: Deploy GardenCharity Site - Azure
+
+on:
+  push:
+    paths:
+    - 'src/charities/site/**'
+    - 'src/shared/**'
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+env:
+  DOTNET_NOLOGO: true                     # Disable the .NET logo
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Disable the .NET first time experience
+  DOTNET_CLI_TELEMETRY_OPTOUT: true       # Disable sending .NET CLI telemetry
+ 
+jobs:
+  build_and_deploy_job:
+    environment:
+      name: Azure
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    name: MobileAPP Site - Build and Deploy Job
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+          
+      - name: Set VERSION variable
+        run: |
+          VER=$(cat VERSION)
+          VER_LONG="$VER.${{github.run_number}}"
+          echo "VERSION_CI=$VER_LONG" >> $GITHUB_ENV
+          
+      - name: Show VERSION variable
+        run: |
+          echo "Building version - ${{ env.VERSION_CI }}"
+          
+      - name: Find and Replace frond-end Version
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "Build Version: 1.0.0.0"
+          replace: "Build Version: ${{ env.VERSION_CI }}"
+          include: "**healthcheck.json"
+
+      - name: .NET project version updater
+        # You may pin to the exact commit or the version.
+        # uses: vers-one/dotnet-project-version-updater@4838bb90da42ab72f272a9dde7888c1b7fb361f1
+        uses: vers-one/dotnet-project-version-updater@v1.2
+        with:
+          # Project file path
+          file: "src/charities/**/*.csproj"
+          # New version
+          version: "${{ env.VERSION_CI }}"
+
+      - name: Build And Deploy version - ${{ env.VERSION_CI }}
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_PURPLE_MUSHROOM_0ECFD0510  }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          action: "upload"
+          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
+          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
+          app_location: "src/charities/site/CoinGardenWorldCharities.Web" # App source code path
+          api_location: "src/charities/site/CoinGardenWorldCharities_Api" # Api source code path - optional
+          output_location: "wwwroot" # Built app content directory - optional
+          ###### End of Repository/Build Configurations ######
+  
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_PURPLE_MUSHROOM_0ECFD0510 }}
+          action: "close"
