@@ -66,8 +66,9 @@
 ### All builds and deployments will be splitted too and when changes are made to some submodule it will be the only one build and deployed 
 ---
 
-![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/src/official-website/CoinGardenWorld.Web/wwwroot/social-logo-1276x739.png?raw=true) 
+![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/src/official-website/CoinGardenWorld.Web/wwwroot/social-logo-1276x739.png?raw=true)
 ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/src/mobile-app/site/CoinGardenWorldMobileApp.Web/wwwroot/mobileapp_social_logo_1236x730.webp?raw=true) 
 ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/src/nft-market/site/CoinGardenWorldStore.Web/wwwroot/images/nftstore_social_logo.webp?raw=true) 
+![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/src/metaverse/site/CoinGardenWorldMetaverse.Web/wwwroot/images/metaverse-social-logo-1250x673.webp?raw=true)  
 ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/src/garden-bot/CoinGardenBotCore.Web/wwwroot/bot_social_logo_1237x730.webp?raw=true)
 ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/src/charities/site/CoinGardenWorldCharities.Web/wwwroot/images/charity_social_logo_1224_680.webp?raw=true)  

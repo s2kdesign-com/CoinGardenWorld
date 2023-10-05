@@ -30,6 +30,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "charities", "charities", "{
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "metaverse", "metaverse", "{B9C86247-2C81-404E-A648-757D3E7EA2FC}"
+	ProjectSection(SolutionItems) = preProject
+		src\metaverse\README.md = src\metaverse\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "official-website", "official-website", "{7A9EFF7D-7B83-4776-BB35-A00EBA755F84}"
 	ProjectSection(SolutionItems) = preProject
