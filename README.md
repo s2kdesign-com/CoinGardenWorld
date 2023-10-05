@@ -90,12 +90,13 @@ All applications are build with .NET MAUI (Multi-platform App UI ) - ![Blazor](h
 | Windows - 10 | [![Latest Release](https://img.shields.io/github/v/release/s2kdesign-com/CoinGardenWorld?label=💻&style=for-the-badge&color=white)](https://github.com/s2kdesign-com/CoinGardenWorld/releases/latest) | ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)  | Latest Version | [![Build Mobile APP - Windows](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-windows.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-windows.yml) |
 
 ---
+### 🎨 Color Schemes
 
-| | | Color Scheme | | |
---- | :---: | :---: |  :---: | ---: |
 | Official Site | GardenAPP | GardenBOT | GardenSTORE | Metaverse | GRDN Token | 
+| - | - | - | - | - | - | 
 | <span style='color:#1FC511'>#1FC511</span> | <span style='color:#FF6A00'>#FF6A00</span> |  <span style='color:#0094ff'>#0094ff</span> | <span style='color:#1BE4A8'>#1BE4A8</span> | <span style='color:#FF0058'>#FF0058</span> | <span style='color:#E1D11E'>#E1D11E</span> |
 | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/official-site-gradient.png?raw=true) | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/mobileapp-site-gradient.png?raw=true)  | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/bot-site-gradient.png?raw=true) | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/store-gradient.png?raw=true)  | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/metaverse-gradient.png?raw=true) | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/token-gradient.png?raw=true) | 
+
 ## 🧑‍🌾 User Flow Diagram
 ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/UserFlowDiagram.drawio.png?raw=true)
 
