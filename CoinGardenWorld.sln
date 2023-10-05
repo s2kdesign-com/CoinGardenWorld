@@ -119,6 +119,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldStore.Web", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldStore_Api", "src\nft-market\site\CoinGardenWorldStore_Api\CoinGardenWorldStore_Api.csproj", "{EFEA987A-63BC-4F07-A8CB-65DDEB64E38A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "site", "site", "{01816738-52AC-4191-91A5-62F0B4B6C0BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorldCharities.Web", "src\charities\site\CoinGardenWorldCharities.Web\CoinGardenWorldCharities.Web.csproj", "{329E6367-FB15-4DA6-97E3-5D783A780282}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -211,6 +215,10 @@ Global
 		{EFEA987A-63BC-4F07-A8CB-65DDEB64E38A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFEA987A-63BC-4F07-A8CB-65DDEB64E38A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFEA987A-63BC-4F07-A8CB-65DDEB64E38A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{329E6367-FB15-4DA6-97E3-5D783A780282}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{329E6367-FB15-4DA6-97E3-5D783A780282}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{329E6367-FB15-4DA6-97E3-5D783A780282}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{329E6367-FB15-4DA6-97E3-5D783A780282}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -252,6 +260,8 @@ Global
 		{B346B531-2AB0-43FA-B672-E40369876CD3} = {9710BD16-0709-4F6E-8813-DEE82F5DC586}
 		{E6662201-CCAE-4430-B373-7AF22CAC4E1F} = {B346B531-2AB0-43FA-B672-E40369876CD3}
 		{EFEA987A-63BC-4F07-A8CB-65DDEB64E38A} = {B346B531-2AB0-43FA-B672-E40369876CD3}
+		{01816738-52AC-4191-91A5-62F0B4B6C0BD} = {63059FC5-3711-41CA-A054-5E92F02E8817}
+		{329E6367-FB15-4DA6-97E3-5D783A780282} = {01816738-52AC-4191-91A5-62F0B4B6C0BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}
