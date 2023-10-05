@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "CoinGardenBotCore": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 31162,
+      "useSSL": false
+    }
+  }
+}
