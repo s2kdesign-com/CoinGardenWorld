@@ -75,8 +75,8 @@ https://docs.coingarden.world/v/bg/
 | 🧑‍🌾 | Charity - PWA | [localhost:2492](https://localhost:2492) |  | |
 | 🧑‍🌾 | Charity - API | [localhost:7282](https://localhost:7282) |  | |
 |   | - |  |  |  |  |  
-| 🧑‍🌾 | Metaverse - PWA | [localhost:7198](https://localhost:7198) |  | |
-| 🧑‍🌾 | Metaverse - API | [localhost:7260](https://localhost:7260) |  | |
+| 🌐 | Metaverse - PWA | [localhost:7198](https://localhost:7198) |  | |
+| 🌐 | Metaverse - API | [localhost:7260](https://localhost:7260) |  | |
 |   | - |  |  |  |  |  
 | 🤖 | GardenBOT Site - PWA | [localhost:7089](https://localhost:7089) |  ![Version](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.gardenbot_site/latest_tag?color=darkblue&ignore=latest&label=latest&trim=) | ![Size](https://ghcr-badge.egpl.dev/s2kdesign-com/coingardenworld.gardenbot_site/size?color=royalblue&tag=latest&label=size&trim=) | [![Build GardenBot Site - Docker](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-docker-github.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-docker-github.yml) | 
 | 🤖 | GardenBOT Message API | [localhost:7071](http://localhost:7071/api/messages) | | | |
