@@ -41,6 +41,13 @@ jobs:
       - name: Show VERSION variable
         run: |
           echo "Building version - ${{ env.VERSION_CI }}"
+          
+      - name: Find and Replace frond-end Version
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "Build Version: 1.0.0.0"
+          replace: "Build Version: ${{ env.VERSION_CI }}"
+          include: "**healthcheck.json"
 
       - name: .NET project version updater
         # You may pin to the exact commit or the version.

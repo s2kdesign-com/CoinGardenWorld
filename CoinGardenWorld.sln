@@ -20,6 +20,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mobile-app", "mobile-app", 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nft-market", "nft-market", "{9710BD16-0709-4F6E-8813-DEE82F5DC586}"
+	ProjectSection(SolutionItems) = preProject
+		src\nft-market\README.md = src\nft-market\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "charities", "charities", "{63059FC5-3711-41CA-A054-5E92F02E8817}"
 EndProject
@@ -114,7 +117,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "site", "site", "{B346B531-2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldStore.Web", "src\nft-market\site\CoinGardenWorldStore.Web\CoinGardenWorldStore.Web.csproj", "{E6662201-CCAE-4430-B373-7AF22CAC4E1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorldStore_Api", "src\nft-market\site\CoinGardenWorldStore_Api\CoinGardenWorldStore_Api.csproj", "{EFEA987A-63BC-4F07-A8CB-65DDEB64E38A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldStore_Api", "src\nft-market\site\CoinGardenWorldStore_Api\CoinGardenWorldStore_Api.csproj", "{EFEA987A-63BC-4F07-A8CB-65DDEB64E38A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
