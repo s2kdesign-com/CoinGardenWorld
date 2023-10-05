@@ -14,7 +14,7 @@ namespace CoinGardenWorld.HealthChecksUi
             startup.Configure(app, app.Environment); // Configure the HTTP request pipeline.
 
             app.MapGet("/", async opt => opt.Response.Redirect("status"));
-
+             
             app.Run();
         }
     }
