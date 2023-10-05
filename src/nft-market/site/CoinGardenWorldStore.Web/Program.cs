@@ -25,3 +25,4 @@ var host = builder.Build();
 await host.SetDefaultCulture();
 
 await builder.Build().RunAsync();
+ 
