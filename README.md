@@ -94,7 +94,7 @@ All applications are build with .NET MAUI (Multi-platform App UI ) - ![Blazor](h
 
 | Official Site | GardenAPP | GardenBOT | GardenSTORE | Metaverse | GRDN Token | 
 | - | - | - | - | - | - | 
-| <span style='color:#1FC511'>#1FC511</span> | <span style='color:#FF6A00'>#FF6A00</span> |  <span style='color:#0094ff'>#0094ff</span> | <span style='color:#1BE4A8'>#1BE4A8</span> | <span style='color:#FF0058'>#FF0058</span> | <span style='color:#E1D11E'>#E1D11E</span> |
+| <span style='color:#1FC511'>#1FC511</span> | <span style='color:#0094ff'>#0094ff</span> |  <span style='color:#FF6A00'>#FF6A00</span> | <span style='color:#1BE4A8'>#1BE4A8</span> | <span style='color:#FF0058'>#FF0058</span> | <span style='color:#E1D11E'>#E1D11E</span> |
 | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/official-site-gradient.png?raw=true) | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/mobileapp-site-gradient.png?raw=true)  | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/bot-site-gradient.png?raw=true) | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/store-gradient.png?raw=true)  | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/metaverse-gradient.png?raw=true) | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/token-gradient.png?raw=true) | 
 
 ## 🧑‍🌾 User Flow Diagram
