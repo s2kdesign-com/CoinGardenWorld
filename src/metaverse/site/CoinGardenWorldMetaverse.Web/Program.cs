@@ -21,7 +21,7 @@ builder.Services.AddCgwThemeExtensions();
 
 var host = builder.Build();
 
-// Extension method
+// Extension method 
 await host.SetDefaultCulture();
 
 await builder.Build().RunAsync();
