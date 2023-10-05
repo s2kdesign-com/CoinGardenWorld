@@ -1,0 +1,43 @@
+﻿@page "/fetchdata"
+@inherits ThemeComponentBase<PageBanner>
+
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject HttpClient Http
+
+<PageTitle>Authorized data</PageTitle>
+
+<h1>Authorized data</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p>
+    API Url: @Http.BaseAddress
+    <br />
+    Response: @authResult
+</p>
+@code {
+    private string authResult;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await base.OnInitializedAsync();
+            authResult = await Http.GetStringAsync("api/TestAuthenticatedEndpoint");
+
+        }
+        catch (AccessTokenNotAvailableException e) {
+            Console.WriteLine(e);
+            authResult = "Not Authorized. Check the console for more details.";
+    //e.Redirect(requestOptions => {
+    //                                  requestOptions.TryAddAdditionalParameter("prompt", "login");
+    //                                  requestOptions.TryAddAdditionalParameter("loginHint", "peter@contoso.com");
+    //});
+        }
+        catch (Exception e) {
+            Console.WriteLine(e);
+            authResult = "Internal server error.";
+        }
+    }
+
+}

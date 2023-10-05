@@ -1,0 +1,69 @@
+﻿@inherits BannerBase
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<MetaverseHomeBanner> _localizer
+
+
+<!-- Banner -->
+<div class="header-banner bg-theme-grad">
+    <div class="nk-banner">
+        <div class="banner banner-fs banner-pd-lg">
+            <div class="banner-wrap">
+                <div class="container">
+                    <div class="row gutter-vr-30px align-items-center justify-content-lg-between justify-content-center">
+                        <div class="col-lg-4 col-sm-9 order-lg-last">
+                            <div class="banner-gfx-re-s3 my-0 animated" data-animate="fadeInUp" data-delay="1">
+                                <img src="images/metaverse-logo.webp" alt="header">
+                            </div>
+                        </div><!-- .col -->
+                        <div class="col-lg-8 col-xl-7 col-sm-10 text-center text-lg-start">
+                            <div class="banner-caption wide-auto-xl pdb-l pdt-r tc-light">
+                                <div class="cpn-head">
+                                    <h1 class="title title-md animated fadeInUp" data-animate="fadeInUp" data-delay="1.25" style="visibility: visible; animation-delay: 1.25s;">
+                                        GardenVerse
+                                        <span class="title-thin">
+                                            a part of <br class="d-none d-xl-block">
+                                        </span> CoinGarden.World<br class="d-none d-xl-block">
+                                        <span class="title-thin">
+                                            a Revolutionary Set of Apps
+                                        </span>  
+                                    </h1>
+                                </div>
+                                <div class="cpn-text-s1 cpn-text-center">
+                                    <p class="lead animated fadeInUp" data-animate="fadeInUp" data-delay="1.35" style="visibility: visible; animation-delay: 1.35s;">
+                                        Step into the enchanting "World of Flowers" Metaverse, where the beauty of nature meets the limitless possibilities of the digital realm. Here, every user, whether a seasoned gardener or a budding enthusiast, is granted their own unique island. On this personal haven, they can meticulously arrange and plant their real-world flowers, bringing a touch of nature's splendor to the virtual space. Dive into a universe where every flower tells a story, and every island is a testament to the harmonious blend of nature and technology.
+                                    </p>
+                                </div>
+                                <ul class="cpn-links flex-wrap flex-sm-nowrap cpn-links-s1 pt-0 pb-3 pb-sm-0">
+                                    <li class="order-sm-0">
+                                        <a href="https://coingarden.world" target="_blank" class="link link-xs link-light">
+                                            <em class="link-icon fas fa-home"></em><span>Go to main site</span>
+                                        </a>
+                                    </li>
+                                    <li class="order-sm-0 order-last w-100">
+                                        <a href="#bot-chat" class="btn btn-round btn-primary btn-lg nav-link">
+                                                   @_localizer["Download the App"]
+                                        </a>
+                                    </li>
+                                    <li class="order-sm-0">
+                                        <a href="https://docs.coingarden.world/" target="_blank" class="link link-xs link-light">
+                                            <em class="link-icon fas fa-file"></em><span>Documentation</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div><!-- .col -->
+                    </div><!-- .row -->
+                </div>
+            </div>
+        </div>
+    </div><!-- .nk-banner -->
+    <div class="nk-ovm mask-f mask-contain-bottom shape-a2"></div>
+    <!-- Place Particle Js -->
+    <div id="particles-bg" class="particles-container particles-bg"></div>
+</div>
+<!-- .header-banner -->
+@code {
+
+
+}

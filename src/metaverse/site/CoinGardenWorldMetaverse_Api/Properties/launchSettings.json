@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "CoinGardenWorldMetaverse_Api": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7260"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 33411,
+      "useSSL": false
+    }
+  }
+}

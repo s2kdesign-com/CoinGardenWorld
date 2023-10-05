@@ -128,6 +128,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorldCharities.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorldCharities_Api", "src\charities\site\CoinGardenWorldCharities_Api\CoinGardenWorldCharities_Api.csproj", "{5835A007-AED2-443C-ABFF-E33675A748FE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "site", "site", "{180993A7-86A5-4070-8A39-4A4A40C0D068}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorldMetaverse.Web", "src\metaverse\site\CoinGardenWorldMetaverse.Web\CoinGardenWorldMetaverse.Web.csproj", "{A323469E-B637-48EC-B0E7-E13439A0299B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorldMetaverse_Api", "src\metaverse\site\CoinGardenWorldMetaverse_Api\CoinGardenWorldMetaverse_Api.csproj", "{03FDC12E-F612-4D91-96E7-248C81CA5727}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -228,6 +234,14 @@ Global
 		{5835A007-AED2-443C-ABFF-E33675A748FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5835A007-AED2-443C-ABFF-E33675A748FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5835A007-AED2-443C-ABFF-E33675A748FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A323469E-B637-48EC-B0E7-E13439A0299B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A323469E-B637-48EC-B0E7-E13439A0299B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A323469E-B637-48EC-B0E7-E13439A0299B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A323469E-B637-48EC-B0E7-E13439A0299B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03FDC12E-F612-4D91-96E7-248C81CA5727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03FDC12E-F612-4D91-96E7-248C81CA5727}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03FDC12E-F612-4D91-96E7-248C81CA5727}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03FDC12E-F612-4D91-96E7-248C81CA5727}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -272,6 +286,9 @@ Global
 		{01816738-52AC-4191-91A5-62F0B4B6C0BD} = {63059FC5-3711-41CA-A054-5E92F02E8817}
 		{329E6367-FB15-4DA6-97E3-5D783A780282} = {01816738-52AC-4191-91A5-62F0B4B6C0BD}
 		{5835A007-AED2-443C-ABFF-E33675A748FE} = {01816738-52AC-4191-91A5-62F0B4B6C0BD}
+		{180993A7-86A5-4070-8A39-4A4A40C0D068} = {B9C86247-2C81-404E-A648-757D3E7EA2FC}
+		{A323469E-B637-48EC-B0E7-E13439A0299B} = {180993A7-86A5-4070-8A39-4A4A40C0D068}
+		{03FDC12E-F612-4D91-96E7-248C81CA5727} = {180993A7-86A5-4070-8A39-4A4A40C0D068}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}
