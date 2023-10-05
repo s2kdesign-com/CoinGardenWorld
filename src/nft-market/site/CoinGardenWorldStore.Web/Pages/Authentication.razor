@@ -1,0 +1,48 @@
+﻿@page "/authentication/{action}"
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inherits ThemeComponentBase<PageBanner>
+
+<section class="section">
+
+    <div class="container">
+        <div class="nk-block nk-block-about">
+            <div class="row align-items-center gutter-vr-30px">
+                <div class="col-lg-12">
+                    <div class="nk-block-text">
+                        <h2 class="title">Authentication</h2>
+                        <p><strong>
+                            <RemoteAuthenticatorView Action="@Action" />
+
+                        </strong> </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter] public string? Action { get; set; }
+
+
+
+    protected override string BannerTitle {
+        get {
+            if (Action == "logged-out") {
+                return Localization.Pages.Authentication_Resource.Goodbye;
+            }
+            return Localization.Pages.Authentication_Resource.Welcome;
+        }
+    }
+
+    protected override string BannerDescription {
+        get {
+
+            if (Action == "logged-out") {
+                return Localization.Pages.Authentication_Resource.Please_return_soon;
+            }
+            return Localization.Pages.Authentication_Resource.We_are_getting_your_account_ready;
+        }
+    }
+
+}

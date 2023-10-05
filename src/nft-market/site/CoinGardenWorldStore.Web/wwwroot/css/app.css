@@ -1,0 +1,27 @@
+.bg-theme-grad {
+    background-image: linear-gradient(to bottom, #1BE4A8 0%, #22577a 60%, #b711c5 100%) !important;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #1BE4A8 #ffffff;
+}
+
+    /* Chrome, Edge, and Safari */
+    *::-webkit-scrollbar {
+        background-color: transparent;
+        width: 10px;
+    }
+
+    *::-webkit-scrollbar-track {
+        -webkit-box-shadow: none !important;
+        background-color: transparent;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background-image: linear-gradient(to bottom, #1BE4A8 0%, #22577a 50%, #b711c5 100%) !important;
+        border-radius: 2px;
+        border: 0px solid #ffffff;
+    }

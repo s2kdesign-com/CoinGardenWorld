@@ -1,6 +1,6 @@
 using CoinGardenWorld.Theme.Extensions;
 using CoinGardenWorld.Theme.Models.Shared;
-using CoinGardenWorldMobileApp.Web;
+using CoinGardenWorldStore.Web;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
