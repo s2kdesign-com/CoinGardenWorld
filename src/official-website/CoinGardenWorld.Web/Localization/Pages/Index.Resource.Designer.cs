@@ -72,7 +72,7 @@ namespace CoinGardenWorld.Web.Localization.Pages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;World of Flowers&quot; is a system equipped with artificial intelligence and automatic recognition of types and varieties of flowers..
+        ///   Looks up a localized string similar to Welcome to &quot;World of Flowers&quot;, a harmonious blend of technology and nature where the digital realm meets the verdant beauty of our world. At its core, this platform offers a comprehensive Web3 infrastructure dedicated to gardening, allowing users to grow, nurture, and even earn cryptocurrency from their virtual flowers. Dive into a universe where every petal counts, and every action reverberates with the love for our planet..
         /// </summary>
         public static string _World_of_Flowers__is_a_system_equipped_with_artificial_intelligence_and_automatic_recognition_of_types_and_varieties_of_flowers_ {
             get {

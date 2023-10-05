@@ -25,6 +25,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nft-market", "nft-market", 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "charities", "charities", "{63059FC5-3711-41CA-A054-5E92F02E8817}"
+	ProjectSection(SolutionItems) = preProject
+		src\charities\README.md = src\charities\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "metaverse", "metaverse", "{B9C86247-2C81-404E-A648-757D3E7EA2FC}"
 EndProject
