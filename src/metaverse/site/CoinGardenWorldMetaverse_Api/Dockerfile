@@ -4,17 +4,11 @@ FROM mcr.microsoft.com/azure-functions/dotnet-isolated:4-dotnet-isolated7.0 AS b
 WORKDIR /home/site/wwwroot
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS publish
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/metaverse/site/CoinGardenWorldMetaverse_Api/CoinGardenWorldMetaverse_Api.csproj", "src/metaverse/site/CoinGardenWorldMetaverse_Api/"]
-RUN dotnet restore "src/metaverse/site/CoinGardenWorldMetaverse_Api/CoinGardenWorldMetaverse_Api.csproj"
 COPY . .
-WORKDIR "/src/src/metaverse/site/CoinGardenWorldMetaverse_Api"
-RUN dotnet build "CoinGardenWorldMetaverse_Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "CoinGardenWorldMetaverse_Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "metaverse/site/CoinGardenWorldMetaverse.Web/CoinGardenWorldMetaverse_Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /home/site/wwwroot
