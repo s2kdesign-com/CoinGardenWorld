@@ -65,6 +65,7 @@
 ### Splitted to folders with the idea, that if this repository became to big, it will be splitted to different submodules (check picture bellow how to checkout the code when that happens)
 ### All builds and deployments will be splitted too and when changes are made to some submodule it will be the only one build and deployed 
 ---
-### How to checkout git submodules
 
-![recurse-submodules](https://github.com/s2kdesign-com/CoinGardenWorld/raw/main/docs/assets/recurse-submodules.png)
+![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/src/official-website/CoinGardenWorld.Web/wwwroot/social-logo-1276x739.png?raw=true) 
+![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/src/garden-bot/CoinGardenBotCore.Web/wwwroot/bot_social_logo_1237x730.webp?raw=true)
+![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/src/mobile-app/site/CoinGardenWorldMobileApp.Web/wwwroot/mobileapp_social_logo_1236x730.webp?raw=true) 
