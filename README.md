@@ -55,7 +55,7 @@ https://docs.coingarden.world/v/bg/
 The InterPlanetary File System (IPFS) is a set of composable, peer-to-peer protocols for addressing, routing, and transferring content-addressed data in a decentralized file system. 
 
 | | Application | Url | 
-| - | - | - | - | 
+| - | - | - | 
 | 🖼️ | Landing Page |  [https://coingardenworld.on.fleek.co](https://coingardenworld.on.fleek.co) |  
 | 📱 | Mobile App |  [https://app-coingardenworld.on.fleek.co](https://app-coingardenworld.on.fleek.co) |  
 | 🏪 |NFT Store |  [https://store-coingardenworld.on.fleek.co](https://store-coingardenworld.on.fleek.co) |  
