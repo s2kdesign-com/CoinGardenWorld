@@ -1,0 +1,70 @@
+/* Generating Color Pack*/
+.color-highlight {
+  color: #8CC152 !important;
+}
+
+.bg-highlight {
+  background-color: #8CC152 !important;
+  color: #FFF !important;
+}
+
+.border-highlight {
+  border-color: #8CC152 !important;
+}
+
+.gradient-highlight {
+  background-image: linear-gradient(to bottom, #A0D468, #8CC152) !important;
+}
+
+.splide__pagination__page.is-active {
+  background-color: #8CC152 !important;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  background-color: #8CC152;
+}
+
+.color-highlight {
+  color: #8CC152;
+}
+
+.bg-highlight {
+  background-color: #8CC152;
+  color: #FFF !important;
+}
+
+#footer-bar .active-nav i {
+  background-image: linear-gradient(to bottom, #A0D468, #8CC152) !important;
+  color: #FFF !important;
+}
+
+#footer-bar .active-nav i::after {
+  transform: scale(0.8) translateY(5px) translateZ(0px);
+  filter: blur(12px);
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  z-index: -1;
+}
+
+.tabs-box .tab-controls [aria-expanded=true], .tabs-links .tab-controls [aria-expanded=true],
+.tabs-pill .tab-controls [aria-expanded=true] {
+  background-color: #A0D468 !important;
+}
+
+.tabs-icons .tab-controls [aria-expanded=true] {
+  color: #A0D468 !important;
+}
+
+.tabs-cards .tab-controls [aria-expanded=true] {
+  color: #A0D468 !important;
+}
+
+.tabs-borders .tab-controls [aria-expanded=true] {
+  color: #A0D468 !important;
+  border-color: #A0D468 !important;
+}

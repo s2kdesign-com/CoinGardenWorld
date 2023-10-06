@@ -1,0 +1,17 @@
+BEGIN:VCARD
+N:Black;Karla;;Mrs;
+ADR;INTL;PARCEL;WORK:;;UltraMobile Street;Planet Earth;Milky Way;2134;
+ADR;DOM;PARCEL;HOME:;;Enabled Avenue;Planet Erath;Milky Way;1234;
+EMAIL;home:home@domain.com
+EMAIL;office:office@domain.com
+EMAIL;personal:personal@domain.com
+ORG:Enabled
+TEL;mobile:+1 234 567 890
+TEL;office:+1 234 567 890
+TEL;personal:+1 234 567 890
+TITLE:Photographer
+URL;WORK:www.domain.com
+URL;facebook:www.facebook.com
+URL;twitter:www.twitter.com
+URL;google plus:www.googleplus.com
+END:VCARD

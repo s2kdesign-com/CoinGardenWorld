@@ -1,0 +1,45 @@
+﻿@inherits LayoutComponentBase
+
+@* <div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div> 
+
+    <main>
+        <div class="top-row px-4 auth">
+            <LoginDisplay />
+            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        </div>
+
+        <article class="content px-4">
+        </article>
+    </main>
+</div> *@
+
+<!--
+		<svg class="loading-progress">
+			<circle r="40%" cx="50%" cy="50%" />
+			<circle r="40%" cx="50%" cy="50%" />
+		</svg>
+		<div class="loading-progress-text"></div> -->
+
+		
+@* <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div> *@
+
+<div id="page">
+    <HeaderBar/>
+
+    <FooterBar/>
+
+    <SidebarMenu/>
+
+    <HighlightsMenu/>
+
+    <BellMenu/>
+
+    @* <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div> *@
+		
+@Body
+
+    <PwaInstallMenu />
+</div>

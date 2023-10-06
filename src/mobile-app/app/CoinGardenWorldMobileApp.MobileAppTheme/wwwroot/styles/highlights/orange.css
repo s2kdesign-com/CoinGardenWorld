@@ -1,0 +1,70 @@
+/* Generating Color Pack*/
+.color-highlight {
+  color: #E9573F !important;
+}
+
+.bg-highlight {
+  background-color: #E9573F !important;
+  color: #FFF !important;
+}
+
+.border-highlight {
+  border-color: #E9573F !important;
+}
+
+.gradient-highlight {
+  background-image: linear-gradient(to bottom, #FC6E51, #E9573F) !important;
+}
+
+.splide__pagination__page.is-active {
+  background-color: #E9573F !important;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  background-color: #E9573F;
+}
+
+.color-highlight {
+  color: #E9573F;
+}
+
+.bg-highlight {
+  background-color: #E9573F;
+  color: #FFF !important;
+}
+
+#footer-bar .active-nav i {
+  background-image: linear-gradient(to bottom, #FC6E51, #E9573F) !important;
+  color: #FFF !important;
+}
+
+#footer-bar .active-nav i::after {
+  transform: scale(0.8) translateY(5px) translateZ(0px);
+  filter: blur(12px);
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  z-index: -1;
+}
+
+.tabs-box .tab-controls [aria-expanded=true], .tabs-links .tab-controls [aria-expanded=true],
+.tabs-pill .tab-controls [aria-expanded=true] {
+  background-color: #FC6E51 !important;
+}
+
+.tabs-icons .tab-controls [aria-expanded=true] {
+  color: #FC6E51 !important;
+}
+
+.tabs-cards .tab-controls [aria-expanded=true] {
+  color: #FC6E51 !important;
+}
+
+.tabs-borders .tab-controls [aria-expanded=true] {
+  color: #FC6E51 !important;
+  border-color: #FC6E51 !important;
+}

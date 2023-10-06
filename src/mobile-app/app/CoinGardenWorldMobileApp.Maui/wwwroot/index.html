@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-    <title>CoinGardenWorldMobileApp.Maui</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
     <base href="/" />
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-    <link href="css/app.css" rel="stylesheet" />
+
+    <title>CoinGardenWorldMobileApp.WebApp</title>
+
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <link href="manifest.webmanifest" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+
+
+    <link rel="stylesheet" type="text/css" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/styles/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/fonts/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/styles/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/app.css" />
     <link href="CoinGardenWorldMobileApp.Maui.styles.css" rel="stylesheet" />
+
+    <meta id="theme-check" name="theme-color" content="#FFFFFF">
 </head>
 
-<body>
+<body class="theme-light">
+    <div id="app">
+        <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+    </div>
 
-    <div class="status-bar-safe-area"></div>
-
-    <div id="app">Loading...</div>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
@@ -22,7 +40,10 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    <script src="_framework/blazor.webview.js" autostart="false"></script>
+<script src="_framework/blazor.webview.js" autostart="false"></script>
+
+<script src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/scripts/bootstrap.min.js"></script>
+<script src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/scripts/custom.js"></script>
 
 </body>
 
