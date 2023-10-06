@@ -72,7 +72,7 @@ namespace CoinGardenWorld.Web.Localization.Pages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to &quot;World of Flowers&quot;, a harmonious blend of technology and nature where the digital realm meets the verdant beauty of our world. At its core, this platform offers a comprehensive Web3 infrastructure dedicated to gardening, allowing users to grow, nurture, and even earn cryptocurrency from their virtual flowers. Dive into a universe where every petal counts, and every action reverberates with the love for our planet..
+        ///   Looks up a localized string similar to &quot;World of Flowers&quot; is a system equipped with artificial intelligence and automatic recognition of types and varieties of flowers..
         /// </summary>
         public static string _World_of_Flowers__is_a_system_equipped_with_artificial_intelligence_and_automatic_recognition_of_types_and_varieties_of_flowers_ {
             get {
@@ -306,6 +306,15 @@ namespace CoinGardenWorld.Web.Localization.Pages {
         public static string The_user_starts_their_journey_by_downloading_the_flower_app__Immediately_after__he_will_be_prompted_to_take_a_photo_or_upload_a_photo_of_the_flower_he_wishes_to_add_and_will_receive_a_QR_code_for_quick_information_that_he_can_use_to_put_on_the_pot_or_to_sell_real_flowers_in_a_shop__The_app_will_automatically_recognize_the_type_of_flower_and_start_reminding_the_user_when_it_needs_watering_ {
             get {
                 return ResourceManager.GetString(@"The user starts their journey by downloading the flower app. Immediately after, he will be prompted to take a photo or upload a photo of the flower he wishes to add and will receive a QR code for quick information that he can use to put on the pot or to sell real flowers in a shop. The app will automatically recognize the type of flower and start reminding the user when it needs watering.", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to &quot;World of Flowers&quot;, a harmonious blend of technology and nature where the digital realm meets the verdant beauty of our world. At its core, this platform offers a comprehensive Web3 infrastructure dedicated to gardening, allowing users to grow, nurture, and even earn cryptocurrency from their virtual flowers. Dive into a universe where every petal counts, and every action reverberates with the love for our planet..
+        /// </summary>
+        public static string Welcome_to__World_of_Flowers___a_harmonious_blend_of_technology_and_nature_where_the_digital_realm_meets_the_verdant_beauty_of_our_world__At_its_core__this_platform_offers_a_comprehensive_Web3_infrastructure_dedicated_to_gardening__allowing_users_to_grow__nurture__and_even_earn_cryptocurrency_from_their_virtual_flowers__Dive_into_a_universe_where_every_petal_counts__and_every_action_reverberates_with_the_love_for_our_planet_ {
+            get {
+                return ResourceManager.GetString(@"Welcome to ""World of Flowers"", a harmonious blend of technology and nature where the digital realm meets the verdant beauty of our world. At its core, this platform offers a comprehensive Web3 infrastructure dedicated to gardening, allowing users to grow, nurture, and even earn cryptocurrency from their virtual flowers. Dive into a universe where every petal counts, and every action reverberates with the love for our planet.", resourceCulture);
             }
         }
         
