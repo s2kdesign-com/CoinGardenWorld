@@ -1,0 +1,10 @@
+﻿@inject NavigationManager NavigationManager
+
+<div class="loader loader-bouncing"><span>Redirecting...</span></div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        NavigationManager.NavigateTo("/login");
+    }
+}

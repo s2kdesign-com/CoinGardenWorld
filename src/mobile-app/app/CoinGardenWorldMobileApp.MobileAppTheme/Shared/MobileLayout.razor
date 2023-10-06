@@ -3,7 +3,7 @@
 @* <div class="page">
     <div class="sidebar">
         <NavMenu />
-    </div> 
+    </div>
 
     <main>
         <div class="top-row px-4 auth">
@@ -17,29 +17,31 @@
 </div> *@
 
 <!--
-		<svg class="loading-progress">
-			<circle r="40%" cx="50%" cy="50%" />
-			<circle r="40%" cx="50%" cy="50%" />
-		</svg>
-		<div class="loading-progress-text"></div> -->
-
-		
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div> -->
 @* <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div> *@
 
 <div id="page">
-    <HeaderBar/>
+    <HeaderBar />
 
-    <FooterBar/>
+    <FooterBar />
 
-    <SidebarMenu/>
+    <SidebarMenu />
 
-    <HighlightsMenu/>
+    <HighlightsMenu />
 
-    <BellMenu/>
+    <BellMenu />
 
     @* <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div> *@
-		
-@Body
 
+    <!-- Your Page Content Goes Here-->
+    <div class="page-content header-clear-medium">
+        @Body
+
+    </div>
+    <!-- End of Page Content-->
     <PwaInstallMenu />
 </div>

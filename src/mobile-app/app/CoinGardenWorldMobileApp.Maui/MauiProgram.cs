@@ -1,4 +1,6 @@
-﻿using CoinGardenWorldMobileApp.Maui.Data;
+﻿using CoinGardenWorldMobileApp.Maui.Authorization;
+using CoinGardenWorldMobileApp.Maui.Data;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Logging;
 
 namespace CoinGardenWorldMobileApp.Maui
@@ -14,6 +16,9 @@ namespace CoinGardenWorldMobileApp.Maui
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
+            builder.Services.AddAuthorizationCore();
+            builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
+            builder.Services.AddScoped<AuthenticationStateProvider, ExternalAuthStateProvider>();
 
             builder.Services.AddMauiBlazorWebView();
 
