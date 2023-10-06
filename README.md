@@ -38,7 +38,7 @@ https://docs.coingarden.world/v/bg/
 | 🔐 | Identity Server | [https://coingarden-identity.azurewebsites.net](https://coingarden-identity.azurewebsites.net) | [![Deploy Identity Server - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml) |
  | 👨‍⚕️ | Status Website | https://status-coingardenworld.azurewebsites.net/ | [![Deploy Status Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_status-coingardenworld.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_status-coingardenworld.yml) | 
  |  - |   |   |   |
- | 🏪 | NFT Store Web3 | buy.coingarden.world |  |
+ | 🏪 | NFT Store Web3 | trade.coingarden.world |  |
  | 🌐 | Metaverse Game | play.coingarden.world |  |
 
 ### Azure Function APIs ⚡
@@ -51,13 +51,21 @@ https://docs.coingarden.world/v/bg/
 | 🤖 | GardenBOT Message API  | https://coingardenbotcore.azurewebsites.net | [![Deploy GardenBot Messaging API - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingardenbotcore.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingardenbotcore.yml) |
 | 📱 | MobileAPP API | https://app.coingarden.world/api/swagger/ui | [![Deploy MobileAPP Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-azure-static-web-apps.yml) |
 
-### IPFS ([fleek.co](https://fleek.co/)) 🌐
-| Application | Provider | Url | Status |
-| - | - | - | - |
-| Landing Page | IPFS / Fleek | [https://coingardenworld.on.fleek.co](https://coingardenworld.on.fleek.co) |  |
-| Mobile App | IPFS / Fleek | [https://coingardenworld-app.on.fleek.co](https://coingardenworld-app.on.fleek.co) |  |
-| NFT Store | IPFS / Fleek | [https://coingardenworld-store.on.fleek.co](https://coingardenworld-store.on.fleek.co) |  |
+### InterPlanetary File System (IPFS) ([fleek.co](https://fleek.co/)) 🌐 
+The InterPlanetary File System (IPFS) is a set of composable, peer-to-peer protocols for addressing, routing, and transferring content-addressed data in a decentralized file system. 
 
+| | Application | Url | 
+| - | - | - | - | 
+| 🖼️ | Landing Page |  [https://coingardenworld.on.fleek.co](https://coingardenworld.on.fleek.co) |  
+| 📱 | Mobile App |  [https://app-coingardenworld.on.fleek.co](https://app-coingardenworld.on.fleek.co) |  
+| 🏪 |NFT Store |  [https://store-coingardenworld.on.fleek.co](https://store-coingardenworld.on.fleek.co) |  
+| 🤖 | Bot Page |  [https://bot-coingardenworld.on.fleek.co](https://bot-coingardenworld.on.fleek.co) |  
+| 🧑‍🌾 | Charity Page |  [https://charity-coingardenworld.on.fleek.co](https://charity-coingardenworld.on.fleek.co) | 
+| 🌐 | Metaverse Page |  [https://metaverse-coingardenworld.on.fleek.co](https://metaverse-coingardenworld.on.fleek.co) |  
+
+| Used Technologies | Description |
+| - | - |
+| [![Fleek](https://storage.googleapis.com/terminal-assets/images/fleek/fleek-logo.png)](https://fleek.co/)| Fleek makes it easy to build on Open Web protocols and a base layer infrastructure powered by them. Build and host your sites, apps, Dapps, and other services on trustless, permissionless, and open technologies focused on creating user-controlled, encrypted, private, p2p experiences easily. Build on the New Internet, and take the road to Web 3.0.| 
 
 ---
 ### 🚢  Docker Images 
