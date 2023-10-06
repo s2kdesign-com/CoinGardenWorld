@@ -142,6 +142,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldMetaverse_Ap
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "token", "token", "{44B8DD6F-14F7-4589-93B6-95C2B772D8BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorldMobileApp_Api", "src\mobile-app\app\CoinGardenWorldMobileApp_Api\CoinGardenWorldMobileApp_Api.csproj", "{2E533725-4FDC-4980-B4BC-9A30A797B0C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -250,6 +252,10 @@ Global
 		{03FDC12E-F612-4D91-96E7-248C81CA5727}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03FDC12E-F612-4D91-96E7-248C81CA5727}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03FDC12E-F612-4D91-96E7-248C81CA5727}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E533725-4FDC-4980-B4BC-9A30A797B0C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E533725-4FDC-4980-B4BC-9A30A797B0C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E533725-4FDC-4980-B4BC-9A30A797B0C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E533725-4FDC-4980-B4BC-9A30A797B0C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -298,6 +304,7 @@ Global
 		{A323469E-B637-48EC-B0E7-E13439A0299B} = {180993A7-86A5-4070-8A39-4A4A40C0D068}
 		{03FDC12E-F612-4D91-96E7-248C81CA5727} = {180993A7-86A5-4070-8A39-4A4A40C0D068}
 		{44B8DD6F-14F7-4589-93B6-95C2B772D8BE} = {5A954599-DAE6-45A3-A4EE-E938E3CE529C}
+		{2E533725-4FDC-4980-B4BC-9A30A797B0C3} = {3C4D4071-981D-4A7D-B5DD-5EF3E3FFE9F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}

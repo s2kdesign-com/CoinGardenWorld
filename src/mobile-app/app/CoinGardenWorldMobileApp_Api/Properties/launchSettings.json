@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "CoinGardenWorldMobileApp_Api": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7277"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 30201,
+      "useSSL": false
+    }
+  }
+}

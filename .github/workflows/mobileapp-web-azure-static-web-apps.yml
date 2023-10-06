@@ -1,4 +1,4 @@
-name: Deploy MobileAPP Web - Azure
+name: Deploy Mobile Application Web - Azure
 
 on:
   push:
@@ -69,7 +69,7 @@ jobs:
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "src/mobile-app/app/CoinGardenWorldMobileApp.WebApp" # App source code path
-          #api_location: "src/mobile-app/site/CoinGardenWorldMobileApp_Api" # Api source code path - optional
+          api_location: "src/mobile-app/app/CoinGardenWorldMobileApp_Api" # Api source code path - optional
           output_location: "wwwroot" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
   

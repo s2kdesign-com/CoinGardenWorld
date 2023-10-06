@@ -50,7 +50,8 @@ namespace CoinGardenWorld.Api {
 
             var microsoftGraph = new GraphServiceClient(microsoftGraphToken);
 
-            var inbox = await microsoftGraph.Me.GetAsync();
+            // TODO:  MICROSOFT GRAPH Error: Assertion failed signature validation. [Reason - The key was not found.
+            //var inbox = await microsoftGraph.Me.GetAsync();
 
             var response = req.CreateResponse(HttpStatusCode.OK);
             response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
