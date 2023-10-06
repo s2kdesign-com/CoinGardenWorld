@@ -1,6 +1,6 @@
 ﻿using Microsoft.Identity.Client;
 
-namespace CoinGardenWorldMobileApp.Maui.Authorization
+namespace CoinGardenWorldMobileApp.MobileAppTheme.Authorization
 {
     public interface IAuthenticationService
     {

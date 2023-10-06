@@ -1,7 +1,6 @@
 ﻿@page "/"
 <PageTitle>Index</PageTitle>
 
-@inject IJSRuntime JsRuntime
 
 
 	<div class="splide single-slider slider-no-dots slider-no-arrows slider-boxed text-center mt-n2" id="single-slider-3">
@@ -154,16 +153,12 @@
 		</div>
 	</div>
 
+	<ThemeLoader></ThemeLoader>
 @code
 {
 	protected override async Task OnAfterRenderAsync(bool firstRender)
 	{
-		if (firstRender)
-		{
-			// this statement assumes the module is in the wwwroot/js folder
-			// _module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CoinGardenWorldMobileApp.MobileAppTheme/scripts/custom.js");
-			await JsRuntime.InvokeVoidAsync("init_template");
-		}
+		
 	}
 
 }

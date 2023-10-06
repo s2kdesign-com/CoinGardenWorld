@@ -1,5 +1,6 @@
 ﻿using CoinGardenWorldMobileApp.Maui.Authorization;
 using CoinGardenWorldMobileApp.Maui.Data;
+using CoinGardenWorldMobileApp.MobileAppTheme.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Logging;
 

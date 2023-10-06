@@ -1,5 +1,7 @@
 ﻿@inherits LayoutComponentBase
 
+@inject IJSRuntime JsRuntime
+
 @* <div class="page">
     <div class="sidebar">
         <NavMenu />
@@ -24,6 +26,7 @@
         <div class="loading-progress-text"></div> -->
 @* <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div> *@
 
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
 <div id="page">
     <HeaderBar />
 
@@ -36,7 +39,6 @@
     <BellMenu />
 
     @* <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div> *@
-
     <!-- Your Page Content Goes Here-->
     <div class="page-content header-clear-medium">
         @Body
@@ -45,3 +47,16 @@
     <!-- End of Page Content-->
     <PwaInstallMenu />
 </div>
+@code
+{
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+    // this statement assumes the module is in the wwwroot/js folder
+    // _module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CoinGardenWorldMobileApp.MobileAppTheme/scripts/custom.js");
+            await JsRuntime.InvokeVoidAsync("removePreloader");
+        }
+    }
+
+}

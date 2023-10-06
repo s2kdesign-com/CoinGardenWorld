@@ -1,9 +1,13 @@
 //Removing Preloader
-setTimeout(function(){
-    var preloader = document.getElementById('preloader')
-    if(preloader){preloader.classList.add('preloader-hide');}
-},150);
+//setTimeout(function(){
+//    var preloader = document.getElementById('preloader')
+//    if(preloader){preloader.classList.add('preloader-hide');}
+//},150);
+function removePreloader() {
 
+    var preloader = document.getElementById('preloader')
+    if (preloader) { preloader.classList.add('preloader-hide'); }
+}
 //document.addEventListener('DOMContentLoaded', () => {
 //    'use strict'
 
@@ -626,7 +630,8 @@ setTimeout(function(){
             loadHighlight.rel = "stylesheet";
             loadHighlight.className = "page-highlight";
             loadHighlight.type = "text/css";
-            loadHighlight.href = 'styles/highlights/' + highlight +'.css';
+            // Edited to suuport CoinGardenTheme
+            loadHighlight.href = '../_content/CoinGardenWorldMobileApp.MobileAppTheme/styles/highlights/' + highlight +'.css';
             document.getElementsByTagName("head")[0].appendChild(loadHighlight);
             document.body.setAttribute('data-highlight', 'highlight-'+highlight)
             localStorage.setItem(pwaName+'-Highlight', highlight)
@@ -644,8 +649,9 @@ setTimeout(function(){
 	            var loadHighlight = document.createElement("link");
 	            loadHighlight.rel = "stylesheet";
 	            loadHighlight.className = "page-highlight";
-	            loadHighlight.type = "text/css";
-	            loadHighlight.href = 'styles/highlights/' + rememberHighlight +'.css';
+                loadHighlight.type = "text/css";
+            // Edited to suuport CoinGardenTheme
+                loadHighlight.href = './_content/CoinGardenWorldMobileApp.MobileAppTheme/styles/highlights/' + rememberHighlight +'.css';
 	            if(!document.querySelectorAll('.page-highlight').length){
 	                document.getElementsByTagName("head")[0].appendChild(loadHighlight);
 	                document.body.setAttribute('data-highlight', 'highlight-'+rememberHighlight)

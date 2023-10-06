@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Security.Claims;
+using CoinGardenWorldMobileApp.MobileAppTheme.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
 
-namespace CoinGardenWorldMobileApp.Maui.Authorization
+namespace CoinGardenWorldMobileApp.MobileAppTheme.Authorization
 {
     public class ExternalAuthStateProvider : AuthenticationStateProvider
     {

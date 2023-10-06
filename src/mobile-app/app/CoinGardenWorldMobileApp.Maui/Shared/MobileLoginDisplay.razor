@@ -1,6 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using CoinGardenWorldMobileApp.MobileAppTheme.Authorization
+
 @inject NavigationManager Navigation
+
+@inject ExternalAuthStateProvider _pcaWrapper;
 
 <AuthorizeView>
     <Authorized>
@@ -17,7 +21,7 @@
                         Hello, @context.User.Identity?.Name!
                     </h5>
                     <h6 class="ps-1 mb-0 font-400 opacity-40">
-                        Current Role: Junior Gardener 
+                        Current Role: Junior Gardener
                     </h6>
                 </div>
                 <div class="ms-auto">
@@ -49,15 +53,20 @@
 
         <div class="bg-theme mx-3 rounded-m shadow-m mt-3 mb-3">
             <div class="d-flex px-2 pb-2 pt-2">
-                <a href="authentication/login" class="btn btn-m rounded-sm shadow-xl bg-highlight color-white font-900 text-uppercase">Login</a>
+                <a @onclick="Login" class="btn btn-m rounded-sm shadow-xl bg-highlight color-white font-900 text-uppercase">Login</a>
             </div>
         </div>
     </NotAuthorized>
 </AuthorizeView>
 
 @code {
-    public void BeginLogOut()
+    public async Task Login()
     {
-        Navigation.NavigateToLogout("authentication/logout");
+        await _pcaWrapper.LogInAsync();
+    }
+
+    public async Task BeginLogOut()
+    {
+        _pcaWrapper.Logout();
     }
 }

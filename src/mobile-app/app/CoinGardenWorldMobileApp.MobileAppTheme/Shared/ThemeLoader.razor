@@ -1,0 +1,16 @@
+﻿
+
+@inject IJSRuntime JsRuntime
+@code
+{
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+    // this statement assumes the module is in the wwwroot/js folder
+    // _module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CoinGardenWorldMobileApp.MobileAppTheme/scripts/custom.js");
+            await JsRuntime.InvokeVoidAsync("init_template");
+        }
+    }
+
+}
