@@ -1,0 +1,60 @@
+/*Contact Form*/
+.contact-form *{
+	outline:none!important;
+}
+.form-field span {
+	position: absolute;
+	right: 20px;
+	font-size: 9px;
+	opacity: 0.5;
+}
+.form-field input {
+	box-shadow: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background-color: $color_transparent !important;
+	border-radius: 10px;
+	margin: 0px 0px 15px 0px;
+}
+.form-field textarea {
+	box-shadow: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background-color: $color_transparent !important;
+	border-radius: 10px;
+	margin: 0px 0px 15px 0px;
+}
+.form-name input {
+	line-height: 40px;
+	border: solid 1px rgba(0,0,0,0.1);
+	width: 100%;
+	padding: 0px 10px 0px 10px;
+}
+
+.form-email input {
+	line-height: 40px;
+	border: solid 1px rgba(0,0,0,0.1);
+	width: 100%;
+	padding: 0px 10px 0px 10px;
+}
+
+.form-text textarea {
+	height: 145px;
+	line-height: 24px;
+	width: 100%;
+	border: solid 1px rgba(0,0,0,0.1);
+	padding: 10px 10px 0px 10px;
+	margin-bottom: $globalMargin;
+}
+.contactSubmitButton {
+	width: 100%;
+	display: block;
+	border-radius: 10px;
+	color: $color_white !important;
+	padding: 12px 0px !important;
+}
+.fieldHasError {
+	border: solid 1px #BF263C !important;
+}

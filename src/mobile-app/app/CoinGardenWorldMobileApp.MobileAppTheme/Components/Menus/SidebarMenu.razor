@@ -1,4 +1,8 @@
-﻿<!-- Main Sidebar-->
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+
+<!-- Main Sidebar-->
 <div id="menu-main" style="width:280px;" class="offcanvas offcanvas-start offcanvas-detached rounded-m">
 
     <div class="card card-style bg-23 mb-3 rounded-m mt-3" data-card-height="150">
@@ -15,8 +19,14 @@
         </div>
         <div class="card-overlay bg-gradient-fade rounded-0"></div>
     </div>
-
-    <LoginDisplay/>
+    @if (@Configuration["Environment"] == "BLAZOR")
+    {
+        <LoginDisplay/>
+    }
+    else
+    {
+        <MobileLoginDisplay/>
+    }
 
     <SidebarMenuNavigation />
 

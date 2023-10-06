@@ -22,4 +22,7 @@
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
 
+	<PropertyGroup>
+		<DefineConstants>BLAZOR</DefineConstants>
+	</PropertyGroup>
 </Project>

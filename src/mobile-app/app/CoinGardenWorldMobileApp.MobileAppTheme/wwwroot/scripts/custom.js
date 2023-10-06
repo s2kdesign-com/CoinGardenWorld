@@ -702,7 +702,9 @@ function removePreloader() {
         // Externally loading Javascript files for better performance.
 
         var plugIdent, plugClass, plugMain, plugCall;
-        var plugLoc = "plugins/"
+
+            // Edited to suuport CoinGardenTheme
+        var plugLoc = "./_content/CoinGardenWorldMobileApp.MobileAppTheme/plugins/"
 
         let plugins = [
           {

@@ -1,0 +1,46 @@
+/*Filter*/
+.gallery-filter *{
+    overflow:visible!important;
+}
+.gallery-filter-all{
+	float:left!important;
+	padding-left:0px!important;
+}
+.gallery-filter-controls{
+	padding:0px;
+    margin:0px;
+}
+.gallery-filter-controls li{
+	list-style:none;
+	cursor: pointer;
+	float:right;
+	padding-left:15px;
+    font-weight:500;
+    color:#1f1f1f;
+    font-size:13px;
+	transition:all 350ms ease;
+}
+.gallery-filter-controls li:first-child{
+	padding-right:30px;
+}
+.gallery-filter-controls{
+    width:100%;
+    box-sizing:border-box;
+    display:block;
+}
+.gallery-filter{
+	transition:height 350ms ease;
+	margin-left:-5px;
+	margin-right:-5px;
+}
+.gallery-filter a{
+	width:33.3%;
+	padding:5px;
+	display:block;
+	transition:height 350ms ease;
+}
+.gallery-filter a img{
+	display:block;
+	width:100%;
+    box-shadow:0 2px 14px 0 rgba(0,0,0,0.08);
+}

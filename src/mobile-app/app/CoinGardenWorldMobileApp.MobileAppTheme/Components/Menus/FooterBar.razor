@@ -1,11 +1,40 @@
-﻿
-<!-- Footer Bar-->
+﻿<!-- Footer Bar-->
 <div id="footer-bar" class="footer-bar footer-bar-detached">
-    <a href="index-pages.html"><i class="bi bi-heart-fill font-15"></i><span>Pages</span></a>
+   @*  <a href="index-pages.html"><i class="bi bi-heart-fill font-15"></i><span>Pages</span></a>
     <a href="index-components.html"><i class="bi bi-star-fill font-17"></i><span>Features</span></a>
+
+
     <a href="index.html" class="active-nav"><i class="bi bi-house-fill font-16"></i><span>Home</span></a>
     <a href="index-media.html"><i class="bi bi-image font-16"></i><span>Media</span></a>
-    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-main"><i class="bi bi-list"></i><span>Menu</span></a>
+    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-main">
+        <i class="bi bi-list"></i>
+        <span>Menu</span>
+    </a> *@
+
+    <NavLink ActiveClass="active-nav" href="/garden">
+        <i class="bi bi-heart-fill font-15"></i>
+        <span>Your Garden</span>
+    </NavLink>
+
+    <NavLink ActiveClass="active-nav" href="/counter">
+        <i class="bi bi-star-fill font-17"></i>
+        <span>Counter</span>
+    </NavLink>
+
+    <NavLink ActiveClass="active-nav" href="" Match="NavLinkMatch.All">
+        <i class="bi bi-house-fill font-16"></i>
+        <span>Home</span>
+    </NavLink>
+
+    <NavLink ActiveClass="active-nav" href="/profile">
+        <i class="bi bi-image font-16"></i>
+        <span>Profile</span>
+    </NavLink>
+
+    <NavLink ActiveClass="active-nav" href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-main">
+        <i class="bi bi-list"></i>
+        <span>Menu</span>
+    </NavLink>
 </div>
 
 @code {

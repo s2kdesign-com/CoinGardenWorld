@@ -1,6 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using CoinGardenWorldMobileApp.MobileAppTheme.Authorization
 @inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
 
 <AuthorizeView>
     <Authorized>
@@ -31,7 +34,7 @@
                                 <a href="page-activity.html" class="color-theme opacity-70 list-group-item py-1">
                                     <strong class="font-500 font-12">Notifications</strong><i class="bi bi-chevron-right"></i>
                                 </a>
-                                <button href="page-login-2.html" class="color-theme opacity-70 list-group-item py-1" @onclick="BeginLogOut">
+                                <button class="color-theme opacity-70 list-group-item py-1" @onclick="Logout">
                                     <strong class="font-500 font-12">Log Out</strong><i class="bi bi-chevron-right"></i>
                                 </button>
                             </div>
@@ -49,15 +52,22 @@
 
         <div class="bg-theme mx-3 rounded-m shadow-m mt-3 mb-3">
             <div class="d-flex px-2 pb-2 pt-2">
-                <a href="authentication/login" class="btn btn-m rounded-sm shadow-xl bg-highlight color-white font-900 text-uppercase">Login</a>
+                <button class="btn btn-m rounded-sm shadow-xl bg-highlight color-white font-900 text-uppercase" @onclick="Login">Login</button>
             </div>
         </div>
     </NotAuthorized>
 </AuthorizeView>
 
 @code {
-    public void BeginLogOut()
+   public async Task Login()
+   {
+       await ((ExternalAuthStateProvider)AuthenticationStateProvider)
+           .LogInAsync();
+   }
+
+    public void Logout()
     {
-        Navigation.NavigateToLogout("authentication/logout");
+        ((ExternalAuthStateProvider)AuthenticationStateProvider)
+            .Logout();
     }
 }
