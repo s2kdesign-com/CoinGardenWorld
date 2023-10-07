@@ -13,6 +13,6 @@ builder.Services.AddMsalAuthentication(options =>
 {
     builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
 });
-     
+      
 await builder.Build().RunAsync();
  
