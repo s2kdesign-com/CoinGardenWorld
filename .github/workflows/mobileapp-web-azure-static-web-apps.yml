@@ -16,7 +16,8 @@ on:
   workflow_dispatch:
   
 env:
-  DOTNET_NOLOGO: true                     # Disable the .NET logo
+  DOTNET_NOLOGO: true     
+  DOTNET_VERSION: 8.0.x                # Disable the .NET logo
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Disable the .NET first time experience
   DOTNET_CLI_TELEMETRY_OPTOUT: true       # Disable sending .NET CLI telemetry
  
@@ -32,6 +33,12 @@ jobs:
         with:
           submodules: true
           
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-quality: 'preview'
+
       - name: Set VERSION variable
         run: |
           VER=$(cat VERSION)
