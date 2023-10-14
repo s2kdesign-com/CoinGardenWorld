@@ -374,3 +374,4 @@ FodyWeavers.xsd
 /src/nft-market/site/CoinGardenWorldStore.Web/wwwroot/appsettings.Development.json
 /src/charities/site/CoinGardenWorldCharities.Web/wwwroot/appsettings.Development.json
 /src/mobile-app/app/CoinGardenWorldMobileApp.WebApp/wwwroot/appsettings.Development.json
+/src/tests/mobile-app/app/CoinGardenWorldMobileApp_Api.Tests/appconfig.Development.json
