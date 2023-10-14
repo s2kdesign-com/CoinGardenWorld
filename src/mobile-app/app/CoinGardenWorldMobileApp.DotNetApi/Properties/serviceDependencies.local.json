@@ -3,6 +3,13 @@
     "identityapp1": {
       "type": "identityapp.default",
       "dynamicId": null
+    },
+    "mssql1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ServiceLinker/locations/eastus/connectors/ConnectionStringsCGWMobileAppDB_69F4866AA8",
+      "secretStore": null,
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/coingarden/databases/mobile-app.db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:CGW-Mobile-App-DB"
     }
   }
 }
