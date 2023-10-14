@@ -22,6 +22,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Deletes a specific TodoItem.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
