@@ -2,6 +2,17 @@
   "dependencies": {
     "appInsights1": {
       "type": "appInsights.sdk"
+    },
+    "secrets1": {
+      "type": "secrets.user"
+    },
+    "signalr1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ServiceLinker/locations/eastus/connectors/AzureSignalRConnectionString_33F47E6AB5",
+      "secretStore": "LocalSecretsFile",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.SignalRService/SignalR/coingardenworld",
+      "type": "signalr.function",
+      "connectionId": "AzureSignalRConnectionString",
+      "dynamicId": null
     }
   }
 }

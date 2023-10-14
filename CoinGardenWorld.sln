@@ -104,6 +104,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "site", "site", "{6A5EA80D-1F85-42AD-84FF-80CD6985CDEB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app", "app", "{3C4D4071-981D-4A7D-B5DD-5EF3E3FFE9F4}"
+	ProjectSection(SolutionItems) = preProject
+		src\mobile-app\app\README.md = src\mobile-app\app\README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldMobileApp.Web", "src\mobile-app\site\CoinGardenWorldMobileApp.Web\CoinGardenWorldMobileApp.Web.csproj", "{91DC9895-F838-4837-8AAE-C0FF40338D6D}"
 EndProject
@@ -142,7 +145,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldMetaverse_Ap
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "token", "token", "{44B8DD6F-14F7-4589-93B6-95C2B772D8BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorldMobileApp_Api", "src\mobile-app\app\CoinGardenWorldMobileApp_Api\CoinGardenWorldMobileApp_Api.csproj", "{2E533725-4FDC-4980-B4BC-9A30A797B0C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldMobileApp_Api", "src\mobile-app\app\CoinGardenWorldMobileApp_Api\CoinGardenWorldMobileApp_Api.csproj", "{2E533725-4FDC-4980-B4BC-9A30A797B0C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.SignalRFunctionExtensions", "src\shared\back-end\CoinGardenWorld.SignalRFunctionExtensions\CoinGardenWorld.SignalRFunctionExtensions.csproj", "{09246E4F-A9AB-4B5F-BF4A-7C429F122D00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7F72542A-5FB6-42A7-A119-BCD7FFA743EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mobile-app", "mobile-app", "{49696EBE-C0D6-4B94-9EDA-4ABAF9A90453}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app", "app", "{2AFA4B7F-7BA3-4F2D-8946-3ED520845256}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorldMobileApp_Api.Tests", "src\tests\mobile-app\app\CoinGardenWorldMobileApp_Api.Tests\CoinGardenWorldMobileApp_Api.Tests.csproj", "{6173BDF0-FD15-4DB2-A560-366D1769122E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -256,6 +269,14 @@ Global
 		{2E533725-4FDC-4980-B4BC-9A30A797B0C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E533725-4FDC-4980-B4BC-9A30A797B0C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E533725-4FDC-4980-B4BC-9A30A797B0C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09246E4F-A9AB-4B5F-BF4A-7C429F122D00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09246E4F-A9AB-4B5F-BF4A-7C429F122D00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09246E4F-A9AB-4B5F-BF4A-7C429F122D00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09246E4F-A9AB-4B5F-BF4A-7C429F122D00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6173BDF0-FD15-4DB2-A560-366D1769122E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6173BDF0-FD15-4DB2-A560-366D1769122E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6173BDF0-FD15-4DB2-A560-366D1769122E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6173BDF0-FD15-4DB2-A560-366D1769122E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -305,6 +326,11 @@ Global
 		{03FDC12E-F612-4D91-96E7-248C81CA5727} = {180993A7-86A5-4070-8A39-4A4A40C0D068}
 		{44B8DD6F-14F7-4589-93B6-95C2B772D8BE} = {5A954599-DAE6-45A3-A4EE-E938E3CE529C}
 		{2E533725-4FDC-4980-B4BC-9A30A797B0C3} = {3C4D4071-981D-4A7D-B5DD-5EF3E3FFE9F4}
+		{09246E4F-A9AB-4B5F-BF4A-7C429F122D00} = {E89AAC35-6366-4DCB-8CFD-3BA3B3B8DC65}
+		{7F72542A-5FB6-42A7-A119-BCD7FFA743EE} = {5A954599-DAE6-45A3-A4EE-E938E3CE529C}
+		{49696EBE-C0D6-4B94-9EDA-4ABAF9A90453} = {7F72542A-5FB6-42A7-A119-BCD7FFA743EE}
+		{2AFA4B7F-7BA3-4F2D-8946-3ED520845256} = {49696EBE-C0D6-4B94-9EDA-4ABAF9A90453}
+		{6173BDF0-FD15-4DB2-A560-366D1769122E} = {2AFA4B7F-7BA3-4F2D-8946-3ED520845256}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}
