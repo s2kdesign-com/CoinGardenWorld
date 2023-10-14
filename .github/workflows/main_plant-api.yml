@@ -1,10 +1,12 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - plant-api
+name: Build Mobile API - Azure
 
 on:
   push:
+    paths:
+    - 'src/mobile-app/app/CoinGardenWorldMobileApp.DotNetApi/**'
     branches:
       - main
   workflow_dispatch:
@@ -22,30 +24,52 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
 
+      - name: Set VERSION variable
+        shell: bash
+        run: |
+          VER=$(cat VERSION)
+          VER_LONG="$VER.${{github.run_number}}"
+          echo "VERSION_CI=$VER_LONG" >> $GITHUB_ENV
+
+      - name: Show VERSION variable
+        shell: bash
+        run: |
+          echo "Building version - ${{ env.VERSION_CI }}"
+
+      - name: .NET project version updater
+        # You may pin to the exact commit or the version.
+        # uses: vers-one/dotnet-project-version-updater@4838bb90da42ab72f272a9dde7888c1b7fb361f1
+        uses: vers-one/dotnet-project-version-updater@v1.2
+        with:
+          # Project file path
+          file: "src/mobile-app/app/CoinGardenWorldMobileApp.DotNetApi/**/*.csproj"
+          # New version
+          version: "${{ env.VERSION_CI }}"
+
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/plantapi
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          name: .plant-api
+          path: ${{env.DOTNET_ROOT}}/plantapi
 
   deploy:
     runs-on: windows-latest
     needs: build
     environment:
-      name: 'Production'
+      name: 'Azure'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: .net-app
+          name: .plant-api
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp

@@ -7,6 +7,7 @@
     <UserSecretsId>aspnet-CoinGardenWorldMobileApp.DotNetApi-3f2977b0-70ba-4bd9-8b03-6073058ea205</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..\..</DockerfileContext>
+	  <Version>1.0.0.10</Version>
   </PropertyGroup>
 
   <ItemGroup>

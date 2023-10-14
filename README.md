@@ -52,7 +52,8 @@ https://docs.coingarden.world/v/bg/
 | 🤖 | GardenBOT Message API  | https://coingardenbotcore.azurewebsites.net | [![Deploy GardenBot Messaging API - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingardenbotcore.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingardenbotcore.yml) |
 |  🧑‍🌾 | Charity Site API  | https://charity.coingarden.world/api/swagger/ui | [![Deploy GardenCharity Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/charity-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/charity-site-azure-static-web-apps.yml) |
 | 📱 | MobileAPP Site API | https://app.coingarden.world/api/swagger/ui | [![Deploy MobileAPP Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-site-azure-static-web-apps.yml) |
-| 📱 | Mobile Application API | https://plant.coingarden.world/api/swagger/ui | [![Deploy MobileAPP Web - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-web-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-web-azure-static-web-apps.yml) |
+| 📱 | Mobile Application API | https://plant-api.azurewebsites.net/swagger/ui |  [![Build and deploy ASP.Net Core app to Azure Web App - plant-api](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_plant-api.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_plant-api.yml)|
+| 📱 | Mobile Application API | https://plant.coingarden.world/api/swagger/ui |  (OLD) Disabled |
 
 
 ### InterPlanetary File System (IPFS) ([fleek.co](https://fleek.co/)) 🌐 
