@@ -10,8 +10,12 @@ using static System.Net.WebRequestMethods;
 using Microsoft.Extensions.Hosting;
 using System.Configuration;
 using CoinGardenWorldMobileApp.DotNetApi.Controllers;
+using HealthChecks.UI.Client;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -92,6 +96,13 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddDbContext<MobileAppDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB")));
 
+
+// Add Health Checks
+builder.Services.AddHealthChecks()
+    .AddCheck("https://plant-api.azurewebsites.net/swagger/index", () => HealthCheckResult.Healthy("Build Version: " + Assembly.GetExecutingAssembly().GetName().Version), new List<string> { "mobileapp" })
+    .AddSqlServer(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB"), "SELECT TOP (1) * FROM [dbo].[Flowers]", name: "Mobile APP - Database")
+    ;
+
 var app = builder.Build();
 
 // Apply migrations
@@ -129,5 +140,16 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app
+    .UseHealthChecks("/health", new HealthCheckOptions
+    {
+        Predicate = _ => true,
+        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+    })
+    .UseHealthChecks("/healthz", new HealthCheckOptions
+    {
+        Predicate = _ => true
+    });
 
 app.Run();
