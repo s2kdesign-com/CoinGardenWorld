@@ -41,43 +41,46 @@
     private string _apiUrl = "#";
 
     protected override async Task OnInitializedAsync()
-    {        
+    {
         var externalApis = configuration.Get<ExternalApisSettings>();
-
-        hubConnection = new HubConnectionBuilder()
-            .WithUrl(externalApis.ExternalApis.FirstOrDefault().Value.Api_Url + "/api/chathub/")
-            .Build();
-
-        hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+        if (externalApis != null && externalApis.ExternalApis != null)
         {
-            
-            var encodedMsg = $"{user}: {message}";
-            messages.Add(encodedMsg);
-            StateHasChanged();
-        });
-        
-        hubConnection.Closed += ex =>
-        {
-            Console.Write($"The connection of '{hubConnection.ConnectionId}' is closed.");
-             //If you expect non-null exception, you need to turn on 'EnableDetailedErrors' option during client negotiation.
-            if (ex != null)
+
+            hubConnection = new HubConnectionBuilder()
+                .WithUrl(externalApis.ExternalApis.FirstOrDefault().Value.Api_Url + "/api/chathub/")
+                .Build();
+
+            hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
             {
-                Console.Write($" Exception: {ex}");
+
+                var encodedMsg = $"{user}: {message}";
+                messages.Add(encodedMsg);
+                StateHasChanged();
+            });
+
+            hubConnection.Closed += ex =>
+            {
+                Console.Write($"The connection of '{hubConnection.ConnectionId}' is closed.");
+                //If you expect non-null exception, you need to turn on 'EnableDetailedErrors' option during client negotiation.
+                if (ex != null)
+                {
+                    Console.Write($" Exception: {ex}");
+                }
+                Console.WriteLine();
+                return Task.CompletedTask;
+            };
+            try
+            {
+
+                await hubConnection.StartAsync();
             }
-            Console.WriteLine();
-            return Task.CompletedTask;
-        };
-        try
-        {
-            
-            await hubConnection.StartAsync();
-        }
-        catch (Exception e)
-        {
-            logger.LogError(e.Message);
+            catch (Exception e)
+            {
+                logger.LogError(e.Message);
+            }
         }
     }
-    
+
     private async Task Send()
     {
         if (hubConnection is not null)

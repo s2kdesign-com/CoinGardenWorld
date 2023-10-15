@@ -8,6 +8,10 @@
       "type": "mssql",
       "connectionId": "ConnectionStrings:CGW-Mobile-App-DB",
       "dynamicId": null
+    },
+    "signalr1": {
+      "type": "signalr",
+      "connectionId": "Azure:SignalR:ConnectionString"
     }
   }
 }

@@ -10,13 +10,22 @@ using static System.Net.WebRequestMethods;
 using Microsoft.Extensions.Hosting;
 using System.Configuration;
 using CoinGardenWorldMobileApp.DotNetApi.Controllers;
+using CoinGardenWorldMobileApp.DotNetApi.SignalR;
 using HealthChecks.UI.Client;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllCors", config =>
+    {
+        config.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
@@ -24,8 +33,17 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 var microsoftIdentityOptions = new MicrosoftIdentityOptions();
 builder.Configuration.GetSection("AzureAd").Bind(microsoftIdentityOptions);
 
-
 builder.Services.AddControllers();
+
+
+// Add signalr
+
+builder.Services
+    .AddSingleton<SignalRService>()
+    .AddHostedService(sp => sp.GetService<SignalRService>())
+    .AddSingleton<IHubContextStore>(sp => sp.GetService<SignalRService>());
+
+builder.Services.AddSignalR().AddAzureSignalR();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -151,5 +169,7 @@ app
     {
         Predicate = _ => true
     });
+
+app.UseCors("AllowAllCors");
 
 app.Run();
