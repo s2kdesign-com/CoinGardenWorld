@@ -45,38 +45,47 @@
         var externalApis = configuration.Get<ExternalApisSettings>();
         if (externalApis != null && externalApis.ExternalApis != null)
         {
-
-            hubConnection = new HubConnectionBuilder()
-                .WithUrl(externalApis.ExternalApis.FirstOrDefault().Value.Api_Url + "/api/chathub/")
-                .Build();
-
-            hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+            while (IsConnected != true)
             {
-
-                var encodedMsg = $"{user}: {message}";
-                messages.Add(encodedMsg);
-                StateHasChanged();
-            });
-
-            hubConnection.Closed += ex =>
-            {
-                Console.Write($"The connection of '{hubConnection.ConnectionId}' is closed.");
-                //If you expect non-null exception, you need to turn on 'EnableDetailedErrors' option during client negotiation.
-                if (ex != null)
+                try
                 {
-                    Console.Write($" Exception: {ex}");
-                }
-                Console.WriteLine();
-                return Task.CompletedTask;
-            };
-            try
-            {
+                    hubConnection = new HubConnectionBuilder()
+                        .WithUrl(externalApis.ExternalApis.FirstOrDefault().Value.Api_Url + "/api/chathub/")
+                        .WithAutomaticReconnect()
+                        .Build();
 
-                await hubConnection.StartAsync();
-            }
-            catch (Exception e)
-            {
-                logger.LogError(e.Message);
+                    hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+                    {
+
+                        var encodedMsg = $"{user}: {message}";
+                        messages.Add(encodedMsg);
+                        StateHasChanged();
+                    });
+
+
+                    hubConnection.Closed += ex =>
+                    {
+                        // TODO: Not working and i dont know why
+
+                        Console.Write($"The connection of '{hubConnection.ConnectionId}' is closed.");
+                        //If you expect non-null exception, you need to turn on 'EnableDetailedErrors' option during client negotiation.
+                        if (ex != null)
+                        {
+                            Console.Write($" Exception: {ex}");
+                        }
+
+                        StateHasChanged();
+
+                        return Task.CompletedTask;
+
+                    };
+                    await hubConnection.StartAsync();
+                }
+                catch (Exception e)
+                {
+                    logger.LogError(e.Message);
+                }
+
             }
         }
     }

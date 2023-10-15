@@ -17,6 +17,16 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var appInsightsConnectionString = builder.Configuration["ApplicationInsights:ConnectionString"];
+
+builder.Logging.AddApplicationInsights(configuration =>
+{
+    configuration.ConnectionString = appInsightsConnectionString;
+}, options =>
+{
+    options.IncludeScopes = true;
+});
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllCors", config =>
