@@ -8,6 +8,8 @@ using System.Reflection;
 using CoinGardenWorldMobileApp.DotNetApi.Contexts;
 using static System.Net.WebRequestMethods;
 using Microsoft.Extensions.Hosting;
+using System.Configuration;
+using CoinGardenWorldMobileApp.DotNetApi.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +23,6 @@ builder.Configuration.GetSection("AzureAd").Bind(microsoftIdentityOptions);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<MobileAppDbContext>(opt =>
-    opt.UseSqlServer(builder.Configuration.GetValue<string>("ConnectionStrings:CGW-Mobile-App-DB")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -89,6 +89,8 @@ builder.Services.AddSwaggerGen(options =>
 
 });
 
+builder.Services.AddDbContext<MobileAppDbContext>(opt =>
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB")));
 
 var app = builder.Build();
 
@@ -113,6 +115,12 @@ if (app.Environment.IsDevelopment())
         
     });
 }
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+};
 
 app.UseHttpsRedirection();
 

@@ -17,7 +17,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0-preview.7.23375.4")
+                .HasAnnotation("ProductVersion", "7.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -40,6 +40,20 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Flowers");
+                });
+
+            modelBuilder.Entity("CoinGardenWorldMobileApp.DotNetApi.Entities.GardenDTO", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Gardens");
                 });
 #pragma warning restore 612, 618
         }

@@ -9,7 +9,8 @@
       "secretStore": null,
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/coingarden/databases/mobile-app.db",
       "type": "mssql.azure",
-      "connectionId": "ConnectionStrings:CGW-Mobile-App-DB"
+      "connectionId": "ConnectionStrings:CGW-Mobile-App-DB",
+      "dynamicId": null
     }
   }
 }

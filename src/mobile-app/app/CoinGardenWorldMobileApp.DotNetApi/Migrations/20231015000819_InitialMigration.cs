@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
 {
     /// <inheritdoc />
-    public partial class Add_FlowersDto : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,6 +24,18 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                 {
                     table.PrimaryKey("PK_Flowers", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Gardens",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Gardens", x => x.Id);
+                });
         }
 
         /// <inheritdoc />
@@ -31,6 +43,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Flowers");
+
+            migrationBuilder.DropTable(
+                name: "Gardens");
         }
     }
 }
