@@ -14,21 +14,22 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
     public class NegotiateController : ControllerBase
     {
         private const string EnableDetailedErrors = "EnableDetailedErrors";
-        private readonly ServiceHubContext _messageHubContext;
+        private readonly ServiceHubContext _notificationsHubContext;
         private readonly ServiceHubContext _chatHubContext;
         private readonly bool _enableDetailedErrors;
 
         public NegotiateController(IHubContextStore store, IConfiguration configuration)
         {
             _chatHubContext = store.ChatHubContext;
+            _notificationsHubContext = store.NotificationsHubContext;
             _enableDetailedErrors = configuration.GetValue(EnableDetailedErrors, false);
         }
 
 
-        [HttpPost("BroadcastHub/negotiate")]
-        public Task<ActionResult> BroadcastHubNegotiate()
+        [HttpPost("NotificationsHub/negotiate")]
+        public Task<ActionResult> NotificationsHubNegotiate()
         {
-            return NegotiateBase( _messageHubContext);
+            return NegotiateBase(_notificationsHubContext);
         }
 
         //This API is not used. Just demonstrate a way to have multiple hubs.

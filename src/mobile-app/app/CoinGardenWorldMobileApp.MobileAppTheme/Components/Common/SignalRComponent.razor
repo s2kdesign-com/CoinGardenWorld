@@ -1,0 +1,159 @@
+﻿@using Microsoft.AspNetCore.SignalR.Client
+@using Microsoft.Extensions.Configuration
+@using CoinGardenWorldMobileApp.MobileAppTheme.Configurations
+@using Microsoft.Extensions.Logging
+@using System.Timers
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using System.Security.Claims
+@implements IAsyncDisposable
+
+@inject IConfiguration configuration;
+@inject ILogger<SignalRComponent> logger;
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+@code {
+
+    private ExternalApisSettings externalApisSettings;
+    private Timer _signalRReconnectTimer = new Timer();
+
+
+    public HubConnection? HubConnection;
+
+    public virtual string HubUrlSuffix { get; } = "";
+
+    public bool HubConnected = false;
+
+    private string _hubUrl;
+
+    private async void SignalRReconnect(object source, ElapsedEventArgs e)
+    {
+
+        Console.WriteLine($"Trying to reconnect to signalr hub at URL: {_hubUrl}");
+
+        try
+        {
+
+            if (!IsConnected)
+            {
+                await HubConnection.StartAsync();
+                _signalRReconnectTimer.Stop();
+            }
+            else
+            {
+                _signalRReconnectTimer.Stop();
+            }
+            HubConnected = true;
+            logger.LogInformation($"SignalR hub connection established at URL: {_hubUrl}");
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex.Message);
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        // Tell the timer what to do when it elapses
+        _signalRReconnectTimer.Elapsed += new ElapsedEventHandler(SignalRReconnect);
+        // Set it to go off every five seconds
+        _signalRReconnectTimer.Interval = 5000;
+
+        externalApisSettings = configuration.Get<ExternalApisSettings>();
+        if (externalApisSettings != null && externalApisSettings.ExternalApis != null)
+        {
+            _hubUrl = externalApisSettings.ExternalApis.FirstOrDefault().Value.Api_Url + HubUrlSuffix;
+
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+            HubConnection = new HubConnectionBuilder()
+                .WithUrl(_hubUrl, opt =>
+                {
+                    if (authState.User.Identity.IsAuthenticated)
+                    {
+                        foreach (var userClaim in authState.User.Claims)
+                        {
+                            Console.WriteLine(userClaim.Type + ":" + userClaim.Value);
+                        }    
+                    }
+                       // opt.Headers.Add("Authorization", "Bearer " + authState.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier));
+                })
+                .WithAutomaticReconnect()
+                .Build();
+
+            HubConnection.Reconnecting += ex =>
+            {
+                logger.LogInformation($"SignalR hub connection lost, trying to reconnect at URL: {_hubUrl}");
+
+                HubConnected = false;
+                StateHasChanged();
+                return Task.CompletedTask;
+            };
+            HubConnection.Reconnected += ex =>
+            {
+                logger.LogInformation($"SignalR hub connection reconnected at URL: {_hubUrl}");
+
+                HubConnected = true;
+                StateHasChanged();
+                return Task.CompletedTask;
+            };
+            HubConnection.Closed += ex =>
+            {
+                // TODO: Not working and i dont know why
+                logger.LogInformation($"The connection of '{_hubUrl}' is closed.");
+
+                //StartTheTimer
+                _signalRReconnectTimer.Enabled = true;
+
+                HubConnected = false;
+
+                //If you expect non-null exception, you need to turn on 'EnableDetailedErrors' option during client negotiation.
+                if (ex != null)
+                {
+                    Console.Write($" Exception: {ex}");
+                }
+
+                StateHasChanged();
+
+                return Task.CompletedTask;
+
+            };
+
+            if (!IsConnected)
+            {
+                try
+                {
+                    await HubConnection.StartAsync();
+                    HubConnected = true;
+                    StateHasChanged();
+                    logger.LogInformation($"The connection of '{_hubUrl}' is started.");
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex.Message);
+                    // And start it
+                    _signalRReconnectTimer.Enabled = true;
+                }
+            }
+
+
+        }
+
+    }
+
+    public bool IsConnected =>
+    HubConnection?.State == HubConnectionState.Connected;
+
+    public async ValueTask DisposeAsync()
+    {
+        if (HubConnection is not null)
+        {
+            await HubConnection.DisposeAsync();
+
+            _signalRReconnectTimer.Dispose();
+        }
+    }
+
+}

@@ -1,4 +1,7 @@
-﻿<!-- Main Bell-->
+﻿@inherits SignalRComponent
+
+
+<!-- Main Bell-->
 <div id="menu-bell" style="height:400px;" class="offcanvas offcanvas-top offcanvas-detached rounded-m">
 	<div class="content">
 		<div class="d-flex">
@@ -59,4 +62,5 @@
 
 @code {
 
+	public override string HubUrlSuffix { get => "/notificationshub/"; }
 }

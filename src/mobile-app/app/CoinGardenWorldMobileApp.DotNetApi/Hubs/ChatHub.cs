@@ -25,7 +25,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Hubs
             var userId = Context.UserIdentifier;
             var connectionId = Context.ConnectionId;
 
-            _logger.LogInformation($"UserID: {userId} ConnectionID: {connectionId} has connected to ChatHub");
+            _logger.LogInformation($"UserID: {userId} ConnectionID: {connectionId} has connected to {nameof(ChatHub)}");
             return base.OnConnectedAsync();
         }
 
@@ -34,7 +34,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Hubs
             var userId = Context.UserIdentifier;
             var connectionId = Context.ConnectionId;
 
-            _logger.LogInformation($"UserID: {userId} ConnectionID: {connectionId} has disconnected from ChatHub");
+            _logger.LogInformation($"UserID: {userId} ConnectionID: {connectionId} has disconnected from  {nameof(ChatHub)}");
 
             return base.OnDisconnectedAsync(exception);
         }

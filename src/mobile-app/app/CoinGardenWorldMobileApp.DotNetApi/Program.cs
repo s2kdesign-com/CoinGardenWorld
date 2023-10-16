@@ -173,7 +173,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapHub<BroadcastHub>("BroadcastHub");
+app.MapHub<NotificationsHub>("NotificationsHub");
 app.MapHub<ChatHub>("ChatHub");
 
 app
