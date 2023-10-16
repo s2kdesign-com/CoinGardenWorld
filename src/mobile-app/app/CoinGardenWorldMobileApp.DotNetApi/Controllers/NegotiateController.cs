@@ -20,13 +20,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
         public NegotiateController(IHubContextStore store, IConfiguration configuration)
         {
-            _messageHubContext = store.MessageHubContext;
             _chatHubContext = store.ChatHubContext;
             _enableDetailedErrors = configuration.GetValue(EnableDetailedErrors, false);
         }
 
-        [HttpPost("messagehub/negotiate")]
-        public Task<ActionResult> MessageHubNegotiate()
+
+        [HttpPost("BroadcastHub/negotiate")]
+        public Task<ActionResult> BroadcastHubNegotiate()
         {
             return NegotiateBase( _messageHubContext);
         }

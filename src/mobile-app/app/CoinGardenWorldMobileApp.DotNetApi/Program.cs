@@ -14,6 +14,7 @@ using CoinGardenWorldMobileApp.DotNetApi.SignalR;
 using HealthChecks.UI.Client;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using CoinGardenWorldMobileApp.DotNetApi.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -78,6 +79,8 @@ builder.Services.AddSwaggerGen(options =>
             Url = new Uri("https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/LICENSE.txt")
         }
     });
+    // Add Swagger Signalr
+    options.AddSignalRSwaggerGen();
 
 
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -143,23 +146,18 @@ using (var scope = app.Services.CreateScope())
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        //Localhost-CoinGarden-Mobile-Web-SwaggerUI
-        options.OAuthAppName("Swagger Client");
-        options.OAuthClientId(builder.Configuration.GetValue<string>("SwaggerUI:ClientId"));
-        options.OAuthClientSecret(builder.Configuration.GetValue<string>("SwaggerUI:ClientSecret"));
-        options.OAuthUseBasicAuthenticationWithAccessCodeGrant();
-        
-    });
 }
 
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-};
+    //Localhost-CoinGarden-Mobile-Web-SwaggerUI
+    options.OAuthAppName("Swagger Client");
+    options.OAuthClientId(builder.Configuration.GetValue<string>("SwaggerUI:ClientId"));
+    options.OAuthClientSecret(builder.Configuration.GetValue<string>("SwaggerUI:ClientSecret"));
+    options.OAuthUseBasicAuthenticationWithAccessCodeGrant();
+
+});
 
 app.UseHttpsRedirection();
 
@@ -168,6 +166,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<BroadcastHub>("BroadcastHub");
+app.MapHub<ChatHub>("ChatHub");
 
 app
     .UseHealthChecks("/health", new HealthCheckOptions
