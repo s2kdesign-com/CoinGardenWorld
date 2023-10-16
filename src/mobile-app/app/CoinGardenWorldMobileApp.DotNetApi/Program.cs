@@ -15,6 +15,7 @@ using HealthChecks.UI.Client;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using CoinGardenWorldMobileApp.DotNetApi.Hubs;
+using Hangfire;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -134,6 +135,11 @@ builder.Services.AddHealthChecks()
     .AddSqlServer(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB"), "SELECT TOP (1) * FROM [dbo].[Flowers]", name: "Mobile APP - Database")
     ;
 
+// Add Hangfire
+builder.Services.AddHangfire(c => c.UseSqlServerStorage(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB")));
+builder.Services.AddHangfireServer();
+
+
 var app = builder.Build();
 
 // Apply migrations
@@ -182,5 +188,9 @@ app
     });
 
 app.UseCors("AllowAllCors");
+
+
+var options = new DashboardOptions { AppPath = "https://plant-api.azurewebsites.net/swagger/index.html" };
+app.UseHangfireDashboard(options: options);
 
 app.Run();

@@ -2,6 +2,7 @@
 @using Microsoft.Extensions.Configuration
 @using CoinGardenWorldMobileApp.MobileAppTheme.Configurations
 @using Microsoft.Extensions.Logging
+@using System.Timers
 
 @implements IAsyncDisposable
 
@@ -13,7 +14,7 @@
 <div class="menu-content px-3">
     <div class="card card-style rounded-m p-2 mx-0 bg-theme mb-0">
 
-        @if (IsConnected)
+        @if (HubConnected)
         {
 
             <div class="menu-list">
@@ -37,57 +38,114 @@
     private List<string> messages = new List<string>();
     private string? userInput;
     private string? messageInput;
+    private ExternalApisSettings externalApisSettings;
+    private Timer _signalRReconnectTimer = new Timer();
 
     private string _apiUrl = "#";
+    private string _hubSuffix = "/api/chathub/";
+
+    private bool HubConnected = false;
+
+
+    private void SignalRReconnect(object source, ElapsedEventArgs e)
+    {
+        Console.WriteLine($"Trying to reconnect to signalr hub at URL: {externalApisSettings.ExternalApis.FirstOrDefault().Value.Api_Url + _hubSuffix}");
+
+        try
+        {
+
+            if (!IsConnected )
+            {
+                hubConnection.StartAsync().Wait();
+                HubConnected = true;
+            }
+            else
+            {
+                HubConnected = true;
+                _signalRReconnectTimer.Stop();
+            }
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex.Message);
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
-        var externalApis = configuration.Get<ExternalApisSettings>();
-        if (externalApis != null && externalApis.ExternalApis != null)
+        externalApisSettings = configuration.Get<ExternalApisSettings>();
+        if (externalApisSettings != null && externalApisSettings.ExternalApis != null)
         {
 
-            while (IsConnected != true)
+            hubConnection = new HubConnectionBuilder()
+                .WithUrl(externalApisSettings.ExternalApis.FirstOrDefault().Value.Api_Url + _hubSuffix)
+                .WithAutomaticReconnect()
+                .Build();
+
+            hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+            {
+
+                var encodedMsg = $"{user}: {message}";
+                messages.Add(encodedMsg);
+                StateHasChanged();
+            });
+
+            hubConnection.Reconnecting += ex =>
+            {
+                Console.WriteLine($"SignalR hub connection lost, trying to reconnect at URL: {externalApisSettings.ExternalApis.FirstOrDefault().Value.Api_Url + _hubSuffix}");
+
+                HubConnected = false;
+                StateHasChanged();
+                return Task.CompletedTask;
+            };
+            hubConnection.Reconnected += ex =>
+            {
+
+                Console.WriteLine($"SignalR hub connection reconnected at URL: {externalApisSettings.ExternalApis.FirstOrDefault().Value.Api_Url + _hubSuffix}");
+                HubConnected = true;
+                StateHasChanged();
+                return Task.CompletedTask;
+            };
+            hubConnection.Closed += ex =>
+            {
+                // TODO: Not working and i dont know why
+
+                HubConnected = false;
+                Console.Write($"The connection of '{hubConnection.ConnectionId}' is closed.");
+                //If you expect non-null exception, you need to turn on 'EnableDetailedErrors' option during client negotiation.
+                if (ex != null)
+                {
+                    Console.Write($" Exception: {ex}");
+                }
+
+                StateHasChanged();
+
+                return Task.CompletedTask;
+
+            };
+
+            if (!IsConnected)
             {
                 try
                 {
-                    hubConnection = new HubConnectionBuilder()
-                        .WithUrl(externalApis.ExternalApis.FirstOrDefault().Value.Api_Url + "/api/chathub/")
-                        .WithAutomaticReconnect()
-                        .Build();
-
-                    hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
-                    {
-
-                        var encodedMsg = $"{user}: {message}";
-                        messages.Add(encodedMsg);
-                        StateHasChanged();
-                    });
-
-
-                    hubConnection.Closed += ex =>
-                    {
-                        // TODO: Not working and i dont know why
-
-                        Console.Write($"The connection of '{hubConnection.ConnectionId}' is closed.");
-                        //If you expect non-null exception, you need to turn on 'EnableDetailedErrors' option during client negotiation.
-                        if (ex != null)
-                        {
-                            Console.Write($" Exception: {ex}");
-                        }
-
-                        StateHasChanged();
-
-                        return Task.CompletedTask;
-
-                    };
                     await hubConnection.StartAsync();
+                    HubConnected = true;
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    logger.LogError(e.Message);
+                    logger.LogError(ex.Message);
+                    // Tell the timer what to do when it elapses
+                    _signalRReconnectTimer.Elapsed += new ElapsedEventHandler(SignalRReconnect);
+                    // Set it to go off every five seconds
+                    _signalRReconnectTimer.Interval = 5000;
+                    // And start it
+                    _signalRReconnectTimer.Enabled = true;
                 }
-
             }
+
+
+
         }
     }
 
