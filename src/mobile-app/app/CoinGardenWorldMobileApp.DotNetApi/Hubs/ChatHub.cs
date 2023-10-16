@@ -13,11 +13,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Hubs
         private ServiceHubContext BroadcastHubContext => _hubContextStore.ChatHubContext;
 
 
-        public ChatHub(ILoggerFactory loggerFactory, IHubContextStore hubContextStore)
+        public ChatHub(ILoggerFactory loggerFactory)//, IHubContextStore hubContextStore)
         {
 
             _logger = loggerFactory.CreateLogger<ChatHub>();
-            _hubContextStore = hubContextStore;
+            //_hubContextStore = hubContextStore;
         }
 
         public override Task OnConnectedAsync()

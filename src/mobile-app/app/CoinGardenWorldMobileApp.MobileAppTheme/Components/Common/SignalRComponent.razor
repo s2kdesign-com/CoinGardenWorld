@@ -56,6 +56,8 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        if (!firstRender)
+            return;
         // Tell the timer what to do when it elapses
         _signalRReconnectTimer.Elapsed += new ElapsedEventHandler(SignalRReconnect);
         // Set it to go off every five seconds

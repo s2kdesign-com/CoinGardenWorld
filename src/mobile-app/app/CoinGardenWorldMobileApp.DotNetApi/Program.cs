@@ -50,12 +50,19 @@ builder.Services.AddControllers();
 
 // Add signalr
 
-builder.Services
-    .AddSingleton<SignalRService>()
-    .AddHostedService(sp => sp.GetService<SignalRService>())
-    .AddSingleton<IHubContextStore>(sp => sp.GetService<SignalRService>());
+// TODO: This is not needed because we dont use serverless signalr, current hubs are directly resolved with the help of azure signalr and rooted 
+//builder.Services
+//    .AddSingleton<SignalRService>()
+//    .AddHostedService(sp => sp.GetService<SignalRService>())
+//    .AddSingleton<IHubContextStore>(sp => sp.GetService<SignalRService>());
 
-builder.Services.AddSignalR().AddAzureSignalR();
+builder.Services.AddSignalR().AddAzureSignalR(configure =>
+{
+    // TODO: indicate success: 429 (Too Many Requests) signalr
+    // the initial value was 5 but we got exception
+    // https://learn.microsoft.com/en-us/azure/azure-signalr/signalr-concept-internals#application-server-connections
+    configure.InitialHubServerConnectionCount = 1;
+});
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
