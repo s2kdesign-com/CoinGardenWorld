@@ -9,15 +9,28 @@
         {
 
             <div class="menu-list">
-                <a href="#"><img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/avatars/6s.png" alt="img" class="gradient-orange"><span class="font-500 color-theme">Olivia Orange</span><em class="badge badge-s bg-red-dark">3</em></a>
-                <a href="#"><img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/avatars/2s.png" alt="img" class="gradient-green"><span class="font-500 color-theme">Marcus Green</span><em class="badge badge-s bg-red-dark">5</em></a>
-                <a href="#"><img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/avatars/5s.png" alt="img" class="gradient-blue"><span class="font-500 color-theme">Danny Blueish</span><em class="badge badge-s bg-red-dark">1</em></a>
+                <a href="@NavigationLinks.CHAT_MESSAGES_URL"><img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/avatars/6s.png" alt="img" class="gradient-orange"><span class="font-500 color-theme">Olivia Orange</span><em class="badge badge-s bg-red-dark">3</em></a>
+                <a href="@NavigationLinks.CHAT_MESSAGES_URL"><img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/avatars/2s.png" alt="img" class="gradient-green"><span class="font-500 color-theme">Marcus Green</span><em class="badge badge-s bg-red-dark">5</em></a>
+                <a href="@NavigationLinks.CHAT_MESSAGES_URL"><img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/avatars/5s.png" alt="img" class="gradient-blue"><span class="font-500 color-theme">Danny Blueish</span><em class="badge badge-s bg-red-dark">1</em></a>
+
+                <NavLink class="nav-link" href="@NavigationLinks.CHAT_LIST_URL" id="nav-homes">
+                    <i class="gradient-highlight shadow-bg shadow-bg-xs bi bi-chat-dots"></i>
+                    <span>All Messages</span>
+                    <i class="bi bi-chevron-right"></i>
+                </NavLink>
             </div>
         }
         else
         {
             <div>
-                No SignalR Connection to server could be made
+                Chat is Offline
+            </div>
+            <div class="menu-list">
+                <NavLink class="nav-link" href="@NavigationLinks.CHAT_LIST_URL" id="nav-homes">
+                    <i class="gradient-highlight shadow-bg shadow-bg-xs bi bi-chat-dots"></i>
+                    <span>All Messages</span>
+                    <i class="bi bi-chevron-right"></i>
+                </NavLink>
             </div>
         }
 

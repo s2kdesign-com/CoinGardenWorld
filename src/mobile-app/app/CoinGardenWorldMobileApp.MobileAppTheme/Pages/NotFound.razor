@@ -1,0 +1,29 @@
+﻿@page "/not-found"
+<!-- Your Page Content Goes Here-->
+<div class="page-content mb-0 pb-0">
+
+    <div class="card card-style mb-0 bg-transparent shadow-0 mobileapp-site-logo-mobile-580x1060 mx-0 rounded-0" data-card-height="cover">
+        <div class="card-center">
+            <div class="card card-style">
+                <div class="content">
+                    <h1 class="font-800 font-45 mb-2 pt-4">404</h1>
+                    <p class="font-13 mt-n2 mb-3">Page Not Found</p>
+                    <p class="pt-2 mb-0">
+                        The page cannot be located. <br> Try refreshing or going back home.
+                    </p>
+                    @* data-back-button attribute will redirect the user to previous page but there is strange refresh 
+
+                    <a href="/" data-back-button class='btn rounded-sm btn-m gradient-red text-uppercase font-700 mt-4 mb-3 shadow-bg shadow-bg-s'>Go Back</a> 
+                    *@
+                    <a href="/" class='btn rounded-sm btn-m gradient-red text-uppercase font-700 mt-4 mb-3 shadow-bg shadow-bg-s'>Go Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<ThemeLoader></ThemeLoader>
+@code {
+
+}

@@ -1,0 +1,172 @@
+﻿@* @page "/chat-messages" *@
+
+@attribute [Route(NavigationLinks.CHAT_MESSAGES_URL)]
+
+@layout ChatLayout
+
+    <!-- Your Page Content Goes Here-->
+    <div class="page-content header-clear-medium">
+
+		<div class="content mt-0">
+
+			<p class="text-center font-600 font-11 mb-3 opacity-50">Thursday, 15th March, 2022</p>
+
+			<!-- Left Bubble-->
+			<div class="d-flex mb-3 pb-1">
+				<div class="align-self-end">
+					<img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/10s.jpg" width="24" class="rounded-s mb-n4">
+				</div>
+				<div class="ms-2 ps-1">
+					<div class="gradient-highlight rounded-m p-2" style="border-bottom-left-radius:0px!important">
+						<p class="d-block p-1 ps-2 pe-3 color-white font-14">
+							Hey mate, how are you? I heard we're throwing a party this weekend?
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Right Bubble-->
+			<div class="d-flex mb-3 pb-1">
+				<div class="ms-auto me-2 pe-1">
+					<div class="bg-gray-light rounded-m p-2" style="border-bottom-right-radius:0px!important">
+						<p class="d-block p-1 px-2 color-black font-14">
+							Yeah! You're coming, I hope!
+						</p>
+					</div>
+				</div>
+				<div class="align-self-end">
+					<img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/5s.jpg" width="24" class="rounded-s mb-n4">
+				</div>
+			</div>
+
+			<!-- Left Bubble-->
+			<div class="d-flex mb-3 pb-1">
+				<div class="align-self-end">
+					<img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/10s.jpg" width="24" class="rounded-s mb-n4">
+				</div>
+				<div class="ms-2 ps-1">
+					<div class="gradient-highlight rounded-m p-2" style="border-bottom-left-radius:0px!important">
+						<p class="d-block p-1 ps-2 pe-3 color-white font-14">
+							Yeap! You can totally count me in! As long as the weather holds clear we should be good!
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Right Bubble-->
+			<div class="d-flex mb-2 pb-1">
+				<div class="ms-auto me-2 pe-1">
+					<div class="bg-gray-light rounded-m">
+						<img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/4.jpg" class="img-fluid rounded-m"/>
+					</div>
+				</div>
+				<div class="align-self-end">
+					<img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" width="24" class="rounded-s mb-n4">
+				</div>
+			</div>
+
+			<!-- Right Bubble-->
+			<div class="d-flex mb-3 pb-1">
+				<div class="ms-auto me-2 pe-1">
+					<div class="bg-gray-light rounded-m p-2" style="border-bottom-right-radius:0px!important">
+						<p class="d-block p-1 px-2 color-black font-14">
+							Oh, we got doughnuts
+						</p>
+					</div>
+				</div>
+				<div class="align-self-end">
+					<img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/5s.jpg" width="24" class="rounded-s mb-n4">
+				</div>
+			</div>
+
+			<!-- Left Bubble-->
+			<div class="d-flex mb-3 pb-1">
+				<div class="align-self-end">
+					<img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/10s.jpg" width="24" class="rounded-s mb-n4">
+				</div>
+				<div class="ms-2 ps-1">
+					<div class="gradient-highlight rounded-m p-2" style="border-bottom-left-radius:0px!important">
+						<p class="d-block p-1 ps-2 pe-3 color-white font-14">
+							Okay. You got me! See you then!
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="d-flex mb-3 mt-n1 pb-1">
+				<div class="align-self-center ms-auto">
+					<p class="text-end font-700 font-12 mb-0 pt-1">Seen: 09:30</p>
+				</div>
+				<div class="align-self-center">
+					<img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/5s.jpg" width="11" class="rounded-xl ms-2 me-2"/>
+				</div>
+			</div>
+
+			<!-- Left Bubble-->
+			<div class="d-flex mb-3 pb-1">
+				<div class="align-self-end">
+					<img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/10s.jpg" width="24" class="rounded-s mb-n4">
+				</div>
+				<div class="ms-2 ps-1">
+					<div class="gradient-highlight rounded-m p-2" style="border-bottom-left-radius:0px!important">
+						<p class="d-block p-1 ps-2 pe-3 color-white font-14">
+							By the way. Don't forget to call John. He's car is still in service. He can't reach you! Cheers!
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="mb-4"></div>
+
+		</div>
+
+    </div>
+	<!-- End of Page Content-->
+
+	<!-- Add to Chat -->
+   <div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached bg-theme" id="menu-upload">
+		<div class="content">
+			<div class="d-flex pb-2">
+				<div class="align-self-center">
+					<h5 class="mb-n1 font-12 color-highlight font-700 text-uppercase pt-1">Just tap and</h5>
+					<h1 class="font-700">Add to Chat</h1>
+				</div>
+				<div class="align-self-center ms-auto">
+					<a href="#"  data-bs-dismiss="offcanvas" class="icon icon-m"><i class="bi bi-x-circle-fill color-red-dark font-18 me-n4"></i></a>
+				</div>
+			</div>
+			<div class="list-group list-custom list-group-m rounded-xs list-group-flush bg-theme">
+				<a href="#" class="list-group-item">
+					<i class="bi bi-file-arrow-up-fill color-theme opacity-30 font-16"></i>
+					<div class="font-500 ps-2">File</div>
+					<i class="bi bi-chevron-right pe-1"></i>
+				</a>
+				<a href="#" class="list-group-item">
+					<i class="bi bi-image-fill color-theme opacity-30 font-16"></i>
+					<div class="font-500 ps-2">Photo</div>
+					<i class="bi bi-chevron-right pe-1"></i>
+				</a>
+				<a href="#" class="list-group-item">
+					<i class="bi bi-camera-video-fill color-theme opacity-30 font-16"></i>
+					<div class="font-500 ps-2">Video</div>
+					<i class="bi bi-chevron-right pe-1"></i>
+				</a>
+				<a href="#" class="list-group-item">
+					<i class="bi bi-camera-fill color-theme opacity-30 font-16"></i>
+					<div class="font-500 ps-2">Camera</div>
+					<i class="bi bi-chevron-right pe-1"></i>
+				</a>
+				<a href="#" class="list-group-item">
+					<i class="bi bi-geo-alt-fill color-theme opacity-30 font-16"></i>
+					<div class="font-500 ps-2">Location</div>
+					<i class="bi bi-chevron-right pe-1"></i>
+				</a>
+			</div>
+		</div>
+   </div>
+
+   
+    <ThemeLoader></ThemeLoader>
+@code {
+
+}

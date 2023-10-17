@@ -69,18 +69,17 @@
             _hubUrl = externalApisSettings.ExternalApis.FirstOrDefault().Value.Api_Url + HubUrlSuffix;
 
             var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-
+            var userEmails = "";
+            if (authState.User.Identity.IsAuthenticated)
+            {
+                userEmails = authState.User.Claims.First(c => c.Type == "emails").Value;
+                Console.WriteLine(userEmails);
+            }
             HubConnection = new HubConnectionBuilder()
                 .WithUrl(_hubUrl, opt =>
                 {
-                    if (authState.User.Identity.IsAuthenticated)
-                    {
-                        foreach (var userClaim in authState.User.Claims)
-                        {
-                            Console.WriteLine(userClaim.Type + ":" + userClaim.Value);
-                        }    
-                    }
-                       // opt.Headers.Add("Authorization", "Bearer " + authState.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier));
+                   // TODO: NOT WORKING
+                    opt.Headers.Add("user-emails", userEmails);
                 })
                 .WithAutomaticReconnect()
                 .Build();

@@ -1,6 +1,7 @@
 ﻿using CoinGardenWorldMobileApp.DotNetApi.SignalR;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Azure.SignalR.Management;
+using Microsoft.Extensions.Primitives;
 using SignalRSwaggerGen.Attributes;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Hubs
@@ -24,8 +25,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Hubs
         {
 	        var userId = Context.UserIdentifier;
 	        var connectionId = Context.ConnectionId;
+            StringValues userEmails = "";
+            if(Context.GetHttpContext() != null)
+                Context.GetHttpContext()?.Request.Headers.TryGetValue("user-emails", out userEmails);
 
-	        _logger.LogInformation($"UserID: {userId} ConnectionID: {connectionId} has connected to {nameof(NotificationsHub)}");
+
+
+	        _logger.LogInformation($"UserID: {userId}, UserEmails: {userEmails} ConnectionID: {connectionId} has connected to {nameof(NotificationsHub)}");
 	        return base.OnConnectedAsync();
         }
 

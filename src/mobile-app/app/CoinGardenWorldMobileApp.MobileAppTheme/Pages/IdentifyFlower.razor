@@ -1,0 +1,61 @@
+﻿@attribute [RouteAttribute(NavigationLinks.IDENTIFY_FLOWER_URL)]
+
+@using Microsoft.Extensions.Configuration
+
+@inject IConfiguration Configuration
+
+
+<!-- Your Page Content Goes Here-->
+<div class="page-content header-clear-medium">
+
+    <div class="card card-style">
+        <div class="content">
+            <h6 class="font-700 mb-n1 color-highlight">Image Processing</h6>
+            <h1 class="pb-2">File Upload</h1>
+            <p>
+                All the input styles you could ever need, styled to match your device and powered by HTML5 validation for maximum compatibility.
+            </p>
+            <ul class="ps-3">
+                <li>Using WebAPI's</li>
+                <li>Retrieve file data and info</li>
+                <li>Preview the Uploaded Image</li>
+            </ul>
+            <div class="divider mb-0"></div>
+            <div class="file-data">
+                <img id="image-data" src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" class="img-fluid rounded-s" alt="img">
+                <span class="upload-file-name d-block text-center"
+                      data-text-before="<i class='bi bi-check-circle-fill color-green-dark pe-2'></i> Image:"
+                      data-text-after=" is ready.">
+                </span>
+                <div>
+                    <input type="file" class="upload-file" accept="image/*">
+                    <p class="btn btn-full btn-m text-uppercase font-700 rounded-s upload-file-text bg-highlight">Upload Image</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-style">
+        <div class="content">
+            <h6 class="font-700 mb-n1 color-highlight">You need More Information?</h6>
+            <h1 class="pb-2">Chat with GardenBOT</h1>
+            <p>
+                All the input styles you could ever need, styled to match your device and powered by HTML5 validation for maximum compatibility.
+            </p>
+           
+            <iframe src="@webchatUrl" style="height: 502px; max-height: 502px; width: 100%;"></iframe>
+        </div>
+    </div>
+
+</div>
+<!-- End of Page Content-->
+
+<ThemeLoader></ThemeLoader>
+@code {
+    private string webchatUrl;
+
+    protected override void OnInitialized() {
+        base.OnInitialized();
+        webchatUrl = $"https://webchat.botframework.com/embed/coingardenBotCore?s={Configuration["BotFramework:WebChatSecret"]}";
+    }
+}

@@ -11,14 +11,14 @@
         <span>Menu</span>
     </a> *@
 
-    <NavLink ActiveClass="active-nav" href="/garden">
+    <NavLink ActiveClass="active-nav" href="@NavigationLinks.DASHBOARD_URL">
         <i class="bi bi-heart-fill font-15"></i>
-        <span>Your Garden</span>
+        <span>Dashboard</span>
     </NavLink>
 
-    <NavLink ActiveClass="active-nav" href="/counter">
-        <i class="bi bi-star-fill font-17"></i>
-        <span>Counter</span>
+    <NavLink ActiveClass="active-nav" href="@NavigationLinks.IDENTIFY_FLOWER_URL">
+        <i class="bi bi-flower3 font-17"></i>
+        <span>Identify</span>
     </NavLink>
 
     <NavLink ActiveClass="active-nav" href="" Match="NavLinkMatch.All">
@@ -26,8 +26,8 @@
         <span>Home</span>
     </NavLink>
 
-    <NavLink ActiveClass="active-nav" href="/profile">
-        <i class="bi bi-image font-16"></i>
+    <NavLink ActiveClass="active-nav" href="@NavigationLinks.PROFILE_URL">
+        <i class="bi bi-person-circle font-16"></i>
         <span>Profile</span>
     </NavLink>
 

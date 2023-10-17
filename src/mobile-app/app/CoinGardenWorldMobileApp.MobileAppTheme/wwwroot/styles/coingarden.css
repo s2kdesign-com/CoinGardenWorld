@@ -31,6 +31,11 @@ body .pwa-updater[b-pwa-updater] {
     background-image: url(../images/coingarden/charity-site-logo-mobile-1000x850.png);
 }
 
+
+.mobileapp-site-logo-mobile-580x1060 {
+    background-image: url(../images/coingarden/mobileapp-site-logo-mobile-580x1060.png);
+}
+
 .language-selector-walkthrough-flag-en {
     display: inline-block;
     width: 50px;
