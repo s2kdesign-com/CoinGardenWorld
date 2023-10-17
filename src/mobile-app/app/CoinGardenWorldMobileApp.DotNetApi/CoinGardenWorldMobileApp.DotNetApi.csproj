@@ -12,6 +12,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+	  <PackageReference Include="AspNetCore.HealthChecks.Hangfire" Version="7.0.0" />
+	  <PackageReference Include="AspNetCore.HealthChecks.SignalR" Version="7.0.0" />
 	  <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="7.0.0" />
 	  <PackageReference Include="Hangfire.AspNetCore" Version="1.8.5" />
 	  <PackageReference Include="Hangfire.NetCore" Version="1.8.5" />

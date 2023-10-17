@@ -124,9 +124,9 @@ internal static class HostingExtensions
             options.Conventions.AuthorizeFolder("/ServerSideSessions", "admin"));
 
         // Add HealthChecks 
-        builder.Services.AddHealthChecks().AddCheck("self", () =>
-            HealthCheckResult.Healthy("Build Version: " + Assembly.GetExecutingAssembly()?.GetName().Version))
-            .AddSqlServer(connectionString, "SELECT TOP (1) * FROM [dbo].[Clients]")
+        builder.Services.AddHealthChecks().AddCheck("https://coingarden-identity.azurewebsites.net/", () =>
+            HealthCheckResult.Healthy("Build Version: " + Assembly.GetExecutingAssembly()?.GetName().Version), tags: new List<string> { "identityserver" })
+            .AddSqlServer(connectionString, "SELECT TOP (1) * FROM [dbo].[Clients]", tags: new List<string> { "identityserver", "database" })
             ;
         
         return builder.Build();

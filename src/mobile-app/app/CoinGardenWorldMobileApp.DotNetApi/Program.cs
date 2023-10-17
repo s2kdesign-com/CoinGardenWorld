@@ -135,17 +135,38 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddDbContext<MobileAppDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB")));
 
-
-// Add Health Checks
-builder.Services.AddHealthChecks()
-    .AddCheck("https://plant-api.azurewebsites.net/swagger/index", () => HealthCheckResult.Healthy("Build Version: " + Assembly.GetExecutingAssembly().GetName().Version), new List<string> { "mobileapp" })
-    .AddSqlServer(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB"), "SELECT TOP (1) * FROM [dbo].[Flowers]", name: "Mobile APP - Database")
-    ;
-
 // Add Hangfire
 builder.Services.AddHangfire(c => c.UseSqlServerStorage(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB")));
 builder.Services.AddHangfireServer();
 
+
+
+// Add Health Checks
+var notificationHubUrl = "https://plant-api.azurewebsites.net/NotificationsHub";
+var chatHubUrl = "https://plant-api.azurewebsites.net/ChatHub";
+
+var hangfireUrl = "https://plant-api.azurewebsites.net/hangfire";
+
+#if DEBUG
+notificationHubUrl = "https://localhost:7249/NotificationsHub";
+chatHubUrl = "https://localhost:7249/ChatHub";
+
+hangfireUrl = "https://localhost:7249/hangfire";
+#endif
+
+var healthTags = new List<string> { "mobileapp" };
+var healthTagsDatabase = new List<string> { "mobileapp", "database"  };
+var healthTagsSignalR = new List<string> { "mobileapp", "signalr"  };
+var healthTagsHangFire = new List<string> { "mobileapp", "hangfire" };
+
+builder.Services.AddHealthChecks()
+    .AddCheck("https://plant-api.azurewebsites.net/swagger/index", () => HealthCheckResult.Healthy("Build Version: " + Assembly.GetExecutingAssembly().GetName().Version), healthTags)
+    .AddSqlServer(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB"), "SELECT TOP (1) * FROM [dbo].[Flowers]", name: "Mobile APP - Database", tags: healthTagsDatabase)
+    .AddHangfire(opt => { opt.MinimumAvailableServers = 1; opt.MaximumJobsFailed = 1; }, name: hangfireUrl, tags: healthTagsHangFire)
+    .AddSignalRHub(notificationHubUrl, name: notificationHubUrl, tags: healthTagsSignalR)
+    .AddSignalRHub(chatHubUrl, name: chatHubUrl, tags: healthTagsSignalR)
+
+    ;
 
 var app = builder.Build();
 
