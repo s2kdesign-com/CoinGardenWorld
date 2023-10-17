@@ -154,7 +154,7 @@ chatHubUrl = "https://localhost:7249/ChatHub";
 hangfireUrl = "https://localhost:7249/hangfire";
 #endif
 
-var healthTags = new List<string> { "mobileapp" };
+var healthTags = new List<string> { "mobileapp", "api" };
 var healthTagsDatabase = new List<string> { "mobileapp", "database"  };
 var healthTagsSignalR = new List<string> { "mobileapp", "signalr"  };
 var healthTagsHangFire = new List<string> { "mobileapp", "hangfire" };
