@@ -9,3 +9,37 @@ body .pwa-updater[b-pwa-updater] {
 .pwa-updater{
     z-index: 999 !important;
 }
+.form-language-walkthrough .form-select {
+    background-color: transparent !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.2) !important;
+}
+.form-language-walkthrough label {
+    background-color: transparent !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+.mobileapp-site-logo-mobile-1000x850 {
+    background-image: url(../images/coingarden/mobileapp-site-logo-mobile-1000x850.png);
+}
+.metaverse-site-logo-mobile-1000x850 {
+    background-image: url(../images/coingarden/metaverse-site-logo-mobile-1000x850.png);
+}
+.bot-site-logo-mobile-1000x850 {
+    background-image: url(../images/coingarden/bot-site-logo-mobile-1000x850.png);
+}
+.charity-site-logo-mobile-1000x850 {
+    background-image: url(../images/coingarden/charity-site-logo-mobile-1000x850.png);
+}
+
+.language-selector-walkthrough-flag-en {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-image: url(https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png)
+}
+.language-selector-walkthrough-flag-bg {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Bulgaria.svg/320px-Flag_of_Bulgaria.svg.png)
+}

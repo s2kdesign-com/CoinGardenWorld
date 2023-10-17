@@ -1,10 +1,19 @@
 ﻿@page "/counter"
 
-<h1>Counter</h1>
 
-<p role="status">Current count: @currentCount</p>
+<!-- Your Page Content Goes Here-->
+<div class="page-content header-clear-medium">
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+ 
+    <h1>Counter</h1>
+
+    <p role="status">Current count: @currentCount</p>
+
+    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+
+</div>
+<!-- End of Page Content-->
 
 <ThemeLoader></ThemeLoader>
 @code {

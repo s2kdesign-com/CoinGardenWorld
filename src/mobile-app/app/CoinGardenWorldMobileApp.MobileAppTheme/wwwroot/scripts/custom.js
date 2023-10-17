@@ -661,9 +661,12 @@ function removePreloader() {
 					el.querySelectorAll('i')[0].classList.remove('bi-check-circle-fill');
 					el.querySelectorAll('i')[0].classList.add('bi-circle');
 				});
-				var highlightSelect = document.querySelectorAll('[data-change-highlight="'+rememberHighlight+'"]')[0];
-				highlightSelect.querySelectorAll('i')[0].classList.remove('bi-circle');
-				highlightSelect.querySelectorAll('i')[0].classList.add('bi-check-circle-fill');
+                var highlightSelect = document.querySelectorAll('[data-change-highlight="' + rememberHighlight + '"]')[0];
+                if (highlightSelect) {
+
+				    highlightSelect.querySelectorAll('i')[0].classList.remove('bi-circle');
+                    highlightSelect.querySelectorAll('i')[0].classList.add('bi-check-circle-fill');
+                }
 	        }
 		}
 		

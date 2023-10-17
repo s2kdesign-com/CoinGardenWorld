@@ -1,0 +1,30 @@
+﻿@inherits LayoutComponentBase
+
+@inject IJSRuntime JsRuntime
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+<div id="page">
+    
+
+    @Body
+    <PwaInstallMenu />
+
+    
+    @using Toolbelt.Blazor.PWA.Updater
+    @* 👇 Toolbelt.Blazor.PWA.Updater. *@
+    <PWAUpdater />
+
+</div>
+@code
+{
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+    // this statement assumes the module is in the wwwroot/js folder
+    // _module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CoinGardenWorldMobileApp.MobileAppTheme/scripts/custom.js");
+            await JsRuntime.InvokeVoidAsync("removePreloader");
+        }
+    }
+
+}
