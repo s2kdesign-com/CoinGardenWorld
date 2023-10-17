@@ -84,7 +84,9 @@
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0-rc.1.23419.4" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
-    </ItemGroup>
+        <PackageReference Include="Toolbelt.Blazor.PWA.Updater" Version="2.1.0.1" />
+
+	</ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\CoinGardenWorldMobileApp.MobileAppTheme\CoinGardenWorldMobileApp.MobileAppTheme.csproj" />

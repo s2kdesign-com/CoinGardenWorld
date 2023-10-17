@@ -12,6 +12,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0-rc.1.23419.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0-rc.1.23419.4" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="8.0.0-rc.1.23419.4" />
+    <PackageReference Include="Toolbelt.Blazor.PWA.Updater" Version="2.1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
