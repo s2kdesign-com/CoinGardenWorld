@@ -52,7 +52,7 @@ https://docs.coingarden.world/v/bg/
  | 🏪 | NFT Store Web3 | trade.coingarden.world |  |
  | 🌐 | Metaverse Game | play.coingarden.world |  |
  
-| Icon | ![.net MAUI](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/azure-functions-badge-68x28.png?raw=true) | Url | Status |
+| Icon | ![Azure Functions](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/azure-functions-badge-68x28.png?raw=true) | Url | Status |
 | - | - | - | - |
 | 🖼️ | Official Site API | [coingarden.world/api/swagger/ui](https://coingarden.world/api/swagger/ui) | [![Deploy Official Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml) |
 | 🏪 | GardenStore Site API | [store.coingarden.world/api/swagger/ui](https://store.coingarden.world/api/swagger/ui) | [![Deploy GardenStore Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/nftstore-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/nftstore-site-azure-static-web-apps.yml) | 
@@ -102,7 +102,7 @@ The InterPlanetary File System (IPFS) is a set of composable, peer-to-peer proto
 
 ---
 ### 📱 Mobile Applications
-All applications are build with .NET MAUI (Multi-platform App UI ) - ![Blazor](https://img.shields.io/badge/blazor-%235C2D91.svg?style=for-the-badge&logo=blazor&logoColor=white) ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
+All applications are build with .NET MAUI (Multi-platform App UI ) - ![Blazor](https://img.shields.io/badge/blazor-%235C2D91.svg?style=for-the-badge&logo=blazor&logoColor=white) ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white) ![.net MAUI](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/maui-badge-71x28.png?raw=true)
 
 | Supported OS Platform | Version | 🎛️ Operating System  | Download | Status | 
 | - | - | - | - | - |
