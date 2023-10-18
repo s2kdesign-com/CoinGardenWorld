@@ -8,6 +8,8 @@
 
 @code
 {
+    public static bool IsInitialLoad = true;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
 
@@ -19,8 +21,15 @@
             }
             // this statement assumes the module is in the wwwroot/js folder
             // _module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CoinGardenWorldMobileApp.MobileAppTheme/scripts/custom.js");
-            await JsRuntime.InvokeVoidAsync("init_template");
 
+
+            await JsRuntime.InvokeVoidAsync("init_template", IsInitialLoad);
+
+            if (IsInitialLoad == true)
+            {
+                IsInitialLoad = false;                
+            }
+            
 
             if (localStorage.Exists(LocalStorage.Constants.THEME_MODE_LOCAL_STORAGE_NAME))
             {
