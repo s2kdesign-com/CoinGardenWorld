@@ -46,7 +46,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "const CACHE_VERSION = '1'"
-          replace: "const CACHE_VERSION = '${{ github.run_numberI }}'"
+          replace: "const CACHE_VERSION = '${{ env.VERSION_CI }}'"
           include: "**service-worker.published.js"
 
       - name: Find and Replace frond-end Version
