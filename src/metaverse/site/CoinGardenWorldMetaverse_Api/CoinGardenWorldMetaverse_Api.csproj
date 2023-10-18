@@ -16,7 +16,7 @@
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.14.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup> 
     <ProjectReference Include="..\..\..\shared\back-end\CoinGardenWorld.AzureFunctionExtensions\CoinGardenWorld.AzureFunctionExtensions.csproj" />
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@ env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Disable the .NET first time experience
   DOTNET_CLI_TELEMETRY_OPTOUT: true       # Disable sending .NET CLI telemetry
   DOCKERFILE: src/metaverse/site/CoinGardenWorldMetaverse_Api/Dockerfile
-  TAG: ghcr.io/s2kdesign-com/coingardenworld.metaverse_api
+  TAG: ghcr.io/s2kdesign-com/coingardenworld.metaverse_site_api
   VERSION_UPDATER_PATH: src/metaverse/site/**/*.csproj
  
 jobs:
