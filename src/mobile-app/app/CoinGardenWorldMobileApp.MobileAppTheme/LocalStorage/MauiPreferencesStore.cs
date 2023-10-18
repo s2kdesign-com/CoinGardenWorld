@@ -24,6 +24,13 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage
                 Preferences.Set(key, keyvalue);
             }
         }
+        public void SetString(string key, string value)
+        {
+            if (!string.IsNullOrEmpty(key) != null && !string.IsNullOrEmpty(value))
+            {
+                Preferences.Set(key, value);
+            }
+        }
 
         /// <summary>
         /// Get an element using a certain key, with type T

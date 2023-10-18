@@ -18,7 +18,10 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage
         {
              _localStorageService.SetItem(key, value);
         }
-
+        public void SetString(string key, string value)
+        {
+            _localStorageService.SetItemAsString(key, value);
+        }
         public T Get<T>(string key)
         {
             return _localStorageService.GetItem<T>(key);

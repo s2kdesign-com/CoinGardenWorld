@@ -1,13 +1,15 @@
 ﻿@inherits LayoutComponentBase
 
+@using CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage
+
 @inject IJSRuntime JsRuntime
+@inject IHybridStorage localStorage
 
 <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
 <div id="page">
     
 
     @Body
-    <PwaInstallMenu />
 
     
     @using Toolbelt.Blazor.PWA.Updater
@@ -17,6 +19,13 @@
 </div>
 @code
 {
+    protected override Task OnInitializedAsync()
+    {
+        var defaultColor = "green";
+        localStorage.SetString(LocalStorage.Constants.THEME_COLOR_LOCAL_STORAGE_NAME, defaultColor );
+
+        return base.OnInitializedAsync();
+    }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)

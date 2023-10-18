@@ -10,5 +10,6 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage
     {
         public const string LANGUAGE_LOCAL_STORAGE_NAME = "GardenAPP-Language";
         public const string THEME_MODE_LOCAL_STORAGE_NAME = "GardenAPP-Theme";
+        public const string THEME_COLOR_LOCAL_STORAGE_NAME = "GardenAPP-Highlight";
     }
 }

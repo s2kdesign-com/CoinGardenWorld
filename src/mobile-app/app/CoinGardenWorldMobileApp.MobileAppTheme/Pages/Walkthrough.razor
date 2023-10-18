@@ -141,7 +141,7 @@
 
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(value);
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(value);
-            localStorage.Set(LocalStorage.Constants.LANGUAGE_LOCAL_STORAGE_NAME, value);
+            localStorage.SetString(LocalStorage.Constants.LANGUAGE_LOCAL_STORAGE_NAME, value);
             _selectedCulture = value;
 
             // TODO: Consider dynamic culture provider to not refresh the page https://github.com/ScarletKuro/Blazor.WebAssembly.DynamicCulture
@@ -163,7 +163,7 @@
     }
     private void SaveLocalStoragePreferences()
     {
-        localStorage.Set(LocalStorage.Constants.LANGUAGE_LOCAL_STORAGE_NAME, _selectedCulture);
+        localStorage.SetString(LocalStorage.Constants.LANGUAGE_LOCAL_STORAGE_NAME, _selectedCulture);
     }
 
     protected override void OnInitialized()

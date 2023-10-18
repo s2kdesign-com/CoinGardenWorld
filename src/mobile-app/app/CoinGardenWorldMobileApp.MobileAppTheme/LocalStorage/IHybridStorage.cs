@@ -16,6 +16,14 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage
         /// <param name="value"></param>
         void Set(string key, object value);
 
+
+        /// <summary>
+        /// Store a key and value both strings 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        void SetString(string key, string value);
+
         /// <summary>
         /// Get an element using a certain key, with type T
         /// </summary>
