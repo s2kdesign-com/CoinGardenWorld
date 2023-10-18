@@ -90,16 +90,17 @@
     <div class="card-bottom">
         <div class="form-custom form-language-walkthrough mb-3 form-label form-border col-6 mx-auto d-block">
             <i class="bi bi-check-circle font-13 disabled"></i>
-            <select @bind="selectedCulture" class="form-select" id="language-selector-walkthrough" aria-label="Select Language">
+            <select @bind="_selectedCulture" class="form-select" id="language-selector-walkthrough" aria-label="Select Language">
                 @foreach (var culture in supportedCultures)
                 {
-                    <option value="@culture.Key.DisplayName" class="bg-dark" lang="@culture.Key.TwoLetterISOLanguageName">
+                    <option value="@culture.Key.TwoLetterISOLanguageName" class="bg-dark" lang="@culture.Key.TwoLetterISOLanguageName">
                         <img src="@culture.Value" class="language-selector-walkthrough-flag-@culture.Key.TwoLetterISOLanguageName">
-                        @culture.Key.DisplayName 
+                        @culture.Key.NativeName 
                     </option>
                 }
             </select>
             <label for="language-selector-walkthrough" class="form-label-active">Select Language</label>
+            
         </div>
         <p class="text-center font-10 mb-n3 color-white opacity-40">
             Made with Love and Care by
@@ -107,7 +108,7 @@
                 CoinGarden.World
             </a>
         </p>
-        <a href="../" class="btn btn-full gradient-highlight m-4 font-700 text-uppercase shadow-bg shadow-bg-s">Start Exploring GardenAPP <br /> by "World of Flowers"</a>
+        <a href="/" @onclick="SaveLocalStoragePreferences" class="btn btn-full gradient-highlight m-4 font-700 text-uppercase shadow-bg shadow-bg-s">Start Exploring GardenAPP <br /> by "World of Flowers"</a>
     </div>
 
 </div>
@@ -117,20 +118,23 @@
 <ThemeLoader></ThemeLoader>
 
 @code {
-    private string selectedCulture;
+    private string _selectedCulture = "en";
     // TODO: dont know how to add images on select :(
     private Dictionary<CultureInfo, string> supportedCultures = new Dictionary<CultureInfo, string>
     {
         { new CultureInfo("en-US"), "https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png"},
         { new CultureInfo("bg-BG"), "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Bulgaria.svg/320px-Flag_of_Bulgaria.svg.png"}
     };
+    
+    private void SaveLocalStoragePreferences()
+    {
+        localStorage.Set("GardenAPP-Language", _selectedCulture);
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        localStorage.Set("name", "John Smith");
-        var name = localStorage.Get<string>("name");
-
-        Console.WriteLine(name);
+        
     }
+
 
 }

@@ -1,12 +1,20 @@
-﻿
+﻿@using CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage
+
 
 @inject IJSRuntime JsRuntime
+@inject NavigationManager navigation
+@inject IHybridStorage localStorage
+
 @code
 {
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+
         if (firstRender)
         {
+            if(!localStorage.Exists("GardenAPP-Language"))
+                navigation.NavigateTo(NavigationLinks.WALKTHROUGH_URL);
+
     // this statement assumes the module is in the wwwroot/js folder
     // _module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CoinGardenWorldMobileApp.MobileAppTheme/scripts/custom.js");
             await JsRuntime.InvokeVoidAsync("init_template");
