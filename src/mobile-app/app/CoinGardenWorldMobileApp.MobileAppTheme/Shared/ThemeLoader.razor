@@ -18,10 +18,19 @@
                 navigation.NavigateTo(NavigationLinks.WALKTHROUGH_URL);
             }
             // this statement assumes the module is in the wwwroot/js folder
-    // _module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CoinGardenWorldMobileApp.MobileAppTheme/scripts/custom.js");
+            // _module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CoinGardenWorldMobileApp.MobileAppTheme/scripts/custom.js");
             await JsRuntime.InvokeVoidAsync("init_template");
 
 
+            if (localStorage.Exists(LocalStorage.Constants.THEME_MODE_LOCAL_STORAGE_NAME))
+            {
+                var themeMode = localStorage.Get<string>(LocalStorage.Constants.THEME_MODE_LOCAL_STORAGE_NAME);
+                if(themeMode == "dark-mode")
+                {
+                    
+                    await JsRuntime.InvokeVoidAsync("setThemeDark");
+                }
+            }
             await JsRuntime.InvokeVoidAsync("removePreloader");
         }
     }

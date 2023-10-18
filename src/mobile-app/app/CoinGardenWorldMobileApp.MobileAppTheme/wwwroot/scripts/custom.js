@@ -10,6 +10,9 @@ function removePreloader() {
     }, 150)
 };
 
+function setThemeDark() {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1f1f1f');
+}
 
 //document.addEventListener('DOMContentLoaded', () => {
 //    'use strict'
