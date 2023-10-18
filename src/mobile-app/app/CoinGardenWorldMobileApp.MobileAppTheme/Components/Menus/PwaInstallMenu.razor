@@ -1,28 +1,38 @@
 ﻿
-<div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-install-pwa-ios">
+<div style="--bs-offcanvas-height: 50vh" class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-install-pwa-ios">
     <div class="content">
         <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/icons/icon-128x128.png" alt="img" width="80" class="rounded-l mx-auto my-4">
-        <h1 class="text-center font-800 font-20">Add GardenAPP to Home Screen</h1>
+        <h1 class="text-center font-800 font-20">
+            @((MarkupString)Localization.Components.Menus.PwaInstallMenu.Add_GardenAPP_to_Home_Screen)
+            </h1>
         <p class="boxed-text-xl">
-            Install GardenAPP on your home screen, and access it just like a regular app. Open your Safari menu and tap "Add to Home Screen".
+            @((MarkupString)Localization.Components.Menus.PwaInstallMenu.Install_GardenAPP_on_your_home_screen__and_access_it_just_like)
         </p>
-        <a href="#" class="pwa-dismiss close-menu gradient-blue shadow-bg shadow-bg-s btn btn-s btn-full text-uppercase font-700  mt-n2" data-bs-dismiss="offcanvas">Maybe Later</a>
+        <a href="#" class="pwa-dismiss close-menu gradient-blue shadow-bg shadow-bg-s btn btn-s btn-full text-uppercase font-700  mt-n2" data-bs-dismiss="offcanvas">
+            @((MarkupString)Localization.Components.Menus.PwaInstallMenu.Maybe_later)
+            </a>
     </div>
 </div>
 
-<div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-install-pwa-android">
+<div style="--bs-offcanvas-height: 56vh" class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-install-pwa-android">
     <div class="content">
         <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/icons/icon-128x128.png" alt="img" width="80" class="rounded-m mx-auto my-4">
-        <h1 class="text-center font-700 font-20">Install GardenAPP</h1>
+        <h1 class="text-center font-700 font-20">
+            @((MarkupString)Localization.Components.Menus.PwaInstallMenu.Install_GardenAPP)
+            </h1>
         <p class="boxed-text-l">
-            Install GardenAPP to your Home Screen to enjoy a unique and native experience.
+            @((MarkupString)Localization.Components.Menus.PwaInstallMenu.Install_GardenAPP_to_your_Home_Screen_to_enjoy)
         </p>
-        <a href="#" class="pwa-install btn btn-m rounded-s text-uppercase font-900 gradient-highlight shadow-bg shadow-bg-s btn-full">Add to Home Screen</a><br>
-        <a href="#" data-bs-dismiss="offcanvas" class="pwa-dismiss close-menu color-theme text-uppercase font-900 opacity-50 font-11 text-center d-block mt-n1">Maybe later</a>
+        <a href="#" class="pwa-install btn btn-m rounded-s text-uppercase font-900 gradient-highlight shadow-bg shadow-bg-s btn-full">
+            @((MarkupString)Localization.Components.Menus.PwaInstallMenu.Add_to_Home_Screen)
+            </a><br>
+        <a href="#" data-bs-dismiss="offcanvas" class="pwa-dismiss close-menu color-theme text-uppercase font-900 opacity-50 font-11 text-center d-block mt-n1">
+            @((MarkupString)Localization.Components.Menus.PwaInstallMenu.Maybe_later)
+            </a>
     </div>
 </div>
 
-
+ 
 @code {
 
 }
