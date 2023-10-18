@@ -30,10 +30,35 @@
 	  <PackageReference Include="Toolbelt.Blazor.PWA.Updater" Version="2.1.0.1" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Compile Update="Localization\Components\Menus\FooterBar.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>FooterBar.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Localization\Components\Menus\HeaderBar.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>HeaderBar.resx</DependentUpon>
+	  </Compile>
 	  <Compile Update="Localization\Components\Menus\PwaInstallMenu.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>PwaInstallMenu.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Localization\Components\Menus\SidebarMenuMessages.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>SidebarMenuMessages.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Localization\Components\Menus\SidebarMenuNavigation.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>SidebarMenuNavigation.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Localization\Components\Menus\SidebarMenuSettings.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>SidebarMenuSettings.resx</DependentUpon>
 	  </Compile>
 	  <Compile Update="Localization\Pages\Index.Designer.cs">
 	    <DesignTime>True</DesignTime>
@@ -47,9 +72,29 @@
 	  </Compile>
 	</ItemGroup>
 	<ItemGroup>
+	  <EmbeddedResource Update="Localization\Components\Menus\FooterBar.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>FooterBar.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Localization\Components\Menus\HeaderBar.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>HeaderBar.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	  <EmbeddedResource Update="Localization\Components\Menus\PwaInstallMenu.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>PwaInstallMenu.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Localization\Components\Menus\SidebarMenuMessages.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>SidebarMenuMessages.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Localization\Components\Menus\SidebarMenuNavigation.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>SidebarMenuNavigation.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Localization\Components\Menus\SidebarMenuSettings.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>SidebarMenuSettings.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	  <EmbeddedResource Update="Localization\Pages\Index.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>

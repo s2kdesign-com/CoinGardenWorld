@@ -1,5 +1,8 @@
 ﻿@page "/"
-<PageTitle>Index</PageTitle>
+<PageTitle>
+    Home - GardenAPP
+
+</PageTitle>
 <!-- Your Page Content Goes Here-->
 <div class="page-content header-clear-medium">
 
@@ -65,11 +68,13 @@
     </div>
     <div class="card card-style">
         <div class="content">
-            <h6 class="font-700 mb-n1 color-highlight">Registration Form</h6>
-            <h1 class="pb-2">Create Account</h1>
+            <h6 class="font-700 mb-n1 color-highlight">
+                @((MarkupString)Localization.Pages.Index.Registration_Form)
+                </h6>
+            <h1 class="pb-2">
+                @((MarkupString)Localization.Pages.Index.Create_Account)</h1>
             <p class="mb-2">
-                Compose forms using steps with ease. Using the Action Sheets and Action Modal component, you
-                can create awesome form wizards in the shortest time!
+                @((MarkupString)Localization.Pages.Index.Unlock_the_secrets_of_your_garden_with_the_CoinGarden_World_mobile_app)
             </p>
 
             <div class="divider mt-4 mb-0"></div>
@@ -78,7 +83,7 @@
                 <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-step-1" class="list-group-item">
                     <i class="bi bi-heart-fill color-red-dark font-15"></i>
                     <div>
-                        Open Registration Form
+                        @((MarkupString)Localization.Pages.Index.Open_Registration_Form)
                     </div>
                     <i class="bi bi-chevron-right pe-1"></i>
                 </a>
@@ -88,10 +93,15 @@
     </div>
     <div class="card card-style">
         <div class="content px-2 text-center">
-            <h5 class="mb-n1 font-12 color-highlight font-700 text-uppercase">Top Rated for the month</h5>
-            <h2>The Most Beautiful</h2>
+            <h5 class="mb-n1 font-12 color-highlight font-700 text-uppercase">
+                @((MarkupString)Localization.Pages.Index.Top_Rated_for_the_month)
+            </h5>
+            <h2>
+
+                @((MarkupString)Localization.Pages.Index.The_Most_Beautiful_Flowers)
+            </h2>
             <p class="mb-3">
-                Flowers and Gardens that we are proud to showcase and show off to the world. We think you'll love them!
+                @((MarkupString)Localization.Pages.Index.Flowers_and_Gardens_that_we_are_proud_to_showcase)
             </p>
             <div class="row text-center row-cols-3 mb-n1">
                 <a class="col p-1" data-gallery="gallery-1" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" title="Vynil and Typerwritter">
@@ -118,12 +128,20 @@
 
     <div class="card card-style py-3">
         <div class="content px-2 text-center">
-            <h5 class="mb-n1 font-12 color-highlight font-700 text-uppercase">Find flowers information</h5>
-            <h2>Upload Picture Now</h2>
+            <h5 class="mb-n1 font-12 color-highlight font-700 text-uppercase">
+                @((MarkupString)Localization.Pages.Index.Find_flowers_information)
+
+            </h5>
+            <h2>
+                @((MarkupString)Localization.Pages.Index.Upload_Picture_Now)
+            </h2>
             <p class="mb-3">
-                At least one photo of leaf, flower, fruit or bark is required for identification to work.
+                @((MarkupString)Localization.Pages.Index.At_least_one_photo_of_leaf__flower__fruit_or_bark_is_required_for_identification_to_work_)
             </p>
-            <a href="identify-flower" class="default-link btn btn-m rounded-s gradient-highlight shadow-bg shadow-bg-s px-5 mb-0 mt-2">Take Picture now</a>
+            <a href="identify-flower" class="default-link btn btn-m rounded-s gradient-highlight shadow-bg shadow-bg-s px-5 mb-0 mt-2">
+
+                @((MarkupString)Localization.Pages.Index.Take_Picture_now)
+            </a>
         </div>
     </div>
 </div>

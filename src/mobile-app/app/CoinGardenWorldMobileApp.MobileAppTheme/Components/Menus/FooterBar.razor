@@ -13,27 +13,38 @@
 
     <NavLink ActiveClass="active-nav" href="@NavigationLinks.DASHBOARD_URL">
         <i class="bi bi-heart-fill font-15"></i>
-        <span>Dashboard</span>
+        <span>
+            @((MarkupString)Localization.Components.Menus.FooterBar.Dashboard)
+        </span>
     </NavLink>
 
     <NavLink ActiveClass="active-nav" href="@NavigationLinks.IDENTIFY_FLOWER_URL">
         <i class="bi bi-flower3 font-17"></i>
-        <span>Identify</span>
+        <span>
+            @((MarkupString)Localization.Components.Menus.FooterBar.Identify)
+        </span>
     </NavLink>
 
     <NavLink ActiveClass="active-nav" href="" Match="NavLinkMatch.All">
         <i class="bi bi-house-fill font-16"></i>
-        <span>Home</span>
+        <span>
+            @((MarkupString)Localization.Components.Menus.FooterBar.Home)
+        </span>
     </NavLink>
 
     <NavLink ActiveClass="active-nav" href="@NavigationLinks.PROFILE_URL">
         <i class="bi bi-person-circle font-16"></i>
-        <span>Profile</span>
+        <span>
+            
+            @((MarkupString)Localization.Components.Menus.FooterBar.Profile)
+        </span>
     </NavLink>
 
     <NavLink ActiveClass="active-nav" href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-main">
         <i class="bi bi-list"></i>
-        <span>Menu</span>
+        <span>
+            @((MarkupString)Localization.Components.Menus.FooterBar.Menu)
+        </span>
     </NavLink>
 </div>
 

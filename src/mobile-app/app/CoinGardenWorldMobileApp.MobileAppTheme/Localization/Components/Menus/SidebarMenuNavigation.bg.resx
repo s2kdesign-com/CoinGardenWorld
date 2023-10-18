@@ -117,52 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="At least one photo of leaf, flower, fruit or bark is required for identification to work." xml:space="preserve">
-    <value>At least one photo of leaf, flower, fruit or bark is required for identification to work.</value>
+  <data name="About the App" xml:space="preserve">
+    <value>Относно Приложението</value>
   </data>
-  <data name="By using this app, people can better understand their flowers' needs and grow them more effectively." xml:space="preserve">
-    <value>By using this app, people can better understand their flowers' needs and grow them more effectively.</value>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Табло</value>
   </data>
-  <data name="Create Account" xml:space="preserve">
-    <value>Create Account</value>
+  <data name="Homepage" xml:space="preserve">
+    <value>Начало</value>
   </data>
-  <data name="Dive into a universe where every flower tells a story, and every island is a testament to the harmonious blend of nature and technology." xml:space="preserve">
-    <value>Dive into a universe where every flower tells a story, and every island is a testament to the harmonious blend of nature and technology.</value>
+  <data name="Identify Flower" xml:space="preserve">
+    <value>Разпознай Цвете</value>
   </data>
-  <data name="Find flowers information" xml:space="preserve">
-    <value>Find flowers information</value>
+  <data name="NAVIGATION" xml:space="preserve">
+    <value>НАВИГАЦИЯ</value>
   </data>
-  <data name="Flowers and Gardens that we are proud to showcase" xml:space="preserve">
-    <value>Flowers and Gardens that we are proud to showcase and show off to the world. We think you'll love them!</value>
-  </data>
-  <data name="Home - GardenAPP" xml:space="preserve">
-    <value>Home - GardenAPP</value>
-  </data>
-  <data name="Open Registration Form" xml:space="preserve">
-    <value>Open Registration Form</value>
-  </data>
-  <data name="Registration Form" xml:space="preserve">
-    <value>Registration Form</value>
-  </data>
-  <data name="Take Picture now" xml:space="preserve">
-    <value>Take Picture now</value>
-  </data>
-  <data name="The &quot;Donations and Causes&quot; section of the World of Flowers platform introduces a groundbreaking approach to environmental conservation." xml:space="preserve">
-    <value>The "Donations and Causes" section of the World of Flowers platform introduces a groundbreaking approach to environmental conservation.</value>
-  </data>
-  <data name="The Most Beautiful Flowers" xml:space="preserve">
-    <value>The Most Beautiful Flowers</value>
-  </data>
-  <data name="This app can help people learn more about the flowers in their environment and appreciate their beauty." xml:space="preserve">
-    <value>This app can help people learn more about the flowers in their environment and appreciate their beauty.</value>
-  </data>
-  <data name="Top Rated for the month" xml:space="preserve">
-    <value>Top Rated for the month</value>
-  </data>
-  <data name="Unlock the secrets of your garden with the CoinGarden.World mobile app" xml:space="preserve">
-    <value>Unlock the secrets of your garden with the CoinGarden.World mobile app! Register now and transform your smartphone into a digital gardening guru. Instantly identify flowers, receive tailored care tips, and ensure your blooms are always at their best. Join our community and let your garden flourish like never before!</value>
-  </data>
-  <data name="Upload Picture Now" xml:space="preserve">
-    <value>Upload Picture Now</value>
+  <data name="Profile" xml:space="preserve">
+    <value>Профил</value>
   </data>
 </root>

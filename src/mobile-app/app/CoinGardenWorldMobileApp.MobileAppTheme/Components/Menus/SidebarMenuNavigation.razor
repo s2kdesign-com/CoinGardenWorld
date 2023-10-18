@@ -1,36 +1,47 @@
 ﻿
-<span class="menu-divider">NAVIGATION</span>
+<span class="menu-divider">
+    @((MarkupString)Localization.Components.Menus.SidebarMenuNavigation.NAVIGATION)</span>
 <div class="menu-list">
     <div class="card card-style rounded-m p-3 py-2 mb-0">
         
         <NavLink class="nav-link" href="" id="nav-homes" Match="NavLinkMatch.All">
             <i class="gradient-blue shadow-bg shadow-bg-xs bi bi-house-fill"></i>
-            <span>Homepage</span>
+            <span>
+                @((MarkupString)Localization.Components.Menus.SidebarMenuNavigation.Homepage)
+            </span>
             <i class="bi bi-chevron-right"></i>
         </NavLink>
-        <NavLink class="nav-link"  href="@NavigationLinks.WALKTHROUGH_URL" >
+    @*     <NavLink class="nav-link"  href="@NavigationLinks.WALKTHROUGH_URL" >
             <i class="gradient-red shadow-bg shadow-bg-xs bi bi-gear-fill"></i>
             <span>Walkthrough</span>
             <i class="bi bi-chevron-right"></i>
-        </NavLink>
+        </NavLink> *@
         <NavLink class="nav-link" href="@NavigationLinks.DASHBOARD_URL">
             <i class="gradient-green shadow-bg shadow-bg-xs bi bi-heart-fill"></i>
-            <span>Dashboard</span>
+            <span>
+                @((MarkupString)Localization.Components.Menus.SidebarMenuNavigation.Dashboard)
+                </span>
             <i class="bi bi-chevron-right"></i>
         </NavLink>
         <NavLink class="nav-link" href="@NavigationLinks.PROFILE_URL" >
             <i class="gradient-yellow shadow-bg shadow-bg-xs bi bi-image-fill"></i>
-            <span>Profile</span>
+            <span>
+                @((MarkupString)Localization.Components.Menus.SidebarMenuNavigation.Profile)
+            </span>
             <i class="bi bi-chevron-right"></i>
         </NavLink>
         <NavLink class="nav-link" href="@NavigationLinks.IDENTIFY_FLOWER_URL">
             <i class="gradient-teal shadow-bg shadow-bg-xs bi bi-flower2"></i>
-            <span>Identify Flower</span>
+            <span>
+                @((MarkupString)Localization.Components.Menus.SidebarMenuNavigation.Identify_Flower)
+            </span>
             <i class="bi bi-chevron-right"></i>
         </NavLink>
         <NavLink class="nav-link" href="@NavigationLinks.ABOUT_THE_APP_URL" >
             <i class="gradient-magenta shadow-bg shadow-bg-xs bi bi-envelope-fill"></i>
-            <span>About the APP</span>
+            <span>
+                @((MarkupString)Localization.Components.Menus.SidebarMenuNavigation.About_the_App)
+            </span>
             <i class="bi bi-chevron-right"></i>
         </NavLink>
     </div>

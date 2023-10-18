@@ -46,12 +46,17 @@
 </div>
 @code
 {
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+    }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-    // this statement assumes the module is in the wwwroot/js folder
-    // _module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CoinGardenWorldMobileApp.MobileAppTheme/scripts/custom.js");
+            
+            // Set initial load for theme 
+            ThemeLoader.IsInitialLoad = true;
         }
     }
 

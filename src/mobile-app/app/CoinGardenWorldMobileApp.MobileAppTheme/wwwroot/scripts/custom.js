@@ -41,11 +41,8 @@ function init_template(isFirstTime) {
                 el.addEventListener('click', el => {
                     var menumain = document.getElementById('menu-main');
                     if (menumain) {
-                        var menu = new bootstrap.Offcanvas(menumain);
-                        document.getElementsByClassName('offcanvas-backdrop')[0].remove();
-
-                        menu.show();
-                        menu.hide();
+                        let openedCanvas = bootstrap.Offcanvas.getInstance(menumain);
+                        openedCanvas.hide();
                     }
                 });
         });

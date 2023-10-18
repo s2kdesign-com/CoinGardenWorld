@@ -1,7 +1,8 @@
 ﻿
 @inherits SignalRComponent
 
-<span class="menu-divider mt-4">Messages</span>
+<span class="menu-divider mt-4">
+    @((MarkupString)Localization.Components.Menus.SidebarMenuMessages.MESSAGES)</span>
 <div class="menu-content px-3">
     <div class="card card-style rounded-m p-2 mx-0 bg-theme mb-0">
 
@@ -15,7 +16,9 @@
 
                 <NavLink class="nav-link" href="@NavigationLinks.CHAT_LIST_URL" id="nav-homes">
                     <i class="gradient-highlight shadow-bg shadow-bg-xs bi bi-chat-dots"></i>
-                    <span>All Messages</span>
+                    <span>
+                        @((MarkupString)Localization.Components.Menus.SidebarMenuMessages.All_Messages)
+                    </span>
                     <i class="bi bi-chevron-right"></i>
                 </NavLink>
             </div>
@@ -23,12 +26,14 @@
         else
         {
             <div>
-                Chat is Offline
+                @((MarkupString)Localization.Components.Menus.SidebarMenuMessages.Chat_is_Offline)
             </div>
             <div class="menu-list">
                 <NavLink class="nav-link" href="@NavigationLinks.CHAT_LIST_URL" id="nav-homes">
                     <i class="gradient-highlight shadow-bg shadow-bg-xs bi bi-chat-dots"></i>
-                    <span>All Messages</span>
+                    <span>                        
+                        @((MarkupString)Localization.Components.Menus.SidebarMenuMessages.All_Messages)
+                    </span>
                     <i class="bi bi-chevron-right"></i>
                 </NavLink>
             </div>
