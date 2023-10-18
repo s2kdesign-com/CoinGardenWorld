@@ -9,7 +9,7 @@ self.addEventListener('fetch', event => event.respondWith(onFetch(event)));
 self.addEventListener('message', event => {
     if (event.data?.type === 'SKIP_WAITING') self.skipWaiting();
 });
-
+ 
 const CACHE_VERSION = '1';
 
 const cacheNamePrefix = 'offline-cache-';
