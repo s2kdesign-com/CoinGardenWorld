@@ -4,20 +4,20 @@
 //    if(preloader){preloader.classList.add('preloader-hide');}
 //},150);
 function removePreloader() {
+    setTimeout(function () {
+        var preloader = document.getElementById('preloader')
+        if (preloader) { preloader.classList.add('preloader-hide'); }
+    }, 150)
+};
 
-    var preloader = document.getElementById('preloader')
-    if (preloader) { preloader.classList.add('preloader-hide'); }
-}
+
 //document.addEventListener('DOMContentLoaded', () => {
 //    'use strict'
-
-    //Remove Display none from Page to improve CLS
-    // document.querySelectorAll('#page')[0].style.display ='block';
 
     //Global Variables
     let isPWA = true;  // Enables or disables the service worker and PWA
     let isAJAX = true; // AJAX transitions. Requires local server or server
-    var pwaName = "Duo"; //Local Storage Names for PWA
+    var pwaName = "GardenAPP"; //Local Storage Names for PWA
     var pwaRemind = 1; //Days to re-remind to add to home
     var pwaNoCache = false; //Requires server and HTTPS/SSL. Will clear cache with each visit
 
@@ -26,7 +26,29 @@ function removePreloader() {
     var pwaLocation = "/_service-worker.js";
 
     //Place all your custom Javascript functions and plugin calls below this line
-    function init_template(){
+function init_template() {
+
+    //Remove Display none from Page to improve CLS
+    document.querySelectorAll('#page')[0].style.display = 'block';
+
+    var navLink = document.querySelectorAll(".nav-link")
+    console.log(navLink);
+    if (navLink) {
+        // navLink.forEach(el => el.addEventListener('click', el => { document.getElementById('menu-main').offcanvas('hide'); }));
+        navLink.forEach(function (el) {
+            console.log(el);
+            el.addEventListener('click', el => {
+                var menumain = document.getElementById('menu-main');
+                var menu = new bootstrap.Offcanvas(menumain);
+                document.getElementsByClassName('offcanvas-backdrop')[0].remove();
+                console.log(menu);
+
+                menu.show();
+
+                menu.hide();
+            });
+        });
+    }
         //Caching Global Variables
         var i, e, el, evt, event; //https://www.w3schools.com/js/js_performance.asp
 		

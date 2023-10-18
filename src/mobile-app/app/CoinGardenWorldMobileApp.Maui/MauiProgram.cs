@@ -2,6 +2,7 @@
 using CoinGardenWorld.Theme.Extensions;
 using CoinGardenWorldMobileApp.Maui.Authorization;
 using CoinGardenWorldMobileApp.Maui.Data;
+using CoinGardenWorldMobileApp.MobileAppTheme;
 using CoinGardenWorldMobileApp.MobileAppTheme.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Configuration;
@@ -56,7 +57,7 @@ namespace CoinGardenWorldMobileApp.Maui
             builder.Services.AddSingleton<WeatherForecastService>();
 
             // CoinGardenWorldMobileApp.MobileAppTheme
-            builder.Services.AddMobileAppTheme();
+            builder.Services.AddMobileAppTheme(EnvironmentType.Mobile);
 
             return builder.Build();
         }

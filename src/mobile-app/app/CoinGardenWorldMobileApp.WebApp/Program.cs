@@ -1,4 +1,5 @@
 using CoinGardenWorld.Theme.Extensions;
+using CoinGardenWorldMobileApp.MobileAppTheme;
 using CoinGardenWorldMobileApp.WebApp;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -16,7 +17,7 @@ builder.Services.AddMsalAuthentication(options =>
     builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
 });
 // CoinGardenWorldMobileApp.MobileAppTheme
-builder.Services.AddMobileAppTheme();
+builder.Services.AddMobileAppTheme(EnvironmentType.Blazor);
 
 
 await builder.Build().RunAsync();
