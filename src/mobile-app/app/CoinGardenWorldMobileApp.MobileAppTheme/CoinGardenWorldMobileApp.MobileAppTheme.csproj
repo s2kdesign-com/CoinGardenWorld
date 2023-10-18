@@ -35,6 +35,11 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>PwaInstallMenu.resx</DependentUpon>
 	  </Compile>
+	  <Compile Update="Localization\Pages\Index.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Index.resx</DependentUpon>
+	  </Compile>
 	  <Compile Update="Localization\Pages\Walkthrough.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
@@ -45,6 +50,10 @@
 	  <EmbeddedResource Update="Localization\Components\Menus\PwaInstallMenu.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>PwaInstallMenu.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Localization\Pages\Index.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Index.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	  <EmbeddedResource Update="Localization\Pages\Walkthrough.bg.resx">
 	    <Generator></Generator>
