@@ -40,18 +40,18 @@ https://docs.coingarden.world/v/bg/
 | 🌐 | Metaverse Website |[metaverse.coingarden.world](https://metaverse.coingarden.world/) | [![Deploy GardenVerse Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/metaverse-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/metaverse-site-azure-static-web-apps.yml) |
 | 🤖 | GardenBOT Website |[bot.coingarden.world](https://bot.coingarden.world/) | [![Deploy GardenBOT Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml) |
 
+ | Icon  | ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white) | Url | Status |
+| - | - | - | - |
+ | 👨‍⚕️ | Status Website | [status.coingarden.world](https://status-coingardenworld.azurewebsites.net) | [![Deploy Status Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_status-coingardenworld.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_status-coingardenworld.yml) | 
+| 🔐 | Identity Server |[identity.coingarden.world](https://coingarden-identity.azurewebsites.net) | [![Deploy Identity Server - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml) |
+| 📱 | Mobile App API | [plant-api.coingarden.world](https://plant-api.azurewebsites.net/swagger/index.html) |  [![Build and deploy ASP.Net Core app to Azure Web App - plant-api](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_plant-api.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_plant-api.yml)|
+
 | Icon | ![.net MAUI](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/maui-badge-71x28.png?raw=true) | Url | Status |
 | - | - | - | - |
  | 📱 | Mobile Application | [plant.coingarden.world](https://plant.coingarden.world) | [![Deploy MobileAPP Web - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-web-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/mobileapp-web-azure-static-web-apps.yml) |
  | 🏪 | NFT Store Web3 | trade.coingarden.world |  |
  | 🌐 | Metaverse Game | play.coingarden.world |  |
  
- | Icon  | ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white) | Url | Status |
-| - | - | - | - |
- | 👨‍⚕️ | Status Website | [status.coingarden.world](https://status-coingardenworld.azurewebsites.net) | [![Deploy Status Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_status-coingardenworld.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_status-coingardenworld.yml) | 
-| 🔐 | Identity Server |[identity.coingarden.world](https://coingarden-identity.azurewebsites.net) | [![Deploy Identity Server - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml) |
-| 📱 | Mobile Application API | [plant-api.coingarden.world](https://plant-api.azurewebsites.net/swagger/index.html) |  [![Build and deploy ASP.Net Core app to Azure Web App - plant-api](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_plant-api.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_plant-api.yml)|
-
 | Icon | ![.net MAUI](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/azure-functions-badge-68x28.png?raw=true) | Url | Status |
 | - | - | - | - |
 | 🖼️ | Official Site API | [coingarden.world/api/swagger/ui](https://coingarden.world/api/swagger/ui) | [![Deploy Official Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/official-site-azure-static-web-apps.yml) |
