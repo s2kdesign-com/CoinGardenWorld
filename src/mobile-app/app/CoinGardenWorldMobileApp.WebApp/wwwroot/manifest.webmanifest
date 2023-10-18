@@ -1,8 +1,8 @@
 {
   "name": "GardenAPP by CoinGarden.World",
   "short_name": "GardenAPP",
-  "theme_color": "#FFFFFF",
-  "background_color": "#FFFFFF",
+  "theme_color": "#000000",
+  "background_color": "#000000",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
