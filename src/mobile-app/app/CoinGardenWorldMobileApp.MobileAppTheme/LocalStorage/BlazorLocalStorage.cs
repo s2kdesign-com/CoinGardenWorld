@@ -21,7 +21,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage
 
         public T Get<T>(string key)
         {
-            return _localStorageService.GetItem<T>("name");
+            return _localStorageService.GetItem<T>(key);
         }
 
         public void Delete(string key)

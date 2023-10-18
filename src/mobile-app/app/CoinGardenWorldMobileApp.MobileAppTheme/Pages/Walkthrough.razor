@@ -18,14 +18,15 @@
                         <div class="card-center">
                             <h1 class="color-white font-40 text-center">GardenAPP</h1>
                             <p class="color-white text-center opacity-70">
-                                a part of
-                                <strong>CoinGarden.World</strong>
-                                a Revolutionary Set of Apps
+                                @Localization.Pages.Walkthrough.a_part_of
+                                <strong>CoinGarden.World</strong> <br />
+                                @Localization.Pages.Walkthrough.a_Revolutionary_Set_of_Apps
                             </p>
                             <p class="color-white text-center opacity-30">
                             </p>
                             <p class="color-white font-16 text-center boxed-text-xl">
-                                Our Flower Recognition and Care App uses image recognition technology to identify different types of flowers and provides users with helpful tips on how to care for them. This app also sends notifications to remind users when it's time to water their plants. By using this app, people can better understand their flowers' needs and grow them more effectively.
+
+                                @((MarkupString)Localization.Pages.Walkthrough.Our_Flower_Recognition_and_Care_App_uses_image_recognition)
                             </p>
                         </div>
                         <div class="card-overlay bg-black opacity-40 rounded-0"></div>
@@ -37,12 +38,14 @@
                         <div class="card-center">
                             <h1 class="color-white font-40 text-center">GardenBOT</h1>
                             <p class="color-white text-center opacity-70">
-                                a part of
-                                <strong>CoinGarden.World</strong>
-                                a Revolutionary Set of Apps
+                                @Localization.Pages.Walkthrough.a_part_of
+                                <strong>CoinGarden.World</strong> <br />
+                                @Localization.Pages.Walkthrough.a_Revolutionary_Set_of_Apps
                             </p>
                             <p class="color-white font-16 text-center boxed-text-xl">
-                                Our Chat Bot App uses AI technology to recognize different types of flowers and provide users with more information about them. This app can help people learn more about the flowers in their environment and appreciate their beauty.
+
+
+                                @((MarkupString)Localization.Pages.Walkthrough.Our_Chat_Bot_App_uses_AI_technology_to_recognize_different_types_of_flowers)
                             </p>
                         </div>
                         <div class="card-overlay bg-black opacity-40 rounded-0"></div>
@@ -54,12 +57,13 @@
                         <div class="card-center">
                             <h1 class="color-white font-40 text-center">GardenVERSE</h1>
                             <p class="color-white text-center opacity-70">
-                                a part of
-                                <strong>CoinGarden.World</strong>
-                                a Revolutionary Set of Apps
+                                @Localization.Pages.Walkthrough.a_part_of
+                                <strong>CoinGarden.World</strong> <br />
+                                @Localization.Pages.Walkthrough.a_Revolutionary_Set_of_Apps
                             </p>
                             <p class="color-white font-16 text-center boxed-text-xl">
-                                Step into the enchanting "World of Flowers" Metaverse, where the beauty of nature meets the limitless possibilities of the digital realm. Dive into a universe where every flower tells a story, and every island is a testament to the harmonious blend of nature and technology.
+
+                            @((MarkupString)Localization.Pages.Walkthrough.Step_into_the_enchanting__World_of_Flowers__Metaverse)
                             </p>
                         </div>
                         <div class="card-overlay bg-black opacity-40 rounded-0"></div>
@@ -71,12 +75,12 @@
                         <div class="card-center">
                             <h1 class="color-white font-40 text-center">GardenCharity</h1>
                             <p class="color-white text-center opacity-70">
-                                a part of
-                                <strong>CoinGarden.World</strong>
-                                a Revolutionary Set of Apps
+                                @((MarkupString)Localization.Pages.Walkthrough.a_part_of)
+                                <strong>CoinGarden.World</strong> <br />
+                                @((MarkupString)Localization.Pages.Walkthrough.a_Revolutionary_Set_of_Apps)
                             </p>
                             <p class="color-white font-16 text-center boxed-text-xl">
-                                The "Donations and Causes" section of the World of Flowers platform introduces a groundbreaking approach to environmental conservation. This unique crowdfunding system empowers individuals to take action against environmental degradation. Dive into a world where technology meets nature, and every individual has the power to make a tangible difference.
+                                @((MarkupString)Localization.Pages.Walkthrough.The__Donations_and_Causes__section_of_the_World_of_Flowers_platform)
                             </p>
                         </div>
                         <div class="card-overlay bg-black opacity-60 rounded-0"></div>
@@ -90,25 +94,30 @@
     <div class="card-bottom">
         <div class="form-custom form-language-walkthrough mb-3 form-label form-border col-6 mx-auto d-block">
             <i class="bi bi-check-circle font-13 disabled"></i>
-            <select @bind="_selectedCulture" class="form-select" id="language-selector-walkthrough" aria-label="Select Language">
+            <select @bind="SelectedCulture" class="form-select" id="language-selector-walkthrough" aria-label="@Localization.Pages.Walkthrough.Select_Language">
                 @foreach (var culture in supportedCultures)
                 {
                     <option value="@culture.Key.TwoLetterISOLanguageName" class="bg-dark" lang="@culture.Key.TwoLetterISOLanguageName">
                         <img src="@culture.Value" class="language-selector-walkthrough-flag-@culture.Key.TwoLetterISOLanguageName">
-                        @culture.Key.NativeName 
+                        @culture.Key.NativeName
                     </option>
                 }
             </select>
-            <label for="language-selector-walkthrough" class="form-label-active">Select Language</label>
-            
+            <label for="language-selector-walkthrough" class="form-label-active">
+            @((MarkupString)Localization.Pages.Walkthrough.Select_Language)
+            </label>
+
         </div>
         <p class="text-center font-10 mb-n3 color-white opacity-40">
-            Made with Love and Care by
+            @((MarkupString)Localization.Pages.Walkthrough.Made_with_Love_and_Care_by)
             <a class="color-white" href="https://coingarden.world" target="_blank" title="CoinGarden.World">
                 CoinGarden.World
             </a>
         </p>
-        <a href="/" @onclick="SaveLocalStoragePreferences" class="btn btn-full gradient-highlight m-4 font-700 text-uppercase shadow-bg shadow-bg-s">Start Exploring GardenAPP <br /> by "World of Flowers"</a>
+        <a href="/" @onclick="SaveLocalStoragePreferences" class="btn btn-full gradient-highlight m-4 font-700 text-uppercase shadow-bg shadow-bg-s">
+            
+            @((MarkupString)Localization.Pages.Walkthrough.Start_Exploring_GardenAPP_by_World_of_Flowers)
+            </a>
     </div>
 
 </div>
@@ -119,21 +128,55 @@
 
 @code {
     private string _selectedCulture = "en";
+
+    public string SelectedCulture
+    {
+        get
+        {
+            return _selectedCulture;
+        }
+        set
+        {
+
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(value);
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(value);
+            localStorage.Set(LocalStorage.Constants.LANGUAGE_LOCAL_STORAGE_NAME, value);
+            _selectedCulture = value;
+
+
+        }
+    }
+
     // TODO: dont know how to add images on select :(
     private Dictionary<CultureInfo, string> supportedCultures = new Dictionary<CultureInfo, string>
     {
         { new CultureInfo("en-US"), "https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png"},
         { new CultureInfo("bg-BG"), "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Bulgaria.svg/320px-Flag_of_Bulgaria.svg.png"}
     };
-    
+    private void OnCultureChange()
+    {
+
+    }
     private void SaveLocalStoragePreferences()
     {
-        localStorage.Set("GardenAPP-Language", _selectedCulture);
+        localStorage.Set(LocalStorage.Constants.LANGUAGE_LOCAL_STORAGE_NAME, _selectedCulture);
+    }
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine(CultureInfo.DefaultThreadCurrentUICulture);
+
+        if (localStorage.Exists(LocalStorage.Constants.LANGUAGE_LOCAL_STORAGE_NAME))
+        {
+            var culture = localStorage.Get<string>(LocalStorage.Constants.LANGUAGE_LOCAL_STORAGE_NAME);
+            _selectedCulture = culture;
+
+        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        
+       
     }
 
 

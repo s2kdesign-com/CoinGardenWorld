@@ -1,4 +1,5 @@
 ﻿@using CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage
+@using System.Globalization
 
 
 @inject IJSRuntime JsRuntime
@@ -12,10 +13,11 @@
 
         if (firstRender)
         {
-            if(!localStorage.Exists("GardenAPP-Language"))
+            if (!localStorage.Exists(LocalStorage.Constants.LANGUAGE_LOCAL_STORAGE_NAME))
+            {
                 navigation.NavigateTo(NavigationLinks.WALKTHROUGH_URL);
-
-    // this statement assumes the module is in the wwwroot/js folder
+            }
+            // this statement assumes the module is in the wwwroot/js folder
     // _module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CoinGardenWorldMobileApp.MobileAppTheme/scripts/custom.js");
             await JsRuntime.InvokeVoidAsync("init_template");
 

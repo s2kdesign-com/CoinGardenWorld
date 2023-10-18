@@ -7,6 +7,10 @@
 	  <Version>1.0.0.11</Version>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Localization\Pages\Walkthrough.resx~RF55458f3.TMP" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 	</ItemGroup>
@@ -21,11 +25,27 @@
 	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.11" />
 	  <PackageReference Include="Microsoft.Identity.Client" Version="4.56.0" />
 	  <PackageReference Include="Microsoft.Maui.Essentials" Version="8.0.0-rc.1.9171" />
+	  <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.3" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	  <PackageReference Include="Toolbelt.Blazor.PWA.Updater" Version="2.1.0.1" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Localization\Pages\Walkthrough.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Walkthrough.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Update="Localization\Pages\Walkthrough.bg.resx">
+	    <Generator></Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Localization\Pages\Walkthrough.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Walkthrough.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
 
 
-
-
+	
 </Project>
