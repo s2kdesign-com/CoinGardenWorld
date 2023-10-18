@@ -32,6 +32,7 @@ https://docs.coingarden.world/v/bg/
 
  #### Click on the name to go to the `Source Code` or click on the `Url` to go to the site.
 
+ ---
  > [.NET Blazor WebAssembly](https://learn.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-7.0#blazor-webassembly) is a single-page app (SPA) framework for building interactive client-side web apps with .NET.
 
 | Icon | ![Blazor](https://img.shields.io/badge/blazor-%235C2D91.svg?style=for-the-badge&logo=blazor&logoColor=white) | Url | Status |
@@ -43,6 +44,7 @@ https://docs.coingarden.world/v/bg/
 | 🌐 | [Metaverse Site](https://github.com/s2kdesign-com/CoinGardenWorld/tree/main/src/metaverse/site/CoinGardenWorldMetaverse.Web) |[metaverse.coingarden.world](https://metaverse.coingarden.world/) | [![Deploy GardenVerse Site - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/metaverse-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/metaverse-site-azure-static-web-apps.yml) |
 | 🤖 | [GardenBOT Site](https://github.com/s2kdesign-com/CoinGardenWorld/tree/main/src/garden-bot/CoinGardenBotCore.Web) |[bot.coingarden.world](https://bot.coingarden.world/) | [![Deploy GardenBOT Site](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/gardenbot-site-azure-static-web-apps.yml) |
 
+---
 > [ASP.NET](https://dotnet.microsoft.com/en-us/apps/aspnet) is Cross-platform, Open source, framework for building web apps and services with .NET and C#.
 
 | Icon  | ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white) | Url | Status |
@@ -51,6 +53,7 @@ https://docs.coingarden.world/v/bg/
 | 🔐 | [Identity Server](https://github.com/s2kdesign-com/CoinGardenWorld/tree/main/src/identityserver) |[identity.coingarden.world](https://coingarden-identity.azurewebsites.net) | [![Deploy Identity Server - Azure](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_coingarden-identity.yml) |
 | 📱 | [Mobile App API](https://github.com/s2kdesign-com/CoinGardenWorld/tree/main/src/mobile-app/app/CoinGardenWorldMobileApp.DotNetApi) | [plant-api.coingarden.world](https://plant-api.azurewebsites.net/swagger/index.html) |  [![Build and deploy ASP.Net Core app to Azure Web App - plant-api](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_plant-api.yml/badge.svg)](https://github.com/s2kdesign-com/CoinGardenWorld/actions/workflows/main_plant-api.yml)|
 
+---
 > [.NET Multi-platform App UI (.NET MAUI)](https://dotnet.microsoft.com/en-us/apps/maui) and [.NET Core Blazor Hybrid](https://learn.microsoft.com/en-us/aspnet/core/blazor/hybrid/tutorials/maui?view=aspnetcore-7.0) uses the latest technologies for building native apps on Windows, macOS, iOS, and Android, abstracting them into one common framework built on .NET.
 
 | Icon | ![.net MAUI](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/maui-badge-71x28.png?raw=true) | Url | Status |
@@ -59,6 +62,7 @@ https://docs.coingarden.world/v/bg/
 | 🏪 | NFT Store Web3 | trade.coingarden.world |  |
 | 🌐 | Metaverse Game | play.coingarden.world |  |
  
+ ---
  > [Azure Functions](https://azure.microsoft.com/en-us/products/functions) is an event-driven, serverless compute platform that helps you develop more efficiently using the programming language of your choice.
 
 | Icon | ![Azure Functions](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/azure-functions-badge-68x28.png?raw=true) | Url | Status |
@@ -75,7 +79,7 @@ https://docs.coingarden.world/v/bg/
 
 ### InterPlanetary File System (IPFS) ([fleek.co](https://fleek.co/)) 🌐 
 
-The InterPlanetary File System (IPFS) is a set of composable, peer-to-peer protocols for addressing, routing, and transferring content-addressed data in a decentralized file system. 
+> The InterPlanetary File System (IPFS) is a set of composable, peer-to-peer protocols for addressing, routing, and transferring content-addressed data in a decentralized file system. 
 
  #### Click on the name to go to the `Source Code` or click on the `Url` to go to the site.
 
@@ -131,7 +135,7 @@ All applications are build with `.NET MAUI (Multi-platform App UI) + Blazor Hybr
 
 | Garden <br /> SITE | Garden <br /> APP | Garden <br /> BOT | Garden <br /> STORE | Garden <br /> VERSE | GRDN <br /> Token | Garden <br /> CHARITY |
 | - | - | - | - | - | - | - |
-| <span style='color:#1FC511'>#1FC511</span> | <span style='color:#0094ff'>#0094ff</span> |  <span style='color:#FF6A00'>#FF6A00</span> | <span style='color:#1BE4A8'>#1BE4A8</span> | <span style='color:#FF00C9'>#FF00C9</span> | <span style='color:#E1D11E'>#E1D11E</span> | <span style='color:#FF0058'>#FF0058</span>  | 
+| <span style='color:#1FC511'>#1FC511</span> - ![#1FC511](https://via.placeholder.com/10/1FC511?text=+) | <span style='color:#0094ff'>#0094ff</span> - ![#0094ff](https://via.placeholder.com/10/0094ff?text=+) |  <span style='color:#FF6A00'>#FF6A00</span> - ![#FF6A00](https://via.placeholder.com/10/FF6A00?text=+) | <span style='color:#1BE4A8'>#1BE4A8</span> - ![#1BE4A8](https://via.placeholder.com/10/1BE4A8?text=+) | <span style='color:#FF00C9'>#FF00C9</span> - ![#FF00C9](https://via.placeholder.com/10/FF00C9?text=+) | <span style='color:#E1D11E'>#E1D11E</span> - ![#E1D11E](https://via.placeholder.com/10/E1D11E?text=+) | <span style='color:#FF0058'>#FF0058</span> - ![#FF0058](https://via.placeholder.com/10/FF0058?text=+) | 
 | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/official-site-gradient.png?raw=true) | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/mobileapp-site-gradient.png?raw=true)  | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/bot-site-gradient.png?raw=true) | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/store-gradient.png?raw=true)  | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/metaverse-gradient.png?raw=true) | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/token-gradient.png?raw=true) | ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/charities-gradient.png?raw=true) |
  
 ## 🧑‍🌾 User Flow Diagram
