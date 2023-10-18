@@ -3,9 +3,10 @@
 @attribute [Route(NavigationLinks.WALKTHROUGH_URL)]
 
 @using System.Globalization
+@using CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage
 @layout MobileLayoutNoMenus
 
-
+@inject IHybridStorage localStorage
 <!-- Your Page Content Goes Here-->
 <div class="page-content pb-0 overflow-hidden bg-dark-dark">
 
@@ -124,6 +125,12 @@
         { new CultureInfo("bg-BG"), "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Bulgaria.svg/320px-Flag_of_Bulgaria.svg.png"}
     };
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        localStorage.Set("name", "John Smith");
+        var name = localStorage.Get<string>("name");
 
+        Console.WriteLine(name);
+    }
 
 }

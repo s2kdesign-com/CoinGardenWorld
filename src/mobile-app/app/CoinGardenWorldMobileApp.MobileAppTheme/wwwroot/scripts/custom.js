@@ -32,20 +32,17 @@ function init_template() {
     document.querySelectorAll('#page')[0].style.display = 'block';
 
     var navLink = document.querySelectorAll(".nav-link")
-    console.log(navLink);
     if (navLink) {
-        // navLink.forEach(el => el.addEventListener('click', el => { document.getElementById('menu-main').offcanvas('hide'); }));
         navLink.forEach(function (el) {
-            console.log(el);
             el.addEventListener('click', el => {
                 var menumain = document.getElementById('menu-main');
-                var menu = new bootstrap.Offcanvas(menumain);
+                if (menumain) {
+                    var menu = new bootstrap.Offcanvas(menumain);
                 document.getElementsByClassName('offcanvas-backdrop')[0].remove();
-                console.log(menu);
 
                 menu.show();
-
                 menu.hide();
+              }
             });
         });
     }

@@ -48,3 +48,7 @@ body .pwa-updater[b-pwa-updater] {
     height: 50px;
     background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Bulgaria.svg/320px-Flag_of_Bulgaria.svg.png)
 }
+
+.offcanvas, .offcanvas-xl, .offcanvas-lg, .offcanvas-md, .offcanvas-sm {
+    --bs-offcanvas-height: 42vh;
+}
