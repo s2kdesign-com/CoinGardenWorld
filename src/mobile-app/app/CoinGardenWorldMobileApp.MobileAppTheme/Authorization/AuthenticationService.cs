@@ -8,6 +8,9 @@ using Microsoft.Identity.Client;
 
 namespace CoinGardenWorldMobileApp.Maui.Authorization
 {
+    /// <summary>
+    /// .NET MAUI Auth Service
+    /// </summary>
     public class AuthenticationService : IAuthenticationService
     {
         // I recommend storing this in appsettings.json and grabbing it from IConfiguration instead

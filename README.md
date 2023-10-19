@@ -121,7 +121,7 @@ https://docs.coingarden.world/v/bg/
 
 ---
 ### 📱 Mobile Applications
-All applications are build with `.NET MAUI (Multi-platform App UI) + Blazor Hybrid` - ![Blazor](https://img.shields.io/badge/blazor-%235C2D91.svg?style=for-the-badge&logo=blazor&logoColor=white) ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white) ![.net MAUI](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/maui-badge-71x28.png?raw=true)
+All applications are `.NET MAUI (Multi-platform App UI) + Blazor Hybrid` - ![Blazor](https://img.shields.io/badge/blazor-%235C2D91.svg?style=for-the-badge&logo=blazor&logoColor=white) ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white) ![.net MAUI](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/maui-badge-71x28.png?raw=true)
 
 | Supported OS Platform | Version | 🎛️ Operating System  | Download | Status | 
 | - | - | - | - | - |

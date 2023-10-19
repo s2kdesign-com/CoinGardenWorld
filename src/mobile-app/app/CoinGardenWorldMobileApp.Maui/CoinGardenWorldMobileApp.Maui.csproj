@@ -67,15 +67,23 @@
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
     </ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="appsettings.json" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="appsettings.Development.json" />
+	</ItemGroup>
 	 
 
     <ItemGroup>
-      <MauiAsset Remove="Resources\Raw\appsettings.json" />
+      <EmbeddedResource Include="appsettings.json" />
     </ItemGroup>
 	 
 
     <ItemGroup>
-      <EmbeddedResource Include="Resources\Raw\appsettings.json" />
+      <EmbeddedResource Include="appsettings.Development.json" />
     </ItemGroup>
 	 
     <ItemGroup>
