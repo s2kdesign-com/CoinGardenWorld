@@ -78,12 +78,12 @@
 	 
 
     <ItemGroup>
-      <EmbeddedResource Include="appsettings.json" />
+      <EmbeddedResource Include="appsettings.json" PublishFolderType="None" />
     </ItemGroup>
 	 
 
     <ItemGroup>
-      <EmbeddedResource Include="appsettings.Development.json" />
+      <EmbeddedResource Include="appsettings.Development.json" PublishFolderType="None" />
     </ItemGroup>
 	 
     <ItemGroup>
