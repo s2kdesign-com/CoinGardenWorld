@@ -19,15 +19,9 @@
         </div>
         <div class="card-overlay bg-gradient-fade rounded-0"></div>
     </div>
-    @if (@Configuration["Environment"] == "BLAZOR")
-    {
-        <LoginDisplay/>
-    }
-    else
-    {
-        <MobileLoginDisplay/>
-    }
 
+     <LoginDisplay/>
+    
     <SidebarMenuNavigation />
 
     <SidebarMenuMessages />

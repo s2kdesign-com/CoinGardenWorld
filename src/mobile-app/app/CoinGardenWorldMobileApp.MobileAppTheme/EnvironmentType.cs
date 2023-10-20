@@ -8,8 +8,8 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme
 {
     public enum EnvironmentType
     {
-        Mobile,
+        MOBILE,
 
-        Blazor
+        BLAZOR
     }
 }

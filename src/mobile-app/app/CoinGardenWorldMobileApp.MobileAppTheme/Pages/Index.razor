@@ -70,47 +70,24 @@
 
     <AuthorizeView>
         <Authorized>
+            
+            <TopFlowersForTheMonth></TopFlowersForTheMonth>
+
+            <TopAccountsForTheMonth></TopAccountsForTheMonth>
+
+            
 
         </Authorized>
         <NotAuthorized>
+
             <CreateOrRegisterAccountCard></CreateOrRegisterAccountCard>
+
+            
+            <TopFlowersForTheMonth></TopFlowersForTheMonth>
+
         </NotAuthorized>
     </AuthorizeView>
 
-    <div class="card card-style">
-        <div class="content px-2 text-center">
-            <h5 class="mb-n1 font-12 color-highlight font-700 text-uppercase">
-                @((MarkupString)Localization.Pages.Index.Top_Rated_for_the_month)
-            </h5>
-            <h2>
-
-                @((MarkupString)Localization.Pages.Index.The_Most_Beautiful_Flowers)
-            </h2>
-            <p class="mb-3">
-                @((MarkupString)Localization.Pages.Index.Flowers_and_Gardens_that_we_are_proud_to_showcase)
-            </p>
-            <div class="row text-center row-cols-3 mb-n1">
-                <a class="col p-1" data-gallery="gallery-1" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" title="Vynil and Typerwritter">
-                    <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7s.jpg" class="preload-img img-fluid rounded-m" alt="img">
-                </a>
-                <a class="col p-1" data-gallery="gallery-1" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/23t.jpg" title="Cream Cookie">
-                    <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/23s.jpg" class="preload-img img-fluid rounded-m" alt="img">
-                </a>
-                <a class="col p-1" data-gallery="gallery-1" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/3t.jpg" title="Cookies and Flowers">
-                    <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/3s.jpg" class="preload-img img-fluid rounded-m" alt="img">
-                </a>
-                <a class="col p-1" data-gallery="gallery-1" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/11t.jpg" title="Vynil and Typerwritter">
-                    <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/11s.jpg" class="preload-img img-fluid rounded-m" alt="img">
-                </a>
-                <a class="col p-1" data-gallery="gallery-1" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/5t.jpg" title="Cream Cookie">
-                    <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/5s.jpg" class="preload-img img-fluid rounded-m" alt="img">
-                </a>
-                <a class="col p-1" data-gallery="gallery-1" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/15t.jpg" title="Cookies and Flowers">
-                    <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/14s.jpg" class="preload-img img-fluid rounded-m" alt="img">
-                </a>
-            </div>
-        </div> 
-    </div>
 
     <UploadFlowerPictureCard></UploadFlowerPictureCard>
 </div>

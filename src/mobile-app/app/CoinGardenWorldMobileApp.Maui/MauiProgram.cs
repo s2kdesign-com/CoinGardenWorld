@@ -52,7 +52,7 @@ namespace CoinGardenWorldMobileApp.Maui
 #endif
 
             // CoinGardenWorldMobileApp.MobileAppTheme
-            builder.Services.AddMobileAppTheme(EnvironmentType.Mobile, builder.Configuration);
+            builder.Services.AddMobileAppTheme(EnvironmentType.MOBILE, builder.Configuration);
 
             return builder.Build();
         }

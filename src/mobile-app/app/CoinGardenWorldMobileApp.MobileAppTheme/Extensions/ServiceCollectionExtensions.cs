@@ -25,11 +25,10 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
                         
             services.AddLocalization(options => options.ResourcesPath = "Localization");
 
-
             #region LocalStorage
 
             // If Environment is Mobile
-            if (environmentType == EnvironmentType.Mobile)
+            if (environmentType == EnvironmentType.MOBILE)
             {
                 services.AddSingleton<IHybridStorage, MauiPreferencesStore>();
             }
@@ -55,7 +54,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
             #endregion
 
             #region ApplicationInsights
-            if (environmentType == EnvironmentType.Blazor)
+            if (environmentType == EnvironmentType.BLAZOR)
             {
                 services.AddBlazorApplicationInsights(async applicationInsights =>
                 {
@@ -84,7 +83,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
 
             #region Authentication
 
-            if (environmentType == EnvironmentType.Mobile)
+            if (environmentType == EnvironmentType.MOBILE)
             {
 
                 services.AddAuthorizationCore();

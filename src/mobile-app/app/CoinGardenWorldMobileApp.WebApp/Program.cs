@@ -17,7 +17,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 //    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
 //});
 // CoinGardenWorldMobileApp.MobileAppTheme
-builder.Services.AddMobileAppTheme(EnvironmentType.Blazor, builder.Configuration);
+builder.Services.AddMobileAppTheme(EnvironmentType.BLAZOR, builder.Configuration);
 
 
 await builder.Build().RunAsync();
