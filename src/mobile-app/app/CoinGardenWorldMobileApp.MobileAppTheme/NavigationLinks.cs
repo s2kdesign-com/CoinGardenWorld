@@ -16,5 +16,6 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme
         public const string NOTIFICATIONS_URL = "/notifications";
         public const string CHAT_LIST_URL = "/chat-list";
         public const string CHAT_MESSAGES_URL = "/chat-messages";
+        public const string TERMS_AND_CONDITIONS_URL = "/terms-and-conditions";
     }
 }

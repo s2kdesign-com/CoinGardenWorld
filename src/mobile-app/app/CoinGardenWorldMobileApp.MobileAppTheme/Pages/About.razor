@@ -34,7 +34,7 @@
             var externalApis = configuration.Get<ExternalApisSettings>();
             if (externalApis != null && externalApis.ExternalApis != null && externalApis.ExternalApis.Any())
             {
-                _apiUrl = externalApis.ExternalApis.FirstOrDefault().Value.Api_Url + "/api/swagger/ui";
+                _apiUrl = externalApis.ExternalApis.FirstOrDefault().Value.Api_Url + "/swagger/index.html";
 
                 var apiVersionRequest = await httpClient.GetAsync("api/version");
                 if (apiVersionRequest.IsSuccessStatusCode)
