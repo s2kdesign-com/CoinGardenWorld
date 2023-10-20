@@ -103,56 +103,72 @@
         </div>
         <div class="divider mb-4 mx-3 mt-1"></div>
         <div class="row mb-0 px-3">
-            <div class="col-6 col-md-4">
+            <div class="col-6 col-md-6">
                 <a data-bs-toggle="offcanvas" data-bs-target="#menu-gallery-top-account-@i" href="#"><img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/3s.jpg" class="rounded-m img-fluid mx-auto d-block"></a>
                 <span class="font-700 color-theme font-14 text-center d-block mb-3">Album Sheet 1</span>
             </div>
-            <div class="col-6 col-md-4">
+            <div class="col-6 col-md-6">
                 <a data-bs-toggle="offcanvas" data-bs-target="#menu-gallery-top-account-@i" href="#"><img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/5s.jpg" class="rounded-m img-fluid mx-auto d-block"></a>
                 <span class="font-700 color-theme font-14 text-center d-block mb-3">Album Sheet 2</span>
             </div>
         </div>
     </div>
-    <SectionContent SectionName="offcanvas">
-        @for (int y = 1; y <= 3; y++)
-        {
-
-            <div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-gallery-top-account-@y">
-                <div class="content mb-0">
-                    <h5 class="mb-n1 font-12 color-highlight font-700 text-uppercase pt-1">2 x 2 Image Grid</h5>
-                    <h1 class="font-24 font-800 mb-3">Album Thumbs: Account Name: @y</h1>
-                    <p>
-                        Simple thumbnails with caption attached to them. These will all open an album gallery when tapped.
-                    </p>
-
-                    <div class="row text-center row-cols-2 mb-0">
-                        <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" title="Model Portrait">
-                            <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" class="preload-img img-fluid rounded-xs" alt="img">
-                            <p class="font-600 color-theme font-12 pb-3">Selfie</p>
-                        </a>
-                        <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/11t.jpg" title="Red Leafs">
-                            <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/11s.jpg" class="preload-img img-fluid rounded-xs" alt="img">
-                            <p class="font-600 color-theme font-12 pb-3">Nature</p>
-                        </a>
-                        <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/2t.jpg" title="Smoke Flow">
-                            <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/2t.jpg" class="preload-img img-fluid rounded-xs" alt="img">
-                            <p class="font-600 color-theme font-12 pb-3">Smoke Flow</p>
-                        </a>
-                        <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/4t.jpg" title="Color Doughnuts">
-                            <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/4s.jpg" class="preload-img img-fluid rounded-xs" alt="img">
-                            <p class="font-600 color-theme font-12 pb-3">Color Doughnuts</p>
-                        </a>
-                    </div>
-                    <a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-red shadow-bg shadow-bg-s mb-3">
-                        @((MarkupString)Localization.Components.Cards.TopAccountsForTheMonth.Close_Garden)</a>
-                </div>
-            </div>
-
-        }
-    </SectionContent>
+    
 }
 
+<SectionContent SectionName="offcanvas">
+    @for (int y = 1; y <= 3; y++)
+    {
 
+        <div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-gallery-top-account-@y" style="max-height: 820px; --bs-offcanvas-height: 75vh">
+            <div class="content mb-0">
+                <h5 class="mb-n1 font-12 color-highlight font-700 text-uppercase pt-1">2 x 2 Image Grid</h5>
+                <h1 class="font-24 font-800 mb-3">Album Thumbs: Account Name: @y</h1>
+                <p>
+                    Scroll down to find more pictures
+                </p>
+                <div class="row text-center mb-0 overflow-auto" style="max-height: 48vh">
+                    <a class="col-6" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" title="Model Portrait">
+                        <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" class="preload-img img-fluid rounded-xs" alt="img">
+                        <p class="font-600 color-theme font-12 pb-3">Selfie</p>
+                    </a>
+                    <a class="col-6" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" title="Model Portrait">
+                        <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" class="preload-img img-fluid rounded-xs" alt="img">
+                        <p class="font-600 color-theme font-12 pb-3">Selfie</p>
+                    </a>
+                    <a class="col-6" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" title="Model Portrait">
+                        <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" class="preload-img img-fluid rounded-xs" alt="img">
+                        <p class="font-600 color-theme font-12 pb-3">Selfie</p>
+                    </a>
+                    <a class="col-6" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" title="Model Portrait">
+                        <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" class="preload-img img-fluid rounded-xs" alt="img">
+                        <p class="font-600 color-theme font-12 pb-3">Selfie</p>
+                    </a>
+                    <a class="col-6" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" title="Model Portrait">
+                        <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" class="preload-img img-fluid rounded-xs" alt="img">
+                        <p class="font-600 color-theme font-12 pb-3">Selfie</p>
+                    </a>
+                    <a class="col-6" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" title="Model Portrait">
+                        <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" class="preload-img img-fluid rounded-xs" alt="img">
+                        <p class="font-600 color-theme font-12 pb-3">Selfie</p>
+                    </a>
+
+                    <div class="col-12">
+                        <div class="d-flex justify-content-center">
+                            <div class="preloader-m">
+                                <div class="spinner-border color-green-dark" style="border-width: 3px;" role="status"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-red shadow-bg shadow-bg-s mb-2 mt-2">
+                    @((MarkupString)Localization.Components.Cards.TopAccountsForTheMonth.Close_Garden)
+                </a>
+            </div>
+        </div>
+
+    }
+</SectionContent>
 @code {
 
 }

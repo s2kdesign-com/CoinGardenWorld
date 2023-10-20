@@ -1,8 +1,9 @@
-﻿@* @page "/profile" *@
+﻿@using CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage
+@* @page "/profile" *@
 
 @attribute [Route(NavigationLinks.PROFILE_URL)]
 
-
+@inject IHybridStorage LocalStorage
 <AuthorizeView>
     <Authorized>
 
@@ -13,7 +14,9 @@
                 <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" width="150" height="150" class="mt-n5 preload-img mx-auto rounded-circle shadow-xl">
                 <div class="content text-center">
                     <div class="px-3 mb-n3">
-                        <h1 class="font-700">Karla Black</h1>
+                        <h1 class="font-700">
+                            @userName
+                            </h1>
                         <p class="mb-2 opacity-60 font-13">
                             Karla Black is a name used when you generate a text with an anonymous name.
                         </p>
@@ -55,40 +58,59 @@
                 </div>
             </div>
 
-            <UploadFlowerPictureCard></UploadFlowerPictureCard>
+            <DashboardCardText></DashboardCardText>
+
+            <DashboardCardText></DashboardCardText>
+
+            <DashboardCardImage></DashboardCardImage>
+
+            <DashboardCardText></DashboardCardText>
+
+            
+            <div class="col-12 pb-4">
+                <div class="d-flex justify-content-center">
+                    <div class="preloader-m">
+                        <div class="spinner-border color-highlight" style="border-width: 3px;" role="status"></div>
+                    </div>
+                </div>
+            </div>
 
         </div>
         <!-- End of Page Content-->
-        <!-- Sheet 2-->
-        <div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-gallery-2">
-            <div class="content mb-0">
-                <h5 class="mb-n1 font-12 color-highlight font-700 text-uppercase pt-1">2 x 2 Image Grid</h5>
-                <h1 class="font-24 font-800 mb-3">Album Thumbs</h1>
-                <p>
-                    Simple thumbnails with caption attached to them. These will all open an album gallery when tapped.
-                </p>
 
-                <div class="row text-center row-cols-2 mb-0">
-                    <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" title="Model Portrait">
-                        <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" class="preload-img img-fluid rounded-xs" alt="img">
-                        <p class="font-600 color-theme font-12 pb-3">Selfie</p>
-                    </a>
-                    <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/11t.jpg" title="Red Leafs">
-                        <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/11s.jpg" class="preload-img img-fluid rounded-xs" alt="img">
-                        <p class="font-600 color-theme font-12 pb-3">Nature</p>
-                    </a>
-                    <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/2t.jpg" title="Smoke Flow">
-                        <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/2t.jpg" class="preload-img img-fluid rounded-xs" alt="img">
-                        <p class="font-600 color-theme font-12 pb-3">Smoke Flow</p>
-                    </a>
-                    <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/4t.jpg" title="Color Doughnuts">
-                        <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/4s.jpg" class="preload-img img-fluid rounded-xs" alt="img">
-                        <p class="font-600 color-theme font-12 pb-3">Color Doughnuts</p>
-                    </a>
+        <SectionContent SectionName="offcanvas">
+            <!-- Sheet 2-->
+            <div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-gallery-2" style="max-height: 820px; --bs-offcanvas-height: 75vh">
+                <div class="content mb-0">
+                    <h5 class="mb-n1 font-12 color-highlight font-700 text-uppercase pt-1">2 x 2 Image Grid</h5>
+                    <h1 class="font-24 font-800 mb-3">Album Thumbs</h1>
+                    <p>
+                        Simple thumbnails with caption attached to them. These will all open an album gallery when tapped.
+                    </p>
+
+                    <div class="row text-center row-cols-2 mb-0">
+                        <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" title="Model Portrait">
+                            <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" class="preload-img img-fluid rounded-xs" alt="img">
+                            <p class="font-600 color-theme font-12 pb-3">Selfie</p>
+                        </a>
+                        <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/11t.jpg" title="Red Leafs">
+                            <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/11s.jpg" class="preload-img img-fluid rounded-xs" alt="img">
+                            <p class="font-600 color-theme font-12 pb-3">Nature</p>
+                        </a>
+                        <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/2t.jpg" title="Smoke Flow">
+                            <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/2t.jpg" class="preload-img img-fluid rounded-xs" alt="img">
+                            <p class="font-600 color-theme font-12 pb-3">Smoke Flow</p>
+                        </a>
+                        <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/4t.jpg" title="Color Doughnuts">
+                            <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/4s.jpg" class="preload-img img-fluid rounded-xs" alt="img">
+                            <p class="font-600 color-theme font-12 pb-3">Color Doughnuts</p>
+                        </a>
+                    </div>
+                    <a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-red shadow-bg shadow-bg-s mb-3">Close Album</a>
                 </div>
-                <a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-red shadow-bg shadow-bg-s mb-3">Close Album</a>
             </div>
-        </div>
+
+        </SectionContent>
 
 
 
@@ -113,5 +135,12 @@
 
 <ThemeLoader></ThemeLoader>
 @code {
+    private string userName;
 
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        userName = LocalStorage.Get<string>(Constants.PREFERRED_USERNAME_LOCAL_STORAGE_NAME);
+    }
 }
