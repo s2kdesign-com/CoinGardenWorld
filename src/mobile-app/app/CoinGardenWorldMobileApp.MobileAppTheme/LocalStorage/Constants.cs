@@ -8,6 +8,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage
 {
     public static class Constants
     {
+        public const string USER_EMAIL_LOCAL_STORAGE_NAME = "GardenAPP-User-Email";
         public const string PREFERRED_USERNAME_LOCAL_STORAGE_NAME = "GardenAPP-Preferred_Username";
         public const string LANGUAGE_LOCAL_STORAGE_NAME = "GardenAPP-Language";
         public const string THEME_MODE_LOCAL_STORAGE_NAME = "GardenAPP-Theme";

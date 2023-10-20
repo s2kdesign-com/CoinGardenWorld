@@ -32,10 +32,13 @@
     public async Task OnLogInSucceeded()
     {
         var user = (await AuthenticationState).User;
-        var preferredUsername = user.FindFirst("preferred_username")?.Value ?? "";
+        var preferredUsername = user.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+        var emails = System.Text.Json.JsonSerializer.Deserialize<string[]>(user.Claims.FirstOrDefault(c => c.Type == "emails")?.Value);
 
         localStorage.SetString(Constants.PREFERRED_USERNAME_LOCAL_STORAGE_NAME, preferredUsername);
-        await AppInsights.SetAuthenticatedUserContext(preferredUsername);
+        localStorage.SetString(Constants.USER_EMAIL_LOCAL_STORAGE_NAME, emails.First());
+
+        await AppInsights.SetAuthenticatedUserContext(emails.First());
     }
 
     public async Task OnLogOutSucceeded()

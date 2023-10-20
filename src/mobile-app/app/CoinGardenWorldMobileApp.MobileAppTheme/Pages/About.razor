@@ -1,26 +1,59 @@
 ﻿@page "/about"
+@using Microsoft.Extensions.Configuration
+@using CoinGardenWorldMobileApp.MobileAppTheme.Configurations
+@using System.Reflection
 
+@inject HttpClient httpClient
+@inject IConfiguration configuration;
 
 <!-- Your Page Content Goes Here-->
 <div class="page-content header-clear-medium">
 
- 
-    <h1>Counter</h1>
+    <ul class="footer-links">
 
-    <p role="status">Current count: @currentCount</p>
+        <li><a href="terms-and-conditions" target="_blank">Terms &amp; Conditions</a></li>
 
-    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
+        <li><a href="https://github.com/s2kdesign-com/CoinGardenWorld/releases" target="_blank">Site Version - @GetSiteVersion()</a></li>
+        <li><a href="@_apiUrl" target="_blank">API Version - @_apiVersion</a></li>
+    </ul>
 
 </div>
 <!-- End of Page Content-->
 
 <ThemeLoader></ThemeLoader>
 @code {
-    private int currentCount = 0;
+    private DateTime dt = DateTime.Now;
 
-    private void IncrementCount()
+    private string _apiVersion = "API is not available.";
+    private string _apiUrl = "#";
+
+    protected override async Task OnInitializedAsync()
     {
-        currentCount++;
+        try
+        {
+            var externalApis = configuration.Get<ExternalApisSettings>();
+            if (externalApis != null && externalApis.ExternalApis != null && externalApis.ExternalApis.Any())
+            {
+                _apiUrl = externalApis.ExternalApis.FirstOrDefault().Value.Api_Url + "/api/swagger/ui";
+
+                var apiVersionRequest = await httpClient.GetAsync("api/version");
+                if (apiVersionRequest.IsSuccessStatusCode)
+                {
+                    _apiVersion = await apiVersionRequest.Content.ReadAsStringAsync();
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
+    }
+
+
+    public static string GetSiteVersion()
+    {
+        Version version = Assembly.GetEntryAssembly()?.GetName().Version ?? new Version(1, 0, 0);
+        return version.ToString();
     }
 }
