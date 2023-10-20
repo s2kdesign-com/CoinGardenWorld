@@ -5,6 +5,8 @@ using CoinGardenWorldMobileApp.Maui.Authorization;
 using CoinGardenWorldMobileApp.MobileAppTheme.Authorization;
 using CoinGardenWorldMobileApp.MobileAppTheme.Configurations;
 using CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage;
+using CoinGardenWorldMobileApp.MobileAppTheme.SignalR;
+using CoinGardenWorldMobileApp.MobileAppTheme.SignalR.HubClients;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -24,6 +26,10 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
             services.AddPWAUpdater();
                         
             services.AddLocalization(options => options.ResourcesPath = "Localization");
+
+            // Add SignalR Hubs
+            services.AddSingleton<IClientHub<ChatHub>, ChatHub>();
+            services.AddSingleton<IClientHub<NotificationsHub>, NotificationsHub>();
 
             #region LocalStorage
 

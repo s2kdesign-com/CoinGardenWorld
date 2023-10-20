@@ -2,33 +2,152 @@
 @using Microsoft.Extensions.Configuration
 @using CoinGardenWorldMobileApp.MobileAppTheme.Configurations
 @using System.Reflection
+@using Microsoft.Extensions.Logging
 
 @inject HttpClient httpClient
 @inject IConfiguration configuration;
 
+@inject IClientHub<ChatHub> chatHub
+@inject IClientHub<NotificationsHub> notificationsHub
+@inject ILogger<About> logger
 <!-- Your Page Content Goes Here-->
 <div class="page-content header-clear-medium">
+    <div class="card card-style">
+        <div class="content">
+            <div class="d-flex">
+                <div>
+                    <h6 class="mb-n1 opacity-80 color-highlight">System Information</h6>
+                    <h3>About the App</h3>
+                </div>
+            </div>
+            <div class="divider mb-0 mx-3"></div>
+            <div class="list-group list-custom list-group-m rounded-xs list-group-flush">
+                <a href="terms-and-conditions" class="list-group-item">
+                    <div>Terms &amp; Conditions</div>
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+                <a href="https://github.com/s2kdesign-com/CoinGardenWorld/releases" class="list-group-item">
+                    <div>Site Version - @GetSiteVersion()</div>
+                    <span class="badge rounded-xl bg-green-dark">OK</span>
+                </a>
+                @if (_apiIsAvailable)
+                {
+                    <a href="@_apiUrl" class="list-group-item">
+                        <div>API Version - @_apiVersion</div>
+                        <span class="badge rounded-xl bg-green-dark">OK</span>
+                    </a>
+                }
+                else
+                {
+                    <a href="@_apiUrl" class="list-group-item">
+                        <div>API Version - @_apiVersion</div>
+                        <span class="badge rounded-xl bg-red-dark">ERROR</span>
+                    </a>                    
+                }
+            </div>
 
-    <ul class="footer-links">
+        </div>
+    </div>
+    @if (chatHub.IsHubConnected)
+    {
+        <div class="card card-style alert alert-dismissible border border-fade-green show fade p-0 mb-3  shadow-bg shadow-bg-s">
+            <div class="content my-3">
+                <div class="d-flex">
+                    <div class="align-self-center">
+                        <i class="bi bi-check-circle-fill font-36 color-green-dark d-block"></i>
+                    </div>
+                    <div class="align-self-center">
+                        <p class="color-green-dark mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
 
-        <li><a href="terms-and-conditions" >Terms &amp; Conditions</a></li>
+                            RealTime connection to ChatHub is established.
+                            <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card card-style alert alert-dismissible border border-fade-yellow show fade p-0 mb-3  shadow-bg shadow-bg-s">
+            <div class="content my-3">
+                <div class="d-flex">
+                    <div class="align-self-center">
+                        <i class="bi bi-exclamation-triangle font-36 color-yellow-dark d-block"></i>
+                    </div>
+                    <div class="align-self-center">
+                        <p class="color-yellow-dark mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
+                            RealTime connection to ChatHub cannot be established!
+                            <br>
 
-        <li><a href="https://github.com/s2kdesign-com/CoinGardenWorld/releases" target="_blank">Site Version - @GetSiteVersion()</a></li>
-        <li><a href="@_apiUrl" target="_blank">API Version - @_apiVersion</a></li>
-    </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
+    @if (chatHub.IsHubConnected)
+    {
+        <div class="card card-style alert alert-dismissible border border-fade-green show fade p-0 mb-3  shadow-bg shadow-bg-s">
+            <div class="content my-3">
+                <div class="d-flex">
+                    <div class="align-self-center">
+                        <i class="bi bi-check-circle-fill font-36 color-green-dark d-block"></i>
+                    </div>
+                    <div class="align-self-center">
+                        <p class="color-green-dark mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
+                            RealTime connection to NotificationsHub is established.
+                            <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card card-style alert alert-dismissible border border-fade-yellow show fade p-0 mb-3  shadow-bg shadow-bg-s">
+            <div class="content my-3">
+                <div class="d-flex">
+                    <div class="align-self-center">
+                        <i class="bi bi-exclamation-triangle font-36 color-yellow-dark d-block"></i>
+                    </div>
+                    <div class="align-self-center">
+                        <p class="color-yellow-dark mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
+                            RealTime connection to NotificationsHub cannot be established!
+                            <br>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
 
 </div>
 <!-- End of Page Content-->
-
 <ThemeLoader></ThemeLoader>
 @code {
     private DateTime dt = DateTime.Now;
 
     private string _apiVersion = "API is not available.";
     private string _apiUrl = "#";
+    private bool _apiIsAvailable = false;
 
     protected override async Task OnInitializedAsync()
     {
+        chatHub.NotifyStateChanged += () =>
+        {
+            InvokeAsync(StateHasChanged);
+        };
+
+        notificationsHub.NotifyStateChanged += () =>
+        {
+            InvokeAsync(StateHasChanged);
+        };
         try
         {
             var externalApis = configuration.Get<ExternalApisSettings>();
@@ -40,12 +159,13 @@
                 if (apiVersionRequest.IsSuccessStatusCode)
                 {
                     _apiVersion = await apiVersionRequest.Content.ReadAsStringAsync();
+                    _apiIsAvailable = true;
                 }
             }
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            logger.LogError(e.Message);
         }
 
     }

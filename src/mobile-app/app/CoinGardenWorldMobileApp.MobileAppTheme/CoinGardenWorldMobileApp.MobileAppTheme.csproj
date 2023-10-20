@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <None Remove="Localization\Pages\Walkthrough.resx~RF55458f3.TMP" />
+    <None Remove="Pages\About.razor~RF1e64b84.TMP" />
+    <None Remove="SignalR\HubClients\ChatHub.cs~RF1a7e9aa.TMP" />
   </ItemGroup>
 
 	<ItemGroup>

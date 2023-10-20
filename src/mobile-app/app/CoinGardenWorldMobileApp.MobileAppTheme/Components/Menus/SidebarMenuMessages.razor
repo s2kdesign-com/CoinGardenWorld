@@ -1,20 +1,25 @@
 ﻿
-@inherits SignalRComponent
+
+@inject IClientHub<ChatHub> chatHub
 
 <span class="menu-divider mt-4">
     @((MarkupString)Localization.Components.Menus.SidebarMenuMessages.MESSAGES)</span>
 <div class="menu-content px-3">
     <div class="card card-style rounded-m p-2 mx-0 bg-theme mb-0">
-
-        @if (HubConnected)
+        
+        @if (!chatHub.IsHubConnected)
         {
-
+            <div>
+                @((MarkupString)Localization.Components.Menus.SidebarMenuMessages.Chat_is_Offline)
+            </div>
+        }
             <div class="menu-list">
+
                 <a class="nav-link" href="@NavigationLinks.CHAT_MESSAGES_URL"><img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/avatars/6s.png" alt="img" class="gradient-orange"><span class="font-500 color-theme">Olivia Orange</span><em class="badge badge-s bg-red-dark">3</em></a>
                 <a class="nav-link" href="@NavigationLinks.CHAT_MESSAGES_URL"><img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/avatars/2s.png" alt="img" class="gradient-green"><span class="font-500 color-theme">Marcus Green</span><em class="badge badge-s bg-red-dark">5</em></a>
                 <a class="nav-link" href="@NavigationLinks.CHAT_MESSAGES_URL"><img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/avatars/5s.png" alt="img" class="gradient-blue"><span class="font-500 color-theme">Danny Blueish</span><em class="badge badge-s bg-red-dark">1</em></a>
 
-                <NavLink class="nav-link" href="@NavigationLinks.CHAT_LIST_URL" id="nav-homes">
+                <NavLink class="nav-link" href="@NavigationLinks.CHAT_LIST_URL">
                     <i class="gradient-highlight shadow-bg shadow-bg-xs bi bi-chat-dots"></i>
                     <span>
                         @((MarkupString)Localization.Components.Menus.SidebarMenuMessages.All_Messages)
@@ -22,54 +27,47 @@
                     <i class="bi bi-chevron-right"></i>
                 </NavLink>
             </div>
-        }
-        else
-        {
-            <div>
-                @((MarkupString)Localization.Components.Menus.SidebarMenuMessages.Chat_is_Offline)
-            </div>
-            <div class="menu-list">
-                <NavLink class="nav-link" href="@NavigationLinks.CHAT_LIST_URL" id="nav-homes">
-                    <i class="gradient-highlight shadow-bg shadow-bg-xs bi bi-chat-dots"></i>
-                    <span>                        
-                        @((MarkupString)Localization.Components.Menus.SidebarMenuMessages.All_Messages)
-                    </span>
-                    <i class="bi bi-chevron-right"></i>
-                </NavLink>
-            </div>
-        }
+        
 
     </div>
 </div>
 
 @code {
 
-    public override string HubUrlSuffix { get => "/chathub/"; }
+  //  public override string HubUrlSuffix { get => "/chathub/"; }
 
     private List<string> messages = new List<string>();
     private string? userInput;
     private string? messageInput;
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        // We need to wait for the base because the hub will be null
-        await base.OnAfterRenderAsync(firstRender);
-        if (firstRender)
-        {
-            HubConnection.On<string, string>("ReceiveMessage", (user, message) =>
-            {
+     protected override async Task OnAfterRenderAsync(bool firstRender)
+     {
+         // We need to wait for the base because the hub will be null
+         await base.OnAfterRenderAsync(firstRender);
 
-                var encodedMsg = $"{user}: {message}";
-                messages.Add(encodedMsg);
-                StateHasChanged();
-            });
-        }
-    }
-    private async Task Send()
-    {
-        if (HubConnection is not null)
-        {
-            await HubConnection.SendAsync("SendMessage", userInput, messageInput);
-        }
-    }
+
+         if (firstRender)
+         {
+             
+             chatHub.NotifyStateChanged += () =>
+             {
+                 InvokeAsync(StateHasChanged);
+             };
+
+            chatHub.HubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+             {
+
+                 var encodedMsg = $"{user}: {message}";
+                 messages.Add(encodedMsg);
+                 StateHasChanged();
+             });
+         }
+     }
+    // private async Task Send()
+    // {
+    //     if (HubConnection is not null)
+    //     {
+    //         await HubConnection.SendAsync("SendMessage", userInput, messageInput);
+    //     }
+    // }
 }
