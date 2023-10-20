@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using BlazorApplicationInsights;
 using Blazored.LocalStorage;
 using CoinGardenWorldMobileApp.Maui.Authorization;
 using CoinGardenWorldMobileApp.MobileAppTheme.Authorization;
@@ -24,6 +25,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
                         
             services.AddLocalization(options => options.ResourcesPath = "Localization");
 
+
             #region LocalStorage
 
             // If Environment is Mobile
@@ -48,6 +50,31 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
                 var culture = localStorage.Get<string>(Constants.LANGUAGE_LOCAL_STORAGE_NAME);
                 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
                 CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(culture);
+            }
+
+            #endregion
+
+            #region ApplicationInsights
+            if (environmentType == EnvironmentType.Blazor)
+            {
+                services.AddBlazorApplicationInsights(async applicationInsights =>
+                {
+                    var telemetryItem = new TelemetryItem()
+                    {
+                        Tags = new Dictionary<string, object>()
+                        {
+                            { "ai.cloud.role", "SPA" },
+                            { "ai.cloud.roleInstance", "GardenAPP" },
+                        }
+                    };
+
+                    await applicationInsights.AddTelemetryInitializer(telemetryItem);
+                });
+                if (localStorage != null && configuration["ApplicationInsights:ConnectionString"] != null)
+                {
+                    localStorage.SetString(Constants.APPLICATION_INSIGHTS_CONNECTION_STRING_LOCAL_STORAGE_NAME, configuration["ApplicationInsights:ConnectionString"] ??"");
+                }
+
             }
 
             #endregion
@@ -123,4 +150,6 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
             return services;
         }
     }
+
+
 }
