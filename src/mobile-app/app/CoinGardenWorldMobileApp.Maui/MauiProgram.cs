@@ -26,7 +26,7 @@ namespace CoinGardenWorldMobileApp.Maui
 
             builder.Configuration.AddConfiguration(config);
 
-            var appInsightsConnectionString = config["ApplicationInsights:ConnectionString"];
+            var appInsightsConnectionString = config["APPLICATIONINSIGHTS_CONNECTION_STRING"];
 
             builder.Logging.AddApplicationInsights(configuration =>
             {

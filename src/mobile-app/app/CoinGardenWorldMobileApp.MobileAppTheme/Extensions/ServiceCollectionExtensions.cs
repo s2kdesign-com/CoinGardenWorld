@@ -70,9 +70,9 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
 
                     await applicationInsights.AddTelemetryInitializer(telemetryItem);
                 });
-                if (localStorage != null && configuration["ApplicationInsights:ConnectionString"] != null)
+                if (localStorage != null && configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"] != null)
                 {
-                    localStorage.SetString(Constants.APPLICATION_INSIGHTS_CONNECTION_STRING_LOCAL_STORAGE_NAME, configuration["ApplicationInsights:ConnectionString"] ??"");
+                    localStorage.SetString(Constants.APPLICATION_INSIGHTS_CONNECTION_STRING_LOCAL_STORAGE_NAME, configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"] ??"");
                 }
 
             }
