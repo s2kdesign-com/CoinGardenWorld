@@ -1,4 +1,9 @@
 <CascadingAuthenticationState>
+
+    @* Blazor ApplicationInsights
+        https://github.com/IvanJosipovic/BlazorApplicationInsights/tree/master         
+    *@
+    <ApplicationInsightsComponent />
     <Router AppAssembly="@typeof(App).Assembly" AdditionalAssemblies="new [] { typeof(CoinGardenWorldMobileApp.MobileAppTheme.Pages.Index ).Assembly }">
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MobileLayout)">

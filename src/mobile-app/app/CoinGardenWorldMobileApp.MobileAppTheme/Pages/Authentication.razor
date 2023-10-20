@@ -1,7 +1,10 @@
 ﻿@page "/authentication/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using BlazorApplicationInsights
+@using CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage
+@using Microsoft.AspNetCore.Components.Authorization
 
-
+@inject IHybridStorage localStorage
 
 <!-- Your Page Content Goes Here-->
 <div class="page-content header-clear-medium">
@@ -10,7 +13,7 @@
     <div class="card card-style">
         <div class="content UTILITY_SPACING">
         
-            <RemoteAuthenticatorView Action="@Action" />
+            <RemoteAuthenticatorView Action="@Action" OnLogInSucceeded="OnLogInSucceeded" OnLogOutSucceeded="OnLogOutSucceeded" />
         </div>
     </div>
 
@@ -21,4 +24,22 @@
 <ThemeLoader></ThemeLoader>
 @code {
     [Parameter] public string? Action { get; set; }
+
+    [CascadingParameter] public Task<AuthenticationState> AuthenticationState { get; set; }
+
+    [Inject] private IApplicationInsights AppInsights { get; set; }
+
+    public async Task OnLogInSucceeded()
+    {
+        var user = (await AuthenticationState).User;
+        var preferredUsername = user.FindFirst("preferred_username")?.Value ?? "";
+
+        localStorage.SetString(Constants.PREFERRED_USERNAME_LOCAL_STORAGE_NAME, preferredUsername);
+        await AppInsights.SetAuthenticatedUserContext(preferredUsername);
+    }
+
+    public async Task OnLogOutSucceeded()
+    {
+        await AppInsights.ClearAuthenticatedUserContext();
+    }
 }
