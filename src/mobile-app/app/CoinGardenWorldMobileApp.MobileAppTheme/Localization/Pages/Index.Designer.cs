@@ -61,16 +61,6 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Localization.Pages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to At least one photo of leaf, flower, fruit or bark is required for identification to work..
-        /// </summary>
-        internal static string At_least_one_photo_of_leaf__flower__fruit_or_bark_is_required_for_identification_to_work_ {
-            get {
-                return ResourceManager.GetString("At least one photo of leaf, flower, fruit or bark is required for identification " +
-                        "to work.", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to By using this app, people can better understand their flowers&apos; needs and grow them more effectively..
         /// </summary>
         internal static string By_using_this_app__people_can_better_understand_their_flowers__needs_and_grow_them_more_effectively_ {
@@ -100,15 +90,6 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Localization.Pages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Find flowers information.
-        /// </summary>
-        internal static string Find_flowers_information {
-            get {
-                return ResourceManager.GetString("Find flowers information", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Flowers and Gardens that we are proud to showcase and show off to the world. We think you&apos;ll love them!.
         /// </summary>
         internal static string Flowers_and_Gardens_that_we_are_proud_to_showcase {
@@ -127,6 +108,15 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Localization.Pages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login with Existing Account.
+        /// </summary>
+        internal static string Login_with_Existing_Account {
+            get {
+                return ResourceManager.GetString("Login with Existing Account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open Registration Form.
         /// </summary>
         internal static string Open_Registration_Form {
@@ -141,15 +131,6 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Localization.Pages {
         internal static string Registration_Form {
             get {
                 return ResourceManager.GetString("Registration Form", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Take Picture now.
-        /// </summary>
-        internal static string Take_Picture_now {
-            get {
-                return ResourceManager.GetString("Take Picture now", resourceCulture);
             }
         }
         
@@ -197,15 +178,6 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Localization.Pages {
         internal static string Unlock_the_secrets_of_your_garden_with_the_CoinGarden_World_mobile_app {
             get {
                 return ResourceManager.GetString("Unlock the secrets of your garden with the CoinGarden.World mobile app", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Upload Picture Now.
-        /// </summary>
-        internal static string Upload_Picture_Now {
-            get {
-                return ResourceManager.GetString("Upload Picture Now", resourceCulture);
             }
         }
     }

@@ -10,9 +10,10 @@
   </PropertyGroup>
  
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0-rc.1.23419.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0-rc.1.23419.4" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="8.0.0-rc.1.23419.4" />
+	  <!--do not delete the next line or everything will blow and you will get 404 error for blazor webassembly -->
+	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0-rc.2.23480.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0-rc.2.23480.2" PrivateAssets="all" />
+	  <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="8.0.0-rc.2.23480.2" />
     <PackageReference Include="Toolbelt.Blazor.PWA.Updater" Version="2.1.0.1" />
   </ItemGroup>
 

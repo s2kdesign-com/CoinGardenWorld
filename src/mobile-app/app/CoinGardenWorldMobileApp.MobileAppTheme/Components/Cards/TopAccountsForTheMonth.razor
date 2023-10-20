@@ -1,0 +1,158 @@
+﻿
+<div class="card card-style">
+    <div class="content px-2 text-center">
+        <div class="">
+            <div>
+                <h6 class="mb-n1 font-12 color-highlight font-700 text-uppercase">
+                    @((MarkupString)Localization.Components.Cards.TopAccountsForTheMonth.Top_Accounts_for_the_Month)
+                    </h6>
+                <h3>
+                    @((MarkupString)Localization.Components.Cards.TopAccountsForTheMonth.The_Most_Viewed_Accounts)
+                </h3>
+            </div>
+        </div>
+        <p>
+            <strong>
+
+                @((MarkupString)Localization.Components.Cards.TopAccountsForTheMonth.Elite_Gardeners_)
+            </strong>
+            @((MarkupString)Localization.Components.Cards.TopAccountsForTheMonth.These_distinguished_members_consistently_share_stunning_photos_of_blossoming_flowers__captivating_our_community_with_their_horticultural_flair_)
+        </p>
+    </div>
+</div>
+@for (int i = 1; i <= 3; i++)
+{
+    switch (i)
+    {
+        case 1:
+            <div class="card card-style">
+                <div class="content">
+                    <div class="d-flex">
+                        <div>
+                            <h3>
+                                @((MarkupString)Localization.Components.Cards.TopAccountsForTheMonth.Plant_Maestro)
+                                </h3>
+                        </div>
+                        <div class="align-self-center ms-auto">
+                            <i class="bi bi-award-fill font-24 color-yellow-dark" style="color: gold"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            break;
+        case 2:
+            <div class="card card-style">
+                <div class="content">
+                    <div class="d-flex">
+                        <div>
+                            <h3>
+                                @((MarkupString)Localization.Components.Cards.TopAccountsForTheMonth.Garden_Guru)
+                                </h3>
+                        </div>
+                        <div class="align-self-center ms-auto">
+                            <i class="bi bi-award-fill font-24" style="color: silver"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            break;
+        case 3:
+            <div class="card card-style">
+                <div class="content">
+                    <div class="d-flex">
+                        <div>
+                            <h3>
+                                @((MarkupString)Localization.Components.Cards.TopAccountsForTheMonth.Flora_Pioneer)
+                                </h3>
+                        </div>
+                        <div class="align-self-center ms-auto">
+                            <i class="bi bi-award-fill font-24 color-orange-dark"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            break;
+
+    }
+    <div class="card card-style overflow-visible" style="margin-top: 4rem;">
+        <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" width="150" height="150" class="mt-n5 preload-img mx-auto rounded-circle shadow-xl">
+        <div class="content text-center">
+            <div class="px-3 mb-n3">
+                <h1 class="font-700">
+                    Account Name: @i
+                </h1>
+                <p class="mb-2 opacity-60 font-13">
+                    Karla Black is a name used when you generate a text with an anonymous name.
+                </p>
+                <p class="font-10">
+                    <strong class="color-theme pe-1">1k</strong>Followers
+                    <strong class="color-theme ps-3 pe-1">342</strong>Following
+                </p>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="row mb-0">
+                <div class="col-6">
+                    <a href="#" class="btn btn-full btn-s rounded-s text-uppercase font-900 gradient-highlight shadow-bg shadow-bg-s">Follow</a>
+                </div>
+                <div class="col-6">
+                    <a href="#" class="btn btn-full btn-s btn-border rounded-s text-uppercase font-900 color-highlight border-blue-dark shadow-l">Message</a>
+                </div>
+            </div>
+        </div>
+        <div class="divider mb-4 mx-3 mt-1"></div>
+        <div class="row mb-0 px-3">
+            <div class="col-6 col-md-4">
+                <a data-bs-toggle="offcanvas" data-bs-target="#menu-gallery-top-account-@i" href="#"><img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/3s.jpg" class="rounded-m img-fluid mx-auto d-block"></a>
+                <span class="font-700 color-theme font-14 text-center d-block mb-3">Album Sheet 1</span>
+            </div>
+            <div class="col-6 col-md-4">
+                <a data-bs-toggle="offcanvas" data-bs-target="#menu-gallery-top-account-@i" href="#"><img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/5s.jpg" class="rounded-m img-fluid mx-auto d-block"></a>
+                <span class="font-700 color-theme font-14 text-center d-block mb-3">Album Sheet 2</span>
+            </div>
+        </div>
+    </div>
+    <SectionContent SectionName="offcanvas">
+        @for (int y = 1; y <= 3; y++)
+        {
+
+            <div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-gallery-top-account-@y">
+                <div class="content mb-0">
+                    <h5 class="mb-n1 font-12 color-highlight font-700 text-uppercase pt-1">2 x 2 Image Grid</h5>
+                    <h1 class="font-24 font-800 mb-3">Album Thumbs: Account Name: @y</h1>
+                    <p>
+                        Simple thumbnails with caption attached to them. These will all open an album gallery when tapped.
+                    </p>
+
+                    <div class="row text-center row-cols-2 mb-0">
+                        <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" title="Model Portrait">
+                            <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/7t.jpg" class="preload-img img-fluid rounded-xs" alt="img">
+                            <p class="font-600 color-theme font-12 pb-3">Selfie</p>
+                        </a>
+                        <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/11t.jpg" title="Red Leafs">
+                            <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/11s.jpg" class="preload-img img-fluid rounded-xs" alt="img">
+                            <p class="font-600 color-theme font-12 pb-3">Nature</p>
+                        </a>
+                        <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/2t.jpg" title="Smoke Flow">
+                            <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/2t.jpg" class="preload-img img-fluid rounded-xs" alt="img">
+                            <p class="font-600 color-theme font-12 pb-3">Smoke Flow</p>
+                        </a>
+                        <a class="col" data-gallery="gallery-2" href="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/4t.jpg" title="Color Doughnuts">
+                            <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" data-src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/4s.jpg" class="preload-img img-fluid rounded-xs" alt="img">
+                            <p class="font-600 color-theme font-12 pb-3">Color Doughnuts</p>
+                        </a>
+                    </div>
+                    <a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-red shadow-bg shadow-bg-s mb-3">
+                        @((MarkupString)Localization.Components.Cards.TopAccountsForTheMonth.Close_Garden)</a>
+                </div>
+            </div>
+
+        }
+    </SectionContent>
+}
+
+
+@code {
+
+}

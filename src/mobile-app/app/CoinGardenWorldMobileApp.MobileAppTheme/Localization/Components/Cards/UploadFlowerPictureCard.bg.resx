@@ -117,43 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="By using this app, people can better understand their flowers' needs and grow them more effectively." xml:space="preserve">
-    <value>Използвайки това приложение, хората могат да разберат по-добре нуждите на своите цветя и да ги отглеждат по-ефективно.</value>
+  <data name="At least one photo of leaf, flower, fruit or bark is required for identification to work." xml:space="preserve">
+    <value>Необходима е поне една снимка на листо, цвете, плод или кора, за да работи идентификацията.</value>
   </data>
-  <data name="Create Account" xml:space="preserve">
-    <value>Създай Акаунт</value>
+  <data name="Find flowers information" xml:space="preserve">
+    <value>Намерете информация за цветя</value>
   </data>
-  <data name="Dive into a universe where every flower tells a story, and every island is a testament to the harmonious blend of nature and technology." xml:space="preserve">
-    <value>Потопете се във вселена, където всяко цвете разказва история, а всеки остров е доказателство за хармоничното съчетание на природа и технология.</value>
+  <data name="Take Picture now" xml:space="preserve">
+    <value>Направете Снимка Сега</value>
   </data>
-  <data name="Flowers and Gardens that we are proud to showcase" xml:space="preserve">
-    <value>Цветя и градини, които сме горди да изложим и покажем на света. Смятаме, че ще ги харесате!</value>
-  </data>
-  <data name="Home - GardenAPP" xml:space="preserve">
-    <value>Начало - GardenAPP</value>
-  </data>
-  <data name="Login with Existing Account" xml:space="preserve">
-    <value>Впишете се със Съществуващ Акаунт</value>
-  </data>
-  <data name="Open Registration Form" xml:space="preserve">
-    <value>Отворете Регистрационната Форма</value>
-  </data>
-  <data name="Registration Form" xml:space="preserve">
-    <value>Форма за Регистрация</value>
-  </data>
-  <data name="The &quot;Donations and Causes&quot; section of the World of Flowers platform introduces a groundbreaking approach to environmental conservation." xml:space="preserve">
-    <value>Разделът „Дарения и каузи“ на платформата „Светът на цветята“ представя новаторски подход към опазването на околната среда.</value>
-  </data>
-  <data name="The Most Beautiful Flowers" xml:space="preserve">
-    <value>Най-Красивите Цветя</value>
-  </data>
-  <data name="This app can help people learn more about the flowers in their environment and appreciate their beauty." xml:space="preserve">
-    <value>Това приложение може да помогне на хората да научат повече за цветята в тяхната среда и да оценят красотата им.</value>
-  </data>
-  <data name="Top Rated for the month" xml:space="preserve">
-    <value>Най-висок Рейтинг за Месеца</value>
-  </data>
-  <data name="Unlock the secrets of your garden with the CoinGarden.World mobile app" xml:space="preserve">
-    <value>Отключете тайните на вашата градина с мобилното приложение Coingarden World! Регистрирайте се сега и превърнете смартфона си в дигитален градински експерт. Идентифицирайте незабавно цветята, получавайте персонализирани съвети за грижа и гарантирайте, че вашите цветя винаги са в най-добрата си форма. Присъединете се към нашата общност и нека вашата градина процъфтява както никога досега!</value>
+  <data name="Upload Picture Now" xml:space="preserve">
+    <value>Качете снимка сега</value>
   </data>
 </root>
