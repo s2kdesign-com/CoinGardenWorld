@@ -1,5 +1,5 @@
-using CoinGardenWorld.Theme.Extensions;
 using CoinGardenWorldMobileApp.MobileAppTheme;
+using CoinGardenWorldMobileApp.MobileAppTheme.Extensions;
 using CoinGardenWorldMobileApp.WebApp;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -9,15 +9,15 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
+// Moved to CoinGardenWorldMobileApp.MobileAppTheme
+//builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
-builder.Services.AddMsalAuthentication(options =>
-{
-    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
-});
+//builder.Services.AddMsalAuthentication(options =>
+//{
+//    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
+//});
 // CoinGardenWorldMobileApp.MobileAppTheme
-builder.Services.AddMobileAppTheme(EnvironmentType.Blazor);
+builder.Services.AddMobileAppTheme(EnvironmentType.Blazor, builder.Configuration);
 
 
 await builder.Build().RunAsync();

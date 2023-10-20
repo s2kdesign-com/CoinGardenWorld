@@ -1,30 +1,42 @@
-﻿
+﻿using System.Globalization;
 using Blazored.LocalStorage;
-using CoinGardenWorldMobileApp.MobileAppTheme;
+using CoinGardenWorldMobileApp.Maui.Authorization;
+using CoinGardenWorldMobileApp.MobileAppTheme.Authorization;
+using CoinGardenWorldMobileApp.MobileAppTheme.Configurations;
 using CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Globalization;
-using System.Text.RegularExpressions;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
-namespace CoinGardenWorld.Theme.Extensions
+namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
 {
+    // TODO: Same as CoinGardenWorld.Theme.Extensions.WebAssemblyHostBuilderExtension 
+    // TODO: Move this one to external nuget and remove the other one 
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddMobileAppTheme(this IServiceCollection services, EnvironmentType environmentType)
+        public static IServiceCollection AddMobileAppTheme(this IServiceCollection services, EnvironmentType environmentType, IConfigurationRoot configuration)
         {
+            // TODO: Not working on blazor, never seen it once
+            services.AddPWAUpdater();
+                        
+            services.AddLocalization(options => options.ResourcesPath = "Localization");
 
+            #region LocalStorage
+
+            // If Environment is Mobile
             if (environmentType == EnvironmentType.Mobile)
+            {
                 services.AddSingleton<IHybridStorage, MauiPreferencesStore>();
+            }
             else
             {
                 services.AddSingleton<IHybridStorage, BlazorLocalStorage>();
                 // Blazored.LocalStorage
                 services.AddBlazoredLocalStorageAsSingleton();
             }
-            services.AddPWAUpdater();
-
-            services.AddLocalization(options => options.ResourcesPath = "Localization");
 
             var serviceProvider = services.BuildServiceProvider();
 
@@ -37,6 +49,76 @@ namespace CoinGardenWorld.Theme.Extensions
                 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
                 CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(culture);
             }
+
+            #endregion
+
+            #region HttpClients
+
+            // Add External APIs Http clients 
+            var settings = new ExternalApisSettings();
+
+            configuration.Bind(settings);
+
+
+            if (settings != null && settings.ExternalApis != null)
+            {
+                Console.WriteLine("ExternalApis Detected");
+                services.AddOptions<ExternalApisSettings>("ExternalApis");
+
+                foreach (var externalApisSetting in settings.ExternalApis)
+                {
+                    services.AddHttpClient($"{externalApisSetting.Key}.NoAuthenticationClient",
+                        client => client.BaseAddress = new Uri(externalApisSetting.Value.Api_Url));
+
+                    services.AddHttpClient(externalApisSetting.Key,
+                            client => client.BaseAddress = new Uri(externalApisSetting.Value.Api_Url))
+                        .AddHttpMessageHandler(sp => sp.GetRequiredService<AuthorizationMessageHandler>()
+                            .ConfigureHandler(
+                                authorizedUrls: new[] { externalApisSetting.Value.Api_Url },
+                                scopes: externalApisSetting.Value.Api_Scopes));
+
+                }
+
+                // Default API 
+                services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("CGW.Api.NoAuthenticationClient"));
+            }
+            else
+            {
+
+                var hostEnvironment = serviceProvider.GetRequiredService<IWebAssemblyHostEnvironment>();
+                services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(hostEnvironment.BaseAddress) });
+            }
+
+            #endregion
+
+            #region Authentication
+
+            if (environmentType == EnvironmentType.Mobile)
+            {
+
+                services.AddAuthorizationCore();
+                services.AddSingleton<IAuthenticationService, AuthenticationService>();
+                services.AddScoped<AuthenticationStateProvider, ExternalAuthStateProvider>();
+
+            }
+            else 
+            {
+                services.AddMsalAuthentication(options =>
+                {
+                    configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
+
+                    if (settings.ExternalApis != null && settings.ExternalApis != null)
+                        foreach (var externalApisSetting in settings.ExternalApis)
+                        {
+                            foreach (var apiScope in externalApisSetting.Value.Api_Scopes)
+                            {
+                                options.ProviderOptions.DefaultAccessTokenScopes.Add(apiScope);
+                            }
+                        }
+                });
+            }
+
+            #endregion
 
             return services;
         }

@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
-using CoinGardenWorld.Theme.Extensions;
 using CoinGardenWorldMobileApp.Maui.Authorization;
 using CoinGardenWorldMobileApp.Maui.Data;
 using CoinGardenWorldMobileApp.MobileAppTheme;
 using CoinGardenWorldMobileApp.MobileAppTheme.Authorization;
+using CoinGardenWorldMobileApp.MobileAppTheme.Extensions;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
@@ -43,9 +43,6 @@ namespace CoinGardenWorldMobileApp.Maui
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
-            builder.Services.AddAuthorizationCore();
-            builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
-            builder.Services.AddScoped<AuthenticationStateProvider, ExternalAuthStateProvider>();
 
             builder.Services.AddMauiBlazorWebView();
 
@@ -54,10 +51,8 @@ namespace CoinGardenWorldMobileApp.Maui
     		builder.Logging.AddDebug();
 #endif
 
-            builder.Services.AddSingleton<WeatherForecastService>();
-
             // CoinGardenWorldMobileApp.MobileAppTheme
-            builder.Services.AddMobileAppTheme(EnvironmentType.Mobile);
+            builder.Services.AddMobileAppTheme(EnvironmentType.Mobile, builder.Configuration);
 
             return builder.Build();
         }
