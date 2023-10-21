@@ -31,7 +31,7 @@
 
 		<Delete Files="@(Generated)" />
 	</Target>
-	<Target Name="Mapster" AfterTargets="AfterBuild">
+	<Target Name="Mapster" AfterTargets="AfterBuild" Condition="'$(Configuration)' == 'Debug'">
 		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool restore" />
 		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet mapster model -a $(TargetDir)$(ProjectName).dll -n CoinGardenWorldMobileApp.Models.ViewModels -o ViewModels -r" />
 		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet mapster extension -a $(TargetDir)$(ProjectName).dll -n CoinGardenWorldMobileApp.Models.MapperExtensions -o MapperExtensions" />
