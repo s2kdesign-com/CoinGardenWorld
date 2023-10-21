@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Entities
 {
-    public class AccountDTO : BaseDTO
+    public class AccountEntity : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -29,7 +29,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Entities
 
 
         [InverseProperty("Account")]
-        public List<GardenDTO> Gardens { get; } = new();
+        public List<GardenEntity> Gardens { get; } = new();
 
 
 

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Entities
 {
-    public class BaseDTO
+    public class BaseEntity
     {
         public Guid CreatedFrom { get; set; }
 
@@ -16,12 +16,12 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Entities
 
         [ForeignKey(nameof(CreatedFrom))]
         [DeleteBehavior(DeleteBehavior.NoAction)]
-        public AccountDTO CreatedFromAccount { get; init; }
+        public AccountEntity CreatedFromAccount { get; init; }
 
 
         [ForeignKey(nameof(UpdatedFrom))]
         [DeleteBehavior(DeleteBehavior.NoAction)]
-        public AccountDTO UpdatedFromAccount { get; init; }
+        public AccountEntity UpdatedFromAccount { get; init; }
 
     }
 }

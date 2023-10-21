@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Entities
 {
-    public class GardenDTO : BaseDTO
+    public class GardenEntity : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -17,10 +17,10 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Entities
         [ForeignKey(nameof(Account))]
         public Guid AccountId { get; set; }
 
-        public AccountDTO Account { get; init; }
+        public AccountEntity Account { get; init; }
 
 
         [DeleteBehavior(DeleteBehavior.ClientCascade)]
-        public List<FlowerDTO> Flowers { get; } = new();
+        public List<FlowerEntity> Flowers { get; } = new();
     }
 }

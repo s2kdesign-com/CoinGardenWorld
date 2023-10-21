@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Entities
 {
-    public class FlowerDTO : BaseDTO
+    public class FlowerEntity : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -19,6 +19,6 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Entities
 
         [ForeignKey(nameof(Garden))]
         public Guid GardenId { get; set; }
-        public GardenDTO Garden { get; init; }
+        public GardenEntity Garden { get; init; }
     }
 }
