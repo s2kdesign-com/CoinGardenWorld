@@ -29,7 +29,5 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         // [InverseProperty("Account")]
         //public ICollection<Garden> Gardens { get; set; }
 
-
-
     }
 }

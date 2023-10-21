@@ -7,6 +7,7 @@ on:
   push:
     paths:
     - 'src/mobile-app/app/CoinGardenWorldMobileApp.DotNetApi/**'
+    - 'src/mobile-app/app/CoinGardenWorldMobileApp.Models/**'
     branches:
       - main
   workflow_dispatch:
