@@ -8,8 +8,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Contexts;
 public partial class MobileAppDbContext : DbContext
 {
 
-    public DbSet<FlowerDTO> Flowers { get; set; }
+    public DbSet<AccountDTO> Accounts { get; set; }
     public DbSet<GardenDTO> Gardens { get; set; }
+    public DbSet<FlowerDTO> Flowers { get; set; }
 
     public MobileAppDbContext(DbContextOptions<MobileAppDbContext> options)
         : base(options)
