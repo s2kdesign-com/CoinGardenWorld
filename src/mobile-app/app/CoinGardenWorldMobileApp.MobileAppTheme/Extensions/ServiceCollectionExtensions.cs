@@ -27,9 +27,6 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
                         
             services.AddLocalization(options => options.ResourcesPath = "Localization");
 
-            // Add SignalR Hubs
-            services.AddSingleton<IClientHub<ChatHub>, ChatHub>();
-            services.AddSingleton<IClientHub<NotificationsHub>, NotificationsHub>();
 
             #region LocalStorage
 
@@ -84,41 +81,12 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
 
             #endregion
 
-            // Add External APIs Http clients 
-            var settings = new ExternalApisSettings();
-
-            #region Authentication
-
-            if (environmentType == EnvironmentType.MOBILE)
-            {
-
-                services.AddAuthorizationCore();
-                services.AddSingleton<IAuthenticationService, AuthenticationService>();
-                services.AddScoped<AuthenticationStateProvider, ExternalAuthStateProvider>();
-
-            }
-            else
-            {
-                services.AddMsalAuthentication(options =>
-                {
-                    configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
-
-                    if (settings.ExternalApis != null && settings.ExternalApis != null)
-                        foreach (var externalApisSetting in settings.ExternalApis)
-                        {
-                            foreach (var apiScope in externalApisSetting.Value.Api_Scopes)
-                            {
-                                options.ProviderOptions.DefaultAccessTokenScopes.Add(apiScope);
-                            }
-                        }
-                });
-            }
-
-            #endregion
 
             #region HttpClients
 
 
+            // Add External APIs Http clients 
+            var settings = new ExternalApisSettings();
             configuration.Bind(settings);
 
 
@@ -153,6 +121,38 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
 
             #endregion
 
+
+            #region Authentication
+
+            if (environmentType == EnvironmentType.MOBILE)
+            {
+
+                services.AddAuthorizationCore();
+                services.AddSingleton<IAuthenticationService, AuthenticationService>();
+                services.AddScoped<AuthenticationStateProvider, ExternalAuthStateProvider>();
+
+            }
+            else
+            {
+                services.AddMsalAuthentication(options =>
+                {
+                    configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
+
+                    if (settings.ExternalApis != null && settings.ExternalApis != null)
+                        foreach (var externalApisSetting in settings.ExternalApis)
+                        {
+                            foreach (var apiScope in externalApisSetting.Value.Api_Scopes)
+                            {
+                                options.ProviderOptions.DefaultAccessTokenScopes.Add(apiScope);
+                            }
+                        }
+                });
+            }
+
+            #endregion
+            // Add SignalR Hubs
+            services.AddScoped<IClientHub<ChatHub>, ChatHub>();
+            services.AddScoped<IClientHub<NotificationsHub>, NotificationsHub>();
 
             return services;
         }

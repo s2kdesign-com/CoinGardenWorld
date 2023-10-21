@@ -18,7 +18,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR.HubClients
     {
         public override string _hubUrlSuffix => "/chathub/";
 
-        public ChatHub(IConfiguration configuration, ILogger<ChatHub> logger ) : base(configuration, logger)
+        public ChatHub(IConfiguration configuration, ILogger<ChatHub> logger, IAccessTokenProvider tokenProvider, AuthenticationStateProvider authenticationStateProvider) : base(configuration, logger, tokenProvider, authenticationStateProvider)
         {
         }
 

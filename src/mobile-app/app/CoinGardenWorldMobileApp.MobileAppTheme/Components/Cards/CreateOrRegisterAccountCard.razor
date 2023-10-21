@@ -14,18 +14,18 @@
         <div class="divider mt-4 mb-0"></div>
 
         <div class="list-group list-custom list-group-m rounded-xs list-group-flush bg-theme">
-            <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-step-1" class="list-group-item">
+         @*    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-step-1" class="list-group-item">
                 <i class="bi bi-heart-fill color-red-dark font-15"></i>
                 <div>
                     @((MarkupString)Localization.Pages.Index.Open_Registration_Form)
                 </div>
                 <i class="bi bi-chevron-right pe-1"></i>
-            </a>
+            </a> *@
 
             <a href="authentication/login" class="list-group-item">
-                <i class="bi bi-file-person-fill font-15"></i>
-                <div>
-                    @((MarkupString)Localization.Pages.Index.Login_with_Existing_Account)
+                <i class="bi bi-heart-fill color-highlight font-15 font-15"></i>
+                <div class="w-75">
+                    @((MarkupString)Localization.Pages.Index.Sign_in_or_Sign_up_to_unlock_new_gardening_possibilities)
                 </div>
                 <i class="bi bi-chevron-right pe-1"></i>
             </a>

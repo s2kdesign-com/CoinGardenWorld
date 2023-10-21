@@ -42,8 +42,6 @@ builder.Services.AddCors(options =>
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
 
-var microsoftIdentityOptions = new MicrosoftIdentityOptions();
-builder.Configuration.GetSection("AzureAd").Bind(microsoftIdentityOptions);
 
 builder.Services.AddControllers();
 
@@ -94,6 +92,9 @@ builder.Services.AddSwaggerGen(options =>
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 
+
+    var microsoftIdentityOptions = new MicrosoftIdentityOptions();
+    builder.Configuration.GetSection("AzureAd").Bind(microsoftIdentityOptions);
     // Enabled OAuth security in Swagger
     var scopesConfig = builder.Configuration.GetValue<string>("AzureAd:Scopes").Split(' ');
     var scopes = new Dictionary<string, string>();
@@ -170,6 +171,8 @@ builder.Services.AddHealthChecks()
 
 var app = builder.Build();
 
+app.UseCors("AllowAllCors");
+
 // Apply migrations
 using (var scope = app.Services.CreateScope())
 {
@@ -215,7 +218,6 @@ app
         Predicate = _ => true
     });
 
-app.UseCors("AllowAllCors");
 
 
 var options = new DashboardOptions { AppPath = "https://plant-api.azurewebsites.net/swagger/index.html" };

@@ -4,12 +4,14 @@
 @using System.Reflection
 @using Microsoft.Extensions.Logging
 
-@inject HttpClient httpClient
 @inject IConfiguration configuration;
 
 @inject IClientHub<ChatHub> chatHub
 @inject IClientHub<NotificationsHub> notificationsHub
 @inject ILogger<About> logger
+
+@inject IHttpClientFactory HttpClientFactory
+
 <!-- Your Page Content Goes Here-->
 <div class="page-content header-clear-medium">
     <div class="card card-style">
@@ -42,12 +44,54 @@
                     <a href="@_apiUrl" class="list-group-item">
                         <div>API Version - @_apiVersion</div>
                         <span class="badge rounded-xl bg-red-dark">ERROR</span>
-                    </a>                    
+                    </a>
                 }
             </div>
 
         </div>
     </div>
+    @if (_isApiAuthenticated)
+    {
+        <div class="card card-style alert alert-dismissible border border-fade-green show fade p-0 mb-3  shadow-bg shadow-bg-s">
+            <div class="content my-3">
+                <div class="d-flex">
+                    <div class="align-self-center">
+                        <i class="bi bi-check-circle-fill font-36 color-green-dark d-block"></i>
+                    </div>
+                    <div class="align-self-center">
+                        <p class="color-green-dark mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
+
+                            Mobile API connection is Authorized!
+
+                            <br>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card card-style alert alert-dismissible border border-fade-yellow show fade p-0 mb-3  shadow-bg shadow-bg-s">
+            <div class="content my-3">
+                <div class="d-flex">
+                    <div class="align-self-center">
+                        <i class="bi bi-exclamation-triangle font-36 color-yellow-dark d-block"></i>
+                    </div>
+                    <div class="align-self-center">
+                        <p class="color-yellow-dark mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
+                            Mobile API connection is not Authorized!
+                            <br>
+                            Reason: @_apiAuthenticatedResult
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
     @if (chatHub.IsHubConnected)
     {
         <div class="card card-style alert alert-dismissible border border-fade-green show fade p-0 mb-3  shadow-bg shadow-bg-s">
@@ -88,7 +132,7 @@
 
     }
 
-    @if (chatHub.IsHubConnected)
+    @if (notificationsHub.IsHubConnected)
     {
         <div class="card card-style alert alert-dismissible border border-fade-green show fade p-0 mb-3  shadow-bg shadow-bg-s">
             <div class="content my-3">
@@ -137,6 +181,9 @@
     private string _apiUrl = "#";
     private bool _apiIsAvailable = false;
 
+    private bool _isApiAuthenticated = false;
+    private string _apiAuthenticatedResult = "";
+
     protected override async Task OnInitializedAsync()
     {
         chatHub.NotifyStateChanged += () =>
@@ -148,25 +195,53 @@
         {
             InvokeAsync(StateHasChanged);
         };
-        try
-        {
-            var externalApis = configuration.Get<ExternalApisSettings>();
-            if (externalApis != null && externalApis.ExternalApis != null && externalApis.ExternalApis.Any())
-            {
-                _apiUrl = externalApis.ExternalApis.FirstOrDefault().Value.Api_Url + "/swagger/index.html";
 
-                var apiVersionRequest = await httpClient.GetAsync("api/version");
+        var externalApis = configuration.Get<ExternalApisSettings>();
+        if (externalApis != null && externalApis.ExternalApis != null && externalApis.ExternalApis.Any())
+        {
+            _apiUrl = externalApis.ExternalApis.FirstOrDefault().Value.Api_Url + "/swagger/index.html";
+
+            try
+            {
+                // Test Mobile API without Authorization
+                var httpClient = HttpClientFactory.CreateClient("CGW.Mobile.Api.NoAuthenticationClient");
+
+                var apiVersionRequest = await httpClient.GetAsync("/api/version");
                 if (apiVersionRequest.IsSuccessStatusCode)
                 {
                     _apiVersion = await apiVersionRequest.Content.ReadAsStringAsync();
                     _apiIsAvailable = true;
                 }
             }
+            catch (Exception e)
+            {
+                logger.LogError(e.Message);
+            }
+
+            try
+            {
+                // Test Mobile API with Authorization
+                var authorizedHttpClient = HttpClientFactory.CreateClient("CGW.Mobile.Api");
+                Console.WriteLine("are we here " );
+                var authorizedResponse = await authorizedHttpClient.GetAsync("/api/version/GetAuthorized");
+
+                Console.WriteLine("are we here " + authorizedResponse.IsSuccessStatusCode);
+                if (authorizedResponse.IsSuccessStatusCode)
+                {
+                    _isApiAuthenticated = true;
+                }
+                else
+                {
+                    _isApiAuthenticated = false;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e.Message);
+            }
+
         }
-        catch (Exception e)
-        {
-            logger.LogError(e.Message);
-        }
+
 
     }
 

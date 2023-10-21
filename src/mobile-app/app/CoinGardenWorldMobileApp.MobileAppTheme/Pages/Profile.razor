@@ -1,9 +1,13 @@
 ﻿@using CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage
+
 @* @page "/profile" *@
 
 @attribute [Route(NavigationLinks.PROFILE_URL)]
 
 @inject IHybridStorage LocalStorage
+
+@inject IHttpClientFactory HttpClientFactory
+
 <AuthorizeView>
     <Authorized>
 
@@ -15,7 +19,7 @@
                 <div class="content text-center">
                     <div class="px-3 mb-n3">
                         <h1 class="font-700">
-                            @userName
+                            @context.User.Identity.Name
                             </h1>
                         <p class="mb-2 opacity-60 font-13">
                             Karla Black is a name used when you generate a text with an anonymous name.
@@ -136,11 +140,21 @@
 <ThemeLoader></ThemeLoader>
 @code {
     private string userName;
+    private HttpClient _httpClient;
 
+    protected override async Task OnInitializedAsync()
+    {
+        _httpClient = HttpClientFactory.CreateClient("CGW.Mobile.Api");
+        var profile = await _httpClient.GetFromJsonAsync<List<AccountDto>>("/api/Accounts");
+
+        // TODO: Move all http clients to external classes and inject tham directly
+        Console.WriteLine(profile);
+    }
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
         userName = LocalStorage.Get<string>(Constants.PREFERRED_USERNAME_LOCAL_STORAGE_NAME);
+
     }
 }

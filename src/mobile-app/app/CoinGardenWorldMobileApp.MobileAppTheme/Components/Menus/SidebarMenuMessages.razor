@@ -34,34 +34,36 @@
 
 @code {
 
-  //  public override string HubUrlSuffix { get => "/chathub/"; }
+    //  public override string HubUrlSuffix { get => "/chathub/"; }
 
     private List<string> messages = new List<string>();
     private string? userInput;
     private string? messageInput;
 
-     protected override async Task OnAfterRenderAsync(bool firstRender)
-     {
-         // We need to wait for the base because the hub will be null
-         await base.OnAfterRenderAsync(firstRender);
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        // We need to wait for the base because the hub will be null
+        await base.OnAfterRenderAsync(firstRender);
 
 
-         if (firstRender)
-         {
-             
-             chatHub.NotifyStateChanged += () =>
-             {
-                 InvokeAsync(StateHasChanged);
-             };
+        if (firstRender)
+        {
+            if (chatHub.HubConnection != null)
+            {
+                chatHub.NotifyStateChanged += () =>
+                {
+                    InvokeAsync(StateHasChanged);
+                };
 
-            chatHub.HubConnection.On<string, string>("ReceiveMessage", (user, message) =>
-             {
+                chatHub.HubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+                 {
 
-                 var encodedMsg = $"{user}: {message}";
-                 messages.Add(encodedMsg);
-                 StateHasChanged();
-             });
-         }
+                     var encodedMsg = $"{user}: {message}";
+                     messages.Add(encodedMsg);
+                     StateHasChanged();
+                 });
+            }
+        }
      }
     // private async Task Send()
     // {

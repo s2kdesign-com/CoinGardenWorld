@@ -16,7 +16,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
 
         event Action NotifyStateChanged;
 
-        HubConnection HubConnection
+        HubConnection? HubConnection
         {
             get;
             set;

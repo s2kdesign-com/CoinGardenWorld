@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 using System.Timers;
 using CoinGardenWorldMobileApp.MobileAppTheme.Configurations;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
 {
@@ -21,12 +22,13 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
         private readonly ILogger _logger;
         private readonly IConfiguration _configuration;
         private readonly AuthenticationStateProvider _authStateProvider;
+        private readonly IAccessTokenProvider _tokenProvider;
 
         private System.Timers.Timer _signalRReconnectTimer = new System.Timers.Timer();
 
         private HubConnection? _hubConnection;
 
-        public HubConnection HubConnection
+        public HubConnection? HubConnection
         {
             get { return _hubConnection; }
             set { _hubConnection = value; }
@@ -40,9 +42,10 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
         public bool HubConnected
         {
             get => hubConnected;
-            set {
+            set
+            {
                 NotifyStateChanged?.Invoke();
-                hubConnected = value; 
+                hubConnected = value;
             }
         }
 
@@ -50,14 +53,15 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
         private readonly string _hubUrl = "";
 
 
-        public ClientHub(IConfiguration configuration, ILogger<ClientHub<T>> logger)
+        public ClientHub(IConfiguration configuration, ILogger<ClientHub<T>> logger, IAccessTokenProvider tokenProvider, AuthenticationStateProvider authenticationStateProvider)
         {
             _configuration = configuration;
             _logger = logger;
-            //_authStateProvider = authenticationStateProvider;
+            _authStateProvider = authenticationStateProvider;
+            _tokenProvider = tokenProvider;
 
             _signalRReconnectTimer.Elapsed += new ElapsedEventHandler(SignalRReconnect);
-            _signalRReconnectTimer.Interval = 5000;
+            _signalRReconnectTimer.Interval = 15000;
 
             var externalApisSettings = configuration.Get<ExternalApisSettings>();
 
@@ -72,7 +76,9 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
 
         private async void SignalRReconnect(object source, ElapsedEventArgs e)
         {
-            _logger.LogInformation($"Trying to reconnect to signalr hub at URL: {_hubUrl}");
+
+            await BuildHubConnection(_hubUrl);
+
 
             try
             {
@@ -86,7 +92,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
                     _signalRReconnectTimer.Stop();
                 }
                 HubConnected = true;
-                _logger.LogInformation($"SignalR hub connection established at URL: {_hubUrl}");
+                _logger.LogWarning($"SignalR hub connection established at URL: {_hubUrl}");
             }
             catch (Exception ex)
             {
@@ -94,9 +100,29 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
             }
         }
 
-        private async Task InitializeHubBuilder(string hubUrl)
+        private async Task BuildHubConnection(string hubUrl)
         {
 
+            var accessTokenResult = await _tokenProvider.RequestAccessToken();
+            _hubConnection = new HubConnectionBuilder()
+                .WithUrl(hubUrl, options =>
+                {
+                    // TODO: NOT WORKING
+                    //opt.Headers.Add("user-emails", userEmails);
+
+                    if (accessTokenResult.TryGetToken(out var token))
+                    {
+                        Console.WriteLine(token);
+                        options.AccessTokenProvider = () => Task.FromResult(token.Value)!;
+                    }
+                })
+                
+                .WithAutomaticReconnect()
+                .Build();
+        }
+
+        private async Task InitializeHubBuilder(string hubUrl)
+        {
 
             //var authState = await _authStateProvider.GetAuthenticationStateAsync();
             //var userEmails = "";
@@ -104,18 +130,12 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
             //{
             //    userEmails = authState.User.Claims.First(c => c.Type == "emails").Value;
             //}
-            _hubConnection = new HubConnectionBuilder()
-                .WithUrl(hubUrl, opt =>
-                {
-                    // TODO: NOT WORKING
-                    //opt.Headers.Add("user-emails", userEmails);
-                })
-                .WithAutomaticReconnect()
-                .Build();
+
+            await BuildHubConnection(hubUrl);
 
             _hubConnection.Reconnecting += ex =>
             {
-                _logger.LogInformation($"SignalR hub connection lost, trying to reconnect at URL: {hubUrl}");
+                _logger.LogWarning($"SignalR hub connection lost, trying to reconnect at URL: {hubUrl}");
 
                 HubConnected = false;
                 return Task.CompletedTask;
@@ -130,7 +150,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
             _hubConnection.Closed += ex =>
             {
                 // TODO: Not working and i dont know why
-                _logger.LogInformation($"The connection of '{hubUrl}' is closed.");
+                _logger.LogWarning($"The connection of '{hubUrl}' is closed.");
 
                 //StartTheTimer
                 _signalRReconnectTimer.Enabled = true;
@@ -140,7 +160,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
                 //If you expect non-null exception, you need to turn on 'EnableDetailedErrors' option during client negotiation.
                 if (ex != null)
                 {
-                    Console.Write($" Exception: {ex}");
+                    _logger.LogWarning($" Exception: {ex}");
                 }
 
                 return Task.CompletedTask;
@@ -164,9 +184,9 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
             }
         }
 
-        public bool IsHubConnected => 
+        public bool IsHubConnected =>
              _hubConnection?.State == HubConnectionState.Connected;
-        
+
 
         public async ValueTask DisposeAsync()
         {

@@ -141,6 +141,9 @@
   <data name="Registration Form" xml:space="preserve">
     <value>Форма за Регистрация</value>
   </data>
+  <data name="Sign in or Sign up to unlock new gardening possibilities" xml:space="preserve">
+    <value>Влезте или се Регистрирайте, за да отключите нови възможности за градинарство</value>
+  </data>
   <data name="The &quot;Donations and Causes&quot; section of the World of Flowers platform introduces a groundbreaking approach to environmental conservation." xml:space="preserve">
     <value>Разделът „Дарения и каузи“ на платформата „Светът на цветята“ представя новаторски подход към опазването на околната среда.</value>
   </data>

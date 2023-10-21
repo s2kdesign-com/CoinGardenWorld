@@ -1,10 +1,12 @@
 ﻿using CoinGardenWorldMobileApp.DotNetApi.SignalR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Azure.SignalR.Management;
 using SignalRSwaggerGen.Attributes;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Hubs
 {
+    [Authorize]
     [SignalRHub(description: "SignalR Hub Used for Chat communication")]
     public class ChatHub : Hub
     {

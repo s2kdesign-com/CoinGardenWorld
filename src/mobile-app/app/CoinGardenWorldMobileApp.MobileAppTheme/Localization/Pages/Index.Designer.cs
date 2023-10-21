@@ -135,6 +135,15 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Localization.Pages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sign in or Sign up to unlock new gardening possibilities.
+        /// </summary>
+        internal static string Sign_in_or_Sign_up_to_unlock_new_gardening_possibilities {
+            get {
+                return ResourceManager.GetString("Sign in or Sign up to unlock new gardening possibilities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The &quot;Donations and Causes&quot; section of the World of Flowers platform introduces a groundbreaking approach to environmental conservation..
         /// </summary>
         internal static string The__Donations_and_Causes__section_of_the_World_of_Flowers_platform_introduces_a_groundbreaking_approach_to_environmental_conservation_ {

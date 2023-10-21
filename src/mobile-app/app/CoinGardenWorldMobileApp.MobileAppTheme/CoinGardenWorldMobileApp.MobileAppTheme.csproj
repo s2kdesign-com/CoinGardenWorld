@@ -34,6 +34,9 @@
 	  <PackageReference Include="Toolbelt.Blazor.PWA.Updater" Version="2.1.0.1" />
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\CoinGardenWorldMobileApp.Models\CoinGardenWorldMobileApp.Models.csproj" />
+	</ItemGroup>
+	<ItemGroup>
 	  <Compile Update="Localization\Components\Cards\TopAccountsForTheMonth.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
