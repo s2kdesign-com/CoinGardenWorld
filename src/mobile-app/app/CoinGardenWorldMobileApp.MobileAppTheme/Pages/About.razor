@@ -52,122 +52,67 @@
     </div>
     @if (_isApiAuthenticated)
     {
-        <div class="card card-style alert alert-dismissible border border-fade-green show fade p-0 mb-3  shadow-bg shadow-bg-s">
-            <div class="content my-3">
-                <div class="d-flex">
-                    <div class="align-self-center">
-                        <i class="bi bi-check-circle-fill font-36 color-green-dark d-block"></i>
-                    </div>
-                    <div class="align-self-center">
-                        <p class="color-green-dark mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
-
-                            Mobile API connection is Authorized!
-
-                            <br>
-
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <CardAlert Color="green" Icon="bi-check-circle-fill">
+            <Content>
+                Mobile API connection is Authorized!
+                <br>
+            </Content>
+        </CardAlert>
     }
     else
     {
-        <div class="card card-style alert alert-dismissible border border-fade-yellow show fade p-0 mb-3  shadow-bg shadow-bg-s">
-            <div class="content my-3">
-                <div class="d-flex">
-                    <div class="align-self-center">
-                        <i class="bi bi-exclamation-triangle font-36 color-yellow-dark d-block"></i>
-                    </div>
-                    <div class="align-self-center">
-                        <p class="color-yellow-dark mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
-                            Mobile API connection is not Authorized!
-                            <br>
-                            Reason: @_apiAuthenticatedResult
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <CardAlert Color="yellow" Icon="bi-exclamation-triangle">
+            <Content>
+                Mobile API connection is not Authorized!
+                <br>
+            </Content>
+        </CardAlert>
 
     }
 
     @if (chatHub.IsHubConnected)
     {
-        <div class="card card-style alert alert-dismissible border border-fade-green show fade p-0 mb-3  shadow-bg shadow-bg-s">
-            <div class="content my-3">
-                <div class="d-flex">
-                    <div class="align-self-center">
-                        <i class="bi bi-check-circle-fill font-36 color-green-dark d-block"></i>
-                    </div>
-                    <div class="align-self-center">
-                        <p class="color-green-dark mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
 
-                            RealTime connection to ChatHub is established.
-                            <br>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <CardAlert Color="green" Icon="bi-check-circle-fill">
+            <Content>
+                RealTime connection to ChatHub is established.
+                <br>
+            </Content>
+        </CardAlert>
+
     }
     else
     {
-        <div class="card card-style alert alert-dismissible border border-fade-yellow show fade p-0 mb-3  shadow-bg shadow-bg-s">
-            <div class="content my-3">
-                <div class="d-flex">
-                    <div class="align-self-center">
-                        <i class="bi bi-exclamation-triangle font-36 color-yellow-dark d-block"></i>
-                    </div>
-                    <div class="align-self-center">
-                        <p class="color-yellow-dark mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
-                            RealTime connection to ChatHub cannot be established!
-                            <br>
 
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <CardAlert Color="yellow" Icon="bi-exclamation-triangle">
+            <Content>
+                RealTime connection to ChatHub cannot be established!
+                <br>
+            </Content>
+        </CardAlert>
 
     }
 
     @if (notificationsHub.IsHubConnected)
     {
-        <div class="card card-style alert alert-dismissible border border-fade-green show fade p-0 mb-3  shadow-bg shadow-bg-s">
-            <div class="content my-3">
-                <div class="d-flex">
-                    <div class="align-self-center">
-                        <i class="bi bi-check-circle-fill font-36 color-green-dark d-block"></i>
-                    </div>
-                    <div class="align-self-center">
-                        <p class="color-green-dark mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
-                            RealTime connection to NotificationsHub is established.
-                            <br>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <CardAlert Color="green" Icon="bi-check-circle-fill">
+            <Content>
+                RealTime connection to NotificationsHub is established.
+                <br>
+            </Content>
+        </CardAlert>
     }
     else
     {
-        <div class="card card-style alert alert-dismissible border border-fade-yellow show fade p-0 mb-3  shadow-bg shadow-bg-s">
-            <div class="content my-3">
-                <div class="d-flex">
-                    <div class="align-self-center">
-                        <i class="bi bi-exclamation-triangle font-36 color-yellow-dark d-block"></i>
-                    </div>
-                    <div class="align-self-center">
-                        <p class="color-yellow-dark mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
-                            RealTime connection to NotificationsHub cannot be established!
-                            <br>
-
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <CardAlert Color="yellow" Icon="bi-exclamation-triangle">
+            <Content>
+                RealTime connection to NotificationsHub cannot be established!
+                <br>
+            </Content>
+        </CardAlert>
 
     }
 
@@ -222,10 +167,8 @@
             {
                 // Test Mobile API with Authorization
                 var authorizedHttpClient = HttpClientFactory.CreateClient("CGW.Mobile.Api");
-                Console.WriteLine("are we here " );
                 var authorizedResponse = await authorizedHttpClient.GetAsync("/api/version/GetAuthorized");
 
-                Console.WriteLine("are we here " + authorizedResponse.IsSuccessStatusCode);
                 if (authorizedResponse.IsSuccessStatusCode)
                 {
                     _isApiAuthenticated = true;

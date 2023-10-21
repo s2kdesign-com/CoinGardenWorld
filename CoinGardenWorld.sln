@@ -159,7 +159,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldMobileApp_Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldMobileApp.DotNetApi", "src\mobile-app\app\CoinGardenWorldMobileApp.DotNetApi\CoinGardenWorldMobileApp.DotNetApi.csproj", "{096955BB-5EB9-45A5-B88A-70081590E373}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorldMobileApp.Models", "src\mobile-app\app\CoinGardenWorldMobileApp.Models\CoinGardenWorldMobileApp.Models.csproj", "{27160572-FCD9-4983-90CB-5BF1053A3D8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldMobileApp.Models", "src\mobile-app\app\CoinGardenWorldMobileApp.Models\CoinGardenWorldMobileApp.Models.csproj", "{27160572-FCD9-4983-90CB-5BF1053A3D8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
