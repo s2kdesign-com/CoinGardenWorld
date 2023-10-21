@@ -3,8 +3,8 @@ name: Build Mobile APP - Mac
 on:
   push:
     paths:
-    - 'src/mobile-app/app/**'
-    - 'src/shared/**'
+    - 'src/mobile-app/app/CoinGardenWorldMobileApp.Maui/**'
+    - 'src/mobile-app/app/CoinGardenWorldMobileApp.MobileAppTheme/**'
     branches:
       - main
   pull_request:
