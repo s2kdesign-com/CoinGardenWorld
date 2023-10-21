@@ -72,7 +72,7 @@
 	<ItemGroup>
 		<None Remove="appsettings.json" />
 	</ItemGroup>
-	<ItemGroup>
+	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
 		<None Remove="appsettings.Development.json" />
 	</ItemGroup>
 	 
@@ -82,7 +82,7 @@
     </ItemGroup>
 	 
 
-    <ItemGroup>
+    <ItemGroup Condition="'$(Configuration)' == 'Debug'">
       <EmbeddedResource Include="appsettings.Development.json" PublishFolderType="None" />
     </ItemGroup>
 	 
