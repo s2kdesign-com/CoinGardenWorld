@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using CoinGardenWorldMobileApp.DotNetApi.Entities;
+using CoinGardenWorldMobileApp.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Contexts;

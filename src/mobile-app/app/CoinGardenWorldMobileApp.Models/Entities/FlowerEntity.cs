@@ -4,7 +4,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace CoinGardenWorldMobileApp.DotNetApi.Entities
+namespace CoinGardenWorldMobileApp.Models.Entities
 {
     public class FlowerEntity : BaseEntity
     {

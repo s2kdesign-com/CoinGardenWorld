@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CoinGardenWorldMobileApp.DotNetApi.Entities
+namespace CoinGardenWorldMobileApp.Models.Entities
 {
     public class BaseEntity
     {

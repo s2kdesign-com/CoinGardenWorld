@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace CoinGardenWorldMobileApp.DotNetApi.Entities
+namespace CoinGardenWorldMobileApp.Models.Entities
 {
     public class AccountEntity : BaseEntity
     {
@@ -17,11 +17,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Entities
         // {2} = Min Length
         [StringLength(150, ErrorMessage = "{0} can have a max of {1} characters")]
         public string? Email { get; set; }
+
         [StringLength(150, ErrorMessage = "{0} can have a max of {1} characters")]
         public string? Username { get; set; }
 
         [StringLength(150, ErrorMessage = "{0} can have a max of {1} characters")]
         public string? DisplayName { get; set; }
+
         [StringLength(500, ErrorMessage = "{0} can have a max of {1} characters")]
         public string? ProfileIntroduction { get; set; }
 
