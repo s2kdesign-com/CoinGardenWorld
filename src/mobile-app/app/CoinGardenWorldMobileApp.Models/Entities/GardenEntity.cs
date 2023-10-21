@@ -1,15 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CoinGardenWorldMobileApp.Models.Entities
 {
-    public class GardenEntity : BaseEntity
+    public class Garden : BaseEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public Guid Id { get; set; } = Guid.NewGuid();
-
         [StringLength(150, ErrorMessage = "{0} can have a max of {1} characters")]
         public string Name { get; set; }
 
@@ -17,10 +14,10 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         [ForeignKey(nameof(Account))]
         public Guid AccountId { get; set; }
 
-        public AccountEntity Account { get; init; }
+        public Account Account { get; set; }
 
 
         [DeleteBehavior(DeleteBehavior.ClientCascade)]
-        public List<FlowerEntity> Flowers { get; } = new();
+        public ICollection<Flower> Flowers { get; set; }
     }
 }

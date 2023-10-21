@@ -3,15 +3,12 @@
 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Mapster;
 
 namespace CoinGardenWorldMobileApp.Models.Entities
 {
-    public class FlowerEntity : BaseEntity
+    public class Flower : BaseEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public Guid Id { get; set; } = Guid.NewGuid();
-
         [StringLength(150, ErrorMessage = "{0} can have a max of {1} characters")]
         public string Name { get; set; }
 
@@ -19,6 +16,6 @@ namespace CoinGardenWorldMobileApp.Models.Entities
 
         [ForeignKey(nameof(Garden))]
         public Guid GardenId { get; set; }
-        public GardenEntity Garden { get; init; }
+        public Garden Garden { get; set; }
     }
 }

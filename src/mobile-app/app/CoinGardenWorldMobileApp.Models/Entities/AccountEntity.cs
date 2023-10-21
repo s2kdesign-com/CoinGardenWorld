@@ -1,15 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Mapster;
 
 namespace CoinGardenWorldMobileApp.Models.Entities
 {
-    public class AccountEntity : BaseEntity
+    public class Account : BaseEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public Guid Id { get; set; } = Guid.NewGuid();
-
-
         //The placeholders I am aware of are:
         // 
         // {0} = Property Name
@@ -30,8 +26,8 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         public byte[]? ProfilePicure { get; set; }
 
 
-        [InverseProperty("Account")]
-        public List<GardenEntity> Gardens { get; } = new();
+        // [InverseProperty("Account")]
+        //public ICollection<Garden> Gardens { get; set; }
 
 
 

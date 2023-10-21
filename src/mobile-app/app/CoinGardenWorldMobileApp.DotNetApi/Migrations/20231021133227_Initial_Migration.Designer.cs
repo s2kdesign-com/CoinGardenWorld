@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
 {
     [DbContext(typeof(MobileAppDbContext))]
-    [Migration("20231021100746_Initial_Migration")]
+    [Migration("20231021133227_Initial_Migration")]
     partial class Initial_Migration
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CoinGardenWorldMobileApp.DotNetApi.Entities.AccountEntity", b =>
+            modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Account", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -63,14 +63,10 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatedFrom");
-
-                    b.HasIndex("UpdatedFrom");
-
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("CoinGardenWorldMobileApp.DotNetApi.Entities.FlowerEntity", b =>
+            modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Flower", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -97,16 +93,12 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatedFrom");
-
                     b.HasIndex("GardenId");
-
-                    b.HasIndex("UpdatedFrom");
 
                     b.ToTable("Flowers");
                 });
 
-            modelBuilder.Entity("CoinGardenWorldMobileApp.DotNetApi.Entities.GardenEntity", b =>
+            modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Garden", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -135,89 +127,32 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.HasIndex("CreatedFrom");
-
-                    b.HasIndex("UpdatedFrom");
-
                     b.ToTable("Gardens");
                 });
 
-            modelBuilder.Entity("CoinGardenWorldMobileApp.DotNetApi.Entities.AccountEntity", b =>
+            modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Flower", b =>
                 {
-                    b.HasOne("CoinGardenWorldMobileApp.DotNetApi.Entities.AccountEntity", "CreatedFromAccount")
-                        .WithMany()
-                        .HasForeignKey("CreatedFrom")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("CoinGardenWorldMobileApp.DotNetApi.Entities.AccountEntity", "UpdatedFromAccount")
-                        .WithMany()
-                        .HasForeignKey("UpdatedFrom")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.Navigation("CreatedFromAccount");
-
-                    b.Navigation("UpdatedFromAccount");
-                });
-
-            modelBuilder.Entity("CoinGardenWorldMobileApp.DotNetApi.Entities.FlowerEntity", b =>
-                {
-                    b.HasOne("CoinGardenWorldMobileApp.DotNetApi.Entities.AccountEntity", "CreatedFromAccount")
-                        .WithMany()
-                        .HasForeignKey("CreatedFrom")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("CoinGardenWorldMobileApp.DotNetApi.Entities.GardenEntity", "Garden")
+                    b.HasOne("CoinGardenWorldMobileApp.Models.Entities.Garden", "Garden")
                         .WithMany("Flowers")
                         .HasForeignKey("GardenId")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
-                    b.HasOne("CoinGardenWorldMobileApp.DotNetApi.Entities.AccountEntity", "UpdatedFromAccount")
-                        .WithMany()
-                        .HasForeignKey("UpdatedFrom")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.Navigation("CreatedFromAccount");
-
                     b.Navigation("Garden");
-
-                    b.Navigation("UpdatedFromAccount");
                 });
 
-            modelBuilder.Entity("CoinGardenWorldMobileApp.DotNetApi.Entities.GardenEntity", b =>
+            modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Garden", b =>
                 {
-                    b.HasOne("CoinGardenWorldMobileApp.DotNetApi.Entities.AccountEntity", "Account")
-                        .WithMany("Gardens")
+                    b.HasOne("CoinGardenWorldMobileApp.Models.Entities.Account", "Account")
+                        .WithMany()
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CoinGardenWorldMobileApp.DotNetApi.Entities.AccountEntity", "CreatedFromAccount")
-                        .WithMany()
-                        .HasForeignKey("CreatedFrom")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("CoinGardenWorldMobileApp.DotNetApi.Entities.AccountEntity", "UpdatedFromAccount")
-                        .WithMany()
-                        .HasForeignKey("UpdatedFrom")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.Navigation("Account");
-
-                    b.Navigation("CreatedFromAccount");
-
-                    b.Navigation("UpdatedFromAccount");
                 });
 
-            modelBuilder.Entity("CoinGardenWorldMobileApp.DotNetApi.Entities.AccountEntity", b =>
-                {
-                    b.Navigation("Gardens");
-                });
-
-            modelBuilder.Entity("CoinGardenWorldMobileApp.DotNetApi.Entities.GardenEntity", b =>
+            modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Garden", b =>
                 {
                     b.Navigation("Flowers");
                 });
