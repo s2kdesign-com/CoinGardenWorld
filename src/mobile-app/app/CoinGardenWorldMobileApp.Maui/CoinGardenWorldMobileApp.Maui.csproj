@@ -103,7 +103,7 @@
   <!-- Build Properties must be defined within these property groups to ensure successful publishing
        to the Mac App Store. See: https://aka.ms/maui-publish-app-store#define-build-properties-in-your-project-file -->
   <PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst')) and '$(Configuration)' == 'Debug'">
-	  <!--TODO-->
+	  <!--TODO: no-codesigning-keys -->
 	  <!--https://learn.microsoft.com/en-us/xamarin/ios/troubleshooting/questions/no-codesigning-keys-->
 	  <!--<CodesignEntitlements>Platforms/MacCatalyst/Entitlements.Debug.plist</CodesignEntitlements>-->
 
@@ -117,7 +117,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst')) and '$(Configuration)' == 'Release'">
-      <!--TODO-->
+      <!--TODO: no-codesigning-keys-->
 	  <!--https://learn.microsoft.com/en-us/xamarin/ios/troubleshooting/questions/no-codesigning-keys-->
 	  <!--<CodesignEntitlements>Platforms/MacCatalyst/Entitlements.Release.plist</CodesignEntitlements>-->
 

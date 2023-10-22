@@ -93,8 +93,6 @@
         base.OnInitialized();
 
         _environment = Config["Environment"] ?? "BLAZOR";
-        Logger.LogInformation("Environment: " + _environment);
-
         if (_environment == "MOBILE")
             _isMobile = true;
     }

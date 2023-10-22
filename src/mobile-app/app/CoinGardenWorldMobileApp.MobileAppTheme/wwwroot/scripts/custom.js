@@ -30,7 +30,6 @@ var pwaLocation = "/_service-worker.js";
 
 //Place all your custom Javascript functions and plugin calls below this line
 function init_template(isFirstTime) {
-    console.log("First time loading: " + isFirstTime)
     //Remove Display none from Page to improve CLS
     document.querySelectorAll('#page')[0].style.display = 'block';
 
