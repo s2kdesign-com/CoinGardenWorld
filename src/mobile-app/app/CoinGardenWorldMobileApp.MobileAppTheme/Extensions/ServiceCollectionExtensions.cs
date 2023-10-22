@@ -4,9 +4,12 @@ using Blazored.LocalStorage;
 using CoinGardenWorldMobileApp.Maui.Authorization;
 using CoinGardenWorldMobileApp.MobileAppTheme.Authorization;
 using CoinGardenWorldMobileApp.MobileAppTheme.Configurations;
+using CoinGardenWorldMobileApp.MobileAppTheme.HttpClients;
+using CoinGardenWorldMobileApp.MobileAppTheme.HttpClients.MobileApiClients;
 using CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage;
 using CoinGardenWorldMobileApp.MobileAppTheme.SignalR;
 using CoinGardenWorldMobileApp.MobileAppTheme.SignalR.HubClients;
+using CoinGardenWorldMobileApp.Models.ViewModels;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -119,6 +122,11 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
                 services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(hostEnvironment.BaseAddress) });
             }
 
+            // Add HttpClients 
+            services.AddScoped<IHttpClientBase<AccountHttpClient, AccountDto>, AccountHttpClient>();
+            services.AddScoped<IHttpClientBase<VersionHttpClient, string>, VersionHttpClient>();
+            services.AddScoped<IHttpClientBase<VersionAuthorizedHttpClient, string>, VersionAuthorizedHttpClient>();
+
             #endregion
 
 
@@ -150,6 +158,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
             }
 
             #endregion
+
             // Add SignalR Hubs
             services.AddScoped<IClientHub<ChatHub>, ChatHub>();
             services.AddScoped<IClientHub<NotificationsHub>, NotificationsHub>();

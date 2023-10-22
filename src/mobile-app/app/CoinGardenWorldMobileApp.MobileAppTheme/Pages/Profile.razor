@@ -1,12 +1,10 @@
-﻿@using CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage
-
-@* @page "/profile" *@
+﻿@* @page "/profile" *@
 
 @attribute [Route(NavigationLinks.PROFILE_URL)]
 
 @inject IHybridStorage LocalStorage
 
-@inject IHttpClientFactory HttpClientFactory
+@inject IHttpClientBase<AccountHttpClient, AccountDto> AccountsHttpClient
 
 <AuthorizeView>
     <Authorized>
@@ -20,7 +18,7 @@
                     <div class="px-3 mb-n3">
                         <h1 class="font-700">
                             @context.User.Identity.Name
-                            </h1>
+                        </h1>
                         <p class="mb-2 opacity-60 font-13">
                             Karla Black is a name used when you generate a text with an anonymous name.
                         </p>
@@ -70,7 +68,7 @@
 
             <DashboardCardText></DashboardCardText>
 
-            
+
             <div class="col-12 pb-4">
                 <div class="d-flex justify-content-center">
                     <div class="preloader-m">
@@ -140,15 +138,19 @@
 <ThemeLoader></ThemeLoader>
 @code {
     private string userName;
-    private HttpClient _httpClient;
 
     protected override async Task OnInitializedAsync()
     {
-        _httpClient = HttpClientFactory.CreateClient("CGW.Mobile.Api");
-        var profile = await _httpClient.GetFromJsonAsync<List<AccountDto>>("/api/Accounts");
+        if (await AccountsHttpClient.UserIsAuthenticated())
+        {
+            // TODO: Validate user role to list all accounts! 
+            var accounts = await AccountsHttpClient.ListAsync();
 
-        // TODO: Move all http clients to external classes and inject tham directly
-        Console.WriteLine(profile);
+            foreach (var accountDto in accounts)
+            {
+                Console.WriteLine(accountDto);
+            }
+        }
     }
     protected override void OnInitialized()
     {

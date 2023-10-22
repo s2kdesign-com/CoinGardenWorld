@@ -1,18 +1,13 @@
 ﻿@page "/about"
-@using Microsoft.Extensions.Configuration
-@using CoinGardenWorldMobileApp.MobileAppTheme.Configurations
 @using System.Reflection
-@using Microsoft.Extensions.Logging
-
-@inject IConfiguration configuration;
 
 @inject IClientHub<ChatHub> chatHub
 @inject IClientHub<NotificationsHub> notificationsHub
-@inject ILogger<About> logger
 
-@inject IHttpClientFactory HttpClientFactory
+@inject IHttpClientBase<VersionHttpClient, string> VersionHttpClient
+@inject IHttpClientBase<VersionAuthorizedHttpClient, string> VersionAuthorizedHttpClient
 
-<!-- Your Page Content Goes Here-->
+<!-- Your Page Content Goes Here -->
 <div class="page-content header-clear-medium">
     <div class="card card-style">
         <div class="content">
@@ -34,14 +29,14 @@
                 </a>
                 @if (_apiIsAvailable)
                 {
-                    <a href="@_apiUrl" class="list-group-item">
+                    <a href="@_apiSwaggerUrl" class="list-group-item">
                         <div>API Version - @_apiVersion</div>
                         <span class="badge rounded-xl bg-green-dark">OK</span>
                     </a>
                 }
                 else
                 {
-                    <a href="@_apiUrl" class="list-group-item">
+                    <a href="@_apiSwaggerUrl" class="list-group-item">
                         <div>API Version - @_apiVersion</div>
                         <span class="badge rounded-xl bg-red-dark">ERROR</span>
                     </a>
@@ -123,11 +118,10 @@
     private DateTime dt = DateTime.Now;
 
     private string _apiVersion = "API is not available.";
-    private string _apiUrl = "#";
     private bool _apiIsAvailable = false;
-
     private bool _isApiAuthenticated = false;
-    private string _apiAuthenticatedResult = "";
+
+    private string _apiSwaggerUrl = "#";
 
     protected override async Task OnInitializedAsync()
     {
@@ -140,54 +134,27 @@
         {
             InvokeAsync(StateHasChanged);
         };
-
-        var externalApis = configuration.Get<ExternalApisSettings>();
-        if (externalApis != null && externalApis.ExternalApis != null && externalApis.ExternalApis.Any())
+        _apiSwaggerUrl = VersionAuthorizedHttpClient.ApiUrl;
+        // Test Mobile API without Authorization
+        var apiVersionRequest = await VersionHttpClient.GetAsync("/api/version");
+        if (apiVersionRequest.IsSuccessStatusCode)
         {
-            _apiUrl = externalApis.ExternalApis.FirstOrDefault().Value.Api_Url + "/swagger/index.html";
-
-            try
-            {
-                // Test Mobile API without Authorization
-                var httpClient = HttpClientFactory.CreateClient("CGW.Mobile.Api.NoAuthenticationClient");
-
-                var apiVersionRequest = await httpClient.GetAsync("/api/version");
-                if (apiVersionRequest.IsSuccessStatusCode)
-                {
-                    _apiVersion = await apiVersionRequest.Content.ReadAsStringAsync();
-                    _apiIsAvailable = true;
-                }
-            }
-            catch (Exception e)
-            {
-                logger.LogError(e.Message);
-            }
-
-            try
-            {
-                // Test Mobile API with Authorization
-                var authorizedHttpClient = HttpClientFactory.CreateClient("CGW.Mobile.Api");
-                var authorizedResponse = await authorizedHttpClient.GetAsync("/api/version/GetAuthorized");
-
-                if (authorizedResponse.IsSuccessStatusCode)
-                {
-                    _isApiAuthenticated = true;
-                }
-                else
-                {
-                    _isApiAuthenticated = false;
-                }
-            }
-            catch (Exception e)
-            {
-                logger.LogError(e.Message);
-            }
-
+            _apiVersion = await apiVersionRequest.Content.ReadAsStringAsync();
+            _apiIsAvailable = true;
         }
 
+        // Test Mobile API with Authorization
+        var authorizedResponse = await VersionAuthorizedHttpClient.GetAsync("/api/version/GetAuthorized");
 
+        if (authorizedResponse.IsSuccessStatusCode)
+        {
+            _isApiAuthenticated = true;
+        }
+        else
+        {
+            _isApiAuthenticated = false;
+        }
     }
-
 
     public static string GetSiteVersion()
     {

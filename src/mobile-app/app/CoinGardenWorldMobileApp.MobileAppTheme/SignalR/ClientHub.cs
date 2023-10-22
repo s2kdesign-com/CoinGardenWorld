@@ -11,11 +11,28 @@ using System.Threading.Tasks;
 using System.Timers;
 using CoinGardenWorldMobileApp.MobileAppTheme.Configurations;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Options;
 
 namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
 {
-    public class ClientHub<T> : IClientHub<T> where T : ClientHub<T>
+    public abstract class ClientHub<T> : IClientHub<T> where T : ClientHub<T>
     {
+
+        [Obsolete("I don`t remember why i put this when there is public bool IsHubConnected =>")]
+        private bool hubConnected = false;
+
+        [Obsolete("I don`t remember why i put this when there is public bool IsHubConnected =>")]
+        public bool HubConnected
+        {
+            get => hubConnected;
+            set
+            {
+                NotifyStateChanged?.Invoke();
+                hubConnected = value;
+            }
+        }
+
         public virtual string _hubUrlSuffix { get; } = "";
 
 
@@ -23,6 +40,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
         private readonly IConfiguration _configuration;
         private readonly AuthenticationStateProvider _authStateProvider;
         private readonly IAccessTokenProvider _tokenProvider;
+        private readonly ExternalApisSettings _externalApiSettings;
 
         private System.Timers.Timer _signalRReconnectTimer = new System.Timers.Timer();
 
@@ -37,49 +55,80 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
 
         public event Action NotifyStateChanged;
 
-        private bool hubConnected = false;
+        public virtual bool HubIsAuthorized { get; }
 
-        public bool HubConnected
-        {
-            get => hubConnected;
-            set
-            {
-                NotifyStateChanged?.Invoke();
-                hubConnected = value;
-            }
-        }
-
+        public bool IsHubConnected =>
+            _hubConnection?.State == HubConnectionState.Connected;
 
         private readonly string _hubUrl = "";
+        private AuthenticationState _authenticationState;
+        private bool _isAuthenticated = false;
 
-
-        public ClientHub(IConfiguration configuration, ILogger<ClientHub<T>> logger, IAccessTokenProvider tokenProvider, AuthenticationStateProvider authenticationStateProvider)
+        protected ClientHub(IConfiguration configuration, ILogger<ClientHub<T>> logger, IAccessTokenProvider tokenProvider, AuthenticationStateProvider authenticationStateProvider)
         {
             _configuration = configuration;
             _logger = logger;
             _authStateProvider = authenticationStateProvider;
             _tokenProvider = tokenProvider;
 
+            // Set timer of there is no connection
             _signalRReconnectTimer.Elapsed += new ElapsedEventHandler(SignalRReconnect);
-            _signalRReconnectTimer.Interval = 15000;
+            _signalRReconnectTimer.Interval = 5000;
 
-            var externalApisSettings = configuration.Get<ExternalApisSettings>();
-
-            if (externalApisSettings != null && externalApisSettings.ExternalApis != null)
+            _externalApiSettings = _configuration.Get<ExternalApisSettings>();
+            if (_externalApiSettings !=null &&  _externalApiSettings.ExternalApis != null)
             {
-                _hubUrl = externalApisSettings.ExternalApis.FirstOrDefault().Value.Api_Url + _hubUrlSuffix;
+                _hubUrl = _externalApiSettings.ExternalApis.FirstOrDefault().Value.Api_Url + _hubUrlSuffix;
+            }
 
-                _ = InitializeHubBuilder(_hubUrl);
+            if (HubIsAuthorized)
+            {
+                _ = GetAuthenticationStateAsync();
+
+                if (!_isAuthenticated)
+                {
+                    _logger.LogError("TODO: Hub is Initialized before Authentication for some reason?");
+                    _signalRReconnectTimer.Start();
+                    return;
+                }
+            }
+
+            _ = InitializeHubBuilder(_hubUrl);
+
+        }
+
+        private async Task GetAuthenticationStateAsync()
+        {
+            _authenticationState = await _authStateProvider.GetAuthenticationStateAsync();
+            if (_authenticationState.User.Identity == null)
+            {
+                // No identity
+                _isAuthenticated =  false;
+            }
+            else if (_authenticationState.User.Identity.IsAuthenticated)
+            {
+                // WOW its authenticated
+                _isAuthenticated = true;
+            }
+            else
+            {
+                // In Any case
+                _isAuthenticated = false;
             }
         }
 
-
         private async void SignalRReconnect(object source, ElapsedEventArgs e)
         {
+            if (HubIsAuthorized)
+            {
+                _ = GetAuthenticationStateAsync();
 
+                if (!_isAuthenticated)
+                {
+                    return;
+                }
+            }
             await BuildHubConnection(_hubUrl);
-
-
             try
             {
                 if (!IsHubConnected)
@@ -92,7 +141,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
                     _signalRReconnectTimer.Stop();
                 }
                 HubConnected = true;
-                _logger.LogWarning($"SignalR hub connection established at URL: {_hubUrl}");
+                _logger.LogInformation($"SignalR hub connection established at URL: {_hubUrl}");
             }
             catch (Exception ex)
             {
@@ -112,25 +161,16 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
 
                     if (accessTokenResult.TryGetToken(out var token))
                     {
-                        Console.WriteLine(token);
                         options.AccessTokenProvider = () => Task.FromResult(token.Value)!;
                     }
                 })
-                
+
                 .WithAutomaticReconnect()
                 .Build();
         }
 
         private async Task InitializeHubBuilder(string hubUrl)
         {
-
-            //var authState = await _authStateProvider.GetAuthenticationStateAsync();
-            //var userEmails = "";
-            //if (authState.User.Identity != null && authState.User.Identity.IsAuthenticated)
-            //{
-            //    userEmails = authState.User.Claims.First(c => c.Type == "emails").Value;
-            //}
-
             await BuildHubConnection(hubUrl);
 
             _hubConnection.Reconnecting += ex =>
@@ -184,8 +224,6 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
             }
         }
 
-        public bool IsHubConnected =>
-             _hubConnection?.State == HubConnectionState.Connected;
 
 
         public async ValueTask DisposeAsync()

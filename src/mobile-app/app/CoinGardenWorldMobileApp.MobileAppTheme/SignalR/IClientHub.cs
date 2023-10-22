@@ -9,6 +9,11 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
 {
     public interface IClientHub<T> : IAsyncDisposable where T : ClientHub<T>
     {
+        bool HubIsAuthorized
+        {
+            get;
+        }
+
         bool IsHubConnected
         {
             get;
