@@ -30,20 +30,20 @@
                     <div>Terms &amp; Conditions</div>
                     <i class="bi bi-chevron-right"></i>
                 </a>
-                <a href="https://github.com/s2kdesign-com/CoinGardenWorld/releases" class="list-group-item">
+                <a href="https://github.com/s2kdesign-com/CoinGardenWorld/releases" target="_blank" class="list-group-item">
                     <div>Site Version - @GetSiteVersion()</div>
                     <span class="badge rounded-xl bg-green-dark">OK</span>
                 </a>
                 @if (_apiIsAvailable)
                 {
-                    <a href="@_apiSwaggerUrl" class="list-group-item">
+                    <a href="@_apiSwaggerUrl" target="_blank" class="list-group-item">
                         <div>API Version - @_apiVersion</div>
                         <span class="badge rounded-xl bg-green-dark">OK</span>
                     </a>
                 }
                 else
                 {
-                    <a href="@_apiSwaggerUrl" class="list-group-item">
+                    <a href="@_apiSwaggerUrl" target="_blank" class="list-group-item">
                         <div>API Version - @_apiVersion</div>
                         <span class="badge rounded-xl bg-red-dark">ERROR</span>
                     </a>
@@ -197,7 +197,7 @@
         {
             InvokeAsync(StateHasChanged);
         };
-        _apiSwaggerUrl = VersionAuthorizedHttpClient.ApiUrl;
+        _apiSwaggerUrl = VersionAuthorizedHttpClient.ApiUrl.Split("api")[0] + "swagger/index.html";
         // Test Mobile API without Authorization
         var apiVersionRequest = await VersionHttpClient.GetAsync("/api/version");
         if (apiVersionRequest.IsSuccessStatusCode)
