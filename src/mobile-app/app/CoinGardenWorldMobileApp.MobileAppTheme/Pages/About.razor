@@ -1,11 +1,18 @@
 ﻿@page "/about"
 @using System.Reflection
+@using System.Security.Claims
+@using CoinGardenWorldMobileApp.MobileAppTheme.Authorization
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<TopAccountsForTheMonth> LocalizerTopAcoounts
 
 @inject IClientHub<ChatHub> chatHub
 @inject IClientHub<NotificationsHub> notificationsHub
 
 @inject IHttpClientBase<VersionHttpClient, string> VersionHttpClient
 @inject IHttpClientBase<VersionAuthorizedHttpClient, string> VersionAuthorizedHttpClient
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 <!-- Your Page Content Goes Here -->
 <div class="page-content header-clear-medium">
@@ -45,6 +52,44 @@
 
         </div>
     </div>
+    @if (_isUserAuthenticated)
+    {
+        <CardAlert Color="green" Icon="bi-check-circle-fill">
+            <Content>
+                You are Authorized!
+                <br>
+                Current roles:
+
+                <ul class="list-group ms-3">
+                    @foreach (var userRole in _userRoles)
+                    {
+                        
+                        <li class="color-theme">
+                           @userRole
+                        </li>
+                    }
+
+                </ul>
+            </Content>
+        </CardAlert>
+    }
+    else
+    {
+
+        <CardAlert Color="yellow" Icon="bi-exclamation-triangle">
+            <Content>
+                You are not Authorized! 
+                <br>
+                <a href="authentication/login" class="mx-auto pt-3 d-block text-center font-13 color-theme font-700">
+                  
+                    Login to the App here
+                    <i class="bi bi-arrow-right ps-3"></i>
+                </a>
+            </Content>
+        </CardAlert>
+
+    }
+
     @if (_isApiAuthenticated)
     {
         <CardAlert Color="green" Icon="bi-check-circle-fill">
@@ -83,7 +128,7 @@
 
         <CardAlert Color="yellow" Icon="bi-exclamation-triangle">
             <Content>
-                RealTime connection to ChatHub cannot be established!
+                RealTime connection to ChatHub is not Authorized!
                 <br>
             </Content>
         </CardAlert>
@@ -104,7 +149,7 @@
     {
         <CardAlert Color="yellow" Icon="bi-exclamation-triangle">
             <Content>
-                RealTime connection to NotificationsHub cannot be established!
+                RealTime connection to NotificationsHub is not Authorized!
                 <br>
             </Content>
         </CardAlert>
@@ -120,11 +165,29 @@
     private string _apiVersion = "API is not available.";
     private bool _apiIsAvailable = false;
     private bool _isApiAuthenticated = false;
+    private bool _isUserAuthenticated = false;
+    private List<string> _userRoles = new List<string>();
 
     private string _apiSwaggerUrl = "#";
 
     protected override async Task OnInitializedAsync()
     {
+
+        var authState = await (AuthenticationStateProvider).GetAuthenticationStateAsync();
+
+        if (authState.User.Identity != null && authState.User.Identity.IsAuthenticated)
+        {
+            _isUserAuthenticated = true;
+
+            var translatedRoles = new List<string>();
+            foreach (var role in authState.User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value))
+            {
+                translatedRoles.Add(LocalizerTopAcoounts.GetString(role));
+            }
+            _userRoles = translatedRoles;
+
+        }
+
         chatHub.NotifyStateChanged += () =>
         {
             InvokeAsync(StateHasChanged);

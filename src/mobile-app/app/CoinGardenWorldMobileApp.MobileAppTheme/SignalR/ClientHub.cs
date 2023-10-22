@@ -13,6 +13,7 @@ using CoinGardenWorldMobileApp.MobileAppTheme.Configurations;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Options;
+using System.Security.Claims;
 
 namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
 {
@@ -162,6 +163,8 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
                     if (accessTokenResult.TryGetToken(out var token))
                     {
                         options.AccessTokenProvider = () => Task.FromResult(token.Value)!;
+                      //  options.Headers.Add(ClaimTypes.Role, "FirstRole");
+
                     }
                 })
 

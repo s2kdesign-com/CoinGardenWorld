@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using CoinGardenWorldMobileApp.MobileAppTheme.Authorization;
@@ -25,6 +26,23 @@ namespace CoinGardenWorldMobileApp.Maui.Authorization
                 .WithAuthority(AzureCloudInstance.AzurePublic, _tenantId) // Only allow accounts in the tenant to authenticate
                 .WithRedirectUri($"msal{_clientId}://auth")
                 .Build();
+        }
+
+        public event Action<ClaimsPrincipal>? UserChanged;
+        private ClaimsPrincipal? currentUser;
+
+        public ClaimsPrincipal CurrentUser
+        {
+            get { return currentUser ?? new(); }
+            set
+            {
+                currentUser = value;
+
+                if (UserChanged is not null)
+                {
+                    UserChanged(currentUser);
+                }
+            }
         }
 
         public async Task<AuthenticationResult?> AcquireTokenSilentAsync()

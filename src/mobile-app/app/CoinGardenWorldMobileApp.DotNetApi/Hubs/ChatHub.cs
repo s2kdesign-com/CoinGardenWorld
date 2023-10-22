@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Azure.SignalR.Management;
 using SignalRSwaggerGen.Attributes;
+using System.Security.Claims;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Hubs
 {
@@ -26,8 +27,24 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Hubs
         {
             var userId = Context.UserIdentifier;
             var connectionId = Context.ConnectionId;
+            string email = Context.User.Claims.FirstOrDefault(c => c.Type == "emails").Value;
 
-            _logger.LogInformation($"UserID: {userId} ConnectionID: {connectionId} has connected to {nameof(ChatHub)}");
+            foreach (var userClaim in Context.User.Claims)
+            {
+                Console.WriteLine(userClaim.Type + ":" + userClaim.Value);
+            }
+
+            if (!Context.User.IsInRole("Flora Pioneer"))
+            {
+                _logger.LogInformation("not in role :(");
+            }
+            else
+            {
+                _logger.LogInformation("Here we goooo :)");
+
+            }
+
+            _logger.LogInformation($"UserID: {userId} | UserEmail: {email} | ConnectionID: {connectionId} has connected to {nameof(ChatHub)}");
             return base.OnConnectedAsync();
         }
 

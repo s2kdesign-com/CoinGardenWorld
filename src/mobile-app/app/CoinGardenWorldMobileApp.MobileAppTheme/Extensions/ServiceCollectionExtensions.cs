@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Security.Claims;
 using BlazorApplicationInsights;
 using Blazored.LocalStorage;
 using CoinGardenWorldMobileApp.Maui.Authorization;
@@ -142,11 +143,12 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
             }
             else
             {
-                services.AddMsalAuthentication(options =>
+                services.AddMsalAuthentication<RemoteAuthenticationState, UserAccount>(options =>
                 {
                     configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
 
                     if (settings.ExternalApis != null && settings.ExternalApis != null)
+                    {
                         foreach (var externalApisSetting in settings.ExternalApis)
                         {
                             foreach (var apiScope in externalApisSetting.Value.Api_Scopes)
@@ -154,7 +156,8 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
                                 options.ProviderOptions.DefaultAccessTokenScopes.Add(apiScope);
                             }
                         }
-                });
+                    }
+                }).AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, UserAccount, AccountFactory>();
             }
 
             #endregion

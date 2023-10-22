@@ -42,6 +42,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.HttpClients
                 if (HttpClientIsAuthorized)
                 {
                     HttpClient = _httpClientFactory.CreateClient($"{externalApi.Key}");
+
                 }
                 else
                 {
