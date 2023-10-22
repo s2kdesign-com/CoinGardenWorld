@@ -21,6 +21,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 var appInsightsConnectionString = builder.Configuration["ApplicationInsights:ConnectionString"];
 
+builder.Services.AddApplicationInsightsTelemetry(appInsightsConnectionString);
+
 builder.Logging.AddApplicationInsights(configuration =>
 {
     configuration.ConnectionString = appInsightsConnectionString;

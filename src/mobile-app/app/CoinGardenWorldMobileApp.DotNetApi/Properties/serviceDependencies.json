@@ -12,6 +12,10 @@
     "signalr1": {
       "type": "signalr",
       "connectionId": "Azure:SignalR:ConnectionString"
+    },
+    "appInsights1": {
+      "type": "appInsights",
+      "connectionId": "APPLICATIONINSIGHTS_CONNECTION_STRING"
     }
   }
 }
