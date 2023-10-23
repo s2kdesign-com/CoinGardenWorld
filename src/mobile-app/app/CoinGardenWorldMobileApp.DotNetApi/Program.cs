@@ -16,6 +16,9 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using CoinGardenWorldMobileApp.DotNetApi.Hubs;
 using Hangfire;
+using Microsoft.Extensions.Azure;
+using CoinGardenWorld.AzureStorageExtensions.Extensions;
+using CoinGardenWorld.AzureStorageExtensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -64,6 +67,8 @@ builder.Services.AddSignalR().AddAzureSignalR(configure =>
     configure.InitialHubServerConnectionCount = 1;
 });
 
+var azureStorageConfiguration = new AzureStorageConfiguration();
+builder.Configuration.Bind("AzureStorage", azureStorageConfiguration);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -134,9 +139,18 @@ builder.Services.AddSwaggerGen(options =>
     });
 
 });
-
+// Add SQL Server Database
 builder.Services.AddDbContext<MobileAppDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB")));
+
+var blobConfig = builder.Configuration["CGW-AzureStorage:blob"];
+// Add Azure Storage
+builder.Services.AddAzureClients(clientBuilder =>
+{
+    clientBuilder.AddCgwFileServiceClient(azureStorageConfiguration.Blob, preferMsi: true);
+    clientBuilder.AddCgwQueueServiceClient(azureStorageConfiguration.Queue, preferMsi: true);
+    clientBuilder.AddCgwFileServiceClient(azureStorageConfiguration.Files, preferMsi: true);
+});
 
 // Add Hangfire
 builder.Services.AddHangfire(c => c.UseSqlServerStorage(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB")));
@@ -161,15 +175,26 @@ var healthTags = new List<string> { "mobileapp", "api" };
 var healthTagsDatabase = new List<string> { "mobileapp", "database"  };
 var healthTagsSignalR = new List<string> { "mobileapp", "signalr"  };
 var healthTagsHangFire = new List<string> { "mobileapp", "hangfire" };
+var healthTagsAzureStorage = new List<string> { "mobileapp", "azurestorage" };
 
 builder.Services.AddHealthChecks()
+    // Self
     .AddCheck("https://plant-api.azurewebsites.net/swagger/index", () => HealthCheckResult.Healthy("Build Version: " + Assembly.GetExecutingAssembly().GetName().Version), healthTags)
+    // SQL Database
     .AddSqlServer(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB"), "SELECT TOP (1) * FROM [dbo].[Flowers]", name: "Mobile APP - Database", tags: healthTagsDatabase)
+    // Azure Storage
+    .AddAzureBlobStorage(azureStorageConfiguration.Blob, tags: healthTagsAzureStorage, name: "Azure Blob Storage")
+    .AddAzureQueueStorage(azureStorageConfiguration.Queue, tags: healthTagsAzureStorage, name: "Azure Queue Storage")
+    .AddAzureFileShare(azureStorageConfiguration.Files, tags: healthTagsAzureStorage, name: "Azure File Storage")
+
+    // Hangfire
     .AddHangfire(opt => { opt.MinimumAvailableServers = 1; opt.MaximumJobsFailed = 1; }, name: hangfireUrl, tags: healthTagsHangFire)
+    // SignalR Hubs
     .AddSignalRHub(notificationHubUrl, name: notificationHubUrl, tags: healthTagsSignalR)
     .AddSignalRHub(chatHubUrl, name: chatHubUrl, tags: healthTagsSignalR)
 
     ;
+
 
 var app = builder.Build();
 

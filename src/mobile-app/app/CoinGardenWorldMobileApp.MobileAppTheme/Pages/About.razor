@@ -202,8 +202,8 @@
         var apiVersionRequest = await VersionHttpClient.GetAsync("/api/version");
         if (apiVersionRequest.IsSuccessStatusCode)
         {
-            _apiVersion = await apiVersionRequest.Content.ReadAsStringAsync();
             _apiIsAvailable = true;
+            _apiVersion = await apiVersionRequest.Content.ReadAsStringAsync();
         }
 
         // Test Mobile API with Authorization

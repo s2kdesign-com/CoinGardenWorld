@@ -161,6 +161,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldMobileApp.Do
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldMobileApp.Models", "src\mobile-app\app\CoinGardenWorldMobileApp.Models\CoinGardenWorldMobileApp.Models.csproj", "{27160572-FCD9-4983-90CB-5BF1053A3D8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.AzureStorageExtensions", "src\shared\back-end\CoinGardenWorld.AzureStorageExtensions\CoinGardenWorld.AzureStorageExtensions.csproj", "{7C59BF37-566B-484F-99FB-6A203FFD8ED1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -289,6 +291,10 @@ Global
 		{27160572-FCD9-4983-90CB-5BF1053A3D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27160572-FCD9-4983-90CB-5BF1053A3D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27160572-FCD9-4983-90CB-5BF1053A3D8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C59BF37-566B-484F-99FB-6A203FFD8ED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C59BF37-566B-484F-99FB-6A203FFD8ED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C59BF37-566B-484F-99FB-6A203FFD8ED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C59BF37-566B-484F-99FB-6A203FFD8ED1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -345,6 +351,7 @@ Global
 		{6173BDF0-FD15-4DB2-A560-366D1769122E} = {2AFA4B7F-7BA3-4F2D-8946-3ED520845256}
 		{096955BB-5EB9-45A5-B88A-70081590E373} = {3C4D4071-981D-4A7D-B5DD-5EF3E3FFE9F4}
 		{27160572-FCD9-4983-90CB-5BF1053A3D8A} = {3C4D4071-981D-4A7D-B5DD-5EF3E3FFE9F4}
+		{7C59BF37-566B-484F-99FB-6A203FFD8ED1} = {E89AAC35-6366-4DCB-8CFD-3BA3B3B8DC65}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}

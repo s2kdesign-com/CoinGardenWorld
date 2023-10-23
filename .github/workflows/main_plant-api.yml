@@ -8,6 +8,7 @@ on:
     paths:
     - 'src/mobile-app/app/CoinGardenWorldMobileApp.DotNetApi/**'
     - 'src/mobile-app/app/CoinGardenWorldMobileApp.Models/**'
+    - 'src/shared/back-end**'
     branches:
       - main
   workflow_dispatch:

@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+	  <PackageReference Include="AspNetCore.HealthChecks.AzureStorage" Version="7.0.0" />
 	  <PackageReference Include="AspNetCore.HealthChecks.Hangfire" Version="7.0.0" />
 	  <PackageReference Include="AspNetCore.HealthChecks.SignalR" Version="7.0.0" />
 	  <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="7.0.0" />
@@ -25,6 +26,7 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.12" />
     <PackageReference Include="Microsoft.Azure.SignalR" Version="1.21.2" />
     <PackageReference Include="Microsoft.Azure.SignalR.Management" Version="1.21.2" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.12">
       <PrivateAssets>all</PrivateAssets>
@@ -45,6 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\shared\back-end\CoinGardenWorld.AzureStorageExtensions\CoinGardenWorld.AzureStorageExtensions.csproj" />
     <ProjectReference Include="..\CoinGardenWorldMobileApp.Models\CoinGardenWorldMobileApp.Models.csproj" />
   </ItemGroup>
 
