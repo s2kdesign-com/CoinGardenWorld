@@ -1,17 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CoinGardenWorldMobileApp.MobileAppTheme.Configurations;
-using System.Net.Http;
-using Microsoft.Extensions.Logging;
-using System.Net.Http.Json;
-using Newtonsoft.Json.Linq;
+﻿using System.Net.Http.Json;
+using CoinGardenWorld.HttpClientsExtensions.Configurations;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
-namespace CoinGardenWorldMobileApp.MobileAppTheme.HttpClients
+namespace CoinGardenWorld.HttpClientsExtensions
 {
     public abstract class HttpClientBase<T, M> : IHttpClientBase<T, M> where T : HttpClientBase<T, M>
     {

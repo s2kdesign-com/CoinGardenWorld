@@ -30,10 +30,10 @@
 	  <PackageReference Include="Microsoft.Identity.Client" Version="4.56.0" />
 	  <PackageReference Include="Microsoft.Maui.Essentials" Version="8.0.0-rc.1.9171" />
 	  <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.0-rc.2.23480.2" />
-	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	  <PackageReference Include="Toolbelt.Blazor.PWA.Updater" Version="2.1.0.1" />
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\..\..\shared\back-end\CoinGardenWorld.HttpClientsExtensions\CoinGardenWorld.HttpClientsExtensions.csproj" />
 	  <ProjectReference Include="..\CoinGardenWorldMobileApp.Models\CoinGardenWorldMobileApp.Models.csproj" />
 	</ItemGroup>
 	<ItemGroup>

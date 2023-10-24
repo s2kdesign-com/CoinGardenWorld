@@ -1,0 +1,29 @@
+﻿
+
+<div class="card card-style alert alert-dismissible border alert-@Color shadow-bg shadow-bg-s">
+    <div class="content my-3">
+        <div class="d-flex">
+            <div class="align-self-center">
+                <i class="bi @Icon font-36 d-block"></i>
+            </div>
+            <div class="align-self-center" style="width: 100%">
+                <p class="mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
+
+                    @Content
+
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Color { get; set; }
+
+    [Parameter]
+    public string Icon { get; set; }
+
+    [Parameter]
+    public RenderFragment Content { get; set; }
+}

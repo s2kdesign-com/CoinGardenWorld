@@ -2,14 +2,16 @@
 using System.Security.Claims;
 using BlazorApplicationInsights;
 using Blazored.LocalStorage;
+using CoinGardenWorld.HttpClientsExtensions;
+using CoinGardenWorld.HttpClientsExtensions.Configurations;
+using CoinGardenWorld.HttpClientsExtensions.Extensions;
+using CoinGardenWorld.HttpClientsExtensions.MobileApiClients;
 using CoinGardenWorldMobileApp.Maui.Authorization;
 using CoinGardenWorldMobileApp.MobileAppTheme.Authorization;
-using CoinGardenWorldMobileApp.MobileAppTheme.Configurations;
-using CoinGardenWorldMobileApp.MobileAppTheme.HttpClients;
-using CoinGardenWorldMobileApp.MobileAppTheme.HttpClients.MobileApiClients;
 using CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage;
 using CoinGardenWorldMobileApp.MobileAppTheme.SignalR;
 using CoinGardenWorldMobileApp.MobileAppTheme.SignalR.HubClients;
+using CoinGardenWorldMobileApp.Models;
 using CoinGardenWorldMobileApp.Models.ViewModels;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -89,44 +91,12 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
             #region HttpClients
 
 
-            // Add External APIs Http clients 
-            var settings = new ExternalApisSettings();
-            configuration.Bind(settings);
+            // Add CoinGardenWorld.HttpClientsExtensions  
+            var externalApisSettings = new ExternalApisSettings();
+            configuration.Bind(externalApisSettings);
 
-
-            if (settings != null && settings.ExternalApis != null)
-            {
-                Console.WriteLine("ExternalApis Detected");
-                services.AddOptions<ExternalApisSettings>("ExternalApis");
-
-                foreach (var externalApisSetting in settings.ExternalApis)
-                {
-                    services.AddHttpClient($"{externalApisSetting.Key}.NoAuthenticationClient",
-                        client => client.BaseAddress = new Uri(externalApisSetting.Value.Api_Url));
-
-                    services.AddHttpClient(externalApisSetting.Key,
-                            client => client.BaseAddress = new Uri(externalApisSetting.Value.Api_Url))
-                        .AddHttpMessageHandler(sp => sp.GetRequiredService<AuthorizationMessageHandler>()
-                            .ConfigureHandler(
-                                authorizedUrls: new[] { externalApisSetting.Value.Api_Url },
-                                scopes: externalApisSetting.Value.Api_Scopes));
-
-                }
-
-                // Default API 
-                services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("CGW.Api.NoAuthenticationClient"));
-            }
-            else
-            {
-
-                var hostEnvironment = serviceProvider.GetRequiredService<IWebAssemblyHostEnvironment>();
-                services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(hostEnvironment.BaseAddress) });
-            }
-
-            // Add HttpClients 
-            services.AddScoped<IHttpClientBase<AccountHttpClient, AccountDto>, AccountHttpClient>();
-            services.AddScoped<IHttpClientBase<VersionHttpClient, string>, VersionHttpClient>();
-            services.AddScoped<IHttpClientBase<VersionAuthorizedHttpClient, string>, VersionAuthorizedHttpClient>();
+            var hostEnvironment = serviceProvider.GetRequiredService<IWebAssemblyHostEnvironment>();
+            services.AddMobileApiHttpClients(externalApisSettings, hostEnvironment.BaseAddress, environmentType);
 
             #endregion
 
@@ -147,9 +117,9 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
                 {
                     configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
 
-                    if (settings.ExternalApis != null && settings.ExternalApis != null)
+                    if (externalApisSettings.ExternalApis != null && externalApisSettings.ExternalApis != null)
                     {
-                        foreach (var externalApisSetting in settings.ExternalApis)
+                        foreach (var externalApisSetting in externalApisSettings.ExternalApis)
                         {
                             foreach (var apiScope in externalApisSetting.Value.Api_Scopes)
                             {

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.Authorization;
+﻿using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace CoinGardenWorldMobileApp.MobileAppTheme.HttpClients.MobileApiClients
+namespace CoinGardenWorld.HttpClientsExtensions.MobileApiClients
 {
     public class VersionAuthorizedHttpClient : HttpClientBase<VersionAuthorizedHttpClient, string>
     {

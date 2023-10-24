@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
-using CoinGardenWorldMobileApp.Models.ViewModels;
+﻿using CoinGardenWorldMobileApp.Models.ViewModels;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace CoinGardenWorldMobileApp.MobileAppTheme.HttpClients.MobileApiClients
+namespace CoinGardenWorld.HttpClientsExtensions.MobileApiClients
 {
     public class AccountHttpClient : HttpClientBase<AccountHttpClient, AccountDto>
     {

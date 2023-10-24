@@ -1,5 +1,5 @@
 ﻿
-namespace CoinGardenWorldMobileApp.MobileAppTheme.Configurations {
+namespace CoinGardenWorld.HttpClientsExtensions.Configurations {
     public class ExternalApisSettings {
         public Dictionary<string, ExternalApiSettings>? ExternalApis { get; set; }
     }

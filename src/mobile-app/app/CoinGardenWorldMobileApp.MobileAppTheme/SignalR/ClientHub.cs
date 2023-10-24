@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Timers;
-using CoinGardenWorldMobileApp.MobileAppTheme.Configurations;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
+using CoinGardenWorld.HttpClientsExtensions.Configurations;
 
 namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
 {

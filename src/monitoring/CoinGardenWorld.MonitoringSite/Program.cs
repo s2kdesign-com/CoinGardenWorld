@@ -1,15 +1,25 @@
-using CoinGardenWorld.MonitoringSite.Data;
+using CoinGardenWorld.HttpClientsExtensions.Configurations;
+using CoinGardenWorld.HttpClientsExtensions.Extensions;
+using CoinGardenWorld.HttpClientsExtensions.Infrastructure;
+using CoinGardenWorldMobileApp.Models;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,12 +45,44 @@ builder.Services.AddAuthorization(options =>
 {
     // By default, all incoming requests will be authorized according to the default policy
     options.FallbackPolicy = options.DefaultPolicy;
+    
 });
 
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor()
     .AddMicrosoftIdentityConsentHandler();
-builder.Services.AddSingleton<WeatherForecastService>();
+
+
+
+var externalApisSettings = new ExternalApisSettings();
+builder.Configuration.Bind(externalApisSettings);
+
+builder.Services.Configure<OpenIdConnectOptions>(
+    OpenIdConnectDefaults.AuthenticationScheme, options =>
+    {
+        options.ResponseType = OpenIdConnectResponseType.Code;
+        options.SaveTokens = true;
+        foreach (var externalApi in externalApisSettings.ExternalApis)
+        {
+            foreach (var valueApiScope in externalApi.Value.Api_Scopes)
+            {
+                options.Scope.Add(valueApiScope);
+
+            }
+        }
+
+        options.Scope.Add("offline_access");
+    });
+
+
+#region HttpClients
+
+
+// Add CoinGardenWorld.HttpClientsExtensions  
+var configuredWebsiteUrls = builder.WebHost.GetSetting(WebHostDefaults.ServerUrlsKey)?.Split(";").FirstOrDefault(g => g.StartsWith("https://"));
+builder.Services.AddMobileApiHttpClients(externalApisSettings, configuredWebsiteUrls ?? "https://status-coingardenworld.azurewebsites.net/", EnvironmentType.ASPNET);
+
+#endregion
 
 var app = builder.Build();
 
