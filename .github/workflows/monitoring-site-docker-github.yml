@@ -3,7 +3,7 @@ name: Build Monitoring Site - Docker
 on:
   push:
     paths:
-    - 'src/monitoring/CoinGardenWorld.HealthChecksUi/**'
+    - 'src/monitoring/CoinGardenWorld.MonitoringSite/**'
     - 'src/shared/**'
     branches:
       - main
@@ -18,7 +18,7 @@ env:
   DOTNET_NOLOGO: true                     # Disable the .NET logo
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Disable the .NET first time experience
   DOTNET_CLI_TELEMETRY_OPTOUT: true       # Disable sending .NET CLI telemetry
-  DOCKERFILE: src/monitoring/CoinGardenWorld.HealthChecksUi/Dockerfile
+  DOCKERFILE: src/monitoring/CoinGardenWorld.MonitoringSite/Dockerfile
   TAG: ghcr.io/s2kdesign-com/coingardenworld.monitoring
   VERSION_UPDATER_PATH: src/monitoring/**/*.csproj
  

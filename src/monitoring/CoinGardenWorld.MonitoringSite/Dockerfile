@@ -5,18 +5,9 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS publish
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["src/monitoring/CoinGardenWorld.MonitoringSite/CoinGardenWorld.MonitoringSite.csproj", "src/monitoring/CoinGardenWorld.MonitoringSite/"]
-RUN dotnet restore "./src/monitoring/CoinGardenWorld.MonitoringSite/./CoinGardenWorld.MonitoringSite.csproj"
-COPY . .
-WORKDIR "/src/src/monitoring/CoinGardenWorld.MonitoringSite"
-RUN dotnet build "./CoinGardenWorld.MonitoringSite.csproj" -c $BUILD_CONFIGURATION -o /app/build
-
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./CoinGardenWorld.MonitoringSite.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./monitoring/CoinGardenWorld.MonitoringSite/CoinGardenWorld.MonitoringSite.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
