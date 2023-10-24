@@ -1,0 +1,23 @@
+﻿
+<AuthorizeView>
+    <Authorized>
+        <a class="btn btn-info" href="/healthcheckui">View Health Check Status </a>
+    </Authorized>
+    <NotAuthorized>
+        <div class="alert alert-secondary alert-info mt-4">
+            <span class="oi oi-pencil me-2" aria-hidden="true"></span>
+            <strong>
+                Health Check Status is Authorized 
+            </strong>
+
+            <span class="text-nowrap">
+                Use your social account to 
+                <a href="MicrosoftIdentity/Account/SignIn">Log in</a>
+            </span>
+            and view the status.
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+}

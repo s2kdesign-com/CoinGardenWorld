@@ -51,7 +51,7 @@ jobs:
           version: "${{ env.VERSION_CI }}"
           
       - name: dotnet publish
-        run: dotnet publish "src/monitoring/CoinGardenWorld.HealthChecksUi/CoinGardenWorld.HealthChecksUi.csproj" -c Release -o ${{env.DOTNET_ROOT}}/CoinGardenWorld.StatusSite
+        run: dotnet publish "src/monitoring/CoinGardenWorld.MonitoringSite/CoinGardenWorld.MonitoringSite.csproj" -c Release -o ${{env.DOTNET_ROOT}}/CoinGardenWorld.StatusSite
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2

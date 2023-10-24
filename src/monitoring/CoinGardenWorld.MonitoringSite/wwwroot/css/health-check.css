@@ -6,3 +6,7 @@
     --logoImageUrl: url('https://coingarden.world/images/logo_for_a_flowers_farming_game_globe_with_multiple_islnds-500x500.webp');
     --bgAside: var(--primaryColor);
 }
+
+.hc-aside {
+    display: none !important;
+}
