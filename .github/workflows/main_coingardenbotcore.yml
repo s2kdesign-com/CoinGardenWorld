@@ -62,12 +62,11 @@ jobs:
         with:
           name: .gardenbot-messagingapi
           
-      - name: 'Run Azure Functions Action'
-        uses: Azure/functions-action@v1
-        id: fa
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
         with:
           app-name: 'coingardenBotCore'
           slot-name: 'Production'
-          package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5C17D297D868466B91972776E122375A }}
-          
+          package: .
