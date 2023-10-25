@@ -9,7 +9,23 @@
     "OpenApi__DocDescription": "Backend service API for all external functions of CoinGarden Bot.",
 
     "AzureAISettings__SubscriptionKey": "",
-    "AzureAISettings__Endpoint": ""
+    "AzureAISettings__Endpoint": "",
+
+    "AzureAd__ScopesPrefix": "https://coingardenworld.onmicrosoft.com/",
+    "AzureAd__ValidateAudience": true,
+
+    "AzureAd__Scopes": "gardenbotsite.read : Read GardenBOT Site ;",
+
+    // Localhost-CoinGarden-Mobile-Web-SwaggerUI - For testing from swagger
+    // TODO
+
+    "AzureAd__Authority": "https://coingardenworld.b2clogin.com/coingardenworld.onmicrosoft.com/B2C_1_SignUpSignInLandingPage/",
+    "AzureAd__Domain": "coingardenworld.onmicrosoft.com",
+
+    // Localhost-CoinGarden-Mobile-API
+    "AzureAd__ClientId": "",
+    "AzureAd__TenantId": "",
+    "AzureAd__ClientSecret": ""
   },
   "Host": {
     "LocalHttpPort": 7274,
