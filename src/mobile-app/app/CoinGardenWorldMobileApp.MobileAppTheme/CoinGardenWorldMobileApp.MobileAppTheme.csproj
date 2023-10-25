@@ -33,7 +33,7 @@
 	  <PackageReference Include="Toolbelt.Blazor.PWA.Updater" Version="2.1.0.1" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\shared\back-end\CoinGardenWorld.HttpClientsExtensions\CoinGardenWorld.HttpClientsExtensions.csproj" />
+	  <ProjectReference Include="..\..\..\shared\front-end\CoinGardenWorld.HttpClientsExtensions\CoinGardenWorld.HttpClientsExtensions.csproj" />
 	  <ProjectReference Include="..\CoinGardenWorldMobileApp.Models\CoinGardenWorldMobileApp.Models.csproj" />
 	</ItemGroup>
 	<ItemGroup>

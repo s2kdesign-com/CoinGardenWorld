@@ -7,6 +7,8 @@ on:
   push:
     paths:
     - 'src/monitoring/**'
+    - 'src/mobile-app/app/CoinGardenWorldMobileApp.Models/**'
+    - 'src/shared/**'
     branches:
       - main
   workflow_dispatch:

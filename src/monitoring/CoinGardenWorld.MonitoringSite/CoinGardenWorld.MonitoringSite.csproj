@@ -26,8 +26,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\shared\back-end\CoinGardenWorld.HttpClientsExtensions\CoinGardenWorld.HttpClientsExtensions.csproj" />
-  </ItemGroup>
-
+	<ItemGroup>
+		<ProjectReference Include="..\..\shared\front-end\CoinGardenWorld.HttpClientsExtensions\CoinGardenWorld.HttpClientsExtensions.csproj" />
+	</ItemGroup>
 </Project>
