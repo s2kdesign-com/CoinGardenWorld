@@ -159,6 +159,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7895DDFB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bot", "bot", "{62EE1E36-E226-487D-BAE5-36B227D74252}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldBot_Api", "src\garden-bot\bot\CoinGardenWorldBot_Api\CoinGardenWorldBot_Api.csproj", "{A4B0A476-04C5-4C20-ABA6-5CBD4C20077B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -287,6 +289,10 @@ Global
 		{159F8508-ECE1-4B31-BA5E-26259A3E47D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{159F8508-ECE1-4B31-BA5E-26259A3E47D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{159F8508-ECE1-4B31-BA5E-26259A3E47D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4B0A476-04C5-4C20-ABA6-5CBD4C20077B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4B0A476-04C5-4C20-ABA6-5CBD4C20077B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4B0A476-04C5-4C20-ABA6-5CBD4C20077B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4B0A476-04C5-4C20-ABA6-5CBD4C20077B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -342,6 +348,7 @@ Global
 		{159F8508-ECE1-4B31-BA5E-26259A3E47D9} = {1537DEAB-EE3C-422C-B3D0-D8F7AAA49B98}
 		{7895DDFB-3428-47CD-87C3-D639ADBEF3B3} = {C82FB067-799A-46EA-B6D9-A28406C710E2}
 		{62EE1E36-E226-487D-BAE5-36B227D74252} = {8974AD58-BA97-411E-86FC-958DE2F20E8D}
+		{A4B0A476-04C5-4C20-ABA6-5CBD4C20077B} = {62EE1E36-E226-487D-BAE5-36B227D74252}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}

@@ -379,3 +379,5 @@ FodyWeavers.xsd
 /src/mobile-app/app/CoinGardenWorldMobileApp.Maui/Resources/Raw/appsettings.Development.json
 /src/mobile-app/app/CoinGardenWorldMobileApp.Maui/appsettings.Development.json
 /src/monitoring/CoinGardenWorld.MonitoringSite/appsettings.Development.json
+/src/garden-bot/bot/CoinGardenWorldBot_Api/code.zip
+/src/garden-bot/bot/CoinGardenWorldBot_Api/settings/appsettings.Development.json
