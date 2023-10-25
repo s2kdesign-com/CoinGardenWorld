@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CoinGardenWorld.HttpClientsExtensions
 {
-    public abstract class HttpClientBase<T, M> : IHttpClientBase<T, M> where T : HttpClientBase<T, M>
+    public abstract class HttpClientBase<T, M> : IHttpClientBase<M> where T : IHttpClientBase<M>
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
@@ -17,29 +17,47 @@ namespace CoinGardenWorld.HttpClientsExtensions
         public string ApiUrl { get; set; } = "#";
         public virtual bool HttpClientIsAuthorized { get; }
 
+        public virtual string ApiKey { get; }
+
         protected HttpClientBase(ILogger<T> logger, IHttpClientFactory httpClientFactory, IConfiguration configuration, AuthenticationStateProvider authStateProvider)
         {
             _authStateProvider = authStateProvider;
             _httpClientFactory = httpClientFactory;
             _configuration = configuration;
-            _logger = logger;   
+            _logger = logger;
 
-            var externalApis = _configuration.Get<ExternalApisSettings>()??new ();
+            var externalApis = _configuration.Get<ExternalApisSettings>() ?? new();
 
             if (externalApis.ExternalApis != null && externalApis.ExternalApis.Any())
             {
-                var externalApi = externalApis.ExternalApis.FirstOrDefault();
-
-                ApiUrl = new Uri(new Uri(externalApi.Value.Api_Url), "/api").AbsoluteUri + "/" ;
-
-                if (HttpClientIsAuthorized)
+                if (!string.IsNullOrEmpty(ApiKey))
                 {
-                    HttpClient = _httpClientFactory.CreateClient($"{externalApi.Key}");
 
+                    var externalApi = externalApis.ExternalApis.FirstOrDefault(a => a.Key == ApiKey);
+                    ApiUrl = new Uri(new Uri(externalApi.Value.Api_Url), "/api").AbsoluteUri + "/";
+                    // There is multiple Apis                     
+                    if (HttpClientIsAuthorized)
+                    {
+                        HttpClient = _httpClientFactory.CreateClient($"{ApiKey}");
+                    }
+                    else
+                    {
+                        HttpClient = _httpClientFactory.CreateClient($"{ApiKey}.NoAuthenticationClient");
+                    }
                 }
                 else
                 {
-                    HttpClient = _httpClientFactory.CreateClient($"{externalApi.Key}.NoAuthenticationClient");
+                    // Only one API or the ApiKey was not specified in the client
+                    var externalApi = externalApis.ExternalApis.FirstOrDefault();
+                    ApiUrl = new Uri(new Uri(externalApi.Value.Api_Url), "/api").AbsoluteUri + "/";
+                    if (HttpClientIsAuthorized)
+                    {
+                        HttpClient = _httpClientFactory.CreateClient($"{externalApi.Key}");
+                    }
+                    else
+                    {
+                        HttpClient = _httpClientFactory.CreateClient($"{externalApi.Key}.NoAuthenticationClient");
+                    }
                 }
 
             }
@@ -106,7 +124,7 @@ namespace CoinGardenWorld.HttpClientsExtensions
 
             try
             {
-                return  await HttpClient.GetAsync(GetApiControllerUrl());
+                return await HttpClient.GetAsync(GetApiControllerUrl());
             }
             catch (Exception e)
             {

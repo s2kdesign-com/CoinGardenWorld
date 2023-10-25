@@ -1,13 +1,23 @@
 ﻿@page "/InternalTesting"
 
 @attribute [Authorize]
-
 @using CoinGardenWorld.HttpClientsExtensions.MobileApiClients
 @using CoinGardenWorld.HttpClientsExtensions
 @using CoinGardenWorld.HttpClientsExtensions.Infrastructure
+@using CoinGardenWorld.HttpClientsExtensions.MetaverseSiteApiClients
+@using CoinGardenWorld.HttpClientsExtensions.MobileApiSiteClients
 
-@inject IHttpClientBase<VersionHttpClient, string> VersionHttpClient
-@inject IHttpClientBase<VersionAuthorizedHttpClient, string> VersionAuthorizedHttpClient
+@inject VersionHttpClient MobileApiVersionHttpClient
+@inject VersionAuthorizedHttpClient MobileApiAuthorizedHttpClient
+
+@inject MobileApiSiteAuthorizedAzureFunctionClient MobileApiSiteTestAuthorizedHttpClient
+@inject MobileApiSiteAzureFunctionClient MobileApiSiteAzureFunctionClient
+
+
+@inject MetaverseAuthorizedAzureFunctionClient MetaverseApiSiteTestAuthorizedHttpClient
+@inject MetaverseAzureFunctionClient MetaverseApiSiteAzureFunctionClient
+
+
 @inject BlazorServerTokenProvider TokenProvider
 
 <PageTitle>Internal Testing</PageTitle>
@@ -16,13 +26,10 @@
 {
     
     <CardAlert Color="success" Icon="bi-check-circle-fill">
+        <Heading>            
+            User is Authorized!
+        </Heading>
         <Content>
-           User is Authorized!
-            <br>
-            <a href="@_mobileApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
-                Mobile API Version: @_mobileApiVersion
-
-            </a>
             <br />
            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#accessToken" aria-expanded="false" aria-controls="accessToken">
                Access Token
@@ -56,67 +63,36 @@ else
     <CardAlert Color="warning" Icon="bi-exclamation-triangle">
         <Content>
             Current User is not Authorized!
-            <br>
-            <a href="@_mobileApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
-                Mobile API Version: @_mobileApiVersion
-            </a>
         </Content>
     </CardAlert>
     
 }
 
+ 
 
-@if (_mobileApiIsAvailable)
-{
-    if (_mobileIsApiAuthenticated)
-    {
-        <CardAlert Color="success" Icon="bi-check-circle-fill">
-            <Content>
-                Mobile API connection is Authorized!
-                <br>
-                <a href="@_mobileApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
-                    Mobile API Version: @_mobileApiVersion
-                    </a>
-            </Content>
-        </CardAlert>
-    }
-    else
-    {
-        <CardAlert Color="warning" Icon="bi-exclamation-triangle">
-            <Content>
-                Mobile API connection is not Authorized!
-                <br>
-                <a href="@_mobileApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
-                    Mobile API Version: @_mobileApiVersion
-                </a>
-            </Content>
-        </CardAlert>
-    }
-}
-else
-{
-    <CardAlert Color="warning" Icon="bi-exclamation-triangle">
-        <Content>
-            Mobile API connection error!
-            <br>
-            <a href="@_mobileApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
-                Mobile API Version: @_mobileApiVersion
-            </a>
-        </Content>
-    </CardAlert>
+<ExternalApiTest HttpClientToTest="MobileApiVersionHttpClient" AuthorizedHttpClientToTest="MobileApiAuthorizedHttpClient" ApiName="Mobile API" SwaggerSuffix="swagger/index.html" AuthenticationEndpoint="/api/version/GetAuthorized" VersionEndpoint="/api/version" />
 
-}
+
+
+<ExternalApiTest HttpClientToTest="MobileApiSiteAzureFunctionClient" AuthorizedHttpClientToTest="MobileApiSiteTestAuthorizedHttpClient" ApiName="Mobile Site API" />
+
+<ExternalApiTest HttpClientToTest="MetaverseApiSiteAzureFunctionClient" AuthorizedHttpClientToTest="MetaverseApiSiteTestAuthorizedHttpClient" ApiName="Metaverse Site API" />
 @code {
-    
+
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask {get; set;}
-    
+
     bool _isAuthenticated;
 
     private bool _mobileApiIsAvailable = false;
     private string _mobileApiSwaggerUrl = "#";
     private string _mobileApiVersion = "API is not available.";
     private bool _mobileIsApiAuthenticated = false;
+
+    private string _mobileSiteApiSwaggerUrl = "#";
+    private bool _mobileSiteApiIsAvailable = false;
+    private bool _mobileSiteApiAuthenticated = false;
+    private string? _mobileSiteApiResponse;
 
     protected override async Task OnInitializedAsync()
     {
@@ -126,10 +102,10 @@ else
 
         _isAuthenticated = user.Identity?.IsAuthenticated ?? false;
 
-        _mobileApiSwaggerUrl = VersionAuthorizedHttpClient.ApiUrl.Split("api")[0] + "swagger/index.html";
+        _mobileApiSwaggerUrl = MobileApiVersionHttpClient.ApiUrl.Split("api")[0] + "swagger/index.html";
 
         // Test Mobile API without Authorization
-        var apiVersionRequest = await VersionHttpClient.GetAsync("/api/version");
+        var apiVersionRequest = await MobileApiVersionHttpClient.GetAsync("/api/version");
         if (apiVersionRequest.IsSuccessStatusCode)
         {
             _mobileApiIsAvailable = true;
@@ -137,7 +113,7 @@ else
         }
 
         // Test Mobile API with Authorization
-        var authorizedResponse = await VersionAuthorizedHttpClient.GetAsync("/api/version/GetAuthorized");
+        var authorizedResponse = await MobileApiAuthorizedHttpClient.GetAsync("/api/version/GetAuthorized");
 
         if (authorizedResponse.IsSuccessStatusCode)
         {
@@ -145,7 +121,39 @@ else
         }
         else
         {
+            _mobileApiVersion =  "Status Code: " + authorizedResponse.StatusCode + await authorizedResponse.Content.ReadAsStringAsync();
             _mobileIsApiAuthenticated = false;
+        }
+
+
+        await TestAuthenticatedAzureFunctionApi();
+    }
+
+
+    private async Task TestAuthenticatedAzureFunctionApi()
+    {
+        // Test Azure Function API without Authorization
+        _mobileSiteApiSwaggerUrl = MetaverseApiSiteAzureFunctionClient.ApiUrl.Split("api")[0] + "api/swagger/ui";
+
+        var apiVersionRequest = await MetaverseApiSiteAzureFunctionClient.GetAsync("/api/version");
+        if (apiVersionRequest.IsSuccessStatusCode)
+        {
+            _mobileSiteApiIsAvailable = true;
+            _mobileSiteApiResponse = await apiVersionRequest.Content.ReadAsStringAsync();
+        }
+
+        // Test Azure Function API with Authorization
+        var authorizedResponse = await MobileApiSiteTestAuthorizedHttpClient.GetAsync("/api/TestAuthenticatedEndpoint");
+
+        if (authorizedResponse.IsSuccessStatusCode)
+        {
+            _mobileSiteApiResponse = await authorizedResponse.Content.ReadAsStringAsync();
+            _mobileSiteApiAuthenticated = true;
+        }
+        else
+        {
+            _mobileSiteApiResponse = "Status Code: " + authorizedResponse.StatusCode + " " +  await authorizedResponse.Content.ReadAsStringAsync();
+            _mobileSiteApiAuthenticated = false;
         }
     }
 }

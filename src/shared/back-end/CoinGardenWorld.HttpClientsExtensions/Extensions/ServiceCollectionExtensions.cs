@@ -1,7 +1,9 @@
 ﻿using CoinGardenWorld.HttpClientsExtensions.Configurations;
 using CoinGardenWorld.HttpClientsExtensions.DelegatingHandlers;
 using CoinGardenWorld.HttpClientsExtensions.Infrastructure;
+using CoinGardenWorld.HttpClientsExtensions.MetaverseSiteApiClients;
 using CoinGardenWorld.HttpClientsExtensions.MobileApiClients;
+using CoinGardenWorld.HttpClientsExtensions.MobileApiSiteClients;
 using CoinGardenWorldMobileApp.Models;
 using CoinGardenWorldMobileApp.Models.ViewModels;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -62,9 +64,16 @@ namespace CoinGardenWorld.HttpClientsExtensions.Extensions
 
             // Add HttpClients  
             // TODO: This should be Singleton but AuthenticationStateProvider is scoped so we can not create singletons 
-            services.AddScoped<IHttpClientBase<AccountHttpClient, AccountDto>, AccountHttpClient>();
-            services.AddScoped<IHttpClientBase<VersionHttpClient, string>, VersionHttpClient>();
-            services.AddScoped<IHttpClientBase<VersionAuthorizedHttpClient, string>, VersionAuthorizedHttpClient>();
+            // TODO: Scan the assembly for all instances of IHttpClientBase and inject all clients automatically 
+            services.AddScoped<AccountHttpClient>();
+            services.AddScoped<VersionHttpClient>();
+            services.AddScoped<VersionAuthorizedHttpClient>();
+
+            services.AddScoped<MobileApiSiteAuthorizedAzureFunctionClient>();
+            services.AddScoped<MobileApiSiteAzureFunctionClient>();
+
+            services.AddScoped<MetaverseAuthorizedAzureFunctionClient>();
+            services.AddScoped<MetaverseAzureFunctionClient>();
             return services;
         }
 

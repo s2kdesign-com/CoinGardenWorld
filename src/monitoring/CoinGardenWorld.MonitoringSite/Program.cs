@@ -62,16 +62,23 @@ builder.Services.Configure<OpenIdConnectOptions>(
     {
         options.ResponseType = OpenIdConnectResponseType.Code;
         options.SaveTokens = true;
-        foreach (var externalApi in externalApisSettings.ExternalApis)
+
+        //  Azure AD V2 endpoint allow you to get a token for only one resource at once, however, you can let the user pre-consent for several resources.
+        //foreach (var externalApi in externalApisSettings.ExternalApis)
+        //{
+        //    foreach (var valueApiScope in externalApi.Value.Api_Scopes)
+        //    {
+        //        options.Scope.Add(valueApiScope);
+
+        //    }
+        //}
+
+        foreach (var externalApiScope in externalApisSettings.ExternalApis.FirstOrDefault(c => c.Key == "CGW.Mobile.Api").Value.Api_Scopes)
         {
-            foreach (var valueApiScope in externalApi.Value.Api_Scopes)
-            {
-                options.Scope.Add(valueApiScope);
-
-            }
+            options.Scope.Add(externalApiScope);
         }
-
         options.Scope.Add("offline_access");
+       // options.Scope.Add("openid");
     });
 
 

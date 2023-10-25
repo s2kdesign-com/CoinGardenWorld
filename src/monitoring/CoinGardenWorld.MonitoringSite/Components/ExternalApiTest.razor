@@ -1,0 +1,155 @@
+﻿@using CoinGardenWorld.HttpClientsExtensions
+
+
+@if (_mobileSiteApiIsAvailable)
+{
+    if (_mobileSiteApiAuthenticated)
+    {
+        <div class="alert alert-dismissible border alert-success shadow-bg shadow-bg-s">
+            @if (ApiName != null)
+            {
+                <h4 class="alert-heading">
+                    @ApiName
+                </h4>
+
+            }
+            <div class="align-self-center" style="width: 100%">
+                <p class="mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
+
+                    Connection is Authorized!
+                    <br />
+                    <a href="@_mobileSiteApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
+                        @_mobileSiteApiResponse
+                    </a>
+                </p>
+            </div>
+
+        </div>
+    }
+    else
+    {
+
+
+        <div class="alert alert-dismissible border alert-warning shadow-bg shadow-bg-s">
+            @if (ApiName != null)
+            {
+                <h4 class="alert-heading">
+                    @ApiName
+                </h4>
+
+            }
+            <div class="align-self-center" style="width: 100%">
+                <p class="mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
+
+                    Connection is not Authorized!
+                    <br />
+                    <a href="@_mobileSiteApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
+                        @_mobileSiteApiResponse
+                    </a>
+                </p>
+            </div>
+
+        </div>
+    }
+
+}
+else
+{
+
+
+
+
+    <div class="alert alert-dismissible border alert-warning shadow-bg shadow-bg-s">
+        @if (ApiName != null)
+        {
+            <h4 class="alert-heading">
+                @ApiName
+            </h4>
+
+        }
+        <div class="align-self-center" style="width: 100%">
+            <p class="mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
+
+                Connection error!
+                <br>
+                <a href="@_mobileSiteApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
+                    @_mobileSiteApiResponse
+                </a>
+            </p>
+        </div>
+
+    </div>
+}
+@code {
+
+    private string _mobileSiteApiSwaggerUrl = "#";
+    private bool _mobileSiteApiIsAvailable = false;
+    private bool _mobileSiteApiAuthenticated = false;
+    private string? _mobileSiteApiResponse;
+
+    [Parameter]
+    public IHttpClientBase<string> HttpClientToTest { get; set; }
+
+    [Parameter]
+    public IHttpClientBase<string> AuthorizedHttpClientToTest { get; set; }
+
+    [Parameter]
+    public string? ApiName { get; set; }
+
+    [Parameter]
+    public string SwaggerSuffix { get; set; } = "api/swagger/ui";
+
+
+    [Parameter]
+    public string VersionEndpoint { get; set; } = "api/version";
+
+    [Parameter]
+    public string AuthenticationEndpoint { get; set; } = "api/TestAuthenticatedEndpoint";
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await TestAuthenticatedAzureFunctionApi();
+        }
+    }
+
+    private async Task TestAuthenticatedAzureFunctionApi()
+    {
+        // Test Azure Function API without Authorization
+        Console.WriteLine(HttpClientToTest.ApiUrl);
+        if (HttpClientToTest.ApiUrl.Contains("api"))
+        {
+            _mobileSiteApiSwaggerUrl = HttpClientToTest.ApiUrl.Split("api")[0] + SwaggerSuffix;
+        }
+        else
+        {
+            _mobileSiteApiSwaggerUrl = HttpClientToTest.ApiUrl + SwaggerSuffix;
+
+        }
+        var apiVersionRequest = await HttpClientToTest.GetAsync(VersionEndpoint);
+        if (apiVersionRequest.IsSuccessStatusCode)
+        {
+            _mobileSiteApiIsAvailable = true;
+            _mobileSiteApiResponse = await apiVersionRequest.Content.ReadAsStringAsync();
+        }
+
+        // Test Azure Function API with Authorization
+        var authorizedResponse = await AuthorizedHttpClientToTest.GetAsync(AuthenticationEndpoint);
+
+        if (authorizedResponse.IsSuccessStatusCode)
+        {
+            _mobileSiteApiIsAvailable = true;
+            _mobileSiteApiAuthenticated = true;
+            _mobileSiteApiResponse = await authorizedResponse.Content.ReadAsStringAsync();
+        }
+        else
+        {
+            _mobileSiteApiAuthenticated = false;
+            _mobileSiteApiResponse = "Status Code: " + authorizedResponse.StatusCode + " " + await authorizedResponse.Content.ReadAsStringAsync();
+        }
+
+        StateHasChanged();
+    }
+}

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace CoinGardenWorld.HttpClientsExtensions.DelegatingHandlers
 {
     public class BlazorServerAuthorizationMessageHandler : DelegatingHandler, IDisposable
     {
+        private readonly ILogger<BlazorServerAuthorizationMessageHandler> _logger;
         private readonly BlazorServerTokenProvider _tokenProvider;
         private readonly AuthenticationStateProvider _authStateProvider;
         private readonly NavigationManager _navigation;
@@ -21,10 +23,11 @@ namespace CoinGardenWorld.HttpClientsExtensions.DelegatingHandlers
         private AccessTokenRequestOptions _tokenOptions;
         private AuthenticationHeaderValue _cachedHeader;
         private Uri[] _authorizedUris;
-        private AccessToken _lastToken;
+        private AccessToken? _lastToken;
 
-        public BlazorServerAuthorizationMessageHandler(BlazorServerTokenProvider tokenProvider, AuthenticationStateProvider authStateProvider, NavigationManager navigation)
+        public BlazorServerAuthorizationMessageHandler(ILogger<BlazorServerAuthorizationMessageHandler> logger,BlazorServerTokenProvider tokenProvider, AuthenticationStateProvider authStateProvider, NavigationManager navigation)
         {
+            _logger = logger;
                 _tokenProvider = tokenProvider;
             _authStateProvider = authStateProvider;
             _navigation = navigation;
@@ -40,12 +43,29 @@ namespace CoinGardenWorld.HttpClientsExtensions.DelegatingHandlers
             }
             if(_tokenProvider.AccessToken == null)
             {
+                _lastToken = new AccessToken();
                 throw new AccessTokenNotAvailableException(_navigation, new AccessTokenResult(AccessTokenResultStatus.RequiresRedirect, _lastToken, ""), _tokenOptions?.Scopes);
+            }
+            else
+            {
+                _lastToken = new AccessToken();
+                _lastToken.Expires = DateTimeOffset.Now.AddHours(1);
+                _lastToken.Value = _tokenProvider.AccessToken;
             }
 
             if (_authorizedUris.Any(uri => uri.IsBaseOf(request.RequestUri)))
             {
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _tokenProvider.AccessToken);
+                if (_lastToken != null || now <= _lastToken.Expires.AddMinutes(-5))
+                {
+                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _tokenProvider.AccessToken);
+                }
+                else
+                {
+                    // TODO: Trigger redirect or challenge the request when the token is expired
+                    _logger.LogError("Token Expired");
+                    throw new AccessTokenNotAvailableException(_navigation, new AccessTokenResult(AccessTokenResultStatus.RequiresRedirect, _lastToken, ""), _tokenOptions?.Scopes);
+
+                }
             }
 
 
@@ -55,7 +75,7 @@ namespace CoinGardenWorld.HttpClientsExtensions.DelegatingHandlers
         public BlazorServerAuthorizationMessageHandler ConfigureHandler(
             IEnumerable<string> authorizedUrls,
             IEnumerable<string> scopes = null,
-            string returnUrl = null)
+            string? returnUrl = null)
         {
             if (_authorizedUris != null)
             {

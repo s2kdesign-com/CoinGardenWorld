@@ -1,6 +1,6 @@
 ﻿namespace CoinGardenWorld.HttpClientsExtensions
 {
-    public interface IHttpClientBase<T, M> where T : HttpClientBase<T, M>
+    public interface IHttpClientBase<M> 
     {
         Task<bool> UserIsAuthenticated();
 

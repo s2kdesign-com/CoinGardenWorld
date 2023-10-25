@@ -9,8 +9,8 @@
 @inject IClientHub<ChatHub> chatHub
 @inject IClientHub<NotificationsHub> notificationsHub
 
-@inject IHttpClientBase<VersionHttpClient, string> VersionHttpClient
-@inject IHttpClientBase<VersionAuthorizedHttpClient, string> VersionAuthorizedHttpClient
+@inject VersionHttpClient VersionHttpClient
+@inject VersionAuthorizedHttpClient VersionAuthorizedHttpClient
 
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
