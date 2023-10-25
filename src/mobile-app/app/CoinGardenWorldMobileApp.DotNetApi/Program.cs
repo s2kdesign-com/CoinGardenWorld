@@ -191,8 +191,10 @@ builder.Services.AddHealthChecks()
     .AddHangfire(opt => { opt.MinimumAvailableServers = 1; opt.MaximumJobsFailed = 1; }, name: hangfireUrl, tags: healthTagsHangFire)
     // SignalR Hubs
     .AddSignalRHub(notificationHubUrl, name: notificationHubUrl, tags: healthTagsSignalR)
+#if DEBUG
+    // TODO: Signalr hub is authenticated so the check is failing 
     .AddSignalRHub(chatHubUrl, name: chatHubUrl, tags: healthTagsSignalR)
-
+#endif
     ;
 
 

@@ -35,7 +35,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Hubs
 	        return base.OnConnectedAsync();
         }
 
-        public override Task OnDisconnectedAsync(Exception? exception)
+        public override Task OnDisconnectedAsync([SignalRHidden] Exception? exception)
         {
 	        var userId = Context.UserIdentifier;
 	        var connectionId = Context.ConnectionId;
