@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
     <UserSecretsId>253743d8-7714-43cc-81b5-200337298631</UserSecretsId>
-	  <Version>1.0.0.11</Version>
+	  <Version>1.0.0.11</Version> 
 	  <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 	  <DockerfileContext>..\..\..\..</DockerfileContext>
   </PropertyGroup>

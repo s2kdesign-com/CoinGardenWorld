@@ -5,7 +5,9 @@ name: Deploy GardenBot Messaging API - Azure
 on:
   push:
     paths:
-    - 'src/garden-bot/CoinGardenBotCore/**'
+    - 'src/garden-bot/bot/**'
+    - 'src/mobile-app/app/CoinGardenWorldMobileApp.Models/**'
+    - 'src/shared/back-end**'
     branches:
       - main
   workflow_dispatch:
