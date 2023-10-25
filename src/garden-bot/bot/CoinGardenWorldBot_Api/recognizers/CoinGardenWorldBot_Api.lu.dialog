@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "LUIS_CoinGardenWorldBot_Api",
+  "recognizers": {
+    "en-us": "CoinGardenWorldBot_Api.en-us.lu",
+    "": "CoinGardenWorldBot_Api.en-us.lu"
+  }
+}

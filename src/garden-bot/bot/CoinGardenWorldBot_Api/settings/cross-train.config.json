@@ -1,0 +1,36 @@
+{
+  "CoinGardenWorldBot_Api.en-us": {
+    "rootDialog": true,
+    "triggers": {
+      "": [
+        "WelcomeDialog.en-us"
+      ],
+      "Cancel": [
+        "CancelDialog.en-us"
+      ],
+      "Help": [
+        "HelpDialog.en-us"
+      ],
+      "FlowerRecognizer": [
+        "RecognizerDialog.en-us"
+      ],
+      "RecognizeFlowerByName": [
+        "RecognizeFlowerByName.en-us"
+      ],
+      "SayHello": [
+        "WelcomeDialog.en-us"
+      ],
+      "RecognizeFlowerByPicture": [
+        "RecognizeFlowerByPicture.en-us"
+      ]
+    }
+  },
+  "RecognizerDialog.en-us": {
+    "rootDialog": false,
+    "triggers": {
+      "": [
+        "RecognizeFlowerByPicture.en-us"
+      ]
+    }
+  }
+}

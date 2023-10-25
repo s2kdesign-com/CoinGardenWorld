@@ -1,9 +1,0 @@
-{
-  "$kind": "Microsoft.MultiLanguageRecognizer",
-  "id": "LUIS_CoinGardenBotCore",
-  "recognizers": {
-    "bg-bg": "CoinGardenBotCore.en-us.lu",
-    "en-us": "CoinGardenBotCore.en-us.lu",
-    "": "CoinGardenBotCore.en-us.lu"
-  }
-}
