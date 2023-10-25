@@ -22,6 +22,8 @@
 
 <PageTitle>Internal Testing</PageTitle>
 
+<h2> Authentication Tests </h2>
+<h3> User Tests</h3>
 @if (_isAuthenticated)
 {
     
@@ -68,7 +70,8 @@ else
     
 }
 
- 
+
+<h3> API Tests</h3>
 
 <ExternalApiTest HttpClientToTest="MobileApiVersionHttpClient" AuthorizedHttpClientToTest="MobileApiAuthorizedHttpClient" ApiName="Mobile API" SwaggerSuffix="swagger/index.html" AuthenticationEndpoint="/api/version/GetAuthorized" VersionEndpoint="/api/version" />
 
@@ -77,6 +80,12 @@ else
 <ExternalApiTest HttpClientToTest="MobileApiSiteAzureFunctionClient" AuthorizedHttpClientToTest="MobileApiSiteTestAuthorizedHttpClient" ApiName="Mobile Site API" />
 
 <ExternalApiTest HttpClientToTest="MetaverseApiSiteAzureFunctionClient" AuthorizedHttpClientToTest="MetaverseApiSiteTestAuthorizedHttpClient" ApiName="Metaverse Site API" />
+
+
+
+<h3> SignalR Tests </h3>
+
+
 @code {
 
     [CascadingParameter]
@@ -102,58 +111,8 @@ else
 
         _isAuthenticated = user.Identity?.IsAuthenticated ?? false;
 
-        _mobileApiSwaggerUrl = MobileApiVersionHttpClient.ApiUrl.Split("api")[0] + "swagger/index.html";
 
-        // Test Mobile API without Authorization
-        var apiVersionRequest = await MobileApiVersionHttpClient.GetAsync("/api/version");
-        if (apiVersionRequest.IsSuccessStatusCode)
-        {
-            _mobileApiIsAvailable = true;
-            _mobileApiVersion = await apiVersionRequest.Content.ReadAsStringAsync();
-        }
-
-        // Test Mobile API with Authorization
-        var authorizedResponse = await MobileApiAuthorizedHttpClient.GetAsync("/api/version/GetAuthorized");
-
-        if (authorizedResponse.IsSuccessStatusCode)
-        {
-            _mobileIsApiAuthenticated = true;
-        }
-        else
-        {
-            _mobileApiVersion =  "Status Code: " + authorizedResponse.StatusCode + await authorizedResponse.Content.ReadAsStringAsync();
-            _mobileIsApiAuthenticated = false;
-        }
-
-
-        await TestAuthenticatedAzureFunctionApi();
     }
 
 
-    private async Task TestAuthenticatedAzureFunctionApi()
-    {
-        // Test Azure Function API without Authorization
-        _mobileSiteApiSwaggerUrl = MetaverseApiSiteAzureFunctionClient.ApiUrl.Split("api")[0] + "api/swagger/ui";
-
-        var apiVersionRequest = await MetaverseApiSiteAzureFunctionClient.GetAsync("/api/version");
-        if (apiVersionRequest.IsSuccessStatusCode)
-        {
-            _mobileSiteApiIsAvailable = true;
-            _mobileSiteApiResponse = await apiVersionRequest.Content.ReadAsStringAsync();
-        }
-
-        // Test Azure Function API with Authorization
-        var authorizedResponse = await MobileApiSiteTestAuthorizedHttpClient.GetAsync("/api/TestAuthenticatedEndpoint");
-
-        if (authorizedResponse.IsSuccessStatusCode)
-        {
-            _mobileSiteApiResponse = await authorizedResponse.Content.ReadAsStringAsync();
-            _mobileSiteApiAuthenticated = true;
-        }
-        else
-        {
-            _mobileSiteApiResponse = "Status Code: " + authorizedResponse.StatusCode + " " +  await authorizedResponse.Content.ReadAsStringAsync();
-            _mobileSiteApiAuthenticated = false;
-        }
-    }
 }

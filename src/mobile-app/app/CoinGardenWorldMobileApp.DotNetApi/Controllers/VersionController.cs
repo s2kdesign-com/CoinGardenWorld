@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using System.Security.Principal;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
@@ -24,8 +25,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [Route("/api/[controller]/[action]")]
         public ActionResult<string> GetAuthorized()
         {
-            Version version = Assembly.GetExecutingAssembly()?.GetName().Version ?? new Version(1, 0, 0);
-            return version.ToString();
+
+            var userName = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+            return userName + " - Welcome to .Net Api!" ;
         }
     }
 }
