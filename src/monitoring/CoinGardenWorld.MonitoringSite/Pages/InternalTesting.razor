@@ -18,6 +18,10 @@
 @inject MetaverseAzureFunctionClient MetaverseApiSiteAzureFunctionClient
 
 
+@inject GardenBotAuthorizedAzureFunctionClient GardenBotMessageApiTestAuthorizedHttpClient
+@inject GardenBotAzureFunctionClient GardenBotMessageApiAzureFunctionClient
+
+
 @inject BlazorServerTokenProvider TokenProvider
 
 <PageTitle>Internal Testing</PageTitle>
@@ -26,37 +30,46 @@
 <h3> User Tests</h3>
 @if (_isAuthenticated)
 {
-    
+
     <CardAlert Color="success" Icon="bi-check-circle-fill">
-        <Heading>            
-            @_userName is Authorized! 
+        <Heading>
+            @_userName is Authorized!
         </Heading>
         <Content>
             <br />
-           <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#accessToken" aria-expanded="false" aria-controls="accessToken">
-               Access Token
-           </button>
-           <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#refreshToken" aria-expanded="false" aria-controls="refreshToken">
-               Refresh Token
-           </button>
-           <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#xsrfToken" aria-expanded="false" aria-controls="xsrfToken">
-               XsrfToken
-           </button>
-            <div class="collapse" id="accessToken">
-               <div class="card card-body">
-                   @TokenProvider.AccessToken
-               </div>
-           </div>
-            <div class="collapse" id="refreshToken">
-               <div class="card card-body">
-                   @TokenProvider.RefreshToken
-               </div>
-           </div>
-            <div class="collapse" id="xsrfToken">
-               <div class="card card-body">
-                   @TokenProvider.XsrfToken
-               </div>
-           </div>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#accessToken" aria-expanded="false" aria-controls="accessToken">
+                Access Token
+            </button>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#refreshToken" aria-expanded="false" aria-controls="refreshToken">
+                Refresh Token
+            </button>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#xsrfToken" aria-expanded="false" aria-controls="xsrfToken">
+                XsrfToken
+            </button>
+            <div class="collapse mt-2" id="accessToken">
+                <div class="card card-body">
+ 
+                    <code>
+                            @TokenProvider.AccessToken
+                    </code>
+
+                </div>
+            </div>
+            <div class="collapse mt-2" id="refreshToken">
+                <div class="card card-body">
+                    
+                    <code>
+                        @TokenProvider.RefreshToken
+                    </code>
+                </div>
+            </div>
+            <div class="collapse mt-2" id="xsrfToken">
+                <div class="card card-body">
+                    <code>
+                        @TokenProvider.XsrfToken
+                    </code>
+                </div>
+            </div>
         </Content>
     </CardAlert>
 }
@@ -67,7 +80,7 @@ else
             Current User is not Authorized!
         </Content>
     </CardAlert>
-    
+
 }
 
 
@@ -81,6 +94,8 @@ else
 
 <ExternalApiTest HttpClientToTest="MetaverseApiSiteAzureFunctionClient" AuthorizedHttpClientToTest="MetaverseApiSiteTestAuthorizedHttpClient" ApiName="Metaverse Site API" />
 
+<ExternalApiTest HttpClientToTest="GardenBotMessageApiAzureFunctionClient" AuthorizedHttpClientToTest="GardenBotMessageApiTestAuthorizedHttpClient" ApiName="Garden BOT Messaging API" AuthenticationEndpoint="app/GetAuthorized" VersionEndpoint="app/version" />
+
 
 
 <h3> SignalR Tests </h3>
@@ -89,7 +104,7 @@ else
 @code {
 
     [CascadingParameter]
-    private Task<AuthenticationState> authenticationStateTask {get; set;}
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
 
     bool _isAuthenticated;
     string _userName;
@@ -101,7 +116,7 @@ else
 
         _isAuthenticated = user.Identity?.IsAuthenticated ?? false;
 
-        if(_isAuthenticated)
+        if (_isAuthenticated)
         {
             _userName = user.Identity?.Name;
         }

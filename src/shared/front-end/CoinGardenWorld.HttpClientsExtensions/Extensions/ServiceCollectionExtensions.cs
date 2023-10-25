@@ -74,6 +74,9 @@ namespace CoinGardenWorld.HttpClientsExtensions.Extensions
 
             services.AddScoped<MetaverseAuthorizedAzureFunctionClient>();
             services.AddScoped<MetaverseAzureFunctionClient>();
+
+            services.AddScoped<GardenBotAuthorizedAzureFunctionClient>();
+            services.AddScoped<GardenBotAzureFunctionClient>();
             return services;
         }
 
