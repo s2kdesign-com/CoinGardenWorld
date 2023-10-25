@@ -6,6 +6,11 @@ using Microsoft.Bot.Builder.Integration.AspNet.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Collections.Generic;
+using System.Reflection;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace CoinGardenWorldBot_Api
 {
@@ -21,6 +26,17 @@ namespace CoinGardenWorldBot_Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            var healthTags = new List<string> { "bot","messages", "api" };
+            services.AddHealthChecks()
+                // Self
+                .AddCheck("https://coingardenbotcore.azurewebsites.net/", () => HealthCheckResult.Healthy("Build Version: " + Assembly.GetExecutingAssembly().GetName().Version), healthTags)
+                // Azure Storage
+                //.AddAzureBlobStorage(azureStorageConfiguration.Blob, tags: healthTagsAzureStorage, name: "Azure Blob Storage")
+                //.AddAzureQueueStorage(azureStorageConfiguration.Queue, tags: healthTagsAzureStorage, name: "Azure Queue Storage")
+                //.AddAzureFileShare(azureStorageConfiguration.Files, tags: healthTagsAzureStorage, name: "Azure File Storage")
+                ;
+
             services.AddControllers().AddNewtonsoftJson(options => {
                 options.SerializerSettings.MaxDepth = HttpHelper.BotMessageSerializerSettings.MaxDepth;
             });
@@ -54,6 +70,16 @@ namespace CoinGardenWorldBot_Api
             {
                 endpoints.MapControllers();
             });
+            app
+                .UseHealthChecks("/health", new HealthCheckOptions
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                })
+                .UseHealthChecks("/healthz", new HealthCheckOptions
+                {
+                    Predicate = _ => true
+                });
         }
     }
 }

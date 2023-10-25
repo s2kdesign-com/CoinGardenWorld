@@ -1,7 +1,7 @@
 ﻿
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
     <UserSecretsId>253743d8-7714-43cc-81b5-200337298631</UserSecretsId>
 	  <Version>1.0.0.11</Version>
@@ -14,6 +14,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="7.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
     <PackageReference Include="Microsoft.Bot.Builder.AI.Luis" Version="4.18.1" />
     <PackageReference Include="Microsoft.Bot.Builder.AI.QnA" Version="4.18.1" />
