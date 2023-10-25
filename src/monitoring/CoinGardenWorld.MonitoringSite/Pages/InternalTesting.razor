@@ -29,7 +29,7 @@
     
     <CardAlert Color="success" Icon="bi-check-circle-fill">
         <Heading>            
-            User is Authorized!
+            @_userName is Authorized! 
         </Heading>
         <Content>
             <br />
@@ -73,7 +73,7 @@ else
 
 <h3> API Tests</h3>
 
-<ExternalApiTest HttpClientToTest="MobileApiVersionHttpClient" AuthorizedHttpClientToTest="MobileApiAuthorizedHttpClient" ApiName="Mobile API" SwaggerSuffix="swagger/index.html" AuthenticationEndpoint="/api/version/GetAuthorized" VersionEndpoint="/api/version" />
+<ExternalApiTest HttpClientToTest="MobileApiVersionHttpClient" AuthorizedHttpClientToTest="MobileApiAuthorizedHttpClient" ApiName="Mobile API" SwaggerSuffix="swagger/index.html" AuthenticationEndpoint="api/version/GetAuthorized" VersionEndpoint="api/version" />
 
 
 
@@ -92,17 +92,7 @@ else
     private Task<AuthenticationState> authenticationStateTask {get; set;}
 
     bool _isAuthenticated;
-
-    private bool _mobileApiIsAvailable = false;
-    private string _mobileApiSwaggerUrl = "#";
-    private string _mobileApiVersion = "API is not available.";
-    private bool _mobileIsApiAuthenticated = false;
-
-    private string _mobileSiteApiSwaggerUrl = "#";
-    private bool _mobileSiteApiIsAvailable = false;
-    private bool _mobileSiteApiAuthenticated = false;
-    private string? _mobileSiteApiResponse;
-
+    string _userName;
     protected override async Task OnInitializedAsync()
     {
         // User Is Authenticated
@@ -111,7 +101,10 @@ else
 
         _isAuthenticated = user.Identity?.IsAuthenticated ?? false;
 
-
+        if(_isAuthenticated)
+        {
+            _userName = user.Identity?.Name;
+        }
     }
 
 

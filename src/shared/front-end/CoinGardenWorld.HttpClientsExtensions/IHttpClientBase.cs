@@ -2,8 +2,14 @@
 {
     public interface IHttpClientBase<M> 
     {
+        HttpClient HttpClient {  get; }
+
         Task<bool> UserIsAuthenticated();
 
+        string BaseAddress
+        {
+            get;
+        }
         string ApiUrl
         {
             get;

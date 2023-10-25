@@ -13,7 +13,17 @@ namespace CoinGardenWorld.HttpClientsExtensions
         private readonly ILogger _logger;
         private readonly AuthenticationStateProvider _authStateProvider;
 
-        public readonly HttpClient HttpClient;
+
+
+        private readonly HttpClient _httpClient;
+
+        public HttpClient HttpClient
+        {
+            get { return _httpClient; }
+        }
+
+        public string BaseAddress { get; set; } = "https://localhost:7000";
+
         public string ApiUrl { get; set; } = "#";
         public virtual bool HttpClientIsAuthorized { get; }
 
@@ -38,11 +48,14 @@ namespace CoinGardenWorld.HttpClientsExtensions
                     // There is multiple Apis                     
                     if (HttpClientIsAuthorized)
                     {
-                        HttpClient = _httpClientFactory.CreateClient($"{ApiKey}");
+                        _httpClient = _httpClientFactory.CreateClient($"{ApiKey}");
+                        BaseAddress = _httpClient.BaseAddress.AbsoluteUri;
                     }
                     else
                     {
-                        HttpClient = _httpClientFactory.CreateClient($"{ApiKey}.NoAuthenticationClient");
+                        _httpClient = _httpClientFactory.CreateClient($"{ApiKey}.NoAuthenticationClient");
+                        BaseAddress = _httpClient.BaseAddress.AbsoluteUri;
+
                     }
                 }
                 else
@@ -52,11 +65,11 @@ namespace CoinGardenWorld.HttpClientsExtensions
                     ApiUrl = new Uri(new Uri(externalApi.Value.Api_Url), "/api").AbsoluteUri + "/";
                     if (HttpClientIsAuthorized)
                     {
-                        HttpClient = _httpClientFactory.CreateClient($"{externalApi.Key}");
+                        _httpClient = _httpClientFactory.CreateClient($"{externalApi.Key}");
                     }
                     else
                     {
-                        HttpClient = _httpClientFactory.CreateClient($"{externalApi.Key}.NoAuthenticationClient");
+                        _httpClient = _httpClientFactory.CreateClient($"{externalApi.Key}.NoAuthenticationClient");
                     }
                 }
 
@@ -104,7 +117,7 @@ namespace CoinGardenWorld.HttpClientsExtensions
 
             try
             {
-                return await HttpClient.GetFromJsonAsync<List<M>>(GetApiControllerUrl());
+                return await _httpClient.GetFromJsonAsync<List<M>>(GetApiControllerUrl());
             }
             catch (Exception e)
             {
@@ -124,7 +137,7 @@ namespace CoinGardenWorld.HttpClientsExtensions
 
             try
             {
-                return await HttpClient.GetAsync(GetApiControllerUrl());
+                return await _httpClient.GetAsync(GetApiControllerUrl());
             }
             catch (Exception e)
             {
@@ -145,7 +158,7 @@ namespace CoinGardenWorld.HttpClientsExtensions
 
             try
             {
-                return await HttpClient.GetAsync(relativeUrl);
+                return await _httpClient.GetAsync(relativeUrl);
             }
             catch (Exception e)
             {

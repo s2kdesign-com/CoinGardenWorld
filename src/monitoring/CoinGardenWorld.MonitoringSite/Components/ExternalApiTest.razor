@@ -44,7 +44,7 @@
                     Connection is not Authorized!
                     <br />
                     <a href="@_mobileSiteApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
-                        @_mobileSiteApiResponse
+                        Status Code: @_mobileSiteApiResponse
                     </a>
                 </p>
             </div>
@@ -73,7 +73,7 @@ else
                 Connection error!
                 <br>
                 <a href="@_mobileSiteApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
-                    @_mobileSiteApiResponse
+                    Status Code:  @_mobileSiteApiResponse
                 </a>
             </p>
         </div>
@@ -85,7 +85,7 @@ else
     private string _mobileSiteApiSwaggerUrl = "#";
     private bool _mobileSiteApiIsAvailable = false;
     private bool _mobileSiteApiAuthenticated = false;
-    private string? _mobileSiteApiResponse;
+    private string _mobileSiteApiResponse = "Loading";
 
     [Parameter]
     public IHttpClientBase<string> HttpClientToTest { get; set; }
@@ -117,17 +117,10 @@ else
 
     private async Task TestAuthenticatedAzureFunctionApi()
     {
-        // Test Azure Function API without Authorization
-        Console.WriteLine(HttpClientToTest.ApiUrl);
-        if (HttpClientToTest.ApiUrl.Contains("api"))
-        {
-            _mobileSiteApiSwaggerUrl = HttpClientToTest.ApiUrl.Split("api")[0] + SwaggerSuffix;
-        }
-        else
-        {
-            _mobileSiteApiSwaggerUrl = HttpClientToTest.ApiUrl + SwaggerSuffix;
+        // Test Azure Function API without Authorization       
 
-        }
+        _mobileSiteApiSwaggerUrl = HttpClientToTest.BaseAddress + SwaggerSuffix;
+
         var apiVersionRequest = await HttpClientToTest.GetAsync(VersionEndpoint);
         if (apiVersionRequest.IsSuccessStatusCode)
         {
@@ -147,7 +140,7 @@ else
         else
         {
             _mobileSiteApiAuthenticated = false;
-            _mobileSiteApiResponse = "Status Code: " + authorizedResponse.StatusCode + " " + await authorizedResponse.Content.ReadAsStringAsync();
+            _mobileSiteApiResponse = "" + authorizedResponse.StatusCode + " " + await authorizedResponse.Content.ReadAsStringAsync();
         }
 
         StateHasChanged();
