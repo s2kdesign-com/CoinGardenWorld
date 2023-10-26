@@ -9,17 +9,17 @@
             @if (ApiName != null)
             {
                 <h4 class="alert-heading">
-                    @ApiName
+                    @ApiName - @_mobileSiteApiResponse
                 </h4>
 
             }
             <div class="align-self-center" style="width: 100%">
                 <p class="mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
 
-                    Connection is Authorized!
+                    @AuthorizedHttpClientToTest.BaseAddress - Connection is Authorized! 
                     <br />
                     <a href="@_mobileSiteApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
-                        @_mobileSiteApiResponse
+                        @_mobileSiteApiAuthorizedResponse
                     </a>
                 </p>
             </div>
@@ -34,17 +34,17 @@
             @if (ApiName != null)
             {
                 <h4 class="alert-heading">
-                    @ApiName
+                    @ApiName - @_mobileSiteApiResponse
                 </h4>
 
             }
             <div class="align-self-center" style="width: 100%">
                 <p class="mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
 
-                    Connection is not Authorized!
+                    @HttpClientToTest.BaseAddress - Connection is established but not Authorized!
                     <br />
                     <a href="@_mobileSiteApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
-                        Status Code: @_mobileSiteApiResponse
+                        Status Code: @_mobileSiteApiAuthorizedResponse
                     </a>
                 </p>
             </div>
@@ -70,7 +70,7 @@ else
         <div class="align-self-center" style="width: 100%">
             <p class="mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
 
-                Connection error!
+                @HttpClientToTest.BaseAddress - Connection error!
                 <br>
                 <a href="@_mobileSiteApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
                     Status Code:  @_mobileSiteApiResponse
@@ -86,6 +86,7 @@ else
     private bool _mobileSiteApiIsAvailable = false;
     private bool _mobileSiteApiAuthenticated = false;
     private string _mobileSiteApiResponse = "Loading";
+    private string _mobileSiteApiAuthorizedResponse = "Loading";
 
     [Parameter]
     public IHttpClientBase<string> HttpClientToTest { get; set; }
@@ -127,6 +128,12 @@ else
             _mobileSiteApiIsAvailable = true;
             _mobileSiteApiResponse = await apiVersionRequest.Content.ReadAsStringAsync();
         }
+        else
+        {
+            _mobileSiteApiIsAvailable = false;
+            _mobileSiteApiResponse = "" + apiVersionRequest.StatusCode + " " + await apiVersionRequest.Content.ReadAsStringAsync();
+            
+        }
 
         // Test Azure Function API with Authorization
         var authorizedResponse = await AuthorizedHttpClientToTest.GetAsync(AuthenticationEndpoint);
@@ -135,12 +142,12 @@ else
         {
             _mobileSiteApiIsAvailable = true;
             _mobileSiteApiAuthenticated = true;
-            _mobileSiteApiResponse = await authorizedResponse.Content.ReadAsStringAsync();
+            _mobileSiteApiAuthorizedResponse = await authorizedResponse.Content.ReadAsStringAsync();
         }
         else
         {
             _mobileSiteApiAuthenticated = false;
-            _mobileSiteApiResponse = "" + authorizedResponse.StatusCode + " " + await authorizedResponse.Content.ReadAsStringAsync();
+            _mobileSiteApiAuthorizedResponse = "" + authorizedResponse.StatusCode + " " + await authorizedResponse.Content.ReadAsStringAsync();
         }
 
         StateHasChanged();

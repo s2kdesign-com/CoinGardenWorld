@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Json;
+using System.Text;
 using CoinGardenWorld.HttpClientsExtensions.Configurations;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Configuration;
@@ -135,6 +136,7 @@ namespace CoinGardenWorld.HttpClientsExtensions
                 return new HttpResponseMessage { StatusCode = System.Net.HttpStatusCode.Unauthorized };
             }
 
+            var content = new StringContent("", Encoding.UTF8, "application/json");
             try
             {
                 return await _httpClient.GetAsync(GetApiControllerUrl());
@@ -142,9 +144,10 @@ namespace CoinGardenWorld.HttpClientsExtensions
             catch (Exception e)
             {
                 _logger.LogError(e.Message);
+                content = new StringContent(e.Message, Encoding.UTF8, "application/json");
             }
 
-            return new HttpResponseMessage { StatusCode = System.Net.HttpStatusCode.InternalServerError };
+            return new HttpResponseMessage { StatusCode = System.Net.HttpStatusCode.InternalServerError, Content = content };
         }
 
         public async Task<HttpResponseMessage> GetAsync(string relativeUrl)
@@ -156,6 +159,7 @@ namespace CoinGardenWorld.HttpClientsExtensions
                 return new HttpResponseMessage { StatusCode = System.Net.HttpStatusCode.Unauthorized };
             }
 
+            var content = new StringContent("", Encoding.UTF8, "application/json");
             try
             {
                 return await _httpClient.GetAsync(relativeUrl);
@@ -163,9 +167,12 @@ namespace CoinGardenWorld.HttpClientsExtensions
             catch (Exception e)
             {
                 _logger.LogError(e.Message);
+
+
+                content = new StringContent(e.Message, Encoding.UTF8, "application/json");
             }
 
-            return new HttpResponseMessage { StatusCode = System.Net.HttpStatusCode.InternalServerError };
+            return new HttpResponseMessage { StatusCode = System.Net.HttpStatusCode.InternalServerError, Content = content };
         }
     }
 }

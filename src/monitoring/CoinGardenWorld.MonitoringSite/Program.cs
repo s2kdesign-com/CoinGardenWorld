@@ -62,7 +62,7 @@ builder.Services.Configure<OpenIdConnectOptions>(
     {
         options.ResponseType = OpenIdConnectResponseType.Code;
         options.SaveTokens = true;
-
+        options.UseTokenLifetime = true;
         //  Azure AD V2 endpoint allow you to get a token for only one resource at once, however, you can let the user pre-consent for several resources.
         //foreach (var externalApi in externalApisSettings.ExternalApis)
         //{

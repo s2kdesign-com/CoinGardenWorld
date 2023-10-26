@@ -48,25 +48,26 @@ jobs:
           name: .gardenbot-messagingapi
           path: CoinGardenWorld.GardenBotMessagingAPI 
 
-
-  deploy:
-    runs-on: windows-latest
-    needs: build
-    environment:
-      name: 'Azure'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: .gardenbot-messagingapi
-          
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'coingardenBotCore'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5C17D297D868466B91972776E122375A }}
-          package: .
+ # TODO: Job is stopped due to the complicated way to deploy azure bot 
+ # check this article for the whole proccess https://learn.microsoft.com/en-us/composer/how-to-cicd#pipeline-parameters
+ #deploy:
+ #  runs-on: windows-latest
+ #  needs: build
+ #  environment:
+ #    name: 'Azure'
+ #    url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+ #
+ #  steps:
+ #    - name: Download artifact from build job
+ #      uses: actions/download-artifact@v2
+ #      with:
+ #        name: .gardenbot-messagingapi
+ #        
+ #    - name: Deploy to Azure Web App
+ #      id: deploy-to-webapp
+ #      uses: azure/webapps-deploy@v2
+ #      with:
+ #        app-name: 'coingardenBotCore'
+ #        slot-name: 'Production'
+ #        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5C17D297D868466B91972776E122375A }}
+ #        package: .
