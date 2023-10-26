@@ -9,8 +9,10 @@ using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
 using System.Reflection;
 using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.Identity.Web;
 
 namespace CoinGardenWorldBot_Api
 {
@@ -36,6 +38,10 @@ namespace CoinGardenWorldBot_Api
                 //.AddAzureQueueStorage(azureStorageConfiguration.Queue, tags: healthTagsAzureStorage, name: "Azure Queue Storage")
                 //.AddAzureFileShare(azureStorageConfiguration.Files, tags: healthTagsAzureStorage, name: "Azure File Storage")
                 ;
+
+            // Add services to the container.
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
 
             services.AddControllers().AddNewtonsoftJson(options => {
                 options.SerializerSettings.MaxDepth = HttpHelper.BotMessageSerializerSettings.MaxDepth;
@@ -64,8 +70,13 @@ namespace CoinGardenWorldBot_Api
                 ContentTypeProvider = provider
             });
             app.UseWebSockets();
+
             app.UseRouting();
+
             app.UseAuthorization();
+
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

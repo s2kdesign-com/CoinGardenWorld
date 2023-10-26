@@ -16,11 +16,15 @@
             <div class="align-self-center" style="width: 100%">
                 <p class="mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
 
-                    @AuthorizedHttpClientToTest.BaseAddress - Connection is Authorized! 
-                    <br />
                     <a href="@_mobileSiteApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
-                        @_mobileSiteApiAuthorizedResponse
+                        
+                        @AuthorizedHttpClientToTest.BaseAddress - Connection is Authorized!
                     </a>
+                    <br />
+
+                    <code>
+                        @_mobileSiteApiAuthorizedResponse
+                    </code>
                 </p>
             </div>
 
@@ -41,11 +45,14 @@
             <div class="align-self-center" style="width: 100%">
                 <p class="mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
 
-                    @HttpClientToTest.BaseAddress - Connection is established but not Authorized!
-                    <br />
                     <a href="@_mobileSiteApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
-                        Status Code: @_mobileSiteApiAuthorizedResponse
+                        @HttpClientToTest.BaseAddress - Connection is established but not Authorized!                        
                     </a>
+                    <br />
+
+                    <code>
+                        Status Code: @_mobileSiteApiAuthorizedResponse
+                    </code>
                 </p>
             </div>
 
@@ -59,7 +66,7 @@ else
 
 
 
-    <div class="alert alert-dismissible border alert-warning shadow-bg shadow-bg-s">
+    <div class="alert alert-dismissible border alert-danger shadow-bg shadow-bg-s">
         @if (ApiName != null)
         {
             <h4 class="alert-heading">
@@ -70,11 +77,14 @@ else
         <div class="align-self-center" style="width: 100%">
             <p class="mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
 
-                @HttpClientToTest.BaseAddress - Connection error!
-                <br>
                 <a href="@_mobileSiteApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
-                    Status Code:  @_mobileSiteApiResponse
+                    @HttpClientToTest.BaseAddress - Connection error!
+
                 </a>
+                <br>
+                <code>
+                    Status Code:  @_mobileSiteApiResponse
+                </code>
             </p>
         </div>
 
