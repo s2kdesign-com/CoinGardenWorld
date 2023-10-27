@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "identityapp1": {
+      "connectionInfo": "App registration: Localhost-CoinGarden-GardenBotMessaging-Api, Tenant: CoinGarden (coingardenworld.onmicrosoft.com - AAD B2C)",
+      "type": "identityapp.default"
+    }
+  }
+}

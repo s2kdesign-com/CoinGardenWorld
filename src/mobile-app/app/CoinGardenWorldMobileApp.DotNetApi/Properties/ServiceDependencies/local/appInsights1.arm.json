@@ -36,7 +36,7 @@
     },
     {
       "type": "Microsoft.Resources/deployments",
-      "name": "[concat(parameters('resourceGroupName'), 'Deployment', uniqueString(concat('coingardenworld-app-insights', subscription().subscriptionId)))]",
+      "name": "[concat(parameters('resourceGroupName'), 'Deployment', uniqueString(concat('coingardenworld-app-insights-localhost', subscription().subscriptionId)))]",
       "resourceGroup": "[parameters('resourceGroupName')]",
       "apiVersion": "2019-10-01",
       "dependsOn": [
@@ -49,7 +49,7 @@
           "contentVersion": "1.0.0.0",
           "resources": [
             {
-              "name": "coingardenworld-app-insights",
+              "name": "coingardenworld-app-insights-localhost",
               "type": "microsoft.insights/components",
               "location": "[parameters('resourceLocation')]",
               "kind": "web",

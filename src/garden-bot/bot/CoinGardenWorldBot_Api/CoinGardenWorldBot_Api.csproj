@@ -7,6 +7,7 @@
 	  <Version>1.0.0.11</Version> 
 	  <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 	  <DockerfileContext>..\..\..\..</DockerfileContext>
+	  <ApplicationInsightsResourceId>/subscriptions/92f44b9a-a964-47c7-8f6c-a0e03b8dc239/resourceGroups/coingarden/providers/microsoft.insights/components/coingardenworld-app-insights-localhost</ApplicationInsightsResourceId>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="**/*.blu;**/*.dialog;**/*.lg;**/*.lu;**/*.model;**/*.onnx;**/*.qna;**/*.txt" Exclude="$(BaseOutputPath)/**;$(BaseIntermediateOutputPath)/**;wwwroot/**">
@@ -14,15 +15,17 @@
     </Content> 
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.10" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="7.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="7.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
     <PackageReference Include="Microsoft.Bot.Builder.AI.Luis" Version="4.18.1" />
     <PackageReference Include="Microsoft.Bot.Builder.AI.QnA" Version="4.18.1" />
     <PackageReference Include="Microsoft.Bot.Builder.Dialogs.Adaptive.Runtime" Version="4.18.1" />
     <PackageReference Include="Microsoft.Bot.Components.HelpAndCancel" Version="1.3.0" />
     <PackageReference Include="Microsoft.Bot.Components.Welcome" Version="1.3.0" />
-    <PackageReference Include="Microsoft.Identity.Web" Version="2.13.3" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="2.13.4" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="2.13.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
   </ItemGroup>
 </Project>

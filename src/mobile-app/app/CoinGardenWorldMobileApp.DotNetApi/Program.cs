@@ -193,7 +193,7 @@ builder.Services.AddHealthChecks()
     .AddSignalRHub(notificationHubUrl, name: notificationHubUrl, tags: healthTagsSignalR)
 #if DEBUG
     // TODO: Signalr hub is authenticated so the check is failing 
-    .AddSignalRHub(chatHubUrl, name: chatHubUrl, tags: healthTagsSignalR)
+  //  .AddSignalRHub(chatHubUrl, name: chatHubUrl, tags: healthTagsSignalR)
 #endif
     ;
 

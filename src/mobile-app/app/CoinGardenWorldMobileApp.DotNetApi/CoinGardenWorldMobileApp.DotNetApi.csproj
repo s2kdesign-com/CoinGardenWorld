@@ -9,7 +9,7 @@
     <DockerfileContext>..\..\..\..</DockerfileContext>
 	  <Version>1.0.0.10</Version>
   <GenerateDocumentationFile>true</GenerateDocumentationFile>
-  <ApplicationInsightsResourceId>/subscriptions/92f44b9a-a964-47c7-8f6c-a0e03b8dc239/resourceGroups/coingarden/providers/microsoft.insights/components/coingardenworld-app-insights</ApplicationInsightsResourceId>
+  <ApplicationInsightsResourceId>/subscriptions/92f44b9a-a964-47c7-8f6c-a0e03b8dc239/resourceGroups/coingarden/providers/microsoft.insights/components/coingardenworld-app-insights-localhost</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>
