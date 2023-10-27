@@ -6,11 +6,11 @@ using CoinGardenWorld.HttpClientsExtensions;
 using CoinGardenWorld.HttpClientsExtensions.Configurations;
 using CoinGardenWorld.HttpClientsExtensions.Extensions;
 using CoinGardenWorld.HttpClientsExtensions.MobileApiClients;
+using CoinGardenWorld.SignalRClientsExtensions.Configurations;
+using CoinGardenWorld.SignalRClientsExtensions.Extensions;
 using CoinGardenWorldMobileApp.Maui.Authorization;
 using CoinGardenWorldMobileApp.MobileAppTheme.Authorization;
 using CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage;
-using CoinGardenWorldMobileApp.MobileAppTheme.SignalR;
-using CoinGardenWorldMobileApp.MobileAppTheme.SignalR.HubClients;
 using CoinGardenWorldMobileApp.Models;
 using CoinGardenWorldMobileApp.Models.ViewModels;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -132,9 +132,9 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
 
             #endregion
 
-            // Add SignalR Hubs
-            services.AddScoped<IClientHub<ChatHub>, ChatHub>();
-            services.AddScoped<IClientHub<NotificationsHub>, NotificationsHub>();
+
+            // CoinGardenWorld.SignalRClientsExtensions
+            services.AddSignalRClientsExtensions();
 
             return services;
         }

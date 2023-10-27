@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoinGardenWorldMobileApp.MobileAppTheme.SignalR
+namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
 {
-    public interface IClientHub<T> : IAsyncDisposable where T : ClientHub<T>
+    public interface IClientHub : IAsyncDisposable 
     {
         bool HubIsAuthorized
         {

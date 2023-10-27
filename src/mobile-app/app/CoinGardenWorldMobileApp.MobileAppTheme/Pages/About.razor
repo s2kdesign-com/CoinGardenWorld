@@ -6,8 +6,8 @@
 
 @inject IStringLocalizer<TopAccountsForTheMonth> LocalizerTopAcoounts
 
-@inject IClientHub<ChatHub> chatHub
-@inject IClientHub<NotificationsHub> notificationsHub
+@inject ChatHub chatHub
+@inject NotificationsHub notificationsHub
 
 @inject VersionHttpClient VersionHttpClient
 @inject VersionAuthorizedHttpClient VersionAuthorizedHttpClient
@@ -185,6 +185,25 @@
 
     private string _apiSwaggerUrl = "#";
 
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            chatHub.NotifyStateChanged += () =>
+            {
+                InvokeAsync(StateHasChanged);
+            };
+
+            notificationsHub.NotifyStateChanged += () =>
+            {
+                InvokeAsync(StateHasChanged);
+            };
+            
+        }
+
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
     protected override async Task OnInitializedAsync()
     {
 
@@ -203,18 +222,9 @@
 
         }
 
-        chatHub.NotifyStateChanged += () =>
-        {
-            InvokeAsync(StateHasChanged);
-        };
-
-        notificationsHub.NotifyStateChanged += () =>
-        {
-            InvokeAsync(StateHasChanged);
-        };
         _apiSwaggerUrl = VersionAuthorizedHttpClient.BaseAddress + "/swagger/index.html";
         // Test Mobile API without Authorization
-        var apiVersionRequest = await VersionHttpClient.GetAsync("/api/version");
+        var apiVersionRequest = await VersionHttpClient.GetAsync("api/version");
         if (apiVersionRequest.IsSuccessStatusCode)
         {
             _apiIsAvailable = true;
@@ -223,7 +233,7 @@
         _apiResponse = await apiVersionRequest.Content.ReadAsStringAsync();
 
         // Test Mobile API with Authorization
-        var authorizedResponse = await VersionAuthorizedHttpClient.GetAsync("/api/version/GetAuthorized");
+        var authorizedResponse = await VersionAuthorizedHttpClient.GetAsync("api/version/GetAuthorized");
 
         if (authorizedResponse.IsSuccessStatusCode)
         {

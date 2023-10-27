@@ -6,4 +6,18 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="SignalR\HubClients\NotificationsHub.cs~RF1017e82a.TMP" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.13" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.13" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\mobile-app\app\CoinGardenWorldMobileApp.Models\CoinGardenWorldMobileApp.Models.csproj" />
+	</ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 ﻿
 
-@inject IClientHub<ChatHub> chatHub
+@inject ChatHub chatHub
 
 <span class="menu-divider mt-4">
     @((MarkupString)Localization.Components.Menus.SidebarMenuMessages.MESSAGES)</span>
@@ -40,6 +40,23 @@
     private string? userInput;
     private string? messageInput;
 
+    protected override Task OnInitializedAsync()
+    {
+        
+
+        if (chatHub.HubConnection != null)
+        {
+            chatHub.HubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+            {
+
+                var encodedMsg = $"{user}: {message}";
+                messages.Add(encodedMsg);
+                StateHasChanged();
+            });
+        }
+
+        return base.OnInitializedAsync();
+    }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         // We need to wait for the base because the hub will be null
@@ -48,21 +65,11 @@
 
         if (firstRender)
         {
-            if (chatHub.HubConnection != null)
+           
+            chatHub.NotifyStateChanged += () =>
             {
-                chatHub.NotifyStateChanged += () =>
-                {
-                    InvokeAsync(StateHasChanged);
-                };
-
-                chatHub.HubConnection.On<string, string>("ReceiveMessage", (user, message) =>
-                 {
-
-                     var encodedMsg = $"{user}: {message}";
-                     messages.Add(encodedMsg);
-                     StateHasChanged();
-                 });
-            }
+                InvokeAsync(StateHasChanged);
+            };
         }
      }
     // private async Task Send()

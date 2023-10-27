@@ -7,12 +7,6 @@
 	  <Version>1.0.0.11</Version>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Localization\Pages\Walkthrough.resx~RF55458f3.TMP" />
-    <None Remove="Pages\About.razor~RF1e64b84.TMP" />
-    <None Remove="SignalR\HubClients\ChatHub.cs~RF1a7e9aa.TMP" />
-  </ItemGroup>
-
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 	</ItemGroup>
@@ -22,7 +16,6 @@
 	  <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.0-rc.2.23480.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Forms" Version="8.0.0-rc.2.23480.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-rc.2.23480.2" />
-		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.0-rc.2.23480.2" />
 	  <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="8.0.0-rc.2.23480.2" />
 	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0-rc.2.23480.2" />
 	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.0-rc.2.23480.2" />
@@ -34,6 +27,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\shared\front-end\CoinGardenWorld.HttpClientsExtensions\CoinGardenWorld.HttpClientsExtensions.csproj" />
+	  <ProjectReference Include="..\..\..\shared\front-end\CoinGardenWorld.SignalRClientsExtensions\CoinGardenWorld.SignalRClientsExtensions.csproj" />
 	  <ProjectReference Include="..\CoinGardenWorldMobileApp.Models\CoinGardenWorldMobileApp.Models.csproj" />
 	</ItemGroup>
 	<ItemGroup>
