@@ -141,16 +141,9 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (await AccountsHttpClient.UserIsAuthenticated())
-        {
-            // TODO: Validate user role to list all accounts! 
-            var accounts = await AccountsHttpClient.ListAsync();
-
-            foreach (var accountDto in accounts)
-            {
-                Console.WriteLine(accountDto);
-            }
-        }
+        
+        // TODO: Validate user role to list all accounts! 
+        var accounts = await AccountsHttpClient.ListAsync();
     }
     protected override void OnInitialized()
     {

@@ -28,6 +28,14 @@ builder.Services.AddHealthChecks()
 builder.Services.AddHealthChecksUI().AddInMemoryStorage();
 
 
+#if DEBUG
+builder.Services.Configure<HealthCheckPublisherOptions>(options =>
+{
+    options.Period = TimeSpan.FromSeconds(10);
+});
+#endif
+
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllCors", builder =>
@@ -35,27 +43,43 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
             .AllowAnyHeader());
 });
+
 // Add services to the container.
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
+    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"))
+
+
+    .EnableTokenAcquisitionToCallDownstreamApi(initialScopes: new List<string> {
+     //   $"https://{builder.Configuration.GetSection("AzureAd:Domain").Value}/{builder.Configuration.GetSection("AzureAd:ClientId").Value}/access_as_user",
+     //   $"https://{builder.Configuration.GetSection("AzureAd:Domain").Value}/{builder.Configuration.GetSection("AzureAd:ClientId").Value}/ReadMonitoringSite",
+     //  "offline_access"
+    })
+    // TODO: Do not use this in production, connect azure cosmos db
+    .AddInMemoryTokenCaches();
+
+
+
+#region HttpClients
+
+
+var externalApisSettings = new ExternalApisSettings();
+builder.Configuration.Bind(externalApisSettings);
+// Add CoinGardenWorld.DownstreamApiExtensions  
+var configuredWebsiteUrls = builder.WebHost.GetSetting(WebHostDefaults.ServerUrlsKey)?.Split(";").FirstOrDefault(g => g.StartsWith("https://"));
+builder.Services.AddDownStreamApiExtensions(externalApisSettings, configuredWebsiteUrls ?? "https://status-coingardenworld.azurewebsites.net/", EnvironmentType.ASPNET);
+
+#endregion
+
+
 builder.Services.AddControllersWithViews()
-    .AddMicrosoftIdentityUI();
+.AddMicrosoftIdentityUI();
 
 builder.Services.AddAuthorization(options =>
 {
     // By default, all incoming requests will be authorized according to the default policy
     options.FallbackPolicy = options.DefaultPolicy;
-    
+
 });
-
-builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor()
-    .AddMicrosoftIdentityConsentHandler();
-
-
-
-var externalApisSettings = new ExternalApisSettings();
-builder.Configuration.Bind(externalApisSettings);
 
 builder.Services.Configure<OpenIdConnectOptions>(
     OpenIdConnectDefaults.AuthenticationScheme, options =>
@@ -63,33 +87,32 @@ builder.Services.Configure<OpenIdConnectOptions>(
         options.ResponseType = OpenIdConnectResponseType.Code;
         options.SaveTokens = true;
         options.UseTokenLifetime = true;
-        //  Azure AD V2 endpoint allow you to get a token for only one resource at once, however, you can let the user pre-consent for several resources.
-        //foreach (var externalApi in externalApisSettings.ExternalApis)
+        options.RefreshInterval = TimeSpan.FromMinutes(50);
+        // TODO: Azure AD V2 endpoint allow you to get a token for only one resource at once, however, you can let the user pre-consent for several resources.
+        // https://learn.microsoft.com/en-us/entra/msal/dotnet/acquiring-tokens/user-gets-consent-for-multiple-resources
+
+        // TODO: DONT add the scopes to the user , use EnableTokenAcquisitionToCallDownstreamApi from msal
+        // read more here https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-app-configuration?tabs=aspnetcore#option-2-call-adownstream-web-api-other-than-microsoft-graph
+
+        //foreach (var externalApiScope in externalApisSettings.ExternalApis.FirstOrDefault(c => c.Key == "CGW.Mobile.Api").Value.Api_Scopes)
         //{
-        //    foreach (var valueApiScope in externalApi.Value.Api_Scopes)
-        //    {
-        //        options.Scope.Add(valueApiScope);
-
-        //    }
+        //    options.Scope.Add(externalApiScope);
         //}
-
-        foreach (var externalApiScope in externalApisSettings.ExternalApis.FirstOrDefault(c => c.Key == "CGW.Mobile.Api").Value.Api_Scopes)
-        {
-            options.Scope.Add(externalApiScope);
-        }
+        options.Scope.Add($"https://{builder.Configuration.GetSection("AzureAd:Domain").Value}/{builder.Configuration.GetSection("AzureAd:ClientId").Value}/access_as_user");
+        options.Scope.Add($"https://{builder.Configuration.GetSection("AzureAd:Domain").Value}/{builder.Configuration.GetSection("AzureAd:ClientId").Value}/ReadMonitoringSite");
         options.Scope.Add("offline_access");
-       // options.Scope.Add("openid");
+        //options.Events.OnTokenValidated = async context =>
+        //{
+        //    await context.HttpContext.RequestServices
+        //        .GetRequiredService<MyClaimsTransformation>()
+        //        .TransformAsync(context.Principal!);
+        //};
     });
 
 
-#region HttpClients
-
-
-// Add CoinGardenWorld.HttpClientsExtensions  
-var configuredWebsiteUrls = builder.WebHost.GetSetting(WebHostDefaults.ServerUrlsKey)?.Split(";").FirstOrDefault(g => g.StartsWith("https://"));
-builder.Services.AddMobileApiHttpClients(externalApisSettings, configuredWebsiteUrls ?? "https://status-coingardenworld.azurewebsites.net/", EnvironmentType.ASPNET);
-
-#endregion
+builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor()
+    .AddMicrosoftIdentityConsentHandler();
 
 var app = builder.Build();
 

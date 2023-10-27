@@ -1,4 +1,5 @@
 ﻿@using CoinGardenWorld.HttpClientsExtensions
+@using CoinGardenWorld.DownstreamApiExtensions
 
 
 @if (_mobileSiteApiIsAvailable)
@@ -18,7 +19,7 @@
 
                     <a href="@_mobileSiteApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
                         
-                        @AuthorizedHttpClientToTest.BaseAddress - Connection is Authorized!
+                        AuthorizedHttpClientToTest.BaseAddress - Connection is Authorized!
                     </a>
                     <br />
 
@@ -46,7 +47,7 @@
                 <p class="mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
 
                     <a href="@_mobileSiteApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
-                        @HttpClientToTest.BaseAddress - Connection is established but not Authorized!                        
+                        HttpClientToTest.BaseAddress - Connection is established but not Authorized!                        
                     </a>
                     <br />
 
@@ -78,7 +79,7 @@ else
             <p class="mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
 
                 <a href="@_mobileSiteApiSwaggerUrl" title="Mobile API Swagger" target="_blank">
-                    @HttpClientToTest.BaseAddress - Connection error!
+                    HttpClientToTest.BaseAddress - Connection error!
 
                 </a>
                 <br>
@@ -99,10 +100,8 @@ else
     private string _mobileSiteApiAuthorizedResponse = "Loading";
 
     [Parameter]
-    public IHttpClientBase<string> HttpClientToTest { get; set; }
+    public IDownstreamApiBase<string> DownstreamApiClientToTest { get; set; }
 
-    [Parameter]
-    public IHttpClientBase<string> AuthorizedHttpClientToTest { get; set; }
 
     [Parameter]
     public string? ApiName { get; set; }
@@ -122,44 +121,56 @@ else
     {
         if (firstRender)
         {
-            await TestAuthenticatedAzureFunctionApi();
+            try
+            {
+
+                //_mobileSiteApiSwaggerUrl = HttpClientToTest.BaseAddress + SwaggerSuffix;
+
+                var apiVersionRequest = await DownstreamApiClientToTest.GetAsync(VersionEndpoint);
+                if (apiVersionRequest.IsSuccessStatusCode)
+                {
+                    _mobileSiteApiIsAvailable = true;
+                    _mobileSiteApiResponse = await apiVersionRequest.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    _mobileSiteApiIsAvailable = false;
+                    _mobileSiteApiResponse = "" + apiVersionRequest.StatusCode + " " + await apiVersionRequest.Content.ReadAsStringAsync();
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            try
+            {
+                // Test Azure Function API with Authorization
+                var authorizedResponse = await DownstreamApiClientToTest.GetAsync(AuthenticationEndpoint);
+
+                if (authorizedResponse.IsSuccessStatusCode)
+                {
+                    _mobileSiteApiIsAvailable = true;
+                    _mobileSiteApiAuthenticated = true;
+                    _mobileSiteApiAuthorizedResponse = await authorizedResponse.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    _mobileSiteApiAuthenticated = false;
+                    _mobileSiteApiAuthorizedResponse = "" + authorizedResponse.StatusCode + " " + await authorizedResponse.Content.ReadAsStringAsync();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            StateHasChanged();
         }
     }
 
-    private async Task TestAuthenticatedAzureFunctionApi()
-    {
-        // Test Azure Function API without Authorization       
-
-        _mobileSiteApiSwaggerUrl = HttpClientToTest.BaseAddress + SwaggerSuffix;
-
-        var apiVersionRequest = await HttpClientToTest.GetAsync(VersionEndpoint);
-        if (apiVersionRequest.IsSuccessStatusCode)
-        {
-            _mobileSiteApiIsAvailable = true;
-            _mobileSiteApiResponse = await apiVersionRequest.Content.ReadAsStringAsync();
-        }
-        else
-        {
-            _mobileSiteApiIsAvailable = false;
-            _mobileSiteApiResponse = "" + apiVersionRequest.StatusCode + " " + await apiVersionRequest.Content.ReadAsStringAsync();
-            
-        }
-
-        // Test Azure Function API with Authorization
-        var authorizedResponse = await AuthorizedHttpClientToTest.GetAsync(AuthenticationEndpoint);
-
-        if (authorizedResponse.IsSuccessStatusCode)
-        {
-            _mobileSiteApiIsAvailable = true;
-            _mobileSiteApiAuthenticated = true;
-            _mobileSiteApiAuthorizedResponse = await authorizedResponse.Content.ReadAsStringAsync();
-        }
-        else
-        {
-            _mobileSiteApiAuthenticated = false;
-            _mobileSiteApiAuthorizedResponse = "" + authorizedResponse.StatusCode + " " + await authorizedResponse.Content.ReadAsStringAsync();
-        }
-
-        StateHasChanged();
-    }
 }

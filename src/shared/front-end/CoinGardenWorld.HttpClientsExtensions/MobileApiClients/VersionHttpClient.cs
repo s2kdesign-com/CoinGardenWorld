@@ -7,7 +7,8 @@ namespace CoinGardenWorld.HttpClientsExtensions.MobileApiClients
     public class VersionHttpClient : HttpClientBase<VersionHttpClient, string>
     {
         public override string ApiKey => "CGW.Mobile.Api";
-        public VersionHttpClient(ILogger<VersionHttpClient> logger, IHttpClientFactory httpClientFactory, IConfiguration configuration, AuthenticationStateProvider authStateProvider) : base(logger, httpClientFactory, configuration, authStateProvider)
+
+        public VersionHttpClient(ILogger<VersionHttpClient> logger, IHttpClientFactory httpClientFactory) : base(logger, httpClientFactory)
         {
         }
     }

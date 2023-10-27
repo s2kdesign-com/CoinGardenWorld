@@ -28,5 +28,6 @@
 
 	<PropertyGroup>
 		<DefineConstants>BLAZOR</DefineConstants>
+		
 	</PropertyGroup>
 </Project>

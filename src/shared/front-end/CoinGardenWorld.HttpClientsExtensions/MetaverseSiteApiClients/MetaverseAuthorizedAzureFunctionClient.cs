@@ -9,7 +9,8 @@ namespace CoinGardenWorld.HttpClientsExtensions.MetaverseSiteApiClients
         public override string ApiKey => "CGW.Metaverse.Api";
         public override bool HttpClientIsAuthorized => true;
 
-        public MetaverseAuthorizedAzureFunctionClient(ILogger<MetaverseAuthorizedAzureFunctionClient> logger, IHttpClientFactory httpClientFactory, IConfiguration configuration, AuthenticationStateProvider authStateProvider) : base(logger, httpClientFactory, configuration, authStateProvider)
+
+        public MetaverseAuthorizedAzureFunctionClient(ILogger<MetaverseAuthorizedAzureFunctionClient> logger, IHttpClientFactory httpClientFactory) : base(logger, httpClientFactory)
         {
         }
     }

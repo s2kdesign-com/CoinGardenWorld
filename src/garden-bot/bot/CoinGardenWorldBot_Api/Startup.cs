@@ -38,10 +38,10 @@ namespace CoinGardenWorldBot_Api
                 //.AddAzureQueueStorage(azureStorageConfiguration.Queue, tags: healthTagsAzureStorage, name: "Azure Queue Storage")
                 //.AddAzureFileShare(azureStorageConfiguration.Files, tags: healthTagsAzureStorage, name: "Azure File Storage")
                 ;
-
+            var azureAdConfig = Configuration.GetSection("AzureAd");
             // Add services to the container.
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
+                .AddMicrosoftIdentityWebApi(azureAdConfig);
 
             services.AddControllers().AddNewtonsoftJson(options => {
                 options.SerializerSettings.MaxDepth = HttpHelper.BotMessageSerializerSettings.MaxDepth;
@@ -73,7 +73,7 @@ namespace CoinGardenWorldBot_Api
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

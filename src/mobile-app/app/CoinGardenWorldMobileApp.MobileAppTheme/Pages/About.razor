@@ -37,14 +37,14 @@
                 @if (_apiIsAvailable)
                 {
                     <a href="@_apiSwaggerUrl" target="_blank" class="list-group-item">
-                        <div>API Version - @_apiVersion</div>
+                        <div>API Version - @_apiResponse</div>
                         <span class="badge rounded-xl bg-green-dark">OK</span>
                     </a>
                 }
                 else
                 {
                     <a href="@_apiSwaggerUrl" target="_blank" class="list-group-item">
-                        <div>API Version - @_apiVersion</div>
+                        <div>API Version - Connection is Broken</div>
                         <span class="badge rounded-xl bg-red-dark">ERROR</span>
                     </a>
                 }
@@ -89,27 +89,42 @@
         </CardAlert>
 
     }
-
-    @if (_isApiAuthenticated)
+    @if (_apiIsAvailable)
     {
-        <CardAlert Color="green" Icon="bi-check-circle-fill">
-            <Content>
-                Mobile API connection is Authorized!
-                <br>
-            </Content>
-        </CardAlert>
+        @if (_isApiAuthenticated)
+        {
+            <CardAlert Color
+            ="green" Icon
+            ="bi-check-circle-fill">
+                <Content>
+                    Mobile API connection is Authorized!
+                    <br>
+                </Content>
+            </CardAlert>
+        }
+        else
+        {
+            <CardAlert Color="yellow" Icon="bi-exclamation-triangle">
+                <Content>
+                    Mobile API connection is not Authorized!
+                    <br>
+                </Content>
+            </CardAlert>
+
+        }
+
     }
     else
     {
-
-        <CardAlert Color="yellow" Icon="bi-exclamation-triangle">
+        // _apiIsAvailable FALSE
+        <CardAlert Color="red" Icon="bi-exclamation-triangle">
             <Content>
-                Mobile API connection is not Authorized!
+                Mobile API connection is broken! Status: @_apiResponse
                 <br>
             </Content>
         </CardAlert>
-
     }
+
 
     @if (chatHub.IsHubConnected)
     {
@@ -162,7 +177,7 @@
 @code {
     private DateTime dt = DateTime.Now;
 
-    private string _apiVersion = "API is not available.";
+    private string _apiResponse = "API is not available.";
     private bool _apiIsAvailable = false;
     private bool _isApiAuthenticated = false;
     private bool _isUserAuthenticated = false;
@@ -197,14 +212,15 @@
         {
             InvokeAsync(StateHasChanged);
         };
-        _apiSwaggerUrl = VersionAuthorizedHttpClient.ApiUrl.Split("api")[0] + "swagger/index.html";
+        _apiSwaggerUrl = VersionAuthorizedHttpClient.BaseAddress + "/swagger/index.html";
         // Test Mobile API without Authorization
         var apiVersionRequest = await VersionHttpClient.GetAsync("/api/version");
         if (apiVersionRequest.IsSuccessStatusCode)
         {
             _apiIsAvailable = true;
-            _apiVersion = await apiVersionRequest.Content.ReadAsStringAsync();
         }
+        
+        _apiResponse = await apiVersionRequest.Content.ReadAsStringAsync();
 
         // Test Mobile API with Authorization
         var authorizedResponse = await VersionAuthorizedHttpClient.GetAsync("/api/version/GetAuthorized");

@@ -1,28 +1,13 @@
 ﻿@page "/InternalTesting"
 
-@attribute [Authorize]
-@using CoinGardenWorld.HttpClientsExtensions.MobileApiClients
-@using CoinGardenWorld.HttpClientsExtensions
 @using CoinGardenWorld.HttpClientsExtensions.Infrastructure
-@using CoinGardenWorld.HttpClientsExtensions.MetaverseSiteApiClients
-@using CoinGardenWorld.HttpClientsExtensions.MobileApiSiteClients
+@using CoinGardenWorld.DownstreamApiExtensions
 
-@inject VersionHttpClient MobileApiVersionHttpClient
-@inject VersionAuthorizedHttpClient MobileApiAuthorizedHttpClient
-
-@inject MobileApiSiteAuthorizedAzureFunctionClient MobileApiSiteTestAuthorizedHttpClient
-@inject MobileApiSiteAzureFunctionClient MobileApiSiteAzureFunctionClient
-
-
-@inject MetaverseAuthorizedAzureFunctionClient MetaverseApiSiteTestAuthorizedHttpClient
-@inject MetaverseAzureFunctionClient MetaverseApiSiteAzureFunctionClient
-
-
-@inject GardenBotAuthorizedAzureFunctionClient GardenBotMessageApiTestAuthorizedHttpClient
-@inject GardenBotAzureFunctionClient GardenBotMessageApiAzureFunctionClient
-
+@inject DownstreamApiExtensions.MobileApiClients.VersionDownstreamApi MobileApiVersionDownstreamClient
+@inject DownstreamApiExtensions.GardenBotMessageApiClients.VersionDownstreamApi GardenBotDownstreamClient
 
 @inject BlazorServerTokenProvider TokenProvider
+
 
 <PageTitle>Internal Testing</PageTitle>
 
@@ -86,15 +71,17 @@ else
 
 <h3> API Tests</h3>
 
-<ExternalApiTest HttpClientToTest="MobileApiVersionHttpClient" AuthorizedHttpClientToTest="MobileApiAuthorizedHttpClient" ApiName="Mobile API" SwaggerSuffix="swagger/index.html" AuthenticationEndpoint="api/version/GetAuthorized" VersionEndpoint="api/version" />
+@* <ExternalApiTest HttpClientToTest="MobileApiVersionHttpClient" AuthorizedHttpClientToTest="MobileApiAuthorizedHttpClient" ApiName="Mobile API" SwaggerSuffix="swagger/index.html" AuthenticationEndpoint="api/version/GetAuthorized" VersionEndpoint="api/version" />
 
 <ExternalApiTest HttpClientToTest="GardenBotMessageApiAzureFunctionClient" AuthorizedHttpClientToTest="GardenBotMessageApiTestAuthorizedHttpClient" ApiName="GardenBOT Messaging API" AuthenticationEndpoint="version/GetAuthorized" VersionEndpoint="version" />
 
 <ExternalApiTest HttpClientToTest="MobileApiSiteAzureFunctionClient" AuthorizedHttpClientToTest="MobileApiSiteTestAuthorizedHttpClient" ApiName="Mobile Site API" />
 
 <ExternalApiTest HttpClientToTest="MetaverseApiSiteAzureFunctionClient" AuthorizedHttpClientToTest="MetaverseApiSiteTestAuthorizedHttpClient" ApiName="Metaverse Site API" />
+ *@
 
-
+<ExternalApiTest DownstreamApiClientToTest="MobileApiVersionDownstreamClient" ApiName="Mobile API" AuthenticationEndpoint="api/version/GetAuthorized" VersionEndpoint="api/version" />
+<ExternalApiTest DownstreamApiClientToTest="GardenBotDownstreamClient" ApiName="GardenBOT Messaging API" AuthenticationEndpoint="version/GetAuthorized" VersionEndpoint="version" />
 
 
 <h3> SignalR Tests </h3>

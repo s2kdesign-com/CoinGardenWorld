@@ -9,7 +9,8 @@ namespace CoinGardenWorld.HttpClientsExtensions.MobileApiSiteClients
         public override string ApiKey => "CGW.MobileSite.Api";
         public override bool HttpClientIsAuthorized => true;
 
-        public MobileApiSiteAuthorizedAzureFunctionClient(ILogger<MobileApiSiteAuthorizedAzureFunctionClient> logger, IHttpClientFactory httpClientFactory, IConfiguration configuration, AuthenticationStateProvider authStateProvider) : base(logger, httpClientFactory, configuration, authStateProvider)
+
+        public MobileApiSiteAuthorizedAzureFunctionClient(ILogger<MobileApiSiteAuthorizedAzureFunctionClient> logger, IHttpClientFactory httpClientFactory) : base(logger, httpClientFactory)
         {
         }
     }

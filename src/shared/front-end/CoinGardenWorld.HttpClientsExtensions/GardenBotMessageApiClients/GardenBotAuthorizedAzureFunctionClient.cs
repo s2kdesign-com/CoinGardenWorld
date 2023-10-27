@@ -9,7 +9,7 @@ namespace CoinGardenWorld.HttpClientsExtensions.MetaverseSiteApiClients
         public override string ApiKey => "CGW.GardenBot.MessagingApi";
         public override bool HttpClientIsAuthorized => true;
 
-        public GardenBotAuthorizedAzureFunctionClient(ILogger<GardenBotAuthorizedAzureFunctionClient> logger, IHttpClientFactory httpClientFactory, IConfiguration configuration, AuthenticationStateProvider authStateProvider) : base(logger, httpClientFactory, configuration, authStateProvider)
+        public GardenBotAuthorizedAzureFunctionClient(ILogger<GardenBotAuthorizedAzureFunctionClient> logger, IHttpClientFactory httpClientFactory) : base(logger, httpClientFactory)
         {
         }
     }

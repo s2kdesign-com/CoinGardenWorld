@@ -1,16 +1,10 @@
-﻿namespace CoinGardenWorld.HttpClientsExtensions
+﻿
+
+namespace CoinGardenWorld.HttpClientsExtensions
 {
-    public interface IHttpClientBase<M> 
+    public interface IHttpClientBase<M>
     {
-        HttpClient HttpClient {  get; }
-
-        Task<bool> UserIsAuthenticated();
-
-        string BaseAddress
-        {
-            get;
-        }
-        string ApiUrl
+        Uri? BaseAddress
         {
             get;
         }
