@@ -43,7 +43,7 @@ namespace CoinGardenWorld.HttpClientsExtensions.Extensions
             }
 
 
-            services.AddSingleton<BlazorServerTokenProvider>();
+            services.AddSingleton<BlazorServerTokens>();
 
 
             services.AddScoped<DownstreamApiExtensions.GardenBotMessageApiClients.VersionDownstreamApi>();

@@ -22,7 +22,7 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
         // This Values are used to trigger NotifyStateChanged?.Invoke() event 
         private bool _hubConnected = false;
 
-        public bool HubConnected
+        private bool HubConnected
         {
             get => _hubConnected;
             set

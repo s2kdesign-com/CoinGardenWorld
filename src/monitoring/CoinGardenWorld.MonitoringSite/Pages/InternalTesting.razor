@@ -2,11 +2,16 @@
 
 @using CoinGardenWorld.HttpClientsExtensions.Infrastructure
 @using CoinGardenWorld.DownstreamApiExtensions
+@using CoinGardenWorld.SignalRClientsExtensions.SignalR.HubClients
 
 @inject DownstreamApiExtensions.MobileApiClients.VersionDownstreamApi MobileApiVersionDownstreamClient
 @inject DownstreamApiExtensions.GardenBotMessageApiClients.VersionDownstreamApi GardenBotDownstreamClient
 
-@inject BlazorServerTokenProvider TokenProvider
+
+@inject ChatHub chatHub
+@inject NotificationsHub notificationsHub
+
+@inject BlazorServerTokens TokenProvider
 
 
 <PageTitle>Internal Testing</PageTitle>
@@ -86,6 +91,44 @@ else
 
 <h3> SignalR Tests </h3>
 
+@if (chatHub.IsHubConnected)
+{
+
+    <CardAlert Color="success" Icon="bi-exclamation-triangle">
+        <Content>
+            ChatHub is Authorized and Connected
+        </Content>
+    </CardAlert>
+}
+else
+{
+    <CardAlert Color="error" Icon="bi-exclamation-triangle">
+        <Content>
+            ChatHub is not Authorized
+        </Content>
+    </CardAlert>
+    
+}
+
+@if (notificationsHub.IsHubConnected)
+{
+
+    <CardAlert Color="success" Icon="bi-exclamation-triangle">
+        <Content>
+            NotificationsHub is Authorized and Connected
+        </Content>
+    </CardAlert>
+}
+else
+{
+    <CardAlert Color="error" Icon="bi-exclamation-triangle">
+        <Content>
+            NotificationsHub is not Authorized
+        </Content>
+    </CardAlert>
+    
+}
+
 
 @code {
 
@@ -107,6 +150,24 @@ else
             _userName = user.Identity?.Name;
         }
     }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+    // We need to wait for the base because the hub will be null
+        await base.OnAfterRenderAsync(firstRender);
 
+
+        if (firstRender)
+        {
+           
+            chatHub.NotifyStateChanged += () =>
+            {
+                InvokeAsync(StateHasChanged);
+            };
+            notificationsHub.NotifyStateChanged += () =>
+            {
+                InvokeAsync(StateHasChanged);
+            };
+        }
+    }
 
 }

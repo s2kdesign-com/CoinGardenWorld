@@ -15,7 +15,7 @@ namespace CoinGardenWorld.HttpClientsExtensions.DelegatingHandlers
     public class BlazorServerAuthorizationMessageHandler : DelegatingHandler, IDisposable
     {
         private readonly ILogger<BlazorServerAuthorizationMessageHandler> _logger;
-        private readonly BlazorServerTokenProvider _tokenProvider;
+        private readonly BlazorServerTokens _tokenProvider;
         private readonly AuthenticationStateProvider _authStateProvider;
         private readonly NavigationManager _navigation;
         private readonly AuthenticationStateChangedHandler _authenticationStateChangedHandler;
@@ -25,7 +25,7 @@ namespace CoinGardenWorld.HttpClientsExtensions.DelegatingHandlers
         private Uri[] _authorizedUris;
         private AccessToken? _lastToken;
 
-        public BlazorServerAuthorizationMessageHandler(ILogger<BlazorServerAuthorizationMessageHandler> logger,BlazorServerTokenProvider tokenProvider, AuthenticationStateProvider authStateProvider, NavigationManager navigation)
+        public BlazorServerAuthorizationMessageHandler(ILogger<BlazorServerAuthorizationMessageHandler> logger, BlazorServerTokens tokenProvider, AuthenticationStateProvider authStateProvider, NavigationManager navigation)
         {
             _logger = logger;
                 _tokenProvider = tokenProvider;

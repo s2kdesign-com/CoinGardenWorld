@@ -134,7 +134,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
 
 
             // CoinGardenWorld.SignalRClientsExtensions
-            services.AddSignalRClientsExtensions();
+            services.AddSignalRClientsExtensions(environmentType);
 
             return services;
         }

@@ -20,6 +20,7 @@ using Microsoft.Identity.Web.UI;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using CoinGardenWorld.SignalRClientsExtensions.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -109,6 +110,8 @@ builder.Services.Configure<OpenIdConnectOptions>(
         //};
     });
 
+// CoinGardenWorld.SignalRClientsExtensions
+builder.Services.AddSignalRClientsExtensions(EnvironmentType.ASPNET);
 
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor()
@@ -156,8 +159,10 @@ app.UseEndpoints(endpoints =>
         config.UIPath = "/status";
         config.AddCustomStylesheet(Path.Join("wwwroot", "css", "health-check.css"));
 
-
-    });
+    })
+    // Allow HealthCheck UI to be visible by everyone
+    .AllowAnonymous();
 });
+
 
 app.Run();

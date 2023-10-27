@@ -29,5 +29,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\shared\back-end\CoinGardenWorld.DownstreamApiExtensions\CoinGardenWorld.DownstreamApiExtensions.csproj" />
+    <ProjectReference Include="..\..\shared\front-end\CoinGardenWorld.SignalRClientsExtensions\CoinGardenWorld.SignalRClientsExtensions.csproj" />
   </ItemGroup>
 </Project>
