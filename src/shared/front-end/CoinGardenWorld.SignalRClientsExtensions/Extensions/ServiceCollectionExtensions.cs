@@ -1,6 +1,5 @@
 ﻿
 using CoinGardenWorld.SignalRClientsExtensions.Configurations;
-using CoinGardenWorld.SignalRClientsExtensions.Providers;
 using CoinGardenWorld.SignalRClientsExtensions.SignalR;
 using CoinGardenWorld.SignalRClientsExtensions.SignalR.HubClients;
 using CoinGardenWorldMobileApp.Models;
@@ -17,12 +16,6 @@ namespace CoinGardenWorld.SignalRClientsExtensions.Extensions
 
             services.AddOptions<SignalRClientsSettings>("SignalRClients");
 
-            if(environmentType == EnvironmentType.ASPNET)
-            {
-                // IAccessTokenProvider is not registered in blazor server so we can change it to 
-                  services.AddScoped<IAccessTokenProvider, BlazorServerTokenProvider>();
-
-            }
             // Add SignalR Hubs
             services.AddScoped<ChatHub>();
             services.AddScoped<NotificationsHub>();

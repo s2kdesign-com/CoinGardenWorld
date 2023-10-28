@@ -21,6 +21,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using CoinGardenWorld.SignalRClientsExtensions.Extensions;
+using CoinGardenWorld.DownstreamSignalRExtensions.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -111,7 +112,7 @@ builder.Services.Configure<OpenIdConnectOptions>(
     });
 
 // CoinGardenWorld.SignalRClientsExtensions
-builder.Services.AddSignalRClientsExtensions(EnvironmentType.ASPNET);
+builder.Services.AddDownstreamSignalRClientsExtensions();
 
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor()

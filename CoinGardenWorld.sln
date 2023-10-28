@@ -163,6 +163,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorldBot_Api", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.DownstreamApiExtensions", "src\shared\back-end\CoinGardenWorld.DownstreamApiExtensions\CoinGardenWorld.DownstreamApiExtensions.csproj", "{D6695725-08D4-471B-B46F-548E6848B898}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.DownstreamSignalRExtensions", "src\shared\back-end\CoinGardenWorld.DownstreamSignalRExtensions\CoinGardenWorld.DownstreamSignalRExtensions.csproj", "{977BC0CC-73EE-42C4-A7A9-29B1BDEF6EBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -299,6 +301,10 @@ Global
 		{D6695725-08D4-471B-B46F-548E6848B898}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6695725-08D4-471B-B46F-548E6848B898}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6695725-08D4-471B-B46F-548E6848B898}.Release|Any CPU.Build.0 = Release|Any CPU
+		{977BC0CC-73EE-42C4-A7A9-29B1BDEF6EBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{977BC0CC-73EE-42C4-A7A9-29B1BDEF6EBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{977BC0CC-73EE-42C4-A7A9-29B1BDEF6EBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{977BC0CC-73EE-42C4-A7A9-29B1BDEF6EBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -356,6 +362,7 @@ Global
 		{62EE1E36-E226-487D-BAE5-36B227D74252} = {8974AD58-BA97-411E-86FC-958DE2F20E8D}
 		{A4B0A476-04C5-4C20-ABA6-5CBD4C20077B} = {62EE1E36-E226-487D-BAE5-36B227D74252}
 		{D6695725-08D4-471B-B46F-548E6848B898} = {E89AAC35-6366-4DCB-8CFD-3BA3B3B8DC65}
+		{977BC0CC-73EE-42C4-A7A9-29B1BDEF6EBE} = {E89AAC35-6366-4DCB-8CFD-3BA3B3B8DC65}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B807007-EA36-4653-A053-8C35C44D6E25}

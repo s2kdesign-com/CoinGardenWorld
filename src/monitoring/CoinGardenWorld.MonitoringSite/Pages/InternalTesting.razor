@@ -2,14 +2,15 @@
 
 @using CoinGardenWorld.HttpClientsExtensions.Infrastructure
 @using CoinGardenWorld.DownstreamApiExtensions
+@using CoinGardenWorld.DownstreamSignalRExtensions.HubClients
 @using CoinGardenWorld.SignalRClientsExtensions.SignalR.HubClients
 
 @inject DownstreamApiExtensions.MobileApiClients.VersionDownstreamApi MobileApiVersionDownstreamClient
 @inject DownstreamApiExtensions.GardenBotMessageApiClients.VersionDownstreamApi GardenBotDownstreamClient
 
 
-@inject ChatHub chatHub
-@inject NotificationsHub notificationsHub
+@inject ChatHubDownstreamClient chatHub
+@inject NotificationsHubDownstreamClient notificationsHub
 
 @inject BlazorServerTokens TokenProvider
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
 {
-    public interface IClientHub : IAsyncDisposable 
+    public interface IClientHub  
     {
         bool HubIsAuthorized
         {
