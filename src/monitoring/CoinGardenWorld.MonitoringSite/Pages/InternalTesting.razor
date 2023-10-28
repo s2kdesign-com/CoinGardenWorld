@@ -15,7 +15,7 @@
 @inject BlazorServerTokens TokenProvider
 
 
-<PageTitle>Internal Testing</PageTitle>
+<PageTitle>Testing</PageTitle>
 
 <h2> Authentication Tests </h2>
 <h3> User Tests</h3>
@@ -39,16 +39,16 @@
             </button>
             <div class="collapse mt-2" id="accessToken">
                 <div class="card card-body">
- 
+
                     <code>
-                            @TokenProvider.AccessToken
+                        @TokenProvider.AccessToken
                     </code>
 
                 </div>
             </div>
             <div class="collapse mt-2" id="refreshToken">
                 <div class="card card-body">
-                    
+
                     <code>
                         @TokenProvider.RefreshToken
                     </code>
@@ -97,7 +97,22 @@ else
 
     <CardAlert Color="success" Icon="bi-exclamation-triangle">
         <Content>
-            ChatHub is Authorized and Connected
+            <p>
+                ChatHub is Authorized and Connected
+            </p>
+            <p>
+                <button class="btn btn-warning">
+                    Disconnect
+                </button>
+                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#chat" aria-expanded="false" aria-controls="collapseExample">
+                    Start Chating
+                </button>
+            </p>
+            <div class="collapse" id="chat">
+                <div class="card card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                </div>
+            </div>
         </Content>
     </CardAlert>
 }
@@ -105,10 +120,15 @@ else
 {
     <CardAlert Color="error" Icon="bi-exclamation-triangle">
         <Content>
-            ChatHub is not Authorized
+            <p>
+                ChatHub is not Authorized
+            </p>
+            <button class="btn btn-secondary">
+                Try Connect
+            </button>
         </Content>
     </CardAlert>
-    
+
 }
 
 @if (notificationsHub.IsHubConnected)
@@ -116,7 +136,22 @@ else
 
     <CardAlert Color="success" Icon="bi-exclamation-triangle">
         <Content>
-            NotificationsHub is Authorized and Connected
+            <p>
+                NotificationsHub is Authorized and Connected
+            </p>
+            <p>
+                <button class="btn btn-warning">
+                    Disconnect
+                </button>
+                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#chat" aria-expanded="false" aria-controls="collapseExample">
+                    Send Notifications
+                </button>
+            </p>
+            <div class="collapse" id="chat">
+                <div class="card card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                </div>
+            </div>
         </Content>
     </CardAlert>
 }
@@ -124,10 +159,15 @@ else
 {
     <CardAlert Color="error" Icon="bi-exclamation-triangle">
         <Content>
-            NotificationsHub is not Authorized
+            <p>
+                NotificationsHub is not Authorized
+            </p>
+            <button class="btn btn-secondary">
+                Try Connect
+            </button>
         </Content>
     </CardAlert>
-    
+
 }
 
 
@@ -153,13 +193,13 @@ else
     }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    // We need to wait for the base because the hub will be null
+        // We need to wait for the base because the hub will be null
         await base.OnAfterRenderAsync(firstRender);
 
 
         if (firstRender)
         {
-           
+
             chatHub.NotifyStateChanged += () =>
             {
                 InvokeAsync(StateHasChanged);

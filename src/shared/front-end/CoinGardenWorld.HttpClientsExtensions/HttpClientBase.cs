@@ -55,19 +55,20 @@ namespace CoinGardenWorld.HttpClientsExtensions
             var modelName = typeof(M).Name;
 
             // TODO: Every generated model from Mapster is ending with Dto, Add, Update, Merge
-            if (!modelName.EndsWith("Dto"))
-                return modelName;
+            var path = "api/";
 
-            if (!modelName.EndsWith("Add"))
-                return modelName;
+            if (modelName.EndsWith("Dto"))
+                path += modelName.Replace("Dto", "");
+            else if (modelName.EndsWith("Add"))
+                path += modelName.Replace("Add", "");
+            else if (modelName.EndsWith("Update"))
+                path += modelName.Replace("Update", "");
+            else if (modelName.EndsWith("Merge"))
+                path += modelName.Replace("Merge", "");
+            else
+                path += modelName;
 
-            if (!modelName.EndsWith("Update"))
-                return modelName;
-
-            if (!modelName.EndsWith("Merge"))
-                return modelName;
-
-            return "api/" + modelName.Replace("Dto", "");
+            return path;
         }
 
         public virtual async Task<List<M>?> ListAsync()
