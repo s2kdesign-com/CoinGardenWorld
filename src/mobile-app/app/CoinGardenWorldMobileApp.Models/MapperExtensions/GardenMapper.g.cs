@@ -87,14 +87,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     Username = p7.Account.Username,
                     DisplayName = p7.Account.DisplayName,
                     ProfileIntroduction = p7.Account.ProfileIntroduction,
-                    ProfilePicure = p7.Account.ProfilePicure,
-                    Id = p7.Account.Id,
-                    CreatedOn = p7.Account.CreatedOn,
-                    UpdatedOn = p7.Account.UpdatedOn
-                },
-                Id = p7.Id,
-                CreatedOn = p7.CreatedOn,
-                UpdatedOn = p7.UpdatedOn
+                    ProfilePicure = p7.Account.ProfilePicure
+                }
             };
         }
         public static Garden AdaptTo(this GardenUpdate p8, Garden p9)

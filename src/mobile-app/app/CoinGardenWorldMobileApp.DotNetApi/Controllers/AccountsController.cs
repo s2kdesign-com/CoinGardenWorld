@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +13,8 @@ using CoinGardenWorldMobileApp.Models.ViewModels;
 using Microsoft.Identity.Web.Resource;
 using Microsoft.AspNetCore.Authorization;
 using CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer;
-using System.Linq.Expressions;
+using System.Linq;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
@@ -24,32 +25,34 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
     // TODO: Add ApiVersion in the header
     public class AccountController : ControllerBase
     {
-        private UnitOfWork _unitOfWork = new UnitOfWork();
+        private readonly UnitOfWork _unitOfWork;
 
-    
+        public AccountController(UnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         // GET: api/Accounts
         [HttpGet]
+        [EnableQuery]
         [ProducesResponseType(typeof(IEnumerable<AccountDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<AccountDto>>> GetAccounts(
-            [FromQuery] IQueryable<AccountDto>? filter = null,
-            [FromQuery] IQueryable<AccountDto>? orderBy = null,
-            [FromQuery] AccountDto? includeProperties = null)
+        public IQueryable<AccountDto> GetAccounts()
         {
+            var accountsQuery =  _unitOfWork.AccountRepository.List(
+                orderBy: q => q.OrderBy(d => d.CreatedOn)
+                );
 
-            var accountsQuery = await _unitOfWork.AccountRepository.GetAsync(
-                orderBy: q => q.OrderBy(d => d.CreatedOn));
-            
-            return Ok(accountsQuery.Select(_ => AccountMapper.ProjectToDto));
+            return accountsQuery.Select(AccountMapper.ProjectToDto);
         }
 
         // GET: api/Accounts/5
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(AccountDto) , StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AccountDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<AccountDto>> GetAccount(Guid id)
         {
-            var account =  await _unitOfWork.AccountRepository.GetByIdAsync(id);
+            var account = await _unitOfWork.AccountRepository.GetByIdAsync(id);
             ;
             if (account == null)
             {
@@ -104,8 +107,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    await _unitOfWork.AccountRepository.InsertAsync(account.AdaptToAccount());
+                    var accountAdded = await _unitOfWork.AccountRepository.InsertAsync(account.AdaptToAccount());
                     await _unitOfWork.SaveAsync();
+                    return CreatedAtAction("GetAccount", new { id = accountAdded.Id }, accountAdded);
                 }
                 else
                 {
@@ -116,21 +120,12 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             }
             catch (DbUpdateException)
             {
-                if (await AccountExists(account.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-                    // TODO: Throw or log the exception?
-
-                    throw;
-
-                }
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                // TODO: Throw or log the exception?
+                throw;
             }
 
-            return CreatedAtAction("GetAccount", new { id = account.Id }, account);
+            return Problem();
         }
 
         // DELETE: api/Accounts/5
@@ -139,7 +134,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteAccount(Guid id)
         {
-           
+
             var account = await _unitOfWork.AccountRepository.GetByIdAsync(id);
             if (account == null)
             {

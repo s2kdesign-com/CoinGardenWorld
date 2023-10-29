@@ -53,10 +53,7 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             return p5 == null ? null : new Flower()
             {
                 Name = p5.Name,
-                GardenId = p5.GardenId,
-                Id = p5.Id,
-                CreatedOn = p5.CreatedOn,
-                UpdatedOn = p5.UpdatedOn
+                GardenId = p5.GardenId
             };
         }
         public static Flower AdaptTo(this FlowerUpdate p6, Flower p7)

@@ -23,7 +23,7 @@ namespace CoinGardenWorldMobileApp.Models
 
             config.AdaptFrom("[name]Add", MapType.Map)
                 .ApplyDefaultRule()
-                .IgnoreAttributes(typeof(IgnoreOnInsertAttribute))
+                .IgnoreAttributes(typeof(KeyAttribute), typeof(IgnoreOnInsertAttribute))
                 .IgnoreNoModifyProperties();
 
             config.AdaptFrom("[name]Update", MapType.MapToTarget)

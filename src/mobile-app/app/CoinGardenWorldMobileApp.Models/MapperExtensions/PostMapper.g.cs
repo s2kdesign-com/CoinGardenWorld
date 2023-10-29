@@ -96,18 +96,12 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     Username = p7.Account.Username,
                     DisplayName = p7.Account.DisplayName,
                     ProfileIntroduction = p7.Account.ProfileIntroduction,
-                    ProfilePicure = p7.Account.ProfilePicure,
-                    Id = p7.Account.Id,
-                    CreatedOn = p7.Account.CreatedOn,
-                    UpdatedOn = p7.Account.UpdatedOn
+                    ProfilePicure = p7.Account.ProfilePicure
                 },
                 Title = p7.Title,
                 Content = p7.Content,
                 LinkOrImageUrl = p7.LinkOrImageUrl,
-                PostType = p7.PostType == null ? PostType.Text : Enum<PostType>.Parse(p7.PostType),
-                Id = p7.Id,
-                CreatedOn = p7.CreatedOn,
-                UpdatedOn = p7.UpdatedOn
+                PostType = p7.PostType == null ? PostType.Text : Enum<PostType>.Parse(p7.PostType)
             };
         }
         public static Post AdaptTo(this PostUpdate p8, Post p9)

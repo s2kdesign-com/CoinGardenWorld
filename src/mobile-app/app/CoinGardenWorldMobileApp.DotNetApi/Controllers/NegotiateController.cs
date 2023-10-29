@@ -25,33 +25,33 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             _enableDetailedErrors = configuration.GetValue(EnableDetailedErrors, false);
         }
 
+        // TODO: This controller was used to negotiate the connection with Azure SignalR Management Service
+        //[HttpPost("NotificationsHub/negotiate")]
+        //public Task<ActionResult> NotificationsHubNegotiate()
+        //{
+        //    return NegotiateBase(_notificationsHubContext);
+        //}
 
-        [HttpPost("NotificationsHub/negotiate")]
-        public Task<ActionResult> NotificationsHubNegotiate()
-        {
-            return NegotiateBase(_notificationsHubContext);
-        }
+        ////This API is not used. Just demonstrate a way to have multiple hubs.
+        //[HttpPost("chathub/negotiate")]
+        //public Task<ActionResult> ChatHubNegotiate()
+        //{
+        //    return NegotiateBase( _chatHubContext);
+        //}
 
-        //This API is not used. Just demonstrate a way to have multiple hubs.
-        [HttpPost("chathub/negotiate")]
-        public Task<ActionResult> ChatHubNegotiate()
-        {
-            return NegotiateBase( _chatHubContext);
-        }
+        //private async Task<ActionResult> NegotiateBase(ServiceHubContext serviceHubContext)
+        //{
 
-        private async Task<ActionResult> NegotiateBase(ServiceHubContext serviceHubContext)
-        {
+        //    var negotiateResponse = await serviceHubContext.NegotiateAsync(new()
+        //    {
+        //        EnableDetailedErrors = _enableDetailedErrors
+        //    });
 
-            var negotiateResponse = await serviceHubContext.NegotiateAsync(new()
-            {
-                EnableDetailedErrors = _enableDetailedErrors
-            });
-
-            return new JsonResult(new Dictionary<string, string>()
-            {
-                { "url", negotiateResponse.Url },
-                { "accessToken", negotiateResponse.AccessToken }
-            });
-        }
+        //    return new JsonResult(new Dictionary<string, string>()
+        //    {
+        //        { "url", negotiateResponse.Url },
+        //        { "accessToken", negotiateResponse.AccessToken }
+        //    });
+        //}
     }
 }

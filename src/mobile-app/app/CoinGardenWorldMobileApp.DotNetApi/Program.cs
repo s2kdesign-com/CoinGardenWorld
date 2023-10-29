@@ -19,6 +19,9 @@ using Hangfire;
 using Microsoft.Extensions.Azure;
 using CoinGardenWorld.AzureStorageExtensions.Extensions;
 using CoinGardenWorld.AzureStorageExtensions.Configuration;
+using CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer;
+using Microsoft.AspNetCore.OData;
+using CoinGardenWorldMobileApp.DotNetApi.OperationFilter;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,7 +51,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddOData(options => options.Select().Filter().OrderBy().Count().SetMaxTop(50));
 
 
 // Add signalr
@@ -75,6 +78,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(options =>
 {
+    options.OperationFilter<ODataParametersSwaggerDefinition>();
+
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = $"{Assembly.GetExecutingAssembly().GetName().Version}",
@@ -139,6 +144,9 @@ builder.Services.AddSwaggerGen(options =>
     });
 
 });
+builder.Services.AddScoped(typeof(GenericRepository<>));
+builder.Services.AddScoped<UnitOfWork>();
+
 // Add SQL Server Database
 builder.Services.AddDbContext<MobileAppDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB")));

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer
     {
         internal MobileAppDbContext context;
         internal DbSet<TEntity> dbSet;
+
 
         public GenericRepository(MobileAppDbContext context)
         {
@@ -49,7 +51,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer
         //    }
         //}
 
-        public virtual async Task<IEnumerable<TEntity>?> GetAsync(
+        public virtual IQueryable<TEntity> List(
             Expression<Func<TEntity, bool>>? filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
             string includeProperties = "")
@@ -69,11 +71,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer
 
             if (orderBy != null)
             {
-                return await orderBy(query).ToListAsync();
+                return orderBy(query);
             }
             else
             {
-                return await query.ToListAsync();
+                return query;
             }
         }
 
@@ -98,9 +100,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer
         //{
         //    dbSet.Add(entity);
         //}
-        public virtual async Task InsertAsync(TEntity entity)
+        public virtual async Task<TEntity> InsertAsync(TEntity entity)
         {
+            entity.CreatedOn = DateTime.UtcNow;
+
             await dbSet.AddAsync(entity);
+
+            return entity;
         }
 
         //public virtual void Update(TEntity entityToUpdate)
@@ -111,6 +117,8 @@ namespace CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer
 
         public virtual async Task UpdateAsync(TEntity entityToUpdate)
         {
+            entityToUpdate.UpdatedOn = DateTime.UtcNow;
+
             dbSet.Attach(entityToUpdate);
             context.Entry(entityToUpdate).State = EntityState.Modified;
         }

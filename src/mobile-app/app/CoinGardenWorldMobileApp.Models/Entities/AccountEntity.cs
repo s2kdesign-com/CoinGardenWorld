@@ -12,7 +12,7 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         // {1} = Max Length
         // {2} = Min Length
         [StringLength(150, ErrorMessage = "{0} can have a max of {1} characters")]
-        public string? Email { get; set; }
+        public string Email { get; set; }
 
         [StringLength(150, ErrorMessage = "{0} can have a max of {1} characters")]
         public string? Username { get; set; }

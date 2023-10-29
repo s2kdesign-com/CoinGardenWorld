@@ -15,12 +15,15 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         [IgnoreOnInsert]
         public Guid CreatedFrom { get; set; }
 
-        [IgnoreOnUpdate]
+        [IgnoreOnInsert]
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
 
+        [IgnoreOnUpdate]
         [IgnoreOnInsert]
         public Guid? UpdatedFrom { get; set; } = null;
+
         [IgnoreOnUpdate]
+        [IgnoreOnInsert]
         public DateTime? UpdatedOn { get; set; } = null;
 
 

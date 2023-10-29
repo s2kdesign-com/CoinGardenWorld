@@ -65,10 +65,7 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 Username = p5.Username,
                 DisplayName = p5.DisplayName,
                 ProfileIntroduction = p5.ProfileIntroduction,
-                ProfilePicure = p5.ProfilePicure,
-                Id = p5.Id,
-                CreatedOn = p5.CreatedOn,
-                UpdatedOn = p5.UpdatedOn
+                ProfilePicure = p5.ProfilePicure
             };
         }
         public static Account AdaptTo(this AccountUpdate p6, Account p7)

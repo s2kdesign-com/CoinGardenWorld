@@ -5,44 +5,26 @@ namespace CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer
 {
     public class UnitOfWork : IDisposable
     {
-        private MobileAppDbContext context = new MobileAppDbContext(new Microsoft.EntityFrameworkCore.DbContextOptions<MobileAppDbContext>());
-        private GenericRepository<Account>? _accountRepository;
-        private GenericRepository<Post>? _postRepository;
+        private readonly MobileAppDbContext _context;
+        private readonly GenericRepository<Account>? _accountRepository;
+        private readonly GenericRepository<Post>? _postRepository;
 
-        public GenericRepository<Account> AccountRepository
+        public UnitOfWork(MobileAppDbContext context,
+            GenericRepository<Account> accountRepository,
+                GenericRepository<Post> postRepository)
         {
-            get
-            {
-
-                if (this._accountRepository == null)
-                {
-                    this._accountRepository = new GenericRepository<Account>(context);
-                }
-                return _accountRepository;
-            }
+            _context = context;
+            _accountRepository = accountRepository;
+            _postRepository = postRepository;   
         }
 
-        public GenericRepository<Post> PostRepository
-        {
-            get
-            {
+        public GenericRepository<Account> AccountRepository => _accountRepository;
 
-                if (this._postRepository == null)
-                {
-                    this._postRepository = new GenericRepository<Post>(context);
-                }
-                return _postRepository;
-            }
-        }
-
-        public void Save()
-        {
-            context.SaveChanges();
-        }
+        public GenericRepository<Post> PostRepository => _postRepository;
 
         public async Task SaveAsync()
         {
-            await context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         private bool disposed = false;
@@ -53,7 +35,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer
             {
                 if (disposing)
                 {
-                    context.Dispose();
+                    _context.Dispose();
                 }
             }
             this.disposed = true;
