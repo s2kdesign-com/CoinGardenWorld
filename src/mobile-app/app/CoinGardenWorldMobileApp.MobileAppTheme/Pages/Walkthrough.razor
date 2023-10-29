@@ -93,20 +93,10 @@
     </div>
 
     <div class="card-bottom">
-        <div class="form-custom form-language-walkthrough mb-3 form-label form-border col-6 mx-auto d-block">
-            <i class="bi bi-check-circle font-13 disabled"></i>
-            <select @bind="SelectedCulture" class="form-select" id="language-selector-walkthrough" aria-label="@Localization.Pages.Walkthrough.Select_Language">
-                @foreach (var culture in supportedCultures)
-                {
-                    <option value="@culture.Key.TwoLetterISOLanguageName" class="bg-dark" lang="@culture.Key.TwoLetterISOLanguageName">
-                        <img src="@culture.Value" class="language-selector-walkthrough-flag-@culture.Key.TwoLetterISOLanguageName">
-                        @culture.Key.NativeName
-                    </option>
-                }
-            </select>
-            <label for="language-selector-walkthrough" class="form-label-active">
-            @((MarkupString)Localization.Pages.Walkthrough.Select_Language)
-            </label>
+        <div class="form-language-walkthrough mb-3 col-6 mx-auto d-block">
+           
+            <LanguageSelector></LanguageSelector>
+
 
         </div>
         <p class="text-center font-10 mb-n3 color-white opacity-40">
@@ -145,18 +135,12 @@
             _selectedCulture = value;
 
             // TODO: Consider dynamic culture provider to not refresh the page https://github.com/ScarletKuro/Blazor.WebAssembly.DynamicCulture
-            if(value != "en")
+
             navigation.NavigateTo(NavigationLinks.WALKTHROUGH_URL, true);
 
         }
     }
 
-    // TODO: dont know how to add images on select :(
-    private Dictionary<CultureInfo, string> supportedCultures = new Dictionary<CultureInfo, string>
-    {
-        { new CultureInfo("en-US"), "https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png"},
-        { new CultureInfo("bg-BG"), "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Bulgaria.svg/320px-Flag_of_Bulgaria.svg.png"}
-    };
     private void OnCultureChange()
     {
 

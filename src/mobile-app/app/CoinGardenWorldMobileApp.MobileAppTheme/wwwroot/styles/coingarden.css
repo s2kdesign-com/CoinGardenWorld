@@ -52,6 +52,19 @@ body .pwa-updater[b-pwa-updater] {
 .cgw-back-button{
     cursor: pointer !important;
 }
+.theme-dark #language-selector-form label{
+    background-color: rgba(19, 30, 43, 0.8) !important;
+}
+.theme-light #language-selector-form label {
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+#menu-color {
+    max-height: 366px;
+    --bs-offcanvas-height: 42vh
+}
+#language-selector-form{
+    width: 100%;
+}
 /*
 .offcanvas, .offcanvas-xl, .offcanvas-lg, .offcanvas-md, .offcanvas-sm {
     --bs-offcanvas-height: 42vh;

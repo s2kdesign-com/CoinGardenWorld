@@ -1,0 +1,42 @@
+﻿@using System.Globalization
+
+@inject NavigationManager navigation
+@inject IHybridStorage localStorage
+
+<!-- Menu Highlights-->
+<div id="menu-languages" style="" class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	<div class="content">
+		<div class="d-flex">
+			<div>
+				<h1 class="mb-0 font-700 font-20">
+                    Switch to other Language
+                </h1>
+			</div>
+			<div class="ms-auto me-n2">
+				<a href="#" data-bs-dismiss="offcanvas" class="icon icon-xs mt-n1"><i class="bi bi-x-circle-fill color-red-dark font-18"></i></a>
+			</div>
+		</div>
+
+		<div class="divider mb-4 mt-2"></div>
+
+		<div class="d-flex px-1">   
+			
+            <form class="demo-animation m-0" id="language-selector-form">
+                <div class="form-custom form-label form-icon mb-3">
+                  
+                    <LanguageSelector></LanguageSelector>
+                    
+                </div>
+            </form>
+
+
+		</div>
+		<div class="pt-3"></div>
+	</div>
+	<a href="" data-bs-dismiss="offcanvas" class="mx-3 btn btn-full gradient-highlight shadow-bg shadow-bg-s">Awesome</a>
+
+</div>
+
+@code {
+
+}

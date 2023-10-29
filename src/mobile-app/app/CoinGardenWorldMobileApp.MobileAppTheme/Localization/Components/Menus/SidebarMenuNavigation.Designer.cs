@@ -71,6 +71,15 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Localization.Components.Menus 
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Charities.
+        /// </summary>
+        internal static string Charities {
+            get {
+                return ResourceManager.GetString("Charities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dashboard.
         /// </summary>
         internal static string Dashboard {
@@ -103,6 +112,15 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Localization.Components.Menus 
         internal static string NAVIGATION {
             get {
                 return ResourceManager.GetString("NAVIGATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Places.
+        /// </summary>
+        internal static string Places {
+            get {
+                return ResourceManager.GetString("Places", resourceCulture);
             }
         }
         

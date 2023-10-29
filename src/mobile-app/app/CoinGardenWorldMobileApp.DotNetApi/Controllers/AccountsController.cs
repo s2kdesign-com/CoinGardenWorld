@@ -19,6 +19,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
     [ApiController]
     [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
     [Authorize()]
+    // TODO: Add ApiVersion in the header
     public class AccountController : ControllerBase
     {
         private readonly MobileAppDbContext _context;

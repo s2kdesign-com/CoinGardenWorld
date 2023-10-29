@@ -120,6 +120,9 @@
   <data name="About the App" xml:space="preserve">
     <value>About the App</value>
   </data>
+  <data name="Charities" xml:space="preserve">
+    <value>Charities</value>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="NAVIGATION" xml:space="preserve">
     <value>NAVIGATION</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>Places</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>

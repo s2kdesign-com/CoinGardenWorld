@@ -1,0 +1,70 @@
+﻿@using System.Globalization
+
+@inject NavigationManager navigation
+@inject IHybridStorage localStorage
+
+
+<form class="demo-animation  m-0" id="language-selector-form">
+    <div class="form-custom form-label form-icon mb-3">
+        <i class="bi bi-translate font-13"></i>
+                    
+        <select @bind="SelectedCulture" class="form-select" id="language-selector" aria-label="@Localization.Pages.Walkthrough.Select_Language">
+            @foreach (var culture in SupportedCultures.Cultures)
+            {
+                <option value="@culture.Key.TwoLetterISOLanguageName" class="bg-dark" lang="@culture.Key.TwoLetterISOLanguageName">
+                    <img src="@culture.Value" class="language-selector-walkthrough-flag-@culture.Key.TwoLetterISOLanguageName">
+                    @culture.Key.NativeName
+                </option>
+            }
+        </select>
+
+        @*            <select class="form-select rounded-xs" id="c6" aria-label="Floating label select example">
+                        <option selected="">Mobile PWA</option>
+                        <option value="1">Bootstrap 5</option>
+                        <option value="2">Vanilla JavaScript</option>
+                        <option value="3">Latest Web Technologies</option>
+                    </select> *@
+
+        <label for="language-selector"  class="form-label-active">
+
+            @((MarkupString)Localization.Pages.Walkthrough.Select_Language)
+        </label>
+                    
+    </div>
+</form>
+
+
+@code {
+    private string _selectedCulture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
+    public string SelectedCulture
+    {
+        get
+        {
+            var existingCulture = localStorage.Get<string>("GardenAPP-Language");
+            if (string.IsNullOrEmpty(existingCulture))
+            {
+                _selectedCulture = existingCulture;
+                return existingCulture;
+            }
+            return _selectedCulture;
+        }
+        set
+        {
+            
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(value);
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(value);
+            localStorage.SetString(LocalStorage.Constants.LANGUAGE_LOCAL_STORAGE_NAME, value);
+            _selectedCulture = value;
+
+    // TODO: Consider dynamic culture provider to not refresh the page https://github.com/ScarletKuro/Blazor.WebAssembly.DynamicCulture
+            if(value != "en")
+                navigation.NavigateTo(NavigationLinks.WALKTHROUGH_URL, true);
+
+        }
+    }
+}
