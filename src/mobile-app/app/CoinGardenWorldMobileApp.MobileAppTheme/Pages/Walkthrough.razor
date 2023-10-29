@@ -118,28 +118,6 @@
 <ThemeLoader></ThemeLoader>
 
 @code {
-    private string _selectedCulture = "en";
-
-    public string SelectedCulture
-    {
-        get
-        {
-            return _selectedCulture;
-        }
-        set
-        {
-
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(value);
-            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(value);
-            localStorage.SetString(LocalStorage.Constants.LANGUAGE_LOCAL_STORAGE_NAME, value);
-            _selectedCulture = value;
-
-            // TODO: Consider dynamic culture provider to not refresh the page https://github.com/ScarletKuro/Blazor.WebAssembly.DynamicCulture
-
-            navigation.NavigateTo(NavigationLinks.WALKTHROUGH_URL, true);
-
-        }
-    }
 
     private void OnCultureChange()
     {
@@ -147,19 +125,11 @@
     }
     private void SaveLocalStoragePreferences()
     {
-        localStorage.SetString(LocalStorage.Constants.LANGUAGE_LOCAL_STORAGE_NAME, _selectedCulture);
     }
 
     protected override void OnInitialized()
     {
-        Console.WriteLine(CultureInfo.DefaultThreadCurrentUICulture);
-
-        if (localStorage.Exists(LocalStorage.Constants.LANGUAGE_LOCAL_STORAGE_NAME))
-        {
-            var culture = localStorage.Get<string>(LocalStorage.Constants.LANGUAGE_LOCAL_STORAGE_NAME);
-            _selectedCulture = culture;
-
-        }
+      
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
