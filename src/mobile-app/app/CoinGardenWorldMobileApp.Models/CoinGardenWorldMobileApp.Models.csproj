@@ -20,6 +20,7 @@
 		<Generated Include="**\*.g.cs" />
 	</ItemGroup>
 
+
 	<ItemGroup>
 	  <Folder Include="Mappers\" />
 	</ItemGroup>

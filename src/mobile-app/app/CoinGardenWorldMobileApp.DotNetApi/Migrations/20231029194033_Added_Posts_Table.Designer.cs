@@ -4,6 +4,7 @@ using CoinGardenWorldMobileApp.DotNetApi.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
 {
     [DbContext(typeof(MobileAppDbContext))]
-    partial class MobileAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231029194033_Added_Posts_Table")]
+    partial class Added_Posts_Table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

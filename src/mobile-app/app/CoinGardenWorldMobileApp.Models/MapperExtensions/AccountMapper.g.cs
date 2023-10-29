@@ -17,7 +17,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 ProfileIntroduction = p1.ProfileIntroduction,
                 ProfilePicure = p1.ProfilePicure,
                 Id = p1.Id,
+                CreatedFrom = p1.CreatedFrom,
                 CreatedOn = p1.CreatedOn,
+                UpdatedFrom = p1.UpdatedFrom,
                 UpdatedOn = p1.UpdatedOn
             };
         }
@@ -35,7 +37,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.ProfileIntroduction = p2.ProfileIntroduction;
             result.ProfilePicure = p2.ProfilePicure;
             result.Id = p2.Id;
+            result.CreatedFrom = p2.CreatedFrom;
             result.CreatedOn = p2.CreatedOn;
+            result.UpdatedFrom = p2.UpdatedFrom;
             result.UpdatedOn = p2.UpdatedOn;
             return result;
             
@@ -48,7 +52,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             ProfileIntroduction = p4.ProfileIntroduction,
             ProfilePicure = p4.ProfilePicure,
             Id = p4.Id,
+            CreatedFrom = p4.CreatedFrom,
             CreatedOn = p4.CreatedOn,
+            UpdatedFrom = p4.UpdatedFrom,
             UpdatedOn = p4.UpdatedOn
         };
         public static Account AdaptToAccount(this AccountAdd p5)
@@ -78,8 +84,6 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.DisplayName = p6.DisplayName;
             result.ProfileIntroduction = p6.ProfileIntroduction;
             result.ProfilePicure = p6.ProfilePicure;
-            result.CreatedOn = p6.CreatedOn;
-            result.UpdatedOn = p6.UpdatedOn;
             return result;
             
         }
@@ -114,16 +118,6 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             if (p8.ProfilePicure != null)
             {
                 result.ProfilePicure = p8.ProfilePicure;
-            }
-            
-            if (p8.CreatedOn != null)
-            {
-                result.CreatedOn = (DateTime)p8.CreatedOn;
-            }
-            
-            if (p8.UpdatedOn != null)
-            {
-                result.UpdatedOn = p8.UpdatedOn;
             }
             return result;
             

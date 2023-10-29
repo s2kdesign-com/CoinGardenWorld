@@ -55,9 +55,7 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 Name = p5.Name,
                 GardenId = p5.GardenId,
                 Id = p5.Id,
-                CreatedFrom = p5.CreatedFrom,
                 CreatedOn = p5.CreatedOn,
-                UpdatedFrom = p5.UpdatedFrom,
                 UpdatedOn = p5.UpdatedOn
             };
         }
@@ -71,10 +69,6 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             
             result.Name = p6.Name;
             result.GardenId = p6.GardenId;
-            result.CreatedFrom = p6.CreatedFrom;
-            result.CreatedOn = p6.CreatedOn;
-            result.UpdatedFrom = p6.UpdatedFrom;
-            result.UpdatedOn = p6.UpdatedOn;
             return result;
             
         }
@@ -94,26 +88,6 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             if (p8.GardenId != null)
             {
                 result.GardenId = (Guid)p8.GardenId;
-            }
-            
-            if (p8.CreatedFrom != null)
-            {
-                result.CreatedFrom = (Guid)p8.CreatedFrom;
-            }
-            
-            if (p8.CreatedOn != null)
-            {
-                result.CreatedOn = (DateTime)p8.CreatedOn;
-            }
-            
-            if (p8.UpdatedFrom != null)
-            {
-                result.UpdatedFrom = p8.UpdatedFrom;
-            }
-            
-            if (p8.UpdatedOn != null)
-            {
-                result.UpdatedOn = p8.UpdatedOn;
             }
             return result;
             

@@ -12,6 +12,8 @@ using CoinGardenWorldMobileApp.Models.MapperExtensions;
 using CoinGardenWorldMobileApp.Models.ViewModels;
 using Microsoft.Identity.Web.Resource;
 using Microsoft.AspNetCore.Authorization;
+using CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer;
+using System.Linq.Expressions;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
@@ -22,34 +24,32 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
     // TODO: Add ApiVersion in the header
     public class AccountController : ControllerBase
     {
-        private readonly MobileAppDbContext _context;
+        private UnitOfWork _unitOfWork = new UnitOfWork();
 
-        public AccountController(MobileAppDbContext context)
-        {
-            _context = context;
-        }
-
+    
         // GET: api/Accounts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AccountDto>>> GetAccounts()
+        [ProducesResponseType(typeof(IEnumerable<AccountDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<AccountDto>>> GetAccounts(
+            [FromQuery] IQueryable<AccountDto>? filter = null,
+            [FromQuery] IQueryable<AccountDto>? orderBy = null,
+            [FromQuery] AccountDto? includeProperties = null)
         {
-            if (_context.Accounts == null)
-            {
-                return NotFound();
-            }
-            return Ok(_context.Accounts.Select(AccountMapper.ProjectToDto));
+
+            var accountsQuery = await _unitOfWork.AccountRepository.GetAsync(
+                orderBy: q => q.OrderBy(d => d.CreatedOn));
+            
+            return Ok(accountsQuery.Select(_ => AccountMapper.ProjectToDto));
         }
 
         // GET: api/Accounts/5
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(AccountDto) , StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<AccountDto>> GetAccount(Guid id)
         {
-            if (_context.Accounts == null)
-            {
-                return NotFound();
-            }
-
-            var account = await _context.Accounts.FindAsync(id);
+            var account =  await _unitOfWork.AccountRepository.GetByIdAsync(id);
             ;
             if (account == null)
             {
@@ -62,28 +62,30 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         // PUT: api/Accounts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PutAccount(Guid id, AccountUpdate account)
         {
-            var entity = await _context.Accounts
-                .FirstOrDefaultAsync(it => it.Id == id);
+            var entity = await _unitOfWork.AccountRepository
+                .GetByIdAsync(id);
 
             account.AdaptTo(entity);
 
-            _context.Entry(account).State = EntityState.Modified;
-
             try
             {
-                entity.CreatedFrom = id;
-                await _context.SaveChangesAsync();
+                await _unitOfWork.AccountRepository.UpdateAsync(entity);
+                await _unitOfWork.SaveAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccountExists(id))
+                if (!await AccountExists(id))
                 {
                     return NotFound();
                 }
                 else
                 {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                    // TODO: Throw or log the exception?
                     throw;
                 }
             }
@@ -94,26 +96,37 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         // POST: api/Accounts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<AccountDto>> PostAccount(AccountAdd account)
         {
-            if (_context.Accounts == null)
-            {
-                return Problem("Entity set 'MobileAppDbContext.Accounts'  is null.");
-            }
-            _context.Accounts.Add(account.AdaptToAccount());
             try
             {
-                await _context.SaveChangesAsync();
+                if (ModelState.IsValid)
+                {
+                    await _unitOfWork.AccountRepository.InsertAsync(account.AdaptToAccount());
+                    await _unitOfWork.SaveAsync();
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Model is not valid!");
+
+                }
+
             }
             catch (DbUpdateException)
             {
-                if (AccountExists(account.Id))
+                if (await AccountExists(account.Id))
                 {
                     return Conflict();
                 }
                 else
                 {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                    // TODO: Throw or log the exception?
+
                     throw;
+
                 }
             }
 
@@ -122,27 +135,26 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
         // DELETE: api/Accounts/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteAccount(Guid id)
         {
-            if (_context.Accounts == null)
-            {
-                return NotFound();
-            }
-            var account = await _context.Accounts.FindAsync(id);
+           
+            var account = await _unitOfWork.AccountRepository.GetByIdAsync(id);
             if (account == null)
             {
                 return NotFound();
             }
 
-            _context.Accounts.Remove(account);
-            await _context.SaveChangesAsync();
+            await _unitOfWork.AccountRepository.DeleteAsync(account);
+            await _unitOfWork.SaveAsync();
 
             return NoContent();
         }
 
-        private bool AccountExists(Guid id)
+        private async Task<bool> AccountExists(Guid id)
         {
-            return (_context.Accounts?.Any(e => e.Id == id)).GetValueOrDefault();
+            return await _unitOfWork.AccountRepository.ExistAsync(id);
         }
     }
 }

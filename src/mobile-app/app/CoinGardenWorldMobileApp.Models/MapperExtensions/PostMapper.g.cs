@@ -2,16 +2,16 @@ using System;
 using System.Linq.Expressions;
 using CoinGardenWorldMobileApp.Models.Entities;
 using CoinGardenWorldMobileApp.Models.ViewModels;
+using Mapster.Utils;
 
 namespace CoinGardenWorldMobileApp.Models.MapperExtensions
 {
-    public static partial class GardenMapper
+    public static partial class PostMapper
     {
-        public static GardenDto AdaptToDto(this Garden p1)
+        public static PostDto AdaptToDto(this Post p1)
         {
-            return p1 == null ? null : new GardenDto()
+            return p1 == null ? null : new PostDto()
             {
-                Name = p1.Name,
                 AccountId = p1.AccountId,
                 Account = p1.Account == null ? null : new AccountDto()
                 {
@@ -26,6 +26,10 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     UpdatedFrom = p1.Account.UpdatedFrom,
                     UpdatedOn = p1.Account.UpdatedOn
                 },
+                Title = p1.Title,
+                Content = p1.Content,
+                LinkOrImageUrl = p1.LinkOrImageUrl,
+                PostType = Enum<PostType>.ToString(p1.PostType),
                 Id = p1.Id,
                 CreatedFrom = p1.CreatedFrom,
                 CreatedOn = p1.CreatedOn,
@@ -33,17 +37,20 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 UpdatedOn = p1.UpdatedOn
             };
         }
-        public static GardenDto AdaptTo(this Garden p2, GardenDto p3)
+        public static PostDto AdaptTo(this Post p2, PostDto p3)
         {
             if (p2 == null)
             {
                 return null;
             }
-            GardenDto result = p3 ?? new GardenDto();
+            PostDto result = p3 ?? new PostDto();
             
-            result.Name = p2.Name;
             result.AccountId = p2.AccountId;
             result.Account = funcMain1(p2.Account, result.Account);
+            result.Title = p2.Title;
+            result.Content = p2.Content;
+            result.LinkOrImageUrl = p2.LinkOrImageUrl;
+            result.PostType = Enum<PostType>.ToString(p2.PostType);
             result.Id = p2.Id;
             result.CreatedFrom = p2.CreatedFrom;
             result.CreatedOn = p2.CreatedOn;
@@ -52,9 +59,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             return result;
             
         }
-        public static Expression<Func<Garden, GardenDto>> ProjectToDto => p6 => new GardenDto()
+        public static Expression<Func<Post, PostDto>> ProjectToDto => p6 => new PostDto()
         {
-            Name = p6.Name,
             AccountId = p6.AccountId,
             Account = p6.Account == null ? null : new AccountDto()
             {
@@ -69,17 +75,20 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 UpdatedFrom = p6.Account.UpdatedFrom,
                 UpdatedOn = p6.Account.UpdatedOn
             },
+            Title = p6.Title,
+            Content = p6.Content,
+            LinkOrImageUrl = p6.LinkOrImageUrl,
+            PostType = Enum<PostType>.ToString(p6.PostType),
             Id = p6.Id,
             CreatedFrom = p6.CreatedFrom,
             CreatedOn = p6.CreatedOn,
             UpdatedFrom = p6.UpdatedFrom,
             UpdatedOn = p6.UpdatedOn
         };
-        public static Garden AdaptToGarden(this GardenAdd p7)
+        public static Post AdaptToPost(this PostAdd p7)
         {
-            return p7 == null ? null : new Garden()
+            return p7 == null ? null : new Post()
             {
-                Name = p7.Name,
                 AccountId = p7.AccountId,
                 Account = p7.Account == null ? null : new Account()
                 {
@@ -92,37 +101,39 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     CreatedOn = p7.Account.CreatedOn,
                     UpdatedOn = p7.Account.UpdatedOn
                 },
+                Title = p7.Title,
+                Content = p7.Content,
+                LinkOrImageUrl = p7.LinkOrImageUrl,
+                PostType = p7.PostType == null ? PostType.Text : Enum<PostType>.Parse(p7.PostType),
                 Id = p7.Id,
                 CreatedOn = p7.CreatedOn,
                 UpdatedOn = p7.UpdatedOn
             };
         }
-        public static Garden AdaptTo(this GardenUpdate p8, Garden p9)
+        public static Post AdaptTo(this PostUpdate p8, Post p9)
         {
             if (p8 == null)
             {
                 return null;
             }
-            Garden result = p9 ?? new Garden();
+            Post result = p9 ?? new Post();
             
-            result.Name = p8.Name;
             result.AccountId = p8.AccountId;
             result.Account = funcMain2(p8.Account, result.Account);
+            result.Title = p8.Title;
+            result.Content = p8.Content;
+            result.LinkOrImageUrl = p8.LinkOrImageUrl;
+            result.PostType = p8.PostType == null ? PostType.Text : Enum<PostType>.Parse(p8.PostType);
             return result;
             
         }
-        public static Garden AdaptTo(this GardenMerge p12, Garden p13)
+        public static Post AdaptTo(this PostMerge p12, Post p13)
         {
             if (p12 == null)
             {
                 return null;
             }
-            Garden result = p13 ?? new Garden();
-            
-            if (p12.Name != null)
-            {
-                result.Name = p12.Name;
-            }
+            Post result = p13 ?? new Post();
             
             if (p12.AccountId != null)
             {
@@ -132,6 +143,26 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             if (p12.Account != null)
             {
                 result.Account = funcMain3(p12.Account, result.Account);
+            }
+            
+            if (p12.Title != null)
+            {
+                result.Title = p12.Title;
+            }
+            
+            if (p12.Content != null)
+            {
+                result.Content = p12.Content;
+            }
+            
+            if (p12.LinkOrImageUrl != null)
+            {
+                result.LinkOrImageUrl = p12.LinkOrImageUrl;
+            }
+            
+            if (p12.PostType != null)
+            {
+                result.PostType = Enum<PostType>.Parse(p12.PostType);
             }
             return result;
             

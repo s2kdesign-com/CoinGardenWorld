@@ -1,4 +1,5 @@
-﻿using CoinGardenWorldMobileApp.Models.Entities;
+﻿using CoinGardenWorldMobileApp.Models.Attributes;
+using CoinGardenWorldMobileApp.Models.Entities;
 using Mapster;
 using System;
 using System.Collections.Generic;
@@ -22,21 +23,23 @@ namespace CoinGardenWorldMobileApp.Models
 
             config.AdaptFrom("[name]Add", MapType.Map)
                 .ApplyDefaultRule()
+                .IgnoreAttributes(typeof(IgnoreOnInsertAttribute))
                 .IgnoreNoModifyProperties();
 
             config.AdaptFrom("[name]Update", MapType.MapToTarget)
                 .ApplyDefaultRule()
-                .IgnoreAttributes(typeof(KeyAttribute))
+                .IgnoreAttributes(typeof(KeyAttribute), typeof(IgnoreOnInsertAttribute), typeof(IgnoreOnUpdateAttribute))
                 .IgnoreNoModifyProperties();
 
             config.AdaptFrom("[name]Merge", MapType.MapToTarget)
                 .ApplyDefaultRule()
-                .IgnoreAttributes(typeof(KeyAttribute))
+                .IgnoreAttributes(typeof(KeyAttribute), typeof(IgnoreOnInsertAttribute), typeof(IgnoreOnUpdateAttribute))
                 .IgnoreNoModifyProperties()
                 .IgnoreNullValues(true);
 
             config.GenerateMapper("[name]Mapper")
                 .ForType<Account>()
+                .ForType<Post>()
                 .ForType<Garden>()
                 .ForType<Flower>();
         }
@@ -49,27 +52,36 @@ namespace CoinGardenWorldMobileApp.Models
         {
             return builder
                 .ForAllTypesInNamespace(Assembly.GetExecutingAssembly(), "CoinGardenWorldMobileApp.Models.Entities")
+                
+                .ExcludeTypes(type =>
+                {
+                    if (type.IsEnum)
+                        return true;
+                    if(type == typeof(ServiceCollectionExtensions))
+                        return true;
+                    if (type == typeof(BaseEntity))
+                        return true;
 
-                .ExcludeTypes(typeof(ServiceCollectionExtensions))
-                .ExcludeTypes(type => type.IsEnum)
-                .ExcludeTypes(typeof(BaseEntity))
+                    return false;
+                })
 
                 //.PreserveReference(true)
-
                 .AlterType(type => type.IsEnum || Nullable.GetUnderlyingType(type)?.IsEnum == true, typeof(string))
                 .ShallowCopyForSameType(true)
-                 .ForType<Account>(cfg => cfg.Ignore(it => it.CreatedFrom))
-                 .ForType<Account>(cfg => cfg.Ignore(it => it.UpdatedFrom))
+                 //.ForType<Account>(cfg => cfg.Ignore(it => it.CreatedFrom))
+                // .ForType<Account>(cfg => cfg.Ignore(it => it.UpdatedFrom))
 
                 .ForType<Garden>(cfg => cfg.Ignore(it => it.Flowers))
                 .ForType<Flower>(cfg => cfg.Ignore(it => it.Garden))
                 ;
         }
 
+
         public static AdaptAttributeBuilder IgnoreNoModifyProperties(this AdaptAttributeBuilder builder)
         {
             //  return builder
             //    .ForType<Enrollment>(cfg => cfg.Ignore(it => it.Student));
+
 
             return builder;
         }
