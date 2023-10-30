@@ -141,9 +141,16 @@
 
     protected override async Task OnInitializedAsync()
     {
-        
+        try
+        {
+            
+            var accounts = await MobileApiHttpClient.MobileApi.AccountAllAsync("", "", "", null, null, null);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
         // TODO: Validate user role to list all accounts! 
-        var accounts = await MobileApiHttpClient.MobileApi.AccountAllAsync("", "", "", null, null, null);
     }
     protected override void OnInitialized()
     {
