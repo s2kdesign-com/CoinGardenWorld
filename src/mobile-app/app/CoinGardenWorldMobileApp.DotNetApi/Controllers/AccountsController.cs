@@ -39,6 +39,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IQueryable<AccountDto> GetAccounts()
         {
+            //  Before Odata
             //var accountsQuery =  _unitOfWork.AccountRepository.List(
             //    orderBy: q => q.OrderBy(d => d.CreatedOn)
             //    );

@@ -9,8 +9,8 @@
 @inject ChatHub chatHub
 @inject NotificationsHub notificationsHub
 
-@inject VersionHttpClient VersionHttpClient
-@inject VersionAuthorizedHttpClient VersionAuthorizedHttpClient
+@inject MobileApiHttpClient VersionHttpClient
+@inject MobileApiAuthorizedHttpClient VersionAuthorizedHttpClient
 
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
@@ -37,7 +37,7 @@
                 @if (_apiIsAvailable)
                 {
                     <a href="@_apiSwaggerUrl" target="_blank" class="list-group-item">
-                        <div>API Version - @_apiResponse</div>
+                        <div>API Version - @_testConnectedApiUrl</div>
                         <span class="badge rounded-xl bg-green-dark">OK</span>
                     </a>
                 }
@@ -56,7 +56,7 @@
     {
         <CardAlert Color="green" Icon="bi-check-circle-fill">
             <Content>
-                You are Authorized!
+                You are Authenticated!
                 <br>
                 Current roles:
 
@@ -97,8 +97,9 @@
             ="green" Icon
             ="bi-check-circle-fill">
                 <Content>
-                    Mobile API connection is Authorized!
+                    Mobile API connection is Authenticated!
                     <br>
+                    @_testAuthenticatedConnectedApiUrl
                 </Content>
             </CardAlert>
         }
@@ -106,7 +107,7 @@
         {
             <CardAlert Color="yellow" Icon="bi-exclamation-triangle">
                 <Content>
-                    Mobile API connection is not Authorized!
+                    Mobile API connection is not Authenticated!
                     <br>
                 </Content>
             </CardAlert>
@@ -119,7 +120,7 @@
         // _apiIsAvailable FALSE
         <CardAlert Color="red" Icon="bi-exclamation-triangle">
             <Content>
-                Mobile API connection is broken! Status: @_apiResponse
+                Mobile API connection is broken!
                 <br>
             </Content>
         </CardAlert>
@@ -133,6 +134,8 @@
             <Content>
                 RealTime connection to ChatHub is established.
                 <br>
+                @_chatHubConnectedMessage
+
             </Content>
         </CardAlert>
 
@@ -143,7 +146,7 @@
 
         <CardAlert Color="yellow" Icon="bi-exclamation-triangle">
             <Content>
-                RealTime connection to ChatHub is not Authorized!
+                RealTime connection to ChatHub is not Authenticated!
                 <br>
             </Content>
         </CardAlert>
@@ -170,20 +173,25 @@
         </CardAlert>
 
     }
-
 </div>
 <!-- End of Page Content-->
 <ThemeLoader></ThemeLoader>
 @code {
     private DateTime dt = DateTime.Now;
 
-    private string _apiResponse = "API is not available.";
     private bool _apiIsAvailable = false;
+
     private bool _isApiAuthenticated = false;
     private bool _isUserAuthenticated = false;
     private List<string> _userRoles = new List<string>();
 
     private string _apiSwaggerUrl = "#";
+
+    private string _testConnectedApiUrl = "API connection is not available.";
+    private string _testAuthenticatedConnectedApiUrl = "Authenticated API connection is not available.";
+
+    private string _chatHubConnectedMessage;
+
 
     protected override Task OnAfterRenderAsync(bool firstRender)
     {
@@ -193,19 +201,44 @@
             {
                 InvokeAsync(StateHasChanged);
             };
-
+            chatHub.OnUserConnected += (message) =>
+            {
+                _chatHubConnectedMessage = message;
+                InvokeAsync(StateHasChanged);
+            };
             notificationsHub.NotifyStateChanged += () =>
             {
                 InvokeAsync(StateHasChanged);
             };
-            
+
         }
+
 
         return base.OnAfterRenderAsync(firstRender);
     }
 
     protected override async Task OnInitializedAsync()
     {
+
+        if (chatHub.HubConnection != null)
+        {
+            
+            await chatHub.HubConnection.SendAsync("AfterConnected");
+        }
+        _apiSwaggerUrl = VersionHttpClient.BaseAddress + "/swagger/index.html";
+
+        try
+        {
+            var response = await VersionHttpClient.MobileApi.VersionAsync();
+            _apiIsAvailable = true;
+            _testConnectedApiUrl = response.Message;
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
 
         var authState = await (AuthenticationStateProvider).GetAuthenticationStateAsync();
 
@@ -220,29 +253,23 @@
             }
             _userRoles = translatedRoles;
 
+            // Test Mobile API with Authorization
+
+            try
+            {
+                var authResult = await VersionAuthorizedHttpClient.MobileApi.GetAuthorizedAsync();
+                _isApiAuthenticated = true;
+                _testAuthenticatedConnectedApiUrl = authResult.Message;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
-        _apiSwaggerUrl = VersionAuthorizedHttpClient.BaseAddress + "/swagger/index.html";
-        // Test Mobile API without Authorization
-        var apiVersionRequest = await VersionHttpClient.GetAsync("api/version");
-        if (apiVersionRequest.IsSuccessStatusCode)
-        {
-            _apiIsAvailable = true;
-        }
-        
-        _apiResponse = await apiVersionRequest.Content.ReadAsStringAsync();
 
-        // Test Mobile API with Authorization
-        var authorizedResponse = await VersionAuthorizedHttpClient.GetAsync("api/version/GetAuthorized");
 
-        if (authorizedResponse.IsSuccessStatusCode)
-        {
-            _isApiAuthenticated = true;
-        }
-        else
-        {
-            _isApiAuthenticated = false;
-        }
     }
 
     public static string GetSiteVersion()

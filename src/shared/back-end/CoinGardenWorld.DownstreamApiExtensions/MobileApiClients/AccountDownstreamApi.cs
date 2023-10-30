@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Abstractions;
 using System.Net.Http;
+using AccountDto = CoinGardenWorldMobileApp.Models.ViewModels.AccountDto;
 
 namespace CoinGardenWorld.DownstreamApiExtensions.MobileApiClients
 {

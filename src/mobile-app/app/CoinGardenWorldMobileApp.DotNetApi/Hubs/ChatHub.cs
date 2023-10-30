@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.Azure.SignalR.Management;
 using SignalRSwaggerGen.Attributes;
 using System.Security.Claims;
+using System.Timers;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Hubs
 {
@@ -14,7 +16,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Hubs
         private readonly ILogger _logger;
         private readonly IHubContextStore _hubContextStore;
         private ServiceHubContext BroadcastHubContext => _hubContextStore.ChatHubContext;
+        private static string _connectionId;
 
+        public event Action NotifyStateChanged;
 
         public ChatHub(ILoggerFactory loggerFactory)//, IHubContextStore hubContextStore)
         {
@@ -23,11 +27,24 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Hubs
             //_hubContextStore = hubContextStore;
         }
 
-        public override Task OnConnectedAsync()
+        public async void AfterConnected()
         {
+            string name = Context.User.Claims.FirstOrDefault(c => c.Type == "name").Value;
+
+            _logger.LogInformation($"Sending UserConnected event to {name}");
+
+            await Clients.Caller.SendAsync("UserConnected", name + " - Welcome to GardenAPP ChatHub SignalR!");
+        }
+
+        public override async Task OnConnectedAsync()
+        {
+            await base.OnConnectedAsync();
+
+            _connectionId = Context.ConnectionId;
+
             var userId = Context.UserIdentifier;
-            var connectionId = Context.ConnectionId;
             string email = Context.User.Claims.FirstOrDefault(c => c.Type == "emails").Value;
+            string name = Context.User.Claims.FirstOrDefault(c => c.Type == "name").Value;
 
             foreach (var userClaim in Context.User.Claims)
             {
@@ -44,10 +61,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Hubs
 
             }
 
-            _logger.LogInformation($"UserID: {userId} | UserEmail: {email} | ConnectionID: {connectionId} has connected to {nameof(ChatHub)}");
-            return base.OnConnectedAsync();
-        }
+            _logger.LogInformation($"UserID: {userId} | UserEmail: {email} | ConnectionID: {_connectionId} has connected to {nameof(ChatHub)}");
 
+        }
         public override Task OnDisconnectedAsync([SignalRHidden] Exception? exception)
         {
             var userId = Context.UserIdentifier;

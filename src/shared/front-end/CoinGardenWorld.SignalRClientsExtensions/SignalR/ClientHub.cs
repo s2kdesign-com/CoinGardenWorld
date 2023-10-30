@@ -40,9 +40,11 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
         private readonly string _hubUrl = "";
 
         public event Action NotifyStateChanged;
+        public event Action<string> OnUserConnected;
+
         public bool IsHubConnected => _hubConnection?.State == HubConnectionState.Connected;
 
-        private HubConnection? _hubConnection;
+        protected HubConnection? _hubConnection;
 
         public HubConnection? HubConnection
         {
@@ -84,7 +86,7 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
                 _authStateProvider.AuthenticationStateChanged += AuthStateChanged;
             }
 
-            StartHub(_hubUrl);
+            StartHub();
 
         }
 
@@ -105,7 +107,8 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
                     }
                     else
                     {
-                        InitializeHubBuilder(_hubUrl);
+                        InitializeHubBuilder();
+                        AddHubEvents();
 
                         await _hubConnection.StartAsync();
                         _logger.LogInformation($"SignalR Authenticated hub connection after login is created and established at URL: {_hubUrl}");
@@ -132,12 +135,13 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
             }
         }
 
-        private async void StartHub(string hubUrl)
+        private async void StartHub()
         {
             try
             {
                 // Create new hub 
-                InitializeHubBuilder(hubUrl);
+                InitializeHubBuilder();
+
 
                 if (HubIsAuthorized)
                 {
@@ -147,6 +151,8 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
                         await _hubConnection.StartAsync();
                         HubConnected = true;
                         _logger.LogInformation($"SignalR Authenticated connection for '{HubKey}' is started.");
+
+
                     }
                     else if (_hubConnection != null && IsHubConnected)
                     {
@@ -174,6 +180,7 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
                         await _hubConnection.StartAsync();
                         HubConnected = true;
                         _logger.LogInformation($"SignalR connection for '{HubKey}' is started.");
+
                     }
 
                 }
@@ -184,11 +191,14 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
                 HubConnected = false;
                 _logger.LogError(ex.Message);
 
-                // And start it if the hub is not authorized (we dont need to check 401 errors every 5 seconds)
-                if (!HubIsAuthorized)
+                if (_hubConnection != null)
                 {
                     _signalRReconnectTimer.Enabled = true;
                 }
+                // And start it if the hub is not authorized (we dont need to check 401 errors every 5 seconds)
+                //if (!HubIsAuthorized)
+                // {
+              //  }
             }
         }
 
@@ -211,7 +221,7 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
             return null;
         }
 
-        private async void InitializeHubBuilder(string hubUrl)
+        private async void InitializeHubBuilder()
         {
             if (HubIsAuthorized)
             {
@@ -221,7 +231,7 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
                 if (_hubConnection == null && authenticationState.User.Identity != null && authenticationState.User.Identity.IsAuthenticated)
                 {
                     _hubConnection = new HubConnectionBuilder()
-                        .WithUrl(hubUrl, options =>
+                        .WithUrl(_hubUrl, options =>
                         {
                             if (HubIsAuthorized)
                             {
@@ -233,6 +243,7 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
                         .WithAutomaticReconnect()
                         .Build();
 
+                    AddHubEvents();
                 }
                 else
                 {
@@ -241,28 +252,37 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
             }
             else
             {
-                // Create a regular hub if hub is not authorized 
-                _hubConnection = new HubConnectionBuilder()
-                    .WithUrl(hubUrl)
-                    .WithAutomaticReconnect()
-                    .Build();
+                if (_hubConnection == null)
+                {
+                    // Create a regular hub if hub is not authorized 
+                    _hubConnection = new HubConnectionBuilder()
+                        .WithUrl(_hubUrl)
+                        .WithAutomaticReconnect()
+                        .Build();
 
+
+                    AddHubEvents();
+                }
             }
 
+        }
 
+        protected virtual void AddHubEvents()
+        {
             if (_hubConnection != null)
             {
+                
 
                 _hubConnection.Reconnecting += ex =>
                 {
-                    _logger.LogWarning($"SignalR hub connection lost, trying to reconnect at URL: {hubUrl}");
+                    _logger.LogWarning($"SignalR hub connection lost, trying to reconnect at URL: {_hubUrl}");
 
                     HubConnected = false;
                     return Task.CompletedTask;
                 };
                 _hubConnection.Reconnected += ex =>
                 {
-                    _logger.LogInformation($"SignalR hub connection reconnected at URL: {hubUrl}");
+                    _logger.LogInformation($"SignalR hub connection reconnected at URL: {_hubUrl}");
 
                     HubConnected = true;
 
@@ -270,7 +290,7 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
                 };
                 _hubConnection.Closed += ex =>
                 {
-                    _logger.LogWarning($"The connection of '{hubUrl}' is closed.");
+                    _logger.LogWarning($"The connection of '{_hubUrl}' is closed.");
                     HubConnected = false;
 
                     //If you expect non-null exception, you need to turn on 'EnableDetailedErrors' option during client negotiation.
@@ -282,8 +302,17 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
                     return Task.CompletedTask;
                 };
 
+                _hubConnection.On<string>("UserConnected", (message) =>
+                {
+
+                    _logger.LogWarning($"UserConnected event triggered '{_hubUrl}'.");
+
+                    OnUserConnected?.Invoke(message);
+
+                });
             }
         }
+
 
         private async void SignalRReconnect(object source, ElapsedEventArgs e)
         {

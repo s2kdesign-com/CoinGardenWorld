@@ -25,5 +25,12 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR.HubClients
         public ChatHub(IConfiguration configuration, ILogger<ChatHub> logger, IAccessTokenProvider tokenProvider, AuthenticationStateProvider authenticationStateProvider) : base(configuration, logger, tokenProvider, authenticationStateProvider)
         {
         }
+
+        protected override void AddHubEvents()
+        {
+            base.AddHubEvents();
+
+        }
+
     }
 }

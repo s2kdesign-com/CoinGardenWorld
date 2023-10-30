@@ -4,7 +4,7 @@
 
 @inject IHybridStorage LocalStorage
 
-@inject AccountHttpClient AccountsHttpClient
+@inject MobileApiAuthorizedHttpClient MobileApiHttpClient
 
 <AuthorizeView>
     <Authorized>
@@ -143,7 +143,7 @@
     {
         
         // TODO: Validate user role to list all accounts! 
-        var accounts = await AccountsHttpClient.ListAsync();
+        var accounts = await MobileApiHttpClient.MobileApi.AccountAllAsync("", "", "", null, null, null);
     }
     protected override void OnInitialized()
     {

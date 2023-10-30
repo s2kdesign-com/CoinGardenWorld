@@ -13,7 +13,7 @@ namespace CoinGardenWorld.HttpClientsExtensions
 {
     public abstract class HttpClientBase<T, M> : IHttpClientBase<M> where T : IHttpClientBase<M>
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        protected readonly IHttpClientFactory HttpClientFactory;
         private readonly ILogger _logger;
 
         // TODO: Authorized HttpClient NOT SUPPORTED in BLAZOR WASM
@@ -21,6 +21,7 @@ namespace CoinGardenWorld.HttpClientsExtensions
       // private readonly IDownstreamApi _downstreamApi;
      
         protected HttpClient? _httpClient;
+
 
         public Uri? BaseAddress { get; set; }
 
@@ -31,23 +32,19 @@ namespace CoinGardenWorld.HttpClientsExtensions
         protected HttpClientBase(ILogger<T> logger, IHttpClientFactory httpClientFactory//, IDownstreamApi downstreamApi
             )
         {
-
-
-            _httpClientFactory = httpClientFactory;
+            HttpClientFactory = httpClientFactory;
             _logger = logger;
-
 
             Configure();
         }
         protected virtual void Configure()
         {
-
             //_downstreamApi = downstreamApi;
             string suffixUnauth = (HttpClientIsAuthorized) ? "_AuthenticationClient" : "";
 
             string apiName = (!string.IsNullOrEmpty(ApiKey)) ? $"{ApiKey}{suffixUnauth}" : $"{suffixUnauth}";
 
-            _httpClient = _httpClientFactory.CreateClient($"{apiName}");
+            _httpClient = HttpClientFactory.CreateClient($"{apiName}");
             BaseAddress = _httpClient.BaseAddress;
         }
         public string GetModelRelativePath()

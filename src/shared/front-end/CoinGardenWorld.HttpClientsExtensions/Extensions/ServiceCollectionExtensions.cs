@@ -75,9 +75,8 @@ namespace CoinGardenWorld.HttpClientsExtensions.Extensions
             // Add HttpClients  
             // TODO: This should be Singleton but AuthenticationStateProvider is scoped so we can not create singletons 
             // TODO: Scan the assembly for all instances of IHttpClientBase and inject all clients automatically 
-            services.AddScoped<AccountHttpClient>();
-            services.AddScoped<VersionHttpClient>();
-            services.AddScoped<VersionAuthorizedHttpClient>();
+            services.AddScoped<MobileApiHttpClient>();
+            services.AddScoped<MobileApiAuthorizedHttpClient>();
 
             services.AddScoped<MobileApiSiteAuthorizedAzureFunctionClient>();
             services.AddScoped<MobileApiSiteAzureFunctionClient>();
