@@ -14,6 +14,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
         // GET: api/Version
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult<string> Get()
         {
             Version version = Assembly.GetExecutingAssembly()?.GetName().Version ?? new Version(1, 0, 0);

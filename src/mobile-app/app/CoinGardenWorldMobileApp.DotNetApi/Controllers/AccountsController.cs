@@ -39,11 +39,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IQueryable<AccountDto> GetAccounts()
         {
-            var accountsQuery =  _unitOfWork.AccountRepository.List(
-                orderBy: q => q.OrderBy(d => d.CreatedOn)
-                );
+            //var accountsQuery =  _unitOfWork.AccountRepository.List(
+            //    orderBy: q => q.OrderBy(d => d.CreatedOn)
+            //    );
 
-            return accountsQuery.Select(AccountMapper.ProjectToDto);
+            return _unitOfWork.AccountRepository.List().Select(AccountMapper.ProjectToDto);
         }
 
         // GET: api/Accounts/5

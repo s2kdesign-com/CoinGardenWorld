@@ -16,7 +16,7 @@ namespace CoinGardenWorldMobileApp.Models.Entities
 
         Clip,
 
-
+        Album
 
 
 
