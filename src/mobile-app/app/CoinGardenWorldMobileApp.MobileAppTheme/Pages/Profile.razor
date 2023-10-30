@@ -6,6 +6,8 @@
 
 @inject MobileApiAuthorizedHttpClient MobileApiHttpClient
 
+@inject ILogger<Profile> Logger
+
 <AuthorizeView>
     <Authorized>
 
@@ -143,12 +145,17 @@
     {
         try
         {
-            
-            var accounts = await MobileApiHttpClient.MobileApi.AccountAllAsync("", "", "", null, null, null);
+
+            var accounts = await MobileApiHttpClient.MobileApi.AccountAllAsync(null, null, null, null, null, null);
+
+            foreach (var account in accounts)
+            {
+                Logger.LogInformation(account.Email);
+            }
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            Logger.LogError(e.Message);
         }
         // TODO: Validate user role to list all accounts! 
     }
