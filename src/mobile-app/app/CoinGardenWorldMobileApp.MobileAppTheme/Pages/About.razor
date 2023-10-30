@@ -16,15 +16,23 @@
 
 <!-- Your Page Content Goes Here -->
 <div class="page-content header-clear-medium">
+
+    <div class="card card-style">
+        <div class="content mb-0">
+            <h5 class="color-highlight font-13 mb-n1">
+                System Information
+            </h5>
+            <h1 class="font-700 pb-0">
+                About the App
+            </h1>
+            <p class="mb-3">
+                We're looking for passionate developers to join our team. Got what it takes? Send us a message.
+            </p>
+        </div>
+    </div>
+
     <div class="card card-style">
         <div class="content">
-            <div class="d-flex">
-                <div>
-                    <h6 class="mb-n1 opacity-80 color-highlight">System Information</h6>
-                    <h3>About the App</h3>
-                </div>
-            </div>
-            <div class="divider mb-0 mx-3"></div>
             <div class="list-group list-custom list-group-m rounded-xs list-group-flush">
                 <a href="terms-and-conditions" class="list-group-item">
                     <div>Terms &amp; Conditions</div>
@@ -220,11 +228,6 @@
     protected override async Task OnInitializedAsync()
     {
 
-        if (chatHub.HubConnection != null)
-        {
-            
-            await chatHub.HubConnection.SendAsync("AfterConnected");
-        }
         _apiSwaggerUrl = VersionHttpClient.BaseAddress + "/swagger/index.html";
 
         try
@@ -268,6 +271,11 @@
             }
         }
 
+        if (chatHub.HubConnection != null)
+        {
+
+            await chatHub.HubConnection.SendAsync("AfterConnected");
+        }
 
 
     }

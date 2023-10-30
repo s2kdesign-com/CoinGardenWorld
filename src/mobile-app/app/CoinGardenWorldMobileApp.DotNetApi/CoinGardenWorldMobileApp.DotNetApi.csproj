@@ -12,7 +12,6 @@
   <ApplicationInsightsResourceId>/subscriptions/92f44b9a-a964-47c7-8f6c-a0e03b8dc239/resourceGroups/coingarden/providers/microsoft.insights/components/coingardenworld-app-insights-localhost</ApplicationInsightsResourceId>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
-
   <ItemGroup>
 	  <PackageReference Include="AspNetCore.HealthChecks.AzureStorage" Version="7.0.0" />
 	  <PackageReference Include="AspNetCore.HealthChecks.Hangfire" Version="7.0.0" />

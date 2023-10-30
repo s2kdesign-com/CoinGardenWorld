@@ -9,12 +9,6 @@
   <ItemGroup>
     <None Remove="HttpClientBase.cs~RFa9c237b.TMP" />
   </ItemGroup>
-
-  <ItemGroup>
-    <OpenApiReference Include="OpenAPIs\swagger.json" CodeGenerator="NSwagCSharp" ClassName="MobileApi">
-      <SourceUri>https://localhost:7249/swagger/v1/swagger.json</SourceUri>
-    </OpenApiReference>
-  </ItemGroup>
 	
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.13" />
@@ -34,5 +28,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\mobile-app\app\CoinGardenWorldMobileApp.Models\CoinGardenWorldMobileApp.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <OpenApiReference Include="OpenAPIs\swagger.json" CodeGenerator="NSwagCSharp" ClassName="MobileApi">
+      <SourceUri>https://localhost:7249/swagger/v1/swagger.json</SourceUri>
+    </OpenApiReference>
   </ItemGroup>
 </Project>

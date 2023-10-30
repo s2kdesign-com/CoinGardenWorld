@@ -361,91 +361,6 @@
         }
       }
     },
-    "/api/Account/GetPublicAccounts": {
-      "get": {
-        "tags": [
-          "Account"
-        ],
-        "parameters": [
-          {
-            "name": "$filter",
-            "in": "query",
-            "description": "Filter the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$select",
-            "in": "query",
-            "description": "Trim the fields returned using OData syntax",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$orderby",
-            "in": "query",
-            "description": "Order the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$skip",
-            "in": "query",
-            "description": "The number of results to skip.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$top",
-            "in": "query",
-            "description": "The number of results to return.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$expand",
-            "in": "query",
-            "description": "Expand functionality can be used to query related data. For example, to get the Course data for each Enrollment entity, include ?$expand=course",
-            "style": "form"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/Account/{id}": {
       "get": {
         "tags": [
@@ -1281,91 +1196,6 @@
         }
       }
     },
-    "/api/Posts/GetPublicPosts": {
-      "get": {
-        "tags": [
-          "Posts"
-        ],
-        "parameters": [
-          {
-            "name": "$filter",
-            "in": "query",
-            "description": "Filter the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$select",
-            "in": "query",
-            "description": "Trim the fields returned using OData syntax",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$orderby",
-            "in": "query",
-            "description": "Order the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$skip",
-            "in": "query",
-            "description": "The number of results to skip.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$top",
-            "in": "query",
-            "description": "The number of results to return.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$expand",
-            "in": "query",
-            "description": "Expand functionality can be used to query related data. For example, to get the Course data for each Enrollment entity, include ?$expand=course",
-            "style": "form"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/Posts/{id}": {
       "get": {
         "tags": [
@@ -1761,6 +1591,176 @@
                 }
               },
               "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TopRated/GetPublicPosts": {
+      "get": {
+        "tags": [
+          "TopRated"
+        ],
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter the results using OData syntax.",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Trim the fields returned using OData syntax",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order the results using OData syntax.",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "The number of results to skip.",
+            "style": "form",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "The number of results to return.",
+            "style": "form",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand functionality can be used to query related data. For example, to get the Course data for each Enrollment entity, include ?$expand=course",
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TopRated/GetPublicAccounts": {
+      "get": {
+        "tags": [
+          "TopRated"
+        ],
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter the results using OData syntax.",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Trim the fields returned using OData syntax",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order the results using OData syntax.",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "The number of results to skip.",
+            "style": "form",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "The number of results to return.",
+            "style": "form",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand functionality can be used to query related data. For example, to get the Course data for each Enrollment entity, include ?$expand=course",
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }

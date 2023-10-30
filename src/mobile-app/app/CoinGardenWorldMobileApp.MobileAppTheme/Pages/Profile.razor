@@ -149,23 +149,24 @@
     {
         try
         {
-            var userAuth = await AuthStateProvider.GetAuthenticationStateAsync();
+            // var userAuth = await AuthStateProvider.GetAuthenticationStateAsync();
 
-            if(userAuth.User.Identity != null && userAuth.User.Identity.IsAuthenticated)
-            {
-                var accounts = await MobileApiAuthorizedHttpClient.MobileApi.AccountAllAsync(null, null, null, null, null, null);
-                _accounts = accounts.ToList();
+            // if(userAuth.User.Identity != null && userAuth.User.Identity.IsAuthenticated)
+            // {
+            //     var accounts = await MobileApiAuthorizedHttpClient.MobileApi.AccountAllAsync(null, null, null, null, null, null);
+            //     _accounts = accounts.ToList();
 
-            }
-            else
-            {
-    // TODO: Get Public Most viewed posts
+            // }
+            // else
+            // {
+            //     // TODO: Get Public Most viewed posts
 
-                var accounts = await MobileApiHttpClient.MobileApi.GetPublicAccountsAsync(null, null, null, null, null, null);
-                _accounts = accounts.ToList();
-                StateHasChanged();
-            }
+            // }
 
+            
+            var accounts = await MobileApiHttpClient.MobileApi.GetPublicAccountsAsync(null, null, null, null, null, null);
+            _accounts = accounts.ToList();
+            StateHasChanged();
         }
         catch (Exception e)
         {
