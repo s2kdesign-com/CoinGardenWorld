@@ -35,18 +35,36 @@
 
 
 @code {
-    private string _selectedCulture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 
-    protected override Task OnInitializedAsync()
+
+    private string _selectedCulture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+    protected override void OnAfterRender(bool firstRender)
     {
-        return base.OnInitializedAsync();
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            var existingCulture = localStorage.Get<string>("GardenAPP-Language");
+            if (string.IsNullOrEmpty(existingCulture))
+            {
+                localStorage.SetString("GardenAPP-Language", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            }
+        }
+
+    }
+    protected override Task OnInitializedAsync(){
+
+    
+        if (!localStorage.Exists(LocalStorage.Constants.LANGUAGE_LOCAL_STORAGE_NAME))
+        {
+            navigation.NavigateTo(NavigationLinks.WALKTHROUGH_URL);
+        }   return base.OnInitializedAsync();
     }
     public string SelectedCulture
     {
         get
         {
             var existingCulture = localStorage.Get<string>("GardenAPP-Language");
-            if (string.IsNullOrEmpty(existingCulture))
+            if (!string.IsNullOrEmpty(existingCulture))
             {
                 _selectedCulture = existingCulture;
                 return existingCulture;

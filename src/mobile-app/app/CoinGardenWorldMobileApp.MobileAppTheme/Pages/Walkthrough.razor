@@ -105,7 +105,7 @@
                 CoinGarden.World
             </a>
         </p>
-        <a href="/" @onclick="SaveLocalStoragePreferences" class="btn btn-full gradient-highlight m-4 font-700 text-uppercase shadow-bg shadow-bg-s">
+        <a href="/" class="btn btn-full gradient-highlight m-4 font-700 text-uppercase shadow-bg shadow-bg-s">
             
             @((MarkupString)Localization.Pages.Walkthrough.Start_Exploring_GardenAPP_by_World_of_Flowers)
             </a>
@@ -119,13 +119,6 @@
 
 @code {
 
-    private void OnCultureChange()
-    {
-
-    }
-    private void SaveLocalStoragePreferences()
-    {
-    }
 
     protected override void OnInitialized()
     {
