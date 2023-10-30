@@ -77,127 +77,7 @@
           "200": {
             "description": "Success",
             "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountDto"
-                  }
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -210,82 +90,7 @@
           "400": {
             "description": "Bad Request",
             "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -547,6 +352,91 @@
                 }
               },
               "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Account/GetPublicAccounts": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter the results using OData syntax.",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Trim the fields returned using OData syntax",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order the results using OData syntax.",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "The number of results to skip.",
+            "style": "form",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "The number of results to return.",
+            "style": "form",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand functionality can be used to query related data. For example, to get the Course data for each Enrollment entity, include ?$expand=course",
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -1107,127 +997,7 @@
           "200": {
             "description": "Success",
             "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostDto"
-                  }
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -1240,82 +1010,7 @@
           "400": {
             "description": "Bad Request",
             "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -1577,6 +1272,91 @@
                 }
               },
               "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Posts/GetPublicPosts": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter the results using OData syntax.",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Trim the fields returned using OData syntax",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order the results using OData syntax.",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "The number of results to skip.",
+            "style": "form",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "The number of results to return.",
+            "style": "form",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand functionality can be used to query related data. For example, to get the Course data for each Enrollment entity, include ?$expand=course",
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -2262,38 +2042,6 @@
           }
         }
       }
-    },
-    "/hubs/ChatHub/OnConnectedAsync": {
-      "post": {
-        "tags": [
-          "ChatHub"
-        ],
-        "responses": { }
-      }
-    },
-    "/hubs/ChatHub/OnDisconnectedAsync": {
-      "post": {
-        "tags": [
-          "ChatHub"
-        ],
-        "responses": { }
-      }
-    },
-    "/hubs/NotificationsHub/OnConnectedAsync": {
-      "post": {
-        "tags": [
-          "NotificationsHub"
-        ],
-        "responses": { }
-      }
-    },
-    "/hubs/NotificationsHub/OnDisconnectedAsync": {
-      "post": {
-        "tags": [
-          "NotificationsHub"
-        ],
-        "responses": { }
-      }
     }
   },
   "components": {
@@ -2558,16 +2306,6 @@
   "security": [
     {
       "oauth2": [ ]
-    }
-  ],
-  "tags": [
-    {
-      "name": "ChatHub",
-      "description": "SignalR Hub Used for Chat communication"
-    },
-    {
-      "name": "NotificationsHub",
-      "description": "SignalR Hub Used for broadcasting alert messages and notifications"
     }
   ]
 }

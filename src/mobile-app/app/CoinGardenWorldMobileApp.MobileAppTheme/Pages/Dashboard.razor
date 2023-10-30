@@ -1,10 +1,19 @@
-﻿@* @page "/dashboard" *@
+﻿@using PostDto = CoinGardenWorld.HttpClientsExtensions.PostDto
+
+@* @page "/dashboard" *@
 
 @attribute [Route(NavigationLinks.DASHBOARD_URL)]
 
+
+@inject MobileApiAuthorizedHttpClient MobileApiAuthorizedHttpClient
+@inject MobileApiHttpClient MobileApiHttpClient
+
+@inject ILogger<Dashboard> Logger
+@inject AuthenticationStateProvider AuthStateProvider
+
 <!-- Your Page Content Goes Here-->
 <div class="page-content header-clear-medium">
-    
+   @*  
     <DashboardCardText></DashboardCardText>
 
     <DashboardCardText></DashboardCardText>
@@ -15,8 +24,34 @@
 
     <DashboardCardText></DashboardCardText>
 
-    <DashboardCardImage></DashboardCardImage>
+    <DashboardCardImage></DashboardCardImage> 
+    *@
     
+    @if (_latestPosts.Any())
+    {
+        @foreach (var post in _latestPosts)
+        {
+            <DashboardCardImage></DashboardCardImage>
+
+        }
+
+    }
+    else
+    {
+        
+        <!-- TODO: Add some kind of preloader -->
+    }
+
+   <div class="card card-style">
+       <div class="content">
+           <div class="responsive-iframe rounded-s">
+               <iframe class="rounded-s" src="https://www.youtube.com/embed/c9MnSeYYtYY" frameborder="0" allowfullscreen="" name="2f51ab29-5b7c-45bb-9d57-352500af5ca5"></iframe>
+           </div>
+           <h3 class="mt-3">YouTube</h3>
+           <p> Just copy the link to the service you want and add it inside a responsive-iframe div. We'll do the rest.
+           </p></div>
+   </div>
+
     <div class="col-12 pb-4">
         <div class="d-flex justify-content-center">
             <div class="preloader-m">
@@ -29,5 +64,51 @@
 <ThemeLoader></ThemeLoader>
 
 @code {
+    // TODO: 
+    private List<PostDto> _latestPosts = new List<PostDto>();
 
+    protected override async Task OnInitializedAsync()
+    {
+
+        try
+        {
+            var userAuth = await AuthStateProvider.GetAuthenticationStateAsync();
+
+            if(userAuth.User.Identity != null && userAuth.User.Identity.IsAuthenticated)
+            {
+                var latestPosts = await MobileApiAuthorizedHttpClient.MobileApi.PostsAllAsync(null, null, null, null, 10, null);
+                _latestPosts = latestPosts.ToList();
+                StateHasChanged();
+
+            }
+            else
+            {
+    // TODO: Get Public Most viewed posts
+
+                var latestPosts = await MobileApiHttpClient.MobileApi.GetPublicPostsAsync(null, null, null, null, 10, null);
+                _latestPosts = latestPosts.ToList();
+                StateHasChanged();
+            }
+
+        }
+        catch (Exception e)
+        {
+            Logger.LogError(e.Message);
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            
+        }
+
+    }
 }

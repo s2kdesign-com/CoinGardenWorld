@@ -28,7 +28,6 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\shared\front-end\CoinGardenWorld.HttpClientsExtensions\CoinGardenWorld.HttpClientsExtensions.csproj" />
 	  <ProjectReference Include="..\..\..\shared\front-end\CoinGardenWorld.SignalRClientsExtensions\CoinGardenWorld.SignalRClientsExtensions.csproj" />
-	  <ProjectReference Include="..\CoinGardenWorldMobileApp.Models\CoinGardenWorldMobileApp.Models.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Localization\Components\Cards\TopAccountsForTheMonth.Designer.cs">

@@ -1,12 +1,15 @@
-﻿@* @page "/profile" *@
+﻿@using AccountDto = CoinGardenWorld.HttpClientsExtensions.AccountDto
+@* @page "/profile" *@
 
 @attribute [Route(NavigationLinks.PROFILE_URL)]
 
 @inject IHybridStorage LocalStorage
 
-@inject MobileApiAuthorizedHttpClient MobileApiHttpClient
+@inject MobileApiAuthorizedHttpClient MobileApiAuthorizedHttpClient
+@inject MobileApiHttpClient MobileApiHttpClient
 
 @inject ILogger<Profile> Logger
+@inject AuthenticationStateProvider AuthStateProvider
 
 <AuthorizeView>
     <Authorized>
@@ -140,24 +143,35 @@
 <ThemeLoader></ThemeLoader>
 @code {
     private string userName;
+    private List<AccountDto> _accounts = new List<AccountDto>();
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
+            var userAuth = await AuthStateProvider.GetAuthenticationStateAsync();
 
-            var accounts = await MobileApiHttpClient.MobileApi.AccountAllAsync(null, null, null, null, null, null);
-
-            foreach (var account in accounts)
+            if(userAuth.User.Identity != null && userAuth.User.Identity.IsAuthenticated)
             {
-                Logger.LogInformation(account.Email);
+                var accounts = await MobileApiAuthorizedHttpClient.MobileApi.AccountAllAsync(null, null, null, null, null, null);
+                _accounts = accounts.ToList();
+
             }
+            else
+            {
+    // TODO: Get Public Most viewed posts
+
+                var accounts = await MobileApiHttpClient.MobileApi.GetPublicAccountsAsync(null, null, null, null, null, null);
+                _accounts = accounts.ToList();
+                StateHasChanged();
+            }
+
         }
         catch (Exception e)
         {
             Logger.LogError(e.Message);
         }
-        // TODO: Validate user role to list all accounts! 
+
     }
     protected override void OnInitialized()
     {

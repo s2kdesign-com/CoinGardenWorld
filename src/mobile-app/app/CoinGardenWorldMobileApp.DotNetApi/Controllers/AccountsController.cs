@@ -35,6 +35,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         // GET: api/Accounts
         [HttpGet]
         [EnableQuery]
+        [Produces("application/json")]
         [ProducesResponseType(typeof(IEnumerable<AccountDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IQueryable<AccountDto> GetAccounts()
@@ -44,6 +45,20 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             //    orderBy: q => q.OrderBy(d => d.CreatedOn)
             //    );
 
+            return _unitOfWork.AccountRepository.List().Select(AccountMapper.ProjectToDto);
+        }
+
+        // TODO: Filter public posts from most viewed accounts
+        // GET: api/Posts
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("[action]")]
+        [EnableQuery]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(IEnumerable<AccountDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IQueryable<AccountDto> GetPublicAccounts()
+        {
             return _unitOfWork.AccountRepository.List().Select(AccountMapper.ProjectToDto);
         }
 

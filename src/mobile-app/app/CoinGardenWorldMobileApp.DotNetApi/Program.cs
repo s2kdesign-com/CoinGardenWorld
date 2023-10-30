@@ -98,7 +98,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
     // Add Swagger Signalr
-    options.AddSignalRSwaggerGen();
+   // options.AddSignalRSwaggerGen();
 
 
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
