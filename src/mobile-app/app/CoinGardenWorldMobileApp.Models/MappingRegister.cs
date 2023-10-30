@@ -26,10 +26,10 @@ namespace CoinGardenWorldMobileApp.Models
                 .IgnoreAttributes(typeof(KeyAttribute), typeof(IgnoreOnInsertAttribute))
                 .IgnoreNoModifyProperties();
 
-            config.AdaptFrom("[name]Update", MapType.MapToTarget)
-                .ApplyDefaultRule()
-                .IgnoreAttributes(typeof(KeyAttribute), typeof(IgnoreOnInsertAttribute), typeof(IgnoreOnUpdateAttribute))
-                .IgnoreNoModifyProperties();
+            //config.AdaptFrom("[name]Update", MapType.MapToTarget)
+            //    .ApplyDefaultRule()
+            //    .IgnoreAttributes(typeof(KeyAttribute), typeof(IgnoreOnInsertAttribute), typeof(IgnoreOnUpdateAttribute))
+            //    .IgnoreNoModifyProperties();
 
             config.AdaptFrom("[name]Merge", MapType.MapToTarget)
                 .ApplyDefaultRule()
@@ -73,7 +73,6 @@ namespace CoinGardenWorldMobileApp.Models
 
                 .ForType<Post>(cfg => cfg.Ignore(it => it.Account))
 
-                .ForType<Garden>(cfg => cfg.Ignore(it => it.Flowers))
                 .ForType<Flower>(cfg => cfg.Ignore(it => it.Garden))
                 ;
         }

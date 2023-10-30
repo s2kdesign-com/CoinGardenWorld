@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using CoinGardenWorldMobileApp.Models.ViewModels;
 
 namespace CoinGardenWorldMobileApp.Models.ViewModels
@@ -8,5 +9,6 @@ namespace CoinGardenWorldMobileApp.Models.ViewModels
         public string Name { get; set; }
         public Guid AccountId { get; set; }
         public AccountAdd Account { get; set; }
+        public ICollection<FlowerAdd> Flowers { get; set; }
     }
 }

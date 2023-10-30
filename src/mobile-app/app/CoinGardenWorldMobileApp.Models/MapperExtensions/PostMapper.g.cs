@@ -69,7 +69,7 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 PostType = p5.PostType == null ? PostType.Text : Enum<PostType>.Parse(p5.PostType)
             };
         }
-        public static Post AdaptTo(this PostUpdate p6, Post p7)
+        public static Post AdaptTo(this PostMerge p6, Post p7)
         {
             if (p6 == null)
             {
@@ -77,45 +77,29 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             }
             Post result = p7 ?? new Post();
             
-            result.AccountId = p6.AccountId;
-            result.Title = p6.Title;
-            result.Content = p6.Content;
-            result.LinkOrImageUrl = p6.LinkOrImageUrl;
-            result.PostType = p6.PostType == null ? PostType.Text : Enum<PostType>.Parse(p6.PostType);
-            return result;
-            
-        }
-        public static Post AdaptTo(this PostMerge p8, Post p9)
-        {
-            if (p8 == null)
+            if (p6.AccountId != null)
             {
-                return null;
-            }
-            Post result = p9 ?? new Post();
-            
-            if (p8.AccountId != null)
-            {
-                result.AccountId = (Guid)p8.AccountId;
+                result.AccountId = (Guid)p6.AccountId;
             }
             
-            if (p8.Title != null)
+            if (p6.Title != null)
             {
-                result.Title = p8.Title;
+                result.Title = p6.Title;
             }
             
-            if (p8.Content != null)
+            if (p6.Content != null)
             {
-                result.Content = p8.Content;
+                result.Content = p6.Content;
             }
             
-            if (p8.LinkOrImageUrl != null)
+            if (p6.LinkOrImageUrl != null)
             {
-                result.LinkOrImageUrl = p8.LinkOrImageUrl;
+                result.LinkOrImageUrl = p6.LinkOrImageUrl;
             }
             
-            if (p8.PostType != null)
+            if (p6.PostType != null)
             {
-                result.PostType = Enum<PostType>.Parse(p8.PostType);
+                result.PostType = Enum<PostType>.Parse(p6.PostType);
             }
             return result;
             

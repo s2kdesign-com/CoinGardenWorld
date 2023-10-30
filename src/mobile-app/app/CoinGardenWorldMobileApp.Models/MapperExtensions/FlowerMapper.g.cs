@@ -56,7 +56,7 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 GardenId = p5.GardenId
             };
         }
-        public static Flower AdaptTo(this FlowerUpdate p6, Flower p7)
+        public static Flower AdaptTo(this FlowerMerge p6, Flower p7)
         {
             if (p6 == null)
             {
@@ -64,27 +64,14 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             }
             Flower result = p7 ?? new Flower();
             
-            result.Name = p6.Name;
-            result.GardenId = p6.GardenId;
-            return result;
-            
-        }
-        public static Flower AdaptTo(this FlowerMerge p8, Flower p9)
-        {
-            if (p8 == null)
+            if (p6.Name != null)
             {
-                return null;
-            }
-            Flower result = p9 ?? new Flower();
-            
-            if (p8.Name != null)
-            {
-                result.Name = p8.Name;
+                result.Name = p6.Name;
             }
             
-            if (p8.GardenId != null)
+            if (p6.GardenId != null)
             {
-                result.GardenId = (Guid)p8.GardenId;
+                result.GardenId = (Guid)p6.GardenId;
             }
             return result;
             

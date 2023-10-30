@@ -68,7 +68,7 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 ProfilePicure = p5.ProfilePicure
             };
         }
-        public static Account AdaptTo(this AccountUpdate p6, Account p7)
+        public static Account AdaptTo(this AccountMerge p6, Account p7)
         {
             if (p6 == null)
             {
@@ -76,45 +76,29 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             }
             Account result = p7 ?? new Account();
             
-            result.Email = p6.Email;
-            result.Username = p6.Username;
-            result.DisplayName = p6.DisplayName;
-            result.ProfileIntroduction = p6.ProfileIntroduction;
-            result.ProfilePicure = p6.ProfilePicure;
-            return result;
-            
-        }
-        public static Account AdaptTo(this AccountMerge p8, Account p9)
-        {
-            if (p8 == null)
+            if (p6.Email != null)
             {
-                return null;
-            }
-            Account result = p9 ?? new Account();
-            
-            if (p8.Email != null)
-            {
-                result.Email = p8.Email;
+                result.Email = p6.Email;
             }
             
-            if (p8.Username != null)
+            if (p6.Username != null)
             {
-                result.Username = p8.Username;
+                result.Username = p6.Username;
             }
             
-            if (p8.DisplayName != null)
+            if (p6.DisplayName != null)
             {
-                result.DisplayName = p8.DisplayName;
+                result.DisplayName = p6.DisplayName;
             }
             
-            if (p8.ProfileIntroduction != null)
+            if (p6.ProfileIntroduction != null)
             {
-                result.ProfileIntroduction = p8.ProfileIntroduction;
+                result.ProfileIntroduction = p6.ProfileIntroduction;
             }
             
-            if (p8.ProfilePicure != null)
+            if (p6.ProfilePicure != null)
             {
-                result.ProfilePicure = p8.ProfilePicure;
+                result.ProfilePicure = p6.ProfilePicure;
             }
             return result;
             

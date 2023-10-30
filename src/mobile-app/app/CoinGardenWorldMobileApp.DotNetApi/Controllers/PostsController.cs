@@ -23,7 +23,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         private readonly UnitOfWork _unitOfWork;
 
 
-        public PostsController(UnitOfWork unitOfWork)
+        public PostsController(UnitOfWork unitOfWork) 
         {
             _unitOfWork = unitOfWork;
         }
@@ -56,7 +56,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         // PUT: api/Posts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPost(Guid id, PostUpdate post)
+        public async Task<IActionResult> PutPost(Guid id, PostMerge post)
         {
             var entity = await _unitOfWork.PostRepository
                 .GetByIdAsync(id);
@@ -65,7 +65,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
             try
             {
-                await _unitOfWork.PostRepository.UpdateAsync(entity);
+                _unitOfWork.PostRepository.Update(entity);
                 await _unitOfWork.SaveAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -94,7 +94,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var entityAdded = await _unitOfWork.PostRepository.InsertAsync(postAdd.AdaptToPost());
+                    var entityAdded = _unitOfWork.PostRepository.Insert(postAdd.AdaptToPost());
                     await _unitOfWork.SaveAsync();
                     return CreatedAtAction("GetPost", new { id = entityAdded.Id }, entityAdded);
                 }

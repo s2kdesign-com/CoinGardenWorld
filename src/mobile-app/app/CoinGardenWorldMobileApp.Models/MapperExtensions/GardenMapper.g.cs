@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using CoinGardenWorldMobileApp.Models.Entities;
 using CoinGardenWorldMobileApp.Models.ViewModels;
@@ -26,6 +28,7 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     UpdatedFrom = p1.Account.UpdatedFrom,
                     UpdatedOn = p1.Account.UpdatedOn
                 },
+                Flowers = funcMain1(p1.Flowers),
                 Id = p1.Id,
                 CreatedFrom = p1.CreatedFrom,
                 CreatedOn = p1.CreatedOn,
@@ -33,174 +36,279 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 UpdatedOn = p1.UpdatedOn
             };
         }
-        public static GardenDto AdaptTo(this Garden p2, GardenDto p3)
+        public static GardenDto AdaptTo(this Garden p3, GardenDto p4)
+        {
+            if (p3 == null)
+            {
+                return null;
+            }
+            GardenDto result = p4 ?? new GardenDto();
+            
+            result.Name = p3.Name;
+            result.AccountId = p3.AccountId;
+            result.Account = funcMain2(p3.Account, result.Account);
+            result.Flowers = funcMain3(p3.Flowers, result.Flowers);
+            result.Id = p3.Id;
+            result.CreatedFrom = p3.CreatedFrom;
+            result.CreatedOn = p3.CreatedOn;
+            result.UpdatedFrom = p3.UpdatedFrom;
+            result.UpdatedOn = p3.UpdatedOn;
+            return result;
+            
+        }
+        public static Expression<Func<Garden, GardenDto>> ProjectToDto => p9 => new GardenDto()
+        {
+            Name = p9.Name,
+            AccountId = p9.AccountId,
+            Account = p9.Account == null ? null : new AccountDto()
+            {
+                Email = p9.Account.Email,
+                Username = p9.Account.Username,
+                DisplayName = p9.Account.DisplayName,
+                ProfileIntroduction = p9.Account.ProfileIntroduction,
+                ProfilePicure = p9.Account.ProfilePicure,
+                Id = p9.Account.Id,
+                CreatedFrom = p9.Account.CreatedFrom,
+                CreatedOn = p9.Account.CreatedOn,
+                UpdatedFrom = p9.Account.UpdatedFrom,
+                UpdatedOn = p9.Account.UpdatedOn
+            },
+            Flowers = p9.Flowers.Select<Flower, FlowerDto>(p10 => new FlowerDto()
+            {
+                Name = p10.Name,
+                GardenId = p10.GardenId,
+                Id = p10.Id,
+                CreatedFrom = p10.CreatedFrom,
+                CreatedOn = p10.CreatedOn,
+                UpdatedFrom = p10.UpdatedFrom,
+                UpdatedOn = p10.UpdatedOn
+            }).ToList<FlowerDto>(),
+            Id = p9.Id,
+            CreatedFrom = p9.CreatedFrom,
+            CreatedOn = p9.CreatedOn,
+            UpdatedFrom = p9.UpdatedFrom,
+            UpdatedOn = p9.UpdatedOn
+        };
+        public static Garden AdaptToGarden(this GardenAdd p11)
+        {
+            return p11 == null ? null : new Garden()
+            {
+                Name = p11.Name,
+                AccountId = p11.AccountId,
+                Account = p11.Account == null ? null : new Account()
+                {
+                    Email = p11.Account.Email,
+                    Username = p11.Account.Username,
+                    DisplayName = p11.Account.DisplayName,
+                    ProfileIntroduction = p11.Account.ProfileIntroduction,
+                    ProfilePicure = p11.Account.ProfilePicure
+                },
+                Flowers = funcMain4(p11.Flowers)
+            };
+        }
+        public static Garden AdaptTo(this GardenMerge p13, Garden p14)
+        {
+            if (p13 == null)
+            {
+                return null;
+            }
+            Garden result = p14 ?? new Garden();
+            
+            if (p13.Name != null)
+            {
+                result.Name = p13.Name;
+            }
+            
+            if (p13.AccountId != null)
+            {
+                result.AccountId = (Guid)p13.AccountId;
+            }
+            
+            if (p13.Account != null)
+            {
+                result.Account = funcMain5(p13.Account, result.Account);
+            }
+            
+            if (p13.Flowers != null)
+            {
+                result.Flowers = funcMain6(p13.Flowers, result.Flowers);
+            }
+            return result;
+            
+        }
+        
+        private static ICollection<FlowerDto> funcMain1(ICollection<Flower> p2)
         {
             if (p2 == null)
             {
                 return null;
             }
-            GardenDto result = p3 ?? new GardenDto();
+            ICollection<FlowerDto> result = new List<FlowerDto>(p2.Count);
             
-            result.Name = p2.Name;
-            result.AccountId = p2.AccountId;
-            result.Account = funcMain1(p2.Account, result.Account);
-            result.Id = p2.Id;
-            result.CreatedFrom = p2.CreatedFrom;
-            result.CreatedOn = p2.CreatedOn;
-            result.UpdatedFrom = p2.UpdatedFrom;
-            result.UpdatedOn = p2.UpdatedOn;
+            IEnumerator<Flower> enumerator = p2.GetEnumerator();
+            
+            while (enumerator.MoveNext())
+            {
+                Flower item = enumerator.Current;
+                result.Add(item == null ? null : new FlowerDto()
+                {
+                    Name = item.Name,
+                    GardenId = item.GardenId,
+                    Id = item.Id,
+                    CreatedFrom = item.CreatedFrom,
+                    CreatedOn = item.CreatedOn,
+                    UpdatedFrom = item.UpdatedFrom,
+                    UpdatedOn = item.UpdatedOn
+                });
+            }
             return result;
             
         }
-        public static Expression<Func<Garden, GardenDto>> ProjectToDto => p6 => new GardenDto()
+        
+        private static AccountDto funcMain2(Account p5, AccountDto p6)
         {
-            Name = p6.Name,
-            AccountId = p6.AccountId,
-            Account = p6.Account == null ? null : new AccountDto()
-            {
-                Email = p6.Account.Email,
-                Username = p6.Account.Username,
-                DisplayName = p6.Account.DisplayName,
-                ProfileIntroduction = p6.Account.ProfileIntroduction,
-                ProfilePicure = p6.Account.ProfilePicure,
-                Id = p6.Account.Id,
-                CreatedFrom = p6.Account.CreatedFrom,
-                CreatedOn = p6.Account.CreatedOn,
-                UpdatedFrom = p6.Account.UpdatedFrom,
-                UpdatedOn = p6.Account.UpdatedOn
-            },
-            Id = p6.Id,
-            CreatedFrom = p6.CreatedFrom,
-            CreatedOn = p6.CreatedOn,
-            UpdatedFrom = p6.UpdatedFrom,
-            UpdatedOn = p6.UpdatedOn
-        };
-        public static Garden AdaptToGarden(this GardenAdd p7)
-        {
-            return p7 == null ? null : new Garden()
-            {
-                Name = p7.Name,
-                AccountId = p7.AccountId,
-                Account = p7.Account == null ? null : new Account()
-                {
-                    Email = p7.Account.Email,
-                    Username = p7.Account.Username,
-                    DisplayName = p7.Account.DisplayName,
-                    ProfileIntroduction = p7.Account.ProfileIntroduction,
-                    ProfilePicure = p7.Account.ProfilePicure
-                }
-            };
-        }
-        public static Garden AdaptTo(this GardenUpdate p8, Garden p9)
-        {
-            if (p8 == null)
+            if (p5 == null)
             {
                 return null;
             }
-            Garden result = p9 ?? new Garden();
+            AccountDto result = p6 ?? new AccountDto();
             
-            result.Name = p8.Name;
-            result.AccountId = p8.AccountId;
-            result.Account = funcMain2(p8.Account, result.Account);
+            result.Email = p5.Email;
+            result.Username = p5.Username;
+            result.DisplayName = p5.DisplayName;
+            result.ProfileIntroduction = p5.ProfileIntroduction;
+            result.ProfilePicure = p5.ProfilePicure;
+            result.Id = p5.Id;
+            result.CreatedFrom = p5.CreatedFrom;
+            result.CreatedOn = p5.CreatedOn;
+            result.UpdatedFrom = p5.UpdatedFrom;
+            result.UpdatedOn = p5.UpdatedOn;
             return result;
             
         }
-        public static Garden AdaptTo(this GardenMerge p12, Garden p13)
+        
+        private static ICollection<FlowerDto> funcMain3(ICollection<Flower> p7, ICollection<FlowerDto> p8)
+        {
+            if (p7 == null)
+            {
+                return null;
+            }
+            ICollection<FlowerDto> result = new List<FlowerDto>(p7.Count);
+            
+            IEnumerator<Flower> enumerator = p7.GetEnumerator();
+            
+            while (enumerator.MoveNext())
+            {
+                Flower item = enumerator.Current;
+                result.Add(item == null ? null : new FlowerDto()
+                {
+                    Name = item.Name,
+                    GardenId = item.GardenId,
+                    Id = item.Id,
+                    CreatedFrom = item.CreatedFrom,
+                    CreatedOn = item.CreatedOn,
+                    UpdatedFrom = item.UpdatedFrom,
+                    UpdatedOn = item.UpdatedOn
+                });
+            }
+            return result;
+            
+        }
+        
+        private static ICollection<Flower> funcMain4(ICollection<FlowerAdd> p12)
         {
             if (p12 == null)
             {
                 return null;
             }
-            Garden result = p13 ?? new Garden();
+            ICollection<Flower> result = new List<Flower>(p12.Count);
             
-            if (p12.Name != null)
-            {
-                result.Name = p12.Name;
-            }
+            IEnumerator<FlowerAdd> enumerator = p12.GetEnumerator();
             
-            if (p12.AccountId != null)
+            while (enumerator.MoveNext())
             {
-                result.AccountId = (Guid)p12.AccountId;
-            }
-            
-            if (p12.Account != null)
-            {
-                result.Account = funcMain3(p12.Account, result.Account);
+                FlowerAdd item = enumerator.Current;
+                result.Add(item == null ? null : new Flower()
+                {
+                    Name = item.Name,
+                    GardenId = item.GardenId
+                });
             }
             return result;
             
         }
         
-        private static AccountDto funcMain1(Account p4, AccountDto p5)
+        private static Account funcMain5(AccountMerge p15, Account p16)
         {
-            if (p4 == null)
+            if (p15 == null)
             {
                 return null;
             }
-            AccountDto result = p5 ?? new AccountDto();
+            Account result = p16 ?? new Account();
             
-            result.Email = p4.Email;
-            result.Username = p4.Username;
-            result.DisplayName = p4.DisplayName;
-            result.ProfileIntroduction = p4.ProfileIntroduction;
-            result.ProfilePicure = p4.ProfilePicure;
-            result.Id = p4.Id;
-            result.CreatedFrom = p4.CreatedFrom;
-            result.CreatedOn = p4.CreatedOn;
-            result.UpdatedFrom = p4.UpdatedFrom;
-            result.UpdatedOn = p4.UpdatedOn;
+            if (p15.Email != null)
+            {
+                result.Email = p15.Email;
+            }
+            
+            if (p15.Username != null)
+            {
+                result.Username = p15.Username;
+            }
+            
+            if (p15.DisplayName != null)
+            {
+                result.DisplayName = p15.DisplayName;
+            }
+            
+            if (p15.ProfileIntroduction != null)
+            {
+                result.ProfileIntroduction = p15.ProfileIntroduction;
+            }
+            
+            if (p15.ProfilePicure != null)
+            {
+                result.ProfilePicure = p15.ProfilePicure;
+            }
             return result;
             
         }
         
-        private static Account funcMain2(AccountUpdate p10, Account p11)
+        private static ICollection<Flower> funcMain6(ICollection<FlowerMerge> p17, ICollection<Flower> p18)
         {
-            if (p10 == null)
+            if (p17 == null)
             {
                 return null;
             }
-            Account result = p11 ?? new Account();
+            ICollection<Flower> result = new List<Flower>(p17.Count);
             
-            result.Email = p10.Email;
-            result.Username = p10.Username;
-            result.DisplayName = p10.DisplayName;
-            result.ProfileIntroduction = p10.ProfileIntroduction;
-            result.ProfilePicure = p10.ProfilePicure;
+            IEnumerator<FlowerMerge> enumerator = p17.GetEnumerator();
+            
+            while (enumerator.MoveNext())
+            {
+                FlowerMerge item = enumerator.Current;
+                result.Add(funcMain7(item));
+            }
             return result;
             
         }
         
-        private static Account funcMain3(AccountMerge p14, Account p15)
+        private static Flower funcMain7(FlowerMerge p19)
         {
-            if (p14 == null)
+            if (p19 == null)
             {
                 return null;
             }
-            Account result = p15 ?? new Account();
+            Flower result = new Flower();
             
-            if (p14.Email != null)
+            if (p19.Name != null)
             {
-                result.Email = p14.Email;
+                result.Name = p19.Name;
             }
             
-            if (p14.Username != null)
+            if (p19.GardenId != null)
             {
-                result.Username = p14.Username;
-            }
-            
-            if (p14.DisplayName != null)
-            {
-                result.DisplayName = p14.DisplayName;
-            }
-            
-            if (p14.ProfileIntroduction != null)
-            {
-                result.ProfileIntroduction = p14.ProfileIntroduction;
-            }
-            
-            if (p14.ProfilePicure != null)
-            {
-                result.ProfilePicure = p14.ProfilePicure;
+                result.GardenId = (Guid)p19.GardenId;
             }
             return result;
             
