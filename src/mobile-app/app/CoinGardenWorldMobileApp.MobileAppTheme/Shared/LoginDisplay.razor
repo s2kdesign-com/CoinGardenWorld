@@ -33,13 +33,15 @@
                     <div class="dropdown-menu  bg-transparent border-0 mt-n1 ms-3">
                         <div class="card card-style rounded-m shadow-xl mt-1 me-1">
                             <div class="list-group list-custom list-group-s list-group-flush rounded-xs px-3 py-1">
-                                <a href="page-profile-admin.html" class="color-theme opacity-70 list-group-item py-1">
+                                
+                                <div class="menu-list">
+                                <a href="@NavigationLinks.PROFILE_EDIT_URL" class="nav-link color-theme opacity-70 list-group-item py-1" data-bs-dismiss="menu-main">
                                     <strong class="font-500 font-12">Your Profile</strong><i class="bi bi-chevron-right"></i>
                                 </a>
-                                <a href="page-activity.html" class="color-theme opacity-70 list-group-item py-1">
+                                <a href="@NavigationLinks.NOTIFICATIONS_URL" class="nav-link color-theme opacity-70 list-group-item py-1" data-bs-dismiss="menu-main">
                                     <strong class="font-500 font-12">Notifications</strong><i class="bi bi-chevron-right"></i>
                                 </a>
-
+                                </div>
                                 @if (_isMobile)
                                 {
 
@@ -69,15 +71,15 @@
         <div class="bg-theme mx-3 rounded-m shadow-m mt-3 mb-3">
             <div class="d-flex px-2 pb-2 pt-2">
                 @if(_isMobile){
-                <div class="d-flex px-2 pb-2 pt-2">
-                    <button class="btn btn-m rounded-sm shadow-xl bg-highlight color-white font-900 text-uppercase" @onclick="Login">Login</button>
-                </div>
+                    <div class="d-flex px-2 pb-2 pt-2">
+                        <button class="btn btn-m rounded-sm shadow-xl bg-highlight color-white font-900 text-uppercase" @onclick="Login">Login</button>
+                    </div>
                 }else{
 
-                <a href="authentication/login" class="btn gradient-highlight shadow-bg shadow-bg-m text-start font-900 text-uppercase">
-                    <i class="bi bi-heart-fill pe-3 ms-n1"></i>
-                    Login
-                </a>
+                    <a href="authentication/login" class="btn gradient-highlight shadow-bg shadow-bg-m text-start font-900 text-uppercase">
+                        <i class="bi bi-heart-fill pe-3 ms-n1"></i>
+                        Login
+                    </a>
                 }
             </div>
         </div> 

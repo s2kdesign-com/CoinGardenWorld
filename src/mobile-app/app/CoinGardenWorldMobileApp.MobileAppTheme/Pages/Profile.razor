@@ -33,14 +33,18 @@
                         </p>
                     </div>
                 </div>
-
+                
                 <div class="content">
                     <div class="row mb-0">
                         <div class="col-6">
-                            <a href="#" class="btn btn-full btn-s rounded-s text-uppercase font-900 gradient-highlight shadow-bg shadow-bg-s">Follow</a>
+                            <a href="@NavigationLinks.VIEW_FOLLOWERS_URL" class="btn btn-full btn-s rounded-s text-uppercase font-900 gradient-highlight shadow-bg shadow-bg-s">
+                                View Followers
+                                </a>
                         </div>
                         <div class="col-6">
-                            <a href="#" class="btn btn-full btn-s btn-border rounded-s text-uppercase font-900 color-highlight border-blue-dark shadow-l">Message</a>
+                            <a href="@NavigationLinks.PROFILE_EDIT_URL" class="btn btn-full btn-s btn-border rounded-s text-uppercase font-900 color-highlight border-blue-dark shadow-l">
+                                Edit Profile
+                                </a>
                         </div>
                     </div>
                 </div>
@@ -144,28 +148,20 @@
 @code {
     private string userName;
     private List<AccountDto> _accounts = new List<AccountDto>();
+    
+    bool isAuthenticated;
 
     protected override async Task OnInitializedAsync()
     {
         try
-        {
-            // var userAuth = await AuthStateProvider.GetAuthenticationStateAsync();
+        {            
+            var authState = await AuthStateProvider.GetAuthenticationStateAsync();
 
-            // if(userAuth.User.Identity != null && userAuth.User.Identity.IsAuthenticated)
-            // {
-            //     var accounts = await MobileApiAuthorizedHttpClient.MobileApi.AccountAllAsync(null, null, null, null, null, null);
-            //     _accounts = accounts.ToList();
-
-            // }
-            // else
-            // {
-            //     // TODO: Get Public Most viewed posts
-
-            // }
-
+            isAuthenticated = authState.User.Identity?.IsAuthenticated ?? false;
             
             var accounts = await MobileApiHttpClient.MobileApi.GetPublicAccountsAsync(null, null, null, null, null, null);
             _accounts = accounts.ToList();
+
             StateHasChanged();
         }
         catch (Exception e)
@@ -178,7 +174,6 @@
     {
         base.OnInitialized();
 
-        userName = LocalStorage.Get<string>(Constants.PREFERRED_USERNAME_LOCAL_STORAGE_NAME);
 
     }
 }

@@ -1,53 +1,61 @@
 ﻿<!-- Footer Bar-->
 <div id="footer-bar" class="footer-bar footer-bar-detached">
-   @*  <a href="index-pages.html"><i class="bi bi-heart-fill font-15"></i><span>Pages</span></a>
-    <a href="index-components.html"><i class="bi bi-star-fill font-17"></i><span>Features</span></a>
 
+    @if (IsChatFooter)
+    {
+        <div class="me-3 speach-icon">
+            <a href="#" class="bg-gray-dark ms-1" data-bs-toggle="offcanvas" data-bs-target="#menu-upload"><i class="bi bi-plus font-23 pt-2"></i></a>
+        </div>
+        <div class="flex-fill speach-input">
+            <input type="text" class="form-control bg-theme" placeholder="Enter your Message here">
+        </div>
+        <div class="ms-3 speach-icon">
+            <a href="#" class="bg-blue-dark me-1"><i class="bi bi-send " style="padding-top:10px;"></i></a>
+        </div>
+        
+    }
+    else
+    {
 
-    <a href="index.html" class="active-nav"><i class="bi bi-house-fill font-16"></i><span>Home</span></a>
-    <a href="index-media.html"><i class="bi bi-image font-16"></i><span>Media</span></a>
-    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-main">
-        <i class="bi bi-list"></i>
-        <span>Menu</span>
-    </a> *@
+        <NavLink ActiveClass="active-nav" href="@NavigationLinks.DASHBOARD_URL">
+            <i class="bi bi-heart-fill font-15"></i>
+            <span>
+                @((MarkupString)Localization.Components.Menus.FooterBar.Dashboard)
+            </span>
+        </NavLink>
 
-    <NavLink ActiveClass="active-nav" href="@NavigationLinks.DASHBOARD_URL">
-        <i class="bi bi-heart-fill font-15"></i>
-        <span>
-            @((MarkupString)Localization.Components.Menus.FooterBar.Dashboard)
-        </span>
-    </NavLink>
+        <NavLink ActiveClass="active-nav" href="@NavigationLinks.IDENTIFY_FLOWER_URL">
+            <i class="bi bi-flower3 font-17"></i>
+            <span>
+                @((MarkupString)Localization.Components.Menus.FooterBar.Identify)
+            </span>
+        </NavLink>
 
-    <NavLink ActiveClass="active-nav" href="@NavigationLinks.IDENTIFY_FLOWER_URL">
-        <i class="bi bi-flower3 font-17"></i>
-        <span>
-            @((MarkupString)Localization.Components.Menus.FooterBar.Identify)
-        </span>
-    </NavLink>
+        <NavLink ActiveClass="active-nav" href="" Match="NavLinkMatch.All">
+            <i class="bi bi-house-fill font-16"></i>
+            <span>
+                @((MarkupString)Localization.Components.Menus.FooterBar.Home)
+            </span>
+        </NavLink>
 
-    <NavLink ActiveClass="active-nav" href="" Match="NavLinkMatch.All">
-        <i class="bi bi-house-fill font-16"></i>
-        <span>
-            @((MarkupString)Localization.Components.Menus.FooterBar.Home)
-        </span>
-    </NavLink>
+        <NavLink ActiveClass="active-nav" href="@NavigationLinks.PROFILE_URL" Match="NavLinkMatch.Prefix">
+            <i class="bi bi-person-circle font-16"></i>
+            <span>
 
-    <NavLink ActiveClass="active-nav" href="@NavigationLinks.PROFILE_URL">
-        <i class="bi bi-person-circle font-16"></i>
-        <span>
-            
-            @((MarkupString)Localization.Components.Menus.FooterBar.Profile)
-        </span>
-    </NavLink>
+                @((MarkupString)Localization.Components.Menus.FooterBar.Profile)
+            </span>
+        </NavLink>
 
-    <NavLink ActiveClass="active-nav" href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-main">
-        <i class="bi bi-list"></i>
-        <span>
-            @((MarkupString)Localization.Components.Menus.FooterBar.Menu)
-        </span>
-    </NavLink>
+        <NavLink ActiveClass="active-nav" href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-main">
+            <i class="bi bi-list"></i>
+            <span>
+                @((MarkupString)Localization.Components.Menus.FooterBar.Menu)
+            </span>
+        </NavLink>
+    }
 </div>
 
 @code {
-
+    [Parameter]
+    public bool IsChatFooter { get; set; }
 }

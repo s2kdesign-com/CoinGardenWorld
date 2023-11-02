@@ -1,5 +1,7 @@
 ﻿@attribute [Route(NavigationLinks.PROFILE_EDIT_URL)]
 
+@layout InternalPageLayout
+
 <div class="page-content header-clear-medium">
 
     <div class="card card-style">
@@ -17,6 +19,126 @@
     </div>
 
 
+    <div class="card card-style">
+        <div class="content mb-0">
+            <h6 class="font-700 mb-n1 color-highlight">Account Settings</h6>
+            <h1 class="pb-2">Basic Information</h1>
+            <p>
+                Basic details about you. Set them here. These can be connected to your database and shown on the user profile.
+            </p>
+            <div class="file-data">
+                <img id="image-data" src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/pictures/23.jpg" class="img-fluid rounded-s" alt="img">
+                <span class="upload-file-name d-block text-center" data-text-before="<i class='bi bi-check-circle-fill color-green-dark pe-2'></i> Image:" data-text-after=" is ready.">
+                </span>
+                <div>
+                    <input type="file" class="upload-file" accept="image/*">
+                    <p class="btn btn-full btn-m text-uppercase font-700 font-11 rounded-s upload-file-text shadow-0 color-theme">Tap here to Change Profile Photo</p>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="form-custom form-label form-icon mb-3">
+                <i class="bi bi-person-circle font-14"></i>
+                <input type="text" class="form-control rounded-xs" id="c1" placeholder="Karla Black">
+                <label for="c1" class="color-theme form-label-always-active font-10 opacity-50">Name</label>
+                <span>(required)</span>
+            </div>
+            <div class="form-custom form-label form-icon mb-3">
+                <i class="bi bi-at font-16"></i>
+                <input type="text" class="form-control rounded-xs" id="c1" placeholder="name@domain.com">
+                <label for="c1" class="color-theme form-label-always-active font-10 opacity-50">Email</label>
+                <span>(required)</span>
+            </div>
+            <div class="form-custom form-label form-icon mb-3">
+                <i class="bi bi-at font-16"></i>
+                <input type="text" class="form-control rounded-xs" id="c1" placeholder="+1 234 567 8901">
+                <label for="c1" class="color-theme form-label-always-active font-10 opacity-50">Phone</label>
+                <span>(required)</span>
+            </div>
+            <div class="form-custom form-label form-icon mb-3">
+                <i class="bi bi-at font-16"></i>
+                <input type="text" class="form-control rounded-xs" id="c1" placeholder="1 Apple Lane, California">
+                <label for="c1" class="color-theme form-label-always-active font-10 opacity-50">Address</label>
+                <span>(required)</span>
+            </div>
+            <div class="form-custom form-label form-icon mb-3">
+                <i class="bi bi-at font-16"></i>
+                <input type="text" class="form-control rounded-xs" id="c1" placeholder="********">
+                <label for="c1" class="color-theme form-label-always-active font-10 opacity-50">Password</label>
+                <span>(required)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-style">
+        <div class="content mb-2">
+            <h6 class="font-700 mb-n1 color-highlight">Connected Profiles</h6>
+            <h1 class="pb-2">Socials</h1>
+            <p>
+                Basic details about you. Set them here. These can be connected to your database and shown on the user profile.
+            </p>
+            <div class="list-group list-custom list-group-m rounded-xs list-group-flush">
+                <a href="#" class="list-group-item">
+                    <i class="bi color-facebook bi-facebook"></i>
+                    <div>Facebook</div>
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+                <a href="#" class="list-group-item">
+                    <i class="bi color-twitter bi-twitter"></i>
+                    <div>Twitter</div>
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+                <a href="#" class="list-group-item">
+                    <i class="bi color-instagram bi-instagram"></i>
+                    <div>Instagram</div>
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-style">
+        <div class="content mb-2">
+            <h6 class="font-700 mb-n1 color-highlight">Manage your</h6>
+            <h1 class="pb-2">Preferences</h1>
+            <p>
+                Set your preferences here, these can be connected to a database and shown on the user profile.
+            </p>
+            <a href="#" class="d-flex pb-2" data-trigger-switch="switch-4a">
+                <div class="align-self-center">
+                    <h6 class="mb-0 font-12">Notifications</h6>
+                </div>
+                <div class="ms-auto align-self-center">
+                    <div class="form-switch ios-switch switch-green switch-s">
+                        <input type="checkbox" class="ios-input" id="switch-4a" checked="">
+                        <label class="custom-control-label" for="switch-4a"></label>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="d-flex pb-2" data-trigger-switch="switch-4b">
+                <div class="align-self-center">
+                    <h6 class="mb-0 font-12">Newsletter</h6>
+                </div>
+                <div class="ms-auto align-self-center">
+                    <div class="form-switch ios-switch switch-green switch-s">
+                        <input type="checkbox" class="ios-input" id="switch-4b" checked="">
+                        <label class="custom-control-label" for="switch-4b"></label>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="d-flex pb-2" data-trigger-switch="switch-1asd" data-toggle-theme="">
+                <div class="align-self-center">
+                    <h6 class="mb-0 font-12">Dark Mode</h6>
+                </div>
+                <div class="ms-auto align-self-center me-n2">
+                    <div class="form-switch ios-switch switch-green switch-s me-2">
+                        <input type="checkbox" data-toggle-theme="" class="ios-input" id="switch-1ads">
+                        <label class="custom-control-label" for="switch-1"></label>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <a href="#" class="btn mx-3 mb-4 btn-full btn-margins gradient-highlight shadow-bg shadow-bg-s rounded-s btn-m text-uppercase font-900">Save Information</a>
 
 </div>
 <!-- End of Page Content-->
