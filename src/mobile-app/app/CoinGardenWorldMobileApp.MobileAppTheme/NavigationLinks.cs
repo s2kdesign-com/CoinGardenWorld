@@ -12,7 +12,9 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme
         public const string PROFILE_EDIT_URL = "/profile/edit";
         public const string VIEW_FOLLOWERS_URL = "/profile/followers";
 
-        public const string DASHBOARD_URL = "/dashboard";
+        public const string POSTS_URL = "/posts";
+        public const string NEW_POST_URL = "/posts/new";
+
         public const string IDENTIFY_FLOWER_URL = "/identify-flower";
         public const string ABOUT_THE_APP_URL = "/about";
         public const string CHARITIES_URL = "/charity";

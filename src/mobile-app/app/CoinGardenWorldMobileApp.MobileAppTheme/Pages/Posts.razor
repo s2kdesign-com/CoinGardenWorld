@@ -2,13 +2,13 @@
 
 @* @page "/dashboard" *@
 
-@attribute [Route(NavigationLinks.DASHBOARD_URL)]
+@attribute [Route(NavigationLinks.POSTS_URL)]
 
 
 @inject MobileApiAuthorizedHttpClient MobileApiAuthorizedHttpClient
 @inject MobileApiHttpClient MobileApiHttpClient
 
-@inject ILogger<Dashboard> Logger
+@inject ILogger<Posts> Logger
 @inject AuthenticationStateProvider AuthStateProvider
 
 <!-- Your Page Content Goes Here-->
@@ -29,8 +29,16 @@
 
     <AuthorizeView>
         <Authorized>
+            <div class="card card-style py-3">
+                <div class="content px-2 text-center">
+                    <h5 class="mb-n1 font-12 color-highlight font-700 text-uppercase">Time to share</h5>
+                    <h2>Share what you think!</h2>
+                    <p class="mb-3">
 
-
+                    </p>
+                    <a href="posts/new" style="width: 100%" class="default-link btn btn-m rounded-s gradient-highlight shadow-bg shadow-bg-s px-5 mb-0 mt-2">Create new Post</a>
+                </div>
+            </div>
 
         </Authorized>
         <NotAuthorized>
