@@ -10,12 +10,12 @@ using Microsoft.Identity.Abstractions;
 
 namespace CoinGardenWorld.DownstreamApiExtensions.MobileApiClients
 {
-    public class VersionDownstreamApi : DownstreamApiBase<VersionDownstreamApi, string>
+    public class MobileApiAuthorizedDownstreamApi : DownstreamApiBase<MobileApiAuthorizedDownstreamApi, string>
     {
 
         public override string ApiKey => "CGW.Mobile.Api";
 
-        public VersionDownstreamApi(IDownstreamApi downstreamApi, ILogger<VersionDownstreamApi> logger, IHttpClientFactory httpClientFactory) : base(downstreamApi, logger, httpClientFactory)
+        public MobileApiAuthorizedDownstreamApi(IDownstreamApi downstreamApi, ILogger<MobileApiAuthorizedDownstreamApi> logger, IHttpClientFactory httpClientFactory) : base(downstreamApi, logger, httpClientFactory)
         {
         }
     }

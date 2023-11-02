@@ -26,11 +26,6 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR.HubClients
         {
         }
 
-        protected override void AddHubEvents()
-        {
-            base.AddHubEvents();
-
-        }
 
     }
 }

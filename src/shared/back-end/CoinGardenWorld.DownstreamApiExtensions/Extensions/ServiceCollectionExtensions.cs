@@ -47,8 +47,8 @@ namespace CoinGardenWorld.HttpClientsExtensions.Extensions
 
 
             services.AddScoped<DownstreamApiExtensions.GardenBotMessageApiClients.VersionDownstreamApi>();
-            services.AddScoped<DownstreamApiExtensions.MobileApiClients.VersionDownstreamApi>();
-            services.AddScoped<AccountDownstreamApi>();
+            services.AddScoped<DownstreamApiExtensions.MobileApiClients.MobileApiAuthorizedDownstreamApi>();
+
             return services;
         }
 

@@ -6,6 +6,8 @@ using CoinGardenWorld.SignalRClientsExtensions.Configurations;
 using CoinGardenWorld.SignalRClientsExtensions.SignalR;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Web;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 namespace CoinGardenWorld.DownstreamSignalRExtensions.Providers
 {
@@ -38,14 +40,15 @@ namespace CoinGardenWorld.DownstreamSignalRExtensions.Providers
         {
             try
             {
-
                 string accessToken = await _authorizationHeaderProvider.CreateAuthorizationHeaderForUserAsync(scopes);
-                return new AccessTokenResult(AccessTokenResultStatus.Success, new AccessToken { Value = accessToken }, "");
+
+                return new AccessTokenResult(AccessTokenResultStatus.Success, new AccessToken { Value = accessToken,}, "");
 
             }
             catch (Exception e)
             {
                 _logger.LogError(e.Message);
+                throw;
             }
 
             return new AccessTokenResult(AccessTokenResultStatus.RequiresRedirect, new AccessToken(), "");
@@ -63,6 +66,8 @@ namespace CoinGardenWorld.DownstreamSignalRExtensions.Providers
             catch (Exception e)
             {
                 _logger.LogError(e.Message);
+                throw;
+
             }
 
             return new AccessTokenResult(AccessTokenResultStatus.RequiresRedirect, new AccessToken(), "");

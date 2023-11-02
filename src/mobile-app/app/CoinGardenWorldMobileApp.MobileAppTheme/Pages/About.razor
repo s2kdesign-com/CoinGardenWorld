@@ -271,7 +271,7 @@
             }
         }
 
-        if (chatHub.HubConnection != null)
+        if (chatHub.HubConnection != null && chatHub.IsHubConnected)
         {
 
             await chatHub.HubConnection.SendAsync("AfterConnected");
