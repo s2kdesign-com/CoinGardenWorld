@@ -9,11 +9,13 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using CoinGardenWorld.DownstreamSignalRExtensions.Providers;
+using CoinGardenWorldMobileApp.Models;
 
 namespace CoinGardenWorld.DownstreamSignalRExtensions.HubClients
 {
     public class NotificationsHubDownstreamClient : NotificationsHub
     {
+        public override EnvironmentType EnvironmentType => EnvironmentType.ASPNET;
         public NotificationsHubDownstreamClient(IConfiguration configuration, ILogger<NotificationsHub> logger, BlazorSignalRTokenProvider<NotificationsHub> tokenProvider, AuthenticationStateProvider authenticationStateProvider) : base(configuration, logger, tokenProvider, authenticationStateProvider)
         {
         }

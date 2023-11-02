@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using CoinGardenWorld.SignalRClientsExtensions.Configurations;
+using CoinGardenWorldMobileApp.Models;
 
 namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
 {
@@ -68,9 +69,13 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
         public virtual string HubKey { get; } = "";
         public virtual bool HubIsAuthorized { get; }
 
+        public virtual EnvironmentType EnvironmentType { get; } = EnvironmentType.BLAZOR;
+
+
         private static Dictionary<string, AccessToken> accessTokens = new Dictionary<string, AccessToken>();
 
-        public AccessToken? AccessToken {
+        public AccessToken? AccessToken
+        {
             get
             {
 
@@ -244,7 +249,7 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
             try
             {
                 var accessTokenResult = await _tokenProvider.RequestAccessToken();
-                
+
                 if (accessTokenResult.TryGetToken(out var accessToken))
                 {
                     AccessToken = accessToken;
@@ -258,6 +263,7 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
             }
 
         }
+
 
         private async Task InitializeHubBuilder()
         {
@@ -277,9 +283,17 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
                     HubConnection = new HubConnectionBuilder()
                         .WithUrl(_hubUrl, options =>
                         {
-
-                            options.AccessTokenProvider = () => Task.FromResult(AccessToken?.Value);
-                            //  options.Headers.Add(ClaimTypes.Role, "FirstRole");
+                            if (EnvironmentType != EnvironmentType.ASPNET)
+                            {
+                                // TODO: AccessTokenProvider is Only working on Blazor WASM
+                                options.AccessTokenProvider = () => Task.FromResult(AccessToken?.Value);
+                            }
+                            else
+                            {
+                                //TODO: options.Headers.Add("Authorization") Is ONLY working on Blazor SERVER???
+                                options.Headers.Add("Authorization", AccessToken?.Value ?? "");
+                                //  options.Headers.Add(ClaimTypes.Role, "FirstRole");
+                            }
                         })
                         .WithAutomaticReconnect()
                         .Build();
@@ -302,7 +316,7 @@ namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
                         .Build();
 
 
-                    await  AddHubEvents();
+                    await AddHubEvents();
                 }
             }
 
