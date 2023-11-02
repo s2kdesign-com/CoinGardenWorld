@@ -20,7 +20,6 @@ var host = new HostBuilder()
         services.AddCgwAzureFunctionExtensions();
 
         //CoinGardenWorld.AzureAI
-        services.AddOptions<AzureAISettings>().BindConfiguration("AzureAISettings");
         services.AddAzureComputerVision();
 
         //CoinGardenWorld.BingSearch

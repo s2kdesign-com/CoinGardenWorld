@@ -8,19 +8,23 @@ namespace CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer
         private readonly MobileAppDbContext _context;
         private readonly GenericRepository<Account>? _accountRepository;
         private readonly GenericRepository<Post>? _postRepository;
+        private readonly GenericRepository<Flower>? _flowerRepository;
 
         public UnitOfWork(MobileAppDbContext context,
             GenericRepository<Account> accountRepository,
+            GenericRepository<Flower> flowerRepository,
                 GenericRepository<Post> postRepository)
         {
             _context = context;
             _accountRepository = accountRepository;
-            _postRepository = postRepository;   
+            _postRepository = postRepository;  
+            _flowerRepository = flowerRepository;
         }
 
         public GenericRepository<Account> AccountRepository => _accountRepository;
 
         public GenericRepository<Post> PostRepository => _postRepository;
+        public GenericRepository<Flower> FlowerRepository => _flowerRepository;
 
         public async Task SaveAsync()
         {

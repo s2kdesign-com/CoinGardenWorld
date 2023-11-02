@@ -9,6 +9,7 @@ using CoinGardenWorldMobileApp.DotNetApi.Contexts;
 using static System.Net.WebRequestMethods;
 using Microsoft.Extensions.Hosting;
 using System.Configuration;
+using CoinGardenWorld.AzureAI.Extensions;
 using CoinGardenWorldMobileApp.DotNetApi.Controllers;
 using CoinGardenWorldMobileApp.DotNetApi.SignalR;
 using HealthChecks.UI.Client;
@@ -205,6 +206,9 @@ builder.Services.AddHealthChecks()
 #endif
     ;
 
+// TODO: Move to CoinGardenWorld.AzureAI
+builder.Services.AddAzureComputerVision();
+builder.Services.AddAzureWebSearch();
 
 var app = builder.Build();
 

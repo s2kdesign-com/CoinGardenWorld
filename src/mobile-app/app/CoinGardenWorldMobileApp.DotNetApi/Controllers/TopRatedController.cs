@@ -20,7 +20,19 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         }
 
         // TODO: Filter public posts from most viewed accounts
-        // GET: api/Posts
+        // GET: api/flowers
+        [HttpGet]
+        [EnableQuery]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(IEnumerable<FlowerDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IQueryable<FlowerDto> GetPublicFlowers()
+        {
+            return _unitOfWork.FlowerRepository.List().Select(FlowerMapper.ProjectToDto);
+        }
+
+        // TODO: Filter public posts from most viewed accounts
+        // GET: api/posts
         [HttpGet]
         [EnableQuery]
         [Produces("application/json")]
@@ -32,7 +44,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         }
 
         // TODO: Filter public posts from most viewed accounts
-        // GET: api/Posts
+        // GET: api/accounts
         [HttpGet]
         [EnableQuery]
         [Produces("application/json")]

@@ -3,6 +3,7 @@ using Microsoft.Azure.CognitiveServices.Search.WebSearch.Models;
 using Microsoft.Extensions.Options;
 using System.Text.Json.Nodes;
 using Newtonsoft.Json;
+using CoinGardenWorld.AzureAI.Configurations;
 
 namespace CoinGardenWorld.BingSearch {
     public class AzureWebSearch {
@@ -20,16 +21,16 @@ namespace CoinGardenWorld.BingSearch {
         private const string ANSWER_COUNT = "&answerCount=";
         private const string PROMOTE = "&promote=";
 
-        private readonly string _endpoint = Environment.GetEnvironmentVariable("AzureSearchSettings__Endpoint")??"";
-        private  readonly string _subscriptionKey = Environment.GetEnvironmentVariable("AzureSearchSettings__SubscriptionKey")??"";
+      //  private readonly string _endpoint = Environment.GetEnvironmentVariable("AzureSearchSettings__Endpoint")??"";
+        //private  readonly string _subscriptionKey = Environment.GetEnvironmentVariable("AzureSearchSettings__SubscriptionKey")??"";
 
-        public AzureWebSearch()
+        public AzureWebSearch(IOptions<AzureSearchSettings> settings)
         {
             _httpClient = new HttpClient()
             {
-                 BaseAddress = new Uri(_endpoint)
+                 BaseAddress = new Uri(settings.Value.Endpoint)
             };
-            _httpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", _subscriptionKey);
+            _httpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", settings.Value.SubscriptionKey);
 
             // TODO: Not working, always returns 404
             //_client = new WebSearchClient(new ApiKeyServiceClientCredentials(_subscriptionKey))

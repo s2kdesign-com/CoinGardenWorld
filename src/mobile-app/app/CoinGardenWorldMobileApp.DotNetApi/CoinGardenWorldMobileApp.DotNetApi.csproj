@@ -49,6 +49,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\cognitive-services\CoinGardenWorld.AzureAI\CoinGardenWorld.AzureAI.csproj" />
+    <ProjectReference Include="..\..\..\cognitive-services\CoinGardenWorld.BingSearch\CoinGardenWorld.BingSearch.csproj" />
     <ProjectReference Include="..\..\..\shared\back-end\CoinGardenWorld.AzureStorageExtensions\CoinGardenWorld.AzureStorageExtensions.csproj" />
     <ProjectReference Include="..\CoinGardenWorldMobileApp.Models\CoinGardenWorldMobileApp.Models.csproj" />
   </ItemGroup>

@@ -59,7 +59,7 @@
             "id": "gRHcyX"
           },
           "resultProperty": "turn.results",
-          "url": "${settings.MobileAppApiUrl}/api/flower/findByUrl",
+          "url": "${settings.ApiUrl}/api/FlowerRecognition/ByUrl",
           "method": "POST",
           "body": "=user.flowerPictures"
         },

@@ -36,8 +36,8 @@
             "id": "aApU9c"
           },
           "resultProperty": "turn.results",
-          "url": "${settings.GardenBotApiUrl}/api/flower/findByName?name=${@flowername}",
-          "method": "GET"
+          "url": "${settings.ApiUrl}/api/FlowerRecognition/ByName?name=${@flowername}",
+          "method": "POST"
         },
         {
           "$kind": "Microsoft.SendActivity",

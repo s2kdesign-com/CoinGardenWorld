@@ -11,6 +11,7 @@ namespace CoinGardenWorld.AzureAI.Extensions {
         public static IServiceCollection AddAzureComputerVision(this IServiceCollection services)
         {
 
+            services.AddOptions<AzureAISettings>().BindConfiguration("AzureAISettings");
             services.AddSingleton<AzureComputerVision>();
             return services;
         }
