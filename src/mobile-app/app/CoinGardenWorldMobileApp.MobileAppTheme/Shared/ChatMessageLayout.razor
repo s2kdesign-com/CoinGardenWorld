@@ -37,7 +37,9 @@
         {
     // this statement assumes the module is in the wwwroot/js folder
     // _module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CoinGardenWorldMobileApp.MobileAppTheme/scripts/custom.js");
-            await JsRuntime.InvokeVoidAsync("removePreloader");
+
+            ThemeLoader.IsInitialLoad = true;
+         //   await JsRuntime.InvokeVoidAsync("removePreloader");
         }
     }
 
