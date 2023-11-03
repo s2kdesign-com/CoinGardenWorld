@@ -20,9 +20,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
     [Authorize]
     public class FlowersController : ControllerBase
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly UnitOfWork<Flower> _unitOfWork;
 
-        public FlowersController(UnitOfWork unitOfWork)
+        public FlowersController(UnitOfWork<Flower> unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -35,16 +35,18 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IQueryable<FlowerList> GetFlowers()
         {
-            return _unitOfWork.FlowerRepository.List().Select(FlowerMapper.ProjectToList);
+            return _unitOfWork.Repository.List().Select(FlowerMapper.ProjectToList);
         }
 
         // GET: api/Flowers/5
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(FlowerDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<FlowerDto>> GetFlower(Guid id, string includeProperties = "Garden,Garden.Account,Garden.Account.Roles")
+        public async Task<ActionResult<FlowerDto>> GetFlower(
+            Guid id, 
+            string includeProperties = "Garden,Account,Account.Roles")
         {
-            var model = await _unitOfWork.FlowerRepository.GetByIdAsync(id, includeProperties);
+            var model = await _unitOfWork.Repository.GetByIdAsync(id, includeProperties);
             if (model == null)
             {
                 return NotFound();
@@ -61,7 +63,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> PutFlower(Guid id, FlowerMerge post)
         {
-            var entity = await _unitOfWork.FlowerRepository
+            var entity = await _unitOfWork.Repository
                 .GetByIdAsync(id);
 
             if (entity == null)
@@ -72,7 +74,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
             try
             {
-                _unitOfWork.FlowerRepository.Update(entity);
+                _unitOfWork.Repository.Update(entity);
                 await _unitOfWork.SaveAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -101,7 +103,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var entityAdded = _unitOfWork.FlowerRepository.Insert(postAdd.AdaptToFlower());
+                    var entityAdded = _unitOfWork.Repository.Insert(postAdd.AdaptToFlower());
                     await _unitOfWork.SaveAsync();
                     return CreatedAtAction("GetFlower", new { id = entityAdded.Id }, entityAdded);
                 }
@@ -128,13 +130,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteFlower(Guid id)
         {
-            var entity = await _unitOfWork.FlowerRepository.GetByIdAsync(id);
+            var entity = await _unitOfWork.Repository.GetByIdAsync(id);
             if (entity == null)
             {
                 return NotFound();
             }
 
-            await _unitOfWork.FlowerRepository.DeleteAsync(entity);
+            await _unitOfWork.Repository.DeleteAsync(entity);
             await _unitOfWork.SaveAsync();
 
             return NoContent(); ;
@@ -142,7 +144,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
         private async Task<bool> FlowerExists(Guid id)
         {
-            return await _unitOfWork.FlowerRepository.ExistAsync(id);
+            return await _unitOfWork.Repository.ExistAsync(id);
         }
     }
 }

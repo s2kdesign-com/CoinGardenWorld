@@ -20,9 +20,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
     [Authorize]
     public class RolesController : ControllerBase
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly UnitOfWork<Role> _unitOfWork;
 
-        public RolesController(UnitOfWork unitOfWork)
+        public RolesController(UnitOfWork<Role> unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -35,7 +35,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IQueryable<RoleList> GetRoles()
         {
-            return _unitOfWork.RoleRepository.List().Select(RoleMapper.ProjectToList);
+            return _unitOfWork.Repository.List().Select(RoleMapper.ProjectToList);
         }
 
 
@@ -45,7 +45,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<RoleDto>> GetRole(Guid id)
         {
-            var model = await _unitOfWork.RoleRepository.GetByIdAsync(id);
+            var model = await _unitOfWork.Repository.GetByIdAsync(id);
             if (model == null)
             {
                 return NotFound();
@@ -61,7 +61,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> PutRole(Guid id, RoleMerge post)
         {
-            var entity = await _unitOfWork.RoleRepository
+            var entity = await _unitOfWork.Repository
                 .GetByIdAsync(id);
 
             if (entity == null)
@@ -72,7 +72,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
             try
             {
-                _unitOfWork.RoleRepository.Update(entity);
+                _unitOfWork.Repository.Update(entity);
                 await _unitOfWork.SaveAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -101,7 +101,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var entityAdded = _unitOfWork.RoleRepository.Insert(roleAdd.AdaptToRole());
+                    var entityAdded = _unitOfWork.Repository.Insert(roleAdd.AdaptToRole());
                     await _unitOfWork.SaveAsync();
                     return CreatedAtAction("GetRole", new { id = entityAdded.Id }, entityAdded);
                 }
@@ -129,13 +129,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteRole(Guid id)
         {
-            var entity = await _unitOfWork.RoleRepository.GetByIdAsync(id);
+            var entity = await _unitOfWork.Repository.GetByIdAsync(id);
             if (entity == null)
             {
                 return NotFound();
             }
 
-            await _unitOfWork.RoleRepository.DeleteAsync(entity);
+            await _unitOfWork.Repository.DeleteAsync(entity);
             await _unitOfWork.SaveAsync();
 
             return NoContent(); ;
@@ -143,7 +143,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
         private async Task<bool> RoleExists(Guid id)
         {
-            return await _unitOfWork.RoleRepository.ExistAsync(id);
+            return await _unitOfWork.Repository.ExistAsync(id);
         }
     }
 }

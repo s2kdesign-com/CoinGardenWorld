@@ -146,7 +146,7 @@ builder.Services.AddSwaggerGen(options =>
 
 });
 builder.Services.AddScoped(typeof(GenericRepository<>));
-builder.Services.AddScoped<UnitOfWork>();
+builder.Services.AddScoped(typeof(UnitOfWork<>));
 
 // Add SQL Server Database
 builder.Services.AddDbContext<MobileAppDbContext>(opt =>

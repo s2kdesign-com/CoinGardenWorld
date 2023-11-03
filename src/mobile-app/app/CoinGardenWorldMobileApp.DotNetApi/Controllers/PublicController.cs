@@ -1,4 +1,5 @@
 ﻿using CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer;
+using CoinGardenWorldMobileApp.Models.Entities;
 using CoinGardenWorldMobileApp.Models.MapperExtensions;
 using CoinGardenWorldMobileApp.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -13,10 +14,21 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
     [AllowAnonymous]
     public class PublicController : ControllerBase
     {
-        private readonly UnitOfWork _unitOfWork;
-        public PublicController(UnitOfWork unitOfWork)
+        private readonly GenericRepository<Flower> _flowerRepository;
+        private readonly GenericRepository<Post> _postRepository;
+        private readonly GenericRepository<Account> _accountRepository;
+        private readonly GenericRepository<Role> _roleRepository;
+
+        public PublicController(GenericRepository<Flower> flowerRepository,
+            GenericRepository<Post> postRepository,
+            GenericRepository<Account> accountRepository,
+            GenericRepository<Role> roleRepository
+            )
         {
-            _unitOfWork = unitOfWork;
+            _flowerRepository = flowerRepository;
+            _postRepository = postRepository;
+            _accountRepository = accountRepository;
+            _roleRepository = roleRepository;
         }
 
         // TODO: Filter public posts from most viewed accounts
@@ -28,7 +40,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IQueryable<FlowerList> GetPublicFlowers()
         {
-            return _unitOfWork.FlowerRepository.List().Select(FlowerMapper.ProjectToList);
+            return _flowerRepository.List().Select(FlowerMapper.ProjectToList);
         }
 
         // TODO: Filter public posts from most viewed accounts
@@ -40,7 +52,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IQueryable<PostList> GetPublicPosts()
         {
-            return _unitOfWork.PostRepository.List().Select(PostMapper.ProjectToList);
+            return _postRepository.List().Select(PostMapper.ProjectToList);
         }
 
         // TODO: Filter public posts from most viewed accounts
@@ -52,7 +64,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IQueryable<AccountList> GetPublicAccounts()
         {
-            return _unitOfWork.AccountRepository.List().Select(AccountMapper.ProjectToList);
+            return _accountRepository.List().Select(AccountMapper.ProjectToList);
         }
 
 
@@ -64,7 +76,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IQueryable<RoleList> GetPublicRoles()
         {
-            return _unitOfWork.RoleRepository.List().Select(RoleMapper.ProjectToList);
+            return _roleRepository.List().Select(RoleMapper.ProjectToList);
         }
     }
 }

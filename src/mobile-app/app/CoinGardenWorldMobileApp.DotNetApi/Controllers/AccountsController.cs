@@ -26,9 +26,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
     // TODO: Add ApiVersion in the header
     public class AccountController : ControllerBase
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly UnitOfWork<Account> _unitOfWork;
 
-        public AccountController(UnitOfWork unitOfWork)
+        public AccountController(UnitOfWork<Account> unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -46,7 +46,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             //    orderBy: q => q.OrderBy(d => d.CreatedOn)
             //    );
 
-            return _unitOfWork.AccountRepository.List(includeProperties: "").Select(AccountMapper.ProjectToList);
+            return _unitOfWork.Repository.List(includeProperties: "").Select(AccountMapper.ProjectToList);
         }
         
         // GET: api/Accounts/5
@@ -69,7 +69,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<AccountDto>> GetAccount(Guid id, string includeProperties = "Roles,Roles.Role")
         {
-            var account = await _unitOfWork.AccountRepository.GetByIdAsync(id, includeProperties);
+            var account = await _unitOfWork.Repository.GetByIdAsync(id, includeProperties);
             ;
             if (account == null)
             {
@@ -86,7 +86,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> PutAccount(Guid id, AccountMerge account)
         {
-            var entity = await _unitOfWork.AccountRepository
+            var entity = await _unitOfWork.Repository
                 .GetByIdAsync(id);
 
             if (entity == null)
@@ -97,7 +97,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
             try
             {
-                 _unitOfWork.AccountRepository.Update(entity);
+                 _unitOfWork.Repository.Update(entity);
                 await _unitOfWork.SaveAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -128,7 +128,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var accountAdded = _unitOfWork.AccountRepository.Insert(account.AdaptToAccount());
+                    var accountAdded = _unitOfWork.Repository.Insert(account.AdaptToAccount());
                     await _unitOfWork.SaveAsync();
                     return CreatedAtAction("GetAccount", new { id = accountAdded.Id }, accountAdded);
                 }
@@ -156,13 +156,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         public async Task<IActionResult> DeleteAccount(Guid id)
         {
 
-            var account = await _unitOfWork.AccountRepository.GetByIdAsync(id);
+            var account = await _unitOfWork.Repository.GetByIdAsync(id);
             if (account == null)
             {
                 return NotFound();
             }
 
-            await _unitOfWork.AccountRepository.DeleteAsync(account);
+            await _unitOfWork.Repository.DeleteAsync(account);
             await _unitOfWork.SaveAsync();
 
             return NoContent();
@@ -170,7 +170,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
         private async Task<bool> AccountExists(Guid id)
         {
-            return await _unitOfWork.AccountRepository.ExistAsync(id);
+            return await _unitOfWork.Repository.ExistAsync(id);
         }
     }
 }

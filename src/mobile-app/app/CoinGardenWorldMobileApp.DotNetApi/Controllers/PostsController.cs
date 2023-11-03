@@ -20,10 +20,10 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
     [Authorize]
     public class PostsController : ControllerBase
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly UnitOfWork<Post> _unitOfWork;
 
 
-        public PostsController(UnitOfWork unitOfWork) 
+        public PostsController(UnitOfWork<Post> unitOfWork) 
         {
             _unitOfWork = unitOfWork;
         }
@@ -36,7 +36,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IQueryable<PostList> GetPosts()
         {
-            return _unitOfWork.PostRepository.List().Select(PostMapper.ProjectToList);
+            return _unitOfWork.Repository.List().Select(PostMapper.ProjectToList);
         }
 
 
@@ -46,7 +46,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<PostDto>> GetPost(Guid id)
         {
-            var model = await _unitOfWork.PostRepository.GetByIdAsync(id);
+            var model = await _unitOfWork.Repository.GetByIdAsync(id);
             if (model == null)
             {
                 return NotFound();
@@ -62,7 +62,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> PutPost(Guid id, PostMerge post)
         {
-            var entity = await _unitOfWork.PostRepository
+            var entity = await _unitOfWork.Repository
                 .GetByIdAsync(id);
 
             if (entity == null)
@@ -73,7 +73,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
             try
             {
-                _unitOfWork.PostRepository.Update(entity);
+                _unitOfWork.Repository.Update(entity);
                 await _unitOfWork.SaveAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -102,7 +102,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var entityAdded = _unitOfWork.PostRepository.Insert(postAdd.AdaptToPost());
+                    var entityAdded = _unitOfWork.Repository.Insert(postAdd.AdaptToPost());
                     await _unitOfWork.SaveAsync();
                     return CreatedAtAction("GetPost", new { id = entityAdded.Id }, entityAdded);
                 }
@@ -129,13 +129,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeletePost(Guid id)
         {
-            var entity = await _unitOfWork.PostRepository.GetByIdAsync(id);
+            var entity = await _unitOfWork.Repository.GetByIdAsync(id);
             if (entity == null)
             {
                 return NotFound();
             }
 
-            await _unitOfWork.PostRepository.DeleteAsync(entity);
+            await _unitOfWork.Repository.DeleteAsync(entity);
             await _unitOfWork.SaveAsync();
 
             return NoContent(); ;
@@ -143,7 +143,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
         private async Task<bool> PostDtoExists(Guid id)
         {
-            return await _unitOfWork.PostRepository.ExistAsync(id);
+            return await _unitOfWork.Repository.ExistAsync(id);
         }
     }
 }
