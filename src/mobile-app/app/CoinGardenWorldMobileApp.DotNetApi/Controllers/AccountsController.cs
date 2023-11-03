@@ -68,12 +68,16 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> PutAccount(Guid id, AccountMerge account)
         {
             var entity = await _unitOfWork.AccountRepository
                 .GetByIdAsync(id);
 
+            if (entity == null)
+            {
+                return NotFound();
+            }
             account.AdaptTo(entity);
 
             try

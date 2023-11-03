@@ -17,7 +17,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 CreatedFrom = p1.CreatedFrom,
                 CreatedOn = p1.CreatedOn,
                 UpdatedFrom = p1.UpdatedFrom,
-                UpdatedOn = p1.UpdatedOn
+                UpdatedOn = p1.UpdatedOn,
+                DeletedFrom = p1.DeletedFrom,
+                DeletedAt = p1.DeletedAt
             };
         }
         public static RoleDto AdaptTo(this Role p2, RoleDto p3)
@@ -35,6 +37,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.CreatedOn = p2.CreatedOn;
             result.UpdatedFrom = p2.UpdatedFrom;
             result.UpdatedOn = p2.UpdatedOn;
+            result.DeletedFrom = p2.DeletedFrom;
+            result.DeletedAt = p2.DeletedAt;
             return result;
             
         }
@@ -46,7 +50,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             CreatedFrom = p4.CreatedFrom,
             CreatedOn = p4.CreatedOn,
             UpdatedFrom = p4.UpdatedFrom,
-            UpdatedOn = p4.UpdatedOn
+            UpdatedOn = p4.UpdatedOn,
+            DeletedFrom = p4.DeletedFrom,
+            DeletedAt = p4.DeletedAt
         };
         public static Role AdaptToRole(this RoleAdd p5)
         {

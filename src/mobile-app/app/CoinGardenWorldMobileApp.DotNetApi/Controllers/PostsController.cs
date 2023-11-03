@@ -58,11 +58,17 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         // PUT: api/Posts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> PutPost(Guid id, PostMerge post)
         {
             var entity = await _unitOfWork.PostRepository
                 .GetByIdAsync(id);
 
+            if (entity == null)
+            {
+                return NotFound();
+            }
             post.AdaptTo(entity);
 
             try

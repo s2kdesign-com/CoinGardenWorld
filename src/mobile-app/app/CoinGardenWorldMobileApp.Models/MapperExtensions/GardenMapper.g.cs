@@ -21,7 +21,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 CreatedFrom = p1.CreatedFrom,
                 CreatedOn = p1.CreatedOn,
                 UpdatedFrom = p1.UpdatedFrom,
-                UpdatedOn = p1.UpdatedOn
+                UpdatedOn = p1.UpdatedOn,
+                DeletedFrom = p1.DeletedFrom,
+                DeletedAt = p1.DeletedAt
             };
         }
         public static GardenDto AdaptTo(this Garden p5, GardenDto p6)
@@ -41,6 +43,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.CreatedOn = p5.CreatedOn;
             result.UpdatedFrom = p5.UpdatedFrom;
             result.UpdatedOn = p5.UpdatedOn;
+            result.DeletedFrom = p5.DeletedFrom;
+            result.DeletedAt = p5.DeletedAt;
             return result;
             
         }
@@ -68,19 +72,25 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                         CreatedFrom = p14.Role.CreatedFrom,
                         CreatedOn = p14.Role.CreatedOn,
                         UpdatedFrom = p14.Role.UpdatedFrom,
-                        UpdatedOn = p14.Role.UpdatedOn
+                        UpdatedOn = p14.Role.UpdatedOn,
+                        DeletedFrom = p14.Role.DeletedFrom,
+                        DeletedAt = p14.Role.DeletedAt
                     },
                     Id = p14.Id,
                     CreatedFrom = p14.CreatedFrom,
                     CreatedOn = p14.CreatedOn,
                     UpdatedFrom = p14.UpdatedFrom,
-                    UpdatedOn = p14.UpdatedOn
+                    UpdatedOn = p14.UpdatedOn,
+                    DeletedFrom = p14.DeletedFrom,
+                    DeletedAt = p14.DeletedAt
                 }).ToList<AccountRolesDto>(),
                 Id = p13.Account.Id,
                 CreatedFrom = p13.Account.CreatedFrom,
                 CreatedOn = p13.Account.CreatedOn,
                 UpdatedFrom = p13.Account.UpdatedFrom,
-                UpdatedOn = p13.Account.UpdatedOn
+                UpdatedOn = p13.Account.UpdatedOn,
+                DeletedFrom = p13.Account.DeletedFrom,
+                DeletedAt = p13.Account.DeletedAt
             },
             Flowers = p13.Flowers.Select<Flower, FlowerDto>(p15 => new FlowerDto()
             {
@@ -90,13 +100,17 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 CreatedFrom = p15.CreatedFrom,
                 CreatedOn = p15.CreatedOn,
                 UpdatedFrom = p15.UpdatedFrom,
-                UpdatedOn = p15.UpdatedOn
+                UpdatedOn = p15.UpdatedOn,
+                DeletedFrom = p15.DeletedFrom,
+                DeletedAt = p15.DeletedAt
             }).ToList<FlowerDto>(),
             Id = p13.Id,
             CreatedFrom = p13.CreatedFrom,
             CreatedOn = p13.CreatedOn,
             UpdatedFrom = p13.UpdatedFrom,
-            UpdatedOn = p13.UpdatedOn
+            UpdatedOn = p13.UpdatedOn,
+            DeletedFrom = p13.DeletedFrom,
+            DeletedAt = p13.DeletedAt
         };
         public static Garden AdaptToGarden(this GardenAdd p16)
         {
@@ -104,36 +118,44 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             {
                 Name = p16.Name,
                 AccountId = p16.AccountId,
-                Account = funcMain7(p16.Account),
-                Flowers = funcMain9(p16.Flowers)
+                Account = p16.Account == null ? null : new Account()
+                {
+                    Email = p16.Account.Email,
+                    Username = p16.Account.Username,
+                    DisplayName = p16.Account.DisplayName,
+                    ProfileIntroduction = p16.Account.ProfileIntroduction,
+                    ProfilePicure = p16.Account.ProfilePicure,
+                    UserObjectIdAzureAd = p16.Account.UserObjectIdAzureAd
+                },
+                Flowers = funcMain7(p16.Flowers)
             };
         }
-        public static Garden AdaptTo(this GardenMerge p20, Garden p21)
+        public static Garden AdaptTo(this GardenMerge p18, Garden p19)
         {
-            if (p20 == null)
+            if (p18 == null)
             {
                 return null;
             }
-            Garden result = p21 ?? new Garden();
+            Garden result = p19 ?? new Garden();
             
-            if (p20.Name != null)
+            if (p18.Name != null)
             {
-                result.Name = p20.Name;
+                result.Name = p18.Name;
             }
             
-            if (p20.AccountId != null)
+            if (p18.AccountId != null)
             {
-                result.AccountId = (Guid)p20.AccountId;
+                result.AccountId = (Guid)p18.AccountId;
             }
             
-            if (p20.Account != null)
+            if (p18.Account != null)
             {
-                result.Account = funcMain10(p20.Account, result.Account);
+                result.Account = funcMain8(p18.Account, result.Account);
             }
             
-            if (p20.Flowers != null)
+            if (p18.Flowers != null)
             {
-                result.Flowers = funcMain14(p20.Flowers, result.Flowers);
+                result.Flowers = funcMain9(p18.Flowers, result.Flowers);
             }
             return result;
             
@@ -154,7 +176,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 CreatedFrom = p2.CreatedFrom,
                 CreatedOn = p2.CreatedOn,
                 UpdatedFrom = p2.UpdatedFrom,
-                UpdatedOn = p2.UpdatedOn
+                UpdatedOn = p2.UpdatedOn,
+                DeletedFrom = p2.DeletedFrom,
+                DeletedAt = p2.DeletedAt
             };
         }
         
@@ -179,7 +203,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     CreatedFrom = item.CreatedFrom,
                     CreatedOn = item.CreatedOn,
                     UpdatedFrom = item.UpdatedFrom,
-                    UpdatedOn = item.UpdatedOn
+                    UpdatedOn = item.UpdatedOn,
+                    DeletedFrom = item.DeletedFrom,
+                    DeletedAt = item.DeletedAt
                 });
             }
             return result;
@@ -206,6 +232,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.CreatedOn = p7.CreatedOn;
             result.UpdatedFrom = p7.UpdatedFrom;
             result.UpdatedOn = p7.UpdatedOn;
+            result.DeletedFrom = p7.DeletedFrom;
+            result.DeletedAt = p7.DeletedAt;
             return result;
             
         }
@@ -231,36 +259,24 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     CreatedFrom = item.CreatedFrom,
                     CreatedOn = item.CreatedOn,
                     UpdatedFrom = item.UpdatedFrom,
-                    UpdatedOn = item.UpdatedOn
+                    UpdatedOn = item.UpdatedOn,
+                    DeletedFrom = item.DeletedFrom,
+                    DeletedAt = item.DeletedAt
                 });
             }
             return result;
             
         }
         
-        private static Account funcMain7(AccountAdd p17)
+        private static ICollection<Flower> funcMain7(ICollection<FlowerAdd> p17)
         {
-            return p17 == null ? null : new Account()
-            {
-                Email = p17.Email,
-                Username = p17.Username,
-                DisplayName = p17.DisplayName,
-                ProfileIntroduction = p17.ProfileIntroduction,
-                ProfilePicure = p17.ProfilePicure,
-                UserObjectIdAzureAd = p17.UserObjectIdAzureAd,
-                Roles = funcMain8(p17.Roles)
-            };
-        }
-        
-        private static ICollection<Flower> funcMain9(ICollection<FlowerAdd> p19)
-        {
-            if (p19 == null)
+            if (p17 == null)
             {
                 return null;
             }
-            ICollection<Flower> result = new List<Flower>(p19.Count);
+            ICollection<Flower> result = new List<Flower>(p17.Count);
             
-            IEnumerator<FlowerAdd> enumerator = p19.GetEnumerator();
+            IEnumerator<FlowerAdd> enumerator = p17.GetEnumerator();
             
             while (enumerator.MoveNext())
             {
@@ -275,66 +291,61 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             
         }
         
-        private static Account funcMain10(AccountMerge p22, Account p23)
+        private static Account funcMain8(AccountMerge p20, Account p21)
         {
-            if (p22 == null)
+            if (p20 == null)
             {
                 return null;
             }
-            Account result = p23 ?? new Account();
+            Account result = p21 ?? new Account();
             
-            if (p22.Email != null)
+            if (p20.Email != null)
             {
-                result.Email = p22.Email;
+                result.Email = p20.Email;
             }
             
-            if (p22.Username != null)
+            if (p20.Username != null)
             {
-                result.Username = p22.Username;
+                result.Username = p20.Username;
             }
             
-            if (p22.DisplayName != null)
+            if (p20.DisplayName != null)
             {
-                result.DisplayName = p22.DisplayName;
+                result.DisplayName = p20.DisplayName;
             }
             
-            if (p22.ProfileIntroduction != null)
+            if (p20.ProfileIntroduction != null)
             {
-                result.ProfileIntroduction = p22.ProfileIntroduction;
+                result.ProfileIntroduction = p20.ProfileIntroduction;
             }
             
-            if (p22.ProfilePicure != null)
+            if (p20.ProfilePicure != null)
             {
-                result.ProfilePicure = p22.ProfilePicure;
+                result.ProfilePicure = p20.ProfilePicure;
             }
             
-            if (p22.UserObjectIdAzureAd != null)
+            if (p20.UserObjectIdAzureAd != null)
             {
-                result.UserObjectIdAzureAd = p22.UserObjectIdAzureAd;
-            }
-            
-            if (p22.Roles != null)
-            {
-                result.Roles = funcMain11(p22.Roles, result.Roles);
+                result.UserObjectIdAzureAd = p20.UserObjectIdAzureAd;
             }
             return result;
             
         }
         
-        private static ICollection<Flower> funcMain14(ICollection<FlowerMerge> p28, ICollection<Flower> p29)
+        private static ICollection<Flower> funcMain9(ICollection<FlowerMerge> p22, ICollection<Flower> p23)
         {
-            if (p28 == null)
+            if (p22 == null)
             {
                 return null;
             }
-            ICollection<Flower> result = new List<Flower>(p28.Count);
+            ICollection<Flower> result = new List<Flower>(p22.Count);
             
-            IEnumerator<FlowerMerge> enumerator = p28.GetEnumerator();
+            IEnumerator<FlowerMerge> enumerator = p22.GetEnumerator();
             
             while (enumerator.MoveNext())
             {
                 FlowerMerge item = enumerator.Current;
-                result.Add(funcMain15(item));
+                result.Add(funcMain10(item));
             }
             return result;
             
@@ -365,13 +376,17 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                         CreatedFrom = item.Role.CreatedFrom,
                         CreatedOn = item.Role.CreatedOn,
                         UpdatedFrom = item.Role.UpdatedFrom,
-                        UpdatedOn = item.Role.UpdatedOn
+                        UpdatedOn = item.Role.UpdatedOn,
+                        DeletedFrom = item.Role.DeletedFrom,
+                        DeletedAt = item.Role.DeletedAt
                     },
                     Id = item.Id,
                     CreatedFrom = item.CreatedFrom,
                     CreatedOn = item.CreatedOn,
                     UpdatedFrom = item.UpdatedFrom,
-                    UpdatedOn = item.UpdatedOn
+                    UpdatedOn = item.UpdatedOn,
+                    DeletedFrom = item.DeletedFrom,
+                    DeletedAt = item.DeletedAt
                 });
             }
             return result;
@@ -403,129 +418,39 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                         CreatedFrom = item.Role.CreatedFrom,
                         CreatedOn = item.Role.CreatedOn,
                         UpdatedFrom = item.Role.UpdatedFrom,
-                        UpdatedOn = item.Role.UpdatedOn
+                        UpdatedOn = item.Role.UpdatedOn,
+                        DeletedFrom = item.Role.DeletedFrom,
+                        DeletedAt = item.Role.DeletedAt
                     },
                     Id = item.Id,
                     CreatedFrom = item.CreatedFrom,
                     CreatedOn = item.CreatedOn,
                     UpdatedFrom = item.UpdatedFrom,
-                    UpdatedOn = item.UpdatedOn
+                    UpdatedOn = item.UpdatedOn,
+                    DeletedFrom = item.DeletedFrom,
+                    DeletedAt = item.DeletedAt
                 });
             }
             return result;
             
         }
         
-        private static ICollection<AccountRoles> funcMain8(ICollection<AccountRolesAdd> p18)
-        {
-            if (p18 == null)
-            {
-                return null;
-            }
-            ICollection<AccountRoles> result = new List<AccountRoles>(p18.Count);
-            
-            IEnumerator<AccountRolesAdd> enumerator = p18.GetEnumerator();
-            
-            while (enumerator.MoveNext())
-            {
-                AccountRolesAdd item = enumerator.Current;
-                result.Add(item == null ? null : new AccountRoles()
-                {
-                    AccountId = item.AccountId,
-                    RoleId = item.RoleId,
-                    Role = item.Role == null ? null : new Role()
-                    {
-                        Name = item.Role.Name,
-                        Description = item.Role.Description
-                    }
-                });
-            }
-            return result;
-            
-        }
-        
-        private static ICollection<AccountRoles> funcMain11(ICollection<AccountRolesMerge> p24, ICollection<AccountRoles> p25)
+        private static Flower funcMain10(FlowerMerge p24)
         {
             if (p24 == null)
             {
                 return null;
             }
-            ICollection<AccountRoles> result = new List<AccountRoles>(p24.Count);
-            
-            IEnumerator<AccountRolesMerge> enumerator = p24.GetEnumerator();
-            
-            while (enumerator.MoveNext())
-            {
-                AccountRolesMerge item = enumerator.Current;
-                result.Add(funcMain12(item));
-            }
-            return result;
-            
-        }
-        
-        private static Flower funcMain15(FlowerMerge p30)
-        {
-            if (p30 == null)
-            {
-                return null;
-            }
             Flower result = new Flower();
             
-            if (p30.Name != null)
+            if (p24.Name != null)
             {
-                result.Name = p30.Name;
+                result.Name = p24.Name;
             }
             
-            if (p30.GardenId != null)
+            if (p24.GardenId != null)
             {
-                result.GardenId = (Guid)p30.GardenId;
-            }
-            return result;
-            
-        }
-        
-        private static AccountRoles funcMain12(AccountRolesMerge p26)
-        {
-            if (p26 == null)
-            {
-                return null;
-            }
-            AccountRoles result = new AccountRoles();
-            
-            if (p26.AccountId != null)
-            {
-                result.AccountId = (Guid)p26.AccountId;
-            }
-            
-            if (p26.RoleId != null)
-            {
-                result.RoleId = (Guid)p26.RoleId;
-            }
-            
-            if (p26.Role != null)
-            {
-                result.Role = funcMain13(p26.Role);
-            }
-            return result;
-            
-        }
-        
-        private static Role funcMain13(RoleMerge p27)
-        {
-            if (p27 == null)
-            {
-                return null;
-            }
-            Role result = new Role();
-            
-            if (p27.Name != null)
-            {
-                result.Name = p27.Name;
-            }
-            
-            if (p27.Description != null)
-            {
-                result.Description = p27.Description;
+                result.GardenId = (Guid)p24.GardenId;
             }
             return result;
             

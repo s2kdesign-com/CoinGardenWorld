@@ -59,13 +59,19 @@ namespace CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer
         public virtual IQueryable<TEntity> List(
             Expression<Func<TEntity, bool>>? filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
-            string includeProperties = "")
+            string includeProperties = "",
+            bool includeDeleted = false)
         {
             IQueryable<TEntity> query = dbSet;
 
             if (filter != null)
             {
                 query = query.Where(filter);
+            }
+
+            if (!includeDeleted)
+            {
+                query = query.Where(e => e.DeletedAt == null);
             }
 
             foreach (var includeProperty in includeProperties.Split
@@ -125,10 +131,15 @@ namespace CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer
         //    Delete(entityToDelete);
         //}
 
-        public virtual async Task DeleteAsync(object id)
+        public virtual async Task DeleteAsync(TEntity entityToDelete)
         {
-            TEntity entityToDelete = await dbSet.FindAsync(id);
-            Delete(entityToDelete);
+            entityToDelete.DeletedFrom = GetUserId();
+            entityToDelete.DeletedAt = DateTime.UtcNow;
+
+            dbSet.Attach(entityToDelete);
+            context.Entry(entityToDelete).State = EntityState.Modified;
+
+          //  Delete(entityToDelete);
         }
 
         private Guid GetUserId()

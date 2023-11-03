@@ -17,9 +17,8 @@ public partial class MobileAppDbContext : DbContext
 
     public MobileAppDbContext(DbContextOptions<MobileAppDbContext> options)
         : base(options)
-    {
+    {    
     }
-
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

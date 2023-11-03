@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using Mapster;
+using CoinGardenWorldMobileApp.Models.Attributes;
 
 namespace CoinGardenWorldMobileApp.Models.Entities
 {
@@ -26,10 +27,12 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         public byte[]? ProfilePicure { get; set; }
 
         [StringLength(70, ErrorMessage = "{0} can have a max of {1} characters")]
-        public string UserObjectIdAzureAd { get; set; }
+        public string? UserObjectIdAzureAd { get; set; }
 
 
-       //  [InverseProperty("Account")]
+        [IgnoreOnUpdate]
+        [IgnoreOnInsert]
+        //  [InverseProperty("Account")]
         public ICollection<AccountRoles> Roles { get; set; }
 
     }

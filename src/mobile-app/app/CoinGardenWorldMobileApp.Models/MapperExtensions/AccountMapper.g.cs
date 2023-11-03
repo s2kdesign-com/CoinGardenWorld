@@ -24,7 +24,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 CreatedFrom = p1.CreatedFrom,
                 CreatedOn = p1.CreatedOn,
                 UpdatedFrom = p1.UpdatedFrom,
-                UpdatedOn = p1.UpdatedOn
+                UpdatedOn = p1.UpdatedOn,
+                DeletedFrom = p1.DeletedFrom,
+                DeletedAt = p1.DeletedAt
             };
         }
         public static AccountDto AdaptTo(this Account p3, AccountDto p4)
@@ -47,6 +49,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.CreatedOn = p3.CreatedOn;
             result.UpdatedFrom = p3.UpdatedFrom;
             result.UpdatedOn = p3.UpdatedOn;
+            result.DeletedFrom = p3.DeletedFrom;
+            result.DeletedAt = p3.DeletedAt;
             return result;
             
         }
@@ -70,19 +74,25 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     CreatedFrom = p8.Role.CreatedFrom,
                     CreatedOn = p8.Role.CreatedOn,
                     UpdatedFrom = p8.Role.UpdatedFrom,
-                    UpdatedOn = p8.Role.UpdatedOn
+                    UpdatedOn = p8.Role.UpdatedOn,
+                    DeletedFrom = p8.Role.DeletedFrom,
+                    DeletedAt = p8.Role.DeletedAt
                 },
                 Id = p8.Id,
                 CreatedFrom = p8.CreatedFrom,
                 CreatedOn = p8.CreatedOn,
                 UpdatedFrom = p8.UpdatedFrom,
-                UpdatedOn = p8.UpdatedOn
+                UpdatedOn = p8.UpdatedOn,
+                DeletedFrom = p8.DeletedFrom,
+                DeletedAt = p8.DeletedAt
             }).ToList<AccountRolesDto>(),
             Id = p7.Id,
             CreatedFrom = p7.CreatedFrom,
             CreatedOn = p7.CreatedOn,
             UpdatedFrom = p7.UpdatedFrom,
-            UpdatedOn = p7.UpdatedOn
+            UpdatedOn = p7.UpdatedOn,
+            DeletedFrom = p7.DeletedFrom,
+            DeletedAt = p7.DeletedAt
         };
         public static Account AdaptToAccount(this AccountAdd p9)
         {
@@ -93,51 +103,45 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 DisplayName = p9.DisplayName,
                 ProfileIntroduction = p9.ProfileIntroduction,
                 ProfilePicure = p9.ProfilePicure,
-                UserObjectIdAzureAd = p9.UserObjectIdAzureAd,
-                Roles = funcMain3(p9.Roles)
+                UserObjectIdAzureAd = p9.UserObjectIdAzureAd
             };
         }
-        public static Account AdaptTo(this AccountMerge p11, Account p12)
+        public static Account AdaptTo(this AccountMerge p10, Account p11)
         {
-            if (p11 == null)
+            if (p10 == null)
             {
                 return null;
             }
-            Account result = p12 ?? new Account();
+            Account result = p11 ?? new Account();
             
-            if (p11.Email != null)
+            if (p10.Email != null)
             {
-                result.Email = p11.Email;
+                result.Email = p10.Email;
             }
             
-            if (p11.Username != null)
+            if (p10.Username != null)
             {
-                result.Username = p11.Username;
+                result.Username = p10.Username;
             }
             
-            if (p11.DisplayName != null)
+            if (p10.DisplayName != null)
             {
-                result.DisplayName = p11.DisplayName;
+                result.DisplayName = p10.DisplayName;
             }
             
-            if (p11.ProfileIntroduction != null)
+            if (p10.ProfileIntroduction != null)
             {
-                result.ProfileIntroduction = p11.ProfileIntroduction;
+                result.ProfileIntroduction = p10.ProfileIntroduction;
             }
             
-            if (p11.ProfilePicure != null)
+            if (p10.ProfilePicure != null)
             {
-                result.ProfilePicure = p11.ProfilePicure;
+                result.ProfilePicure = p10.ProfilePicure;
             }
             
-            if (p11.UserObjectIdAzureAd != null)
+            if (p10.UserObjectIdAzureAd != null)
             {
-                result.UserObjectIdAzureAd = p11.UserObjectIdAzureAd;
-            }
-            
-            if (p11.Roles != null)
-            {
-                result.Roles = funcMain4(p11.Roles, result.Roles);
+                result.UserObjectIdAzureAd = p10.UserObjectIdAzureAd;
             }
             return result;
             
@@ -168,13 +172,17 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                         CreatedFrom = item.Role.CreatedFrom,
                         CreatedOn = item.Role.CreatedOn,
                         UpdatedFrom = item.Role.UpdatedFrom,
-                        UpdatedOn = item.Role.UpdatedOn
+                        UpdatedOn = item.Role.UpdatedOn,
+                        DeletedFrom = item.Role.DeletedFrom,
+                        DeletedAt = item.Role.DeletedAt
                     },
                     Id = item.Id,
                     CreatedFrom = item.CreatedFrom,
                     CreatedOn = item.CreatedOn,
                     UpdatedFrom = item.UpdatedFrom,
-                    UpdatedOn = item.UpdatedOn
+                    UpdatedOn = item.UpdatedOn,
+                    DeletedFrom = item.DeletedFrom,
+                    DeletedAt = item.DeletedAt
                 });
             }
             return result;
@@ -206,108 +214,18 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                         CreatedFrom = item.Role.CreatedFrom,
                         CreatedOn = item.Role.CreatedOn,
                         UpdatedFrom = item.Role.UpdatedFrom,
-                        UpdatedOn = item.Role.UpdatedOn
+                        UpdatedOn = item.Role.UpdatedOn,
+                        DeletedFrom = item.Role.DeletedFrom,
+                        DeletedAt = item.Role.DeletedAt
                     },
                     Id = item.Id,
                     CreatedFrom = item.CreatedFrom,
                     CreatedOn = item.CreatedOn,
                     UpdatedFrom = item.UpdatedFrom,
-                    UpdatedOn = item.UpdatedOn
+                    UpdatedOn = item.UpdatedOn,
+                    DeletedFrom = item.DeletedFrom,
+                    DeletedAt = item.DeletedAt
                 });
-            }
-            return result;
-            
-        }
-        
-        private static ICollection<AccountRoles> funcMain3(ICollection<AccountRolesAdd> p10)
-        {
-            if (p10 == null)
-            {
-                return null;
-            }
-            ICollection<AccountRoles> result = new List<AccountRoles>(p10.Count);
-            
-            IEnumerator<AccountRolesAdd> enumerator = p10.GetEnumerator();
-            
-            while (enumerator.MoveNext())
-            {
-                AccountRolesAdd item = enumerator.Current;
-                result.Add(item == null ? null : new AccountRoles()
-                {
-                    AccountId = item.AccountId,
-                    RoleId = item.RoleId,
-                    Role = item.Role == null ? null : new Role()
-                    {
-                        Name = item.Role.Name,
-                        Description = item.Role.Description
-                    }
-                });
-            }
-            return result;
-            
-        }
-        
-        private static ICollection<AccountRoles> funcMain4(ICollection<AccountRolesMerge> p13, ICollection<AccountRoles> p14)
-        {
-            if (p13 == null)
-            {
-                return null;
-            }
-            ICollection<AccountRoles> result = new List<AccountRoles>(p13.Count);
-            
-            IEnumerator<AccountRolesMerge> enumerator = p13.GetEnumerator();
-            
-            while (enumerator.MoveNext())
-            {
-                AccountRolesMerge item = enumerator.Current;
-                result.Add(funcMain5(item));
-            }
-            return result;
-            
-        }
-        
-        private static AccountRoles funcMain5(AccountRolesMerge p15)
-        {
-            if (p15 == null)
-            {
-                return null;
-            }
-            AccountRoles result = new AccountRoles();
-            
-            if (p15.AccountId != null)
-            {
-                result.AccountId = (Guid)p15.AccountId;
-            }
-            
-            if (p15.RoleId != null)
-            {
-                result.RoleId = (Guid)p15.RoleId;
-            }
-            
-            if (p15.Role != null)
-            {
-                result.Role = funcMain6(p15.Role);
-            }
-            return result;
-            
-        }
-        
-        private static Role funcMain6(RoleMerge p16)
-        {
-            if (p16 == null)
-            {
-                return null;
-            }
-            Role result = new Role();
-            
-            if (p16.Name != null)
-            {
-                result.Name = p16.Name;
-            }
-            
-            if (p16.Description != null)
-            {
-                result.Description = p16.Description;
             }
             return result;
             

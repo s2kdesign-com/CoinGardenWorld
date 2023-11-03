@@ -1,11 +1,12 @@
 ﻿using CoinGardenWorldMobileApp.Models.Attributes;
+using CoinGardenWorldMobileApp.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CoinGardenWorldMobileApp.Models.Entities
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity : ISoftDelete
     {
 
         [Key]
@@ -16,7 +17,7 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         public Guid CreatedFrom { get; set; }
 
         [IgnoreOnInsert]
-        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+        public DateTimeOffset CreatedOn { get; set; } = DateTime.UtcNow;
 
         [IgnoreOnUpdate]
         [IgnoreOnInsert]
@@ -24,11 +25,14 @@ namespace CoinGardenWorldMobileApp.Models.Entities
 
         [IgnoreOnUpdate]
         [IgnoreOnInsert]
-        public DateTime? UpdatedOn { get; set; } = null;
+        public DateTimeOffset? UpdatedOn { get; set; } = null;
 
-        
-        //public Guid? DeletedFrom { get; set; } = null;
+        [IgnoreOnUpdate]
+        [IgnoreOnInsert]
+        public Guid? DeletedFrom { get; set; } = null;
 
-        //public DateTime? WhenDeleted { get; set; } = null;
+        [IgnoreOnUpdate]
+        [IgnoreOnInsert]
+        public DateTimeOffset? DeletedAt { get; set; } = null;
     }
 }

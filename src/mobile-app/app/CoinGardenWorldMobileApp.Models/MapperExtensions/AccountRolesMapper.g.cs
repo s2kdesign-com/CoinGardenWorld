@@ -21,13 +21,17 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     CreatedFrom = p1.Role.CreatedFrom,
                     CreatedOn = p1.Role.CreatedOn,
                     UpdatedFrom = p1.Role.UpdatedFrom,
-                    UpdatedOn = p1.Role.UpdatedOn
+                    UpdatedOn = p1.Role.UpdatedOn,
+                    DeletedFrom = p1.Role.DeletedFrom,
+                    DeletedAt = p1.Role.DeletedAt
                 },
                 Id = p1.Id,
                 CreatedFrom = p1.CreatedFrom,
                 CreatedOn = p1.CreatedOn,
                 UpdatedFrom = p1.UpdatedFrom,
-                UpdatedOn = p1.UpdatedOn
+                UpdatedOn = p1.UpdatedOn,
+                DeletedFrom = p1.DeletedFrom,
+                DeletedAt = p1.DeletedAt
             };
         }
         public static AccountRolesDto AdaptTo(this AccountRoles p2, AccountRolesDto p3)
@@ -46,6 +50,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.CreatedOn = p2.CreatedOn;
             result.UpdatedFrom = p2.UpdatedFrom;
             result.UpdatedOn = p2.UpdatedOn;
+            result.DeletedFrom = p2.DeletedFrom;
+            result.DeletedAt = p2.DeletedAt;
             return result;
             
         }
@@ -61,13 +67,17 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 CreatedFrom = p6.Role.CreatedFrom,
                 CreatedOn = p6.Role.CreatedOn,
                 UpdatedFrom = p6.Role.UpdatedFrom,
-                UpdatedOn = p6.Role.UpdatedOn
+                UpdatedOn = p6.Role.UpdatedOn,
+                DeletedFrom = p6.Role.DeletedFrom,
+                DeletedAt = p6.Role.DeletedAt
             },
             Id = p6.Id,
             CreatedFrom = p6.CreatedFrom,
             CreatedOn = p6.CreatedOn,
             UpdatedFrom = p6.UpdatedFrom,
-            UpdatedOn = p6.UpdatedOn
+            UpdatedOn = p6.UpdatedOn,
+            DeletedFrom = p6.DeletedFrom,
+            DeletedAt = p6.DeletedAt
         };
         public static AccountRoles AdaptToAccountRoles(this AccountRolesAdd p7)
         {
@@ -123,6 +133,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.CreatedOn = p4.CreatedOn;
             result.UpdatedFrom = p4.UpdatedFrom;
             result.UpdatedOn = p4.UpdatedOn;
+            result.DeletedFrom = p4.DeletedFrom;
+            result.DeletedAt = p4.DeletedAt;
             return result;
             
         }
