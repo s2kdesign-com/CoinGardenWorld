@@ -26,7 +26,9 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         [IgnoreOnInsert]
         public DateTime? UpdatedOn { get; set; } = null;
 
+        
+        //public Guid? DeletedFrom { get; set; } = null;
 
-
+        //public DateTime? WhenDeleted { get; set; } = null;
     }
 }

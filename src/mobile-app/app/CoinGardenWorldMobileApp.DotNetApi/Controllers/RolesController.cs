@@ -10,41 +10,40 @@ using CoinGardenWorldMobileApp.Models.Entities;
 using CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer;
 using CoinGardenWorldMobileApp.Models.MapperExtensions;
 using CoinGardenWorldMobileApp.Models.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.OData.Query;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
-    public class FlowersController : ControllerBase
+    public class RolesController : ControllerBase
     {
         private readonly UnitOfWork _unitOfWork;
 
-        public FlowersController(UnitOfWork unitOfWork)
+        public RolesController(UnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        // GET: api/Flowers
+        // GET: api/Roles
         [HttpGet]
         [EnableQuery]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<FlowerDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<RoleDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IQueryable<FlowerDto> GetFlowers()
+        public IQueryable<RoleDto> GetRoles()
         {
-            return _unitOfWork.FlowerRepository.List().Select(FlowerMapper.ProjectToDto);
+            return _unitOfWork.RoleRepository.List().Select(RoleMapper.ProjectToDto);
         }
 
-        // GET: api/Flowers/5
+
+        // GET: api/Roles/5
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(FlowerDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(RoleDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<FlowerDto>> GetFlower(Guid id)
+        public async Task<ActionResult<RoleDto>> GetRole(Guid id)
         {
-            var model = await _unitOfWork.FlowerRepository.GetByIdAsync(id);
+            var model = await _unitOfWork.RoleRepository.GetByIdAsync(id);
             if (model == null)
             {
                 return NotFound();
@@ -53,25 +52,24 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             return model.AdaptToDto();
         }
 
-
-        // PUT: api/Flowers/5
+        // PUT: api/Roles/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFlower(Guid id, FlowerMerge post)
+        public async Task<IActionResult> PutRole(Guid id, RoleMerge post)
         {
-            var entity = await _unitOfWork.FlowerRepository
+            var entity = await _unitOfWork.RoleRepository
                 .GetByIdAsync(id);
 
             post.AdaptTo(entity);
 
             try
             {
-                _unitOfWork.FlowerRepository.Update(entity);
+                _unitOfWork.RoleRepository.Update(entity);
                 await _unitOfWork.SaveAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!await FlowerExists(id))
+                if (!await RoleExists(id))
                 {
                     return NotFound();
                 }
@@ -84,20 +82,20 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Flowers
+        // POST: api/Roles
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        [ProducesResponseType(typeof(FlowerDto), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(RoleDto), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<FlowerDto>> PostFlower(FlowerAdd postAdd)
+        public async Task<ActionResult<RoleDto>> PostRole(RoleAdd roleAdd)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var entityAdded = _unitOfWork.FlowerRepository.Insert(postAdd.AdaptToFlower());
+                    var entityAdded = _unitOfWork.RoleRepository.Insert(roleAdd.AdaptToRole());
                     await _unitOfWork.SaveAsync();
-                    return CreatedAtAction("GetFlower", new { id = entityAdded.Id }, entityAdded);
+                    return CreatedAtAction("GetRole", new { id = entityAdded.Id }, entityAdded);
                 }
                 else
                 {
@@ -116,27 +114,28 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             return Problem();
         }
 
-        // DELETE: api/Flowers/5
+
+        // DELETE: api/Roles/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> DeleteFlower(Guid id)
+        public async Task<IActionResult> DeleteRole(Guid id)
         {
-            var entity = await _unitOfWork.FlowerRepository.GetByIdAsync(id);
+            var entity = await _unitOfWork.RoleRepository.GetByIdAsync(id);
             if (entity == null)
             {
                 return NotFound();
             }
 
-            await _unitOfWork.FlowerRepository.DeleteAsync(entity);
+            await _unitOfWork.RoleRepository.DeleteAsync(entity);
             await _unitOfWork.SaveAsync();
 
             return NoContent(); ;
         }
 
-        private async Task<bool> FlowerExists(Guid id)
+        private async Task<bool> RoleExists(Guid id)
         {
-            return await _unitOfWork.FlowerRepository.ExistAsync(id);
+            return await _unitOfWork.RoleRepository.ExistAsync(id);
         }
     }
 }

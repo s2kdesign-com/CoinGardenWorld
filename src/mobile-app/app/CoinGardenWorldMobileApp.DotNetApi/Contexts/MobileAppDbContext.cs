@@ -8,6 +8,9 @@ public partial class MobileAppDbContext : DbContext
 {
 
     public DbSet<Account> Accounts { get; set; }
+    public DbSet<AccountRoles> AccountRoles { get; set; }
+    public DbSet<Role> Roles { get; set; }
+
     public DbSet<Garden> Gardens { get; set; }
     public DbSet<Flower> Flowers { get; set; }
     public DbSet<Post> Posts { get; set; }
@@ -20,6 +23,7 @@ public partial class MobileAppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Role>().HasData(new Role { Id = Guid.NewGuid(), Name = "Administrator" });
     }
 
 }
