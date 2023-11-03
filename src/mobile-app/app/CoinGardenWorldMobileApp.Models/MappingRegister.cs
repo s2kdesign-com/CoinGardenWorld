@@ -17,28 +17,29 @@ namespace CoinGardenWorldMobileApp.Models
         {
             config.AdaptTo("[name]Dto", MapType.Map | MapType.MapToTarget | MapType.Projection)
                 .ApplyDefaultRule()
+                .IgnoreAttributes(typeof(IgnoreOnDtoAttribute))
                 //.PreserveReference(true)
                 //.AlterType<Student, Person>()
                 ;
 
             config.AdaptTo("[name]List", MapType.Map | MapType.MapToTarget | MapType.Projection)
                 .ApplyDefaultRule()
-                .IgnoreAttributes(typeof(KeyAttribute), typeof(IgnoreOnInsertAttribute), typeof(IgnoreOnUpdateAttribute), typeof(IgnoreOnDeleteAttribute))
+                .IgnoreAttributes(typeof(IgnoreOnListAttribute))
                 ;
 
             config.AdaptFrom("[name]Add", MapType.Map)
                 .ApplyDefaultRule()
-                .IgnoreAttributes(typeof(KeyAttribute), typeof(IgnoreOnInsertAttribute), typeof(IgnoreOnUpdateAttribute), typeof(IgnoreOnDeleteAttribute))
+                .IgnoreAttributes(typeof(KeyAttribute), typeof(IgnoreOnListAttribute), typeof(IgnoreOnModifyAttribute))
                 .IgnoreNoModifyProperties();
 
             //config.AdaptFrom("[name]Update", MapType.MapToTarget)
             //    .ApplyDefaultRule()
-            //    .IgnoreAttributes(typeof(KeyAttribute), typeof(IgnoreOnInsertAttribute), typeof(IgnoreOnUpdateAttribute))
+            //    .IgnoreAttributes(typeof(KeyAttribute))
             //    .IgnoreNoModifyProperties();
 
             config.AdaptFrom("[name]Merge", MapType.MapToTarget)
                 .ApplyDefaultRule()
-                .IgnoreAttributes(typeof(KeyAttribute), typeof(IgnoreOnInsertAttribute), typeof(IgnoreOnUpdateAttribute), typeof(IgnoreOnDeleteAttribute))
+                .IgnoreAttributes(typeof(KeyAttribute), typeof(IgnoreOnListAttribute), typeof(IgnoreOnModifyAttribute))
                 .IgnoreNoModifyProperties()
                 .IgnoreNullValues(true);
 

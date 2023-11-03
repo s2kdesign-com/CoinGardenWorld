@@ -27,17 +27,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CreatedFrom")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<DateTimeOffset?>("DeletedAt")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<Guid?>("DeletedFrom")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("DisplayName")
                         .HasMaxLength(150)
@@ -54,9 +48,6 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
 
                     b.Property<byte[]>("ProfilePicure")
                         .HasColumnType("varbinary(max)");
-
-                    b.Property<Guid?>("UpdatedFrom")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset?>("UpdatedOn")
                         .HasColumnType("datetimeoffset");
@@ -76,6 +67,17 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Accounts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("d732a57e-cea9-4fc6-9031-49e8c200029b"),
+                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 19, 11, 6, 723, DateTimeKind.Unspecified).AddTicks(8819), new TimeSpan(0, 0, 0, 0, 0)),
+                            DisplayName = "CoinGarden.World",
+                            Email = "coingardenworld@gmail.com",
+                            UserIdentityProvider = "google.com",
+                            UserObjectIdAzureAd = "b5f4562f-dd5a-475f-a638-8952423adc50"
+                        });
                 });
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.AccountRoles", b =>
@@ -86,22 +88,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.Property<Guid>("AccountId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CreatedFrom")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<DateTimeOffset?>("DeletedAt")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeletedFrom")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("UpdatedFrom")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset?>("UpdatedOn")
@@ -114,14 +107,20 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AccountRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a0a98af1-ba40-4dc8-ac08-4f80fe92f2d7"),
+                            AccountId = new Guid("d732a57e-cea9-4fc6-9031-49e8c200029b"),
+                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 19, 11, 6, 723, DateTimeKind.Unspecified).AddTicks(9051), new TimeSpan(0, 0, 0, 0, 0)),
+                            RoleId = new Guid("7d9b350a-cdc7-482d-982f-4a34635589d4")
+                        });
                 });
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Flower", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CreatedFrom")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset>("CreatedOn")
@@ -130,19 +129,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.Property<DateTimeOffset?>("DeletedAt")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeletedFrom")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("GardenId")
+                    b.Property<Guid?>("GardenId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
-
-                    b.Property<Guid?>("UpdatedFrom")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset?>("UpdatedOn")
                         .HasColumnType("datetimeoffset");
@@ -165,25 +158,16 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.Property<Guid>("AccountId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CreatedFrom")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<DateTimeOffset?>("DeletedAt")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeletedFrom")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
-
-                    b.Property<Guid?>("UpdatedFrom")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset?>("UpdatedOn")
                         .HasColumnType("datetimeoffset");
@@ -211,20 +195,19 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                         .HasMaxLength(1500)
                         .HasColumnType("nvarchar(1500)");
 
-                    b.Property<Guid>("CreatedFrom")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<DateTimeOffset?>("DeletedAt")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeletedFrom")
+                    b.Property<Guid?>("FlowerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("GardenId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LinkOrImageUrl")
-                        .IsRequired()
                         .HasMaxLength(8000)
                         .HasColumnType("nvarchar(max)");
 
@@ -236,9 +219,6 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<Guid?>("UpdatedFrom")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTimeOffset?>("UpdatedOn")
                         .HasColumnType("datetimeoffset");
 
@@ -249,6 +229,10 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
 
                     b.HasIndex("AccountId");
 
+                    b.HasIndex("FlowerId");
+
+                    b.HasIndex("GardenId");
+
                     b.ToTable("Posts");
                 });
 
@@ -257,17 +241,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CreatedFrom")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<DateTimeOffset?>("DeletedAt")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<Guid?>("DeletedFrom")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -278,11 +256,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<Guid?>("UpdatedFrom")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTimeOffset?>("UpdatedOn")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("Visibility")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -291,10 +269,10 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1e6e0b25-9e66-41c8-a2a2-f8ad0f289b9e"),
-                            CreatedFrom = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 16, 48, 2, 316, DateTimeKind.Unspecified).AddTicks(1432), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Administrator"
+                            Id = new Guid("7d9b350a-cdc7-482d-982f-4a34635589d4"),
+                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 19, 11, 6, 723, DateTimeKind.Unspecified).AddTicks(9028), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "Administrator",
+                            Visibility = 3
                         });
                 });
 
@@ -322,8 +300,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.HasOne("CoinGardenWorldMobileApp.Models.Entities.Garden", "Garden")
                         .WithMany("Flowers")
                         .HasForeignKey("GardenId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.ClientCascade);
 
                     b.Navigation("Garden");
                 });
@@ -347,7 +324,19 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CoinGardenWorldMobileApp.Models.Entities.Flower", "Flower")
+                        .WithMany()
+                        .HasForeignKey("FlowerId");
+
+                    b.HasOne("CoinGardenWorldMobileApp.Models.Entities.Garden", "Garden")
+                        .WithMany()
+                        .HasForeignKey("GardenId");
+
                     b.Navigation("Account");
+
+                    b.Navigation("Flower");
+
+                    b.Navigation("Garden");
                 });
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Account", b =>

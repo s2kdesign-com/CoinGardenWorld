@@ -11,11 +11,13 @@ using CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer;
 using CoinGardenWorldMobileApp.Models.MapperExtensions;
 using CoinGardenWorldMobileApp.Models.ViewModels;
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RolesController : ControllerBase
     {
         private readonly UnitOfWork _unitOfWork;

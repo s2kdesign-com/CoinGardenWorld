@@ -16,7 +16,7 @@ using HealthChecks.UI.Client;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using CoinGardenWorldMobileApp.DotNetApi.Hubs;
-using Hangfire;
+//using Hangfire;
 using Microsoft.Extensions.Azure;
 using CoinGardenWorld.AzureStorageExtensions.Extensions;
 using CoinGardenWorld.AzureStorageExtensions.Configuration;
@@ -161,12 +161,6 @@ builder.Services.AddAzureClients(clientBuilder =>
     clientBuilder.AddCgwFileServiceClient(azureStorageConfiguration.Files, preferMsi: true);
 });
 
-// Add Hangfire
-builder.Services.AddHangfire(c => c.UseSqlServerStorage(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB")));
-builder.Services.AddHangfireServer();
-
-
-
 // Add Health Checks
 var notificationHubUrl = "https://plant-api.azurewebsites.net/NotificationsHub";
 var chatHubUrl = "https://plant-api.azurewebsites.net/ChatHub";
@@ -209,6 +203,10 @@ builder.Services.AddHealthChecks()
 // TODO: Move to CoinGardenWorld.AzureAI
 builder.Services.AddAzureComputerVision();
 builder.Services.AddAzureWebSearch();
+
+// TODO: Add Hangfire to another API , this will have a lot of traffic 
+//builder.Services.AddHangfire(c => c.UseSqlServerStorage(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB")));
+//builder.Services.AddHangfireServer();
 
 var app = builder.Build();
 
@@ -260,8 +258,8 @@ app
     });
 
 
-
-var options = new DashboardOptions { AppPath = "https://plant-api.azurewebsites.net/swagger/index.html" };
-app.UseHangfireDashboard(options: options);
+// TODO: Add Hangfire to another API , this will have a lot of traffic 
+//var options = new DashboardOptions { AppPath = "https://plant-api.azurewebsites.net/swagger/index.html" };
+//app.UseHangfireDashboard(options: options);
 
 app.Run();

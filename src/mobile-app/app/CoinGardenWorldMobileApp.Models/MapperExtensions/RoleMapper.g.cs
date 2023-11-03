@@ -2,6 +2,7 @@ using System;
 using System.Linq.Expressions;
 using CoinGardenWorldMobileApp.Models.Entities;
 using CoinGardenWorldMobileApp.Models.ViewModels;
+using Mapster.Utils;
 
 namespace CoinGardenWorldMobileApp.Models.MapperExtensions
 {
@@ -13,12 +14,10 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             {
                 Name = p1.Name,
                 Description = p1.Description,
+                Visibility = Enum<Visibility>.ToString(p1.Visibility),
                 Id = p1.Id,
-                CreatedFrom = p1.CreatedFrom,
                 CreatedOn = p1.CreatedOn,
-                UpdatedFrom = p1.UpdatedFrom,
                 UpdatedOn = p1.UpdatedOn,
-                DeletedFrom = p1.DeletedFrom,
                 DeletedAt = p1.DeletedAt
             };
         }
@@ -32,12 +31,10 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             
             result.Name = p2.Name;
             result.Description = p2.Description;
+            result.Visibility = Enum<Visibility>.ToString(p2.Visibility);
             result.Id = p2.Id;
-            result.CreatedFrom = p2.CreatedFrom;
             result.CreatedOn = p2.CreatedOn;
-            result.UpdatedFrom = p2.UpdatedFrom;
             result.UpdatedOn = p2.UpdatedOn;
-            result.DeletedFrom = p2.DeletedFrom;
             result.DeletedAt = p2.DeletedAt;
             return result;
             
@@ -46,12 +43,10 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
         {
             Name = p4.Name,
             Description = p4.Description,
+            Visibility = Enum<Visibility>.ToString(p4.Visibility),
             Id = p4.Id,
-            CreatedFrom = p4.CreatedFrom,
             CreatedOn = p4.CreatedOn,
-            UpdatedFrom = p4.UpdatedFrom,
             UpdatedOn = p4.UpdatedOn,
-            DeletedFrom = p4.DeletedFrom,
             DeletedAt = p4.DeletedAt
         };
         public static RoleList AdaptToList(this Role p5)
@@ -59,7 +54,10 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             return p5 == null ? null : new RoleList()
             {
                 Name = p5.Name,
-                Description = p5.Description
+                Description = p5.Description,
+                Visibility = Enum<Visibility>.ToString(p5.Visibility),
+                Id = p5.Id,
+                CreatedOn = p5.CreatedOn
             };
         }
         public static RoleList AdaptTo(this Role p6, RoleList p7)
@@ -72,20 +70,27 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             
             result.Name = p6.Name;
             result.Description = p6.Description;
+            result.Visibility = Enum<Visibility>.ToString(p6.Visibility);
+            result.Id = p6.Id;
+            result.CreatedOn = p6.CreatedOn;
             return result;
             
         }
         public static Expression<Func<Role, RoleList>> ProjectToList => p8 => new RoleList()
         {
             Name = p8.Name,
-            Description = p8.Description
+            Description = p8.Description,
+            Visibility = Enum<Visibility>.ToString(p8.Visibility),
+            Id = p8.Id,
+            CreatedOn = p8.CreatedOn
         };
         public static Role AdaptToRole(this RoleAdd p9)
         {
             return p9 == null ? null : new Role()
             {
                 Name = p9.Name,
-                Description = p9.Description
+                Description = p9.Description,
+                Visibility = p9.Visibility == null ? Visibility.Public : Enum<Visibility>.Parse(p9.Visibility)
             };
         }
         public static Role AdaptTo(this RoleMerge p10, Role p11)
@@ -104,6 +109,11 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             if (p10.Description != null)
             {
                 result.Description = p10.Description;
+            }
+            
+            if (p10.Visibility != null)
+            {
+                result.Visibility = Enum<Visibility>.Parse(p10.Visibility);
             }
             return result;
             

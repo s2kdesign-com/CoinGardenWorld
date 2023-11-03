@@ -102,15 +102,27 @@ namespace CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer
         }
 
 
-        public virtual async Task<TEntity?> GetByIdAsync(object id)
+        public virtual async Task<TEntity?> GetByIdAsync(Guid id,
+        string includeProperties = ""
+            )
         {
-            return await dbSet.FindAsync(id);
+            IQueryable<TEntity> query = dbSet;
+
+            query = query.Where(e => e.Id == id);
+
+            foreach (var includeProperty in includeProperties.Split
+                         (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
+            return await query.FirstOrDefaultAsync();
         }
 
         public virtual TEntity Insert(TEntity entity)
         {
             entity.CreatedOn = DateTime.UtcNow;
-            entity.CreatedFrom = GetUserId();
+           // entity.CreatedFrom = GetUserId();
 
             dbSet.Add(entity);
             return entity;
@@ -119,7 +131,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer
         public virtual void Update(TEntity entityToUpdate)
         {
             entityToUpdate.UpdatedOn = DateTime.UtcNow;
-            entityToUpdate.UpdatedFrom = GetUserId();
+            //entityToUpdate.UpdatedFrom = GetUserId();
 
             dbSet.Attach(entityToUpdate);
             context.Entry(entityToUpdate).State = EntityState.Modified;
@@ -133,7 +145,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer
 
         public virtual async Task DeleteAsync(TEntity entityToDelete)
         {
-            entityToDelete.DeletedFrom = GetUserId();
+           // entityToDelete.DeletedFrom = GetUserId();
             entityToDelete.DeletedAt = DateTime.UtcNow;
 
             dbSet.Attach(entityToDelete);

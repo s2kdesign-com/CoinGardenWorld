@@ -20,11 +20,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 Visibility = Enum<Visibility>.ToString(p1.Visibility),
                 Flowers = funcMain3(p1.Flowers),
                 Id = p1.Id,
-                CreatedFrom = p1.CreatedFrom,
                 CreatedOn = p1.CreatedOn,
-                UpdatedFrom = p1.UpdatedFrom,
                 UpdatedOn = p1.UpdatedOn,
-                DeletedFrom = p1.DeletedFrom,
                 DeletedAt = p1.DeletedAt
             };
         }
@@ -42,11 +39,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.Visibility = Enum<Visibility>.ToString(p5.Visibility);
             result.Flowers = funcMain6(p5.Flowers, result.Flowers);
             result.Id = p5.Id;
-            result.CreatedFrom = p5.CreatedFrom;
             result.CreatedOn = p5.CreatedOn;
-            result.UpdatedFrom = p5.UpdatedFrom;
             result.UpdatedOn = p5.UpdatedOn;
-            result.DeletedFrom = p5.DeletedFrom;
             result.DeletedAt = p5.DeletedAt;
             return result;
             
@@ -72,28 +66,20 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     {
                         Name = p14.Role.Name,
                         Description = p14.Role.Description,
+                        Visibility = Enum<Visibility>.ToString(p14.Role.Visibility),
                         Id = p14.Role.Id,
-                        CreatedFrom = p14.Role.CreatedFrom,
                         CreatedOn = p14.Role.CreatedOn,
-                        UpdatedFrom = p14.Role.UpdatedFrom,
                         UpdatedOn = p14.Role.UpdatedOn,
-                        DeletedFrom = p14.Role.DeletedFrom,
                         DeletedAt = p14.Role.DeletedAt
                     },
                     Id = p14.Id,
-                    CreatedFrom = p14.CreatedFrom,
                     CreatedOn = p14.CreatedOn,
-                    UpdatedFrom = p14.UpdatedFrom,
                     UpdatedOn = p14.UpdatedOn,
-                    DeletedFrom = p14.DeletedFrom,
                     DeletedAt = p14.DeletedAt
                 }).ToList<AccountRolesDto>(),
                 Id = p13.Account.Id,
-                CreatedFrom = p13.Account.CreatedFrom,
                 CreatedOn = p13.Account.CreatedOn,
-                UpdatedFrom = p13.Account.UpdatedFrom,
                 UpdatedOn = p13.Account.UpdatedOn,
-                DeletedFrom = p13.Account.DeletedFrom,
                 DeletedAt = p13.Account.DeletedAt
             },
             Visibility = Enum<Visibility>.ToString(p13.Visibility),
@@ -103,19 +89,13 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 Visibility = Enum<Visibility>.ToString(p15.Visibility),
                 GardenId = p15.GardenId,
                 Id = p15.Id,
-                CreatedFrom = p15.CreatedFrom,
                 CreatedOn = p15.CreatedOn,
-                UpdatedFrom = p15.UpdatedFrom,
                 UpdatedOn = p15.UpdatedOn,
-                DeletedFrom = p15.DeletedFrom,
                 DeletedAt = p15.DeletedAt
             }).ToList<FlowerDto>(),
             Id = p13.Id,
-            CreatedFrom = p13.CreatedFrom,
             CreatedOn = p13.CreatedOn,
-            UpdatedFrom = p13.UpdatedFrom,
             UpdatedOn = p13.UpdatedOn,
-            DeletedFrom = p13.DeletedFrom,
             DeletedAt = p13.DeletedAt
         };
         public static GardenList AdaptToList(this Garden p16)
@@ -132,10 +112,14 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     ProfileIntroduction = p16.Account.ProfileIntroduction,
                     ProfilePicure = p16.Account.ProfilePicure,
                     UserObjectIdAzureAd = p16.Account.UserObjectIdAzureAd,
-                    UserIdentityProvider = p16.Account.UserIdentityProvider
+                    UserIdentityProvider = p16.Account.UserIdentityProvider,
+                    Id = p16.Account.Id,
+                    CreatedOn = p16.Account.CreatedOn
                 },
                 Visibility = Enum<Visibility>.ToString(p16.Visibility),
-                Flowers = funcMain7(p16.Flowers)
+                Flowers = funcMain7(p16.Flowers),
+                Id = p16.Id,
+                CreatedOn = p16.CreatedOn
             };
         }
         public static GardenList AdaptTo(this Garden p18, GardenList p19)
@@ -151,6 +135,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.Account = funcMain8(p18.Account, result.Account);
             result.Visibility = Enum<Visibility>.ToString(p18.Visibility);
             result.Flowers = funcMain9(p18.Flowers, result.Flowers);
+            result.Id = p18.Id;
+            result.CreatedOn = p18.CreatedOn;
             return result;
             
         }
@@ -166,15 +152,21 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 ProfileIntroduction = p24.Account.ProfileIntroduction,
                 ProfilePicure = p24.Account.ProfilePicure,
                 UserObjectIdAzureAd = p24.Account.UserObjectIdAzureAd,
-                UserIdentityProvider = p24.Account.UserIdentityProvider
+                UserIdentityProvider = p24.Account.UserIdentityProvider,
+                Id = p24.Account.Id,
+                CreatedOn = p24.Account.CreatedOn
             },
             Visibility = Enum<Visibility>.ToString(p24.Visibility),
             Flowers = p24.Flowers.Select<Flower, FlowerList>(p25 => new FlowerList()
             {
                 Name = p25.Name,
                 Visibility = Enum<Visibility>.ToString(p25.Visibility),
-                GardenId = p25.GardenId
-            }).ToList<FlowerList>()
+                GardenId = p25.GardenId,
+                Id = p25.Id,
+                CreatedOn = p25.CreatedOn
+            }).ToList<FlowerList>(),
+            Id = p24.Id,
+            CreatedOn = p24.CreatedOn
         };
         public static Garden AdaptToGarden(this GardenAdd p26)
         {
@@ -245,11 +237,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 UserIdentityProvider = p2.UserIdentityProvider,
                 Roles = funcMain2(p2.Roles),
                 Id = p2.Id,
-                CreatedFrom = p2.CreatedFrom,
                 CreatedOn = p2.CreatedOn,
-                UpdatedFrom = p2.UpdatedFrom,
                 UpdatedOn = p2.UpdatedOn,
-                DeletedFrom = p2.DeletedFrom,
                 DeletedAt = p2.DeletedAt
             };
         }
@@ -273,11 +262,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     Visibility = Enum<Visibility>.ToString(item.Visibility),
                     GardenId = item.GardenId,
                     Id = item.Id,
-                    CreatedFrom = item.CreatedFrom,
                     CreatedOn = item.CreatedOn,
-                    UpdatedFrom = item.UpdatedFrom,
                     UpdatedOn = item.UpdatedOn,
-                    DeletedFrom = item.DeletedFrom,
                     DeletedAt = item.DeletedAt
                 });
             }
@@ -302,11 +288,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.UserIdentityProvider = p7.UserIdentityProvider;
             result.Roles = funcMain5(p7.Roles, result.Roles);
             result.Id = p7.Id;
-            result.CreatedFrom = p7.CreatedFrom;
             result.CreatedOn = p7.CreatedOn;
-            result.UpdatedFrom = p7.UpdatedFrom;
             result.UpdatedOn = p7.UpdatedOn;
-            result.DeletedFrom = p7.DeletedFrom;
             result.DeletedAt = p7.DeletedAt;
             return result;
             
@@ -331,11 +314,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     Visibility = Enum<Visibility>.ToString(item.Visibility),
                     GardenId = item.GardenId,
                     Id = item.Id,
-                    CreatedFrom = item.CreatedFrom,
                     CreatedOn = item.CreatedOn,
-                    UpdatedFrom = item.UpdatedFrom,
                     UpdatedOn = item.UpdatedOn,
-                    DeletedFrom = item.DeletedFrom,
                     DeletedAt = item.DeletedAt
                 });
             }
@@ -360,7 +340,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 {
                     Name = item.Name,
                     Visibility = Enum<Visibility>.ToString(item.Visibility),
-                    GardenId = item.GardenId
+                    GardenId = item.GardenId,
+                    Id = item.Id,
+                    CreatedOn = item.CreatedOn
                 });
             }
             return result;
@@ -382,6 +364,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.ProfilePicure = p20.ProfilePicure;
             result.UserObjectIdAzureAd = p20.UserObjectIdAzureAd;
             result.UserIdentityProvider = p20.UserIdentityProvider;
+            result.Id = p20.Id;
+            result.CreatedOn = p20.CreatedOn;
             return result;
             
         }
@@ -403,7 +387,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 {
                     Name = item.Name,
                     Visibility = Enum<Visibility>.ToString(item.Visibility),
-                    GardenId = item.GardenId
+                    GardenId = item.GardenId,
+                    Id = item.Id,
+                    CreatedOn = item.CreatedOn
                 });
             }
             return result;
@@ -520,20 +506,15 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     {
                         Name = item.Role.Name,
                         Description = item.Role.Description,
+                        Visibility = Enum<Visibility>.ToString(item.Role.Visibility),
                         Id = item.Role.Id,
-                        CreatedFrom = item.Role.CreatedFrom,
                         CreatedOn = item.Role.CreatedOn,
-                        UpdatedFrom = item.Role.UpdatedFrom,
                         UpdatedOn = item.Role.UpdatedOn,
-                        DeletedFrom = item.Role.DeletedFrom,
                         DeletedAt = item.Role.DeletedAt
                     },
                     Id = item.Id,
-                    CreatedFrom = item.CreatedFrom,
                     CreatedOn = item.CreatedOn,
-                    UpdatedFrom = item.UpdatedFrom,
                     UpdatedOn = item.UpdatedOn,
-                    DeletedFrom = item.DeletedFrom,
                     DeletedAt = item.DeletedAt
                 });
             }
@@ -562,20 +543,15 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     {
                         Name = item.Role.Name,
                         Description = item.Role.Description,
+                        Visibility = Enum<Visibility>.ToString(item.Role.Visibility),
                         Id = item.Role.Id,
-                        CreatedFrom = item.Role.CreatedFrom,
                         CreatedOn = item.Role.CreatedOn,
-                        UpdatedFrom = item.Role.UpdatedFrom,
                         UpdatedOn = item.Role.UpdatedOn,
-                        DeletedFrom = item.Role.DeletedFrom,
                         DeletedAt = item.Role.DeletedAt
                     },
                     Id = item.Id,
-                    CreatedFrom = item.CreatedFrom,
                     CreatedOn = item.CreatedOn,
-                    UpdatedFrom = item.UpdatedFrom,
                     UpdatedOn = item.UpdatedOn,
-                    DeletedFrom = item.DeletedFrom,
                     DeletedAt = item.DeletedAt
                 });
             }
@@ -603,7 +579,7 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             
             if (p34.GardenId != null)
             {
-                result.GardenId = (Guid)p34.GardenId;
+                result.GardenId = p34.GardenId;
             }
             return result;
             

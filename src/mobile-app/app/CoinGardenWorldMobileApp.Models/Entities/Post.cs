@@ -22,11 +22,21 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         public string Content { get; set; }
 
         [StringLength(8000, ErrorMessage = "{0} can have a max of {1} characters")]
-        public string LinkOrImageUrl { get; set; }
+        public string? LinkOrImageUrl { get; set; }
+
+        [ForeignKey(nameof(Garden))]
+        public Guid? GardenId { get; set; }
+        public Garden? Garden { get; set; }
+
+
+        [ForeignKey(nameof(Flower))]
+        public Guid? FlowerId { get; set; }
+        public Flower? Flower { get; set; }
 
         public PostType PostType { get; set; }
 
         public Visibility Visibility { get; set; } = Visibility.Public;
+
 
     }
 }

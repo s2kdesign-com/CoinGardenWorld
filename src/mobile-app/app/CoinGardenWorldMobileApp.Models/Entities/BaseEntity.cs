@@ -13,22 +13,15 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Guid Id { get; set; } = Guid.NewGuid();
 
-        [IgnoreOnInsert]
-        public Guid CreatedFrom { get; set; }
-
-        [IgnoreOnInsert]
+        [IgnoreOnModify]
         public DateTimeOffset CreatedOn { get; set; } = DateTime.UtcNow;
 
-        [IgnoreOnUpdate]
-        public Guid? UpdatedFrom { get; set; } = null;
-
-        [IgnoreOnUpdate]
+        [IgnoreOnList]
+        [IgnoreOnModify]
         public DateTimeOffset? UpdatedOn { get; set; } = null;
 
-        [IgnoreOnDelete]
-        public Guid? DeletedFrom { get; set; } = null;
-
-        [IgnoreOnDelete]
+        [IgnoreOnList]
+        [IgnoreOnModify]
         public DateTimeOffset? DeletedAt { get; set; } = null;
     }
 }

@@ -16,11 +16,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 Visibility = Enum<Visibility>.ToString(p1.Visibility),
                 GardenId = p1.GardenId,
                 Id = p1.Id,
-                CreatedFrom = p1.CreatedFrom,
                 CreatedOn = p1.CreatedOn,
-                UpdatedFrom = p1.UpdatedFrom,
                 UpdatedOn = p1.UpdatedOn,
-                DeletedFrom = p1.DeletedFrom,
                 DeletedAt = p1.DeletedAt
             };
         }
@@ -36,11 +33,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.Visibility = Enum<Visibility>.ToString(p2.Visibility);
             result.GardenId = p2.GardenId;
             result.Id = p2.Id;
-            result.CreatedFrom = p2.CreatedFrom;
             result.CreatedOn = p2.CreatedOn;
-            result.UpdatedFrom = p2.UpdatedFrom;
             result.UpdatedOn = p2.UpdatedOn;
-            result.DeletedFrom = p2.DeletedFrom;
             result.DeletedAt = p2.DeletedAt;
             return result;
             
@@ -51,11 +45,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             Visibility = Enum<Visibility>.ToString(p4.Visibility),
             GardenId = p4.GardenId,
             Id = p4.Id,
-            CreatedFrom = p4.CreatedFrom,
             CreatedOn = p4.CreatedOn,
-            UpdatedFrom = p4.UpdatedFrom,
             UpdatedOn = p4.UpdatedOn,
-            DeletedFrom = p4.DeletedFrom,
             DeletedAt = p4.DeletedAt
         };
         public static FlowerList AdaptToList(this Flower p5)
@@ -64,7 +55,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             {
                 Name = p5.Name,
                 Visibility = Enum<Visibility>.ToString(p5.Visibility),
-                GardenId = p5.GardenId
+                GardenId = p5.GardenId,
+                Id = p5.Id,
+                CreatedOn = p5.CreatedOn
             };
         }
         public static FlowerList AdaptTo(this Flower p6, FlowerList p7)
@@ -78,6 +71,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.Name = p6.Name;
             result.Visibility = Enum<Visibility>.ToString(p6.Visibility);
             result.GardenId = p6.GardenId;
+            result.Id = p6.Id;
+            result.CreatedOn = p6.CreatedOn;
             return result;
             
         }
@@ -85,7 +80,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
         {
             Name = p8.Name,
             Visibility = Enum<Visibility>.ToString(p8.Visibility),
-            GardenId = p8.GardenId
+            GardenId = p8.GardenId,
+            Id = p8.Id,
+            CreatedOn = p8.CreatedOn
         };
         public static Flower AdaptToFlower(this FlowerAdd p9)
         {
@@ -116,7 +113,7 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             
             if (p10.GardenId != null)
             {
-                result.GardenId = (Guid)p10.GardenId;
+                result.GardenId = p10.GardenId;
             }
             return result;
             

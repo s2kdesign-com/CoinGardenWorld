@@ -45,7 +45,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             //    orderBy: q => q.OrderBy(d => d.CreatedOn)
             //    );
 
-            return _unitOfWork.AccountRepository.List().Select(AccountMapper.ProjectToList);
+            return _unitOfWork.AccountRepository.List(includeProperties: "").Select(AccountMapper.ProjectToList);
         }
 
         // GET: api/Accounts/5
@@ -54,7 +54,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<AccountDto>> GetAccount(Guid id)
         {
-            var account = await _unitOfWork.AccountRepository.GetByIdAsync(id);
+            var account = await _unitOfWork.AccountRepository.GetByIdAsync(id, includeProperties: "Roles");
             ;
             if (account == null)
             {

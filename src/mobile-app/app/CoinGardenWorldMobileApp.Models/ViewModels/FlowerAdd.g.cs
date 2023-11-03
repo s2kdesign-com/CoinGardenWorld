@@ -6,6 +6,6 @@ namespace CoinGardenWorldMobileApp.Models.ViewModels
     {
         public string Name { get; set; }
         public string Visibility { get; set; }
-        public Guid GardenId { get; set; }
+        public Guid? GardenId { get; set; }
     }
 }

@@ -22,7 +22,16 @@ public partial class MobileAppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Role>().HasData(new Role { Id = Guid.NewGuid(), Name = "Administrator" });
+        var roleId = Guid.NewGuid();
+        var accountId = Guid.NewGuid();
+
+        // Add Your admin account here from Azure AD B2C / Users
+        modelBuilder.Entity<Account>().HasData(new Account { Id = accountId, DisplayName = "CoinGarden.World", Email = "coingardenworld@gmail.com", UserObjectIdAzureAd = "b5f4562f-dd5a-475f-a638-8952423adc50", UserIdentityProvider = "google.com" });
+
+        modelBuilder.Entity<Role>().HasData(new Role { Id = roleId, Name = "Administrator", Visibility = Visibility.Private });
+
+        modelBuilder.Entity<AccountRoles>().HasData(new AccountRoles { Id = Guid.NewGuid(), AccountId = accountId, RoleId = roleId });
+
     }
 
 }

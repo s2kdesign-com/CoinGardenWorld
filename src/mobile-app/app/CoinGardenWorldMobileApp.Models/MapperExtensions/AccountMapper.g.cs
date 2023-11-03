@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using CoinGardenWorldMobileApp.Models.Entities;
 using CoinGardenWorldMobileApp.Models.ViewModels;
+using Mapster.Utils;
 
 namespace CoinGardenWorldMobileApp.Models.MapperExtensions
 {
@@ -22,11 +23,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 UserIdentityProvider = p1.UserIdentityProvider,
                 Roles = funcMain1(p1.Roles),
                 Id = p1.Id,
-                CreatedFrom = p1.CreatedFrom,
                 CreatedOn = p1.CreatedOn,
-                UpdatedFrom = p1.UpdatedFrom,
                 UpdatedOn = p1.UpdatedOn,
-                DeletedFrom = p1.DeletedFrom,
                 DeletedAt = p1.DeletedAt
             };
         }
@@ -47,11 +45,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.UserIdentityProvider = p3.UserIdentityProvider;
             result.Roles = funcMain2(p3.Roles, result.Roles);
             result.Id = p3.Id;
-            result.CreatedFrom = p3.CreatedFrom;
             result.CreatedOn = p3.CreatedOn;
-            result.UpdatedFrom = p3.UpdatedFrom;
             result.UpdatedOn = p3.UpdatedOn;
-            result.DeletedFrom = p3.DeletedFrom;
             result.DeletedAt = p3.DeletedAt;
             return result;
             
@@ -73,28 +68,20 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 {
                     Name = p8.Role.Name,
                     Description = p8.Role.Description,
+                    Visibility = Enum<Visibility>.ToString(p8.Role.Visibility),
                     Id = p8.Role.Id,
-                    CreatedFrom = p8.Role.CreatedFrom,
                     CreatedOn = p8.Role.CreatedOn,
-                    UpdatedFrom = p8.Role.UpdatedFrom,
                     UpdatedOn = p8.Role.UpdatedOn,
-                    DeletedFrom = p8.Role.DeletedFrom,
                     DeletedAt = p8.Role.DeletedAt
                 },
                 Id = p8.Id,
-                CreatedFrom = p8.CreatedFrom,
                 CreatedOn = p8.CreatedOn,
-                UpdatedFrom = p8.UpdatedFrom,
                 UpdatedOn = p8.UpdatedOn,
-                DeletedFrom = p8.DeletedFrom,
                 DeletedAt = p8.DeletedAt
             }).ToList<AccountRolesDto>(),
             Id = p7.Id,
-            CreatedFrom = p7.CreatedFrom,
             CreatedOn = p7.CreatedOn,
-            UpdatedFrom = p7.UpdatedFrom,
             UpdatedOn = p7.UpdatedOn,
-            DeletedFrom = p7.DeletedFrom,
             DeletedAt = p7.DeletedAt
         };
         public static AccountList AdaptToList(this Account p9)
@@ -107,7 +94,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 ProfileIntroduction = p9.ProfileIntroduction,
                 ProfilePicure = p9.ProfilePicure,
                 UserObjectIdAzureAd = p9.UserObjectIdAzureAd,
-                UserIdentityProvider = p9.UserIdentityProvider
+                UserIdentityProvider = p9.UserIdentityProvider,
+                Id = p9.Id,
+                CreatedOn = p9.CreatedOn
             };
         }
         public static AccountList AdaptTo(this Account p10, AccountList p11)
@@ -125,6 +114,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.ProfilePicure = p10.ProfilePicure;
             result.UserObjectIdAzureAd = p10.UserObjectIdAzureAd;
             result.UserIdentityProvider = p10.UserIdentityProvider;
+            result.Id = p10.Id;
+            result.CreatedOn = p10.CreatedOn;
             return result;
             
         }
@@ -136,7 +127,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             ProfileIntroduction = p12.ProfileIntroduction,
             ProfilePicure = p12.ProfilePicure,
             UserObjectIdAzureAd = p12.UserObjectIdAzureAd,
-            UserIdentityProvider = p12.UserIdentityProvider
+            UserIdentityProvider = p12.UserIdentityProvider,
+            Id = p12.Id,
+            CreatedOn = p12.CreatedOn
         };
         public static Account AdaptToAccount(this AccountAdd p13)
         {
@@ -218,20 +211,15 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     {
                         Name = item.Role.Name,
                         Description = item.Role.Description,
+                        Visibility = Enum<Visibility>.ToString(item.Role.Visibility),
                         Id = item.Role.Id,
-                        CreatedFrom = item.Role.CreatedFrom,
                         CreatedOn = item.Role.CreatedOn,
-                        UpdatedFrom = item.Role.UpdatedFrom,
                         UpdatedOn = item.Role.UpdatedOn,
-                        DeletedFrom = item.Role.DeletedFrom,
                         DeletedAt = item.Role.DeletedAt
                     },
                     Id = item.Id,
-                    CreatedFrom = item.CreatedFrom,
                     CreatedOn = item.CreatedOn,
-                    UpdatedFrom = item.UpdatedFrom,
                     UpdatedOn = item.UpdatedOn,
-                    DeletedFrom = item.DeletedFrom,
                     DeletedAt = item.DeletedAt
                 });
             }
@@ -260,20 +248,15 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     {
                         Name = item.Role.Name,
                         Description = item.Role.Description,
+                        Visibility = Enum<Visibility>.ToString(item.Role.Visibility),
                         Id = item.Role.Id,
-                        CreatedFrom = item.Role.CreatedFrom,
                         CreatedOn = item.Role.CreatedOn,
-                        UpdatedFrom = item.Role.UpdatedFrom,
                         UpdatedOn = item.Role.UpdatedOn,
-                        DeletedFrom = item.Role.DeletedFrom,
                         DeletedAt = item.Role.DeletedAt
                     },
                     Id = item.Id,
-                    CreatedFrom = item.CreatedFrom,
                     CreatedOn = item.CreatedOn,
-                    UpdatedFrom = item.UpdatedFrom,
                     UpdatedOn = item.UpdatedOn,
-                    DeletedFrom = item.DeletedFrom,
                     DeletedAt = item.DeletedAt
                 });
             }

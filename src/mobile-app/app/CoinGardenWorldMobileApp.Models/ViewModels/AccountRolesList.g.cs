@@ -8,5 +8,7 @@ namespace CoinGardenWorldMobileApp.Models.ViewModels
         public Guid AccountId { get; set; }
         public Guid RoleId { get; set; }
         public RoleList Role { get; set; }
+        public Guid Id { get; set; }
+        public DateTimeOffset CreatedOn { get; set; }
     }
 }

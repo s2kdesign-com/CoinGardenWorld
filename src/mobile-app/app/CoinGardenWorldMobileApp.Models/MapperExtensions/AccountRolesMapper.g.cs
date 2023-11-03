@@ -2,6 +2,7 @@ using System;
 using System.Linq.Expressions;
 using CoinGardenWorldMobileApp.Models.Entities;
 using CoinGardenWorldMobileApp.Models.ViewModels;
+using Mapster.Utils;
 
 namespace CoinGardenWorldMobileApp.Models.MapperExtensions
 {
@@ -17,20 +18,15 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 {
                     Name = p1.Role.Name,
                     Description = p1.Role.Description,
+                    Visibility = Enum<Visibility>.ToString(p1.Role.Visibility),
                     Id = p1.Role.Id,
-                    CreatedFrom = p1.Role.CreatedFrom,
                     CreatedOn = p1.Role.CreatedOn,
-                    UpdatedFrom = p1.Role.UpdatedFrom,
                     UpdatedOn = p1.Role.UpdatedOn,
-                    DeletedFrom = p1.Role.DeletedFrom,
                     DeletedAt = p1.Role.DeletedAt
                 },
                 Id = p1.Id,
-                CreatedFrom = p1.CreatedFrom,
                 CreatedOn = p1.CreatedOn,
-                UpdatedFrom = p1.UpdatedFrom,
                 UpdatedOn = p1.UpdatedOn,
-                DeletedFrom = p1.DeletedFrom,
                 DeletedAt = p1.DeletedAt
             };
         }
@@ -46,11 +42,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.RoleId = p2.RoleId;
             result.Role = funcMain1(p2.Role, result.Role);
             result.Id = p2.Id;
-            result.CreatedFrom = p2.CreatedFrom;
             result.CreatedOn = p2.CreatedOn;
-            result.UpdatedFrom = p2.UpdatedFrom;
             result.UpdatedOn = p2.UpdatedOn;
-            result.DeletedFrom = p2.DeletedFrom;
             result.DeletedAt = p2.DeletedAt;
             return result;
             
@@ -63,20 +56,15 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             {
                 Name = p6.Role.Name,
                 Description = p6.Role.Description,
+                Visibility = Enum<Visibility>.ToString(p6.Role.Visibility),
                 Id = p6.Role.Id,
-                CreatedFrom = p6.Role.CreatedFrom,
                 CreatedOn = p6.Role.CreatedOn,
-                UpdatedFrom = p6.Role.UpdatedFrom,
                 UpdatedOn = p6.Role.UpdatedOn,
-                DeletedFrom = p6.Role.DeletedFrom,
                 DeletedAt = p6.Role.DeletedAt
             },
             Id = p6.Id,
-            CreatedFrom = p6.CreatedFrom,
             CreatedOn = p6.CreatedOn,
-            UpdatedFrom = p6.UpdatedFrom,
             UpdatedOn = p6.UpdatedOn,
-            DeletedFrom = p6.DeletedFrom,
             DeletedAt = p6.DeletedAt
         };
         public static AccountRolesList AdaptToList(this AccountRoles p7)
@@ -88,8 +76,13 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 Role = p7.Role == null ? null : new RoleList()
                 {
                     Name = p7.Role.Name,
-                    Description = p7.Role.Description
-                }
+                    Description = p7.Role.Description,
+                    Visibility = Enum<Visibility>.ToString(p7.Role.Visibility),
+                    Id = p7.Role.Id,
+                    CreatedOn = p7.Role.CreatedOn
+                },
+                Id = p7.Id,
+                CreatedOn = p7.CreatedOn
             };
         }
         public static AccountRolesList AdaptTo(this AccountRoles p8, AccountRolesList p9)
@@ -103,6 +96,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.AccountId = p8.AccountId;
             result.RoleId = p8.RoleId;
             result.Role = funcMain2(p8.Role, result.Role);
+            result.Id = p8.Id;
+            result.CreatedOn = p8.CreatedOn;
             return result;
             
         }
@@ -113,8 +108,13 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             Role = p12.Role == null ? null : new RoleList()
             {
                 Name = p12.Role.Name,
-                Description = p12.Role.Description
-            }
+                Description = p12.Role.Description,
+                Visibility = Enum<Visibility>.ToString(p12.Role.Visibility),
+                Id = p12.Role.Id,
+                CreatedOn = p12.Role.CreatedOn
+            },
+            Id = p12.Id,
+            CreatedOn = p12.CreatedOn
         };
         public static AccountRoles AdaptToAccountRoles(this AccountRolesAdd p13)
         {
@@ -125,7 +125,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 Role = p13.Role == null ? null : new Role()
                 {
                     Name = p13.Role.Name,
-                    Description = p13.Role.Description
+                    Description = p13.Role.Description,
+                    Visibility = p13.Role.Visibility == null ? Visibility.Public : Enum<Visibility>.Parse(p13.Role.Visibility)
                 }
             };
         }
@@ -165,12 +166,10 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             
             result.Name = p4.Name;
             result.Description = p4.Description;
+            result.Visibility = Enum<Visibility>.ToString(p4.Visibility);
             result.Id = p4.Id;
-            result.CreatedFrom = p4.CreatedFrom;
             result.CreatedOn = p4.CreatedOn;
-            result.UpdatedFrom = p4.UpdatedFrom;
             result.UpdatedOn = p4.UpdatedOn;
-            result.DeletedFrom = p4.DeletedFrom;
             result.DeletedAt = p4.DeletedAt;
             return result;
             
@@ -186,6 +185,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             
             result.Name = p10.Name;
             result.Description = p10.Description;
+            result.Visibility = Enum<Visibility>.ToString(p10.Visibility);
+            result.Id = p10.Id;
+            result.CreatedOn = p10.CreatedOn;
             return result;
             
         }
@@ -206,6 +208,11 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             if (p16.Description != null)
             {
                 result.Description = p16.Description;
+            }
+            
+            if (p16.Visibility != null)
+            {
+                result.Visibility = Enum<Visibility>.Parse(p16.Visibility);
             }
             return result;
             

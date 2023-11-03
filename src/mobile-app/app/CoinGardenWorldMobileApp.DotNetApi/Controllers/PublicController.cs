@@ -11,10 +11,10 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
     [Route("api/[controller]/[action]")]
     [ApiController]
     [AllowAnonymous]
-    public class TopRatedController : ControllerBase
+    public class PublicController : ControllerBase
     {
         private readonly UnitOfWork _unitOfWork;
-        public TopRatedController(UnitOfWork unitOfWork)
+        public PublicController(UnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -53,6 +53,18 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         public IQueryable<AccountList> GetPublicAccounts()
         {
             return _unitOfWork.AccountRepository.List().Select(AccountMapper.ProjectToList);
+        }
+
+
+        // GET: api/Roles
+        [HttpGet]
+        [EnableQuery]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(IEnumerable<RoleList>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IQueryable<RoleList> GetPublicRoles()
+        {
+            return _unitOfWork.RoleRepository.List().Select(RoleMapper.ProjectToList);
         }
     }
 }

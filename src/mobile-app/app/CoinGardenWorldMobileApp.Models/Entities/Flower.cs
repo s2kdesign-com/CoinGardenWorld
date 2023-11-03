@@ -16,7 +16,7 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         public Visibility Visibility { get; set; } = Visibility.Public;
 
         [ForeignKey(nameof(Garden))]
-        public Guid GardenId { get; set; }
-        public Garden Garden { get; set; }
+        public Guid? GardenId { get; set; }
+        public Garden? Garden { get; set; }
     }
 }

@@ -15,6 +15,6 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         [StringLength(500, ErrorMessage = "{0} can have a max of {1} characters")]
         public string? Description { get; set; }
 
-
+        public Visibility Visibility { get; set; } = Visibility.Public;
     }
 }

@@ -12,6 +12,9 @@ namespace CoinGardenWorldMobileApp.Models.Entities
 
         Followers,
 
-        Friends
+        Friends, 
+
+        Private
+
     }
 }

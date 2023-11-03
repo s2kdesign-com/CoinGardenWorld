@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CoinGardenWorldMobileApp.Models.Attributes
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
-    public sealed class IgnoreOnInsertAttribute : Attribute
+    public class IgnoreOnModifyAttribute : IgnoreOnDtoAttribute
     {
     }
 }

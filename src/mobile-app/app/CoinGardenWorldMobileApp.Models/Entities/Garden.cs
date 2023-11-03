@@ -19,6 +19,6 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         public Visibility Visibility { get; set; } = Visibility.Public;
 
         [DeleteBehavior(DeleteBehavior.ClientCascade)]
-        public ICollection<Flower> Flowers { get; set; }
+        public ICollection<Flower> Flowers { get; set; } = new List<Flower>();
     }
 }

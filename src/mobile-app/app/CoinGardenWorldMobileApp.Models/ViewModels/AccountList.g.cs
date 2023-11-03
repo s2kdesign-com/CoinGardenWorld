@@ -1,3 +1,5 @@
+using System;
+
 namespace CoinGardenWorldMobileApp.Models.ViewModels
 {
     public partial record AccountList
@@ -9,5 +11,7 @@ namespace CoinGardenWorldMobileApp.Models.ViewModels
         public byte[]? ProfilePicure { get; set; }
         public string? UserObjectIdAzureAd { get; set; }
         public string? UserIdentityProvider { get; set; }
+        public Guid Id { get; set; }
+        public DateTimeOffset CreatedOn { get; set; }
     }
 }
