@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CoinGardenWorldMobileApp.Models.Entities.Enums;
 
 namespace CoinGardenWorldMobileApp.Models.Entities
 {
@@ -25,6 +26,7 @@ namespace CoinGardenWorldMobileApp.Models.Entities
 
         public PostType PostType { get; set; }
 
+        public Visibility Visibility { get; set; } = Visibility.Public;
 
     }
 }

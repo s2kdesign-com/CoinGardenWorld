@@ -36,16 +36,16 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [HttpGet]
         [EnableQuery]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<AccountDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<AccountList>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IQueryable<AccountDto> GetAccounts()
+        public IQueryable<AccountList> GetAccounts()
         {
             //  Before Odata
             //var accountsQuery =  _unitOfWork.AccountRepository.List(
             //    orderBy: q => q.OrderBy(d => d.CreatedOn)
             //    );
 
-            return _unitOfWork.AccountRepository.List().Select(AccountMapper.ProjectToDto);
+            return _unitOfWork.AccountRepository.List().Select(AccountMapper.ProjectToList);
         }
 
         // GET: api/Accounts/5

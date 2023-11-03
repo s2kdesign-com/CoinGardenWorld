@@ -32,11 +32,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [HttpGet]
         [EnableQuery]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<PostDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<PostList>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IQueryable<PostDto> GetPosts()
+        public IQueryable<PostList> GetPosts()
         {
-            return _unitOfWork.PostRepository.List().Select(PostMapper.ProjectToDto);
+            return _unitOfWork.PostRepository.List().Select(PostMapper.ProjectToList);
         }
 
 

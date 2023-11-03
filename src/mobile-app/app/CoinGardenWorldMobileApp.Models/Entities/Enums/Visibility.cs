@@ -6,19 +6,12 @@ using System.Threading.Tasks;
 
 namespace CoinGardenWorldMobileApp.Models.Entities
 {
-    public enum PostType
+    public enum Visibility
     {
-        Text,
+        Public, 
 
-        Link,
+        Followers,
 
-        Picture,
-
-        Clip,
-
-        Album
-
-
-
+        Friends
     }
 }

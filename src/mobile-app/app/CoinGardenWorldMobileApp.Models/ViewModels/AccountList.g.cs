@@ -1,6 +1,6 @@
 namespace CoinGardenWorldMobileApp.Models.ViewModels
 {
-    public partial record AccountAdd
+    public partial record AccountList
     {
         public string Email { get; set; }
         public string? Username { get; set; }

@@ -29,11 +29,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [HttpGet]
         [EnableQuery]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<RoleDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<RoleList>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IQueryable<RoleDto> GetRoles()
+        public IQueryable<RoleList> GetRoles()
         {
-            return _unitOfWork.RoleRepository.List().Select(RoleMapper.ProjectToDto);
+            return _unitOfWork.RoleRepository.List().Select(RoleMapper.ProjectToList);
         }
 
 

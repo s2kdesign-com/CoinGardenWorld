@@ -9,6 +9,7 @@ namespace CoinGardenWorldMobileApp.Models.ViewModels
         public string Content { get; set; }
         public string LinkOrImageUrl { get; set; }
         public string PostType { get; set; }
+        public string Visibility { get; set; }
         public Guid Id { get; set; }
         public Guid CreatedFrom { get; set; }
         public DateTimeOffset CreatedOn { get; set; }

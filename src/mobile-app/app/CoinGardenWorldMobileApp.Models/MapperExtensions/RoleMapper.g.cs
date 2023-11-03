@@ -54,30 +54,56 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             DeletedFrom = p4.DeletedFrom,
             DeletedAt = p4.DeletedAt
         };
-        public static Role AdaptToRole(this RoleAdd p5)
+        public static RoleList AdaptToList(this Role p5)
         {
-            return p5 == null ? null : new Role()
+            return p5 == null ? null : new RoleList()
             {
                 Name = p5.Name,
                 Description = p5.Description
             };
         }
-        public static Role AdaptTo(this RoleMerge p6, Role p7)
+        public static RoleList AdaptTo(this Role p6, RoleList p7)
         {
             if (p6 == null)
             {
                 return null;
             }
-            Role result = p7 ?? new Role();
+            RoleList result = p7 ?? new RoleList();
             
-            if (p6.Name != null)
+            result.Name = p6.Name;
+            result.Description = p6.Description;
+            return result;
+            
+        }
+        public static Expression<Func<Role, RoleList>> ProjectToList => p8 => new RoleList()
+        {
+            Name = p8.Name,
+            Description = p8.Description
+        };
+        public static Role AdaptToRole(this RoleAdd p9)
+        {
+            return p9 == null ? null : new Role()
             {
-                result.Name = p6.Name;
+                Name = p9.Name,
+                Description = p9.Description
+            };
+        }
+        public static Role AdaptTo(this RoleMerge p10, Role p11)
+        {
+            if (p10 == null)
+            {
+                return null;
+            }
+            Role result = p11 ?? new Role();
+            
+            if (p10.Name != null)
+            {
+                result.Name = p10.Name;
             }
             
-            if (p6.Description != null)
+            if (p10.Description != null)
             {
-                result.Description = p6.Description;
+                result.Description = p10.Description;
             }
             return result;
             

@@ -79,40 +79,77 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             DeletedFrom = p6.DeletedFrom,
             DeletedAt = p6.DeletedAt
         };
-        public static AccountRoles AdaptToAccountRoles(this AccountRolesAdd p7)
+        public static AccountRolesList AdaptToList(this AccountRoles p7)
         {
-            return p7 == null ? null : new AccountRoles()
+            return p7 == null ? null : new AccountRolesList()
             {
                 AccountId = p7.AccountId,
                 RoleId = p7.RoleId,
-                Role = p7.Role == null ? null : new Role()
+                Role = p7.Role == null ? null : new RoleList()
                 {
                     Name = p7.Role.Name,
                     Description = p7.Role.Description
                 }
             };
         }
-        public static AccountRoles AdaptTo(this AccountRolesMerge p8, AccountRoles p9)
+        public static AccountRolesList AdaptTo(this AccountRoles p8, AccountRolesList p9)
         {
             if (p8 == null)
             {
                 return null;
             }
-            AccountRoles result = p9 ?? new AccountRoles();
+            AccountRolesList result = p9 ?? new AccountRolesList();
             
-            if (p8.AccountId != null)
+            result.AccountId = p8.AccountId;
+            result.RoleId = p8.RoleId;
+            result.Role = funcMain2(p8.Role, result.Role);
+            return result;
+            
+        }
+        public static Expression<Func<AccountRoles, AccountRolesList>> ProjectToList => p12 => new AccountRolesList()
+        {
+            AccountId = p12.AccountId,
+            RoleId = p12.RoleId,
+            Role = p12.Role == null ? null : new RoleList()
             {
-                result.AccountId = (Guid)p8.AccountId;
+                Name = p12.Role.Name,
+                Description = p12.Role.Description
+            }
+        };
+        public static AccountRoles AdaptToAccountRoles(this AccountRolesAdd p13)
+        {
+            return p13 == null ? null : new AccountRoles()
+            {
+                AccountId = p13.AccountId,
+                RoleId = p13.RoleId,
+                Role = p13.Role == null ? null : new Role()
+                {
+                    Name = p13.Role.Name,
+                    Description = p13.Role.Description
+                }
+            };
+        }
+        public static AccountRoles AdaptTo(this AccountRolesMerge p14, AccountRoles p15)
+        {
+            if (p14 == null)
+            {
+                return null;
+            }
+            AccountRoles result = p15 ?? new AccountRoles();
+            
+            if (p14.AccountId != null)
+            {
+                result.AccountId = (Guid)p14.AccountId;
             }
             
-            if (p8.RoleId != null)
+            if (p14.RoleId != null)
             {
-                result.RoleId = (Guid)p8.RoleId;
+                result.RoleId = (Guid)p14.RoleId;
             }
             
-            if (p8.Role != null)
+            if (p14.Role != null)
             {
-                result.Role = funcMain2(p8.Role, result.Role);
+                result.Role = funcMain3(p14.Role, result.Role);
             }
             return result;
             
@@ -139,22 +176,36 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             
         }
         
-        private static Role funcMain2(RoleMerge p10, Role p11)
+        private static RoleList funcMain2(Role p10, RoleList p11)
         {
             if (p10 == null)
             {
                 return null;
             }
-            Role result = p11 ?? new Role();
+            RoleList result = p11 ?? new RoleList();
             
-            if (p10.Name != null)
+            result.Name = p10.Name;
+            result.Description = p10.Description;
+            return result;
+            
+        }
+        
+        private static Role funcMain3(RoleMerge p16, Role p17)
+        {
+            if (p16 == null)
             {
-                result.Name = p10.Name;
+                return null;
+            }
+            Role result = p17 ?? new Role();
+            
+            if (p16.Name != null)
+            {
+                result.Name = p16.Name;
             }
             
-            if (p10.Description != null)
+            if (p16.Description != null)
             {
-                result.Description = p10.Description;
+                result.Description = p16.Description;
             }
             return result;
             

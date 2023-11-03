@@ -19,6 +19,7 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 ProfileIntroduction = p1.ProfileIntroduction,
                 ProfilePicure = p1.ProfilePicure,
                 UserObjectIdAzureAd = p1.UserObjectIdAzureAd,
+                UserIdentityProvider = p1.UserIdentityProvider,
                 Roles = funcMain1(p1.Roles),
                 Id = p1.Id,
                 CreatedFrom = p1.CreatedFrom,
@@ -43,6 +44,7 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             result.ProfileIntroduction = p3.ProfileIntroduction;
             result.ProfilePicure = p3.ProfilePicure;
             result.UserObjectIdAzureAd = p3.UserObjectIdAzureAd;
+            result.UserIdentityProvider = p3.UserIdentityProvider;
             result.Roles = funcMain2(p3.Roles, result.Roles);
             result.Id = p3.Id;
             result.CreatedFrom = p3.CreatedFrom;
@@ -62,6 +64,7 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             ProfileIntroduction = p7.ProfileIntroduction,
             ProfilePicure = p7.ProfilePicure,
             UserObjectIdAzureAd = p7.UserObjectIdAzureAd,
+            UserIdentityProvider = p7.UserIdentityProvider,
             Roles = p7.Roles.Select<AccountRoles, AccountRolesDto>(p8 => new AccountRolesDto()
             {
                 AccountId = p8.AccountId,
@@ -94,54 +97,101 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             DeletedFrom = p7.DeletedFrom,
             DeletedAt = p7.DeletedAt
         };
-        public static Account AdaptToAccount(this AccountAdd p9)
+        public static AccountList AdaptToList(this Account p9)
         {
-            return p9 == null ? null : new Account()
+            return p9 == null ? null : new AccountList()
             {
                 Email = p9.Email,
                 Username = p9.Username,
                 DisplayName = p9.DisplayName,
                 ProfileIntroduction = p9.ProfileIntroduction,
                 ProfilePicure = p9.ProfilePicure,
-                UserObjectIdAzureAd = p9.UserObjectIdAzureAd
+                UserObjectIdAzureAd = p9.UserObjectIdAzureAd,
+                UserIdentityProvider = p9.UserIdentityProvider
             };
         }
-        public static Account AdaptTo(this AccountMerge p10, Account p11)
+        public static AccountList AdaptTo(this Account p10, AccountList p11)
         {
             if (p10 == null)
             {
                 return null;
             }
-            Account result = p11 ?? new Account();
+            AccountList result = p11 ?? new AccountList();
             
-            if (p10.Email != null)
+            result.Email = p10.Email;
+            result.Username = p10.Username;
+            result.DisplayName = p10.DisplayName;
+            result.ProfileIntroduction = p10.ProfileIntroduction;
+            result.ProfilePicure = p10.ProfilePicure;
+            result.UserObjectIdAzureAd = p10.UserObjectIdAzureAd;
+            result.UserIdentityProvider = p10.UserIdentityProvider;
+            return result;
+            
+        }
+        public static Expression<Func<Account, AccountList>> ProjectToList => p12 => new AccountList()
+        {
+            Email = p12.Email,
+            Username = p12.Username,
+            DisplayName = p12.DisplayName,
+            ProfileIntroduction = p12.ProfileIntroduction,
+            ProfilePicure = p12.ProfilePicure,
+            UserObjectIdAzureAd = p12.UserObjectIdAzureAd,
+            UserIdentityProvider = p12.UserIdentityProvider
+        };
+        public static Account AdaptToAccount(this AccountAdd p13)
+        {
+            return p13 == null ? null : new Account()
             {
-                result.Email = p10.Email;
+                Email = p13.Email,
+                Username = p13.Username,
+                DisplayName = p13.DisplayName,
+                ProfileIntroduction = p13.ProfileIntroduction,
+                ProfilePicure = p13.ProfilePicure,
+                UserObjectIdAzureAd = p13.UserObjectIdAzureAd,
+                UserIdentityProvider = p13.UserIdentityProvider
+            };
+        }
+        public static Account AdaptTo(this AccountMerge p14, Account p15)
+        {
+            if (p14 == null)
+            {
+                return null;
+            }
+            Account result = p15 ?? new Account();
+            
+            if (p14.Email != null)
+            {
+                result.Email = p14.Email;
             }
             
-            if (p10.Username != null)
+            if (p14.Username != null)
             {
-                result.Username = p10.Username;
+                result.Username = p14.Username;
             }
             
-            if (p10.DisplayName != null)
+            if (p14.DisplayName != null)
             {
-                result.DisplayName = p10.DisplayName;
+                result.DisplayName = p14.DisplayName;
             }
             
-            if (p10.ProfileIntroduction != null)
+            if (p14.ProfileIntroduction != null)
             {
-                result.ProfileIntroduction = p10.ProfileIntroduction;
+                result.ProfileIntroduction = p14.ProfileIntroduction;
             }
             
-            if (p10.ProfilePicure != null)
+            if (p14.ProfilePicure != null)
             {
-                result.ProfilePicure = p10.ProfilePicure;
+                result.ProfilePicure = p14.ProfilePicure;
             }
             
-            if (p10.UserObjectIdAzureAd != null)
+            if (p14.UserObjectIdAzureAd != null)
             {
-                result.UserObjectIdAzureAd = p10.UserObjectIdAzureAd;
+                result.UserObjectIdAzureAd = p14.UserObjectIdAzureAd;
+            }
+            
+            if (p14.UserIdentityProvider != null)
+            {
+                result.UserIdentityProvider = p14.UserIdentityProvider;
             }
             return result;
             

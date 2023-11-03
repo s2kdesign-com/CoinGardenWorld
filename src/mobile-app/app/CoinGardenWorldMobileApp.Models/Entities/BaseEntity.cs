@@ -20,19 +20,15 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         public DateTimeOffset CreatedOn { get; set; } = DateTime.UtcNow;
 
         [IgnoreOnUpdate]
-        [IgnoreOnInsert]
         public Guid? UpdatedFrom { get; set; } = null;
 
         [IgnoreOnUpdate]
-        [IgnoreOnInsert]
         public DateTimeOffset? UpdatedOn { get; set; } = null;
 
-        [IgnoreOnUpdate]
-        [IgnoreOnInsert]
+        [IgnoreOnDelete]
         public Guid? DeletedFrom { get; set; } = null;
 
-        [IgnoreOnUpdate]
-        [IgnoreOnInsert]
+        [IgnoreOnDelete]
         public DateTimeOffset? DeletedAt { get; set; } = null;
     }
 }

@@ -2,7 +2,7 @@ using System;
 
 namespace CoinGardenWorldMobileApp.Models.ViewModels
 {
-    public partial record PostAdd
+    public partial record PostList
     {
         public Guid AccountId { get; set; }
         public string Title { get; set; }

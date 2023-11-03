@@ -2,6 +2,7 @@ using System;
 using System.Linq.Expressions;
 using CoinGardenWorldMobileApp.Models.Entities;
 using CoinGardenWorldMobileApp.Models.ViewModels;
+using Mapster.Utils;
 
 namespace CoinGardenWorldMobileApp.Models.MapperExtensions
 {
@@ -12,6 +13,7 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             return p1 == null ? null : new FlowerDto()
             {
                 Name = p1.Name,
+                Visibility = Enum<Visibility>.ToString(p1.Visibility),
                 GardenId = p1.GardenId,
                 Id = p1.Id,
                 CreatedFrom = p1.CreatedFrom,
@@ -31,6 +33,7 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             FlowerDto result = p3 ?? new FlowerDto();
             
             result.Name = p2.Name;
+            result.Visibility = Enum<Visibility>.ToString(p2.Visibility);
             result.GardenId = p2.GardenId;
             result.Id = p2.Id;
             result.CreatedFrom = p2.CreatedFrom;
@@ -45,6 +48,7 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
         public static Expression<Func<Flower, FlowerDto>> ProjectToDto => p4 => new FlowerDto()
         {
             Name = p4.Name,
+            Visibility = Enum<Visibility>.ToString(p4.Visibility),
             GardenId = p4.GardenId,
             Id = p4.Id,
             CreatedFrom = p4.CreatedFrom,
@@ -54,30 +58,65 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             DeletedFrom = p4.DeletedFrom,
             DeletedAt = p4.DeletedAt
         };
-        public static Flower AdaptToFlower(this FlowerAdd p5)
+        public static FlowerList AdaptToList(this Flower p5)
         {
-            return p5 == null ? null : new Flower()
+            return p5 == null ? null : new FlowerList()
             {
                 Name = p5.Name,
+                Visibility = Enum<Visibility>.ToString(p5.Visibility),
                 GardenId = p5.GardenId
             };
         }
-        public static Flower AdaptTo(this FlowerMerge p6, Flower p7)
+        public static FlowerList AdaptTo(this Flower p6, FlowerList p7)
         {
             if (p6 == null)
             {
                 return null;
             }
-            Flower result = p7 ?? new Flower();
+            FlowerList result = p7 ?? new FlowerList();
             
-            if (p6.Name != null)
+            result.Name = p6.Name;
+            result.Visibility = Enum<Visibility>.ToString(p6.Visibility);
+            result.GardenId = p6.GardenId;
+            return result;
+            
+        }
+        public static Expression<Func<Flower, FlowerList>> ProjectToList => p8 => new FlowerList()
+        {
+            Name = p8.Name,
+            Visibility = Enum<Visibility>.ToString(p8.Visibility),
+            GardenId = p8.GardenId
+        };
+        public static Flower AdaptToFlower(this FlowerAdd p9)
+        {
+            return p9 == null ? null : new Flower()
             {
-                result.Name = p6.Name;
+                Name = p9.Name,
+                Visibility = p9.Visibility == null ? Visibility.Public : Enum<Visibility>.Parse(p9.Visibility),
+                GardenId = p9.GardenId
+            };
+        }
+        public static Flower AdaptTo(this FlowerMerge p10, Flower p11)
+        {
+            if (p10 == null)
+            {
+                return null;
+            }
+            Flower result = p11 ?? new Flower();
+            
+            if (p10.Name != null)
+            {
+                result.Name = p10.Name;
             }
             
-            if (p6.GardenId != null)
+            if (p10.Visibility != null)
             {
-                result.GardenId = (Guid)p6.GardenId;
+                result.Visibility = Enum<Visibility>.Parse(p10.Visibility);
+            }
+            
+            if (p10.GardenId != null)
+            {
+                result.GardenId = (Guid)p10.GardenId;
             }
             return result;
             

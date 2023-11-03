@@ -22,6 +22,7 @@
 
 
 	<ItemGroup>
+	  <Folder Include="MapperExtensions\" />
 	  <Folder Include="Mappers\" />
 	</ItemGroup>
 	<!--<Target Name="CleanGenerated" AfterTargets="Clean">

@@ -9,5 +9,6 @@ namespace CoinGardenWorldMobileApp.Models.ViewModels
         public string Content { get; set; }
         public string LinkOrImageUrl { get; set; }
         public string PostType { get; set; }
+        public string Visibility { get; set; }
     }
 }

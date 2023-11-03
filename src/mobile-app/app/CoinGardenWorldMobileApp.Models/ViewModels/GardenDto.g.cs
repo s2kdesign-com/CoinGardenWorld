@@ -9,6 +9,7 @@ namespace CoinGardenWorldMobileApp.Models.ViewModels
         public string Name { get; set; }
         public Guid AccountId { get; set; }
         public AccountDto Account { get; set; }
+        public string Visibility { get; set; }
         public ICollection<FlowerDto> Flowers { get; set; }
         public Guid Id { get; set; }
         public Guid CreatedFrom { get; set; }

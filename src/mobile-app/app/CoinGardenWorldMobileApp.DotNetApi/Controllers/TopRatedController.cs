@@ -24,11 +24,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [HttpGet]
         [EnableQuery]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<FlowerDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<FlowerList>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IQueryable<FlowerDto> GetPublicFlowers()
+        public IQueryable<FlowerList> GetPublicFlowers()
         {
-            return _unitOfWork.FlowerRepository.List().Select(FlowerMapper.ProjectToDto);
+            return _unitOfWork.FlowerRepository.List().Select(FlowerMapper.ProjectToList);
         }
 
         // TODO: Filter public posts from most viewed accounts
@@ -36,11 +36,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [HttpGet]
         [EnableQuery]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<PostDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<PostList>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IQueryable<PostDto> GetPublicPosts()
+        public IQueryable<PostList> GetPublicPosts()
         {
-            return _unitOfWork.PostRepository.List().Select(PostMapper.ProjectToDto);
+            return _unitOfWork.PostRepository.List().Select(PostMapper.ProjectToList);
         }
 
         // TODO: Filter public posts from most viewed accounts
@@ -48,11 +48,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [HttpGet]
         [EnableQuery]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<AccountDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<AccountList>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IQueryable<AccountDto> GetPublicAccounts()
+        public IQueryable<AccountList> GetPublicAccounts()
         {
-            return _unitOfWork.AccountRepository.List().Select(AccountMapper.ProjectToDto);
+            return _unitOfWork.AccountRepository.List().Select(AccountMapper.ProjectToList);
         }
     }
 }

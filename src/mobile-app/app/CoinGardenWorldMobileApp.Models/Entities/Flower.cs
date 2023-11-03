@@ -13,6 +13,7 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         public string Name { get; set; }
 
 
+        public Visibility Visibility { get; set; } = Visibility.Public;
 
         [ForeignKey(nameof(Garden))]
         public Guid GardenId { get; set; }

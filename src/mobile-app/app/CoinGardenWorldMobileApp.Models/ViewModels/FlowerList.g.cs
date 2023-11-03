@@ -2,7 +2,7 @@ using System;
 
 namespace CoinGardenWorldMobileApp.Models.ViewModels
 {
-    public partial record FlowerAdd
+    public partial record FlowerList
     {
         public string Name { get; set; }
         public string Visibility { get; set; }

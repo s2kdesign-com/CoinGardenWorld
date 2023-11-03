@@ -29,6 +29,8 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         [StringLength(70, ErrorMessage = "{0} can have a max of {1} characters")]
         public string? UserObjectIdAzureAd { get; set; }
 
+        [StringLength(70, ErrorMessage = "{0} can have a max of {1} characters")]
+        public string? UserIdentityProvider { get; set; }
 
         [IgnoreOnUpdate]
         [IgnoreOnInsert]

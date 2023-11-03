@@ -16,6 +16,7 @@ namespace CoinGardenWorldMobileApp.Models.Entities
 
         public Account Account { get; set; }
 
+        public Visibility Visibility { get; set; } = Visibility.Public;
 
         [DeleteBehavior(DeleteBehavior.ClientCascade)]
         public ICollection<Flower> Flowers { get; set; }
