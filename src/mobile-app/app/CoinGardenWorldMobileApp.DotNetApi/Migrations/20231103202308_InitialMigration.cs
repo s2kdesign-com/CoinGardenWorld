@@ -107,6 +107,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Visibility = table.Column<int>(type: "int", nullable: false),
+                    AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     GardenId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     UpdatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
@@ -115,6 +116,12 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Flowers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Flowers_Accounts_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Flowers_Gardens_GardenId",
                         column: x => x.GardenId,
@@ -163,17 +170,17 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
             migrationBuilder.InsertData(
                 table: "Accounts",
                 columns: new[] { "Id", "CreatedOn", "DeletedAt", "DisplayName", "Email", "ProfileIntroduction", "ProfilePicure", "UpdatedOn", "UserIdentityProvider", "UserObjectIdAzureAd", "Username" },
-                values: new object[] { new Guid("d732a57e-cea9-4fc6-9031-49e8c200029b"), new DateTimeOffset(new DateTime(2023, 11, 3, 19, 11, 6, 723, DateTimeKind.Unspecified).AddTicks(8819), new TimeSpan(0, 0, 0, 0, 0)), null, "CoinGarden.World", "coingardenworld@gmail.com", null, null, null, "google.com", "b5f4562f-dd5a-475f-a638-8952423adc50", null });
+                values: new object[] { new Guid("cb459cbf-b8c2-4073-ba03-0e3019081287"), new DateTimeOffset(new DateTime(2023, 11, 3, 20, 23, 7, 817, DateTimeKind.Unspecified).AddTicks(7592), new TimeSpan(0, 0, 0, 0, 0)), null, "CoinGarden.World", "coingardenworld@gmail.com", null, null, null, "google.com", "b5f4562f-dd5a-475f-a638-8952423adc50", null });
 
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "CreatedOn", "DeletedAt", "Description", "Name", "UpdatedOn", "Visibility" },
-                values: new object[] { new Guid("7d9b350a-cdc7-482d-982f-4a34635589d4"), new DateTimeOffset(new DateTime(2023, 11, 3, 19, 11, 6, 723, DateTimeKind.Unspecified).AddTicks(9028), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Administrator", null, 3 });
+                values: new object[] { new Guid("43d1e4bf-4c72-4fb9-90e4-b4baf7cb33bf"), new DateTimeOffset(new DateTime(2023, 11, 3, 20, 23, 7, 817, DateTimeKind.Unspecified).AddTicks(7869), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Administrator", null, 3 });
 
             migrationBuilder.InsertData(
                 table: "AccountRoles",
                 columns: new[] { "Id", "AccountId", "CreatedOn", "DeletedAt", "RoleId", "UpdatedOn" },
-                values: new object[] { new Guid("a0a98af1-ba40-4dc8-ac08-4f80fe92f2d7"), new Guid("d732a57e-cea9-4fc6-9031-49e8c200029b"), new DateTimeOffset(new DateTime(2023, 11, 3, 19, 11, 6, 723, DateTimeKind.Unspecified).AddTicks(9051), new TimeSpan(0, 0, 0, 0, 0)), null, new Guid("7d9b350a-cdc7-482d-982f-4a34635589d4"), null });
+                values: new object[] { new Guid("ab49f228-9372-46e2-a49b-5dc1dc537f56"), new Guid("cb459cbf-b8c2-4073-ba03-0e3019081287"), new DateTimeOffset(new DateTime(2023, 11, 3, 20, 23, 7, 817, DateTimeKind.Unspecified).AddTicks(7891), new TimeSpan(0, 0, 0, 0, 0)), null, new Guid("43d1e4bf-4c72-4fb9-90e4-b4baf7cb33bf"), null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AccountRoles_AccountId",
@@ -184,6 +191,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                 name: "IX_AccountRoles_RoleId",
                 table: "AccountRoles",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Flowers_AccountId",
+                table: "Flowers",
+                column: "AccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Flowers_GardenId",

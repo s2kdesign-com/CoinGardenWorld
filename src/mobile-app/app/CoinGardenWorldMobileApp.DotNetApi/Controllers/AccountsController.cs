@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 using CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer;
 using System.Linq;
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
@@ -47,14 +48,28 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
             return _unitOfWork.AccountRepository.List(includeProperties: "").Select(AccountMapper.ProjectToList);
         }
-
+        
         // GET: api/Accounts/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="includeProperties">
+        /// Specifies related entities to include in the query results.The navigation property to be included is
+        ///     specified starting with the type of entity being queried. Further
+        ///     navigation properties to be included can be appended, separated by the '.' character.
+        /// </param>
+        /// <returns></returns>
+        /// <remarks>
+        ///     See https://aka.ms/efcore-docs-load-related-data Loading related entities for more information
+        ///     and examples.
+        /// </remarks>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(AccountDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<AccountDto>> GetAccount(Guid id)
+        public async Task<ActionResult<AccountDto>> GetAccount(Guid id, string includeProperties = "Roles,Roles.Role")
         {
-            var account = await _unitOfWork.AccountRepository.GetByIdAsync(id, includeProperties: "Roles");
+            var account = await _unitOfWork.AccountRepository.GetByIdAsync(id, includeProperties);
             ;
             if (account == null)
             {

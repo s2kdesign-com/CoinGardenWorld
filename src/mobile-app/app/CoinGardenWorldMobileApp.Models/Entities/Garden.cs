@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using CoinGardenWorldMobileApp.Models.Attributes;
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,6 +15,7 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         [ForeignKey(nameof(Account))]
         public Guid AccountId { get; set; }
 
+        [IgnoreOnModify]
         public Account Account { get; set; }
 
         public Visibility Visibility { get; set; } = Visibility.Public;

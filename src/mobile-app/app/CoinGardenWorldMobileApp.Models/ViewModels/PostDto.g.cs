@@ -6,6 +6,7 @@ namespace CoinGardenWorldMobileApp.Models.ViewModels
     public partial record PostDto
     {
         public Guid AccountId { get; set; }
+        public AccountDto Account { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public string? LinkOrImageUrl { get; set; }

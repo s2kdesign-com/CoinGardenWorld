@@ -42,9 +42,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(FlowerDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<FlowerDto>> GetFlower(Guid id)
+        public async Task<ActionResult<FlowerDto>> GetFlower(Guid id, string includeProperties = "Garden,Garden.Account,Garden.Account.Roles")
         {
-            var model = await _unitOfWork.FlowerRepository.GetByIdAsync(id);
+            var model = await _unitOfWork.FlowerRepository.GetByIdAsync(id, includeProperties);
             if (model == null)
             {
                 return NotFound();

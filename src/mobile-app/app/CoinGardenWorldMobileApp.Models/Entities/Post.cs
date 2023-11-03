@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CoinGardenWorldMobileApp.Models.Attributes;
 using CoinGardenWorldMobileApp.Models.Entities.Enums;
 
 namespace CoinGardenWorldMobileApp.Models.Entities
@@ -26,11 +27,13 @@ namespace CoinGardenWorldMobileApp.Models.Entities
 
         [ForeignKey(nameof(Garden))]
         public Guid? GardenId { get; set; }
+        [IgnoreOnModify]
         public Garden? Garden { get; set; }
 
 
         [ForeignKey(nameof(Flower))]
         public Guid? FlowerId { get; set; }
+        [IgnoreOnModify]
         public Flower? Flower { get; set; }
 
         public PostType PostType { get; set; }

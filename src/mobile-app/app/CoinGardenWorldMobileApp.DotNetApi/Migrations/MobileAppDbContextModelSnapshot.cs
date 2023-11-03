@@ -71,8 +71,8 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d732a57e-cea9-4fc6-9031-49e8c200029b"),
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 19, 11, 6, 723, DateTimeKind.Unspecified).AddTicks(8819), new TimeSpan(0, 0, 0, 0, 0)),
+                            Id = new Guid("cb459cbf-b8c2-4073-ba03-0e3019081287"),
+                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 20, 23, 7, 817, DateTimeKind.Unspecified).AddTicks(7592), new TimeSpan(0, 0, 0, 0, 0)),
                             DisplayName = "CoinGarden.World",
                             Email = "coingardenworld@gmail.com",
                             UserIdentityProvider = "google.com",
@@ -111,16 +111,19 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a0a98af1-ba40-4dc8-ac08-4f80fe92f2d7"),
-                            AccountId = new Guid("d732a57e-cea9-4fc6-9031-49e8c200029b"),
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 19, 11, 6, 723, DateTimeKind.Unspecified).AddTicks(9051), new TimeSpan(0, 0, 0, 0, 0)),
-                            RoleId = new Guid("7d9b350a-cdc7-482d-982f-4a34635589d4")
+                            Id = new Guid("ab49f228-9372-46e2-a49b-5dc1dc537f56"),
+                            AccountId = new Guid("cb459cbf-b8c2-4073-ba03-0e3019081287"),
+                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 20, 23, 7, 817, DateTimeKind.Unspecified).AddTicks(7891), new TimeSpan(0, 0, 0, 0, 0)),
+                            RoleId = new Guid("43d1e4bf-4c72-4fb9-90e4-b4baf7cb33bf")
                         });
                 });
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Flower", b =>
                 {
                     b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AccountId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset>("CreatedOn")
@@ -144,6 +147,8 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
 
                     b.HasIndex("GardenId");
 
@@ -269,8 +274,8 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7d9b350a-cdc7-482d-982f-4a34635589d4"),
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 19, 11, 6, 723, DateTimeKind.Unspecified).AddTicks(9028), new TimeSpan(0, 0, 0, 0, 0)),
+                            Id = new Guid("43d1e4bf-4c72-4fb9-90e4-b4baf7cb33bf"),
+                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 20, 23, 7, 817, DateTimeKind.Unspecified).AddTicks(7869), new TimeSpan(0, 0, 0, 0, 0)),
                             Name = "Administrator",
                             Visibility = 3
                         });
@@ -297,10 +302,18 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Flower", b =>
                 {
+                    b.HasOne("CoinGardenWorldMobileApp.Models.Entities.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("CoinGardenWorldMobileApp.Models.Entities.Garden", "Garden")
                         .WithMany("Flowers")
                         .HasForeignKey("GardenId")
                         .OnDelete(DeleteBehavior.ClientCascade);
+
+                    b.Navigation("Account");
 
                     b.Navigation("Garden");
                 });

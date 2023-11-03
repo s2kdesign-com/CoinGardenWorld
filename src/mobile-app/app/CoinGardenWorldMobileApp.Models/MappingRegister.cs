@@ -76,14 +76,12 @@ namespace CoinGardenWorldMobileApp.Models
                 //.PreserveReference(true)
                 .AlterType(type => type.IsEnum || Nullable.GetUnderlyingType(type)?.IsEnum == true, typeof(string))
                 .ShallowCopyForSameType(true)
-                //.ForType<Account>(cfg => cfg.Ignore(it => it.CreatedFrom))
-                // .ForType<Account>(cfg => cfg.Ignore(it => it.UpdatedFrom))
 
                 .ForType<AccountRoles>(cfg => cfg.Ignore(it => it.Account))
 
-                .ForType<Post>(cfg => cfg.Ignore(it => it.Account))
+               // .ForType<Post>(cfg => cfg.Ignore(it => it.Account))
 
-                .ForType<Flower>(cfg => cfg.Ignore(it => it.Garden))
+                 .ForType<Garden>(cfg => cfg.Ignore(it => it.Flowers))
                 ;
         }
 
