@@ -1,11 +1,10 @@
-﻿using CoinGardenWorld.HttpClientsExtensions.Configurations;
+﻿using CoinGardenWorld.Constants;
+using CoinGardenWorld.HttpClientsExtensions.Configurations;
 using CoinGardenWorld.HttpClientsExtensions.DelegatingHandlers;
 using CoinGardenWorld.HttpClientsExtensions.Infrastructure;
 using CoinGardenWorld.HttpClientsExtensions.MetaverseSiteApiClients;
 using CoinGardenWorld.HttpClientsExtensions.MobileApiClients;
 using CoinGardenWorld.HttpClientsExtensions.MobileApiSiteClients;
-using CoinGardenWorldMobileApp.Models;
-using CoinGardenWorldMobileApp.Models.ViewModels;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 

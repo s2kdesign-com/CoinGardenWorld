@@ -1,4 +1,4 @@
-﻿namespace CoinGardenWorldMobileApp.Models
+﻿namespace CoinGardenWorld.Constants
 {
     public enum EnvironmentType
     {

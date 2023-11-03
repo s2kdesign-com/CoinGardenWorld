@@ -27,12 +27,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\mobile-app\app\CoinGardenWorldMobileApp.Models\CoinGardenWorldMobileApp.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <OpenApiReference Include="OpenAPIs\swagger.json" CodeGenerator="NSwagCSharp" ClassName="MobileApi">
       <SourceUri>https://localhost:7249/swagger/v1/swagger.json</SourceUri>
     </OpenApiReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CoinGardenWorld.Constants\CoinGardenWorld.Constants.csproj" />
   </ItemGroup>
 </Project>

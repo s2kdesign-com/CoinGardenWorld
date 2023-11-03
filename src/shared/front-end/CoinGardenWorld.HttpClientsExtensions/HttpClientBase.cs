@@ -1,7 +1,6 @@
 ﻿using System.Net.Http.Json;
 using System.Runtime.InteropServices;
 using System.Text;
-using Azure;
 using CoinGardenWorld.HttpClientsExtensions.Configurations;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Configuration;

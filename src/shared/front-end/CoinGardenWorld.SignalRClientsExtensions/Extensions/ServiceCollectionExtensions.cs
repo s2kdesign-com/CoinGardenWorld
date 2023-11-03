@@ -1,8 +1,8 @@
 ﻿
+using CoinGardenWorld.Constants;
 using CoinGardenWorld.SignalRClientsExtensions.Configurations;
 using CoinGardenWorld.SignalRClientsExtensions.SignalR;
 using CoinGardenWorld.SignalRClientsExtensions.SignalR.HubClients;
-using CoinGardenWorldMobileApp.Models;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

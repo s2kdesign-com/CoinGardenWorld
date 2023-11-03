@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using BlazorApplicationInsights;
 using Blazored.LocalStorage;
+using CoinGardenWorld.Constants;
 using CoinGardenWorld.HttpClientsExtensions;
 using CoinGardenWorld.HttpClientsExtensions.Configurations;
 using CoinGardenWorld.HttpClientsExtensions.Extensions;
@@ -11,8 +12,6 @@ using CoinGardenWorld.SignalRClientsExtensions.Extensions;
 using CoinGardenWorldMobileApp.Maui.Authorization;
 using CoinGardenWorldMobileApp.MobileAppTheme.Authorization;
 using CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage;
-using CoinGardenWorldMobileApp.Models;
-using CoinGardenWorldMobileApp.Models.ViewModels;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;

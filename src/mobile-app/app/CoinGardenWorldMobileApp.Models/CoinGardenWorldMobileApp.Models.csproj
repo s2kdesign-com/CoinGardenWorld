@@ -25,6 +25,11 @@
 	  <Folder Include="MapperExtensions\" />
 	  <Folder Include="Mappers\" />
 	</ItemGroup>
+
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\shared\CoinGardenWorld.Constants\CoinGardenWorld.Constants.csproj" />
+	</ItemGroup>
 	<!--<Target Name="CleanGenerated" AfterTargets="Clean">
 
 		<Delete Files="@(Generated)" />

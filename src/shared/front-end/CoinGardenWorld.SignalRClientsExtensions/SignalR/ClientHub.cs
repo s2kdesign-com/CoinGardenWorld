@@ -2,18 +2,10 @@
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.Extensions.Options;
-using System.Security.Claims;
+using CoinGardenWorld.Constants;
 using CoinGardenWorld.SignalRClientsExtensions.Configurations;
-using CoinGardenWorldMobileApp.Models;
 
 namespace CoinGardenWorld.SignalRClientsExtensions.SignalR
 {
