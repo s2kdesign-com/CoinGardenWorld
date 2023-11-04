@@ -7,6 +7,7 @@ using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
@@ -29,10 +30,32 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [Produces("application/json")]
         [ProducesResponseType(typeof(ProfileOnLogin), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ProfileOnLogin>> OnLogin(ProfileOnLoginRequest request)
+        public async Task<ActionResult<ProfileOnLogin>> OnLogin()
         {
             try
             {
+                var preferredUsername = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+                var emails = (HttpContext.User.Claims.FirstOrDefault(c => c.Type == "emails")?.Value!);
+
+                var userObjectIdAzureAd = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/identity/claims/objectidentifier")?.Value;
+                var userIdentityProvider = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/identity/claims/identityprovider")?.Value;
+
+                var request = new ProfileOnLoginRequest
+                {
+                    Account = new AccountAdd
+                    {
+                        Email = emails,
+                        DisplayName = preferredUsername
+                    },
+                    ExternalLogins = new AccountExternalLoginsMerge
+                    {
+                        ObjectIdAzureAd = userObjectIdAzureAd,
+                        IdentityProvider = userIdentityProvider,
+                        DisplayName = preferredUsername,
+
+
+                    }
+                };
 
                 if (ModelState.IsValid)
                 {

@@ -3175,90 +3175,6 @@
         "tags": [
           "Profile"
         ],
-        "requestBody": {
-          "content": {
-            "application/json;odata.metadata=minimal;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            },
-            "application/json;odata.metadata=minimal;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            },
-            "application/json;odata.metadata=minimal": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            },
-            "application/json;odata.metadata=full": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            },
-            "application/json;odata.metadata=none": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            },
-            "application/json;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            },
-            "application/json;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            },
-            "text/plain": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProfileOnLoginRequest"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Success",
@@ -4864,33 +4780,6 @@
         },
         "additionalProperties": false
       },
-      "AccountExternalLoginsMerge": {
-        "type": "object",
-        "properties": {
-          "accountId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "displayName": {
-            "type": "string",
-            "nullable": true
-          },
-          "objectIdAzureAd": {
-            "type": "string",
-            "nullable": true
-          },
-          "identityProvider": {
-            "type": "string",
-            "nullable": true
-          },
-          "profilePictureUrl": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "AccountList": {
         "type": "object",
         "properties": {
@@ -6142,18 +6031,6 @@
           },
           "isFirstRegistration": {
             "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ProfileOnLoginRequest": {
-        "type": "object",
-        "properties": {
-          "account": {
-            "$ref": "#/components/schemas/AccountAdd"
-          },
-          "externalLogins": {
-            "$ref": "#/components/schemas/AccountExternalLoginsMerge"
           }
         },
         "additionalProperties": false

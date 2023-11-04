@@ -35,38 +35,20 @@
     {
         var user = (await AuthenticationState).User;
         var preferredUsername = user.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
-        var emails = System.Text.Json.JsonSerializer.Deserialize<string[]>(user.Claims.FirstOrDefault(c => c.Type == "emails")?.Value);
-
-        localStorage.SetString(Constants.PREFERRED_USERNAME_LOCAL_STORAGE_NAME, preferredUsername);
-        localStorage.SetString(Constants.USER_EMAIL_LOCAL_STORAGE_NAME, emails.First());
-
-        await AppInsights.SetAuthenticatedUserContext(emails.First());
-
-        var userObjectIdAzureAd = user.Claims.FirstOrDefault(c => c.Type == "oid")?.Value;
+        var emails = System.Text.Json.JsonSerializer.Deserialize<string[]>(user.Claims.FirstOrDefault(c => c.Type == "emails")?.Value!);
         var userIdentityProvider = user.Claims.FirstOrDefault(c => c.Type == "idp")?.Value;
 
 
+        localStorage.SetString(Constants.USER_USERNAME_LOCAL_STORAGE_NAME, preferredUsername!);
+        localStorage.SetString(Constants.USER_EMAIL_LOCAL_STORAGE_NAME, emails?.First()!);
+        localStorage.SetString(Constants.USER_IDP_LOCAL_STORAGE_NAME, userIdentityProvider!);
 
-        var profileResponse = await MobileApiAuthorizedHttpClient.MobileApi.OnLoginAsync(new ProfileOnLoginRequest
-        {
-            Account = new AccountAdd
-            {
-                Email = emails.First(),
-                DisplayName = preferredUsername
-            },
-            ExternalLogins = new AccountExternalLoginsMerge
-            {
-                ObjectIdAzureAd = userObjectIdAzureAd,
-                IdentityProvider = userIdentityProvider,
-                    DisplayName = preferredUsername,
-                    
-                    
-            }
-        });
+        // TODO: Move Applicaton Insights to layout because the current implementation is only for this page
+        await AppInsights.SetAuthenticatedUserContext(emails?.First()!);
 
+        var profileResponse = await MobileApiAuthorizedHttpClient.MobileApi.OnLoginAsync();
         if(profileResponse != null)
         {
-
             localStorage.SetString(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME, profileResponse.AccountId.ToString());
         }
     }
@@ -78,13 +60,19 @@
             localStorage.Delete(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME);
         }
 
-        if (localStorage.Exists(Constants.PREFERRED_USERNAME_LOCAL_STORAGE_NAME))
+        if (localStorage.Exists(Constants.USER_USERNAME_LOCAL_STORAGE_NAME))
         {
-            localStorage.Delete(Constants.PREFERRED_USERNAME_LOCAL_STORAGE_NAME);
+            localStorage.Delete(Constants.USER_USERNAME_LOCAL_STORAGE_NAME);
         }
+
         if (localStorage.Exists(Constants.USER_EMAIL_LOCAL_STORAGE_NAME))
         {
             localStorage.Delete(Constants.USER_EMAIL_LOCAL_STORAGE_NAME);
+        }
+
+        if (localStorage.Exists(Constants.USER_IDP_LOCAL_STORAGE_NAME))
+        {
+            localStorage.Delete(Constants.USER_IDP_LOCAL_STORAGE_NAME);
         }
         await AppInsights.ClearAuthenticatedUserContext();
     }
