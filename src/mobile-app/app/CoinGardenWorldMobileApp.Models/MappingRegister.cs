@@ -46,6 +46,7 @@ namespace CoinGardenWorldMobileApp.Models
             config.GenerateMapper("[name]Mapper")
                 .ForType<Account>()
                 .ForType<AccountRoles>()
+                .ForType<AccountExternalLogins>()
                 .ForType<Role>()
                 .ForType<Post>()
                 .ForType<Garden>()
@@ -78,6 +79,7 @@ namespace CoinGardenWorldMobileApp.Models
                 .ShallowCopyForSameType(true)
 
                 .ForType<AccountRoles>(cfg => cfg.Ignore(it => it.Account))
+                .ForType<AccountExternalLogins>(cfg => cfg.Ignore(it => it.Account))
 
                // .ForType<Post>(cfg => cfg.Ignore(it => it.Account))
 

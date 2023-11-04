@@ -12,11 +12,13 @@ using CoinGardenWorldMobileApp.Models.MapperExtensions;
 using CoinGardenWorldMobileApp.Models.ViewModels;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Identity.Web.Resource;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
     [Authorize]
     public class RolesController : ControllerBase
     {

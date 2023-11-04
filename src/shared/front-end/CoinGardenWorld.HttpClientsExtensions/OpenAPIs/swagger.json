@@ -387,7 +387,7 @@
             "style": "form",
             "schema": {
               "type": "string",
-              "default": "Roles,Roles.Role"
+              "default": "ExternalLogins,Roles,Roles.Role"
             }
           }
         ],
@@ -3170,6 +3170,119 @@
         }
       }
     },
+    "/api/Profile/OnLogin": {
+      "post": {
+        "tags": [
+          "Profile"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json;odata.metadata=minimal;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            },
+            "application/json;odata.metadata=minimal": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            },
+            "application/json;odata.metadata=full": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            },
+            "application/json;odata.metadata=none": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            },
+            "application/json;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            },
+            "application/json;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileOnLoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileOnLogin"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Public/GetPublicFlowers": {
       "get": {
         "tags": [
@@ -4644,14 +4757,6 @@
             "type": "string",
             "format": "byte",
             "nullable": true
-          },
-          "userObjectIdAzureAd": {
-            "type": "string",
-            "nullable": true
-          },
-          "userIdentityProvider": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -4680,18 +4785,17 @@
             "format": "byte",
             "nullable": true
           },
-          "userObjectIdAzureAd": {
-            "type": "string",
-            "nullable": true
-          },
-          "userIdentityProvider": {
-            "type": "string",
-            "nullable": true
-          },
           "roles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/AccountRolesDto"
+            },
+            "nullable": true
+          },
+          "externalLogins": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountExternalLoginsDto"
             },
             "nullable": true
           },
@@ -4711,6 +4815,77 @@
           "deletedAt": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountExternalLoginsDto": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "objectIdAzureAd": {
+            "type": "string",
+            "nullable": true
+          },
+          "identityProvider": {
+            "type": "string",
+            "nullable": true
+          },
+          "profilePictureUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountExternalLoginsMerge": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "objectIdAzureAd": {
+            "type": "string",
+            "nullable": true
+          },
+          "identityProvider": {
+            "type": "string",
+            "nullable": true
+          },
+          "profilePictureUrl": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -4738,14 +4913,6 @@
           "profilePicure": {
             "type": "string",
             "format": "byte",
-            "nullable": true
-          },
-          "userObjectIdAzureAd": {
-            "type": "string",
-            "nullable": true
-          },
-          "userIdentityProvider": {
-            "type": "string",
             "nullable": true
           },
           "id": {
@@ -4781,14 +4948,6 @@
           "profilePicure": {
             "type": "string",
             "format": "byte",
-            "nullable": true
-          },
-          "userObjectIdAzureAd": {
-            "type": "string",
-            "nullable": true
-          },
-          "userIdentityProvider": {
-            "type": "string",
             "nullable": true
           }
         },
@@ -5973,6 +6132,31 @@
           }
         },
         "additionalProperties": { }
+      },
+      "ProfileOnLogin": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isFirstRegistration": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProfileOnLoginRequest": {
+        "type": "object",
+        "properties": {
+          "account": {
+            "$ref": "#/components/schemas/AccountAdd"
+          },
+          "externalLogins": {
+            "$ref": "#/components/schemas/AccountExternalLoginsMerge"
+          }
+        },
+        "additionalProperties": false
       },
       "Query": {
         "type": "object",

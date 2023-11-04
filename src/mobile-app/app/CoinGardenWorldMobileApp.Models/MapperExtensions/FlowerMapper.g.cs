@@ -19,255 +19,267 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 AccountId = p1.AccountId,
                 Account = funcMain1(p1.Account),
                 GardenId = p1.GardenId,
-                Garden = funcMain3(p1.Garden),
+                Garden = funcMain4(p1.Garden),
                 Id = p1.Id,
                 CreatedOn = p1.CreatedOn,
                 UpdatedOn = p1.UpdatedOn,
                 DeletedAt = p1.DeletedAt
             };
         }
-        public static FlowerDto AdaptTo(this Flower p7, FlowerDto p8)
+        public static FlowerDto AdaptTo(this Flower p9, FlowerDto p10)
         {
-            if (p7 == null)
+            if (p9 == null)
             {
                 return null;
             }
-            FlowerDto result = p8 ?? new FlowerDto();
+            FlowerDto result = p10 ?? new FlowerDto();
             
-            result.Name = p7.Name;
-            result.Visibility = Enum<Visibility>.ToString(p7.Visibility);
-            result.AccountId = p7.AccountId;
-            result.Account = funcMain6(p7.Account, result.Account);
-            result.GardenId = p7.GardenId;
-            result.Garden = funcMain8(p7.Garden, result.Garden);
-            result.Id = p7.Id;
-            result.CreatedOn = p7.CreatedOn;
-            result.UpdatedOn = p7.UpdatedOn;
-            result.DeletedAt = p7.DeletedAt;
+            result.Name = p9.Name;
+            result.Visibility = Enum<Visibility>.ToString(p9.Visibility);
+            result.AccountId = p9.AccountId;
+            result.Account = funcMain8(p9.Account, result.Account);
+            result.GardenId = p9.GardenId;
+            result.Garden = funcMain11(p9.Garden, result.Garden);
+            result.Id = p9.Id;
+            result.CreatedOn = p9.CreatedOn;
+            result.UpdatedOn = p9.UpdatedOn;
+            result.DeletedAt = p9.DeletedAt;
             return result;
             
         }
-        public static Expression<Func<Flower, FlowerDto>> ProjectToDto => p19 => new FlowerDto()
+        public static Expression<Func<Flower, FlowerDto>> ProjectToDto => p25 => new FlowerDto()
         {
-            Name = p19.Name,
-            Visibility = Enum<Visibility>.ToString(p19.Visibility),
-            AccountId = p19.AccountId,
-            Account = p19.Account == null ? null : new AccountDto()
+            Name = p25.Name,
+            Visibility = Enum<Visibility>.ToString(p25.Visibility),
+            AccountId = p25.AccountId,
+            Account = p25.Account == null ? null : new AccountDto()
             {
-                Email = p19.Account.Email,
-                Username = p19.Account.Username,
-                DisplayName = p19.Account.DisplayName,
-                ProfileIntroduction = p19.Account.ProfileIntroduction,
-                ProfilePicure = p19.Account.ProfilePicure,
-                UserObjectIdAzureAd = p19.Account.UserObjectIdAzureAd,
-                UserIdentityProvider = p19.Account.UserIdentityProvider,
-                Roles = p19.Account.Roles.Select<AccountRoles, AccountRolesDto>(p20 => new AccountRolesDto()
+                Email = p25.Account.Email,
+                Username = p25.Account.Username,
+                DisplayName = p25.Account.DisplayName,
+                ProfileIntroduction = p25.Account.ProfileIntroduction,
+                ProfilePicure = p25.Account.ProfilePicure,
+                Roles = p25.Account.Roles.Select<AccountRoles, AccountRolesDto>(p26 => new AccountRolesDto()
                 {
-                    AccountId = p20.AccountId,
-                    RoleId = p20.RoleId,
-                    Role = p20.Role == null ? null : new RoleDto()
+                    AccountId = p26.AccountId,
+                    RoleId = p26.RoleId,
+                    Role = p26.Role == null ? null : new RoleDto()
                     {
-                        Name = p20.Role.Name,
-                        Description = p20.Role.Description,
-                        Visibility = Enum<Visibility>.ToString(p20.Role.Visibility),
-                        Id = p20.Role.Id,
-                        CreatedOn = p20.Role.CreatedOn,
-                        UpdatedOn = p20.Role.UpdatedOn,
-                        DeletedAt = p20.Role.DeletedAt
+                        Name = p26.Role.Name,
+                        Description = p26.Role.Description,
+                        Visibility = Enum<Visibility>.ToString(p26.Role.Visibility),
+                        Id = p26.Role.Id,
+                        CreatedOn = p26.Role.CreatedOn,
+                        UpdatedOn = p26.Role.UpdatedOn,
+                        DeletedAt = p26.Role.DeletedAt
                     },
-                    Id = p20.Id,
-                    CreatedOn = p20.CreatedOn,
-                    UpdatedOn = p20.UpdatedOn,
-                    DeletedAt = p20.DeletedAt
+                    Id = p26.Id,
+                    CreatedOn = p26.CreatedOn,
+                    UpdatedOn = p26.UpdatedOn,
+                    DeletedAt = p26.DeletedAt
                 }).ToList<AccountRolesDto>(),
-                Id = p19.Account.Id,
-                CreatedOn = p19.Account.CreatedOn,
-                UpdatedOn = p19.Account.UpdatedOn,
-                DeletedAt = p19.Account.DeletedAt
-            },
-            GardenId = p19.GardenId,
-            Garden = p19.Garden == null ? null : new GardenDto()
-            {
-                Name = p19.Garden.Name,
-                AccountId = p19.Garden.AccountId,
-                Account = p19.Garden.Account == null ? null : new AccountDto()
+                ExternalLogins = p25.Account.ExternalLogins.Select<AccountExternalLogins, AccountExternalLoginsDto>(p27 => new AccountExternalLoginsDto()
                 {
-                    Email = p19.Garden.Account.Email,
-                    Username = p19.Garden.Account.Username,
-                    DisplayName = p19.Garden.Account.DisplayName,
-                    ProfileIntroduction = p19.Garden.Account.ProfileIntroduction,
-                    ProfilePicure = p19.Garden.Account.ProfilePicure,
-                    UserObjectIdAzureAd = p19.Garden.Account.UserObjectIdAzureAd,
-                    UserIdentityProvider = p19.Garden.Account.UserIdentityProvider,
-                    Roles = p19.Garden.Account.Roles.Select<AccountRoles, AccountRolesDto>(p21 => new AccountRolesDto()
+                    AccountId = p27.AccountId,
+                    DisplayName = p27.DisplayName,
+                    ObjectIdAzureAd = p27.ObjectIdAzureAd,
+                    IdentityProvider = p27.IdentityProvider,
+                    ProfilePictureUrl = p27.ProfilePictureUrl,
+                    Id = p27.Id,
+                    CreatedOn = p27.CreatedOn,
+                    UpdatedOn = p27.UpdatedOn,
+                    DeletedAt = p27.DeletedAt
+                }).ToList<AccountExternalLoginsDto>(),
+                Id = p25.Account.Id,
+                CreatedOn = p25.Account.CreatedOn,
+                UpdatedOn = p25.Account.UpdatedOn,
+                DeletedAt = p25.Account.DeletedAt
+            },
+            GardenId = p25.GardenId,
+            Garden = p25.Garden == null ? null : new GardenDto()
+            {
+                Name = p25.Garden.Name,
+                AccountId = p25.Garden.AccountId,
+                Account = p25.Garden.Account == null ? null : new AccountDto()
+                {
+                    Email = p25.Garden.Account.Email,
+                    Username = p25.Garden.Account.Username,
+                    DisplayName = p25.Garden.Account.DisplayName,
+                    ProfileIntroduction = p25.Garden.Account.ProfileIntroduction,
+                    ProfilePicure = p25.Garden.Account.ProfilePicure,
+                    Roles = p25.Garden.Account.Roles.Select<AccountRoles, AccountRolesDto>(p28 => new AccountRolesDto()
                     {
-                        AccountId = p21.AccountId,
-                        RoleId = p21.RoleId,
-                        Role = p21.Role == null ? null : new RoleDto()
+                        AccountId = p28.AccountId,
+                        RoleId = p28.RoleId,
+                        Role = p28.Role == null ? null : new RoleDto()
                         {
-                            Name = p21.Role.Name,
-                            Description = p21.Role.Description,
-                            Visibility = Enum<Visibility>.ToString(p21.Role.Visibility),
-                            Id = p21.Role.Id,
-                            CreatedOn = p21.Role.CreatedOn,
-                            UpdatedOn = p21.Role.UpdatedOn,
-                            DeletedAt = p21.Role.DeletedAt
+                            Name = p28.Role.Name,
+                            Description = p28.Role.Description,
+                            Visibility = Enum<Visibility>.ToString(p28.Role.Visibility),
+                            Id = p28.Role.Id,
+                            CreatedOn = p28.Role.CreatedOn,
+                            UpdatedOn = p28.Role.UpdatedOn,
+                            DeletedAt = p28.Role.DeletedAt
                         },
-                        Id = p21.Id,
-                        CreatedOn = p21.CreatedOn,
-                        UpdatedOn = p21.UpdatedOn,
-                        DeletedAt = p21.DeletedAt
+                        Id = p28.Id,
+                        CreatedOn = p28.CreatedOn,
+                        UpdatedOn = p28.UpdatedOn,
+                        DeletedAt = p28.DeletedAt
                     }).ToList<AccountRolesDto>(),
-                    Id = p19.Garden.Account.Id,
-                    CreatedOn = p19.Garden.Account.CreatedOn,
-                    UpdatedOn = p19.Garden.Account.UpdatedOn,
-                    DeletedAt = p19.Garden.Account.DeletedAt
-                },
-                Visibility = Enum<Visibility>.ToString(p19.Garden.Visibility),
-                Id = p19.Garden.Id,
-                CreatedOn = p19.Garden.CreatedOn,
-                UpdatedOn = p19.Garden.UpdatedOn,
-                DeletedAt = p19.Garden.DeletedAt
-            },
-            Id = p19.Id,
-            CreatedOn = p19.CreatedOn,
-            UpdatedOn = p19.UpdatedOn,
-            DeletedAt = p19.DeletedAt
-        };
-        public static FlowerList AdaptToList(this Flower p22)
-        {
-            return p22 == null ? null : new FlowerList()
-            {
-                Name = p22.Name,
-                Visibility = Enum<Visibility>.ToString(p22.Visibility),
-                AccountId = p22.AccountId,
-                Account = p22.Account == null ? null : new AccountList()
-                {
-                    Email = p22.Account.Email,
-                    Username = p22.Account.Username,
-                    DisplayName = p22.Account.DisplayName,
-                    ProfileIntroduction = p22.Account.ProfileIntroduction,
-                    ProfilePicure = p22.Account.ProfilePicure,
-                    UserObjectIdAzureAd = p22.Account.UserObjectIdAzureAd,
-                    UserIdentityProvider = p22.Account.UserIdentityProvider,
-                    Id = p22.Account.Id,
-                    CreatedOn = p22.Account.CreatedOn
-                },
-                GardenId = p22.GardenId,
-                Garden = p22.Garden == null ? null : new GardenList()
-                {
-                    Name = p22.Garden.Name,
-                    AccountId = p22.Garden.AccountId,
-                    Account = p22.Garden.Account == null ? null : new AccountList()
+                    ExternalLogins = p25.Garden.Account.ExternalLogins.Select<AccountExternalLogins, AccountExternalLoginsDto>(p29 => new AccountExternalLoginsDto()
                     {
-                        Email = p22.Garden.Account.Email,
-                        Username = p22.Garden.Account.Username,
-                        DisplayName = p22.Garden.Account.DisplayName,
-                        ProfileIntroduction = p22.Garden.Account.ProfileIntroduction,
-                        ProfilePicure = p22.Garden.Account.ProfilePicure,
-                        UserObjectIdAzureAd = p22.Garden.Account.UserObjectIdAzureAd,
-                        UserIdentityProvider = p22.Garden.Account.UserIdentityProvider,
-                        Id = p22.Garden.Account.Id,
-                        CreatedOn = p22.Garden.Account.CreatedOn
-                    },
-                    Visibility = Enum<Visibility>.ToString(p22.Garden.Visibility),
-                    Id = p22.Garden.Id,
-                    CreatedOn = p22.Garden.CreatedOn
+                        AccountId = p29.AccountId,
+                        DisplayName = p29.DisplayName,
+                        ObjectIdAzureAd = p29.ObjectIdAzureAd,
+                        IdentityProvider = p29.IdentityProvider,
+                        ProfilePictureUrl = p29.ProfilePictureUrl,
+                        Id = p29.Id,
+                        CreatedOn = p29.CreatedOn,
+                        UpdatedOn = p29.UpdatedOn,
+                        DeletedAt = p29.DeletedAt
+                    }).ToList<AccountExternalLoginsDto>(),
+                    Id = p25.Garden.Account.Id,
+                    CreatedOn = p25.Garden.Account.CreatedOn,
+                    UpdatedOn = p25.Garden.Account.UpdatedOn,
+                    DeletedAt = p25.Garden.Account.DeletedAt
                 },
-                Id = p22.Id,
-                CreatedOn = p22.CreatedOn
+                Visibility = Enum<Visibility>.ToString(p25.Garden.Visibility),
+                Id = p25.Garden.Id,
+                CreatedOn = p25.Garden.CreatedOn,
+                UpdatedOn = p25.Garden.UpdatedOn,
+                DeletedAt = p25.Garden.DeletedAt
+            },
+            Id = p25.Id,
+            CreatedOn = p25.CreatedOn,
+            UpdatedOn = p25.UpdatedOn,
+            DeletedAt = p25.DeletedAt
+        };
+        public static FlowerList AdaptToList(this Flower p30)
+        {
+            return p30 == null ? null : new FlowerList()
+            {
+                Name = p30.Name,
+                Visibility = Enum<Visibility>.ToString(p30.Visibility),
+                AccountId = p30.AccountId,
+                Account = p30.Account == null ? null : new AccountList()
+                {
+                    Email = p30.Account.Email,
+                    Username = p30.Account.Username,
+                    DisplayName = p30.Account.DisplayName,
+                    ProfileIntroduction = p30.Account.ProfileIntroduction,
+                    ProfilePicure = p30.Account.ProfilePicure,
+                    Id = p30.Account.Id,
+                    CreatedOn = p30.Account.CreatedOn
+                },
+                GardenId = p30.GardenId,
+                Garden = p30.Garden == null ? null : new GardenList()
+                {
+                    Name = p30.Garden.Name,
+                    AccountId = p30.Garden.AccountId,
+                    Account = p30.Garden.Account == null ? null : new AccountList()
+                    {
+                        Email = p30.Garden.Account.Email,
+                        Username = p30.Garden.Account.Username,
+                        DisplayName = p30.Garden.Account.DisplayName,
+                        ProfileIntroduction = p30.Garden.Account.ProfileIntroduction,
+                        ProfilePicure = p30.Garden.Account.ProfilePicure,
+                        Id = p30.Garden.Account.Id,
+                        CreatedOn = p30.Garden.Account.CreatedOn
+                    },
+                    Visibility = Enum<Visibility>.ToString(p30.Garden.Visibility),
+                    Id = p30.Garden.Id,
+                    CreatedOn = p30.Garden.CreatedOn
+                },
+                Id = p30.Id,
+                CreatedOn = p30.CreatedOn
             };
         }
-        public static FlowerList AdaptTo(this Flower p23, FlowerList p24)
+        public static FlowerList AdaptTo(this Flower p31, FlowerList p32)
         {
-            if (p23 == null)
+            if (p31 == null)
             {
                 return null;
             }
-            FlowerList result = p24 ?? new FlowerList();
+            FlowerList result = p32 ?? new FlowerList();
             
-            result.Name = p23.Name;
-            result.Visibility = Enum<Visibility>.ToString(p23.Visibility);
-            result.AccountId = p23.AccountId;
-            result.Account = funcMain11(p23.Account, result.Account);
-            result.GardenId = p23.GardenId;
-            result.Garden = funcMain12(p23.Garden, result.Garden);
-            result.Id = p23.Id;
-            result.CreatedOn = p23.CreatedOn;
+            result.Name = p31.Name;
+            result.Visibility = Enum<Visibility>.ToString(p31.Visibility);
+            result.AccountId = p31.AccountId;
+            result.Account = funcMain15(p31.Account, result.Account);
+            result.GardenId = p31.GardenId;
+            result.Garden = funcMain16(p31.Garden, result.Garden);
+            result.Id = p31.Id;
+            result.CreatedOn = p31.CreatedOn;
             return result;
             
         }
-        public static Expression<Func<Flower, FlowerList>> ProjectToList => p31 => new FlowerList()
+        public static Expression<Func<Flower, FlowerList>> ProjectToList => p39 => new FlowerList()
         {
-            Name = p31.Name,
-            Visibility = Enum<Visibility>.ToString(p31.Visibility),
-            AccountId = p31.AccountId,
-            Account = p31.Account == null ? null : new AccountList()
+            Name = p39.Name,
+            Visibility = Enum<Visibility>.ToString(p39.Visibility),
+            AccountId = p39.AccountId,
+            Account = p39.Account == null ? null : new AccountList()
             {
-                Email = p31.Account.Email,
-                Username = p31.Account.Username,
-                DisplayName = p31.Account.DisplayName,
-                ProfileIntroduction = p31.Account.ProfileIntroduction,
-                ProfilePicure = p31.Account.ProfilePicure,
-                UserObjectIdAzureAd = p31.Account.UserObjectIdAzureAd,
-                UserIdentityProvider = p31.Account.UserIdentityProvider,
-                Id = p31.Account.Id,
-                CreatedOn = p31.Account.CreatedOn
+                Email = p39.Account.Email,
+                Username = p39.Account.Username,
+                DisplayName = p39.Account.DisplayName,
+                ProfileIntroduction = p39.Account.ProfileIntroduction,
+                ProfilePicure = p39.Account.ProfilePicure,
+                Id = p39.Account.Id,
+                CreatedOn = p39.Account.CreatedOn
             },
-            GardenId = p31.GardenId,
-            Garden = p31.Garden == null ? null : new GardenList()
+            GardenId = p39.GardenId,
+            Garden = p39.Garden == null ? null : new GardenList()
             {
-                Name = p31.Garden.Name,
-                AccountId = p31.Garden.AccountId,
-                Account = p31.Garden.Account == null ? null : new AccountList()
+                Name = p39.Garden.Name,
+                AccountId = p39.Garden.AccountId,
+                Account = p39.Garden.Account == null ? null : new AccountList()
                 {
-                    Email = p31.Garden.Account.Email,
-                    Username = p31.Garden.Account.Username,
-                    DisplayName = p31.Garden.Account.DisplayName,
-                    ProfileIntroduction = p31.Garden.Account.ProfileIntroduction,
-                    ProfilePicure = p31.Garden.Account.ProfilePicure,
-                    UserObjectIdAzureAd = p31.Garden.Account.UserObjectIdAzureAd,
-                    UserIdentityProvider = p31.Garden.Account.UserIdentityProvider,
-                    Id = p31.Garden.Account.Id,
-                    CreatedOn = p31.Garden.Account.CreatedOn
+                    Email = p39.Garden.Account.Email,
+                    Username = p39.Garden.Account.Username,
+                    DisplayName = p39.Garden.Account.DisplayName,
+                    ProfileIntroduction = p39.Garden.Account.ProfileIntroduction,
+                    ProfilePicure = p39.Garden.Account.ProfilePicure,
+                    Id = p39.Garden.Account.Id,
+                    CreatedOn = p39.Garden.Account.CreatedOn
                 },
-                Visibility = Enum<Visibility>.ToString(p31.Garden.Visibility),
-                Id = p31.Garden.Id,
-                CreatedOn = p31.Garden.CreatedOn
+                Visibility = Enum<Visibility>.ToString(p39.Garden.Visibility),
+                Id = p39.Garden.Id,
+                CreatedOn = p39.Garden.CreatedOn
             },
-            Id = p31.Id,
-            CreatedOn = p31.CreatedOn
+            Id = p39.Id,
+            CreatedOn = p39.CreatedOn
         };
-        public static Flower AdaptToFlower(this FlowerAdd p32)
+        public static Flower AdaptToFlower(this FlowerAdd p40)
         {
-            return p32 == null ? null : new Flower()
+            return p40 == null ? null : new Flower()
             {
-                Name = p32.Name,
-                Visibility = p32.Visibility == null ? Visibility.Public : Enum<Visibility>.Parse(p32.Visibility),
-                AccountId = p32.AccountId
+                Name = p40.Name,
+                Visibility = p40.Visibility == null ? Visibility.Public : Enum<Visibility>.Parse(p40.Visibility),
+                AccountId = p40.AccountId
             };
         }
-        public static Flower AdaptTo(this FlowerMerge p33, Flower p34)
+        public static Flower AdaptTo(this FlowerMerge p41, Flower p42)
         {
-            if (p33 == null)
+            if (p41 == null)
             {
                 return null;
             }
-            Flower result = p34 ?? new Flower();
+            Flower result = p42 ?? new Flower();
             
-            if (p33.Name != null)
+            if (p41.Name != null)
             {
-                result.Name = p33.Name;
+                result.Name = p41.Name;
             }
             
-            if (p33.Visibility != null)
+            if (p41.Visibility != null)
             {
-                result.Visibility = Enum<Visibility>.Parse(p33.Visibility);
+                result.Visibility = Enum<Visibility>.Parse(p41.Visibility);
             }
             
-            if (p33.AccountId != null)
+            if (p41.AccountId != null)
             {
-                result.AccountId = (Guid)p33.AccountId;
+                result.AccountId = (Guid)p41.AccountId;
             }
             return result;
             
@@ -282,9 +294,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 DisplayName = p2.DisplayName,
                 ProfileIntroduction = p2.ProfileIntroduction,
                 ProfilePicure = p2.ProfilePicure,
-                UserObjectIdAzureAd = p2.UserObjectIdAzureAd,
-                UserIdentityProvider = p2.UserIdentityProvider,
                 Roles = funcMain2(p2.Roles),
+                ExternalLogins = funcMain3(p2.ExternalLogins),
                 Id = p2.Id,
                 CreatedOn = p2.CreatedOn,
                 UpdatedOn = p2.UpdatedOn,
@@ -292,100 +303,97 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             };
         }
         
-        private static GardenDto funcMain3(Garden p4)
+        private static GardenDto funcMain4(Garden p5)
         {
-            return p4 == null ? null : new GardenDto()
+            return p5 == null ? null : new GardenDto()
             {
-                Name = p4.Name,
-                AccountId = p4.AccountId,
-                Account = funcMain4(p4.Account),
-                Visibility = Enum<Visibility>.ToString(p4.Visibility),
-                Id = p4.Id,
-                CreatedOn = p4.CreatedOn,
-                UpdatedOn = p4.UpdatedOn,
-                DeletedAt = p4.DeletedAt
+                Name = p5.Name,
+                AccountId = p5.AccountId,
+                Account = funcMain5(p5.Account),
+                Visibility = Enum<Visibility>.ToString(p5.Visibility),
+                Id = p5.Id,
+                CreatedOn = p5.CreatedOn,
+                UpdatedOn = p5.UpdatedOn,
+                DeletedAt = p5.DeletedAt
             };
         }
         
-        private static AccountDto funcMain6(Account p9, AccountDto p10)
+        private static AccountDto funcMain8(Account p11, AccountDto p12)
         {
-            if (p9 == null)
+            if (p11 == null)
             {
                 return null;
             }
-            AccountDto result = p10 ?? new AccountDto();
+            AccountDto result = p12 ?? new AccountDto();
             
-            result.Email = p9.Email;
-            result.Username = p9.Username;
-            result.DisplayName = p9.DisplayName;
-            result.ProfileIntroduction = p9.ProfileIntroduction;
-            result.ProfilePicure = p9.ProfilePicure;
-            result.UserObjectIdAzureAd = p9.UserObjectIdAzureAd;
-            result.UserIdentityProvider = p9.UserIdentityProvider;
-            result.Roles = funcMain7(p9.Roles, result.Roles);
-            result.Id = p9.Id;
-            result.CreatedOn = p9.CreatedOn;
-            result.UpdatedOn = p9.UpdatedOn;
-            result.DeletedAt = p9.DeletedAt;
+            result.Email = p11.Email;
+            result.Username = p11.Username;
+            result.DisplayName = p11.DisplayName;
+            result.ProfileIntroduction = p11.ProfileIntroduction;
+            result.ProfilePicure = p11.ProfilePicure;
+            result.Roles = funcMain9(p11.Roles, result.Roles);
+            result.ExternalLogins = funcMain10(p11.ExternalLogins, result.ExternalLogins);
+            result.Id = p11.Id;
+            result.CreatedOn = p11.CreatedOn;
+            result.UpdatedOn = p11.UpdatedOn;
+            result.DeletedAt = p11.DeletedAt;
             return result;
             
         }
         
-        private static GardenDto funcMain8(Garden p13, GardenDto p14)
+        private static GardenDto funcMain11(Garden p17, GardenDto p18)
         {
-            if (p13 == null)
+            if (p17 == null)
             {
                 return null;
             }
-            GardenDto result = p14 ?? new GardenDto();
+            GardenDto result = p18 ?? new GardenDto();
             
-            result.Name = p13.Name;
-            result.AccountId = p13.AccountId;
-            result.Account = funcMain9(p13.Account, result.Account);
-            result.Visibility = Enum<Visibility>.ToString(p13.Visibility);
-            result.Id = p13.Id;
-            result.CreatedOn = p13.CreatedOn;
-            result.UpdatedOn = p13.UpdatedOn;
-            result.DeletedAt = p13.DeletedAt;
+            result.Name = p17.Name;
+            result.AccountId = p17.AccountId;
+            result.Account = funcMain12(p17.Account, result.Account);
+            result.Visibility = Enum<Visibility>.ToString(p17.Visibility);
+            result.Id = p17.Id;
+            result.CreatedOn = p17.CreatedOn;
+            result.UpdatedOn = p17.UpdatedOn;
+            result.DeletedAt = p17.DeletedAt;
             return result;
             
         }
         
-        private static AccountList funcMain11(Account p25, AccountList p26)
+        private static AccountList funcMain15(Account p33, AccountList p34)
         {
-            if (p25 == null)
+            if (p33 == null)
             {
                 return null;
             }
-            AccountList result = p26 ?? new AccountList();
+            AccountList result = p34 ?? new AccountList();
             
-            result.Email = p25.Email;
-            result.Username = p25.Username;
-            result.DisplayName = p25.DisplayName;
-            result.ProfileIntroduction = p25.ProfileIntroduction;
-            result.ProfilePicure = p25.ProfilePicure;
-            result.UserObjectIdAzureAd = p25.UserObjectIdAzureAd;
-            result.UserIdentityProvider = p25.UserIdentityProvider;
-            result.Id = p25.Id;
-            result.CreatedOn = p25.CreatedOn;
+            result.Email = p33.Email;
+            result.Username = p33.Username;
+            result.DisplayName = p33.DisplayName;
+            result.ProfileIntroduction = p33.ProfileIntroduction;
+            result.ProfilePicure = p33.ProfilePicure;
+            result.Id = p33.Id;
+            result.CreatedOn = p33.CreatedOn;
             return result;
             
         }
         
-        private static GardenList funcMain12(Garden p27, GardenList p28)
+        private static GardenList funcMain16(Garden p35, GardenList p36)
         {
-            if (p27 == null)
+            if (p35 == null)
             {
                 return null;
             }
-            GardenList result = p28 ?? new GardenList();
+            GardenList result = p36 ?? new GardenList();
             
-            result.Name = p27.Name;
-            result.AccountId = p27.AccountId;
-            result.Account = funcMain13(p27.Account, result.Account);
-            result.Visibility = Enum<Visibility>.ToString(p27.Visibility);
-            result.Id = p27.Id;
-            result.CreatedOn = p27.CreatedOn;
+            result.Name = p35.Name;
+            result.AccountId = p35.AccountId;
+            result.Account = funcMain17(p35.Account, result.Account);
+            result.Visibility = Enum<Visibility>.ToString(p35.Visibility);
+            result.Id = p35.Id;
+            result.CreatedOn = p35.CreatedOn;
             return result;
             
         }
@@ -427,34 +435,63 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             
         }
         
-        private static AccountDto funcMain4(Account p5)
+        private static ICollection<AccountExternalLoginsDto> funcMain3(ICollection<AccountExternalLogins> p4)
         {
-            return p5 == null ? null : new AccountDto()
-            {
-                Email = p5.Email,
-                Username = p5.Username,
-                DisplayName = p5.DisplayName,
-                ProfileIntroduction = p5.ProfileIntroduction,
-                ProfilePicure = p5.ProfilePicure,
-                UserObjectIdAzureAd = p5.UserObjectIdAzureAd,
-                UserIdentityProvider = p5.UserIdentityProvider,
-                Roles = funcMain5(p5.Roles),
-                Id = p5.Id,
-                CreatedOn = p5.CreatedOn,
-                UpdatedOn = p5.UpdatedOn,
-                DeletedAt = p5.DeletedAt
-            };
-        }
-        
-        private static ICollection<AccountRolesDto> funcMain7(ICollection<AccountRoles> p11, ICollection<AccountRolesDto> p12)
-        {
-            if (p11 == null)
+            if (p4 == null)
             {
                 return null;
             }
-            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p11.Count);
+            ICollection<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p4.Count);
             
-            IEnumerator<AccountRoles> enumerator = p11.GetEnumerator();
+            IEnumerator<AccountExternalLogins> enumerator = p4.GetEnumerator();
+            
+            while (enumerator.MoveNext())
+            {
+                AccountExternalLogins item = enumerator.Current;
+                result.Add(item == null ? null : new AccountExternalLoginsDto()
+                {
+                    AccountId = item.AccountId,
+                    DisplayName = item.DisplayName,
+                    ObjectIdAzureAd = item.ObjectIdAzureAd,
+                    IdentityProvider = item.IdentityProvider,
+                    ProfilePictureUrl = item.ProfilePictureUrl,
+                    Id = item.Id,
+                    CreatedOn = item.CreatedOn,
+                    UpdatedOn = item.UpdatedOn,
+                    DeletedAt = item.DeletedAt
+                });
+            }
+            return result;
+            
+        }
+        
+        private static AccountDto funcMain5(Account p6)
+        {
+            return p6 == null ? null : new AccountDto()
+            {
+                Email = p6.Email,
+                Username = p6.Username,
+                DisplayName = p6.DisplayName,
+                ProfileIntroduction = p6.ProfileIntroduction,
+                ProfilePicure = p6.ProfilePicure,
+                Roles = funcMain6(p6.Roles),
+                ExternalLogins = funcMain7(p6.ExternalLogins),
+                Id = p6.Id,
+                CreatedOn = p6.CreatedOn,
+                UpdatedOn = p6.UpdatedOn,
+                DeletedAt = p6.DeletedAt
+            };
+        }
+        
+        private static ICollection<AccountRolesDto> funcMain9(ICollection<AccountRoles> p13, ICollection<AccountRolesDto> p14)
+        {
+            if (p13 == null)
+            {
+                return null;
+            }
+            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p13.Count);
+            
+            IEnumerator<AccountRoles> enumerator = p13.GetEnumerator();
             
             while (enumerator.MoveNext())
             {
@@ -483,60 +520,87 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             
         }
         
-        private static AccountDto funcMain9(Account p15, AccountDto p16)
+        private static ICollection<AccountExternalLoginsDto> funcMain10(ICollection<AccountExternalLogins> p15, ICollection<AccountExternalLoginsDto> p16)
         {
             if (p15 == null)
             {
                 return null;
             }
-            AccountDto result = p16 ?? new AccountDto();
+            ICollection<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p15.Count);
             
-            result.Email = p15.Email;
-            result.Username = p15.Username;
-            result.DisplayName = p15.DisplayName;
-            result.ProfileIntroduction = p15.ProfileIntroduction;
-            result.ProfilePicure = p15.ProfilePicure;
-            result.UserObjectIdAzureAd = p15.UserObjectIdAzureAd;
-            result.UserIdentityProvider = p15.UserIdentityProvider;
-            result.Roles = funcMain10(p15.Roles, result.Roles);
-            result.Id = p15.Id;
-            result.CreatedOn = p15.CreatedOn;
-            result.UpdatedOn = p15.UpdatedOn;
-            result.DeletedAt = p15.DeletedAt;
+            IEnumerator<AccountExternalLogins> enumerator = p15.GetEnumerator();
+            
+            while (enumerator.MoveNext())
+            {
+                AccountExternalLogins item = enumerator.Current;
+                result.Add(item == null ? null : new AccountExternalLoginsDto()
+                {
+                    AccountId = item.AccountId,
+                    DisplayName = item.DisplayName,
+                    ObjectIdAzureAd = item.ObjectIdAzureAd,
+                    IdentityProvider = item.IdentityProvider,
+                    ProfilePictureUrl = item.ProfilePictureUrl,
+                    Id = item.Id,
+                    CreatedOn = item.CreatedOn,
+                    UpdatedOn = item.UpdatedOn,
+                    DeletedAt = item.DeletedAt
+                });
+            }
             return result;
             
         }
         
-        private static AccountList funcMain13(Account p29, AccountList p30)
+        private static AccountDto funcMain12(Account p19, AccountDto p20)
         {
-            if (p29 == null)
+            if (p19 == null)
             {
                 return null;
             }
-            AccountList result = p30 ?? new AccountList();
+            AccountDto result = p20 ?? new AccountDto();
             
-            result.Email = p29.Email;
-            result.Username = p29.Username;
-            result.DisplayName = p29.DisplayName;
-            result.ProfileIntroduction = p29.ProfileIntroduction;
-            result.ProfilePicure = p29.ProfilePicure;
-            result.UserObjectIdAzureAd = p29.UserObjectIdAzureAd;
-            result.UserIdentityProvider = p29.UserIdentityProvider;
-            result.Id = p29.Id;
-            result.CreatedOn = p29.CreatedOn;
+            result.Email = p19.Email;
+            result.Username = p19.Username;
+            result.DisplayName = p19.DisplayName;
+            result.ProfileIntroduction = p19.ProfileIntroduction;
+            result.ProfilePicure = p19.ProfilePicure;
+            result.Roles = funcMain13(p19.Roles, result.Roles);
+            result.ExternalLogins = funcMain14(p19.ExternalLogins, result.ExternalLogins);
+            result.Id = p19.Id;
+            result.CreatedOn = p19.CreatedOn;
+            result.UpdatedOn = p19.UpdatedOn;
+            result.DeletedAt = p19.DeletedAt;
             return result;
             
         }
         
-        private static ICollection<AccountRolesDto> funcMain5(ICollection<AccountRoles> p6)
+        private static AccountList funcMain17(Account p37, AccountList p38)
         {
-            if (p6 == null)
+            if (p37 == null)
             {
                 return null;
             }
-            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p6.Count);
+            AccountList result = p38 ?? new AccountList();
             
-            IEnumerator<AccountRoles> enumerator = p6.GetEnumerator();
+            result.Email = p37.Email;
+            result.Username = p37.Username;
+            result.DisplayName = p37.DisplayName;
+            result.ProfileIntroduction = p37.ProfileIntroduction;
+            result.ProfilePicure = p37.ProfilePicure;
+            result.Id = p37.Id;
+            result.CreatedOn = p37.CreatedOn;
+            return result;
+            
+        }
+        
+        private static ICollection<AccountRolesDto> funcMain6(ICollection<AccountRoles> p7)
+        {
+            if (p7 == null)
+            {
+                return null;
+            }
+            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p7.Count);
+            
+            IEnumerator<AccountRoles> enumerator = p7.GetEnumerator();
             
             while (enumerator.MoveNext())
             {
@@ -565,15 +629,45 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             
         }
         
-        private static ICollection<AccountRolesDto> funcMain10(ICollection<AccountRoles> p17, ICollection<AccountRolesDto> p18)
+        private static ICollection<AccountExternalLoginsDto> funcMain7(ICollection<AccountExternalLogins> p8)
         {
-            if (p17 == null)
+            if (p8 == null)
             {
                 return null;
             }
-            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p17.Count);
+            ICollection<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p8.Count);
             
-            IEnumerator<AccountRoles> enumerator = p17.GetEnumerator();
+            IEnumerator<AccountExternalLogins> enumerator = p8.GetEnumerator();
+            
+            while (enumerator.MoveNext())
+            {
+                AccountExternalLogins item = enumerator.Current;
+                result.Add(item == null ? null : new AccountExternalLoginsDto()
+                {
+                    AccountId = item.AccountId,
+                    DisplayName = item.DisplayName,
+                    ObjectIdAzureAd = item.ObjectIdAzureAd,
+                    IdentityProvider = item.IdentityProvider,
+                    ProfilePictureUrl = item.ProfilePictureUrl,
+                    Id = item.Id,
+                    CreatedOn = item.CreatedOn,
+                    UpdatedOn = item.UpdatedOn,
+                    DeletedAt = item.DeletedAt
+                });
+            }
+            return result;
+            
+        }
+        
+        private static ICollection<AccountRolesDto> funcMain13(ICollection<AccountRoles> p21, ICollection<AccountRolesDto> p22)
+        {
+            if (p21 == null)
+            {
+                return null;
+            }
+            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p21.Count);
+            
+            IEnumerator<AccountRoles> enumerator = p21.GetEnumerator();
             
             while (enumerator.MoveNext())
             {
@@ -592,6 +686,36 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                         UpdatedOn = item.Role.UpdatedOn,
                         DeletedAt = item.Role.DeletedAt
                     },
+                    Id = item.Id,
+                    CreatedOn = item.CreatedOn,
+                    UpdatedOn = item.UpdatedOn,
+                    DeletedAt = item.DeletedAt
+                });
+            }
+            return result;
+            
+        }
+        
+        private static ICollection<AccountExternalLoginsDto> funcMain14(ICollection<AccountExternalLogins> p23, ICollection<AccountExternalLoginsDto> p24)
+        {
+            if (p23 == null)
+            {
+                return null;
+            }
+            ICollection<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p23.Count);
+            
+            IEnumerator<AccountExternalLogins> enumerator = p23.GetEnumerator();
+            
+            while (enumerator.MoveNext())
+            {
+                AccountExternalLogins item = enumerator.Current;
+                result.Add(item == null ? null : new AccountExternalLoginsDto()
+                {
+                    AccountId = item.AccountId,
+                    DisplayName = item.DisplayName,
+                    ObjectIdAzureAd = item.ObjectIdAzureAd,
+                    IdentityProvider = item.IdentityProvider,
+                    ProfilePictureUrl = item.ProfilePictureUrl,
                     Id = item.Id,
                     CreatedOn = item.CreatedOn,
                     UpdatedOn = item.UpdatedOn,

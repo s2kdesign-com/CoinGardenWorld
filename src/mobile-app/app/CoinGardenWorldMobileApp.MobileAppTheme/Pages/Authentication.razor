@@ -6,14 +6,16 @@
 
 @inject IHybridStorage localStorage
 
+@inject MobileApiAuthorizedHttpClient MobileApiAuthorizedHttpClient
+
 <!-- Your Page Content Goes Here-->
 <div class="page-content header-clear-medium">
 
-    
+
     <div class="card card-style">
         <div class="content UTILITY_SPACING">
-        
-            <RemoteAuthenticatorView Action="@Action" OnLogInSucceeded="OnLogInSucceeded" OnLogOutSucceeded="OnLogOutSucceeded"  />
+
+            <RemoteAuthenticatorView Action="@Action" OnLogInSucceeded="OnLogInSucceeded" OnLogOutSucceeded="OnLogOutSucceeded" />
         </div>
     </div>
 
@@ -39,10 +41,51 @@
         localStorage.SetString(Constants.USER_EMAIL_LOCAL_STORAGE_NAME, emails.First());
 
         await AppInsights.SetAuthenticatedUserContext(emails.First());
+
+        var userObjectIdAzureAd = user.Claims.FirstOrDefault(c => c.Type == "oid")?.Value;
+        var userIdentityProvider = user.Claims.FirstOrDefault(c => c.Type == "idp")?.Value;
+
+
+
+        var profileResponse = await MobileApiAuthorizedHttpClient.MobileApi.OnLoginAsync(new ProfileOnLoginRequest
+        {
+            Account = new AccountAdd
+            {
+                Email = emails.First(),
+                DisplayName = preferredUsername
+            },
+            ExternalLogins = new AccountExternalLoginsMerge
+            {
+                ObjectIdAzureAd = userObjectIdAzureAd,
+                IdentityProvider = userIdentityProvider,
+                    DisplayName = preferredUsername,
+                    
+                    
+            }
+        });
+
+        if(profileResponse != null)
+        {
+
+            localStorage.SetString(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME, profileResponse.AccountId.ToString());
+        }
     }
 
     public async Task OnLogOutSucceeded()
     {
+        if (localStorage.Exists(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME))
+        {
+            localStorage.Delete(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME);
+        }
+
+        if (localStorage.Exists(Constants.PREFERRED_USERNAME_LOCAL_STORAGE_NAME))
+        {
+            localStorage.Delete(Constants.PREFERRED_USERNAME_LOCAL_STORAGE_NAME);
+        }
+        if (localStorage.Exists(Constants.USER_EMAIL_LOCAL_STORAGE_NAME))
+        {
+            localStorage.Delete(Constants.USER_EMAIL_LOCAL_STORAGE_NAME);
+        }
         await AppInsights.ClearAuthenticatedUserContext();
     }
 }

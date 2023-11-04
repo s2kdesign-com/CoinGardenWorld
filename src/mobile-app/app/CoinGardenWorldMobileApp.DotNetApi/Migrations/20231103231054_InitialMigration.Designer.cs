@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
 {
     [DbContext(typeof(MobileAppDbContext))]
-    [Migration("20231103202308_InitialMigration")]
+    [Migration("20231103231054_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -55,14 +55,6 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.Property<DateTimeOffset?>("UpdatedOn")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("UserIdentityProvider")
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
-
-                    b.Property<string>("UserObjectIdAzureAd")
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
-
                     b.Property<string>("Username")
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
@@ -74,12 +66,62 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("cb459cbf-b8c2-4073-ba03-0e3019081287"),
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 20, 23, 7, 817, DateTimeKind.Unspecified).AddTicks(7592), new TimeSpan(0, 0, 0, 0, 0)),
+                            Id = new Guid("ac3b2d20-03fa-4744-a6b3-4e927f94aeb1"),
+                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 23, 10, 53, 522, DateTimeKind.Unspecified).AddTicks(7872), new TimeSpan(0, 0, 0, 0, 0)),
                             DisplayName = "CoinGarden.World",
-                            Email = "coingardenworld@gmail.com",
-                            UserIdentityProvider = "google.com",
-                            UserObjectIdAzureAd = "b5f4562f-dd5a-475f-a638-8952423adc50"
+                            Email = "coingardenworld@gmail.com"
+                        });
+                });
+
+            modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.AccountExternalLogins", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AccountId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DeletedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("DisplayName")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("IdentityProvider")
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<string>("ObjectIdAzureAd")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<string>("ProfilePictureUrl")
+                        .HasMaxLength(8000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("UpdatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("AccountExternalLogins");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("9c58af9a-2f45-44d2-9d8f-c8c1d3c9fad5"),
+                            AccountId = new Guid("ac3b2d20-03fa-4744-a6b3-4e927f94aeb1"),
+                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 23, 10, 53, 522, DateTimeKind.Unspecified).AddTicks(8068), new TimeSpan(0, 0, 0, 0, 0)),
+                            DisplayName = "CoinGarden.World",
+                            IdentityProvider = "google.com",
+                            ObjectIdAzureAd = "b5f4562f-dd5a-475f-a638-8952423adc50"
                         });
                 });
 
@@ -114,10 +156,10 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ab49f228-9372-46e2-a49b-5dc1dc537f56"),
-                            AccountId = new Guid("cb459cbf-b8c2-4073-ba03-0e3019081287"),
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 20, 23, 7, 817, DateTimeKind.Unspecified).AddTicks(7891), new TimeSpan(0, 0, 0, 0, 0)),
-                            RoleId = new Guid("43d1e4bf-4c72-4fb9-90e4-b4baf7cb33bf")
+                            Id = new Guid("63a1093b-944a-4d5a-bec4-e388b86f70da"),
+                            AccountId = new Guid("ac3b2d20-03fa-4744-a6b3-4e927f94aeb1"),
+                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 23, 10, 53, 522, DateTimeKind.Unspecified).AddTicks(8134), new TimeSpan(0, 0, 0, 0, 0)),
+                            RoleId = new Guid("3d87f2ba-466f-4033-821b-80d802947b3e")
                         });
                 });
 
@@ -277,11 +319,22 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("43d1e4bf-4c72-4fb9-90e4-b4baf7cb33bf"),
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 20, 23, 7, 817, DateTimeKind.Unspecified).AddTicks(7869), new TimeSpan(0, 0, 0, 0, 0)),
+                            Id = new Guid("3d87f2ba-466f-4033-821b-80d802947b3e"),
+                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 3, 23, 10, 53, 522, DateTimeKind.Unspecified).AddTicks(8109), new TimeSpan(0, 0, 0, 0, 0)),
                             Name = "Administrator",
                             Visibility = 3
                         });
+                });
+
+            modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.AccountExternalLogins", b =>
+                {
+                    b.HasOne("CoinGardenWorldMobileApp.Models.Entities.Account", "Account")
+                        .WithMany("ExternalLogins")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.AccountRoles", b =>
@@ -357,6 +410,8 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Account", b =>
                 {
+                    b.Navigation("ExternalLogins");
+
                     b.Navigation("Roles");
                 });
 

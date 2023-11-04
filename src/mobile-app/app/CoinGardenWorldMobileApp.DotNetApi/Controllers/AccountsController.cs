@@ -67,7 +67,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(AccountDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<AccountDto>> GetAccount(Guid id, string includeProperties = "Roles,Roles.Role")
+        public async Task<ActionResult<AccountDto>> GetAccount(Guid id, string includeProperties = "ExternalLogins,Roles,Roles.Role")
         {
             var account = await _unitOfWork.Repository.GetByIdAsync(id, includeProperties);
             ;

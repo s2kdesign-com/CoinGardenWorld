@@ -9,8 +9,6 @@ namespace CoinGardenWorldMobileApp.Models.ViewModels
         public string? DisplayName { get; set; }
         public string? ProfileIntroduction { get; set; }
         public byte[]? ProfilePicure { get; set; }
-        public string? UserObjectIdAzureAd { get; set; }
-        public string? UserIdentityProvider { get; set; }
         public Guid Id { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
     }
