@@ -16,7 +16,8 @@ using Microsoft.Identity.Web.Resource;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Tags("Admin/Roles")]
+    [Route("api/Admin/[controller]")]
     [ApiController]
     [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
     [Authorize]

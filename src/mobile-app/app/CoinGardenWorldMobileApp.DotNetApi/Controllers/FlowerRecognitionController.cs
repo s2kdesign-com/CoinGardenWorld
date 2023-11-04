@@ -10,6 +10,8 @@ using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
+
+    [Tags("Recognition/Flower")]
     [Route("api/[controller]/[action]")]
     [Authorize]
     [ApiController]
