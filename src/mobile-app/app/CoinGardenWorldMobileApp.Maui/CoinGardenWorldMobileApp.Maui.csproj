@@ -97,6 +97,7 @@
 	</ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\shared\CoinGardenWorld.Constants\CoinGardenWorld.Constants.csproj" />
       <ProjectReference Include="..\CoinGardenWorldMobileApp.MobileAppTheme\CoinGardenWorldMobileApp.MobileAppTheme.csproj" />
     </ItemGroup>
 	

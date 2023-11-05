@@ -4,11 +4,11 @@ using CoinGardenWorldMobileApp.Maui.Data;
 using CoinGardenWorldMobileApp.MobileAppTheme;
 using CoinGardenWorldMobileApp.MobileAppTheme.Authorization;
 using CoinGardenWorldMobileApp.MobileAppTheme.Extensions;
-using CoinGardenWorldMobileApp.Models;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
+using CoinGardenWorld.Constants;
 
 namespace CoinGardenWorldMobileApp.Maui
 {
