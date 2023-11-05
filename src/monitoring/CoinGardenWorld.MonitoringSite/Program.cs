@@ -1,7 +1,7 @@
+using CoinGardenWorld.Constants;
 using CoinGardenWorld.HttpClientsExtensions.Configurations;
 using CoinGardenWorld.HttpClientsExtensions.Extensions;
 using CoinGardenWorld.HttpClientsExtensions.Infrastructure;
-using CoinGardenWorldMobileApp.Models;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;

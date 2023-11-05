@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Identity.Abstractions;
 using CoinGardenWorld.SignalRClientsExtensions.Configurations;
 using CoinGardenWorld.SignalRClientsExtensions.SignalR;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Web;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
