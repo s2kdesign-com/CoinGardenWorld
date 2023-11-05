@@ -117,49 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="By using this app, people can better understand their flowers' needs and grow them more effectively." xml:space="preserve">
-    <value>Използвайки това приложение, хората могат да разберат по-добре нуждите на своите цветя и да ги отглеждат по-ефективно.</value>
+  <data name="Annual Birch Lieutenant (1 Year of Membership)" xml:space="preserve">
+    <value>Лейтенант Бреза (1 година членство)</value>
   </data>
-  <data name="Create Account" xml:space="preserve">
-    <value>Създай Акаунт</value>
+  <data name="Biannual Ash Captain (2 Years of Membership)" xml:space="preserve">
+    <value>Капитан Ясен (2 години членство)</value>
   </data>
-  <data name="Dive into a universe where every flower tells a story, and every island is a testament to the harmonious blend of nature and technology." xml:space="preserve">
-    <value>Потопете се във вселена, където всяко цвете разказва история, а всеки остров е доказателство за хармоничното съчетание на природа и технология.</value>
+  <data name="Brigadier Bamboo (400 flowers)" xml:space="preserve">
+    <value>Бригадир Бамбук (400 цветя)</value>
   </data>
-  <data name="Flowers and Gardens that we are proud to showcase" xml:space="preserve">
-    <value>Цветя и градини, които сме горди да изложим и покажем на света. Смятаме, че ще ги харесате!</value>
+  <data name="Captain Carnation (50 flowers)" xml:space="preserve">
+    <value>Капитан Карамфил (50 цветя)</value>
   </data>
-  <data name="Home - GardenAPP" xml:space="preserve">
-    <value>Начало - GardenAPP</value>
+  <data name="Cedar General (6 Years of Membership)" xml:space="preserve">
+    <value>Генерал Кедър (6 години членство)</value>
   </data>
-  <data name="Login with Existing Account" xml:space="preserve">
-    <value>Впишете се със Съществуващ Акаунт</value>
+  <data name="Colonel Cactus (200 flowers)" xml:space="preserve">
+    <value>Полковник Кактус (200 цветя)</value>
   </data>
-  <data name="Open Registration Form" xml:space="preserve">
-    <value>Отворете Регистрационната Форма</value>
+  <data name="Corporal Clusters (5 flowers)" xml:space="preserve">
+    <value>Корпорал Китка (5 цветя)</value>
   </data>
-  <data name="Registration Form" xml:space="preserve">
-    <value>Форма за Регистрация</value>
+  <data name="Field Marshal Flora (2000+ flowers)" xml:space="preserve">
+    <value>Маршал Флора (2000+ цветя)</value>
   </data>
-  <data name="Sign in or Sign up to unlock new gardening possibilities" xml:space="preserve">
-    <value>Влезте или се Регистрирайте, за да отключите нови възможности за градинарство</value>
+  <data name="General Gardenia (1000 flowers)" xml:space="preserve">
+    <value>Генерал Гардения (1000 цветя)</value>
   </data>
-  <data name="The &quot;Donations and Causes&quot; section of the World of Flowers platform introduces a groundbreaking approach to environmental conservation." xml:space="preserve">
-    <value>Разделът „Дарения и каузи“ на платформата „Светът на цветята“ представя новаторски подход към опазването на околната среда.</value>
+  <data name="Lieutenant Lavender (20 flowers)" xml:space="preserve">
+    <value>Лейтенант Лавандула (20 цветя)</value>
   </data>
-  <data name="The Most Beautiful Flowers" xml:space="preserve">
-    <value>Най-Красивите Цветя</value>
+  <data name="Major Magnolia (100 flowers)" xml:space="preserve">
+    <value>Майор Магнолия (100 цветя)</value>
   </data>
-  <data name="This app can help people learn more about the flowers in their environment and appreciate their beauty." xml:space="preserve">
-    <value>Това приложение може да помогне на хората да научат повече за цветята в тяхната среда и да оценят красотата им.</value>
+  <data name="Month Willow Private (One month of Membership)" xml:space="preserve">
+    <value>Редник Върба (Един месец членство)</value>
   </data>
-  <data name="Top Rated for the month" xml:space="preserve">
-    <value>Най-висок Рейтинг за Месеца</value>
+  <data name="Oak Brigadier (5 Years of Membership)" xml:space="preserve">
+    <value>Бригадир Дъб (5 години членство)</value>
   </data>
-  <data name="Unlock the secrets of your garden with the CoinGarden.World mobile app" xml:space="preserve">
-    <value>Отключете тайните на вашата градина с мобилното приложение Coingarden World! Регистрирайте се сега и превърнете смартфона си в дигитален градински експерт. Идентифицирайте незабавно цветята, получавайте персонализирани съвети за грижа и гарантирайте, че вашите цветя винаги са в най-добрата си форма. Присъединете се към нашата общност и нека вашата градина процъфтява както никога досега!</value>
+  <data name="Perennial Teak Colonel (4 Years of Membership)" xml:space="preserve">
+    <value>Полковник Тик (4 години членство)</value>
   </data>
-  <data name="View More" xml:space="preserve">
-    <value>Виж Повече</value>
+  <data name="Private Petal (1 flower)" xml:space="preserve">
+    <value>Редник Листенце (1 цвете)</value>
+  </data>
+  <data name="Quarterly Maple Corporal (Three months of Membership)" xml:space="preserve">
+    <value>Корпорал Клен (Три месеца членство)</value>
+  </data>
+  <data name="Recruit Rosebud (Upon Registration)" xml:space="preserve">
+    <value>Новобранец Розов Пъп (При регистрация)</value>
+  </data>
+  <data name="Seasonal Spruce Sergeant (Six months of Membership)" xml:space="preserve">
+    <value>Сержант Ела (Шест месеца членство)</value>
+  </data>
+  <data name="Sergeant Sprout (10 flowers)" xml:space="preserve">
+    <value>Сержант Кълнове (10 цветя)</value>
+  </data>
+  <data name="Triennial Pine Major (3 Years of Membership)" xml:space="preserve">
+    <value>Майор Бор (3 години членство)</value>
   </data>
 </root>

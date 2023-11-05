@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="After a month, members receive this badge, symbolizing the steady and robust growth akin to a maple tree, laying the foundation for future contributions." xml:space="preserve">
+    <value>След месец, членовете получават този знак, символизиращ тяхното стабилно и здраво растеж, подобно на кленовото дърво, полагащо основите за бъдещи приноси.</value>
+  </data>
+  <data name="After five years, members are honored with this badge, representing their robust and steadfast support of the community, much like the mighty oak tree." xml:space="preserve">
+    <value>След пет години, членовете се почитат с този знак, представляващ тяхната силна и непоколебима подкрепа за общността, подобно на могъщото дъбово дърво.</value>
+  </data>
+  <data name="After two years, members receive this badge, representing their evergreen contributions that keep the community vibrant throughout the seasons." xml:space="preserve">
+    <value>След две години, членовете получават този знак, представляващ техните вечнозелени приноси, които поддържат общността жива през всички сезони.</value>
+  </data>
+  <data name="At six years, this prestigious badge is awarded to members who have shown leadership and a strong foundation of support, embodying the cedar's stature and longevity." xml:space="preserve">
+    <value>На шест години, този престижен знак се присъжда на членовете, които са показали лидерство и силна основа на подкрепа, въплъщаващи статурата и дълголетието на кедровото дърво.</value>
+  </data>
+  <data name="At the six-month mark, members are recognized with this badge, symbolizing their adaptability and bright presence in the community, reminiscent of the birch tree's ability to thrive in various conditions." xml:space="preserve">
+    <value>На шестмесечната граница, членовете се удостояват с този знак, символизиращ тяхната приспособимост и ярко присъствие в общността, напомнящо за способността на брезата да процъфтява в различни условия.</value>
+  </data>
+  <data name="At three years, this badge represents the member's towering achievements and their evergreen contributions, which remain constant throughout the seasons." xml:space="preserve">
+    <value>На три години, този знак представлява високите постижения на члена и неговите вечнозелени приноси, които остават постоянни през всички сезони.</value>
+  </data>
+  <data name="Awarded after uploading five flowers, this badge recognizes the user's growing contributions and their budding presence in the community." xml:space="preserve">
+    <value>Присъжда се след качване на пет цветя, този знак признава растящите приноси на потребителя и неговото процъфтяващо присъствие в общността.</value>
+  </data>
+  <data name="Celebrating one year of membership, this badge is awarded to those who have shown leadership and have become a stable force within the community, much like the ash tree." xml:space="preserve">
+    <value>Празнувайки една година членство, този знак се присъжда на тези, които са показали лидерство и са станали стабилна сила в общността, подобно на ясеновото дърво.</value>
+  </data>
+  <data name="For users who have uploaded ten flowers, this badge symbolizes their commitment to nurturing the community's growth and the sprouting of new ideas and connections." xml:space="preserve">
+    <value>За потребители, които са качили десет цветя, този знак символизира тяхната ангажираност към насърчаване на растежа на общността и поникването на нови идеи и връзки.</value>
+  </data>
+  <data name="For users who reach the 100-flower mark, this badge celebrates their significant and dignified contributions that add a touch of southern elegance to the community." xml:space="preserve">
+    <value>За потребители, които достигнат отметката от 100 цветя, този знак празнува техните значими и достойни приноси, които добавят южен елегантност на общността.</value>
+  </data>
+  <data name="Recognizing a significant milestone of 50 flowers, this badge honors the user's bold and impactful contributions that stand out in the community." xml:space="preserve">
+    <value>Признавайки значим етап от 50 цветя, този знак отдава почит на смелите и впечатляващи приноси на потребителя, които се открояват в общността.</value>
+  </data>
+  <data name="The highest honor, this badge is bestowed upon users who have uploaded over 2000 flowers, symbolizing their unparalleled commitment to cultivating a diverse and thriving community ecosystem." xml:space="preserve">
+    <value>Най-високото отличие, този знак се присъжда на потребители, които са качили над 2000 цветя, символизиращи тяхното неподражаемо ангажиране към създаването на разнообразен и процъфтяващ екосистемен общност.</value>
+  </data>
+  <data name="This badge is awarded to those who have uploaded 200 flowers, symbolizing their resilience and the enduring nature of their contributions, even in challenging environments." xml:space="preserve">
+    <value>Този знак се присъжда на тези, които са качили 200 цветя, символизиращи тяхната устойчивост и дълготрайния характер на техните приноси, дори в предизвикателни среди.</value>
+  </data>
+  <data name="This badge is given after three months to recognize members who have started to stand tall in the community, much like a spruce tree, showing resilience and consistency." xml:space="preserve">
+    <value>Този знак се дава след три месеца, за да се признаят членовете, които са започнали да се издигат в общността, подобно на елховото дърво, показвайки устойчивост и последователност.</value>
+  </data>
+  <data name="This badge is given to all new members as a welcome gesture, symbolizing the potential and growth that awaits them in the community." xml:space="preserve">
+    <value>Този знак се дава на всички нови членове като жест на добре дошли, символизиращ потенциала и растежа, който ги очаква в общността.</value>
+  </data>
+  <data name="This badge is given to those who have contributed 20 flowers, representing their calming influence and the trust they've cultivated within the community." xml:space="preserve">
+    <value>Този знак се дава на тези, които са допринесли с 20 цветя, представляващи тяхното успокояващо влияние и доверието, което са изградили в общността.</value>
+  </data>
+  <data name="This badge, given at four years, signifies the member's high quality and valuable contributions, akin to the highly prized teak wood." xml:space="preserve">
+    <value>Този знак, даден на четири години, означава висококачествените и ценни приноси на члена, подобно на високо цененото тиково дърво.</value>
+  </data>
+  <data name="This initial badge is for those who have shared their first flower, taking the first step in contributing to the community's beauty and diversity." xml:space="preserve">
+    <value>Този първоначален знак е за тези, които са споделили първото си цвете, правейки първата стъпка към допринасяне за красотата и разнообразието на общността.</value>
+  </data>
+  <data name="This prestigious badge is for users who have uploaded 1000 flowers, recognizing their abundant contributions that have enriched the community with fragrance and beauty." xml:space="preserve">
+    <value>Този престижен знак е за потребители, които са качили 1000 цветя, признавайки техния обилен принос, който е обогатил общността с аромат и красота.</value>
+  </data>
+  <data name="With 400 flowers contributed, this badge acknowledges the user's flexibility and strength, reflecting the bamboo's qualities of rapid growth and versatility." xml:space="preserve">
+    <value>С 400 допринесени цветя, този знак признава гъвкавостта и силата на потребителя, отразяващи качествата на бамбука за бърз растеж и универсалност.</value>
+  </data>
+</root>

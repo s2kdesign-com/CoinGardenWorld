@@ -159,4 +159,7 @@
   <data name="Unlock the secrets of your garden with the CoinGarden.World mobile app" xml:space="preserve">
     <value>Unlock the secrets of your garden with the CoinGarden.World mobile app! Register now and transform your smartphone into a digital gardening guru. Instantly identify flowers, receive tailored care tips, and ensure your blooms are always at their best. Join our community and let your garden flourish like never before!</value>
   </data>
+  <data name="View More" xml:space="preserve">
+    <value>View More</value>
+  </data>
 </root>

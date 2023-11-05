@@ -189,5 +189,14 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Localization.Pages {
                 return ResourceManager.GetString("Unlock the secrets of your garden with the CoinGarden.World mobile app", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View More.
+        /// </summary>
+        internal static string View_More {
+            get {
+                return ResourceManager.GetString("View More", resourceCulture);
+            }
+        }
     }
 }

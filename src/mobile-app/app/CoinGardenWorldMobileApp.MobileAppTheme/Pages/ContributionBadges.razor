@@ -1,7 +1,12 @@
 ﻿@using CoinGardenWorld.Constants
+@using Microsoft.Extensions.Localization
+@using System.Globalization
 @* @page "/terms-and-conditions" *@
 
 @attribute [Route(NavigationLinks.CONTRIBUTION_BADGES_URL)]
+
+
+@inject IStringLocalizer<ContributionBadges> _localizer
 <!-- Your Page Content Goes Here-->
 <div class="page-content header-clear-medium">
 
@@ -12,7 +17,7 @@
                 <div>
 
                     <h1 class="font-700 pb-0">
-                        Contribution Badges
+                        @_localizer["Contribution Badges"]
                     </h1>
                 </div>
                 <div class="align-self-center ms-auto">
@@ -21,7 +26,8 @@
             </div>
 
             <p>
-                Contribution Badges are a series of recognitions awarded to members of our community or system based on their level of participation, contribution, and engagement. These badges serve not only as a token of appreciation but also as a motivational tool to encourage your continued involvement.
+                @_localizer["Contribution Badges are a series of recognitions awarded to members of our community or system based on their level of participation, contribution, and engagement. These badges serve not only as a token of appreciation but also as a motivational tool to encourage your continued involvement."]
+                
             </p>
         </div>
     </div>
@@ -44,7 +50,7 @@
                 @((MarkupString)Localization.Components.Badges.BadgesBasedOnTimeRegistered.This_badge_category_is_designed_to_acknowledge_the_loyalty)
             </p>
 
-            <Accordion Id="BadgesBasedOnTimeRegistered" Icon="bi-clock-history" Color="color-blue-dark"  AccordionElements="@GardenBadges.BadgesBasedOnTimeRegistered.BadgeNames" />
+            <Accordion Id="BadgesBasedOnTimeRegistered" Icon="bi-clock-history" Color="color-blue-dark" AccordionElements="@badgesBasedOnTimeRegistered" />
 
         </div>
     </div>
@@ -66,7 +72,7 @@
                 @((MarkupString)Localization.Components.Badges.BadgesBasedOnUploadsCount.The__Badges_Given_When_User_Uploads_Flowers__category_rewards_users_for_their_active_contributions_to_the_community__with_each_badge_marking_a_new_level_of_engagement_based_on_the_number_of_flowers_they_share_)
             </p>
 
-            <Accordion Id="BadgesBasedOnUploadsCount" Icon="bi-cloud-upload" Color="color-yellow-dark" AccordionElements="@GardenBadges.BadgesBasedOnUploadsCount.BadgeNames" />
+            <Accordion Id="BadgesBasedOnUploadsCount" Icon="bi-cloud-upload" Color="color-yellow-dark" AccordionElements="@badgesBasedOnUploadsCount" />
 
         </div>
     </div>
@@ -76,5 +82,34 @@
 <ThemeLoader></ThemeLoader>
 
 @code {
+    Dictionary<string, string> badgesBasedOnTimeRegistered = GardenBadges.BadgesBasedOnTimeRegistered.BadgeNames;
 
+    Dictionary<string, string> badgesBasedOnUploadsCount = GardenBadges.BadgesBasedOnUploadsCount.BadgeNames;
+
+    protected override Task OnInitializedAsync()
+    {
+        if(CultureInfo.CurrentCulture.TwoLetterISOLanguageName != "en")
+        {
+            var translatedBadges = new Dictionary<string, string>();
+
+            foreach (var badgeBasedOnTimeRegistered in badgesBasedOnTimeRegistered)
+            {
+                translatedBadges.Add(
+                    _localizer.GetString(badgeBasedOnTimeRegistered.Key),
+                    _localizer.GetString(badgeBasedOnTimeRegistered.Value));
+            }
+            badgesBasedOnTimeRegistered = translatedBadges;
+
+            // badges Based On Uploads Count
+            var translatedBadges2 = new Dictionary<string, string>();
+            foreach (var badgeBasedOnTimeRegistered in badgesBasedOnUploadsCount)
+            {
+                translatedBadges2.Add(
+                    _localizer.GetString(badgeBasedOnTimeRegistered.Key),
+                    _localizer.GetString(badgeBasedOnTimeRegistered.Value));
+            }
+            badgesBasedOnUploadsCount = translatedBadges2;
+        }
+        return base.OnInitializedAsync();
+    }
 }

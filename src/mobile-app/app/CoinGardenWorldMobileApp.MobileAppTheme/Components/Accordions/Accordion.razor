@@ -1,4 +1,5 @@
 ﻿
+
 <div class="accordion accordion-m border-0" id="accordion-group-@Id">
 
     @for (int i = 0; i < 5; i++)
@@ -47,9 +48,13 @@
 
 </div>
 
-<a data-bs-toggle="collapse" href="#@Id-list-more" aria-controls="@Id-list-more" class="d-block pt-3 collapsed" aria-expanded="false">View More</a>
+<a data-bs-toggle="collapse" href="#@Id-list-more" aria-controls="@Id-list-more" class="d-block pt-3 collapsed" aria-expanded="false">
+    @Localization.Pages.Index.View_More
+    </a>
 
 @code {
+
+
    [Parameter]
     public string Id { get; set; }
     [Parameter]
