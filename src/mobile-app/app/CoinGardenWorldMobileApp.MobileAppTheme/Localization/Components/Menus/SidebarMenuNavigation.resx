@@ -123,6 +123,9 @@
   <data name="Charities" xml:space="preserve">
     <value>Charities</value>
   </data>
+  <data name="Contribution Badges" xml:space="preserve">
+    <value>Contribution Badges</value>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
   </data>

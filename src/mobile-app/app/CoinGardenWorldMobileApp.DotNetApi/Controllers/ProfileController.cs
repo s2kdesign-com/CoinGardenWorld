@@ -52,7 +52,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
                         ObjectIdAzureAd = userObjectIdAzureAd,
                         IdentityProvider = userIdentityProvider,
                         DisplayName = preferredUsername,
-
+                        // TODO: Get the picture from somewhere in the user principle claims
 
                     }
                 };
@@ -61,16 +61,16 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
                 {
                     var accountFromDb = await _unitOfWorkAccount.Repository.List(a => a.Email == request.Account.Email).FirstOrDefaultAsync();
 
+                    // User has existing account
                     if (accountFromDb == null)
                     {
                         accountFromDb = _unitOfWorkAccount.Repository.Insert(request.Account.AdaptToAccount());
                         await _unitOfWorkAccount.SaveAsync();
-
-
                     }
 
                     var externalLogin = await _unitOfWorkExternalLogins.Repository.List(e => e.AccountId == accountFromDb.Id && e.IdentityProvider == request.ExternalLogins.IdentityProvider).FirstOrDefaultAsync();
 
+                    // User has existing external login
                     if (externalLogin != null)
                     {
                         return Ok(new ProfileOnLogin
@@ -90,15 +90,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
                         await _unitOfWorkExternalLogins.SaveAsync();
 
+                        // User is new and this is first registration
                         return Ok(new ProfileOnLogin
                         {
                             AccountId = accountFromDb.Id,
                             IsFirstRegistration = true
                         });
                     }
-
-
-
                 }
                 else
                 {

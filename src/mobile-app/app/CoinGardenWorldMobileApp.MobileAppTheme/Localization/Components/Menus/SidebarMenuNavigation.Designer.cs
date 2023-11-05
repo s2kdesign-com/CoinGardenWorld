@@ -80,6 +80,15 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Localization.Components.Menus 
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contribution Badges.
+        /// </summary>
+        internal static string Contribution_Badges {
+            get {
+                return ResourceManager.GetString("Contribution Badges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dashboard.
         /// </summary>
         internal static string Dashboard {

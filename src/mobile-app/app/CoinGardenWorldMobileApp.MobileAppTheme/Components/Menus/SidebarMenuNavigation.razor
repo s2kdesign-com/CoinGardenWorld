@@ -23,14 +23,14 @@
                 </span>
             <i class="bi bi-chevron-right"></i>
         </NavLink>
-        
+        @* 
     <NavLink class="nav-link" href="@NavigationLinks.PROFILE_URL" >
         <i class="gradient-yellow shadow-bg shadow-bg-xs bi bi-image-fill"></i>
         <span>
             @((MarkupString)Localization.Components.Menus.SidebarMenuNavigation.Profile)
         </span>
         <i class="bi bi-chevron-right"></i>
-    </NavLink>
+    </NavLink> *@
     <NavLink class="nav-link" href="@NavigationLinks.IDENTIFY_FLOWER_URL">
         <i class="gradient-teal shadow-bg shadow-bg-xs bi bi-flower2"></i>
         <span>
@@ -39,20 +39,27 @@
         <i class="bi bi-chevron-right"></i>
     </NavLink>
         <NavLink class="nav-link" href="@NavigationLinks.PLACES_URL" >
-            <i class="gradient-yellow shadow-bg shadow-bg-xs bi bi-image-fill"></i>
+            <i class="gradient-magenta shadow-bg shadow-bg-xs bi bi-geo-fill"></i>
             <span>
                 @((MarkupString)Localization.Components.Menus.SidebarMenuNavigation.Places)
             </span>
             <i class="bi bi-chevron-right"></i>
         </NavLink>
         <NavLink class="nav-link" href="@NavigationLinks.CHARITIES_URL">
-            <i class="gradient-teal shadow-bg shadow-bg-xs bi bi-flower2"></i>
+            <i class="gradient-orange shadow-bg shadow-bg-xs bi bi-tree-fill"></i>
             <span>
                 @((MarkupString)Localization.Components.Menus.SidebarMenuNavigation.Charities)
             </span>
             <i class="bi bi-chevron-right"></i>
         </NavLink>
 
+        <NavLink class="nav-link" href="@NavigationLinks.CONTRIBUTION_BADGES_URL">
+            <i class="gradient-yellow shadow-bg shadow-bg-xs bi bi-trophy-fill"></i>
+        <span>
+            @((MarkupString)Localization.Components.Menus.SidebarMenuNavigation.Contribution_Badges)
+        </span>
+        <i class="bi bi-chevron-right"></i>
+    </NavLink>
 
 
     </div>

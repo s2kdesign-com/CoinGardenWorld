@@ -117,31 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About the App" xml:space="preserve">
-    <value>Относно Приложението</value>
+  <data name="Badges Given When User Uploads Flowers" xml:space="preserve">
+    <value>Given When User Uploads</value>
   </data>
-  <data name="Charities" xml:space="preserve">
-    <value>Дарения и Каузи</value>
-  </data>
-  <data name="Contribution Badges" xml:space="preserve">
-    <value>Значки за Принос</value>
-  </data>
-  <data name="Dashboard" xml:space="preserve">
-    <value>Табло</value>
-  </data>
-  <data name="Homepage" xml:space="preserve">
-    <value>Начало</value>
-  </data>
-  <data name="Identify Flower" xml:space="preserve">
-    <value>Разпознай Цвете</value>
-  </data>
-  <data name="NAVIGATION" xml:space="preserve">
-    <value>НАВИГАЦИЯ</value>
-  </data>
-  <data name="Places" xml:space="preserve">
-    <value>Застрашени Места</value>
-  </data>
-  <data name="Profile" xml:space="preserve">
-    <value>Профил</value>
+  <data name="The &quot;Badges Given When User Uploads Flowers&quot; category rewards users for their active contributions to the community, with each badge marking a new level of engagement based on the number of flowers they share." xml:space="preserve">
+    <value>The "Badges Given When User Uploads Flowers" category rewards users for their active contributions to the community, with each badge marking a new level of engagement based on the number of flowers they share.</value>
   </data>
 </root>

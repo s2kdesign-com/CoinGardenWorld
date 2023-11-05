@@ -1,0 +1,62 @@
+﻿
+<div class="accordion accordion-m border-0" id="accordion-group-@Id">
+
+    @for (int i = 0; i < 5; i++)
+    {
+        @if (i == 0)
+        {
+            <div class="accordion-item border border-fade-highlight border-bottom-0 rounded-top rounded-m">
+                <ItemAccordion Id="@Id" Counter="@i" Name="@AccordionElements.ElementAt(i).Key" Description="@AccordionElements.ElementAt(i).Value" Icon="@Icon" Color="@Color" />
+
+            </div>
+        }
+        else
+        {
+            <div class="accordion-item border border-fade-highlight border-bottom-0">
+
+                <ItemAccordion Id="@Id" Counter="@i" Name="@AccordionElements.ElementAt(i).Key" Description="@AccordionElements.ElementAt(i).Value" Icon="@Icon" Color="@Color" />
+
+            </div>
+        }
+    }
+    <div class="collapse" id="@Id-list-more" style="">
+
+        @for (int i = 5; i < AccordionElements.Count; i++)
+        {
+
+            @if (i != 9)
+            {
+                <div class="accordion-item border border-fade-highlight border-bottom-0">
+
+                    <ItemAccordion Id="@Id" Counter="@i" Name="@AccordionElements.ElementAt(i).Key" Description="@AccordionElements.ElementAt(i).Value" Icon="@Icon" Color="@Color" />
+
+                </div>
+            }
+            else
+            {
+                <div class="accordion-item border border-fade-highlight rounded-bottom rounded-m">
+
+                    <ItemAccordion Id="@Id" Counter="@i" Name="@AccordionElements.ElementAt(i).Key" Description="@AccordionElements.ElementAt(i).Value" Icon="@Icon" Color="@Color" />
+
+                </div>
+            }
+
+        }
+
+    </div>
+
+</div>
+
+<a data-bs-toggle="collapse" href="#@Id-list-more" aria-controls="@Id-list-more" class="d-block pt-3 collapsed" aria-expanded="false">View More</a>
+
+@code {
+   [Parameter]
+    public string Id { get; set; }
+    [Parameter]
+    public Dictionary<string, string> AccordionElements { get; set; }
+
+    [Parameter]
+    public string Icon { get; set; }
+    [Parameter]
+    public string Color { get; set; }
+}

@@ -31,6 +31,16 @@
 	  <ProjectReference Include="..\..\..\shared\front-end\CoinGardenWorld.SignalRClientsExtensions\CoinGardenWorld.SignalRClientsExtensions.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Compile Update="Localization\Components\Badges\BadgesBasedOnTimeRegistered.Designer.cs">
+	    <DependentUpon>BadgesBasedOnTimeRegistered.resx</DependentUpon>
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	  </Compile>
+	  <Compile Update="Localization\Components\Badges\BadgesBasedOnUploadsCount.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>BadgesBasedOnUploadsCount.resx</DependentUpon>
+	  </Compile>
 	  <Compile Update="Localization\Components\Cards\TopAccountsForTheMonth.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
@@ -83,6 +93,14 @@
 	  </Compile>
 	</ItemGroup>
 	<ItemGroup>
+	  <EmbeddedResource Update="Localization\Components\Badges\BadgesBasedOnTimeRegistered.resx">
+	    <LastGenOutput>BadgesBasedOnTimeRegistered.Designer.cs</LastGenOutput>
+	    <Generator>ResXFileCodeGenerator</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Localization\Components\Badges\BadgesBasedOnUploadsCount.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>BadgesBasedOnUploadsCount.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	  <EmbeddedResource Update="Localization\Components\Cards\TopAccountsForTheMonth.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>TopAccountsForTheMonth.Designer.cs</LastGenOutput>

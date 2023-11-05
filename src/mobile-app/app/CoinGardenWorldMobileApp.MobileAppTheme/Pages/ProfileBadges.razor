@@ -1,0 +1,94 @@
+﻿@using CoinGardenWorld.Constants
+@attribute [Route(NavigationLinks.PROFILE_BADGES_URL)]
+
+
+@layout InternalPageLayout
+
+<!-- Your Page Content Goes Here-->
+<div class="page-content header-clear-medium">
+
+
+
+
+    <div class="card card-style">
+        <div class="content">
+            <div class="d-flex pb-1">
+                <div>
+
+                    <h1 class="font-700 pb-0">
+                        Contribution Badges
+                    </h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <i class="bi bi-trophy-fill font-24 color-yellow-dark"></i>
+                </div>
+            </div>
+
+            <p>
+                Contribution Badges are a series of recognitions awarded to members of our community or system based on their level of participation, contribution, and engagement. These badges serve not only as a token of appreciation but also as a motivational tool to encourage your continued involvement.
+            </p>
+        </div>
+    </div>
+
+
+    <div class="card card-style">
+        <div class="content">
+            <div class="d-flex pb-1">
+                <div>
+                    <h3>
+                        @((MarkupString)Localization.Components.Badges.BadgesBasedOnTimeRegistered.Badges_Given_on_Time_Registered)
+                    </h3>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <i class="bi bi-clock-history font-24 color-blue-dark"></i>
+                </div>
+            </div>
+
+            <p>
+                TODO: Put some description for each badge
+            </p>
+            <div class="list-group list-custom list-group-m rounded-xs">
+                @for (int i = 0; i < 5; i++)
+                {
+
+                    <a href="#" class="list-group-item">
+                        <div style="width: 60%">
+                            @GardenBadges.BadgesBasedOnTimeRegistered.BadgeNames.ElementAt(i).Key
+                        </div>
+                        <span class="badge rounded-xl bg-highlight">
+                            Acquired on:
+                            <br />
+                            @DateTime.Now
+                        </span>
+                    </a>
+
+                }
+                @for (int i = 4; i < GardenBadges.BadgesBasedOnTimeRegistered.BadgeNames.Count; i++)
+                {
+                    <div class="collapse" id="BadgesBasedOnTimeRegistered-list-more" style="">
+
+                        <a href="#" class="list-group-item">
+                            <div style="width: 60%">
+                                @GardenBadges.BadgesBasedOnTimeRegistered.BadgeNames.ElementAt(i).Key
+                            </div>
+                            <span class="badge rounded-xl bg-highlight">
+                                Acquired on:
+                                <br />
+                                @DateTime.Now
+                            </span>
+                        </a>
+                    </div>
+
+                }
+                <a data-bs-toggle="collapse" href="#BadgesBasedOnTimeRegistered-list-more" aria-controls="BadgesBasedOnTimeRegistered-list-more" class="d-block pt-3 collapsed" aria-expanded="false">View More</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Page Content-->
+
+<ThemeLoader></ThemeLoader>
+@code {
+
+}

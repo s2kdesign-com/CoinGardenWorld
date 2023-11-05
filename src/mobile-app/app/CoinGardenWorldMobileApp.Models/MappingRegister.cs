@@ -47,7 +47,9 @@ namespace CoinGardenWorldMobileApp.Models
                 .ForType<Account>()
                 .ForType<AccountRoles>()
                 .ForType<AccountExternalLogins>()
+                .ForType<AccountBadges>()
                 .ForType<Role>()
+                .ForType<Badge>()
                 .ForType<Post>()
                 .ForType<Garden>()
                 .ForType<Flower>();
@@ -80,8 +82,8 @@ namespace CoinGardenWorldMobileApp.Models
 
                 .ForType<AccountRoles>(cfg => cfg.Ignore(it => it.Account))
                 .ForType<AccountExternalLogins>(cfg => cfg.Ignore(it => it.Account))
-
-               // .ForType<Post>(cfg => cfg.Ignore(it => it.Account))
+                .ForType<AccountBadges>(cfg => cfg.Ignore(it => it.Account))
+                 // .ForType<Post>(cfg => cfg.Ignore(it => it.Account))
 
                  .ForType<Garden>(cfg => cfg.Ignore(it => it.Flowers))
                 ;

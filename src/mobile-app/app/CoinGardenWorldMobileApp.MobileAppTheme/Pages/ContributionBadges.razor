@@ -1,0 +1,80 @@
+﻿@using CoinGardenWorld.Constants
+@* @page "/terms-and-conditions" *@
+
+@attribute [Route(NavigationLinks.CONTRIBUTION_BADGES_URL)]
+<!-- Your Page Content Goes Here-->
+<div class="page-content header-clear-medium">
+
+
+    <div class="card card-style">
+        <div class="content">
+            <div class="d-flex pb-1">
+                <div>
+
+                    <h1 class="font-700 pb-0">
+                        Contribution Badges
+                    </h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <i class="bi bi-trophy-fill font-24 color-yellow-dark"></i>
+                </div>
+            </div>
+
+            <p>
+                Contribution Badges are a series of recognitions awarded to members of our community or system based on their level of participation, contribution, and engagement. These badges serve not only as a token of appreciation but also as a motivational tool to encourage your continued involvement.
+            </p>
+        </div>
+    </div>
+
+
+    <div class="card card-style">
+        <div class="content">
+            <div class="d-flex pb-1">
+                <div>
+                    <h3>
+                        @((MarkupString)Localization.Components.Badges.BadgesBasedOnTimeRegistered.Badges_Given_on_Time_Registered)
+                    </h3>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <i class="bi bi-clock-history font-24 color-blue-dark"></i>
+                </div>
+            </div>
+
+            <p>
+                @((MarkupString)Localization.Components.Badges.BadgesBasedOnTimeRegistered.This_badge_category_is_designed_to_acknowledge_the_loyalty)
+            </p>
+
+            <Accordion Id="BadgesBasedOnTimeRegistered" Icon="bi-clock-history" Color="color-blue-dark"  AccordionElements="@GardenBadges.BadgesBasedOnTimeRegistered.BadgeNames" />
+
+        </div>
+    </div>
+
+    <div class="card card-style">
+        <div class="content">
+            <div class="d-flex pb-1">
+                <div>
+                    <h3>
+                        @((MarkupString)Localization.Components.Badges.BadgesBasedOnUploadsCount.Badges_Given_When_User_Uploads_Flowers)
+                    </h3>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <i class="bi bi-cloud-upload font-24 color-yellow-dark"></i>
+                </div>
+            </div>
+
+            <p>
+                @((MarkupString)Localization.Components.Badges.BadgesBasedOnUploadsCount.The__Badges_Given_When_User_Uploads_Flowers__category_rewards_users_for_their_active_contributions_to_the_community__with_each_badge_marking_a_new_level_of_engagement_based_on_the_number_of_flowers_they_share_)
+            </p>
+
+            <Accordion Id="BadgesBasedOnUploadsCount" Icon="bi-cloud-upload" Color="color-yellow-dark" AccordionElements="@GardenBadges.BadgesBasedOnUploadsCount.BadgeNames" />
+
+        </div>
+    </div>
+</div>
+<!-- End of Page Content-->
+
+<ThemeLoader></ThemeLoader>
+
+@code {
+
+}
