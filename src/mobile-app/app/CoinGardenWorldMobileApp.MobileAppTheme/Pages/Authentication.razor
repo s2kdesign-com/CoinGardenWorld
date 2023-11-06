@@ -51,7 +51,7 @@
             {
                 localStorage.SetString(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME, profileResponse.AccountId.ToString());
             }
-    // TODO: Move Applicaton Insights to layout because the current implementation is only for this page
+            // TODO: Move Applicaton Insights to layout because the current implementation is only for this page
             await AppInsights.SetAuthenticatedUserContext(emails?.First()!);
         }
         catch (Exception e)
@@ -63,25 +63,33 @@
 
     public async Task OnLogOutSucceeded()
     {
-        if (localStorage.Exists(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME))
+        try
         {
-            localStorage.Delete(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME);
-        }
+            
+            if (localStorage.Exists(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME))
+            {
+                localStorage.Delete(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME);
+            }
 
-        if (localStorage.Exists(Constants.USER_USERNAME_LOCAL_STORAGE_NAME))
-        {
-            localStorage.Delete(Constants.USER_USERNAME_LOCAL_STORAGE_NAME);
-        }
+            if (localStorage.Exists(Constants.USER_USERNAME_LOCAL_STORAGE_NAME))
+            {
+                localStorage.Delete(Constants.USER_USERNAME_LOCAL_STORAGE_NAME);
+            }
 
-        if (localStorage.Exists(Constants.USER_EMAIL_LOCAL_STORAGE_NAME))
-        {
-            localStorage.Delete(Constants.USER_EMAIL_LOCAL_STORAGE_NAME);
-        }
+            if (localStorage.Exists(Constants.USER_EMAIL_LOCAL_STORAGE_NAME))
+            {
+                localStorage.Delete(Constants.USER_EMAIL_LOCAL_STORAGE_NAME);
+            }
 
-        if (localStorage.Exists(Constants.USER_IDP_LOCAL_STORAGE_NAME))
-        {
-            localStorage.Delete(Constants.USER_IDP_LOCAL_STORAGE_NAME);
+            if (localStorage.Exists(Constants.USER_IDP_LOCAL_STORAGE_NAME))
+            {
+                localStorage.Delete(Constants.USER_IDP_LOCAL_STORAGE_NAME);
+            }
+            await AppInsights.ClearAuthenticatedUserContext();
         }
-        await AppInsights.ClearAuthenticatedUserContext();
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
 }
