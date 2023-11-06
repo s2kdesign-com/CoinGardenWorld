@@ -33,24 +33,32 @@
 
     public async Task OnLogInSucceeded()
     {
-        var user = (await AuthenticationState).User;
-        var preferredUsername = user.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
-        var emails = System.Text.Json.JsonSerializer.Deserialize<string[]>(user.Claims.FirstOrDefault(c => c.Type == "emails")?.Value!);
-        var userIdentityProvider = user.Claims.FirstOrDefault(c => c.Type == "idp")?.Value;
-
-
-        localStorage.SetString(Constants.USER_USERNAME_LOCAL_STORAGE_NAME, preferredUsername!);
-        localStorage.SetString(Constants.USER_EMAIL_LOCAL_STORAGE_NAME, emails?.First()!);
-        localStorage.SetString(Constants.USER_IDP_LOCAL_STORAGE_NAME, userIdentityProvider!);
-
-        // TODO: Move Applicaton Insights to layout because the current implementation is only for this page
-        await AppInsights.SetAuthenticatedUserContext(emails?.First()!);
-
-        var profileResponse = await MobileApiAuthorizedHttpClient.MobileApi.OnLoginAsync();
-        if(profileResponse != null)
+        try
         {
-            localStorage.SetString(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME, profileResponse.AccountId.ToString());
+            var user = (await AuthenticationState).User;
+            var preferredUsername = user.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+            var emails = System.Text.Json.JsonSerializer.Deserialize<string[]>(user.Claims.FirstOrDefault(c => c.Type == "emails")?.Value!);
+            var userIdentityProvider = user.Claims.FirstOrDefault(c => c.Type == "idp")?.Value;
+
+
+            localStorage.SetString(Constants.USER_USERNAME_LOCAL_STORAGE_NAME, preferredUsername!);
+            localStorage.SetString(Constants.USER_EMAIL_LOCAL_STORAGE_NAME, emails?.First()!);
+            localStorage.SetString(Constants.USER_IDP_LOCAL_STORAGE_NAME, userIdentityProvider!);
+
+
+            var profileResponse = await MobileApiAuthorizedHttpClient.MobileApi.OnLoginAsync();
+            if(profileResponse != null)
+            {
+                localStorage.SetString(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME, profileResponse.AccountId.ToString());
+            }
+    // TODO: Move Applicaton Insights to layout because the current implementation is only for this page
+            await AppInsights.SetAuthenticatedUserContext(emails?.First()!);
         }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+       
     }
 
     public async Task OnLogOutSucceeded()
