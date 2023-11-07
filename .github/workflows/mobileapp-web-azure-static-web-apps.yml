@@ -56,6 +56,30 @@ jobs:
           replace: "Build Version: ${{ env.VERSION_CI }}"
           include: "**healthcheck.json"
 
+    # Replace APPLICATION Insights ConnectionsString      
+      - name: Find and Replace frond-end Version
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "\"APPLICATIONINSIGHTS_CONNECTION_STRING\": \"\""
+          replace: "Build Version: ${{ env.APPLICATIONINSIGHTS_CONNECTION_STRING }}"
+          include: "**healthcheck.json"
+          
+    # Replace Azure Storage ConnectionsString    
+      - name: Find and Replace frond-end Version
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "\"CGW-AzureStorageMobileApp\": \"\""
+          replace: "Build Version: ${{ env.CGW_AZURESTORAGEMOBILEAPP }}"
+          include: "**healthcheck.json"
+          
+    # Replace Bot Secret Web Client
+      - name: Find and Replace frond-end Version
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "\"WebChatSecret\": \"\""
+          replace: "Build Version: ${{ env.BOTFRAMEWORK_WEBCHATSECRET }}"
+          include: "**healthcheck.json"
+
       - name: .NET project version updater
         # You may pin to the exact commit or the version.
         # uses: vers-one/dotnet-project-version-updater@4838bb90da42ab72f272a9dde7888c1b7fb361f1
@@ -80,6 +104,8 @@ jobs:
           #api_location: "src/mobile-app/app/CoinGardenWorldMobileApp_Api" # Api source code path - optional
           output_location: "wwwroot" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
+
+
   
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
