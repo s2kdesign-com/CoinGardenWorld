@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using CoinGardenWorldMobileApp.Models.ViewModels;
+
 namespace CoinGardenWorldMobileApp.Models.ViewModels
 {
     public partial record AccountMerge
@@ -6,6 +9,8 @@ namespace CoinGardenWorldMobileApp.Models.ViewModels
         public string? Username { get; set; }
         public string? DisplayName { get; set; }
         public string? ProfileIntroduction { get; set; }
-        public byte[]? ProfilePicure { get; set; }
+        public BlobImageMerge? ProfilePicture { get; set; }
+        public List<AccountBadgeMerge?>? Badges { get; set; }
+        public List<AccountRoleMerge?>? Roles { get; set; }
     }
 }

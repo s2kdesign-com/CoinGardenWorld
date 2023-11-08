@@ -10,7 +10,7 @@ namespace CoinGardenWorldMobileApp.Models.Entities
     {
 
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         [IgnoreOnModify]
         public DateTimeOffset CreatedOn { get; set; } = DateTime.UtcNow;

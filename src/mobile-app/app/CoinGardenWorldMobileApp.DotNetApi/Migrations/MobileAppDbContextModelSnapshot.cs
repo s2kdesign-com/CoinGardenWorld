@@ -26,8 +26,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
@@ -48,9 +47,6 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<byte[]>("ProfilePicure")
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<DateTimeOffset?>("UpdatedOn")
                         .HasColumnType("datetimeoffset");
 
@@ -61,54 +57,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Accounts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("8303bd79-e268-4768-8aba-2e8ca97a90a2"),
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5593), new TimeSpan(0, 0, 0, 0, 0)),
-                            DisplayName = "CoinGarden.World",
-                            Email = "coingardenworld@gmail.com"
-                        });
-                });
-
-            modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.AccountBadges", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
-
-                    b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("BadgeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTimeOffset?>("UpdatedOn")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
-
-                    b.HasIndex("BadgeId");
-
-                    b.ToTable("AccountBadges");
                 });
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.AccountExternalLogins", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("AccountId")
                         .HasColumnType("uniqueidentifier");
@@ -144,68 +99,21 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.HasIndex("AccountId");
 
                     b.ToTable("AccountExternalLogins");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("6f81b635-6808-4251-948a-32e966657190"),
-                            AccountId = new Guid("8303bd79-e268-4768-8aba-2e8ca97a90a2"),
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5832), new TimeSpan(0, 0, 0, 0, 0)),
-                            DisplayName = "CoinGarden.World",
-                            IdentityProvider = "google.com",
-                            ObjectIdAzureAd = "b5f4562f-dd5a-475f-a638-8952423adc50"
-                        });
-                });
-
-            modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.AccountRoles", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
-
-                    b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset?>("UpdatedOn")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AccountRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("0e4c8a00-0d2f-4f1d-ad67-dafd93efb2af"),
-                            AccountId = new Guid("8303bd79-e268-4768-8aba-2e8ca97a90a2"),
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5868), new TimeSpan(0, 0, 0, 0, 0)),
-                            RoleId = new Guid("ad021a33-6f24-4d9d-9870-490cef797b48")
-                        });
                 });
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Badge", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("BadgeType")
                         .HasColumnType("int");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
@@ -216,6 +124,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -228,168 +141,6 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Badges");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("5153b088-863d-4905-8b60-b79dd6eacf3c"),
-                            BadgeType = 1,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5963), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "This initial badge is for those who have shared their first flower, taking the first step in contributing to the community's beauty and diversity.",
-                            Name = "Private Petal (1 flower)"
-                        },
-                        new
-                        {
-                            Id = new Guid("4b20d730-806e-421c-bcaa-d885761b76dd"),
-                            BadgeType = 1,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5968), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "Awarded after uploading five flowers, this badge recognizes the user's growing contributions and their budding presence in the community.",
-                            Name = "Corporal Clusters (5 flowers)"
-                        },
-                        new
-                        {
-                            Id = new Guid("96695787-c8b9-432a-8633-02be2e8f87c4"),
-                            BadgeType = 1,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5969), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "For users who have uploaded ten flowers, this badge symbolizes their commitment to nurturing the community's growth and the sprouting of new ideas and connections.",
-                            Name = "Sergeant Sprout (10 flowers)"
-                        },
-                        new
-                        {
-                            Id = new Guid("37801f4c-7903-46f5-aad2-99aff95f4590"),
-                            BadgeType = 1,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5975), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "This badge is given to those who have contributed 20 flowers, representing their calming influence and the trust they've cultivated within the community.",
-                            Name = "Lieutenant Lavender (20 flowers)"
-                        },
-                        new
-                        {
-                            Id = new Guid("7040aba9-b94b-4393-bf89-7a24c8568b9d"),
-                            BadgeType = 1,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5977), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "Recognizing a significant milestone of 50 flowers, this badge honors the user's bold and impactful contributions that stand out in the community.",
-                            Name = "Captain Carnation (50 flowers)"
-                        },
-                        new
-                        {
-                            Id = new Guid("686a2b9b-2e42-4ddd-b29a-7f0aeb140131"),
-                            BadgeType = 1,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5981), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "For users who reach the 100-flower mark, this badge celebrates their significant and dignified contributions that add a touch of southern elegance to the community.",
-                            Name = "Major Magnolia (100 flowers)"
-                        },
-                        new
-                        {
-                            Id = new Guid("d38a3bda-04f5-4eaa-9dad-a5832707a695"),
-                            BadgeType = 1,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5982), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "This badge is awarded to those who have uploaded 200 flowers, symbolizing their resilience and the enduring nature of their contributions, even in challenging environments.",
-                            Name = "Colonel Cactus (200 flowers)"
-                        },
-                        new
-                        {
-                            Id = new Guid("2b42f3ef-3ac7-425c-8980-b4a866c3a844"),
-                            BadgeType = 1,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5984), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "With 400 flowers contributed, this badge acknowledges the user's flexibility and strength, reflecting the bamboo's qualities of rapid growth and versatility.",
-                            Name = "Brigadier Bamboo (400 flowers)"
-                        },
-                        new
-                        {
-                            Id = new Guid("105598a1-a8a9-4cc7-8b22-7cb18c557b4e"),
-                            BadgeType = 1,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5985), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "This prestigious badge is for users who have uploaded 1000 flowers, recognizing their abundant contributions that have enriched the community with fragrance and beauty.",
-                            Name = "General Gardenia (1000 flowers)"
-                        },
-                        new
-                        {
-                            Id = new Guid("790fe26a-1012-4852-b734-f5f2aff1f7b8"),
-                            BadgeType = 1,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5988), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "The highest honor, this badge is bestowed upon users who have uploaded over 2000 flowers, symbolizing their unparalleled commitment to cultivating a diverse and thriving community ecosystem.",
-                            Name = "Field Marshal Flora (2000+ flowers)"
-                        },
-                        new
-                        {
-                            Id = new Guid("03e2cf5e-946a-45df-b3b0-cb1483c43e6c"),
-                            BadgeType = 0,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5992), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "This badge is given to all new members as a welcome gesture, symbolizing the potential and growth that awaits them in the community.",
-                            Name = "Recruit Rosebud (Upon Registration)"
-                        },
-                        new
-                        {
-                            Id = new Guid("b069ac51-8f73-498f-b770-ef087c55ab55"),
-                            BadgeType = 0,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5996), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "After a month, members receive this badge, symbolizing the steady and robust growth akin to a maple tree, laying the foundation for future contributions.",
-                            Name = "Month Willow Private (One month of Membership)"
-                        },
-                        new
-                        {
-                            Id = new Guid("e0c7b53a-43b3-4f16-bafd-671bc38dd964"),
-                            BadgeType = 0,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5998), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "This badge is given after three months to recognize members who have started to stand tall in the community, much like a spruce tree, showing resilience and consistency.",
-                            Name = "Quarterly Maple Corporal (Three months of Membership)"
-                        },
-                        new
-                        {
-                            Id = new Guid("8b1949c9-0504-482b-b40a-27c2367990e1"),
-                            BadgeType = 0,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5999), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "At the six-month mark, members are recognized with this badge, symbolizing their adaptability and bright presence in the community, reminiscent of the birch tree's ability to thrive in various conditions.",
-                            Name = "Seasonal Spruce Sergeant (Six months of Membership)"
-                        },
-                        new
-                        {
-                            Id = new Guid("30c92d7c-d495-4009-a740-1b13e065c0a1"),
-                            BadgeType = 0,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(6001), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "Celebrating one year of membership, this badge is awarded to those who have shown leadership and have become a stable force within the community, much like the ash tree.",
-                            Name = "Annual Birch Lieutenant (1 Year of Membership)"
-                        },
-                        new
-                        {
-                            Id = new Guid("57b2df87-efb0-411b-a9d7-7f9fd2d52099"),
-                            BadgeType = 0,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(6002), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "After two years, members receive this badge, representing their evergreen contributions that keep the community vibrant throughout the seasons.",
-                            Name = "Biannual Ash Captain (2 Years of Membership)"
-                        },
-                        new
-                        {
-                            Id = new Guid("2560e599-f003-434b-8fc6-ed324f0e973b"),
-                            BadgeType = 0,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(6004), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "At three years, this badge represents the member's towering achievements and their evergreen contributions, which remain constant throughout the seasons.",
-                            Name = "Triennial Pine Major (3 Years of Membership)"
-                        },
-                        new
-                        {
-                            Id = new Guid("087ec3f5-093b-4a80-b611-cdd5a992eae0"),
-                            BadgeType = 0,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(6007), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "This badge, given at four years, signifies the member's high quality and valuable contributions, akin to the highly prized teak wood.",
-                            Name = "Perennial Teak Colonel (4 Years of Membership)"
-                        },
-                        new
-                        {
-                            Id = new Guid("14b42f8c-c68c-47d2-add9-55861d2977d3"),
-                            BadgeType = 0,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(6008), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "After five years, members are honored with this badge, representing their robust and steadfast support of the community, much like the mighty oak tree.",
-                            Name = "Oak Brigadier (5 Years of Membership)"
-                        },
-                        new
-                        {
-                            Id = new Guid("623fb503-e72d-4e61-b655-eaa59b4b84fb"),
-                            BadgeType = 0,
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(6013), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "At six years, this prestigious badge is awarded to members who have shown leadership and a strong foundation of support, embodying the cedar's stature and longevity.",
-                            Name = "Cedar General (6 Years of Membership)"
-                        });
                 });
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Flower", b =>
@@ -473,7 +224,6 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasMaxLength(1500)
                         .HasColumnType("nvarchar(1500)");
 
@@ -483,21 +233,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.Property<DateTimeOffset?>("DeletedAt")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("FlowerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("GardenId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("LinkOrImageUrl")
-                        .HasMaxLength(8000)
+                    b.Property<string>("ExternalUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PostType")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
@@ -511,19 +253,38 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.HasIndex("FlowerId");
-
-                    b.HasIndex("GardenId");
-
                     b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.ProfilePicture", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DeletedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("UpdatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProfilePictures");
                 });
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Role", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
@@ -549,48 +310,103 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("ad021a33-6f24-4d9d-9870-490cef797b48"),
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5854), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Administrator",
-                            Visibility = 3
-                        },
-                        new
-                        {
-                            Id = new Guid("d34eef1b-8349-422b-ae84-9cd84f433e5b"),
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5883), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "StandardUser",
-                            Visibility = 3
-                        },
-                        new
-                        {
-                            Id = new Guid("7e71bc48-bc89-469e-b05b-63b73e926461"),
-                            CreatedOn = new DateTimeOffset(new DateTime(2023, 11, 5, 11, 0, 36, 562, DateTimeKind.Unspecified).AddTicks(5951), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "PremiumUser",
-                            Visibility = 3
-                        });
                 });
 
-            modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.AccountBadges", b =>
+            modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Account", b =>
                 {
-                    b.HasOne("CoinGardenWorldMobileApp.Models.Entities.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.OwnsOne("CoinGardenWorldMobileApp.Models.Entities.BlobImage", "ProfilePicture", b1 =>
+                        {
+                            b1.Property<Guid>("AccountId")
+                                .HasColumnType("uniqueidentifier");
 
-                    b.HasOne("CoinGardenWorldMobileApp.Models.Entities.Badge", "Badge")
-                        .WithMany()
-                        .HasForeignKey("BadgeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                            b1.Property<Guid>("ImageId")
+                                .HasColumnType("uniqueidentifier");
 
-                    b.Navigation("Account");
+                            b1.Property<string>("ImageUrl")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
 
-                    b.Navigation("Badge");
+                            b1.HasKey("AccountId");
+
+                            b1.ToTable("Accounts");
+
+                            b1.ToJson("ProfilePicture");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AccountId");
+                        });
+
+                    b.OwnsMany("CoinGardenWorldMobileApp.Models.Entities.AccountBadge", "Badges", b1 =>
+                        {
+                            b1.Property<Guid>("AccountId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            b1.Property<string>("BadgeColor")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("BadgeIcon")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<Guid>("BadgeId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("BadgeName")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<DateTimeOffset>("EarnedOn")
+                                .HasColumnType("datetimeoffset");
+
+                            b1.HasKey("AccountId", "Id");
+
+                            b1.ToTable("Accounts");
+
+                            b1.ToJson("Badges");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AccountId");
+                        });
+
+                    b.OwnsMany("CoinGardenWorldMobileApp.Models.Entities.AccountRole", "Roles", b1 =>
+                        {
+                            b1.Property<Guid>("AccountId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            b1.Property<DateTimeOffset>("AssignedOn")
+                                .HasColumnType("datetimeoffset");
+
+                            b1.Property<Guid>("RoleId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("RoleName")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("AccountId", "Id");
+
+                            b1.ToTable("Accounts");
+
+                            b1.ToJson("Roles");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AccountId");
+                        });
+
+                    b.Navigation("Badges");
+
+                    b.Navigation("ProfilePicture");
+
+                    b.Navigation("Roles");
                 });
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.AccountExternalLogins", b =>
@@ -602,25 +418,6 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                         .IsRequired();
 
                     b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.AccountRoles", b =>
-                {
-                    b.HasOne("CoinGardenWorldMobileApp.Models.Entities.Account", "Account")
-                        .WithMany("Roles")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CoinGardenWorldMobileApp.Models.Entities.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Account");
-
-                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Flower", b =>
@@ -636,9 +433,37 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                         .HasForeignKey("GardenId")
                         .OnDelete(DeleteBehavior.ClientCascade);
 
+                    b.OwnsMany("CoinGardenWorldMobileApp.Models.Entities.BlobImage", "Images", b1 =>
+                        {
+                            b1.Property<Guid>("FlowerId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            b1.Property<Guid>("ImageId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("ImageUrl")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("FlowerId", "Id");
+
+                            b1.ToTable("Flowers");
+
+                            b1.ToJson("Images");
+
+                            b1.WithOwner()
+                                .HasForeignKey("FlowerId");
+                        });
+
                     b.Navigation("Account");
 
                     b.Navigation("Garden");
+
+                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Garden", b =>
@@ -660,26 +485,68 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CoinGardenWorldMobileApp.Models.Entities.Flower", "Flower")
-                        .WithMany()
-                        .HasForeignKey("FlowerId");
+                    b.OwnsMany("CoinGardenWorldMobileApp.Models.Entities.BlobImage", "Images", b1 =>
+                        {
+                            b1.Property<Guid>("PostId")
+                                .HasColumnType("uniqueidentifier");
 
-                    b.HasOne("CoinGardenWorldMobileApp.Models.Entities.Garden", "Garden")
-                        .WithMany()
-                        .HasForeignKey("GardenId");
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            b1.Property<Guid>("ImageId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("ImageUrl")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("PostId", "Id");
+
+                            b1.ToTable("Posts");
+
+                            b1.ToJson("Images");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PostId");
+                        });
 
                     b.Navigation("Account");
 
-                    b.Navigation("Flower");
+                    b.Navigation("Images");
+                });
 
-                    b.Navigation("Garden");
+            modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.ProfilePicture", b =>
+                {
+                    b.OwnsOne("CoinGardenWorldMobileApp.Models.Entities.BlobImage", "Image", b1 =>
+                        {
+                            b1.Property<Guid>("ProfilePictureId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<Guid>("ImageId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("ImageUrl")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("ProfilePictureId");
+
+                            b1.ToTable("ProfilePictures");
+
+                            b1.ToJson("Image");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ProfilePictureId");
+                        });
+
+                    b.Navigation("Image")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Account", b =>
                 {
                     b.Navigation("ExternalLogins");
-
-                    b.Navigation("Roles");
                 });
 
             modelBuilder.Entity("CoinGardenWorldMobileApp.Models.Entities.Garden", b =>

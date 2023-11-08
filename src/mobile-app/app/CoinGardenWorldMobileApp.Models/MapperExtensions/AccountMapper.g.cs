@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using CoinGardenWorldMobileApp.Models.Entities;
 using CoinGardenWorldMobileApp.Models.ViewModels;
-using Mapster.Utils;
 
 namespace CoinGardenWorldMobileApp.Models.MapperExtensions
 {
@@ -18,290 +17,288 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 Username = p1.Username,
                 DisplayName = p1.DisplayName,
                 ProfileIntroduction = p1.ProfileIntroduction,
-                ProfilePicure = p1.ProfilePicure,
-                Roles = funcMain1(p1.Roles),
-                ExternalLogins = funcMain2(p1.ExternalLogins),
+                ProfilePicture = p1.ProfilePicture == null ? null : new BlobImageDto()
+                {
+                    ImageId = p1.ProfilePicture.ImageId,
+                    ImageUrl = p1.ProfilePicture.ImageUrl
+                },
+                Badges = funcMain1(p1.Badges),
+                Roles = funcMain2(p1.Roles),
+                ExternalLogins = funcMain3(p1.ExternalLogins),
                 Id = p1.Id,
                 CreatedOn = p1.CreatedOn,
                 UpdatedOn = p1.UpdatedOn,
                 DeletedAt = p1.DeletedAt
             };
         }
-        public static AccountDto AdaptTo(this Account p4, AccountDto p5)
+        public static AccountDto AdaptTo(this Account p5, AccountDto p6)
         {
-            if (p4 == null)
+            if (p5 == null)
             {
                 return null;
             }
-            AccountDto result = p5 ?? new AccountDto();
+            AccountDto result = p6 ?? new AccountDto();
             
-            result.Email = p4.Email;
-            result.Username = p4.Username;
-            result.DisplayName = p4.DisplayName;
-            result.ProfileIntroduction = p4.ProfileIntroduction;
-            result.ProfilePicure = p4.ProfilePicure;
-            result.Roles = funcMain3(p4.Roles, result.Roles);
-            result.ExternalLogins = funcMain4(p4.ExternalLogins, result.ExternalLogins);
-            result.Id = p4.Id;
-            result.CreatedOn = p4.CreatedOn;
-            result.UpdatedOn = p4.UpdatedOn;
-            result.DeletedAt = p4.DeletedAt;
+            result.Email = p5.Email;
+            result.Username = p5.Username;
+            result.DisplayName = p5.DisplayName;
+            result.ProfileIntroduction = p5.ProfileIntroduction;
+            result.ProfilePicture = funcMain4(p5.ProfilePicture, result.ProfilePicture);
+            result.Badges = funcMain5(p5.Badges, result.Badges);
+            result.Roles = funcMain6(p5.Roles, result.Roles);
+            result.ExternalLogins = funcMain7(p5.ExternalLogins, result.ExternalLogins);
+            result.Id = p5.Id;
+            result.CreatedOn = p5.CreatedOn;
+            result.UpdatedOn = p5.UpdatedOn;
+            result.DeletedAt = p5.DeletedAt;
             return result;
             
         }
-        public static Expression<Func<Account, AccountDto>> ProjectToDto => p10 => new AccountDto()
+        public static Expression<Func<Account, AccountDto>> ProjectToDto => p15 => new AccountDto()
         {
-            Email = p10.Email,
-            Username = p10.Username,
-            DisplayName = p10.DisplayName,
-            ProfileIntroduction = p10.ProfileIntroduction,
-            ProfilePicure = p10.ProfilePicure,
-            Roles = p10.Roles.Select<AccountRoles, AccountRolesDto>(p11 => new AccountRolesDto()
+            Email = p15.Email,
+            Username = p15.Username,
+            DisplayName = p15.DisplayName,
+            ProfileIntroduction = p15.ProfileIntroduction,
+            ProfilePicture = p15.ProfilePicture == null ? null : new BlobImageDto()
             {
-                AccountId = p11.AccountId,
-                RoleId = p11.RoleId,
-                Role = p11.Role == null ? null : new RoleDto()
-                {
-                    Name = p11.Role.Name,
-                    Description = p11.Role.Description,
-                    Visibility = Enum<Visibility>.ToString(p11.Role.Visibility),
-                    Id = p11.Role.Id,
-                    CreatedOn = p11.Role.CreatedOn,
-                    UpdatedOn = p11.Role.UpdatedOn,
-                    DeletedAt = p11.Role.DeletedAt
-                },
-                Id = p11.Id,
-                CreatedOn = p11.CreatedOn,
-                UpdatedOn = p11.UpdatedOn,
-                DeletedAt = p11.DeletedAt
-            }).ToList<AccountRolesDto>(),
-            ExternalLogins = p10.ExternalLogins.Select<AccountExternalLogins, AccountExternalLoginsDto>(p12 => new AccountExternalLoginsDto()
+                ImageId = p15.ProfilePicture.ImageId,
+                ImageUrl = p15.ProfilePicture.ImageUrl
+            },
+            Badges = p15.Badges.Select<AccountBadge, AccountBadgeDto>(p16 => new AccountBadgeDto()
             {
-                AccountId = p12.AccountId,
-                DisplayName = p12.DisplayName,
-                ObjectIdAzureAd = p12.ObjectIdAzureAd,
-                IdentityProvider = p12.IdentityProvider,
-                ProfilePictureUrl = p12.ProfilePictureUrl,
-                Id = p12.Id,
-                CreatedOn = p12.CreatedOn,
-                UpdatedOn = p12.UpdatedOn,
-                DeletedAt = p12.DeletedAt
+                BadgeId = p16.BadgeId,
+                BadgeName = p16.BadgeName,
+                BadgeIcon = p16.BadgeIcon,
+                BadgeColor = p16.BadgeColor,
+                EarnedOn = p16.EarnedOn
+            }).ToList<AccountBadgeDto>(),
+            Roles = p15.Roles.Select<AccountRole, AccountRoleDto>(p17 => new AccountRoleDto()
+            {
+                RoleId = p17.RoleId,
+                RoleName = p17.RoleName,
+                AssignedOn = p17.AssignedOn
+            }).ToList<AccountRoleDto>(),
+            ExternalLogins = p15.ExternalLogins.Select<AccountExternalLogins, AccountExternalLoginsDto>(p18 => new AccountExternalLoginsDto()
+            {
+                ObjectIdAzureAd = p18.ObjectIdAzureAd,
+                AccountId = p18.AccountId,
+                DisplayName = p18.DisplayName,
+                IdentityProvider = p18.IdentityProvider,
+                ProfilePictureUrl = p18.ProfilePictureUrl,
+                Id = p18.Id,
+                CreatedOn = p18.CreatedOn,
+                UpdatedOn = p18.UpdatedOn,
+                DeletedAt = p18.DeletedAt
             }).ToList<AccountExternalLoginsDto>(),
-            Id = p10.Id,
-            CreatedOn = p10.CreatedOn,
-            UpdatedOn = p10.UpdatedOn,
-            DeletedAt = p10.DeletedAt
+            Id = p15.Id,
+            CreatedOn = p15.CreatedOn,
+            UpdatedOn = p15.UpdatedOn,
+            DeletedAt = p15.DeletedAt
         };
-        public static AccountList AdaptToList(this Account p13)
+        public static AccountList AdaptToList(this Account p19)
         {
-            return p13 == null ? null : new AccountList()
+            return p19 == null ? null : new AccountList()
             {
-                Email = p13.Email,
-                Username = p13.Username,
-                DisplayName = p13.DisplayName,
-                ProfileIntroduction = p13.ProfileIntroduction,
-                ProfilePicure = p13.ProfilePicure,
-                Id = p13.Id,
-                CreatedOn = p13.CreatedOn
+                Email = p19.Email,
+                Username = p19.Username,
+                DisplayName = p19.DisplayName,
+                ProfileIntroduction = p19.ProfileIntroduction,
+                ProfilePicture = p19.ProfilePicture == null ? null : new BlobImageList()
+                {
+                    ImageId = p19.ProfilePicture.ImageId,
+                    ImageUrl = p19.ProfilePicture.ImageUrl
+                },
+                Badges = funcMain8(p19.Badges),
+                Roles = funcMain9(p19.Roles),
+                Id = p19.Id,
+                CreatedOn = p19.CreatedOn
             };
         }
-        public static AccountList AdaptTo(this Account p14, AccountList p15)
+        public static AccountList AdaptTo(this Account p22, AccountList p23)
         {
-            if (p14 == null)
+            if (p22 == null)
             {
                 return null;
             }
-            AccountList result = p15 ?? new AccountList();
+            AccountList result = p23 ?? new AccountList();
             
-            result.Email = p14.Email;
-            result.Username = p14.Username;
-            result.DisplayName = p14.DisplayName;
-            result.ProfileIntroduction = p14.ProfileIntroduction;
-            result.ProfilePicure = p14.ProfilePicure;
-            result.Id = p14.Id;
-            result.CreatedOn = p14.CreatedOn;
+            result.Email = p22.Email;
+            result.Username = p22.Username;
+            result.DisplayName = p22.DisplayName;
+            result.ProfileIntroduction = p22.ProfileIntroduction;
+            result.ProfilePicture = funcMain10(p22.ProfilePicture, result.ProfilePicture);
+            result.Badges = funcMain11(p22.Badges, result.Badges);
+            result.Roles = funcMain12(p22.Roles, result.Roles);
+            result.Id = p22.Id;
+            result.CreatedOn = p22.CreatedOn;
             return result;
             
         }
-        public static Expression<Func<Account, AccountList>> ProjectToList => p16 => new AccountList()
+        public static Expression<Func<Account, AccountList>> ProjectToList => p30 => new AccountList()
         {
-            Email = p16.Email,
-            Username = p16.Username,
-            DisplayName = p16.DisplayName,
-            ProfileIntroduction = p16.ProfileIntroduction,
-            ProfilePicure = p16.ProfilePicure,
-            Id = p16.Id,
-            CreatedOn = p16.CreatedOn
-        };
-        public static Account AdaptToAccount(this AccountAdd p17)
-        {
-            return p17 == null ? null : new Account()
+            Email = p30.Email,
+            Username = p30.Username,
+            DisplayName = p30.DisplayName,
+            ProfileIntroduction = p30.ProfileIntroduction,
+            ProfilePicture = p30.ProfilePicture == null ? null : new BlobImageList()
             {
-                Email = p17.Email,
-                Username = p17.Username,
-                DisplayName = p17.DisplayName,
-                ProfileIntroduction = p17.ProfileIntroduction,
-                ProfilePicure = p17.ProfilePicure
+                ImageId = p30.ProfilePicture.ImageId,
+                ImageUrl = p30.ProfilePicture.ImageUrl
+            },
+            Badges = p30.Badges.Select<AccountBadge, AccountBadgeList>(p31 => new AccountBadgeList()
+            {
+                BadgeId = p31.BadgeId,
+                BadgeName = p31.BadgeName,
+                BadgeIcon = p31.BadgeIcon,
+                BadgeColor = p31.BadgeColor,
+                EarnedOn = p31.EarnedOn
+            }).ToList<AccountBadgeList>(),
+            Roles = p30.Roles.Select<AccountRole, AccountRoleList>(p32 => new AccountRoleList()
+            {
+                RoleId = p32.RoleId,
+                RoleName = p32.RoleName,
+                AssignedOn = p32.AssignedOn
+            }).ToList<AccountRoleList>(),
+            Id = p30.Id,
+            CreatedOn = p30.CreatedOn
+        };
+        public static Account AdaptToAccount(this AccountAdd p33)
+        {
+            return p33 == null ? null : new Account()
+            {
+                Email = p33.Email,
+                Username = p33.Username,
+                DisplayName = p33.DisplayName,
+                ProfileIntroduction = p33.ProfileIntroduction,
+                ProfilePicture = p33.ProfilePicture == null ? null : new BlobImage()
+                {
+                    ImageId = p33.ProfilePicture.ImageId,
+                    ImageUrl = p33.ProfilePicture.ImageUrl
+                },
+                Badges = funcMain13(p33.Badges),
+                Roles = funcMain14(p33.Roles)
             };
         }
-        public static Account AdaptTo(this AccountMerge p18, Account p19)
+        public static Account AdaptTo(this AccountMerge p36, Account p37)
         {
-            if (p18 == null)
+            if (p36 == null)
             {
                 return null;
             }
-            Account result = p19 ?? new Account();
+            Account result = p37 ?? new Account();
             
-            if (p18.Email != null)
+            if (p36.Email != null)
             {
-                result.Email = p18.Email;
+                result.Email = p36.Email;
             }
             
-            if (p18.Username != null)
+            if (p36.Username != null)
             {
-                result.Username = p18.Username;
+                result.Username = p36.Username;
             }
             
-            if (p18.DisplayName != null)
+            if (p36.DisplayName != null)
             {
-                result.DisplayName = p18.DisplayName;
+                result.DisplayName = p36.DisplayName;
             }
             
-            if (p18.ProfileIntroduction != null)
+            if (p36.ProfileIntroduction != null)
             {
-                result.ProfileIntroduction = p18.ProfileIntroduction;
+                result.ProfileIntroduction = p36.ProfileIntroduction;
             }
             
-            if (p18.ProfilePicure != null)
+            if (p36.ProfilePicture != null)
             {
-                result.ProfilePicure = p18.ProfilePicure;
+                result.ProfilePicture = funcMain15(p36.ProfilePicture, result.ProfilePicture);
+            }
+            
+            if (p36.Badges != null)
+            {
+                result.Badges = funcMain16(p36.Badges, result.Badges);
+            }
+            
+            if (p36.Roles != null)
+            {
+                result.Roles = funcMain18(p36.Roles, result.Roles);
             }
             return result;
             
         }
         
-        private static ICollection<AccountRolesDto> funcMain1(ICollection<AccountRoles> p2)
+        private static List<AccountBadgeDto> funcMain1(List<AccountBadge> p2)
         {
             if (p2 == null)
             {
                 return null;
             }
-            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p2.Count);
+            List<AccountBadgeDto> result = new List<AccountBadgeDto>(p2.Count);
             
-            IEnumerator<AccountRoles> enumerator = p2.GetEnumerator();
+            int i = 0;
+            int len = p2.Count;
             
-            while (enumerator.MoveNext())
+            while (i < len)
             {
-                AccountRoles item = enumerator.Current;
-                result.Add(item == null ? null : new AccountRolesDto()
+                AccountBadge item = p2[i];
+                result.Add(item == null ? null : new AccountBadgeDto()
                 {
-                    AccountId = item.AccountId,
-                    RoleId = item.RoleId,
-                    Role = item.Role == null ? null : new RoleDto()
-                    {
-                        Name = item.Role.Name,
-                        Description = item.Role.Description,
-                        Visibility = Enum<Visibility>.ToString(item.Role.Visibility),
-                        Id = item.Role.Id,
-                        CreatedOn = item.Role.CreatedOn,
-                        UpdatedOn = item.Role.UpdatedOn,
-                        DeletedAt = item.Role.DeletedAt
-                    },
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
+                    BadgeId = item.BadgeId,
+                    BadgeName = item.BadgeName,
+                    BadgeIcon = item.BadgeIcon,
+                    BadgeColor = item.BadgeColor,
+                    EarnedOn = item.EarnedOn
                 });
+                i++;
             }
             return result;
             
         }
         
-        private static ICollection<AccountExternalLoginsDto> funcMain2(ICollection<AccountExternalLogins> p3)
+        private static List<AccountRoleDto> funcMain2(List<AccountRole> p3)
         {
             if (p3 == null)
             {
                 return null;
             }
-            ICollection<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p3.Count);
+            List<AccountRoleDto> result = new List<AccountRoleDto>(p3.Count);
             
-            IEnumerator<AccountExternalLogins> enumerator = p3.GetEnumerator();
+            int i = 0;
+            int len = p3.Count;
             
-            while (enumerator.MoveNext())
+            while (i < len)
             {
-                AccountExternalLogins item = enumerator.Current;
-                result.Add(item == null ? null : new AccountExternalLoginsDto()
+                AccountRole item = p3[i];
+                result.Add(item == null ? null : new AccountRoleDto()
                 {
-                    AccountId = item.AccountId,
-                    DisplayName = item.DisplayName,
-                    ObjectIdAzureAd = item.ObjectIdAzureAd,
-                    IdentityProvider = item.IdentityProvider,
-                    ProfilePictureUrl = item.ProfilePictureUrl,
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
-                });
-            }
-            return result;
-            
-        }
-        
-        private static ICollection<AccountRolesDto> funcMain3(ICollection<AccountRoles> p6, ICollection<AccountRolesDto> p7)
-        {
-            if (p6 == null)
-            {
-                return null;
-            }
-            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p6.Count);
-            
-            IEnumerator<AccountRoles> enumerator = p6.GetEnumerator();
-            
-            while (enumerator.MoveNext())
-            {
-                AccountRoles item = enumerator.Current;
-                result.Add(item == null ? null : new AccountRolesDto()
-                {
-                    AccountId = item.AccountId,
                     RoleId = item.RoleId,
-                    Role = item.Role == null ? null : new RoleDto()
-                    {
-                        Name = item.Role.Name,
-                        Description = item.Role.Description,
-                        Visibility = Enum<Visibility>.ToString(item.Role.Visibility),
-                        Id = item.Role.Id,
-                        CreatedOn = item.Role.CreatedOn,
-                        UpdatedOn = item.Role.UpdatedOn,
-                        DeletedAt = item.Role.DeletedAt
-                    },
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
+                    RoleName = item.RoleName,
+                    AssignedOn = item.AssignedOn
                 });
+                i++;
             }
             return result;
             
         }
         
-        private static ICollection<AccountExternalLoginsDto> funcMain4(ICollection<AccountExternalLogins> p8, ICollection<AccountExternalLoginsDto> p9)
+        private static List<AccountExternalLoginsDto> funcMain3(List<AccountExternalLogins> p4)
         {
-            if (p8 == null)
+            if (p4 == null)
             {
                 return null;
             }
-            ICollection<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p8.Count);
+            List<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p4.Count);
             
-            IEnumerator<AccountExternalLogins> enumerator = p8.GetEnumerator();
+            int i = 0;
+            int len = p4.Count;
             
-            while (enumerator.MoveNext())
+            while (i < len)
             {
-                AccountExternalLogins item = enumerator.Current;
+                AccountExternalLogins item = p4[i];
                 result.Add(item == null ? null : new AccountExternalLoginsDto()
                 {
+                    ObjectIdAzureAd = item.ObjectIdAzureAd,
                     AccountId = item.AccountId,
                     DisplayName = item.DisplayName,
-                    ObjectIdAzureAd = item.ObjectIdAzureAd,
                     IdentityProvider = item.IdentityProvider,
                     ProfilePictureUrl = item.ProfilePictureUrl,
                     Id = item.Id,
@@ -309,6 +306,408 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     UpdatedOn = item.UpdatedOn,
                     DeletedAt = item.DeletedAt
                 });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static BlobImageDto funcMain4(BlobImage p7, BlobImageDto p8)
+        {
+            if (p7 == null)
+            {
+                return null;
+            }
+            BlobImageDto result = p8 ?? new BlobImageDto();
+            
+            result.ImageId = p7.ImageId;
+            result.ImageUrl = p7.ImageUrl;
+            return result;
+            
+        }
+        
+        private static List<AccountBadgeDto> funcMain5(List<AccountBadge> p9, List<AccountBadgeDto> p10)
+        {
+            if (p9 == null)
+            {
+                return null;
+            }
+            List<AccountBadgeDto> result = new List<AccountBadgeDto>(p9.Count);
+            
+            int i = 0;
+            int len = p9.Count;
+            
+            while (i < len)
+            {
+                AccountBadge item = p9[i];
+                result.Add(item == null ? null : new AccountBadgeDto()
+                {
+                    BadgeId = item.BadgeId,
+                    BadgeName = item.BadgeName,
+                    BadgeIcon = item.BadgeIcon,
+                    BadgeColor = item.BadgeColor,
+                    EarnedOn = item.EarnedOn
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountRoleDto> funcMain6(List<AccountRole> p11, List<AccountRoleDto> p12)
+        {
+            if (p11 == null)
+            {
+                return null;
+            }
+            List<AccountRoleDto> result = new List<AccountRoleDto>(p11.Count);
+            
+            int i = 0;
+            int len = p11.Count;
+            
+            while (i < len)
+            {
+                AccountRole item = p11[i];
+                result.Add(item == null ? null : new AccountRoleDto()
+                {
+                    RoleId = item.RoleId,
+                    RoleName = item.RoleName,
+                    AssignedOn = item.AssignedOn
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountExternalLoginsDto> funcMain7(List<AccountExternalLogins> p13, List<AccountExternalLoginsDto> p14)
+        {
+            if (p13 == null)
+            {
+                return null;
+            }
+            List<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p13.Count);
+            
+            int i = 0;
+            int len = p13.Count;
+            
+            while (i < len)
+            {
+                AccountExternalLogins item = p13[i];
+                result.Add(item == null ? null : new AccountExternalLoginsDto()
+                {
+                    ObjectIdAzureAd = item.ObjectIdAzureAd,
+                    AccountId = item.AccountId,
+                    DisplayName = item.DisplayName,
+                    IdentityProvider = item.IdentityProvider,
+                    ProfilePictureUrl = item.ProfilePictureUrl,
+                    Id = item.Id,
+                    CreatedOn = item.CreatedOn,
+                    UpdatedOn = item.UpdatedOn,
+                    DeletedAt = item.DeletedAt
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountBadgeList> funcMain8(List<AccountBadge> p20)
+        {
+            if (p20 == null)
+            {
+                return null;
+            }
+            List<AccountBadgeList> result = new List<AccountBadgeList>(p20.Count);
+            
+            int i = 0;
+            int len = p20.Count;
+            
+            while (i < len)
+            {
+                AccountBadge item = p20[i];
+                result.Add(item == null ? null : new AccountBadgeList()
+                {
+                    BadgeId = item.BadgeId,
+                    BadgeName = item.BadgeName,
+                    BadgeIcon = item.BadgeIcon,
+                    BadgeColor = item.BadgeColor,
+                    EarnedOn = item.EarnedOn
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountRoleList> funcMain9(List<AccountRole> p21)
+        {
+            if (p21 == null)
+            {
+                return null;
+            }
+            List<AccountRoleList> result = new List<AccountRoleList>(p21.Count);
+            
+            int i = 0;
+            int len = p21.Count;
+            
+            while (i < len)
+            {
+                AccountRole item = p21[i];
+                result.Add(item == null ? null : new AccountRoleList()
+                {
+                    RoleId = item.RoleId,
+                    RoleName = item.RoleName,
+                    AssignedOn = item.AssignedOn
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static BlobImageList funcMain10(BlobImage p24, BlobImageList p25)
+        {
+            if (p24 == null)
+            {
+                return null;
+            }
+            BlobImageList result = p25 ?? new BlobImageList();
+            
+            result.ImageId = p24.ImageId;
+            result.ImageUrl = p24.ImageUrl;
+            return result;
+            
+        }
+        
+        private static List<AccountBadgeList> funcMain11(List<AccountBadge> p26, List<AccountBadgeList> p27)
+        {
+            if (p26 == null)
+            {
+                return null;
+            }
+            List<AccountBadgeList> result = new List<AccountBadgeList>(p26.Count);
+            
+            int i = 0;
+            int len = p26.Count;
+            
+            while (i < len)
+            {
+                AccountBadge item = p26[i];
+                result.Add(item == null ? null : new AccountBadgeList()
+                {
+                    BadgeId = item.BadgeId,
+                    BadgeName = item.BadgeName,
+                    BadgeIcon = item.BadgeIcon,
+                    BadgeColor = item.BadgeColor,
+                    EarnedOn = item.EarnedOn
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountRoleList> funcMain12(List<AccountRole> p28, List<AccountRoleList> p29)
+        {
+            if (p28 == null)
+            {
+                return null;
+            }
+            List<AccountRoleList> result = new List<AccountRoleList>(p28.Count);
+            
+            int i = 0;
+            int len = p28.Count;
+            
+            while (i < len)
+            {
+                AccountRole item = p28[i];
+                result.Add(item == null ? null : new AccountRoleList()
+                {
+                    RoleId = item.RoleId,
+                    RoleName = item.RoleName,
+                    AssignedOn = item.AssignedOn
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountBadge> funcMain13(List<AccountBadgeAdd> p34)
+        {
+            if (p34 == null)
+            {
+                return null;
+            }
+            List<AccountBadge> result = new List<AccountBadge>(p34.Count);
+            
+            int i = 0;
+            int len = p34.Count;
+            
+            while (i < len)
+            {
+                AccountBadgeAdd item = p34[i];
+                result.Add(item == null ? null : new AccountBadge()
+                {
+                    BadgeId = item.BadgeId,
+                    BadgeName = item.BadgeName,
+                    BadgeIcon = item.BadgeIcon,
+                    BadgeColor = item.BadgeColor,
+                    EarnedOn = item.EarnedOn
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountRole> funcMain14(List<AccountRoleAdd> p35)
+        {
+            if (p35 == null)
+            {
+                return null;
+            }
+            List<AccountRole> result = new List<AccountRole>(p35.Count);
+            
+            int i = 0;
+            int len = p35.Count;
+            
+            while (i < len)
+            {
+                AccountRoleAdd item = p35[i];
+                result.Add(item == null ? null : new AccountRole()
+                {
+                    RoleId = item.RoleId,
+                    RoleName = item.RoleName,
+                    AssignedOn = item.AssignedOn
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static BlobImage funcMain15(BlobImageMerge p38, BlobImage p39)
+        {
+            if (p38 == null)
+            {
+                return null;
+            }
+            BlobImage result = p39 ?? new BlobImage();
+            
+            if (p38.ImageId != null)
+            {
+                result.ImageId = (Guid)p38.ImageId;
+            }
+            
+            if (p38.ImageUrl != null)
+            {
+                result.ImageUrl = p38.ImageUrl;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountBadge> funcMain16(List<AccountBadgeMerge> p40, List<AccountBadge> p41)
+        {
+            if (p40 == null)
+            {
+                return null;
+            }
+            List<AccountBadge> result = new List<AccountBadge>(p40.Count);
+            
+            int i = 0;
+            int len = p40.Count;
+            
+            while (i < len)
+            {
+                AccountBadgeMerge item = p40[i];
+                result.Add(funcMain17(item));
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountRole> funcMain18(List<AccountRoleMerge> p43, List<AccountRole> p44)
+        {
+            if (p43 == null)
+            {
+                return null;
+            }
+            List<AccountRole> result = new List<AccountRole>(p43.Count);
+            
+            int i = 0;
+            int len = p43.Count;
+            
+            while (i < len)
+            {
+                AccountRoleMerge item = p43[i];
+                result.Add(funcMain19(item));
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static AccountBadge funcMain17(AccountBadgeMerge p42)
+        {
+            if (p42 == null)
+            {
+                return null;
+            }
+            AccountBadge result = new AccountBadge();
+            
+            if (p42.BadgeId != null)
+            {
+                result.BadgeId = (Guid)p42.BadgeId;
+            }
+            
+            if (p42.BadgeName != null)
+            {
+                result.BadgeName = p42.BadgeName;
+            }
+            
+            if (p42.BadgeIcon != null)
+            {
+                result.BadgeIcon = p42.BadgeIcon;
+            }
+            
+            if (p42.BadgeColor != null)
+            {
+                result.BadgeColor = p42.BadgeColor;
+            }
+            
+            if (p42.EarnedOn != null)
+            {
+                result.EarnedOn = (DateTimeOffset)p42.EarnedOn;
+            }
+            return result;
+            
+        }
+        
+        private static AccountRole funcMain19(AccountRoleMerge p45)
+        {
+            if (p45 == null)
+            {
+                return null;
+            }
+            AccountRole result = new AccountRole();
+            
+            if (p45.RoleId != null)
+            {
+                result.RoleId = (Guid)p45.RoleId;
+            }
+            
+            if (p45.RoleName != null)
+            {
+                result.RoleName = p45.RoleName;
+            }
+            
+            if (p45.AssignedOn != null)
+            {
+                result.AssignedOn = (DateTimeOffset)p45.AssignedOn;
             }
             return result;
             

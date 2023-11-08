@@ -1,4 +1,16 @@
-﻿@attribute [Route(NavigationLinks.NEW_POST_URL)]
+﻿@using CoinGardenWorld.AzureStorageClientsExtensions
+@using Microsoft.AspNetCore.Authorization
+
+@attribute [Authorize]
+
+@attribute [Route(NavigationLinks.NEW_POST_URL)]
+
+@inject ILogger<PostNew> Logger
+
+@inject IBlobStorageService blobStorageService
+
+
+@inject IHybridStorage localStorage
 <!-- Your Page Content Goes Here-->
 <div class="page-content header-clear-medium">
 
@@ -6,14 +18,57 @@
     <div class="card card-style">
         <div class="content mb-0">
             <h5 class="color-highlight font-13 mb-n1">
-                System Information
+                Create new post
             </h5>
             <h1 class="font-700 pb-0">
-                About the App
+                What do you think today?
             </h1>
             <p class="mb-3">
-                We're looking for passionate developers to join our team. Got what it takes? Send us a message.
+                Add picture text or link and preview of your post will be shown.
             </p>
+        </div>
+    </div>
+
+
+    <div class="card card-style">
+        <div class="content">
+
+            <div class="form-custom form-icon mb-3">
+
+                <EditForm Model="@Post" OnSubmit="@Submit">
+                    <i class="bi bi-pencil-fill font-12"></i>
+                    <InputTextArea @bind-Value="Post!.Content" class="form-control rounded-xs" placeholder="Leave a comment here" id="new-post-content" style="height: 48px; font-size: 20px !important; line-height: 15px !important;" />
+                    @*
+                    <textarea class="form-control rounded-xs" placeholder="Leave a comment here" id="c7" style="height: 48px; font-size: 20px !important; line-height: 15px !important;"></textarea> *@
+
+                    @* <label for="new-post-content" class="color-theme">Your Message</label> *@
+                    @* <div class="valid-feedback">HTML5 does not offer Dates Field Validation!</div>
+                    *@
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+
+                    @if (!string.IsNullOrEmpty(Post.Content) || Files != null)
+                    {
+                        <button class="btn btn-full mt-3 btn-m text-uppercase font-700 rounded-s upload-file-text border-green-dark" type="submit" style="padding: 13px 20px !important; width:100%; ">
+                            Submit
+                        </button>
+                    }
+                </EditForm>
+            </div>
+            <div class="divider mb-0"></div>
+            <div class="file-data">
+
+                <img id="image-data" src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" class="img-fluid rounded-s" alt="img">
+                <span class="upload-file-name d-block text-center"
+                      data-text-before="<i class='bi bi-check-circle-fill color-green-dark pe-2'></i> Image:"
+                      data-text-after=" is ready.">
+                </span>
+
+                <div>
+                    <InputFile type="file" class="upload-file" accept="image/*" OnChange=@OnInputFileChange multiple />
+                    <p class="btn btn-full btn-m text-uppercase font-700 rounded-s upload-file-text border-green-dark">Upload Image</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -23,5 +78,57 @@
 <ThemeLoader></ThemeLoader>
 
 @code {
+    private PostAdd Post { get; set; }
+    private IReadOnlyList<IBrowserFile>? Files { get; set; }
 
+    private long maxFileSize = 1024 * 15;
+    private int maxAllowedFiles = 10;
+    private bool fileLoading;
+
+    private List<Guid> imageIds = new List<Guid>();
+
+    private List<string> imageBlobUrls = new();
+    protected override void OnInitialized() => Post ??= new();
+
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        imageIds.Clear();
+        foreach (var browserFile in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            if(Files != null){
+
+            }
+            Console.WriteLine(browserFile.Name);
+
+            imageIds.Add(Guid.NewGuid());
+        }
+
+        Files = e.GetMultipleFiles(maxAllowedFiles);
+    }
+
+
+
+    private async void Submit()
+    {
+        Console.WriteLine(Post.Content);
+
+        var accountId = localStorage.Get<string>(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME);
+        var i = 0;
+        if (Files != null)
+            foreach (var file in Files)
+            {
+
+                var blobUrl = await blobStorageService.UploadFileToBlobAsync(
+                    accountId
+                   , imageIds[i] + "." + file.Name.Split(".").Last()
+                    , file.ContentType
+                    , file.OpenReadStream(20971520));
+
+                imageBlobUrls.Add(blobUrl);
+
+                Console.WriteLine(blobUrl);
+                i++;
+            }
+
+    }
 }

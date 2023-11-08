@@ -45,9 +45,9 @@ namespace CoinGardenWorldMobileApp.Models
 
             config.GenerateMapper("[name]Mapper")
                 .ForType<Account>()
-                .ForType<AccountRoles>()
+                .ForType<AccountRole>()
                 .ForType<AccountExternalLogins>()
-                .ForType<AccountBadges>()
+                .ForType<AccountBadge>()
                 .ForType<Role>()
                 .ForType<Badge>()
                 .ForType<Post>()
@@ -80,9 +80,7 @@ namespace CoinGardenWorldMobileApp.Models
                 .AlterType(type => type.IsEnum || Nullable.GetUnderlyingType(type)?.IsEnum == true, typeof(string))
                 .ShallowCopyForSameType(true)
 
-                .ForType<AccountRoles>(cfg => cfg.Ignore(it => it.Account))
                 .ForType<AccountExternalLogins>(cfg => cfg.Ignore(it => it.Account))
-                .ForType<AccountBadges>(cfg => cfg.Ignore(it => it.Account))
                  // .ForType<Post>(cfg => cfg.Ignore(it => it.Account))
 
                  .ForType<Garden>(cfg => cfg.Ignore(it => it.Flowers))

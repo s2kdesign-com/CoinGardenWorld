@@ -9,6 +9,8 @@ namespace CoinGardenWorld.Constants
 
     public enum BadgeTypes
     {
+        SpeciallyAssigned,
+
         BasedOnTimeRegistered,
 
         BasedOnUploadsCount,

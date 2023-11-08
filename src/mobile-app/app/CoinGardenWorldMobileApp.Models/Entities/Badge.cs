@@ -13,6 +13,12 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         [StringLength(150, ErrorMessage = "{0} can have a max of {1} characters")]
         public string Name { get; set; }
 
+        [StringLength(50, ErrorMessage = "{0} can have a max of {1} characters")]
+        public string Icon { get; set; }
+
+        [StringLength(50, ErrorMessage = "{0} can have a max of {1} characters")]
+        public string Color { get; set; }
+
         [StringLength(500, ErrorMessage = "{0} can have a max of {1} characters")]
         public string? Description { get; set; }
 

@@ -14,6 +14,8 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         public string Name { get; set; }
 
 
+        public List<BlobImage>? Images { get; set; }
+
         public Visibility Visibility { get; set; } = Visibility.Public;
 
         [ForeignKey(nameof(Account))]

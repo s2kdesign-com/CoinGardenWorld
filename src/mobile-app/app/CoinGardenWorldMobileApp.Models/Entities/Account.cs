@@ -24,15 +24,14 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         [StringLength(500, ErrorMessage = "{0} can have a max of {1} characters")]
         public string? ProfileIntroduction { get; set; }
 
-        public byte[]? ProfilePicure { get; set; }
+        public BlobImage? ProfilePicture { get; set; }
 
+        public List<AccountBadge>? Badges { get; set; } 
+
+        public List<AccountRole>? Roles { get; set; } 
 
         [IgnoreOnList]
-        //  [InverseProperty("Account")]
-        public ICollection<AccountRoles> Roles { get; set; } = new List<AccountRoles>();
-
-        [IgnoreOnList]
-        public ICollection<AccountExternalLogins> ExternalLogins { get; set; } = new List<AccountExternalLogins>();
+        public List<AccountExternalLogins>? ExternalLogins { get; set; } 
 
     }
 }

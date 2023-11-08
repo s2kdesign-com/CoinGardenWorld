@@ -12,6 +12,8 @@ namespace CoinGardenWorldMobileApp.Models.Entities
     public class AccountExternalLogins : BaseEntity
     {
 
+        [StringLength(70, ErrorMessage = "{0} can have a max of {1} characters")]
+        public string ObjectIdAzureAd { get; set; }
 
         [ForeignKey(nameof(Account))]
         public Guid AccountId { get; set; }
@@ -23,8 +25,6 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         [StringLength(150, ErrorMessage = "{0} can have a max of {1} characters")]
         public string? DisplayName { get; set; }
 
-        [StringLength(70, ErrorMessage = "{0} can have a max of {1} characters")]
-        public string ObjectIdAzureAd { get; set; } 
 
         [StringLength(70, ErrorMessage = "{0} can have a max of {1} characters")]
         public string? IdentityProvider { get; set; }

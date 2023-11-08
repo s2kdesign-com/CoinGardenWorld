@@ -31,13 +31,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
         // GET: api/Flowers
         [HttpGet]
-        [EnableQuery]
-        [Produces("application/json")]
         [ProducesResponseType(typeof(IEnumerable<FlowerList>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IQueryable<FlowerList> GetFlowers()
+        public ActionResult<IEnumerable<FlowerList>> GetFlowers()
         {
-            return _unitOfWork.Repository.List().Select(FlowerMapper.ProjectToList);
+            return Ok(_unitOfWork.Repository.List().ToArray().Select(e => FlowerMapper.ProjectToList));
         }
 
         // GET: api/Flowers/5

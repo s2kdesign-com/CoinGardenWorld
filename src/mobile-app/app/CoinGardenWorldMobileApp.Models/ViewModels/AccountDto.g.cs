@@ -10,9 +10,10 @@ namespace CoinGardenWorldMobileApp.Models.ViewModels
         public string? Username { get; set; }
         public string? DisplayName { get; set; }
         public string? ProfileIntroduction { get; set; }
-        public byte[]? ProfilePicure { get; set; }
-        public ICollection<AccountRolesDto> Roles { get; set; }
-        public ICollection<AccountExternalLoginsDto> ExternalLogins { get; set; }
+        public BlobImageDto? ProfilePicture { get; set; }
+        public List<AccountBadgeDto?>? Badges { get; set; }
+        public List<AccountRoleDto?>? Roles { get; set; }
+        public List<AccountExternalLoginsDto?>? ExternalLogins { get; set; }
         public Guid Id { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
         public DateTimeOffset? UpdatedOn { get; set; }

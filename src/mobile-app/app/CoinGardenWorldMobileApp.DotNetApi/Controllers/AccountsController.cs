@@ -16,6 +16,8 @@ using CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer;
 using System.Linq;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
+using System.Collections;
 
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
@@ -36,20 +38,15 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
         // GET: api/Accounts
         [HttpGet]
-        [EnableQuery]
         [Produces("application/json")]
         [ProducesResponseType(typeof(IEnumerable<AccountList>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IQueryable<AccountList> GetAccounts()
+        public ActionResult<IEnumerable<AccountList>> GetAccounts()
         {
-            //  Before Odata
-            //var accountsQuery =  _unitOfWork.AccountRepository.List(
-            //    orderBy: q => q.OrderBy(d => d.CreatedOn)
-            //    );
-
-            return _unitOfWork.Repository.List(includeProperties: "").Select(AccountMapper.ProjectToList);
+            return Ok(_unitOfWork.Repository.List().ToArray().Select(e => e.AdaptToList()));
         }
-        
+
+
         // GET: api/Accounts/5
         /// <summary>
         /// 
@@ -68,7 +65,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(AccountDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<AccountDto>> GetAccount(Guid id, string includeProperties = "ExternalLogins,Roles,Roles.Role")
+        public async Task<ActionResult<AccountDto>> GetAccount(Guid id, string includeProperties = "ExternalLogins")
         {
             var account = await _unitOfWork.Repository.GetByIdAsync(id, includeProperties);
             ;

@@ -19,11 +19,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 Account = funcMain1(p1.Account),
                 Title = p1.Title,
                 Content = p1.Content,
-                LinkOrImageUrl = p1.LinkOrImageUrl,
-                GardenId = p1.GardenId,
-                Garden = funcMain4(p1.Garden),
-                FlowerId = p1.FlowerId,
-                Flower = funcMain8(p1.Flower),
+                ExternalUrl = p1.ExternalUrl,
+                Images = funcMain5(p1.Images),
                 PostType = Enum<PostType>.ToString(p1.PostType),
                 Visibility = Enum<Visibility>.ToString(p1.Visibility),
                 Id = p1.Id,
@@ -32,506 +29,230 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 DeletedAt = p1.DeletedAt
             };
         }
-        public static PostDto AdaptTo(this Post p17, PostDto p18)
+        public static PostDto AdaptTo(this Post p7, PostDto p8)
         {
-            if (p17 == null)
+            if (p7 == null)
             {
                 return null;
             }
-            PostDto result = p18 ?? new PostDto();
+            PostDto result = p8 ?? new PostDto();
             
-            result.AccountId = p17.AccountId;
-            result.Account = funcMain16(p17.Account, result.Account);
-            result.Title = p17.Title;
-            result.Content = p17.Content;
-            result.LinkOrImageUrl = p17.LinkOrImageUrl;
-            result.GardenId = p17.GardenId;
-            result.Garden = funcMain19(p17.Garden, result.Garden);
-            result.FlowerId = p17.FlowerId;
-            result.Flower = funcMain23(p17.Flower, result.Flower);
-            result.PostType = Enum<PostType>.ToString(p17.PostType);
-            result.Visibility = Enum<Visibility>.ToString(p17.Visibility);
-            result.Id = p17.Id;
-            result.CreatedOn = p17.CreatedOn;
-            result.UpdatedOn = p17.UpdatedOn;
-            result.DeletedAt = p17.DeletedAt;
+            result.AccountId = p7.AccountId;
+            result.Account = funcMain6(p7.Account, result.Account);
+            result.Title = p7.Title;
+            result.Content = p7.Content;
+            result.ExternalUrl = p7.ExternalUrl;
+            result.Images = funcMain11(p7.Images, result.Images);
+            result.PostType = Enum<PostType>.ToString(p7.PostType);
+            result.Visibility = Enum<Visibility>.ToString(p7.Visibility);
+            result.Id = p7.Id;
+            result.CreatedOn = p7.CreatedOn;
+            result.UpdatedOn = p7.UpdatedOn;
+            result.DeletedAt = p7.DeletedAt;
             return result;
             
         }
-        public static Expression<Func<Post, PostDto>> ProjectToDto => p49 => new PostDto()
+        public static Expression<Func<Post, PostDto>> ProjectToDto => p21 => new PostDto()
         {
-            AccountId = p49.AccountId,
-            Account = p49.Account == null ? null : new AccountDto()
+            AccountId = p21.AccountId,
+            Account = new AccountDto()
             {
-                Email = p49.Account.Email,
-                Username = p49.Account.Username,
-                DisplayName = p49.Account.DisplayName,
-                ProfileIntroduction = p49.Account.ProfileIntroduction,
-                ProfilePicure = p49.Account.ProfilePicure,
-                Roles = p49.Account.Roles.Select<AccountRoles, AccountRolesDto>(p50 => new AccountRolesDto()
+                Email = p21.Account.Email,
+                Username = p21.Account.Username,
+                DisplayName = p21.Account.DisplayName,
+                ProfileIntroduction = p21.Account.ProfileIntroduction,
+                ProfilePicture = p21.Account.ProfilePicture == null ? null : new BlobImageDto()
                 {
-                    AccountId = p50.AccountId,
-                    RoleId = p50.RoleId,
-                    Role = p50.Role == null ? null : new RoleDto()
-                    {
-                        Name = p50.Role.Name,
-                        Description = p50.Role.Description,
-                        Visibility = Enum<Visibility>.ToString(p50.Role.Visibility),
-                        Id = p50.Role.Id,
-                        CreatedOn = p50.Role.CreatedOn,
-                        UpdatedOn = p50.Role.UpdatedOn,
-                        DeletedAt = p50.Role.DeletedAt
-                    },
-                    Id = p50.Id,
-                    CreatedOn = p50.CreatedOn,
-                    UpdatedOn = p50.UpdatedOn,
-                    DeletedAt = p50.DeletedAt
-                }).ToList<AccountRolesDto>(),
-                ExternalLogins = p49.Account.ExternalLogins.Select<AccountExternalLogins, AccountExternalLoginsDto>(p51 => new AccountExternalLoginsDto()
+                    ImageId = p21.Account.ProfilePicture.ImageId,
+                    ImageUrl = p21.Account.ProfilePicture.ImageUrl
+                },
+                Badges = p21.Account.Badges.Select<AccountBadge, AccountBadgeDto>(p22 => new AccountBadgeDto()
                 {
-                    AccountId = p51.AccountId,
-                    DisplayName = p51.DisplayName,
-                    ObjectIdAzureAd = p51.ObjectIdAzureAd,
-                    IdentityProvider = p51.IdentityProvider,
-                    ProfilePictureUrl = p51.ProfilePictureUrl,
-                    Id = p51.Id,
-                    CreatedOn = p51.CreatedOn,
-                    UpdatedOn = p51.UpdatedOn,
-                    DeletedAt = p51.DeletedAt
+                    BadgeId = p22.BadgeId,
+                    BadgeName = p22.BadgeName,
+                    BadgeIcon = p22.BadgeIcon,
+                    BadgeColor = p22.BadgeColor,
+                    EarnedOn = p22.EarnedOn
+                }).ToList<AccountBadgeDto>(),
+                Roles = p21.Account.Roles.Select<AccountRole, AccountRoleDto>(p23 => new AccountRoleDto()
+                {
+                    RoleId = p23.RoleId,
+                    RoleName = p23.RoleName,
+                    AssignedOn = p23.AssignedOn
+                }).ToList<AccountRoleDto>(),
+                ExternalLogins = p21.Account.ExternalLogins.Select<AccountExternalLogins, AccountExternalLoginsDto>(p24 => new AccountExternalLoginsDto()
+                {
+                    ObjectIdAzureAd = p24.ObjectIdAzureAd,
+                    AccountId = p24.AccountId,
+                    DisplayName = p24.DisplayName,
+                    IdentityProvider = p24.IdentityProvider,
+                    ProfilePictureUrl = p24.ProfilePictureUrl,
+                    Id = p24.Id,
+                    CreatedOn = p24.CreatedOn,
+                    UpdatedOn = p24.UpdatedOn,
+                    DeletedAt = p24.DeletedAt
                 }).ToList<AccountExternalLoginsDto>(),
-                Id = p49.Account.Id,
-                CreatedOn = p49.Account.CreatedOn,
-                UpdatedOn = p49.Account.UpdatedOn,
-                DeletedAt = p49.Account.DeletedAt
+                Id = p21.Account.Id,
+                CreatedOn = p21.Account.CreatedOn,
+                UpdatedOn = p21.Account.UpdatedOn,
+                DeletedAt = p21.Account.DeletedAt
             },
-            Title = p49.Title,
-            Content = p49.Content,
-            LinkOrImageUrl = p49.LinkOrImageUrl,
-            GardenId = p49.GardenId,
-            Garden = p49.Garden == null ? null : new GardenDto()
+            Title = p21.Title,
+            Content = p21.Content,
+            ExternalUrl = p21.ExternalUrl,
+            Images = p21.Images.Select<BlobImage, BlobImageDto>(p25 => new BlobImageDto()
             {
-                Name = p49.Garden.Name,
-                AccountId = p49.Garden.AccountId,
-                Account = p49.Garden.Account == null ? null : new AccountDto()
-                {
-                    Email = p49.Garden.Account.Email,
-                    Username = p49.Garden.Account.Username,
-                    DisplayName = p49.Garden.Account.DisplayName,
-                    ProfileIntroduction = p49.Garden.Account.ProfileIntroduction,
-                    ProfilePicure = p49.Garden.Account.ProfilePicure,
-                    Roles = p49.Garden.Account.Roles.Select<AccountRoles, AccountRolesDto>(p52 => new AccountRolesDto()
-                    {
-                        AccountId = p52.AccountId,
-                        RoleId = p52.RoleId,
-                        Role = p52.Role == null ? null : new RoleDto()
-                        {
-                            Name = p52.Role.Name,
-                            Description = p52.Role.Description,
-                            Visibility = Enum<Visibility>.ToString(p52.Role.Visibility),
-                            Id = p52.Role.Id,
-                            CreatedOn = p52.Role.CreatedOn,
-                            UpdatedOn = p52.Role.UpdatedOn,
-                            DeletedAt = p52.Role.DeletedAt
-                        },
-                        Id = p52.Id,
-                        CreatedOn = p52.CreatedOn,
-                        UpdatedOn = p52.UpdatedOn,
-                        DeletedAt = p52.DeletedAt
-                    }).ToList<AccountRolesDto>(),
-                    ExternalLogins = p49.Garden.Account.ExternalLogins.Select<AccountExternalLogins, AccountExternalLoginsDto>(p53 => new AccountExternalLoginsDto()
-                    {
-                        AccountId = p53.AccountId,
-                        DisplayName = p53.DisplayName,
-                        ObjectIdAzureAd = p53.ObjectIdAzureAd,
-                        IdentityProvider = p53.IdentityProvider,
-                        ProfilePictureUrl = p53.ProfilePictureUrl,
-                        Id = p53.Id,
-                        CreatedOn = p53.CreatedOn,
-                        UpdatedOn = p53.UpdatedOn,
-                        DeletedAt = p53.DeletedAt
-                    }).ToList<AccountExternalLoginsDto>(),
-                    Id = p49.Garden.Account.Id,
-                    CreatedOn = p49.Garden.Account.CreatedOn,
-                    UpdatedOn = p49.Garden.Account.UpdatedOn,
-                    DeletedAt = p49.Garden.Account.DeletedAt
-                },
-                Visibility = Enum<Visibility>.ToString(p49.Garden.Visibility),
-                Id = p49.Garden.Id,
-                CreatedOn = p49.Garden.CreatedOn,
-                UpdatedOn = p49.Garden.UpdatedOn,
-                DeletedAt = p49.Garden.DeletedAt
-            },
-            FlowerId = p49.FlowerId,
-            Flower = p49.Flower == null ? null : new FlowerDto()
-            {
-                Name = p49.Flower.Name,
-                Visibility = Enum<Visibility>.ToString(p49.Flower.Visibility),
-                AccountId = p49.Flower.AccountId,
-                Account = p49.Flower.Account == null ? null : new AccountDto()
-                {
-                    Email = p49.Flower.Account.Email,
-                    Username = p49.Flower.Account.Username,
-                    DisplayName = p49.Flower.Account.DisplayName,
-                    ProfileIntroduction = p49.Flower.Account.ProfileIntroduction,
-                    ProfilePicure = p49.Flower.Account.ProfilePicure,
-                    Roles = p49.Flower.Account.Roles.Select<AccountRoles, AccountRolesDto>(p54 => new AccountRolesDto()
-                    {
-                        AccountId = p54.AccountId,
-                        RoleId = p54.RoleId,
-                        Role = p54.Role == null ? null : new RoleDto()
-                        {
-                            Name = p54.Role.Name,
-                            Description = p54.Role.Description,
-                            Visibility = Enum<Visibility>.ToString(p54.Role.Visibility),
-                            Id = p54.Role.Id,
-                            CreatedOn = p54.Role.CreatedOn,
-                            UpdatedOn = p54.Role.UpdatedOn,
-                            DeletedAt = p54.Role.DeletedAt
-                        },
-                        Id = p54.Id,
-                        CreatedOn = p54.CreatedOn,
-                        UpdatedOn = p54.UpdatedOn,
-                        DeletedAt = p54.DeletedAt
-                    }).ToList<AccountRolesDto>(),
-                    ExternalLogins = p49.Flower.Account.ExternalLogins.Select<AccountExternalLogins, AccountExternalLoginsDto>(p55 => new AccountExternalLoginsDto()
-                    {
-                        AccountId = p55.AccountId,
-                        DisplayName = p55.DisplayName,
-                        ObjectIdAzureAd = p55.ObjectIdAzureAd,
-                        IdentityProvider = p55.IdentityProvider,
-                        ProfilePictureUrl = p55.ProfilePictureUrl,
-                        Id = p55.Id,
-                        CreatedOn = p55.CreatedOn,
-                        UpdatedOn = p55.UpdatedOn,
-                        DeletedAt = p55.DeletedAt
-                    }).ToList<AccountExternalLoginsDto>(),
-                    Id = p49.Flower.Account.Id,
-                    CreatedOn = p49.Flower.Account.CreatedOn,
-                    UpdatedOn = p49.Flower.Account.UpdatedOn,
-                    DeletedAt = p49.Flower.Account.DeletedAt
-                },
-                GardenId = p49.Flower.GardenId,
-                Garden = p49.Flower.Garden == null ? null : new GardenDto()
-                {
-                    Name = p49.Flower.Garden.Name,
-                    AccountId = p49.Flower.Garden.AccountId,
-                    Account = p49.Flower.Garden.Account == null ? null : new AccountDto()
-                    {
-                        Email = p49.Flower.Garden.Account.Email,
-                        Username = p49.Flower.Garden.Account.Username,
-                        DisplayName = p49.Flower.Garden.Account.DisplayName,
-                        ProfileIntroduction = p49.Flower.Garden.Account.ProfileIntroduction,
-                        ProfilePicure = p49.Flower.Garden.Account.ProfilePicure,
-                        Roles = p49.Flower.Garden.Account.Roles.Select<AccountRoles, AccountRolesDto>(p56 => new AccountRolesDto()
-                        {
-                            AccountId = p56.AccountId,
-                            RoleId = p56.RoleId,
-                            Role = p56.Role == null ? null : new RoleDto()
-                            {
-                                Name = p56.Role.Name,
-                                Description = p56.Role.Description,
-                                Visibility = Enum<Visibility>.ToString(p56.Role.Visibility),
-                                Id = p56.Role.Id,
-                                CreatedOn = p56.Role.CreatedOn,
-                                UpdatedOn = p56.Role.UpdatedOn,
-                                DeletedAt = p56.Role.DeletedAt
-                            },
-                            Id = p56.Id,
-                            CreatedOn = p56.CreatedOn,
-                            UpdatedOn = p56.UpdatedOn,
-                            DeletedAt = p56.DeletedAt
-                        }).ToList<AccountRolesDto>(),
-                        ExternalLogins = p49.Flower.Garden.Account.ExternalLogins.Select<AccountExternalLogins, AccountExternalLoginsDto>(p57 => new AccountExternalLoginsDto()
-                        {
-                            AccountId = p57.AccountId,
-                            DisplayName = p57.DisplayName,
-                            ObjectIdAzureAd = p57.ObjectIdAzureAd,
-                            IdentityProvider = p57.IdentityProvider,
-                            ProfilePictureUrl = p57.ProfilePictureUrl,
-                            Id = p57.Id,
-                            CreatedOn = p57.CreatedOn,
-                            UpdatedOn = p57.UpdatedOn,
-                            DeletedAt = p57.DeletedAt
-                        }).ToList<AccountExternalLoginsDto>(),
-                        Id = p49.Flower.Garden.Account.Id,
-                        CreatedOn = p49.Flower.Garden.Account.CreatedOn,
-                        UpdatedOn = p49.Flower.Garden.Account.UpdatedOn,
-                        DeletedAt = p49.Flower.Garden.Account.DeletedAt
-                    },
-                    Visibility = Enum<Visibility>.ToString(p49.Flower.Garden.Visibility),
-                    Id = p49.Flower.Garden.Id,
-                    CreatedOn = p49.Flower.Garden.CreatedOn,
-                    UpdatedOn = p49.Flower.Garden.UpdatedOn,
-                    DeletedAt = p49.Flower.Garden.DeletedAt
-                },
-                Id = p49.Flower.Id,
-                CreatedOn = p49.Flower.CreatedOn,
-                UpdatedOn = p49.Flower.UpdatedOn,
-                DeletedAt = p49.Flower.DeletedAt
-            },
-            PostType = Enum<PostType>.ToString(p49.PostType),
-            Visibility = Enum<Visibility>.ToString(p49.Visibility),
-            Id = p49.Id,
-            CreatedOn = p49.CreatedOn,
-            UpdatedOn = p49.UpdatedOn,
-            DeletedAt = p49.DeletedAt
+                ImageId = p25.ImageId,
+                ImageUrl = p25.ImageUrl
+            }).ToList<BlobImageDto>(),
+            PostType = Enum<PostType>.ToString(p21.PostType),
+            Visibility = Enum<Visibility>.ToString(p21.Visibility),
+            Id = p21.Id,
+            CreatedOn = p21.CreatedOn,
+            UpdatedOn = p21.UpdatedOn,
+            DeletedAt = p21.DeletedAt
         };
-        public static PostList AdaptToList(this Post p58)
+        public static PostList AdaptToList(this Post p26)
         {
-            return p58 == null ? null : new PostList()
+            return p26 == null ? null : new PostList()
             {
-                AccountId = p58.AccountId,
-                Account = p58.Account == null ? null : new AccountList()
-                {
-                    Email = p58.Account.Email,
-                    Username = p58.Account.Username,
-                    DisplayName = p58.Account.DisplayName,
-                    ProfileIntroduction = p58.Account.ProfileIntroduction,
-                    ProfilePicure = p58.Account.ProfilePicure,
-                    Id = p58.Account.Id,
-                    CreatedOn = p58.Account.CreatedOn
-                },
-                Title = p58.Title,
-                Content = p58.Content,
-                LinkOrImageUrl = p58.LinkOrImageUrl,
-                GardenId = p58.GardenId,
-                Garden = p58.Garden == null ? null : new GardenList()
-                {
-                    Name = p58.Garden.Name,
-                    AccountId = p58.Garden.AccountId,
-                    Account = p58.Garden.Account == null ? null : new AccountList()
-                    {
-                        Email = p58.Garden.Account.Email,
-                        Username = p58.Garden.Account.Username,
-                        DisplayName = p58.Garden.Account.DisplayName,
-                        ProfileIntroduction = p58.Garden.Account.ProfileIntroduction,
-                        ProfilePicure = p58.Garden.Account.ProfilePicure,
-                        Id = p58.Garden.Account.Id,
-                        CreatedOn = p58.Garden.Account.CreatedOn
-                    },
-                    Visibility = Enum<Visibility>.ToString(p58.Garden.Visibility),
-                    Id = p58.Garden.Id,
-                    CreatedOn = p58.Garden.CreatedOn
-                },
-                FlowerId = p58.FlowerId,
-                Flower = p58.Flower == null ? null : new FlowerList()
-                {
-                    Name = p58.Flower.Name,
-                    Visibility = Enum<Visibility>.ToString(p58.Flower.Visibility),
-                    AccountId = p58.Flower.AccountId,
-                    Account = p58.Flower.Account == null ? null : new AccountList()
-                    {
-                        Email = p58.Flower.Account.Email,
-                        Username = p58.Flower.Account.Username,
-                        DisplayName = p58.Flower.Account.DisplayName,
-                        ProfileIntroduction = p58.Flower.Account.ProfileIntroduction,
-                        ProfilePicure = p58.Flower.Account.ProfilePicure,
-                        Id = p58.Flower.Account.Id,
-                        CreatedOn = p58.Flower.Account.CreatedOn
-                    },
-                    GardenId = p58.Flower.GardenId,
-                    Garden = p58.Flower.Garden == null ? null : new GardenList()
-                    {
-                        Name = p58.Flower.Garden.Name,
-                        AccountId = p58.Flower.Garden.AccountId,
-                        Account = p58.Flower.Garden.Account == null ? null : new AccountList()
-                        {
-                            Email = p58.Flower.Garden.Account.Email,
-                            Username = p58.Flower.Garden.Account.Username,
-                            DisplayName = p58.Flower.Garden.Account.DisplayName,
-                            ProfileIntroduction = p58.Flower.Garden.Account.ProfileIntroduction,
-                            ProfilePicure = p58.Flower.Garden.Account.ProfilePicure,
-                            Id = p58.Flower.Garden.Account.Id,
-                            CreatedOn = p58.Flower.Garden.Account.CreatedOn
-                        },
-                        Visibility = Enum<Visibility>.ToString(p58.Flower.Garden.Visibility),
-                        Id = p58.Flower.Garden.Id,
-                        CreatedOn = p58.Flower.Garden.CreatedOn
-                    },
-                    Id = p58.Flower.Id,
-                    CreatedOn = p58.Flower.CreatedOn
-                },
-                PostType = Enum<PostType>.ToString(p58.PostType),
-                Visibility = Enum<Visibility>.ToString(p58.Visibility),
-                Id = p58.Id,
-                CreatedOn = p58.CreatedOn
+                AccountId = p26.AccountId,
+                Account = funcMain12(p26.Account),
+                Title = p26.Title,
+                Content = p26.Content,
+                ExternalUrl = p26.ExternalUrl,
+                Images = funcMain15(p26.Images),
+                PostType = Enum<PostType>.ToString(p26.PostType),
+                Visibility = Enum<Visibility>.ToString(p26.Visibility),
+                Id = p26.Id,
+                CreatedOn = p26.CreatedOn
             };
         }
-        public static PostList AdaptTo(this Post p59, PostList p60)
+        public static PostList AdaptTo(this Post p31, PostList p32)
         {
-            if (p59 == null)
+            if (p31 == null)
             {
                 return null;
             }
-            PostList result = p60 ?? new PostList();
+            PostList result = p32 ?? new PostList();
             
-            result.AccountId = p59.AccountId;
-            result.Account = funcMain31(p59.Account, result.Account);
-            result.Title = p59.Title;
-            result.Content = p59.Content;
-            result.LinkOrImageUrl = p59.LinkOrImageUrl;
-            result.GardenId = p59.GardenId;
-            result.Garden = funcMain32(p59.Garden, result.Garden);
-            result.FlowerId = p59.FlowerId;
-            result.Flower = funcMain34(p59.Flower, result.Flower);
-            result.PostType = Enum<PostType>.ToString(p59.PostType);
-            result.Visibility = Enum<Visibility>.ToString(p59.Visibility);
-            result.Id = p59.Id;
-            result.CreatedOn = p59.CreatedOn;
+            result.AccountId = p31.AccountId;
+            result.Account = funcMain16(p31.Account, result.Account);
+            result.Title = p31.Title;
+            result.Content = p31.Content;
+            result.ExternalUrl = p31.ExternalUrl;
+            result.Images = funcMain20(p31.Images, result.Images);
+            result.PostType = Enum<PostType>.ToString(p31.PostType);
+            result.Visibility = Enum<Visibility>.ToString(p31.Visibility);
+            result.Id = p31.Id;
+            result.CreatedOn = p31.CreatedOn;
             return result;
             
         }
-        public static Expression<Func<Post, PostList>> ProjectToList => p75 => new PostList()
+        public static Expression<Func<Post, PostList>> ProjectToList => p43 => new PostList()
         {
-            AccountId = p75.AccountId,
-            Account = p75.Account == null ? null : new AccountList()
+            AccountId = p43.AccountId,
+            Account = new AccountList()
             {
-                Email = p75.Account.Email,
-                Username = p75.Account.Username,
-                DisplayName = p75.Account.DisplayName,
-                ProfileIntroduction = p75.Account.ProfileIntroduction,
-                ProfilePicure = p75.Account.ProfilePicure,
-                Id = p75.Account.Id,
-                CreatedOn = p75.Account.CreatedOn
+                Email = p43.Account.Email,
+                Username = p43.Account.Username,
+                DisplayName = p43.Account.DisplayName,
+                ProfileIntroduction = p43.Account.ProfileIntroduction,
+                ProfilePicture = p43.Account.ProfilePicture == null ? null : new BlobImageList()
+                {
+                    ImageId = p43.Account.ProfilePicture.ImageId,
+                    ImageUrl = p43.Account.ProfilePicture.ImageUrl
+                },
+                Badges = p43.Account.Badges.Select<AccountBadge, AccountBadgeList>(p44 => new AccountBadgeList()
+                {
+                    BadgeId = p44.BadgeId,
+                    BadgeName = p44.BadgeName,
+                    BadgeIcon = p44.BadgeIcon,
+                    BadgeColor = p44.BadgeColor,
+                    EarnedOn = p44.EarnedOn
+                }).ToList<AccountBadgeList>(),
+                Roles = p43.Account.Roles.Select<AccountRole, AccountRoleList>(p45 => new AccountRoleList()
+                {
+                    RoleId = p45.RoleId,
+                    RoleName = p45.RoleName,
+                    AssignedOn = p45.AssignedOn
+                }).ToList<AccountRoleList>(),
+                Id = p43.Account.Id,
+                CreatedOn = p43.Account.CreatedOn
             },
-            Title = p75.Title,
-            Content = p75.Content,
-            LinkOrImageUrl = p75.LinkOrImageUrl,
-            GardenId = p75.GardenId,
-            Garden = p75.Garden == null ? null : new GardenList()
+            Title = p43.Title,
+            Content = p43.Content,
+            ExternalUrl = p43.ExternalUrl,
+            Images = p43.Images.Select<BlobImage, BlobImageList>(p46 => new BlobImageList()
             {
-                Name = p75.Garden.Name,
-                AccountId = p75.Garden.AccountId,
-                Account = p75.Garden.Account == null ? null : new AccountList()
-                {
-                    Email = p75.Garden.Account.Email,
-                    Username = p75.Garden.Account.Username,
-                    DisplayName = p75.Garden.Account.DisplayName,
-                    ProfileIntroduction = p75.Garden.Account.ProfileIntroduction,
-                    ProfilePicure = p75.Garden.Account.ProfilePicure,
-                    Id = p75.Garden.Account.Id,
-                    CreatedOn = p75.Garden.Account.CreatedOn
-                },
-                Visibility = Enum<Visibility>.ToString(p75.Garden.Visibility),
-                Id = p75.Garden.Id,
-                CreatedOn = p75.Garden.CreatedOn
-            },
-            FlowerId = p75.FlowerId,
-            Flower = p75.Flower == null ? null : new FlowerList()
-            {
-                Name = p75.Flower.Name,
-                Visibility = Enum<Visibility>.ToString(p75.Flower.Visibility),
-                AccountId = p75.Flower.AccountId,
-                Account = p75.Flower.Account == null ? null : new AccountList()
-                {
-                    Email = p75.Flower.Account.Email,
-                    Username = p75.Flower.Account.Username,
-                    DisplayName = p75.Flower.Account.DisplayName,
-                    ProfileIntroduction = p75.Flower.Account.ProfileIntroduction,
-                    ProfilePicure = p75.Flower.Account.ProfilePicure,
-                    Id = p75.Flower.Account.Id,
-                    CreatedOn = p75.Flower.Account.CreatedOn
-                },
-                GardenId = p75.Flower.GardenId,
-                Garden = p75.Flower.Garden == null ? null : new GardenList()
-                {
-                    Name = p75.Flower.Garden.Name,
-                    AccountId = p75.Flower.Garden.AccountId,
-                    Account = p75.Flower.Garden.Account == null ? null : new AccountList()
-                    {
-                        Email = p75.Flower.Garden.Account.Email,
-                        Username = p75.Flower.Garden.Account.Username,
-                        DisplayName = p75.Flower.Garden.Account.DisplayName,
-                        ProfileIntroduction = p75.Flower.Garden.Account.ProfileIntroduction,
-                        ProfilePicure = p75.Flower.Garden.Account.ProfilePicure,
-                        Id = p75.Flower.Garden.Account.Id,
-                        CreatedOn = p75.Flower.Garden.Account.CreatedOn
-                    },
-                    Visibility = Enum<Visibility>.ToString(p75.Flower.Garden.Visibility),
-                    Id = p75.Flower.Garden.Id,
-                    CreatedOn = p75.Flower.Garden.CreatedOn
-                },
-                Id = p75.Flower.Id,
-                CreatedOn = p75.Flower.CreatedOn
-            },
-            PostType = Enum<PostType>.ToString(p75.PostType),
-            Visibility = Enum<Visibility>.ToString(p75.Visibility),
-            Id = p75.Id,
-            CreatedOn = p75.CreatedOn
+                ImageId = p46.ImageId,
+                ImageUrl = p46.ImageUrl
+            }).ToList<BlobImageList>(),
+            PostType = Enum<PostType>.ToString(p43.PostType),
+            Visibility = Enum<Visibility>.ToString(p43.Visibility),
+            Id = p43.Id,
+            CreatedOn = p43.CreatedOn
         };
-        public static Post AdaptToPost(this PostAdd p76)
+        public static Post AdaptToPost(this PostAdd p47)
         {
-            return p76 == null ? null : new Post()
+            return p47 == null ? null : new Post()
             {
-                AccountId = p76.AccountId,
-                Account = p76.Account == null ? null : new Account()
-                {
-                    Email = p76.Account.Email,
-                    Username = p76.Account.Username,
-                    DisplayName = p76.Account.DisplayName,
-                    ProfileIntroduction = p76.Account.ProfileIntroduction,
-                    ProfilePicure = p76.Account.ProfilePicure
-                },
-                Title = p76.Title,
-                Content = p76.Content,
-                LinkOrImageUrl = p76.LinkOrImageUrl,
-                GardenId = p76.GardenId,
-                FlowerId = p76.FlowerId,
-                PostType = p76.PostType == null ? PostType.Text : Enum<PostType>.Parse(p76.PostType),
-                Visibility = p76.Visibility == null ? Visibility.Public : Enum<Visibility>.Parse(p76.Visibility)
+                AccountId = p47.AccountId,
+                Account = funcMain21(p47.Account),
+                Title = p47.Title,
+                Content = p47.Content,
+                ExternalUrl = p47.ExternalUrl,
+                Images = funcMain24(p47.Images),
+                PostType = p47.PostType == null ? PostType.Text : Enum<PostType>.Parse(p47.PostType),
+                Visibility = p47.Visibility == null ? Visibility.Public : Enum<Visibility>.Parse(p47.Visibility)
             };
         }
-        public static Post AdaptTo(this PostMerge p77, Post p78)
+        public static Post AdaptTo(this PostMerge p52, Post p53)
         {
-            if (p77 == null)
+            if (p52 == null)
             {
                 return null;
             }
-            Post result = p78 ?? new Post();
+            Post result = p53 ?? new Post();
             
-            if (p77.AccountId != null)
+            if (p52.AccountId != null)
             {
-                result.AccountId = (Guid)p77.AccountId;
+                result.AccountId = (Guid)p52.AccountId;
             }
             
-            if (p77.Account != null)
+            if (p52.Account != null)
             {
-                result.Account = funcMain38(p77.Account, result.Account);
+                result.Account = funcMain25(p52.Account, result.Account);
             }
             
-            if (p77.Title != null)
+            if (p52.Title != null)
             {
-                result.Title = p77.Title;
+                result.Title = p52.Title;
             }
             
-            if (p77.Content != null)
+            if (p52.Content != null)
             {
-                result.Content = p77.Content;
+                result.Content = p52.Content;
             }
             
-            if (p77.LinkOrImageUrl != null)
+            if (p52.ExternalUrl != null)
             {
-                result.LinkOrImageUrl = p77.LinkOrImageUrl;
+                result.ExternalUrl = p52.ExternalUrl;
             }
             
-            if (p77.GardenId != null)
+            if (p52.Images != null)
             {
-                result.GardenId = p77.GardenId;
+                result.Images = funcMain31(p52.Images, result.Images);
             }
             
-            if (p77.FlowerId != null)
+            if (p52.PostType != null)
             {
-                result.FlowerId = p77.FlowerId;
+                result.PostType = Enum<PostType>.Parse(p52.PostType);
             }
             
-            if (p77.PostType != null)
+            if (p52.Visibility != null)
             {
-                result.PostType = Enum<PostType>.Parse(p77.PostType);
-            }
-            
-            if (p77.Visibility != null)
-            {
-                result.Visibility = Enum<Visibility>.Parse(p77.Visibility);
+                result.Visibility = Enum<Visibility>.Parse(p52.Visibility);
             }
             return result;
             
@@ -545,9 +266,14 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                 Username = p2.Username,
                 DisplayName = p2.DisplayName,
                 ProfileIntroduction = p2.ProfileIntroduction,
-                ProfilePicure = p2.ProfilePicure,
-                Roles = funcMain2(p2.Roles),
-                ExternalLogins = funcMain3(p2.ExternalLogins),
+                ProfilePicture = p2.ProfilePicture == null ? null : new BlobImageDto()
+                {
+                    ImageId = p2.ProfilePicture.ImageId,
+                    ImageUrl = p2.ProfilePicture.ImageUrl
+                },
+                Badges = funcMain2(p2.Badges),
+                Roles = funcMain3(p2.Roles),
+                ExternalLogins = funcMain4(p2.ExternalLogins),
                 Id = p2.Id,
                 CreatedOn = p2.CreatedOn,
                 UpdatedOn = p2.UpdatedOn,
@@ -555,558 +281,354 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             };
         }
         
-        private static GardenDto funcMain4(Garden p5)
+        private static List<BlobImageDto> funcMain5(List<BlobImage> p6)
         {
-            return p5 == null ? null : new GardenDto()
+            if (p6 == null)
             {
-                Name = p5.Name,
-                AccountId = p5.AccountId,
-                Account = funcMain5(p5.Account),
-                Visibility = Enum<Visibility>.ToString(p5.Visibility),
-                Id = p5.Id,
-                CreatedOn = p5.CreatedOn,
-                UpdatedOn = p5.UpdatedOn,
-                DeletedAt = p5.DeletedAt
-            };
+                return null;
+            }
+            List<BlobImageDto> result = new List<BlobImageDto>(p6.Count);
+            
+            int i = 0;
+            int len = p6.Count;
+            
+            while (i < len)
+            {
+                BlobImage item = p6[i];
+                result.Add(item == null ? null : new BlobImageDto()
+                {
+                    ImageId = item.ImageId,
+                    ImageUrl = item.ImageUrl
+                });
+                i++;
+            }
+            return result;
+            
         }
         
-        private static FlowerDto funcMain8(Flower p9)
+        private static AccountDto funcMain6(Account p9, AccountDto p10)
         {
-            return p9 == null ? null : new FlowerDto()
+            if (p9 == null)
             {
-                Name = p9.Name,
-                Visibility = Enum<Visibility>.ToString(p9.Visibility),
-                AccountId = p9.AccountId,
-                Account = funcMain9(p9.Account),
-                GardenId = p9.GardenId,
-                Garden = funcMain12(p9.Garden),
-                Id = p9.Id,
-                CreatedOn = p9.CreatedOn,
-                UpdatedOn = p9.UpdatedOn,
-                DeletedAt = p9.DeletedAt
-            };
+                return null;
+            }
+            AccountDto result = p10 ?? new AccountDto();
+            
+            result.Email = p9.Email;
+            result.Username = p9.Username;
+            result.DisplayName = p9.DisplayName;
+            result.ProfileIntroduction = p9.ProfileIntroduction;
+            result.ProfilePicture = funcMain7(p9.ProfilePicture, result.ProfilePicture);
+            result.Badges = funcMain8(p9.Badges, result.Badges);
+            result.Roles = funcMain9(p9.Roles, result.Roles);
+            result.ExternalLogins = funcMain10(p9.ExternalLogins, result.ExternalLogins);
+            result.Id = p9.Id;
+            result.CreatedOn = p9.CreatedOn;
+            result.UpdatedOn = p9.UpdatedOn;
+            result.DeletedAt = p9.DeletedAt;
+            return result;
+            
         }
         
-        private static AccountDto funcMain16(Account p19, AccountDto p20)
+        private static List<BlobImageDto> funcMain11(List<BlobImage> p19, List<BlobImageDto> p20)
         {
             if (p19 == null)
             {
                 return null;
             }
-            AccountDto result = p20 ?? new AccountDto();
+            List<BlobImageDto> result = new List<BlobImageDto>(p19.Count);
             
-            result.Email = p19.Email;
-            result.Username = p19.Username;
-            result.DisplayName = p19.DisplayName;
-            result.ProfileIntroduction = p19.ProfileIntroduction;
-            result.ProfilePicure = p19.ProfilePicure;
-            result.Roles = funcMain17(p19.Roles, result.Roles);
-            result.ExternalLogins = funcMain18(p19.ExternalLogins, result.ExternalLogins);
-            result.Id = p19.Id;
-            result.CreatedOn = p19.CreatedOn;
-            result.UpdatedOn = p19.UpdatedOn;
-            result.DeletedAt = p19.DeletedAt;
+            int i = 0;
+            int len = p19.Count;
+            
+            while (i < len)
+            {
+                BlobImage item = p19[i];
+                result.Add(item == null ? null : new BlobImageDto()
+                {
+                    ImageId = item.ImageId,
+                    ImageUrl = item.ImageUrl
+                });
+                i++;
+            }
             return result;
             
         }
         
-        private static GardenDto funcMain19(Garden p25, GardenDto p26)
+        private static AccountList funcMain12(Account p27)
         {
-            if (p25 == null)
+            return p27 == null ? null : new AccountList()
+            {
+                Email = p27.Email,
+                Username = p27.Username,
+                DisplayName = p27.DisplayName,
+                ProfileIntroduction = p27.ProfileIntroduction,
+                ProfilePicture = p27.ProfilePicture == null ? null : new BlobImageList()
+                {
+                    ImageId = p27.ProfilePicture.ImageId,
+                    ImageUrl = p27.ProfilePicture.ImageUrl
+                },
+                Badges = funcMain13(p27.Badges),
+                Roles = funcMain14(p27.Roles),
+                Id = p27.Id,
+                CreatedOn = p27.CreatedOn
+            };
+        }
+        
+        private static List<BlobImageList> funcMain15(List<BlobImage> p30)
+        {
+            if (p30 == null)
             {
                 return null;
             }
-            GardenDto result = p26 ?? new GardenDto();
+            List<BlobImageList> result = new List<BlobImageList>(p30.Count);
             
-            result.Name = p25.Name;
-            result.AccountId = p25.AccountId;
-            result.Account = funcMain20(p25.Account, result.Account);
-            result.Visibility = Enum<Visibility>.ToString(p25.Visibility);
-            result.Id = p25.Id;
-            result.CreatedOn = p25.CreatedOn;
-            result.UpdatedOn = p25.UpdatedOn;
-            result.DeletedAt = p25.DeletedAt;
+            int i = 0;
+            int len = p30.Count;
+            
+            while (i < len)
+            {
+                BlobImage item = p30[i];
+                result.Add(item == null ? null : new BlobImageList()
+                {
+                    ImageId = item.ImageId,
+                    ImageUrl = item.ImageUrl
+                });
+                i++;
+            }
             return result;
             
         }
         
-        private static FlowerDto funcMain23(Flower p33, FlowerDto p34)
+        private static AccountList funcMain16(Account p33, AccountList p34)
         {
             if (p33 == null)
             {
                 return null;
             }
-            FlowerDto result = p34 ?? new FlowerDto();
+            AccountList result = p34 ?? new AccountList();
             
-            result.Name = p33.Name;
-            result.Visibility = Enum<Visibility>.ToString(p33.Visibility);
-            result.AccountId = p33.AccountId;
-            result.Account = funcMain24(p33.Account, result.Account);
-            result.GardenId = p33.GardenId;
-            result.Garden = funcMain27(p33.Garden, result.Garden);
+            result.Email = p33.Email;
+            result.Username = p33.Username;
+            result.DisplayName = p33.DisplayName;
+            result.ProfileIntroduction = p33.ProfileIntroduction;
+            result.ProfilePicture = funcMain17(p33.ProfilePicture, result.ProfilePicture);
+            result.Badges = funcMain18(p33.Badges, result.Badges);
+            result.Roles = funcMain19(p33.Roles, result.Roles);
             result.Id = p33.Id;
             result.CreatedOn = p33.CreatedOn;
-            result.UpdatedOn = p33.UpdatedOn;
-            result.DeletedAt = p33.DeletedAt;
             return result;
             
         }
         
-        private static AccountList funcMain31(Account p61, AccountList p62)
-        {
-            if (p61 == null)
-            {
-                return null;
-            }
-            AccountList result = p62 ?? new AccountList();
-            
-            result.Email = p61.Email;
-            result.Username = p61.Username;
-            result.DisplayName = p61.DisplayName;
-            result.ProfileIntroduction = p61.ProfileIntroduction;
-            result.ProfilePicure = p61.ProfilePicure;
-            result.Id = p61.Id;
-            result.CreatedOn = p61.CreatedOn;
-            return result;
-            
-        }
-        
-        private static GardenList funcMain32(Garden p63, GardenList p64)
-        {
-            if (p63 == null)
-            {
-                return null;
-            }
-            GardenList result = p64 ?? new GardenList();
-            
-            result.Name = p63.Name;
-            result.AccountId = p63.AccountId;
-            result.Account = funcMain33(p63.Account, result.Account);
-            result.Visibility = Enum<Visibility>.ToString(p63.Visibility);
-            result.Id = p63.Id;
-            result.CreatedOn = p63.CreatedOn;
-            return result;
-            
-        }
-        
-        private static FlowerList funcMain34(Flower p67, FlowerList p68)
-        {
-            if (p67 == null)
-            {
-                return null;
-            }
-            FlowerList result = p68 ?? new FlowerList();
-            
-            result.Name = p67.Name;
-            result.Visibility = Enum<Visibility>.ToString(p67.Visibility);
-            result.AccountId = p67.AccountId;
-            result.Account = funcMain35(p67.Account, result.Account);
-            result.GardenId = p67.GardenId;
-            result.Garden = funcMain36(p67.Garden, result.Garden);
-            result.Id = p67.Id;
-            result.CreatedOn = p67.CreatedOn;
-            return result;
-            
-        }
-        
-        private static Account funcMain38(AccountMerge p79, Account p80)
-        {
-            if (p79 == null)
-            {
-                return null;
-            }
-            Account result = p80 ?? new Account();
-            
-            if (p79.Email != null)
-            {
-                result.Email = p79.Email;
-            }
-            
-            if (p79.Username != null)
-            {
-                result.Username = p79.Username;
-            }
-            
-            if (p79.DisplayName != null)
-            {
-                result.DisplayName = p79.DisplayName;
-            }
-            
-            if (p79.ProfileIntroduction != null)
-            {
-                result.ProfileIntroduction = p79.ProfileIntroduction;
-            }
-            
-            if (p79.ProfilePicure != null)
-            {
-                result.ProfilePicure = p79.ProfilePicure;
-            }
-            return result;
-            
-        }
-        
-        private static ICollection<AccountRolesDto> funcMain2(ICollection<AccountRoles> p3)
-        {
-            if (p3 == null)
-            {
-                return null;
-            }
-            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p3.Count);
-            
-            IEnumerator<AccountRoles> enumerator = p3.GetEnumerator();
-            
-            while (enumerator.MoveNext())
-            {
-                AccountRoles item = enumerator.Current;
-                result.Add(item == null ? null : new AccountRolesDto()
-                {
-                    AccountId = item.AccountId,
-                    RoleId = item.RoleId,
-                    Role = item.Role == null ? null : new RoleDto()
-                    {
-                        Name = item.Role.Name,
-                        Description = item.Role.Description,
-                        Visibility = Enum<Visibility>.ToString(item.Role.Visibility),
-                        Id = item.Role.Id,
-                        CreatedOn = item.Role.CreatedOn,
-                        UpdatedOn = item.Role.UpdatedOn,
-                        DeletedAt = item.Role.DeletedAt
-                    },
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
-                });
-            }
-            return result;
-            
-        }
-        
-        private static ICollection<AccountExternalLoginsDto> funcMain3(ICollection<AccountExternalLogins> p4)
-        {
-            if (p4 == null)
-            {
-                return null;
-            }
-            ICollection<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p4.Count);
-            
-            IEnumerator<AccountExternalLogins> enumerator = p4.GetEnumerator();
-            
-            while (enumerator.MoveNext())
-            {
-                AccountExternalLogins item = enumerator.Current;
-                result.Add(item == null ? null : new AccountExternalLoginsDto()
-                {
-                    AccountId = item.AccountId,
-                    DisplayName = item.DisplayName,
-                    ObjectIdAzureAd = item.ObjectIdAzureAd,
-                    IdentityProvider = item.IdentityProvider,
-                    ProfilePictureUrl = item.ProfilePictureUrl,
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
-                });
-            }
-            return result;
-            
-        }
-        
-        private static AccountDto funcMain5(Account p6)
-        {
-            return p6 == null ? null : new AccountDto()
-            {
-                Email = p6.Email,
-                Username = p6.Username,
-                DisplayName = p6.DisplayName,
-                ProfileIntroduction = p6.ProfileIntroduction,
-                ProfilePicure = p6.ProfilePicure,
-                Roles = funcMain6(p6.Roles),
-                ExternalLogins = funcMain7(p6.ExternalLogins),
-                Id = p6.Id,
-                CreatedOn = p6.CreatedOn,
-                UpdatedOn = p6.UpdatedOn,
-                DeletedAt = p6.DeletedAt
-            };
-        }
-        
-        private static AccountDto funcMain9(Account p10)
-        {
-            return p10 == null ? null : new AccountDto()
-            {
-                Email = p10.Email,
-                Username = p10.Username,
-                DisplayName = p10.DisplayName,
-                ProfileIntroduction = p10.ProfileIntroduction,
-                ProfilePicure = p10.ProfilePicure,
-                Roles = funcMain10(p10.Roles),
-                ExternalLogins = funcMain11(p10.ExternalLogins),
-                Id = p10.Id,
-                CreatedOn = p10.CreatedOn,
-                UpdatedOn = p10.UpdatedOn,
-                DeletedAt = p10.DeletedAt
-            };
-        }
-        
-        private static GardenDto funcMain12(Garden p13)
-        {
-            return p13 == null ? null : new GardenDto()
-            {
-                Name = p13.Name,
-                AccountId = p13.AccountId,
-                Account = funcMain13(p13.Account),
-                Visibility = Enum<Visibility>.ToString(p13.Visibility),
-                Id = p13.Id,
-                CreatedOn = p13.CreatedOn,
-                UpdatedOn = p13.UpdatedOn,
-                DeletedAt = p13.DeletedAt
-            };
-        }
-        
-        private static ICollection<AccountRolesDto> funcMain17(ICollection<AccountRoles> p21, ICollection<AccountRolesDto> p22)
-        {
-            if (p21 == null)
-            {
-                return null;
-            }
-            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p21.Count);
-            
-            IEnumerator<AccountRoles> enumerator = p21.GetEnumerator();
-            
-            while (enumerator.MoveNext())
-            {
-                AccountRoles item = enumerator.Current;
-                result.Add(item == null ? null : new AccountRolesDto()
-                {
-                    AccountId = item.AccountId,
-                    RoleId = item.RoleId,
-                    Role = item.Role == null ? null : new RoleDto()
-                    {
-                        Name = item.Role.Name,
-                        Description = item.Role.Description,
-                        Visibility = Enum<Visibility>.ToString(item.Role.Visibility),
-                        Id = item.Role.Id,
-                        CreatedOn = item.Role.CreatedOn,
-                        UpdatedOn = item.Role.UpdatedOn,
-                        DeletedAt = item.Role.DeletedAt
-                    },
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
-                });
-            }
-            return result;
-            
-        }
-        
-        private static ICollection<AccountExternalLoginsDto> funcMain18(ICollection<AccountExternalLogins> p23, ICollection<AccountExternalLoginsDto> p24)
-        {
-            if (p23 == null)
-            {
-                return null;
-            }
-            ICollection<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p23.Count);
-            
-            IEnumerator<AccountExternalLogins> enumerator = p23.GetEnumerator();
-            
-            while (enumerator.MoveNext())
-            {
-                AccountExternalLogins item = enumerator.Current;
-                result.Add(item == null ? null : new AccountExternalLoginsDto()
-                {
-                    AccountId = item.AccountId,
-                    DisplayName = item.DisplayName,
-                    ObjectIdAzureAd = item.ObjectIdAzureAd,
-                    IdentityProvider = item.IdentityProvider,
-                    ProfilePictureUrl = item.ProfilePictureUrl,
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
-                });
-            }
-            return result;
-            
-        }
-        
-        private static AccountDto funcMain20(Account p27, AccountDto p28)
-        {
-            if (p27 == null)
-            {
-                return null;
-            }
-            AccountDto result = p28 ?? new AccountDto();
-            
-            result.Email = p27.Email;
-            result.Username = p27.Username;
-            result.DisplayName = p27.DisplayName;
-            result.ProfileIntroduction = p27.ProfileIntroduction;
-            result.ProfilePicure = p27.ProfilePicure;
-            result.Roles = funcMain21(p27.Roles, result.Roles);
-            result.ExternalLogins = funcMain22(p27.ExternalLogins, result.ExternalLogins);
-            result.Id = p27.Id;
-            result.CreatedOn = p27.CreatedOn;
-            result.UpdatedOn = p27.UpdatedOn;
-            result.DeletedAt = p27.DeletedAt;
-            return result;
-            
-        }
-        
-        private static AccountDto funcMain24(Account p35, AccountDto p36)
-        {
-            if (p35 == null)
-            {
-                return null;
-            }
-            AccountDto result = p36 ?? new AccountDto();
-            
-            result.Email = p35.Email;
-            result.Username = p35.Username;
-            result.DisplayName = p35.DisplayName;
-            result.ProfileIntroduction = p35.ProfileIntroduction;
-            result.ProfilePicure = p35.ProfilePicure;
-            result.Roles = funcMain25(p35.Roles, result.Roles);
-            result.ExternalLogins = funcMain26(p35.ExternalLogins, result.ExternalLogins);
-            result.Id = p35.Id;
-            result.CreatedOn = p35.CreatedOn;
-            result.UpdatedOn = p35.UpdatedOn;
-            result.DeletedAt = p35.DeletedAt;
-            return result;
-            
-        }
-        
-        private static GardenDto funcMain27(Garden p41, GardenDto p42)
+        private static List<BlobImageList> funcMain20(List<BlobImage> p41, List<BlobImageList> p42)
         {
             if (p41 == null)
             {
                 return null;
             }
-            GardenDto result = p42 ?? new GardenDto();
+            List<BlobImageList> result = new List<BlobImageList>(p41.Count);
             
-            result.Name = p41.Name;
-            result.AccountId = p41.AccountId;
-            result.Account = funcMain28(p41.Account, result.Account);
-            result.Visibility = Enum<Visibility>.ToString(p41.Visibility);
-            result.Id = p41.Id;
-            result.CreatedOn = p41.CreatedOn;
-            result.UpdatedOn = p41.UpdatedOn;
-            result.DeletedAt = p41.DeletedAt;
-            return result;
+            int i = 0;
+            int len = p41.Count;
             
-        }
-        
-        private static AccountList funcMain33(Account p65, AccountList p66)
-        {
-            if (p65 == null)
+            while (i < len)
             {
-                return null;
-            }
-            AccountList result = p66 ?? new AccountList();
-            
-            result.Email = p65.Email;
-            result.Username = p65.Username;
-            result.DisplayName = p65.DisplayName;
-            result.ProfileIntroduction = p65.ProfileIntroduction;
-            result.ProfilePicure = p65.ProfilePicure;
-            result.Id = p65.Id;
-            result.CreatedOn = p65.CreatedOn;
-            return result;
-            
-        }
-        
-        private static AccountList funcMain35(Account p69, AccountList p70)
-        {
-            if (p69 == null)
-            {
-                return null;
-            }
-            AccountList result = p70 ?? new AccountList();
-            
-            result.Email = p69.Email;
-            result.Username = p69.Username;
-            result.DisplayName = p69.DisplayName;
-            result.ProfileIntroduction = p69.ProfileIntroduction;
-            result.ProfilePicure = p69.ProfilePicure;
-            result.Id = p69.Id;
-            result.CreatedOn = p69.CreatedOn;
-            return result;
-            
-        }
-        
-        private static GardenList funcMain36(Garden p71, GardenList p72)
-        {
-            if (p71 == null)
-            {
-                return null;
-            }
-            GardenList result = p72 ?? new GardenList();
-            
-            result.Name = p71.Name;
-            result.AccountId = p71.AccountId;
-            result.Account = funcMain37(p71.Account, result.Account);
-            result.Visibility = Enum<Visibility>.ToString(p71.Visibility);
-            result.Id = p71.Id;
-            result.CreatedOn = p71.CreatedOn;
-            return result;
-            
-        }
-        
-        private static ICollection<AccountRolesDto> funcMain6(ICollection<AccountRoles> p7)
-        {
-            if (p7 == null)
-            {
-                return null;
-            }
-            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p7.Count);
-            
-            IEnumerator<AccountRoles> enumerator = p7.GetEnumerator();
-            
-            while (enumerator.MoveNext())
-            {
-                AccountRoles item = enumerator.Current;
-                result.Add(item == null ? null : new AccountRolesDto()
+                BlobImage item = p41[i];
+                result.Add(item == null ? null : new BlobImageList()
                 {
-                    AccountId = item.AccountId,
-                    RoleId = item.RoleId,
-                    Role = item.Role == null ? null : new RoleDto()
-                    {
-                        Name = item.Role.Name,
-                        Description = item.Role.Description,
-                        Visibility = Enum<Visibility>.ToString(item.Role.Visibility),
-                        Id = item.Role.Id,
-                        CreatedOn = item.Role.CreatedOn,
-                        UpdatedOn = item.Role.UpdatedOn,
-                        DeletedAt = item.Role.DeletedAt
-                    },
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
+                    ImageId = item.ImageId,
+                    ImageUrl = item.ImageUrl
                 });
+                i++;
             }
             return result;
             
         }
         
-        private static ICollection<AccountExternalLoginsDto> funcMain7(ICollection<AccountExternalLogins> p8)
+        private static Account funcMain21(AccountAdd p48)
         {
-            if (p8 == null)
+            return p48 == null ? null : new Account()
+            {
+                Email = p48.Email,
+                Username = p48.Username,
+                DisplayName = p48.DisplayName,
+                ProfileIntroduction = p48.ProfileIntroduction,
+                ProfilePicture = p48.ProfilePicture == null ? null : new BlobImage()
+                {
+                    ImageId = p48.ProfilePicture.ImageId,
+                    ImageUrl = p48.ProfilePicture.ImageUrl
+                },
+                Badges = funcMain22(p48.Badges),
+                Roles = funcMain23(p48.Roles)
+            };
+        }
+        
+        private static List<BlobImage> funcMain24(List<BlobImageAdd> p51)
+        {
+            if (p51 == null)
             {
                 return null;
             }
-            ICollection<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p8.Count);
+            List<BlobImage> result = new List<BlobImage>(p51.Count);
             
-            IEnumerator<AccountExternalLogins> enumerator = p8.GetEnumerator();
+            int i = 0;
+            int len = p51.Count;
             
-            while (enumerator.MoveNext())
+            while (i < len)
             {
-                AccountExternalLogins item = enumerator.Current;
+                BlobImageAdd item = p51[i];
+                result.Add(item == null ? null : new BlobImage()
+                {
+                    ImageId = item.ImageId,
+                    ImageUrl = item.ImageUrl
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static Account funcMain25(AccountMerge p54, Account p55)
+        {
+            if (p54 == null)
+            {
+                return null;
+            }
+            Account result = p55 ?? new Account();
+            
+            if (p54.Email != null)
+            {
+                result.Email = p54.Email;
+            }
+            
+            if (p54.Username != null)
+            {
+                result.Username = p54.Username;
+            }
+            
+            if (p54.DisplayName != null)
+            {
+                result.DisplayName = p54.DisplayName;
+            }
+            
+            if (p54.ProfileIntroduction != null)
+            {
+                result.ProfileIntroduction = p54.ProfileIntroduction;
+            }
+            
+            if (p54.ProfilePicture != null)
+            {
+                result.ProfilePicture = funcMain26(p54.ProfilePicture, result.ProfilePicture);
+            }
+            
+            if (p54.Badges != null)
+            {
+                result.Badges = funcMain27(p54.Badges, result.Badges);
+            }
+            
+            if (p54.Roles != null)
+            {
+                result.Roles = funcMain29(p54.Roles, result.Roles);
+            }
+            return result;
+            
+        }
+        
+        private static List<BlobImage> funcMain31(List<BlobImageMerge> p64, List<BlobImage> p65)
+        {
+            if (p64 == null)
+            {
+                return null;
+            }
+            List<BlobImage> result = new List<BlobImage>(p64.Count);
+            
+            int i = 0;
+            int len = p64.Count;
+            
+            while (i < len)
+            {
+                BlobImageMerge item = p64[i];
+                result.Add(funcMain32(item));
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountBadgeDto> funcMain2(List<AccountBadge> p3)
+        {
+            if (p3 == null)
+            {
+                return null;
+            }
+            List<AccountBadgeDto> result = new List<AccountBadgeDto>(p3.Count);
+            
+            int i = 0;
+            int len = p3.Count;
+            
+            while (i < len)
+            {
+                AccountBadge item = p3[i];
+                result.Add(item == null ? null : new AccountBadgeDto()
+                {
+                    BadgeId = item.BadgeId,
+                    BadgeName = item.BadgeName,
+                    BadgeIcon = item.BadgeIcon,
+                    BadgeColor = item.BadgeColor,
+                    EarnedOn = item.EarnedOn
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountRoleDto> funcMain3(List<AccountRole> p4)
+        {
+            if (p4 == null)
+            {
+                return null;
+            }
+            List<AccountRoleDto> result = new List<AccountRoleDto>(p4.Count);
+            
+            int i = 0;
+            int len = p4.Count;
+            
+            while (i < len)
+            {
+                AccountRole item = p4[i];
+                result.Add(item == null ? null : new AccountRoleDto()
+                {
+                    RoleId = item.RoleId,
+                    RoleName = item.RoleName,
+                    AssignedOn = item.AssignedOn
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountExternalLoginsDto> funcMain4(List<AccountExternalLogins> p5)
+        {
+            if (p5 == null)
+            {
+                return null;
+            }
+            List<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p5.Count);
+            
+            int i = 0;
+            int len = p5.Count;
+            
+            while (i < len)
+            {
+                AccountExternalLogins item = p5[i];
                 result.Add(item == null ? null : new AccountExternalLoginsDto()
                 {
+                    ObjectIdAzureAd = item.ObjectIdAzureAd,
                     AccountId = item.AccountId,
                     DisplayName = item.DisplayName,
-                    ObjectIdAzureAd = item.ObjectIdAzureAd,
                     IdentityProvider = item.IdentityProvider,
                     ProfilePictureUrl = item.ProfilePictureUrl,
                     Id = item.Id,
@@ -1114,327 +636,99 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     UpdatedOn = item.UpdatedOn,
                     DeletedAt = item.DeletedAt
                 });
+                i++;
             }
             return result;
             
         }
         
-        private static ICollection<AccountRolesDto> funcMain10(ICollection<AccountRoles> p11)
+        private static BlobImageDto funcMain7(BlobImage p11, BlobImageDto p12)
         {
             if (p11 == null)
             {
                 return null;
             }
-            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p11.Count);
+            BlobImageDto result = p12 ?? new BlobImageDto();
             
-            IEnumerator<AccountRoles> enumerator = p11.GetEnumerator();
+            result.ImageId = p11.ImageId;
+            result.ImageUrl = p11.ImageUrl;
+            return result;
             
-            while (enumerator.MoveNext())
+        }
+        
+        private static List<AccountBadgeDto> funcMain8(List<AccountBadge> p13, List<AccountBadgeDto> p14)
+        {
+            if (p13 == null)
             {
-                AccountRoles item = enumerator.Current;
-                result.Add(item == null ? null : new AccountRolesDto()
+                return null;
+            }
+            List<AccountBadgeDto> result = new List<AccountBadgeDto>(p13.Count);
+            
+            int i = 0;
+            int len = p13.Count;
+            
+            while (i < len)
+            {
+                AccountBadge item = p13[i];
+                result.Add(item == null ? null : new AccountBadgeDto()
                 {
-                    AccountId = item.AccountId,
-                    RoleId = item.RoleId,
-                    Role = item.Role == null ? null : new RoleDto()
-                    {
-                        Name = item.Role.Name,
-                        Description = item.Role.Description,
-                        Visibility = Enum<Visibility>.ToString(item.Role.Visibility),
-                        Id = item.Role.Id,
-                        CreatedOn = item.Role.CreatedOn,
-                        UpdatedOn = item.Role.UpdatedOn,
-                        DeletedAt = item.Role.DeletedAt
-                    },
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
+                    BadgeId = item.BadgeId,
+                    BadgeName = item.BadgeName,
+                    BadgeIcon = item.BadgeIcon,
+                    BadgeColor = item.BadgeColor,
+                    EarnedOn = item.EarnedOn
                 });
+                i++;
             }
             return result;
             
         }
         
-        private static ICollection<AccountExternalLoginsDto> funcMain11(ICollection<AccountExternalLogins> p12)
-        {
-            if (p12 == null)
-            {
-                return null;
-            }
-            ICollection<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p12.Count);
-            
-            IEnumerator<AccountExternalLogins> enumerator = p12.GetEnumerator();
-            
-            while (enumerator.MoveNext())
-            {
-                AccountExternalLogins item = enumerator.Current;
-                result.Add(item == null ? null : new AccountExternalLoginsDto()
-                {
-                    AccountId = item.AccountId,
-                    DisplayName = item.DisplayName,
-                    ObjectIdAzureAd = item.ObjectIdAzureAd,
-                    IdentityProvider = item.IdentityProvider,
-                    ProfilePictureUrl = item.ProfilePictureUrl,
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
-                });
-            }
-            return result;
-            
-        }
-        
-        private static AccountDto funcMain13(Account p14)
-        {
-            return p14 == null ? null : new AccountDto()
-            {
-                Email = p14.Email,
-                Username = p14.Username,
-                DisplayName = p14.DisplayName,
-                ProfileIntroduction = p14.ProfileIntroduction,
-                ProfilePicure = p14.ProfilePicure,
-                Roles = funcMain14(p14.Roles),
-                ExternalLogins = funcMain15(p14.ExternalLogins),
-                Id = p14.Id,
-                CreatedOn = p14.CreatedOn,
-                UpdatedOn = p14.UpdatedOn,
-                DeletedAt = p14.DeletedAt
-            };
-        }
-        
-        private static ICollection<AccountRolesDto> funcMain21(ICollection<AccountRoles> p29, ICollection<AccountRolesDto> p30)
-        {
-            if (p29 == null)
-            {
-                return null;
-            }
-            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p29.Count);
-            
-            IEnumerator<AccountRoles> enumerator = p29.GetEnumerator();
-            
-            while (enumerator.MoveNext())
-            {
-                AccountRoles item = enumerator.Current;
-                result.Add(item == null ? null : new AccountRolesDto()
-                {
-                    AccountId = item.AccountId,
-                    RoleId = item.RoleId,
-                    Role = item.Role == null ? null : new RoleDto()
-                    {
-                        Name = item.Role.Name,
-                        Description = item.Role.Description,
-                        Visibility = Enum<Visibility>.ToString(item.Role.Visibility),
-                        Id = item.Role.Id,
-                        CreatedOn = item.Role.CreatedOn,
-                        UpdatedOn = item.Role.UpdatedOn,
-                        DeletedAt = item.Role.DeletedAt
-                    },
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
-                });
-            }
-            return result;
-            
-        }
-        
-        private static ICollection<AccountExternalLoginsDto> funcMain22(ICollection<AccountExternalLogins> p31, ICollection<AccountExternalLoginsDto> p32)
-        {
-            if (p31 == null)
-            {
-                return null;
-            }
-            ICollection<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p31.Count);
-            
-            IEnumerator<AccountExternalLogins> enumerator = p31.GetEnumerator();
-            
-            while (enumerator.MoveNext())
-            {
-                AccountExternalLogins item = enumerator.Current;
-                result.Add(item == null ? null : new AccountExternalLoginsDto()
-                {
-                    AccountId = item.AccountId,
-                    DisplayName = item.DisplayName,
-                    ObjectIdAzureAd = item.ObjectIdAzureAd,
-                    IdentityProvider = item.IdentityProvider,
-                    ProfilePictureUrl = item.ProfilePictureUrl,
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
-                });
-            }
-            return result;
-            
-        }
-        
-        private static ICollection<AccountRolesDto> funcMain25(ICollection<AccountRoles> p37, ICollection<AccountRolesDto> p38)
-        {
-            if (p37 == null)
-            {
-                return null;
-            }
-            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p37.Count);
-            
-            IEnumerator<AccountRoles> enumerator = p37.GetEnumerator();
-            
-            while (enumerator.MoveNext())
-            {
-                AccountRoles item = enumerator.Current;
-                result.Add(item == null ? null : new AccountRolesDto()
-                {
-                    AccountId = item.AccountId,
-                    RoleId = item.RoleId,
-                    Role = item.Role == null ? null : new RoleDto()
-                    {
-                        Name = item.Role.Name,
-                        Description = item.Role.Description,
-                        Visibility = Enum<Visibility>.ToString(item.Role.Visibility),
-                        Id = item.Role.Id,
-                        CreatedOn = item.Role.CreatedOn,
-                        UpdatedOn = item.Role.UpdatedOn,
-                        DeletedAt = item.Role.DeletedAt
-                    },
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
-                });
-            }
-            return result;
-            
-        }
-        
-        private static ICollection<AccountExternalLoginsDto> funcMain26(ICollection<AccountExternalLogins> p39, ICollection<AccountExternalLoginsDto> p40)
-        {
-            if (p39 == null)
-            {
-                return null;
-            }
-            ICollection<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p39.Count);
-            
-            IEnumerator<AccountExternalLogins> enumerator = p39.GetEnumerator();
-            
-            while (enumerator.MoveNext())
-            {
-                AccountExternalLogins item = enumerator.Current;
-                result.Add(item == null ? null : new AccountExternalLoginsDto()
-                {
-                    AccountId = item.AccountId,
-                    DisplayName = item.DisplayName,
-                    ObjectIdAzureAd = item.ObjectIdAzureAd,
-                    IdentityProvider = item.IdentityProvider,
-                    ProfilePictureUrl = item.ProfilePictureUrl,
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
-                });
-            }
-            return result;
-            
-        }
-        
-        private static AccountDto funcMain28(Account p43, AccountDto p44)
-        {
-            if (p43 == null)
-            {
-                return null;
-            }
-            AccountDto result = p44 ?? new AccountDto();
-            
-            result.Email = p43.Email;
-            result.Username = p43.Username;
-            result.DisplayName = p43.DisplayName;
-            result.ProfileIntroduction = p43.ProfileIntroduction;
-            result.ProfilePicure = p43.ProfilePicure;
-            result.Roles = funcMain29(p43.Roles, result.Roles);
-            result.ExternalLogins = funcMain30(p43.ExternalLogins, result.ExternalLogins);
-            result.Id = p43.Id;
-            result.CreatedOn = p43.CreatedOn;
-            result.UpdatedOn = p43.UpdatedOn;
-            result.DeletedAt = p43.DeletedAt;
-            return result;
-            
-        }
-        
-        private static AccountList funcMain37(Account p73, AccountList p74)
-        {
-            if (p73 == null)
-            {
-                return null;
-            }
-            AccountList result = p74 ?? new AccountList();
-            
-            result.Email = p73.Email;
-            result.Username = p73.Username;
-            result.DisplayName = p73.DisplayName;
-            result.ProfileIntroduction = p73.ProfileIntroduction;
-            result.ProfilePicure = p73.ProfilePicure;
-            result.Id = p73.Id;
-            result.CreatedOn = p73.CreatedOn;
-            return result;
-            
-        }
-        
-        private static ICollection<AccountRolesDto> funcMain14(ICollection<AccountRoles> p15)
+        private static List<AccountRoleDto> funcMain9(List<AccountRole> p15, List<AccountRoleDto> p16)
         {
             if (p15 == null)
             {
                 return null;
             }
-            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p15.Count);
+            List<AccountRoleDto> result = new List<AccountRoleDto>(p15.Count);
             
-            IEnumerator<AccountRoles> enumerator = p15.GetEnumerator();
+            int i = 0;
+            int len = p15.Count;
             
-            while (enumerator.MoveNext())
+            while (i < len)
             {
-                AccountRoles item = enumerator.Current;
-                result.Add(item == null ? null : new AccountRolesDto()
+                AccountRole item = p15[i];
+                result.Add(item == null ? null : new AccountRoleDto()
                 {
-                    AccountId = item.AccountId,
                     RoleId = item.RoleId,
-                    Role = item.Role == null ? null : new RoleDto()
-                    {
-                        Name = item.Role.Name,
-                        Description = item.Role.Description,
-                        Visibility = Enum<Visibility>.ToString(item.Role.Visibility),
-                        Id = item.Role.Id,
-                        CreatedOn = item.Role.CreatedOn,
-                        UpdatedOn = item.Role.UpdatedOn,
-                        DeletedAt = item.Role.DeletedAt
-                    },
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
+                    RoleName = item.RoleName,
+                    AssignedOn = item.AssignedOn
                 });
+                i++;
             }
             return result;
             
         }
         
-        private static ICollection<AccountExternalLoginsDto> funcMain15(ICollection<AccountExternalLogins> p16)
+        private static List<AccountExternalLoginsDto> funcMain10(List<AccountExternalLogins> p17, List<AccountExternalLoginsDto> p18)
         {
-            if (p16 == null)
+            if (p17 == null)
             {
                 return null;
             }
-            ICollection<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p16.Count);
+            List<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p17.Count);
             
-            IEnumerator<AccountExternalLogins> enumerator = p16.GetEnumerator();
+            int i = 0;
+            int len = p17.Count;
             
-            while (enumerator.MoveNext())
+            while (i < len)
             {
-                AccountExternalLogins item = enumerator.Current;
+                AccountExternalLogins item = p17[i];
                 result.Add(item == null ? null : new AccountExternalLoginsDto()
                 {
+                    ObjectIdAzureAd = item.ObjectIdAzureAd,
                     AccountId = item.AccountId,
                     DisplayName = item.DisplayName,
-                    ObjectIdAzureAd = item.ObjectIdAzureAd,
                     IdentityProvider = item.IdentityProvider,
                     ProfilePictureUrl = item.ProfilePictureUrl,
                     Id = item.Id,
@@ -1442,73 +736,329 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
                     UpdatedOn = item.UpdatedOn,
                     DeletedAt = item.DeletedAt
                 });
+                i++;
             }
             return result;
             
         }
         
-        private static ICollection<AccountRolesDto> funcMain29(ICollection<AccountRoles> p45, ICollection<AccountRolesDto> p46)
+        private static List<AccountBadgeList> funcMain13(List<AccountBadge> p28)
         {
-            if (p45 == null)
+            if (p28 == null)
             {
                 return null;
             }
-            ICollection<AccountRolesDto> result = new List<AccountRolesDto>(p45.Count);
+            List<AccountBadgeList> result = new List<AccountBadgeList>(p28.Count);
             
-            IEnumerator<AccountRoles> enumerator = p45.GetEnumerator();
+            int i = 0;
+            int len = p28.Count;
             
-            while (enumerator.MoveNext())
+            while (i < len)
             {
-                AccountRoles item = enumerator.Current;
-                result.Add(item == null ? null : new AccountRolesDto()
+                AccountBadge item = p28[i];
+                result.Add(item == null ? null : new AccountBadgeList()
                 {
-                    AccountId = item.AccountId,
+                    BadgeId = item.BadgeId,
+                    BadgeName = item.BadgeName,
+                    BadgeIcon = item.BadgeIcon,
+                    BadgeColor = item.BadgeColor,
+                    EarnedOn = item.EarnedOn
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountRoleList> funcMain14(List<AccountRole> p29)
+        {
+            if (p29 == null)
+            {
+                return null;
+            }
+            List<AccountRoleList> result = new List<AccountRoleList>(p29.Count);
+            
+            int i = 0;
+            int len = p29.Count;
+            
+            while (i < len)
+            {
+                AccountRole item = p29[i];
+                result.Add(item == null ? null : new AccountRoleList()
+                {
                     RoleId = item.RoleId,
-                    Role = item.Role == null ? null : new RoleDto()
-                    {
-                        Name = item.Role.Name,
-                        Description = item.Role.Description,
-                        Visibility = Enum<Visibility>.ToString(item.Role.Visibility),
-                        Id = item.Role.Id,
-                        CreatedOn = item.Role.CreatedOn,
-                        UpdatedOn = item.Role.UpdatedOn,
-                        DeletedAt = item.Role.DeletedAt
-                    },
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
+                    RoleName = item.RoleName,
+                    AssignedOn = item.AssignedOn
                 });
+                i++;
             }
             return result;
             
         }
         
-        private static ICollection<AccountExternalLoginsDto> funcMain30(ICollection<AccountExternalLogins> p47, ICollection<AccountExternalLoginsDto> p48)
+        private static BlobImageList funcMain17(BlobImage p35, BlobImageList p36)
         {
-            if (p47 == null)
+            if (p35 == null)
             {
                 return null;
             }
-            ICollection<AccountExternalLoginsDto> result = new List<AccountExternalLoginsDto>(p47.Count);
+            BlobImageList result = p36 ?? new BlobImageList();
             
-            IEnumerator<AccountExternalLogins> enumerator = p47.GetEnumerator();
+            result.ImageId = p35.ImageId;
+            result.ImageUrl = p35.ImageUrl;
+            return result;
             
-            while (enumerator.MoveNext())
+        }
+        
+        private static List<AccountBadgeList> funcMain18(List<AccountBadge> p37, List<AccountBadgeList> p38)
+        {
+            if (p37 == null)
             {
-                AccountExternalLogins item = enumerator.Current;
-                result.Add(item == null ? null : new AccountExternalLoginsDto()
+                return null;
+            }
+            List<AccountBadgeList> result = new List<AccountBadgeList>(p37.Count);
+            
+            int i = 0;
+            int len = p37.Count;
+            
+            while (i < len)
+            {
+                AccountBadge item = p37[i];
+                result.Add(item == null ? null : new AccountBadgeList()
                 {
-                    AccountId = item.AccountId,
-                    DisplayName = item.DisplayName,
-                    ObjectIdAzureAd = item.ObjectIdAzureAd,
-                    IdentityProvider = item.IdentityProvider,
-                    ProfilePictureUrl = item.ProfilePictureUrl,
-                    Id = item.Id,
-                    CreatedOn = item.CreatedOn,
-                    UpdatedOn = item.UpdatedOn,
-                    DeletedAt = item.DeletedAt
+                    BadgeId = item.BadgeId,
+                    BadgeName = item.BadgeName,
+                    BadgeIcon = item.BadgeIcon,
+                    BadgeColor = item.BadgeColor,
+                    EarnedOn = item.EarnedOn
                 });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountRoleList> funcMain19(List<AccountRole> p39, List<AccountRoleList> p40)
+        {
+            if (p39 == null)
+            {
+                return null;
+            }
+            List<AccountRoleList> result = new List<AccountRoleList>(p39.Count);
+            
+            int i = 0;
+            int len = p39.Count;
+            
+            while (i < len)
+            {
+                AccountRole item = p39[i];
+                result.Add(item == null ? null : new AccountRoleList()
+                {
+                    RoleId = item.RoleId,
+                    RoleName = item.RoleName,
+                    AssignedOn = item.AssignedOn
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountBadge> funcMain22(List<AccountBadgeAdd> p49)
+        {
+            if (p49 == null)
+            {
+                return null;
+            }
+            List<AccountBadge> result = new List<AccountBadge>(p49.Count);
+            
+            int i = 0;
+            int len = p49.Count;
+            
+            while (i < len)
+            {
+                AccountBadgeAdd item = p49[i];
+                result.Add(item == null ? null : new AccountBadge()
+                {
+                    BadgeId = item.BadgeId,
+                    BadgeName = item.BadgeName,
+                    BadgeIcon = item.BadgeIcon,
+                    BadgeColor = item.BadgeColor,
+                    EarnedOn = item.EarnedOn
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountRole> funcMain23(List<AccountRoleAdd> p50)
+        {
+            if (p50 == null)
+            {
+                return null;
+            }
+            List<AccountRole> result = new List<AccountRole>(p50.Count);
+            
+            int i = 0;
+            int len = p50.Count;
+            
+            while (i < len)
+            {
+                AccountRoleAdd item = p50[i];
+                result.Add(item == null ? null : new AccountRole()
+                {
+                    RoleId = item.RoleId,
+                    RoleName = item.RoleName,
+                    AssignedOn = item.AssignedOn
+                });
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static BlobImage funcMain26(BlobImageMerge p56, BlobImage p57)
+        {
+            if (p56 == null)
+            {
+                return null;
+            }
+            BlobImage result = p57 ?? new BlobImage();
+            
+            if (p56.ImageId != null)
+            {
+                result.ImageId = (Guid)p56.ImageId;
+            }
+            
+            if (p56.ImageUrl != null)
+            {
+                result.ImageUrl = p56.ImageUrl;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountBadge> funcMain27(List<AccountBadgeMerge> p58, List<AccountBadge> p59)
+        {
+            if (p58 == null)
+            {
+                return null;
+            }
+            List<AccountBadge> result = new List<AccountBadge>(p58.Count);
+            
+            int i = 0;
+            int len = p58.Count;
+            
+            while (i < len)
+            {
+                AccountBadgeMerge item = p58[i];
+                result.Add(funcMain28(item));
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static List<AccountRole> funcMain29(List<AccountRoleMerge> p61, List<AccountRole> p62)
+        {
+            if (p61 == null)
+            {
+                return null;
+            }
+            List<AccountRole> result = new List<AccountRole>(p61.Count);
+            
+            int i = 0;
+            int len = p61.Count;
+            
+            while (i < len)
+            {
+                AccountRoleMerge item = p61[i];
+                result.Add(funcMain30(item));
+                i++;
+            }
+            return result;
+            
+        }
+        
+        private static BlobImage funcMain32(BlobImageMerge p66)
+        {
+            if (p66 == null)
+            {
+                return null;
+            }
+            BlobImage result = new BlobImage();
+            
+            if (p66.ImageId != null)
+            {
+                result.ImageId = (Guid)p66.ImageId;
+            }
+            
+            if (p66.ImageUrl != null)
+            {
+                result.ImageUrl = p66.ImageUrl;
+            }
+            return result;
+            
+        }
+        
+        private static AccountBadge funcMain28(AccountBadgeMerge p60)
+        {
+            if (p60 == null)
+            {
+                return null;
+            }
+            AccountBadge result = new AccountBadge();
+            
+            if (p60.BadgeId != null)
+            {
+                result.BadgeId = (Guid)p60.BadgeId;
+            }
+            
+            if (p60.BadgeName != null)
+            {
+                result.BadgeName = p60.BadgeName;
+            }
+            
+            if (p60.BadgeIcon != null)
+            {
+                result.BadgeIcon = p60.BadgeIcon;
+            }
+            
+            if (p60.BadgeColor != null)
+            {
+                result.BadgeColor = p60.BadgeColor;
+            }
+            
+            if (p60.EarnedOn != null)
+            {
+                result.EarnedOn = (DateTimeOffset)p60.EarnedOn;
+            }
+            return result;
+            
+        }
+        
+        private static AccountRole funcMain30(AccountRoleMerge p63)
+        {
+            if (p63 == null)
+            {
+                return null;
+            }
+            AccountRole result = new AccountRole();
+            
+            if (p63.RoleId != null)
+            {
+                result.RoleId = (Guid)p63.RoleId;
+            }
+            
+            if (p63.RoleName != null)
+            {
+                result.RoleName = p63.RoleName;
+            }
+            
+            if (p63.AssignedOn != null)
+            {
+                result.AssignedOn = (DateTimeOffset)p63.AssignedOn;
             }
             return result;
             

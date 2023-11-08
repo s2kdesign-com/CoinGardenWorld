@@ -24,6 +24,8 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Authorization
 
             if (initialUser?.Identity?.IsAuthenticated ?? false)
             {
+                Console.WriteLine("TODO: Add roles to account");
+
                 var userIdentity = (ClaimsIdentity)initialUser.Identity;
 
                 userIdentity.AddClaim(new Claim(ClaimTypes.Role, "Garden Guru"));

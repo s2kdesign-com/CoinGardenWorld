@@ -23,8 +23,16 @@ using CoinGardenWorld.AzureStorageExtensions.Configuration;
 using CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer;
 using Microsoft.AspNetCore.OData;
 using CoinGardenWorldMobileApp.DotNetApi.OperationFilter;
+using CoinGardenWorldMobileApp.Models.Entities;
+using CoinGardenWorldMobileApp.Models.ViewModels;
+using Microsoft.AspNetCore.OData.Formatter.Serialization;
+using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder;
+using Microsoft.AspNetCore.OData.Query.Expressions;
 
 var builder = WebApplication.CreateBuilder(args);
+
+#region Add ApplicationInsights 
 
 var appInsightsConnectionString = builder.Configuration["ApplicationInsights:ConnectionString"];
 
@@ -38,6 +46,10 @@ builder.Logging.AddApplicationInsights(configuration =>
     options.IncludeScopes = true;
 });
 
+#endregion
+
+#region Add Cors
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllCors", config =>
@@ -47,13 +59,27 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader();
     });
 });
+
+#endregion
+
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
 
+// TODO: The LINQ expression 'JsonQueryExpression(p.PostLinks, $)' could not be translated.
 
-builder.Services.AddControllers().AddOData(options => options.Select().Filter().OrderBy().Count().SetMaxTop(50));
+var modelBuilder = new ODataConventionModelBuilder();
 
+modelBuilder.EntityType<Account>();
+modelBuilder.EntityType<Post>();
+modelBuilder.EntityType<Flower>();
+// TODO: this will register new actions GET and POST and will conflict with the base OData controller
+//modelBuilder.EntitySet<Account>("Accounts");
+
+builder.Services.AddControllers()
+    .AddOData(options => options.EnableQueryFeatures(50).AddRouteComponents("odata", modelBuilder.GetEdmModel()
+
+    ) );
 
 // Add signalr
 
@@ -71,11 +97,12 @@ builder.Services.AddSignalR().AddAzureSignalR(configure =>
     configure.InitialHubServerConnectionCount = 1;
 });
 
-var azureStorageConfiguration = new AzureStorageConfiguration();
-builder.Configuration.Bind("AzureStorage", azureStorageConfiguration);
+
+#region Add Swagger
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -145,21 +172,29 @@ builder.Services.AddSwaggerGen(options =>
     });
 
 });
-builder.Services.AddScoped(typeof(GenericRepository<>));
-builder.Services.AddScoped(typeof(UnitOfWork<>));
+
+#endregion
+
 
 // Add SQL Server Database
 builder.Services.AddDbContext<MobileAppDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB")));
 
-var blobConfig = builder.Configuration["CGW-AzureStorage:blob"];
+builder.Services.AddScoped(typeof(GenericRepository<>));
+builder.Services.AddScoped(typeof(UnitOfWork<>));
+
 // Add Azure Storage
+var azureStorageConfiguration = new AzureStorageConfiguration();
+builder.Configuration.Bind("AzureStorage", azureStorageConfiguration);
+
 builder.Services.AddAzureClients(clientBuilder =>
 {
     clientBuilder.AddCgwFileServiceClient(azureStorageConfiguration.Blob, preferMsi: true);
     clientBuilder.AddCgwQueueServiceClient(azureStorageConfiguration.Queue, preferMsi: true);
-    clientBuilder.AddCgwFileServiceClient(azureStorageConfiguration.Files, preferMsi: true);
+    clientBuilder.AddCgwBlobServiceClient(azureStorageConfiguration.Files, preferMsi: true);
 });
+
+#region Add HealhChecks
 
 // Add Health Checks
 var notificationHubUrl = "https://plant-api.azurewebsites.net/NotificationsHub";
@@ -200,6 +235,8 @@ builder.Services.AddHealthChecks()
 #endif
     ;
 
+#endregion
+
 // TODO: Move to CoinGardenWorld.AzureAI
 builder.Services.AddAzureComputerVision();
 builder.Services.AddAzureWebSearch();
@@ -222,7 +259,10 @@ using (var scope = app.Services.CreateScope())
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseODataRouteDebug();
 }
+
+#region use Swagger
 
 app.UseSwagger();
 app.UseSwaggerUI(options =>
@@ -235,6 +275,8 @@ app.UseSwaggerUI(options =>
 
 });
 
+#endregion
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
@@ -245,6 +287,8 @@ app.MapControllers();
 
 app.MapHub<NotificationsHub>("NotificationsHub");
 app.MapHub<ChatHub>("ChatHub");
+
+#region Use HealthChecks
 
 app
     .UseHealthChecks("/health", new HealthCheckOptions
@@ -257,6 +301,7 @@ app
         Predicate = _ => true
     });
 
+#endregion
 
 // TODO: Add Hangfire to another API , this will have a lot of traffic 
 //var options = new DashboardOptions { AppPath = "https://plant-api.azurewebsites.net/swagger/index.html" };

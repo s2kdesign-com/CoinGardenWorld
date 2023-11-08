@@ -11,9 +11,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
         {
             return p1 == null ? null : new AccountExternalLoginsDto()
             {
+                ObjectIdAzureAd = p1.ObjectIdAzureAd,
                 AccountId = p1.AccountId,
                 DisplayName = p1.DisplayName,
-                ObjectIdAzureAd = p1.ObjectIdAzureAd,
                 IdentityProvider = p1.IdentityProvider,
                 ProfilePictureUrl = p1.ProfilePictureUrl,
                 Id = p1.Id,
@@ -30,9 +30,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             }
             AccountExternalLoginsDto result = p3 ?? new AccountExternalLoginsDto();
             
+            result.ObjectIdAzureAd = p2.ObjectIdAzureAd;
             result.AccountId = p2.AccountId;
             result.DisplayName = p2.DisplayName;
-            result.ObjectIdAzureAd = p2.ObjectIdAzureAd;
             result.IdentityProvider = p2.IdentityProvider;
             result.ProfilePictureUrl = p2.ProfilePictureUrl;
             result.Id = p2.Id;
@@ -44,9 +44,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
         }
         public static Expression<Func<AccountExternalLogins, AccountExternalLoginsDto>> ProjectToDto => p4 => new AccountExternalLoginsDto()
         {
+            ObjectIdAzureAd = p4.ObjectIdAzureAd,
             AccountId = p4.AccountId,
             DisplayName = p4.DisplayName,
-            ObjectIdAzureAd = p4.ObjectIdAzureAd,
             IdentityProvider = p4.IdentityProvider,
             ProfilePictureUrl = p4.ProfilePictureUrl,
             Id = p4.Id,
@@ -58,9 +58,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
         {
             return p5 == null ? null : new AccountExternalLoginsList()
             {
+                ObjectIdAzureAd = p5.ObjectIdAzureAd,
                 AccountId = p5.AccountId,
                 DisplayName = p5.DisplayName,
-                ObjectIdAzureAd = p5.ObjectIdAzureAd,
                 IdentityProvider = p5.IdentityProvider,
                 ProfilePictureUrl = p5.ProfilePictureUrl,
                 Id = p5.Id,
@@ -75,9 +75,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             }
             AccountExternalLoginsList result = p7 ?? new AccountExternalLoginsList();
             
+            result.ObjectIdAzureAd = p6.ObjectIdAzureAd;
             result.AccountId = p6.AccountId;
             result.DisplayName = p6.DisplayName;
-            result.ObjectIdAzureAd = p6.ObjectIdAzureAd;
             result.IdentityProvider = p6.IdentityProvider;
             result.ProfilePictureUrl = p6.ProfilePictureUrl;
             result.Id = p6.Id;
@@ -87,9 +87,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
         }
         public static Expression<Func<AccountExternalLogins, AccountExternalLoginsList>> ProjectToList => p8 => new AccountExternalLoginsList()
         {
+            ObjectIdAzureAd = p8.ObjectIdAzureAd,
             AccountId = p8.AccountId,
             DisplayName = p8.DisplayName,
-            ObjectIdAzureAd = p8.ObjectIdAzureAd,
             IdentityProvider = p8.IdentityProvider,
             ProfilePictureUrl = p8.ProfilePictureUrl,
             Id = p8.Id,
@@ -99,9 +99,9 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
         {
             return p9 == null ? null : new AccountExternalLogins()
             {
+                ObjectIdAzureAd = p9.ObjectIdAzureAd,
                 AccountId = p9.AccountId,
                 DisplayName = p9.DisplayName,
-                ObjectIdAzureAd = p9.ObjectIdAzureAd,
                 IdentityProvider = p9.IdentityProvider,
                 ProfilePictureUrl = p9.ProfilePictureUrl
             };
@@ -114,6 +114,11 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             }
             AccountExternalLogins result = p11 ?? new AccountExternalLogins();
             
+            if (p10.ObjectIdAzureAd != null)
+            {
+                result.ObjectIdAzureAd = p10.ObjectIdAzureAd;
+            }
+            
             if (p10.AccountId != null)
             {
                 result.AccountId = (Guid)p10.AccountId;
@@ -122,11 +127,6 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             if (p10.DisplayName != null)
             {
                 result.DisplayName = p10.DisplayName;
-            }
-            
-            if (p10.ObjectIdAzureAd != null)
-            {
-                result.ObjectIdAzureAd = p10.ObjectIdAzureAd;
             }
             
             if (p10.IdentityProvider != null)

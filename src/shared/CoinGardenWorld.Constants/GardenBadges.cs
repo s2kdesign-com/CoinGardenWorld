@@ -8,13 +8,64 @@ namespace CoinGardenWorld.Constants
 {
     public static class GardenBadges
     {
-        public static BadgesBasedOnTimeRegistered BadgesBasedOnTimeRegistered = new BadgesBasedOnTimeRegistered();
+        public static SpeciallyAssignedBadges SpeciallyAssignedBadges = new ();
 
-        public static BadgesBasedOnUploadsCount BadgesBasedOnUploadsCount = new BadgesBasedOnUploadsCount();
+        public static BadgesBasedOnTimeRegistered BadgesBasedOnTimeRegistered = new ();
+
+        public static BadgesBasedOnUploadsCount BadgesBasedOnUploadsCount = new ();
+    }
+
+    public class SpeciallyAssignedBadges
+    {
+        public readonly string BadgeTypeName = "Badges Given Per Person for Special Service";
+
+
+        public readonly BadgeTypes BadgeType = BadgeTypes.SpeciallyAssigned;
+
+        public readonly List<Tuple<string, string, string, string>> BadgeNames = new()
+        {
+            {
+                new Tuple<string, string, string, string> (
+                    "bi-person-workspace",
+                    "color-magenta-dark",
+                    "System Guardian (System Administrator)",
+                    "This badge is awarded to the vigilant protectors of the community's digital realm. System Guardians are the unseen heroes who ensure the smooth operation of our virtual environment, safeguarding it against disruptions and maintaining the integrity of our shared digital space.")
+            },
+            {
+                new Tuple<string, string, string, string> (
+                    "bi-person-lines-fill",
+                    "color-magenta-dark",
+                    "Harmony Keeper (Content Moderator)",
+                    "Recipients of the Harmony Keeper Badge are the pillars of peace within our community. They tirelessly work to maintain a respectful and welcoming atmosphere, ensuring that all content aligns with our shared values and standards. Their dedication to fostering a positive environment is the cornerstone of our community's spirit.")
+            },
+            {
+                new Tuple<string, string, string, string> (
+                    "bi-sunrise-fill",
+                    "color-magenta-dark",
+                    "Community Beacon (Outstanding Contributor)",
+                    "This badge shines a light on those whose contributions have significantly shaped the community's culture and direction. Community Beacons are the guiding lights, leading by example through their active participation, constructive feedback, and unwavering support. They embody the spirit of collaboration and are instrumental in building a strong, united community.")
+            },
+            {
+                new Tuple<string, string, string, string> (
+                    "bi-buildings-fill",
+                    "color-magenta-dark",
+                    "Blossom Benefactor (Greening Leader)",
+                    "Recognizing those who lead community greening projects with a focus on flowers. Blossom Benefactors are the driving force behind urban beautification through flower planting, transforming public spaces into vibrant, colorful oases.")
+            },
+            {
+                new Tuple<string, string, string, string> (
+                    "bi-flower1",
+                    "color-magenta-dark",
+                    "Exotic Bloom Curator Badge (Rare Flower Connoisseur)",
+                    "This distinguished badge is awarded to the connoisseurs who not only upload but also nurture and share knowledge about the rarest blooms. Exotic Bloom Curators are recognized for their dedication to seeking out and preserving the most unusual and least-known flowers, contributing to the community's horticultural wealth.")
+            },
+        };
     }
 
     public class BadgesBasedOnUploadsCount
     {
+        public readonly string BadgeIconName = "bi-clock-history";
+        public readonly string BadgeColor = "color-blue-dark";
         public readonly string BadgeTypeName = "Badges Given When User Uploads Flowers";
 
         public readonly BadgeTypes BadgeType = BadgeTypes.BasedOnUploadsCount;
@@ -44,6 +95,8 @@ namespace CoinGardenWorld.Constants
 
     public class BadgesBasedOnTimeRegistered
     {
+        public readonly string BadgeIconName = "bi-cloud-upload";
+        public readonly string BadgeColor = "color-yellow-dark";
         public readonly BadgeTypes BadgeType = BadgeTypes.BasedOnTimeRegistered;
 
         public readonly Dictionary<string, string> BadgeNames = new Dictionary<string, string> {

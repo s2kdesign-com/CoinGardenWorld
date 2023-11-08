@@ -17,24 +17,14 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         public Account Account { get; set; }
 
         [StringLength(300, ErrorMessage = "{0} can have a max of {1} characters")]
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         [StringLength(1500, ErrorMessage = "{0} can have a max of {1} characters")]
-        public string Content { get; set; }
+        public string? Content { get; set; }
 
-        [StringLength(8000, ErrorMessage = "{0} can have a max of {1} characters")]
-        public string? LinkOrImageUrl { get; set; }
+        public string? ExternalUrl { get; set; }
 
-        [ForeignKey(nameof(Garden))]
-        public Guid? GardenId { get; set; }
-        [IgnoreOnModify]
-        public Garden? Garden { get; set; }
-
-
-        [ForeignKey(nameof(Flower))]
-        public Guid? FlowerId { get; set; }
-        [IgnoreOnModify]
-        public Flower? Flower { get; set; }
+        public List<BlobImage>? Images { get; set; }
 
         public PostType PostType { get; set; }
 
@@ -42,4 +32,5 @@ namespace CoinGardenWorldMobileApp.Models.Entities
 
 
     }
+    
 }

@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using BlazorApplicationInsights;
 using Blazored.LocalStorage;
+using CoinGardenWorld.AzureStorageClientsExtensions;
 using CoinGardenWorld.Constants;
 using CoinGardenWorld.HttpClientsExtensions;
 using CoinGardenWorld.HttpClientsExtensions.Configurations;
@@ -131,6 +132,8 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
 
             #endregion
 
+            // CoinGardenWorld.AzureStorageClientsExtensions
+            services.AddScoped<IBlobStorageService, BlobStorageService>();
 
             // CoinGardenWorld.SignalRClientsExtensions
             services.AddSignalRClientsExtensions(environmentType);

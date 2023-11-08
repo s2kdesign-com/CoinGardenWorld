@@ -7,18 +7,14 @@ using System.Threading.Tasks;
 
 namespace CoinGardenWorldMobileApp.Models.Entities
 {
-    public class AccountBadges : BaseEntity
+    public class AccountBadge
     {
-        [ForeignKey(nameof(Account))]
-        public Guid AccountId { get; set; }
-
-        public Account Account { get; set; }
-
-
-
-        [ForeignKey(nameof(Badge))]
         public Guid BadgeId { get; set; }
+        public string BadgeName { get; set; }
+        public string BadgeIcon { get; set; }
+        public string BadgeColor { get; set; }
 
-        public Badge Badge { get; set; }
+        public DateTimeOffset EarnedOn { get; set; } = DateTimeOffset.UtcNow;
+
     }
 }

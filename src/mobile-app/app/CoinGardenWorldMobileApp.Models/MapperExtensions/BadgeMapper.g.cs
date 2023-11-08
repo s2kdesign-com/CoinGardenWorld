@@ -14,6 +14,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             return p1 == null ? null : new BadgeDto()
             {
                 Name = p1.Name,
+                Icon = p1.Icon,
+                Color = p1.Color,
                 Description = p1.Description,
                 BadgeType = Enum<BadgeTypes>.ToString(p1.BadgeType),
                 Id = p1.Id,
@@ -31,6 +33,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             BadgeDto result = p3 ?? new BadgeDto();
             
             result.Name = p2.Name;
+            result.Icon = p2.Icon;
+            result.Color = p2.Color;
             result.Description = p2.Description;
             result.BadgeType = Enum<BadgeTypes>.ToString(p2.BadgeType);
             result.Id = p2.Id;
@@ -43,6 +47,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
         public static Expression<Func<Badge, BadgeDto>> ProjectToDto => p4 => new BadgeDto()
         {
             Name = p4.Name,
+            Icon = p4.Icon,
+            Color = p4.Color,
             Description = p4.Description,
             BadgeType = Enum<BadgeTypes>.ToString(p4.BadgeType),
             Id = p4.Id,
@@ -55,6 +61,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             return p5 == null ? null : new BadgeList()
             {
                 Name = p5.Name,
+                Icon = p5.Icon,
+                Color = p5.Color,
                 Description = p5.Description,
                 BadgeType = Enum<BadgeTypes>.ToString(p5.BadgeType),
                 Id = p5.Id,
@@ -70,6 +78,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             BadgeList result = p7 ?? new BadgeList();
             
             result.Name = p6.Name;
+            result.Icon = p6.Icon;
+            result.Color = p6.Color;
             result.Description = p6.Description;
             result.BadgeType = Enum<BadgeTypes>.ToString(p6.BadgeType);
             result.Id = p6.Id;
@@ -80,6 +90,8 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
         public static Expression<Func<Badge, BadgeList>> ProjectToList => p8 => new BadgeList()
         {
             Name = p8.Name,
+            Icon = p8.Icon,
+            Color = p8.Color,
             Description = p8.Description,
             BadgeType = Enum<BadgeTypes>.ToString(p8.BadgeType),
             Id = p8.Id,
@@ -90,8 +102,10 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             return p9 == null ? null : new Badge()
             {
                 Name = p9.Name,
+                Icon = p9.Icon,
+                Color = p9.Color,
                 Description = p9.Description,
-                BadgeType = p9.BadgeType == null ? BadgeTypes.BasedOnTimeRegistered : Enum<BadgeTypes>.Parse(p9.BadgeType)
+                BadgeType = p9.BadgeType == null ? BadgeTypes.SpeciallyAssigned : Enum<BadgeTypes>.Parse(p9.BadgeType)
             };
         }
         public static Badge AdaptTo(this BadgeMerge p10, Badge p11)
@@ -105,6 +119,16 @@ namespace CoinGardenWorldMobileApp.Models.MapperExtensions
             if (p10.Name != null)
             {
                 result.Name = p10.Name;
+            }
+            
+            if (p10.Icon != null)
+            {
+                result.Icon = p10.Icon;
+            }
+            
+            if (p10.Color != null)
+            {
+                result.Color = p10.Color;
             }
             
             if (p10.Description != null)
