@@ -1,0 +1,137 @@
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:DataServices>
+    <Schema Namespace="CoinGardenWorldMobileApp.Models.Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="Account">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Email" Type="Edm.String" Nullable="false" />
+        <Property Name="Username" Type="Edm.String" />
+        <Property Name="DisplayName" Type="Edm.String" />
+        <Property Name="ProfileIntroduction" Type="Edm.String" />
+        <Property Name="ProfilePicture" Type="CoinGardenWorldMobileApp.Models.Entities.BlobImage" />
+        <Property Name="Badges" Type="Collection(CoinGardenWorldMobileApp.Models.Entities.AccountBadge)" />
+        <Property Name="Roles" Type="Collection(CoinGardenWorldMobileApp.Models.Entities.AccountRole)" />
+        <Property Name="Id" Type="Edm.Guid" Nullable="false" />
+        <Property Name="CreatedOn" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="UpdatedOn" Type="Edm.DateTimeOffset" />
+        <Property Name="DeletedAt" Type="Edm.DateTimeOffset" />
+        <NavigationProperty Name="ExternalLogins" Type="Collection(CoinGardenWorldMobileApp.Models.Entities.AccountExternalLogins)" />
+      </EntityType>
+      <EntityType Name="Post">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="AccountId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Title" Type="Edm.String" />
+        <Property Name="Content" Type="Edm.String" />
+        <Property Name="ExternalUrl" Type="Edm.String" />
+        <Property Name="Images" Type="Collection(CoinGardenWorldMobileApp.Models.Entities.BlobImage)" />
+        <Property Name="PostType" Type="CoinGardenWorldMobileApp.Models.Entities.Enums.PostType" Nullable="false" />
+        <Property Name="Visibility" Type="CoinGardenWorldMobileApp.Models.Entities.Visibility" Nullable="false" />
+        <Property Name="Id" Type="Edm.Guid" Nullable="false" />
+        <Property Name="CreatedOn" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="UpdatedOn" Type="Edm.DateTimeOffset" />
+        <Property Name="DeletedAt" Type="Edm.DateTimeOffset" />
+        <NavigationProperty Name="Account" Type="CoinGardenWorldMobileApp.Models.Entities.Account" Nullable="false">
+          <ReferentialConstraint Property="AccountId" ReferencedProperty="Id" />
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="Flower">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Name" Type="Edm.String" Nullable="false" />
+        <Property Name="Images" Type="Collection(CoinGardenWorldMobileApp.Models.Entities.BlobImage)" />
+        <Property Name="Visibility" Type="CoinGardenWorldMobileApp.Models.Entities.Visibility" Nullable="false" />
+        <Property Name="AccountId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="GardenId" Type="Edm.Guid" />
+        <Property Name="Id" Type="Edm.Guid" Nullable="false" />
+        <Property Name="CreatedOn" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="UpdatedOn" Type="Edm.DateTimeOffset" />
+        <Property Name="DeletedAt" Type="Edm.DateTimeOffset" />
+        <NavigationProperty Name="Account" Type="CoinGardenWorldMobileApp.Models.Entities.Account" Nullable="false">
+          <ReferentialConstraint Property="AccountId" ReferencedProperty="Id" />
+        </NavigationProperty>
+        <NavigationProperty Name="Garden" Type="CoinGardenWorldMobileApp.Models.Entities.Garden">
+          <ReferentialConstraint Property="GardenId" ReferencedProperty="Id" />
+        </NavigationProperty>
+      </EntityType>
+      <ComplexType Name="BlobImage">
+        <Property Name="ImageId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ImageUrl" Type="Edm.String" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="AccountBadge">
+        <Property Name="BadgeId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="BadgeName" Type="Edm.String" Nullable="false" />
+        <Property Name="BadgeIcon" Type="Edm.String" Nullable="false" />
+        <Property Name="BadgeColor" Type="Edm.String" Nullable="false" />
+        <Property Name="EarnedOn" Type="Edm.DateTimeOffset" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="AccountRole">
+        <Property Name="RoleId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="RoleName" Type="Edm.String" Nullable="false" />
+        <Property Name="AssignedOn" Type="Edm.DateTimeOffset" Nullable="false" />
+      </ComplexType>
+      <EntityType Name="AccountExternalLogins">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="ObjectIdAzureAd" Type="Edm.String" Nullable="false" />
+        <Property Name="AccountId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="DisplayName" Type="Edm.String" />
+        <Property Name="IdentityProvider" Type="Edm.String" />
+        <Property Name="ProfilePictureUrl" Type="Edm.String" />
+        <Property Name="Id" Type="Edm.Guid" Nullable="false" />
+        <Property Name="CreatedOn" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="UpdatedOn" Type="Edm.DateTimeOffset" />
+        <Property Name="DeletedAt" Type="Edm.DateTimeOffset" />
+        <NavigationProperty Name="Account" Type="CoinGardenWorldMobileApp.Models.Entities.Account" Nullable="false">
+          <ReferentialConstraint Property="AccountId" ReferencedProperty="Id" />
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="Garden">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Name" Type="Edm.String" Nullable="false" />
+        <Property Name="AccountId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Visibility" Type="CoinGardenWorldMobileApp.Models.Entities.Visibility" Nullable="false" />
+        <Property Name="Id" Type="Edm.Guid" Nullable="false" />
+        <Property Name="CreatedOn" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="UpdatedOn" Type="Edm.DateTimeOffset" />
+        <Property Name="DeletedAt" Type="Edm.DateTimeOffset" />
+        <NavigationProperty Name="Account" Type="CoinGardenWorldMobileApp.Models.Entities.Account" Nullable="false">
+          <ReferentialConstraint Property="AccountId" ReferencedProperty="Id" />
+        </NavigationProperty>
+        <NavigationProperty Name="Flowers" Type="Collection(CoinGardenWorldMobileApp.Models.Entities.Flower)" />
+      </EntityType>
+      <EnumType Name="Visibility">
+        <Member Name="Public" Value="0" />
+        <Member Name="Followers" Value="1" />
+        <Member Name="Friends" Value="2" />
+        <Member Name="Private" Value="3" />
+      </EnumType>
+    </Schema>
+    <Schema Namespace="CoinGardenWorldMobileApp.Models.Entities.Enums" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EnumType Name="PostType">
+        <Member Name="Text" Value="0" />
+        <Member Name="Link" Value="1" />
+        <Member Name="Picture" Value="2" />
+        <Member Name="Clip" Value="3" />
+        <Member Name="Album" Value="4" />
+      </EnumType>
+    </Schema>
+    <Schema Namespace="Default" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityContainer Name="Container">
+        <EntitySet Name="AccountsOData" EntityType="CoinGardenWorldMobileApp.Models.Entities.Account" />
+        <EntitySet Name="PostsOData" EntityType="CoinGardenWorldMobileApp.Models.Entities.Post">
+          <NavigationPropertyBinding Path="Account" Target="AccountsOData" />
+        </EntitySet>
+        <EntitySet Name="FlowersOData" EntityType="CoinGardenWorldMobileApp.Models.Entities.Flower">
+          <NavigationPropertyBinding Path="Account" Target="AccountsOData" />
+        </EntitySet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

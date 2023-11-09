@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Connected Services\MobileApiOdataService\MobileApiOdataServiceCsdl.xml" />
     <None Remove="HttpClientBase.cs~RFa9c237b.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Connected Services\MobileApiOdataService\MobileApiOdataServiceCsdl.xml" />
   </ItemGroup>
 	
   <ItemGroup>
@@ -19,20 +24,26 @@
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.OData.Client" Version="7.18.0" />
+    <PackageReference Include="Microsoft.OData.Core" Version="7.18.0" />
+    <PackageReference Include="Microsoft.OData.Edm" Version="7.18.0" />
+    <PackageReference Include="Microsoft.Spatial" Version="7.18.0" />
     <PackageReference Include="NSwag.ApiDescription.Client" Version="13.18.2">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Text.Json" Version="7.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CoinGardenWorld.Constants\CoinGardenWorld.Constants.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <OpenApiReference Include="OpenAPIs\swagger.json" CodeGenerator="NSwagCSharp" ClassName="MobileApi">
       <SourceUri>https://localhost:7249/swagger/v1/swagger.json</SourceUri>
     </OpenApiReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\CoinGardenWorld.Constants\CoinGardenWorld.Constants.csproj" />
   </ItemGroup>
 </Project>

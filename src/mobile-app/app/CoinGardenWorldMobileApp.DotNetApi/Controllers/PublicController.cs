@@ -31,52 +31,52 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             _roleRepository = roleRepository;
         }
 
-        // TODO: Filter public posts from most viewed accounts
-        // GET: api/flowers
-        [HttpGet]
-        [EnableQuery]
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<FlowerList>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IQueryable<FlowerList> GetPublicFlowers()
-        {
-            return _flowerRepository.List().Select(FlowerMapper.ProjectToList);
-        }
+        //// TODO: Filter public posts from most viewed accounts
+        //// GET: api/flowers
+        //[HttpGet]
+        //[EnableQuery]
+        //[Produces("application/json")]
+        //[ProducesResponseType(typeof(IEnumerable<FlowerList>), StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public IQueryable<FlowerList> GetPublicFlowers()
+        //{
+        //    return _flowerRepository.List().Select(FlowerMapper.ProjectToList);
+        //}
 
-        // TODO: Filter public posts from most viewed accounts
-        // GET: api/posts
-        [HttpGet]
-        [EnableQuery]
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<PostList>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IQueryable<PostList> GetPublicPosts()
-        {
-            return _postRepository.List().Select(PostMapper.ProjectToList);
-        }
+        //// TODO: Filter public posts from most viewed accounts
+        //// GET: api/posts
+        //[HttpGet]
+        //[EnableQuery]
+        //[Produces("application/json")]
+        //[ProducesResponseType(typeof(IEnumerable<PostList>), StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public IQueryable<PostList> GetPublicPosts()
+        //{
+        //    return _postRepository.List().Select(PostMapper.ProjectToList);
+        //}
 
-        // TODO: Filter public posts from most viewed accounts
-        // GET: api/accounts
-        [HttpGet]
-        [EnableQuery]
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<AccountList>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IQueryable<AccountList> GetPublicAccounts()
-        {
-            return _accountRepository.List().Select(AccountMapper.ProjectToList);
-        }
+        //// TODO: Filter public posts from most viewed accounts
+        //// GET: api/accounts
+        //[HttpGet]
+        //[EnableQuery]
+        //[Produces("application/json")]
+        //[ProducesResponseType(typeof(IEnumerable<AccountList>), StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public IQueryable<AccountList> GetPublicAccounts()
+        //{
+        //    return _accountRepository.List().Select(AccountMapper.ProjectToList);
+        //}
 
 
-        // GET: api/Roles
-        [HttpGet]
-        [EnableQuery]
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<RoleList>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IQueryable<RoleList> GetPublicRoles()
-        {
-            return _roleRepository.List().Select(RoleMapper.ProjectToList);
-        }
+        //// GET: api/Roles
+        //[HttpGet]
+        //[EnableQuery]
+        //[Produces("application/json")]
+        //[ProducesResponseType(typeof(IEnumerable<RoleList>), StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public IQueryable<RoleList> GetPublicRoles()
+        //{
+        //    return _roleRepository.List().Select(RoleMapper.ProjectToList);
+        //}
     }
 }

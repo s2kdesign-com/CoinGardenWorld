@@ -147,8 +147,8 @@
 <ThemeLoader></ThemeLoader>
 @code {
     private string userName;
-    private List<AccountList> _accounts = new List<AccountList>();
-    
+    private List<Models.Entities.Account> _accounts = new ();
+
     bool isAuthenticated;
 
     protected override async Task OnInitializedAsync()
@@ -158,8 +158,8 @@
             var authState = await AuthStateProvider.GetAuthenticationStateAsync();
 
             isAuthenticated = authState.User.Identity?.IsAuthenticated ?? false;
-            
-            var accounts = await MobileApiHttpClient.MobileApi.GetPublicAccountsAsync(null, null, null, null, null, null);
+
+            var accounts = await MobileApiAuthorizedHttpClient.MobileApiOData.AccountsOData.ExecuteAsync();
             _accounts = accounts.ToList();
 
             StateHasChanged();

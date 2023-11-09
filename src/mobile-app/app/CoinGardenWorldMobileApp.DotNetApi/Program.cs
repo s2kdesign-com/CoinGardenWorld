@@ -66,20 +66,31 @@ builder.Services.AddCors(options =>
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
 
-// TODO: The LINQ expression 'JsonQueryExpression(p.PostLinks, $)' could not be translated.
+#region Add ODData
 
 var modelBuilder = new ODataConventionModelBuilder();
 
-modelBuilder.EntityType<Account>();
-modelBuilder.EntityType<Post>();
-modelBuilder.EntityType<Flower>();
-// TODO: this will register new actions GET and POST and will conflict with the base OData controller
-//modelBuilder.EntitySet<Account>("Accounts");
+//modelBuilder.EntityType<Account>();
+//modelBuilder.EntityType<Post>();
+//modelBuilder.EntityType<Flower>();
+
+// this will register new actions GET and POST and will conflict with the base OData controller so we add OData to the end of the action
+modelBuilder.EntitySet<Account>("AccountsOData");
+modelBuilder.EntitySet<Post>("PostsOData");
+modelBuilder.EntitySet<Flower>("FlowersOData");
 
 builder.Services.AddControllers()
-    .AddOData(options => options.EnableQueryFeatures(50).AddRouteComponents("odata", modelBuilder.GetEdmModel()
+    .AddOData(options => {
+        options.EnableQueryFeatures(50).AddRouteComponents("odata", modelBuilder.GetEdmModel());
+        options.EnableNoDollarQueryOptions = true;
+        }
+    
+    );
 
-    ) );
+#endregion
+
+
+#region Add SignalR
 
 // Add signalr
 
@@ -97,6 +108,7 @@ builder.Services.AddSignalR().AddAzureSignalR(configure =>
     configure.InitialHubServerConnectionCount = 1;
 });
 
+#endregion
 
 #region Add Swagger
 
@@ -106,6 +118,9 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(options =>
 {
+    // OData $metadata url is braking the generated HTTP clients so its better to ignore it in the docs
+    options.DocumentFilter<HideInDocsFilter>();
+
     options.OperationFilter<ODataParametersSwaggerDefinition>();
 
     options.SwaggerDoc("v1", new OpenApiInfo
@@ -175,6 +190,7 @@ builder.Services.AddSwaggerGen(options =>
 
 #endregion
 
+#region Add Sql Server And Azure Storage
 
 // Add SQL Server Database
 builder.Services.AddDbContext<MobileAppDbContext>(opt =>
@@ -193,6 +209,8 @@ builder.Services.AddAzureClients(clientBuilder =>
     clientBuilder.AddCgwQueueServiceClient(azureStorageConfiguration.Queue, preferMsi: true);
     clientBuilder.AddCgwBlobServiceClient(azureStorageConfiguration.Files, preferMsi: true);
 });
+
+#endregion
 
 #region Add HealhChecks
 
@@ -261,6 +279,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseODataRouteDebug();
 }
+app.UseHttpsRedirection();
+
+app.UseAuthentication();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
 
 #region use Swagger
 
@@ -276,14 +302,6 @@ app.UseSwaggerUI(options =>
 });
 
 #endregion
-
-app.UseHttpsRedirection();
-
-app.UseAuthentication();
-
-app.UseAuthorization();
-
-app.MapControllers();
 
 app.MapHub<NotificationsHub>("NotificationsHub");
 app.MapHub<ChatHub>("ChatHub");

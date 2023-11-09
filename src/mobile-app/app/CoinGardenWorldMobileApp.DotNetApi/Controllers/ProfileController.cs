@@ -17,12 +17,20 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
     public class ProfileController : ControllerBase
     {
         private readonly UnitOfWork<Account> _unitOfWorkAccount;
+        private readonly UnitOfWork<Role> _unitOfWorkRoles;
+        private readonly UnitOfWork<Badge> _unitOfWorkBadges;
         private readonly UnitOfWork<AccountExternalLogins> _unitOfWorkExternalLogins;
 
-        public ProfileController(UnitOfWork<Account> unitOfWorkAccount, UnitOfWork<AccountExternalLogins> unitOfWorkExternalLogins)
+        public ProfileController(
+            UnitOfWork<Account> unitOfWorkAccount, 
+            UnitOfWork<AccountExternalLogins> unitOfWorkExternalLogins
+            , UnitOfWork<Role> unitOfWorkRoles
+            , UnitOfWork<Badge> unitOfWorkBadges)
         {
             _unitOfWorkAccount = unitOfWorkAccount;
             _unitOfWorkExternalLogins = unitOfWorkExternalLogins;
+            _unitOfWorkRoles = unitOfWorkRoles;
+            _unitOfWorkBadges = unitOfWorkBadges;
         }
 
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -64,6 +72,29 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
                     // User has existing account
                     if (accountFromDb == null)
                     {
+                        var role = await _unitOfWorkRoles.Repository.List( e => e.Name == "StandardUser").FirstOrDefaultAsync();
+                        request.Account.Roles = new List<AccountRoleAdd>
+                        {
+                            new AccountRoleAdd
+                            {
+                                RoleId = role.Id,
+                                RoleName = role.Name,
+                                AssignedOn = DateTime.UtcNow
+                            }
+                        };
+
+                        var badge = await _unitOfWorkBadges.Repository.List(b => b.Name == "Recruit Rosebud (Upon Registration)").FirstOrDefaultAsync();
+                        request.Account.Badges = new List<AccountBadgeAdd>
+                        {
+                            new AccountBadgeAdd
+                            {
+                                BadgeId = badge.Id,
+                                BadgeName = badge.Name,
+                                BadgeColor = badge.Color,
+                                BadgeIcon = badge.Icon,
+                            }
+                        };
+
                         accountFromDb = _unitOfWorkAccount.Repository.Insert(request.Account.AdaptToAccount());
                         await _unitOfWorkAccount.SaveAsync();
                     }

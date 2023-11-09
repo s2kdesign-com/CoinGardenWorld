@@ -20,59 +20,6 @@
         "tags": [
           "Admin/Accounts"
         ],
-        "parameters": [
-          {
-            "name": "$filter",
-            "in": "query",
-            "description": "Filter the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$select",
-            "in": "query",
-            "description": "Trim the fields returned using OData syntax",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$orderby",
-            "in": "query",
-            "description": "Order the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$skip",
-            "in": "query",
-            "description": "The number of results to skip.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$top",
-            "in": "query",
-            "description": "The number of results to return.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$expand",
-            "in": "query",
-            "description": "Expand functionality can be used to query related data. For example, to get the Course data for each Enrollment entity, include ?$expand=course",
-            "style": "form"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -387,7 +334,7 @@
             "style": "form",
             "schema": {
               "type": "string",
-              "default": "ExternalLogins,Roles,Roles.Role"
+              "default": "ExternalLogins"
             }
           }
         ],
@@ -866,7 +813,7 @@
     "/api/Admin/Roles": {
       "get": {
         "tags": [
-          "Admin/Role"
+          "Admin/Roles"
         ],
         "parameters": [
           {
@@ -949,7 +896,7 @@
       },
       "post": {
         "tags": [
-          "Admin/Role"
+          "Admin/Roles"
         ],
         "requestBody": {
           "content": {
@@ -1212,7 +1159,7 @@
     "/api/Admin/Roles/{id}": {
       "get": {
         "tags": [
-          "Admin/Role"
+          "Admin/Roles"
         ],
         "parameters": [
           {
@@ -1401,7 +1348,7 @@
       },
       "put": {
         "tags": [
-          "Admin/Role"
+          "Admin/Roles"
         ],
         "parameters": [
           {
@@ -1592,7 +1539,7 @@
       },
       "delete": {
         "tags": [
-          "Admin/Role"
+          "Admin/Roles"
         ],
         "parameters": [
           {
@@ -1703,64 +1650,131 @@
         "tags": [
           "Flowers"
         ],
-        "parameters": [
-          {
-            "name": "$filter",
-            "in": "query",
-            "description": "Filter the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$select",
-            "in": "query",
-            "description": "Trim the fields returned using OData syntax",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$orderby",
-            "in": "query",
-            "description": "Order the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$skip",
-            "in": "query",
-            "description": "The number of results to skip.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$top",
-            "in": "query",
-            "description": "The number of results to return.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$expand",
-            "in": "query",
-            "description": "Expand functionality can be used to query related data. For example, to get the Course data for each Enrollment entity, include ?$expand=course",
-            "style": "form"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Success",
             "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FlowerList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FlowerList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FlowerList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FlowerList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FlowerList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FlowerList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FlowerList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FlowerList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FlowerList"
+                  }
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FlowerList"
+                  }
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FlowerList"
+                  }
+                }
+              },
               "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FlowerList"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FlowerList"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FlowerList"
+                  }
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FlowerList"
+                  }
+                }
+              },
+              "text/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -1773,7 +1787,82 @@
           "400": {
             "description": "Bad Request",
             "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
               "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -2542,10 +2631,105 @@
         }
       }
     },
-    "/api/Posts": {
+    "/odata": {
       "get": {
         "tags": [
-          "Posts"
+          "Metadata"
+        ],
+        "operationId": "odata/",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ODataServiceDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/odata/PostsOData": {
+      "get": {
+        "tags": [
+          "OData"
         ],
         "parameters": [
           {
@@ -2608,7 +2792,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/PostList"
+                    "$ref": "#/components/schemas/Post"
                   }
                 }
               }
@@ -2618,6 +2802,403 @@
             "description": "Bad Request",
             "content": {
               "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/odata/AccountsOData": {
+      "get": {
+        "tags": [
+          "OData"
+        ],
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter the results using OData syntax.",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Trim the fields returned using OData syntax",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order the results using OData syntax.",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "The number of results to skip.",
+            "style": "form",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "The number of results to return.",
+            "style": "form",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand functionality can be used to query related data. For example, to get the Course data for each Enrollment entity, include ?$expand=course",
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Account"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/odata/FlowersOData": {
+      "get": {
+        "tags": [
+          "OData"
+        ],
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter the results using OData syntax.",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Trim the fields returned using OData syntax",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order the results using OData syntax.",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "The number of results to skip.",
+            "style": "form",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "The number of results to return.",
+            "style": "form",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand functionality can be used to query related data. For example, to get the Course data for each Enrollment entity, include ?$expand=course",
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Flower"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Posts": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -3389,346 +3970,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProfileOnLogin"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Public/GetPublicFlowers": {
-      "get": {
-        "tags": [
-          "Public"
-        ],
-        "parameters": [
-          {
-            "name": "$filter",
-            "in": "query",
-            "description": "Filter the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$select",
-            "in": "query",
-            "description": "Trim the fields returned using OData syntax",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$orderby",
-            "in": "query",
-            "description": "Order the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$skip",
-            "in": "query",
-            "description": "The number of results to skip.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$top",
-            "in": "query",
-            "description": "The number of results to return.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$expand",
-            "in": "query",
-            "description": "Expand functionality can be used to query related data. For example, to get the Course data for each Enrollment entity, include ?$expand=course",
-            "style": "form"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/FlowerList"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Public/GetPublicPosts": {
-      "get": {
-        "tags": [
-          "Public"
-        ],
-        "parameters": [
-          {
-            "name": "$filter",
-            "in": "query",
-            "description": "Filter the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$select",
-            "in": "query",
-            "description": "Trim the fields returned using OData syntax",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$orderby",
-            "in": "query",
-            "description": "Order the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$skip",
-            "in": "query",
-            "description": "The number of results to skip.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$top",
-            "in": "query",
-            "description": "The number of results to return.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$expand",
-            "in": "query",
-            "description": "Expand functionality can be used to query related data. For example, to get the Course data for each Enrollment entity, include ?$expand=course",
-            "style": "form"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostList"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Public/GetPublicAccounts": {
-      "get": {
-        "tags": [
-          "Public"
-        ],
-        "parameters": [
-          {
-            "name": "$filter",
-            "in": "query",
-            "description": "Filter the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$select",
-            "in": "query",
-            "description": "Trim the fields returned using OData syntax",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$orderby",
-            "in": "query",
-            "description": "Order the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$skip",
-            "in": "query",
-            "description": "The number of results to skip.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$top",
-            "in": "query",
-            "description": "The number of results to return.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$expand",
-            "in": "query",
-            "description": "Expand functionality can be used to query related data. For example, to get the Course data for each Enrollment entity, include ?$expand=course",
-            "style": "form"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountList"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Public/GetPublicRoles": {
-      "get": {
-        "tags": [
-          "Public"
-        ],
-        "parameters": [
-          {
-            "name": "$filter",
-            "in": "query",
-            "description": "Filter the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$select",
-            "in": "query",
-            "description": "Trim the fields returned using OData syntax",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$orderby",
-            "in": "query",
-            "description": "Order the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$skip",
-            "in": "query",
-            "description": "The number of results to skip.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$top",
-            "in": "query",
-            "description": "The number of results to return.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$expand",
-            "in": "query",
-            "description": "Expand functionality can be used to query related data. For example, to get the Course data for each Enrollment entity, include ?$expand=course",
-            "style": "form"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/RoleList"
-                  }
                 }
               }
             }
@@ -4650,6 +4891,78 @@
   },
   "components": {
     "schemas": {
+      "Account": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "email": {
+            "maxLength": 150,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "username": {
+            "maxLength": 150,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "displayName": {
+            "maxLength": 150,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "profileIntroduction": {
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "profilePicture": {
+            "$ref": "#/components/schemas/BlobImage"
+          },
+          "badges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountBadge"
+            },
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountRole"
+            },
+            "nullable": true
+          },
+          "externalLogins": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountExternalLogins"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "AccountAdd": {
         "type": "object",
         "properties": {
@@ -4669,9 +4982,153 @@
             "type": "string",
             "nullable": true
           },
-          "profilePicure": {
+          "profilePicture": {
+            "$ref": "#/components/schemas/BlobImageAdd"
+          },
+          "badges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountBadgeAdd"
+            },
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountRoleAdd"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountBadge": {
+        "type": "object",
+        "properties": {
+          "badgeId": {
             "type": "string",
-            "format": "byte",
+            "format": "uuid"
+          },
+          "badgeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "badgeIcon": {
+            "type": "string",
+            "nullable": true
+          },
+          "badgeColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "earnedOn": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountBadgeAdd": {
+        "type": "object",
+        "properties": {
+          "badgeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "badgeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "badgeIcon": {
+            "type": "string",
+            "nullable": true
+          },
+          "badgeColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "earnedOn": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountBadgeDto": {
+        "type": "object",
+        "properties": {
+          "badgeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "badgeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "badgeIcon": {
+            "type": "string",
+            "nullable": true
+          },
+          "badgeColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "earnedOn": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountBadgeList": {
+        "type": "object",
+        "properties": {
+          "badgeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "badgeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "badgeIcon": {
+            "type": "string",
+            "nullable": true
+          },
+          "badgeColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "earnedOn": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountBadgeMerge": {
+        "type": "object",
+        "properties": {
+          "badgeId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "badgeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "badgeIcon": {
+            "type": "string",
+            "nullable": true
+          },
+          "badgeColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "earnedOn": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           }
         },
@@ -4696,15 +5153,20 @@
             "type": "string",
             "nullable": true
           },
-          "profilePicure": {
-            "type": "string",
-            "format": "byte",
+          "profilePicture": {
+            "$ref": "#/components/schemas/BlobImageDto"
+          },
+          "badges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountBadgeDto"
+            },
             "nullable": true
           },
           "roles": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AccountRolesDto"
+              "$ref": "#/components/schemas/AccountRoleDto"
             },
             "nullable": true
           },
@@ -4736,18 +5198,73 @@
         },
         "additionalProperties": false
       },
+      "AccountExternalLogins": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "objectIdAzureAd": {
+            "maxLength": 70,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "accountId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "account": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "displayName": {
+            "maxLength": 150,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "identityProvider": {
+            "maxLength": 70,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "profilePictureUrl": {
+            "maxLength": 8000,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "AccountExternalLoginsDto": {
         "type": "object",
         "properties": {
+          "objectIdAzureAd": {
+            "type": "string",
+            "nullable": true
+          },
           "accountId": {
             "type": "string",
             "format": "uuid"
           },
           "displayName": {
-            "type": "string",
-            "nullable": true
-          },
-          "objectIdAzureAd": {
             "type": "string",
             "nullable": true
           },
@@ -4799,9 +5316,21 @@
             "type": "string",
             "nullable": true
           },
-          "profilePicure": {
-            "type": "string",
-            "format": "byte",
+          "profilePicture": {
+            "$ref": "#/components/schemas/BlobImageList"
+          },
+          "badges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountBadgeList"
+            },
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountRoleList"
+            },
             "nullable": true
           },
           "id": {
@@ -4834,42 +5363,111 @@
             "type": "string",
             "nullable": true
           },
-          "profilePicure": {
-            "type": "string",
-            "format": "byte",
+          "profilePicture": {
+            "$ref": "#/components/schemas/BlobImageMerge"
+          },
+          "badges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountBadgeMerge"
+            },
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountRoleMerge"
+            },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "AccountRolesDto": {
+      "AccountRole": {
         "type": "object",
         "properties": {
-          "accountId": {
-            "type": "string",
-            "format": "uuid"
-          },
           "roleId": {
             "type": "string",
             "format": "uuid"
           },
-          "role": {
-            "$ref": "#/components/schemas/RoleDto"
+          "roleName": {
+            "type": "string",
+            "nullable": true
           },
-          "id": {
+          "assignedOn": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountRoleAdd": {
+        "type": "object",
+        "properties": {
+          "roleId": {
             "type": "string",
             "format": "uuid"
           },
-          "createdOn": {
+          "roleName": {
             "type": "string",
-            "format": "date-time"
-          },
-          "updatedOn": {
-            "type": "string",
-            "format": "date-time",
             "nullable": true
           },
-          "deletedAt": {
+          "assignedOn": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountRoleDto": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "roleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignedOn": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountRoleList": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "roleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignedOn": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountRoleMerge": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "roleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignedOn": {
             "type": "string",
             "format": "date-time",
             "nullable": true
@@ -4900,6 +5498,77 @@
           "goreScore": {
             "type": "number",
             "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BlobImage": {
+        "type": "object",
+        "properties": {
+          "imageId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BlobImageAdd": {
+        "type": "object",
+        "properties": {
+          "imageId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BlobImageDto": {
+        "type": "object",
+        "properties": {
+          "imageId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BlobImageList": {
+        "type": "object",
+        "properties": {
+          "imageId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BlobImageMerge": {
+        "type": "object",
+        "properties": {
+          "imageId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -5089,6 +5758,77 @@
         },
         "additionalProperties": false
       },
+      "EdmContainerElementKind": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "EdmExpressionKind": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "EdmSchemaElementKind": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "EdmTypeKind": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
       "FaceDescription": {
         "type": "object",
         "properties": {
@@ -5127,11 +5867,73 @@
         },
         "additionalProperties": false
       },
+      "Flower": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "name": {
+            "maxLength": 150,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlobImage"
+            },
+            "nullable": true
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/Visibility"
+          },
+          "accountId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "account": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "gardenId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "garden": {
+            "$ref": "#/components/schemas/Garden"
+          }
+        },
+        "additionalProperties": false
+      },
       "FlowerAdd": {
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
+            "nullable": true
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlobImageAdd"
+            },
             "nullable": true
           },
           "visibility": {
@@ -5150,6 +5952,13 @@
         "properties": {
           "name": {
             "type": "string",
+            "nullable": true
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlobImageDto"
+            },
             "nullable": true
           },
           "visibility": {
@@ -5199,6 +6008,13 @@
             "type": "string",
             "nullable": true
           },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlobImageList"
+            },
+            "nullable": true
+          },
           "visibility": {
             "type": "string",
             "nullable": true
@@ -5236,6 +6052,13 @@
             "type": "string",
             "nullable": true
           },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlobImageMerge"
+            },
+            "nullable": true
+          },
           "visibility": {
             "type": "string",
             "nullable": true
@@ -5243,6 +6066,53 @@
           "accountId": {
             "type": "string",
             "format": "uuid",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Garden": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "name": {
+            "maxLength": 150,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "accountId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "account": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/Visibility"
+          },
+          "flowers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Flower"
+            },
             "nullable": true
           }
         },
@@ -5323,6 +6193,204 @@
         ],
         "type": "integer",
         "format": "int32"
+      },
+      "IEdmDirectValueAnnotationsManager": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IEdmEntityContainer": {
+        "type": "object",
+        "properties": {
+          "elements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IEdmEntityContainerElement"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "schemaElementKind": {
+            "$ref": "#/components/schemas/EdmSchemaElementKind"
+          },
+          "namespace": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IEdmEntityContainerElement": {
+        "type": "object",
+        "properties": {
+          "containerElementKind": {
+            "$ref": "#/components/schemas/EdmContainerElementKind"
+          },
+          "container": {
+            "$ref": "#/components/schemas/IEdmEntityContainer"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IEdmExpression": {
+        "type": "object",
+        "properties": {
+          "expressionKind": {
+            "$ref": "#/components/schemas/EdmExpressionKind"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IEdmModel": {
+        "type": "object",
+        "properties": {
+          "schemaElements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IEdmSchemaElement"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "vocabularyAnnotations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IEdmVocabularyAnnotation"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "referencedModels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IEdmModel"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "declaredNamespaces": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "directValueAnnotationsManager": {
+            "$ref": "#/components/schemas/IEdmDirectValueAnnotationsManager"
+          },
+          "entityContainer": {
+            "$ref": "#/components/schemas/IEdmEntityContainer"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IEdmSchemaElement": {
+        "type": "object",
+        "properties": {
+          "schemaElementKind": {
+            "$ref": "#/components/schemas/EdmSchemaElementKind"
+          },
+          "namespace": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IEdmTerm": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/IEdmTypeReference"
+          },
+          "appliesTo": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "defaultValue": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "schemaElementKind": {
+            "$ref": "#/components/schemas/EdmSchemaElementKind"
+          },
+          "namespace": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IEdmType": {
+        "type": "object",
+        "properties": {
+          "typeKind": {
+            "$ref": "#/components/schemas/EdmTypeKind"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IEdmTypeReference": {
+        "type": "object",
+        "properties": {
+          "isNullable": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "definition": {
+            "$ref": "#/components/schemas/IEdmType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IEdmVocabularyAnnotatable": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IEdmVocabularyAnnotation": {
+        "type": "object",
+        "properties": {
+          "qualifier": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "term": {
+            "$ref": "#/components/schemas/IEdmTerm"
+          },
+          "target": {
+            "$ref": "#/components/schemas/IEdmVocabularyAnnotatable"
+          },
+          "value": {
+            "$ref": "#/components/schemas/IEdmExpression"
+          }
+        },
+        "additionalProperties": false
       },
       "Identifiable": {
         "type": "object",
@@ -5767,6 +6835,113 @@
         },
         "additionalProperties": false
       },
+      "ODataEntitySetInfo": {
+        "type": "object",
+        "properties": {
+          "typeAnnotation": {
+            "$ref": "#/components/schemas/ODataTypeAnnotation"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ODataFunctionImportInfo": {
+        "type": "object",
+        "properties": {
+          "typeAnnotation": {
+            "$ref": "#/components/schemas/ODataTypeAnnotation"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ODataServiceDocument": {
+        "type": "object",
+        "properties": {
+          "typeAnnotation": {
+            "$ref": "#/components/schemas/ODataTypeAnnotation"
+          },
+          "entitySets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ODataEntitySetInfo"
+            },
+            "nullable": true
+          },
+          "singletons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ODataSingletonInfo"
+            },
+            "nullable": true
+          },
+          "functionImports": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ODataFunctionImportInfo"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ODataSingletonInfo": {
+        "type": "object",
+        "properties": {
+          "typeAnnotation": {
+            "$ref": "#/components/schemas/ODataTypeAnnotation"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ODataTypeAnnotation": {
+        "type": "object",
+        "properties": {
+          "typeName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ObjectHierarchy": {
         "type": "object",
         "properties": {
@@ -5780,6 +6955,66 @@
           },
           "parent": {
             "$ref": "#/components/schemas/ObjectHierarchy"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Post": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "accountId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "account": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "title": {
+            "maxLength": 300,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "maxLength": 1500,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "externalUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlobImage"
+            },
+            "nullable": true
+          },
+          "postType": {
+            "$ref": "#/components/schemas/PostType"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/Visibility"
           }
         },
         "additionalProperties": false
@@ -5802,18 +7037,15 @@
             "type": "string",
             "nullable": true
           },
-          "linkOrImageUrl": {
+          "externalUrl": {
             "type": "string",
             "nullable": true
           },
-          "gardenId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "flowerId": {
-            "type": "string",
-            "format": "uuid",
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlobImageAdd"
+            },
             "nullable": true
           },
           "postType": {
@@ -5845,25 +7077,16 @@
             "type": "string",
             "nullable": true
           },
-          "linkOrImageUrl": {
+          "externalUrl": {
             "type": "string",
             "nullable": true
           },
-          "gardenId": {
-            "type": "string",
-            "format": "uuid",
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlobImageDto"
+            },
             "nullable": true
-          },
-          "garden": {
-            "$ref": "#/components/schemas/GardenDto"
-          },
-          "flowerId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "flower": {
-            "$ref": "#/components/schemas/FlowerDto"
           },
           "postType": {
             "type": "string",
@@ -5912,25 +7135,16 @@
             "type": "string",
             "nullable": true
           },
-          "linkOrImageUrl": {
+          "externalUrl": {
             "type": "string",
             "nullable": true
           },
-          "gardenId": {
-            "type": "string",
-            "format": "uuid",
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlobImageList"
+            },
             "nullable": true
-          },
-          "garden": {
-            "$ref": "#/components/schemas/GardenList"
-          },
-          "flowerId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "flower": {
-            "$ref": "#/components/schemas/FlowerList"
           },
           "postType": {
             "type": "string",
@@ -5970,18 +7184,15 @@
             "type": "string",
             "nullable": true
           },
-          "linkOrImageUrl": {
+          "externalUrl": {
             "type": "string",
             "nullable": true
           },
-          "gardenId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "flowerId": {
-            "type": "string",
-            "format": "uuid",
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlobImageMerge"
+            },
             "nullable": true
           },
           "postType": {
@@ -5994,6 +7205,17 @@
           }
         },
         "additionalProperties": false
+      },
+      "PostType": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
       },
       "ProblemDetails": {
         "type": "object",
@@ -6692,6 +7914,16 @@
           }
         },
         "additionalProperties": false
+      },
+      "Visibility": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
       },
       "WebMetaTag": {
         "type": "object",

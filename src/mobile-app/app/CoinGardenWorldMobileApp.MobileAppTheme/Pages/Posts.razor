@@ -1,4 +1,5 @@
-﻿@using PostDto = CoinGardenWorld.HttpClientsExtensions.PostDto
+﻿
+@using Microsoft.OData.Client
 
 @* @page "/dashboard" *@
 
@@ -40,6 +41,30 @@
                 </div>
             </div>
 
+
+            
+            @if (_latestPosts.Any())
+            {
+                @foreach (var post in _latestPosts)
+                {
+                    <DashboardCardImage>
+                        <Header>
+                            Picture
+                        </Header>
+
+                        <Content>
+                            Just copy the link to the service you want and add it inside a responsive-iframe div. We'll do the rest.
+                        </Content>
+                    </DashboardCardImage>
+
+                }
+
+            }
+            else
+            {
+
+                <!-- TODO: Add some kind of preloader -->
+            }
         </Authorized>
         <NotAuthorized>
 
@@ -54,6 +79,31 @@
                     </a>
                 </div>
             </div>
+
+
+            
+            @if (_latestPosts.Any())
+            {
+                @foreach (var post in _latestPosts)
+                {
+                    <DashboardCardImage>
+                        <Header>
+                            Picture
+                        </Header>
+
+                        <Content>
+                            Just copy the link to the service you want and add it inside a responsive-iframe div. We'll do the rest.
+                        </Content>
+                    </DashboardCardImage>
+
+                }
+
+            }
+            else
+            {
+
+                <!-- TODO: Add some kind of preloader -->
+            }
 
         </NotAuthorized>
     </AuthorizeView>
@@ -79,28 +129,6 @@
         </Content>
     </DashboardCardImage>
 
-    @if (_latestPosts.Any())
-    {
-        @foreach (var post in _latestPosts)
-        {
-            <DashboardCardImage>
-                <Header>
-                    Picture
-                </Header>
-
-                <Content>
-                    Just copy the link to the service you want and add it inside a responsive-iframe div. We'll do the rest.
-                </Content>
-            </DashboardCardImage>
-
-        }
-
-    }
-    else
-    {
-
-        <!-- TODO: Add some kind of preloader -->
-    }
 
     <DashboardCardText></DashboardCardText>
 
@@ -117,30 +145,21 @@
 
 @code {
     // TODO:
-    private List<CoinGardenWorld.HttpClientsExtensions.PostList> _latestPosts = new List<CoinGardenWorld.HttpClientsExtensions.PostList>();
+    private List<Models.Entities.Post> _latestPosts = new ();
 
     protected override async Task OnInitializedAsync()
     {
 
         try
         {
-            var userAuth = await AuthStateProvider.GetAuthenticationStateAsync();
+            var result = await MobileApiAuthorizedHttpClient.MobileApiOData.PostsOData.ExecuteAsync();
 
-            if (userAuth.User.Identity != null && userAuth.User.Identity.IsAuthenticated)
-            {
-                var latestPosts = await MobileApiAuthorizedHttpClient.MobileApi.PostsAllAsync(null, null, null, null, 10, null);
-                _latestPosts = latestPosts.ToList();
-                StateHasChanged();
+            _latestPosts = result.ToList();
 
-            }
-            else
-            {
-                // TODO: Get Public Most viewed posts
+            // var latestPosts = await MobileApiAuthorizedHttpClient.MobileApi.PostsODataAsync(null, null, null, null, 10, null);
+            // _latestPosts = latestPosts.ToList();
+            StateHasChanged();
 
-                var latestPosts = await MobileApiHttpClient.MobileApi.GetPublicPostsAsync(null, null, null, null, 10, null);
-                _latestPosts = latestPosts.ToList();
-                StateHasChanged();
-            }
 
         }
         catch (Exception e)
