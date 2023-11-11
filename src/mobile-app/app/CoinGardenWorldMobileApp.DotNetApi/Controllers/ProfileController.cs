@@ -1,4 +1,5 @@
-﻿using CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer;
+﻿using Azure.Core;
+using CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer;
 using CoinGardenWorldMobileApp.Models.DerivedModels;
 using CoinGardenWorldMobileApp.Models.Entities;
 using CoinGardenWorldMobileApp.Models.MapperExtensions;
@@ -48,7 +49,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
                 var userObjectIdAzureAd = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/identity/claims/objectidentifier")?.Value;
                 var userIdentityProvider = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/identity/claims/identityprovider")?.Value;
 
-                var request = new ProfileOnLoginRequest
+                var model = new ProfileOnLoginRequest
                 {
                     Account = new AccountAdd
                     {
@@ -67,13 +68,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var accountFromDb = await _unitOfWorkAccount.Repository.List(a => a.Email == request.Account.Email).FirstOrDefaultAsync();
+                    var accountFromDb = await _unitOfWorkAccount.Repository.List(a => a.Email == model.Account.Email).FirstOrDefaultAsync();
 
                     // User has existing account
                     if (accountFromDb == null)
                     {
                         var role = await _unitOfWorkRoles.Repository.List( e => e.Name == "StandardUser").FirstOrDefaultAsync();
-                        request.Account.Roles = new List<AccountRoleAdd>
+                        model.Account.Roles = new List<AccountRoleAdd>
                         {
                             new AccountRoleAdd
                             {
@@ -84,7 +85,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
                         };
 
                         var badge = await _unitOfWorkBadges.Repository.List(b => b.Name == "Recruit Rosebud (Upon Registration)").FirstOrDefaultAsync();
-                        request.Account.Badges = new List<AccountBadgeAdd>
+                        model.Account.Badges = new List<AccountBadgeAdd>
                         {
                             new AccountBadgeAdd
                             {
@@ -95,11 +96,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
                             }
                         };
 
-                        accountFromDb = _unitOfWorkAccount.Repository.Insert(request.Account.AdaptToAccount());
+                        accountFromDb = _unitOfWorkAccount.Repository.Insert(model.Account.AdaptToAccount());
                         await _unitOfWorkAccount.SaveAsync();
                     }
 
-                    var externalLogin = await _unitOfWorkExternalLogins.Repository.List(e => e.AccountId == accountFromDb.Id && e.IdentityProvider == request.ExternalLogins.IdentityProvider).FirstOrDefaultAsync();
+                    var externalLogin = await _unitOfWorkExternalLogins.Repository.List(e => e.AccountId == accountFromDb.Id && e.IdentityProvider == model.ExternalLogins.IdentityProvider).FirstOrDefaultAsync();
 
                     // User has existing external login
                     if (externalLogin != null)
@@ -114,7 +115,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
                     else
                     {
                         var externalLoginRequest = new AccountExternalLogins();
-                        request.ExternalLogins.AdaptTo(externalLoginRequest);
+                        model.ExternalLogins.AdaptTo(externalLoginRequest);
                         externalLoginRequest.AccountId = accountFromDb.Id;
 
                         var externalLoginAdded = _unitOfWorkExternalLogins.Repository.Insert(externalLoginRequest);
@@ -146,5 +147,23 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             return Problem();
         }
 
+        [HttpGet]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(AccountRole), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<AccountRole>> GetRoles()
+        {
+            var email = (HttpContext.User.Claims.FirstOrDefault(c => c.Type == "emails")?.Value!);
+
+            var accountFromDb = await _unitOfWorkAccount.Repository.List(a => a.Email == email).FirstOrDefaultAsync();
+
+            if(accountFromDb != null)
+            {
+                return Ok(accountFromDb.Roles.ToList());
+
+            }
+
+            return BadRequest("There is no existing roles for email: " + email);
+        }
     }
 }
