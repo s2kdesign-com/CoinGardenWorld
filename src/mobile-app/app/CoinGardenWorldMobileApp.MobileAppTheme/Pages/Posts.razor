@@ -1,18 +1,9 @@
 ﻿
-@using Microsoft.OData.Client
-
 @* @page "/dashboard" *@
 
 @attribute [Route(NavigationLinks.POSTS_URL)]
 
-
-@inject MobileApiAuthorizedHttpClient MobileApiAuthorizedHttpClient
-@inject MobileApiHttpClient MobileApiHttpClient
-
-@inject MobileApiODataClient MobileApiODataClient
-
 @inject ILogger<Posts> Logger
-@inject AuthenticationStateProvider AuthStateProvider
 
 <!-- Your Page Content Goes Here-->
 <div class="page-content header-clear-medium">
@@ -148,6 +139,9 @@
 @code {
     // TODO:
     private List<Models.Entities.Post> _latestPosts = new ();
+
+    [Inject]
+    protected MobileApiODataClient? MobileApiODataClient { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

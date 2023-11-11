@@ -1,17 +1,10 @@
-﻿@using AccountDto = CoinGardenWorld.HttpClientsExtensions.AccountDto
+﻿
 @* @page "/profile" *@
 
 @attribute [Route(NavigationLinks.PROFILE_URL)]
 
-@inject IHybridStorage LocalStorage
-
-@inject MobileApiAuthorizedHttpClient MobileApiAuthorizedHttpClient
-@inject MobileApiHttpClient MobileApiHttpClient
-
-@inject MobileApiODataClient MobileApiODataClient
 
 @inject ILogger<Profile> Logger
-@inject AuthenticationStateProvider AuthStateProvider
 
 <AuthorizeView>
     <Authorized>
@@ -153,6 +146,12 @@
 
     bool isAuthenticated;
 
+    [Inject]
+    protected AuthenticationStateProvider? AuthStateProvider { get; set; }
+
+    [Inject]
+    protected MobileApiODataClient? MobileApiODataClient { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         try
@@ -172,8 +171,6 @@
                 
             }
 
-            Console.WriteLine("Here we DONT have the list from odata");
-            Console.WriteLine("Here we have the list from odata");
             StateHasChanged();
         }
         catch (Exception e)
