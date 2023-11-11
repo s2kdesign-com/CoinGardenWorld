@@ -9,6 +9,8 @@
 @inject MobileApiAuthorizedHttpClient MobileApiAuthorizedHttpClient
 @inject MobileApiHttpClient MobileApiHttpClient
 
+@inject MobileApiODataClient MobileApiODataClient
+
 @inject ILogger<Posts> Logger
 @inject AuthenticationStateProvider AuthStateProvider
 
@@ -152,7 +154,7 @@
 
         try
         {
-            var result = await MobileApiAuthorizedHttpClient.MobileApiOData.PostsOData.ExecuteAsync();
+            var result = await MobileApiODataClient.MobileApiOData.PostsOData.ExecuteAsync();
 
             _latestPosts = result.ToList();
 

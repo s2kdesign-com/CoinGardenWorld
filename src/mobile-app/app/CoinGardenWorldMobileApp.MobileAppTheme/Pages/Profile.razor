@@ -8,6 +8,8 @@
 @inject MobileApiAuthorizedHttpClient MobileApiAuthorizedHttpClient
 @inject MobileApiHttpClient MobileApiHttpClient
 
+@inject MobileApiODataClient MobileApiODataClient
+
 @inject ILogger<Profile> Logger
 @inject AuthenticationStateProvider AuthStateProvider
 
@@ -158,10 +160,20 @@
             var authState = await AuthStateProvider.GetAuthenticationStateAsync();
 
             isAuthenticated = authState.User.Identity?.IsAuthenticated ?? false;
+            if (isAuthenticated)
+            {                
+                var accounts = await MobileApiODataClient.MobileApiODataAuthorized.AccountsOData.ExecuteAsync();
+                _accounts = accounts.ToList();
+            }
+            else
+            {
+                var accounts = await MobileApiODataClient.MobileApiOData.AccountsOData.ExecuteAsync();
+                _accounts = accounts.ToList();
+                
+            }
 
-            var accounts = await MobileApiAuthorizedHttpClient.MobileApiOData.AccountsOData.ExecuteAsync();
-            _accounts = accounts.ToList();
-
+            Console.WriteLine("Here we DONT have the list from odata");
+            Console.WriteLine("Here we have the list from odata");
             StateHasChanged();
         }
         catch (Exception e)

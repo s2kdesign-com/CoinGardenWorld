@@ -7,6 +7,7 @@ using CoinGardenWorld.HttpClientsExtensions.MobileApiClients;
 using CoinGardenWorld.HttpClientsExtensions.MobileApiSiteClients;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OData.Client;
 
 namespace CoinGardenWorld.HttpClientsExtensions.Extensions
 {
@@ -70,6 +71,8 @@ namespace CoinGardenWorld.HttpClientsExtensions.Extensions
 
             services.AddSingleton<BlazorServerTokens>();
             services.AddScoped<BlazorServerAuthorizationMessageHandler>();
+
+            services.AddScoped<MobileApiODataClient>();
 
             // Add HttpClients  
             // TODO: This should be Singleton but AuthenticationStateProvider is scoped so we can not create singletons 
