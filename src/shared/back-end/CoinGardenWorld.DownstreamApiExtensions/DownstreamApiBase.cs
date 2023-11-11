@@ -16,7 +16,7 @@ namespace CoinGardenWorld.DownstreamApiExtensions
         private readonly IDownstreamApi _downstreamApi;
         private readonly ILogger<T> _logger;
 
-        public override bool HttpClientIsAuthorized => true;
+        public bool HttpClientIsAuthorized => true;
 
         public DownstreamApiBase(IDownstreamApi downstreamApi, ILogger<T> logger, IHttpClientFactory httpClientFactory) : base(logger, httpClientFactory)
         {

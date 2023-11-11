@@ -9,11 +9,6 @@ namespace CoinGardenWorld.HttpClientsExtensions
             get;
         }
 
-        bool HttpClientIsAuthorized
-        {
-            get;
-        }
-
         Task<List<M>?> ListAsync();
 
         Task<HttpResponseMessage> GetAsync();

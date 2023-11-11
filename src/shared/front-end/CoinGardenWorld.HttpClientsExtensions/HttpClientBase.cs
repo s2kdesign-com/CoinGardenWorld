@@ -17,14 +17,12 @@ namespace CoinGardenWorld.HttpClientsExtensions
 
         // TODO: Authorized HttpClient NOT SUPPORTED in BLAZOR WASM
         // https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-app-configuration
-      // private readonly IDownstreamApi _downstreamApi;
-     
-        protected HttpClient? _httpClient;
+        // private readonly IDownstreamApi _downstreamApi;
 
+        protected HttpClient? _httpClient;
+        protected HttpClient? _httpClientAuthorized;
 
         public Uri? BaseAddress { get; set; }
-
-        public virtual bool HttpClientIsAuthorized { get; } = false;
 
         public virtual string? ApiKey { get; } = null;
 
@@ -39,11 +37,8 @@ namespace CoinGardenWorld.HttpClientsExtensions
         protected virtual void Configure()
         {
             //_downstreamApi = downstreamApi;
-            string suffixUnauth = (HttpClientIsAuthorized) ? "_AuthenticationClient" : "";
-
-            string apiName = (!string.IsNullOrEmpty(ApiKey)) ? $"{ApiKey}{suffixUnauth}" : $"{suffixUnauth}";
-
-            _httpClient = HttpClientFactory.CreateClient($"{apiName}");
+            _httpClient = HttpClientFactory.CreateClient($"{ApiKey}");
+            _httpClientAuthorized = HttpClientFactory.CreateClient($"{ApiKey}_AuthenticationClient");
             BaseAddress = _httpClient.BaseAddress;
         }
         public string GetModelRelativePath()
@@ -72,26 +67,9 @@ namespace CoinGardenWorld.HttpClientsExtensions
             try
             {
 
-                if (HttpClientIsAuthorized && ApiKey != null)
-                {
-                    _logger.LogInformation("Called DownstreamApi - ListAsync/" + GetModelRelativePath());
+                _logger.LogInformation("Called HttpClient - ListAsync/" + GetModelRelativePath());
 
-                    // TODO: NOT supported in blazor wasm 
-                    //var response = await _downstreamApi.CallApiForUserAsync<List<M>>(ApiKey, options =>
-                    //{
-                    //    options.RelativePath = GetModelRelativePath();
-                    //});
-
-                    //return response;
-                    return await _httpClient.GetFromJsonAsync<List<M>>(GetModelRelativePath());
-                }
-                else
-                {
-                    _logger.LogInformation("Called HttpClient - ListAsync/" + GetModelRelativePath());
-
-                    return await _httpClient.GetFromJsonAsync<List<M>>(GetModelRelativePath());
-                }
-
+                return await _httpClient.GetFromJsonAsync<List<M>>(GetModelRelativePath());
             }
             catch (Exception e)
             {
@@ -105,27 +83,9 @@ namespace CoinGardenWorld.HttpClientsExtensions
             var content = new StringContent("", Encoding.UTF8, "application/json");
             try
             {
-                // If the Client is Authenticated use IDownstreamApi
-                if (HttpClientIsAuthorized && ApiKey != null)
-                {
-                    _logger.LogInformation("Called DownstreamApi - GetAsync/" + GetModelRelativePath());
-
-                    // TODO: NOT supported in blazor wasm 
-                    //var response = await _downstreamApi.CallApiForUserAsync(ApiKey, options =>
-                    //{
-                    //    options.RelativePath = GetModelRelativePath();
-                    //});
-
-                    // return response;
-                    return await _httpClient.GetAsync(GetModelRelativePath());
-                }
-                else
-                {
-                    _logger.LogInformation("Called HttpClient - GetAsync/" + GetModelRelativePath());
-                    // If the Client is not Authenticated use HttpClient
-                    return await _httpClient.GetAsync(GetModelRelativePath());
-
-                }
+                _logger.LogInformation("Called HttpClient - GetAsync/" + GetModelRelativePath());
+                // If the Client is not Authenticated use HttpClient
+                return await _httpClient.GetAsync(GetModelRelativePath());
             }
             catch (Exception e)
             {
@@ -141,25 +101,9 @@ namespace CoinGardenWorld.HttpClientsExtensions
             var content = new StringContent("", Encoding.UTF8, "application/json");
             try
             {
-                // If the Client is Authenticated use IDownstreamApi
-                if (HttpClientIsAuthorized && ApiKey != null)
-                {
-                    _logger.LogInformation("Called DownstreamApi - GetAsync/" + relativeUrl);
-                    //var response = await _downstreamApi.CallApiForUserAsync(ApiKey, options =>
-                    //{
-                    //    options.RelativePath = relativeUrl;
-                    //});
-
-                    //return response;
-
-                    return await _httpClient.GetAsync(relativeUrl);
-                }
-                else
-                {
-                    _logger.LogInformation("Called HttpClient - GetAsync/" + relativeUrl);
-                    // If the Client is not Authenticated use HttpClient
-                    return await _httpClient.GetAsync(relativeUrl);
-                }
+                _logger.LogInformation("Called HttpClient - GetAsync/" + relativeUrl);
+                // If the Client is not Authenticated use HttpClient
+                return await _httpClient.GetAsync(relativeUrl);
             }
             catch (Exception e)
             {

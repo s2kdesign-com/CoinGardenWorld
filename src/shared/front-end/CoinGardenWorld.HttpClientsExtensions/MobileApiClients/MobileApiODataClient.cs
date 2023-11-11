@@ -17,11 +17,9 @@ namespace CoinGardenWorld.HttpClientsExtensions.MobileApiClients
         public Default.Container MobileApiOData { get; private set; }
         public Default.Container MobileApiODataAuthorized { get; private set; }
 
-        protected HttpClient? _httpClientAuthorized;
 
         public MobileApiODataClient(ILogger<MobileApiODataClient> logger, IHttpClientFactory httpClientFactory) : base(logger, httpClientFactory)
         {
-            _httpClientAuthorized = HttpClientFactory.CreateClient($"{ApiKey}_AuthenticationClient");
         }
 
         protected override void Configure()

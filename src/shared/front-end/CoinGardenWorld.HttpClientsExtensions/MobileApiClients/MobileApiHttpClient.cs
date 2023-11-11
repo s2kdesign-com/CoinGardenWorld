@@ -9,6 +9,7 @@ namespace CoinGardenWorld.HttpClientsExtensions.MobileApiClients
         public override string ApiKey => "CGW.Mobile.Api";
 
         public MobileApi MobileApi { get; private set; }
+        public MobileApi MobileApiAuthorized { get; private set; }
 
         public MobileApiHttpClient(ILogger<MobileApiHttpClient> logger, IHttpClientFactory httpClientFactory) : base(logger, httpClientFactory)
         {
@@ -20,6 +21,7 @@ namespace CoinGardenWorld.HttpClientsExtensions.MobileApiClients
 
             // We can always use the basic http client but this one is referenced in service connections and has all the models and endpoints configured 
             MobileApi = new MobileApi(BaseAddress.AbsoluteUri, _httpClient);
+            MobileApiAuthorized = new MobileApi(BaseAddress.AbsoluteUri, _httpClientAuthorized);
         }
     }
 }

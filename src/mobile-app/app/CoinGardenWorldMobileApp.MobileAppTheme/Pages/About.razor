@@ -10,7 +10,6 @@
 @inject NotificationsHub notificationsHub
 
 @inject MobileApiHttpClient VersionHttpClient
-@inject MobileApiAuthorizedHttpClient VersionAuthorizedHttpClient
 
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
@@ -260,7 +259,7 @@
 
             try
             {
-                var authResult = await VersionAuthorizedHttpClient.MobileApi.GetAuthorizedAsync();
+                var authResult = await VersionHttpClient.MobileApiAuthorized.GetAuthorizedAsync();
                 _isApiAuthenticated = true;
                 _testAuthenticatedConnectedApiUrl = authResult.Message;
 
