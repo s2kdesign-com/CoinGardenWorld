@@ -9,6 +9,7 @@
 
 @inject IBlobStorageService blobStorageService
 
+@inject ToastService toastService
 
 @inject IHybridStorage localStorage
 <!-- Your Page Content Goes Here-->
@@ -90,12 +91,15 @@
     private List<string> imageBlobUrls = new();
     protected override void OnInitialized() => Post ??= new();
 
+    private bool showToast = false;
+
     private async Task OnInputFileChange(InputFileChangeEventArgs e)
     {
         imageIds.Clear();
         foreach (var browserFile in e.GetMultipleFiles(maxAllowedFiles))
         {
-            if(Files != null){
+            if (Files != null)
+            {
 
             }
             Console.WriteLine(browserFile.Name);
@@ -112,9 +116,13 @@
     {
         Console.WriteLine(Post.Content);
 
+        toastService.ShowToast("Toast?", ToastLevel.Warning);
+        return;
+
         var accountId = localStorage.Get<string>(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME);
         var i = 0;
         if (Files != null)
+        {
             foreach (var file in Files)
             {
 
@@ -129,6 +137,11 @@
                 Console.WriteLine(blobUrl);
                 i++;
             }
+        }
+        else
+        {
+            
+        }
 
     }
 }

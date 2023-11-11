@@ -64,6 +64,8 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> PutRole(Guid id, RoleMerge post)
         {
+            // TODO: On Role Update check all users and update their current role 
+
             var entity = await _unitOfWork.Repository
                 .GetByIdAsync(id);
 

@@ -121,9 +121,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Migrations
                 columns: new[] { "Id", "Name", "Visibility", "CreatedOn" },
                 values: new object[,]
                 {
-                     { Guid.NewGuid(), "PremiumUser", (int) Visibility.Public,
+                     { Guid.NewGuid(), "Premium User", (int) Visibility.Public,
                          roleAdmin.CreatedOn },
-                     { Guid.NewGuid(), "StandardUser", (int)  Visibility.Public,
+                     { Guid.NewGuid(), "Standard User", (int)  Visibility.Public,
                          roleAdmin.CreatedOn },
                      { roleAdmin.Id, roleAdmin.Name, (int)  Visibility.Public,
                          roleAdmin.CreatedOn }

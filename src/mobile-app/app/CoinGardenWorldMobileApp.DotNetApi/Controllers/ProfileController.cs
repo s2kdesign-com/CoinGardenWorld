@@ -93,6 +93,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
                                 BadgeName = badge.Name,
                                 BadgeColor = badge.Color,
                                 BadgeIcon = badge.Icon,
+                                EarnedOn = DateTime.UtcNow
                             }
                         };
 
@@ -149,9 +150,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
         [HttpGet]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(AccountRole), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AccountRole[]), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<AccountRole>> GetRoles()
+        public async Task<ActionResult<List<AccountRole>>> GetRoles()
         {
             var email = (HttpContext.User.Claims.FirstOrDefault(c => c.Type == "emails")?.Value!);
 
@@ -160,6 +161,25 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             if(accountFromDb != null)
             {
                 return Ok(accountFromDb.Roles.ToList());
+
+            }
+
+            return BadRequest("There is no existing roles for email: " + email);
+        }
+
+        [HttpGet]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(AccountBadge[]), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<AccountBadge>>> GetBadges()
+        {
+            var email = (HttpContext.User.Claims.FirstOrDefault(c => c.Type == "emails")?.Value!);
+
+            var accountFromDb = await _unitOfWorkAccount.Repository.List(a => a.Email == email).FirstOrDefaultAsync();
+
+            if (accountFromDb != null)
+            {
+                return Ok(accountFromDb.Badges.ToList());
 
             }
 

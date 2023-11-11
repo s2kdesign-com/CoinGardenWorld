@@ -51,7 +51,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Hubs
                 Console.WriteLine(userClaim.Type + ":" + userClaim.Value);
             }
 
-            if (!Context.User.IsInRole("StandardUser"))
+            if (!Context.User.IsInRole("Standard User"))
             {
                 _logger.LogInformation("not in role :(");
             }

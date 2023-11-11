@@ -167,7 +167,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.DownstreamS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "site", "site", "{239FB023-DF04-4BFA-ABAF-C9C576401EB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGardenWorld.AzureStorageClientsExtensions", "src\shared\front-end\CoinGardenWorld.AzureStorageClientsExtensions\CoinGardenWorld.AzureStorageClientsExtensions.csproj", "{3691A319-28B6-4395-8AD8-666FD198D96E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGardenWorld.AzureStorageClientsExtensions", "src\shared\front-end\CoinGardenWorld.AzureStorageClientsExtensions\CoinGardenWorld.AzureStorageClientsExtensions.csproj", "{3691A319-28B6-4395-8AD8-666FD198D96E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

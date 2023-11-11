@@ -1,4 +1,5 @@
-﻿
+﻿@using System.Security.Claims
+
 @* @page "/profile" *@
 
 @attribute [Route(NavigationLinks.PROFILE_URL)]
@@ -17,10 +18,16 @@
                 <div class="content text-center">
                     <div class="px-3 mb-n3">
                         <h1 class="font-700">
-                            @context.User.Identity.Name
+                            @context.User.Identity.Name 
+
+                           
                         </h1>
+                        @foreach (var role in context.User.Claims.Where(c => c.Type == ClaimTypes.Role))
+                        {
+                            <span class="badge bg-teal-dark color-teal-dark ms-2">@role.Value</span>
+                        }
                         <p class="mb-2 opacity-60 font-13">
-                            Karla Black is a name used when you generate a text with an anonymous name.
+                            TODO: Add the profile introduction here 
                         </p>
                         <p class="font-10">
                             <strong class="color-theme pe-1">1k</strong>Followers
@@ -141,16 +148,16 @@
 
 <ThemeLoader></ThemeLoader>
 @code {
-    private string userName;
-    private List<Models.Entities.Account> _accounts = new ();
+   [Inject]
+   protected AuthenticationStateProvider? AuthStateProvider { get; set; }
+   
+   [Inject]
+   protected MobileApiODataClient? MobileApiODataClient { get; set; }
 
-    bool isAuthenticated;
 
-    [Inject]
-    protected AuthenticationStateProvider? AuthStateProvider { get; set; }
+    private List<Models.Entities.Account> _publicAccounts = new ();
 
-    [Inject]
-    protected MobileApiODataClient? MobileApiODataClient { get; set; }
+    private List<Models.Entities.Post> _personalPosts = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -158,16 +165,18 @@
         {            
             var authState = await AuthStateProvider.GetAuthenticationStateAsync();
 
-            isAuthenticated = authState.User.Identity?.IsAuthenticated ?? false;
+            var isAuthenticated = authState.User.Identity?.IsAuthenticated ?? false;
             if (isAuthenticated)
             {                
-                var accounts = await MobileApiODataClient.MobileApiODataAuthorized.AccountsOData.ExecuteAsync();
-                _accounts = accounts.ToList();
+                var posts = await MobileApiODataClient.MobileApiODataAuthorized.PostsOData.AddQueryOption("", "").ExecuteAsync();
+
+                _personalPosts = posts.ToList();
             }
             else
             {
                 var accounts = await MobileApiODataClient.MobileApiOData.AccountsOData.ExecuteAsync();
-                _accounts = accounts.ToList();
+
+                _publicAccounts = accounts.ToList();
                 
             }
 

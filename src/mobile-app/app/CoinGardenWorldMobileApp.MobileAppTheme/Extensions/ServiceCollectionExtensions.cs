@@ -12,6 +12,7 @@ using CoinGardenWorld.SignalRClientsExtensions.Configurations;
 using CoinGardenWorld.SignalRClientsExtensions.Extensions;
 using CoinGardenWorldMobileApp.Maui.Authorization;
 using CoinGardenWorldMobileApp.MobileAppTheme.Authorization;
+using CoinGardenWorldMobileApp.MobileAppTheme.Components.Toasts;
 using CoinGardenWorldMobileApp.MobileAppTheme.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -137,6 +138,9 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
 
             // CoinGardenWorld.SignalRClientsExtensions
             services.AddSignalRClientsExtensions(environmentType);
+
+            // Add Toast Component
+            services.AddScoped<ToastService>();
 
             return services;
         }
