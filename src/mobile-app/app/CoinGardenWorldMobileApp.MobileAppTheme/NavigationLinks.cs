@@ -15,6 +15,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme
 
         public const string POSTS_URL = "/posts";
         public const string NEW_POST_URL = "/posts/new";
+        public const string EDIT_POST_URL = "/posts/edit/{id:guid}";
 
         public const string IDENTIFY_FLOWER_URL = "/identify-flower";
         public const string ABOUT_THE_APP_URL = "/about";

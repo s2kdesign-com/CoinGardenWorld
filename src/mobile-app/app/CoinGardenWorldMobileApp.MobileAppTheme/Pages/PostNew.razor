@@ -4,6 +4,7 @@
 @attribute [Authorize]
 
 @attribute [Route(NavigationLinks.NEW_POST_URL)]
+@attribute [Route(NavigationLinks.EDIT_POST_URL)]
 
 @inject ILogger<PostNew> Logger
 
@@ -84,7 +85,11 @@
 <ThemeLoader></ThemeLoader>
 
 @code {
-    private PostAdd Post { get; set; }
+
+    [Parameter]
+    public Guid? Id { get; set; }
+
+    private PostAdd Post { get; set; } = new();
     private IReadOnlyList<IBrowserFile>? Files { get; set; }
 
     private long maxFileSize = 1024 * 15;
@@ -94,9 +99,21 @@
     private List<Guid> imageIds = new List<Guid>();
 
     private List<string> imageBlobUrls = new();
-    protected override void OnInitialized() => Post ??= new();
+
+    protected override Task OnInitializedAsync()
+    {
+        if(Id != null)
+        {
+            Console.WriteLine("We should edit the post");
+        }
+
+        return base.OnInitializedAsync();
+    }
 
     private bool showToast = false;
+
+
+
 
     private async Task OnInputFileChange(InputFileChangeEventArgs e)
     {

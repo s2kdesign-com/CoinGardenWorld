@@ -33,13 +33,18 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        //The IActionResult return type is appropriate when multiple ActionResult return types are possible in an action. The ActionResult types represent various HTTP status codes. 
         // GET: api/Accounts
         [HttpGet]
-        [Produces("application/json")]
         [ProducesResponseType(typeof(IEnumerable<AccountList>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<IEnumerable<AccountList>> GetAccounts()
+        public async Task<ActionResult<IEnumerable<AccountList>>> GetAccounts()
         {
+            var isAdmin = await IsAccountInRole("Administrator");
+            if (!isAdmin)
+            {
+                return BadRequest("Account is not Administrator");
+            }
             return Ok(_unitOfWork.Repository.List().ToArray().Select(e => e.AdaptToList()));
         }
 
@@ -64,6 +69,12 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<AccountDto>> GetAccount(Guid id, string includeProperties = "ExternalLogins")
         {
+            var isAdmin = await IsAccountInRole("Administrator");
+            if (!isAdmin)
+            {
+                return BadRequest("Account is not Administrator");
+            }
+
             var account = await _unitOfWork.Repository.GetByIdAsync(id, includeProperties);
             ;
             if (account == null)
@@ -81,6 +92,12 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> PutAccount(Guid id, AccountMerge account)
         {
+            var isAdmin = await IsAccountInRole("Administrator");
+            if (!isAdmin)
+            {
+                return BadRequest("Account is not Administrator");
+            }
+
             var entity = await _unitOfWork.Repository
                 .GetByIdAsync(id);
 
@@ -119,6 +136,12 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<AccountDto>> PostAccount(AccountAdd account)
         {
+            var isAdmin = await IsAccountInRole("Administrator");
+            if (!isAdmin)
+            {
+                return BadRequest("Account is not Administrator");
+            }
+
             try
             {
                 if (ModelState.IsValid)
@@ -150,6 +173,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteAccount(Guid id)
         {
+            var isAdmin = await IsAccountInRole("Administrator");
+            if (!isAdmin)
+            {
+                return BadRequest("Account is not Administrator");
+            }
 
             var account = await _unitOfWork.Repository.GetByIdAsync(id);
             if (account == null)

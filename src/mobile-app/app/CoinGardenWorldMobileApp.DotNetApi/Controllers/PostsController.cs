@@ -92,7 +92,6 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         // POST: api/Posts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        [Produces("application/json")]
         [ProducesResponseType(typeof(PostDto),StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<PostDto>> PostPost(PostAdd postAdd)
@@ -106,11 +105,6 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
                     await _unitOfWork.SaveAsync();
                     return CreatedAtAction("GetPost", new { id = entityAdded.Id }, entityAdded.AdaptToDto());
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Model is not valid!");
-
-                }
 
             }
             catch (DbUpdateException)
@@ -120,6 +114,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
                 throw;
             }
 
+            ModelState.AddModelError("", "Model is not valid!");
             return Problem();
         }
 

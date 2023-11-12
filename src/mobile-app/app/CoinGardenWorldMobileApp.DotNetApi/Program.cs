@@ -29,6 +29,7 @@ using Microsoft.AspNetCore.OData.Formatter.Serialization;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.AspNetCore.OData.Query.Expressions;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -79,9 +80,13 @@ modelBuilder.EntitySet<Account>("AccountsOData");
 modelBuilder.EntitySet<Post>("PostsOData");
 modelBuilder.EntitySet<Flower>("FlowersOData");
 
-builder.Services.AddControllers()
+builder.Services.AddControllers(cOptions =>
+{
+
+    cOptions.RespectBrowserAcceptHeader = true;
+})
     .AddOData(options => {
-        options.EnableQueryFeatures(50).AddRouteComponents("odata", modelBuilder.GetEdmModel());
+        options.EnableQueryFeatures(50).AddRouteComponents("odata",modelBuilder.GetEdmModel());
         options.EnableNoDollarQueryOptions = true;
         }
     
