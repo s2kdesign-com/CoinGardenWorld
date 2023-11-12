@@ -52,82 +52,7 @@
         ],
         "requestBody": {
           "content": {
-            "application/json;odata.metadata=minimal;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountAdd"
-              }
-            },
-            "application/json;odata.metadata=minimal;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountAdd"
-              }
-            },
-            "application/json;odata.metadata=minimal": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountAdd"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountAdd"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountAdd"
-              }
-            },
-            "application/json;odata.metadata=full": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountAdd"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountAdd"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountAdd"
-              }
-            },
-            "application/json;odata.metadata=none": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountAdd"
-              }
-            },
-            "application/json;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountAdd"
-              }
-            },
-            "application/json;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountAdd"
-              }
-            },
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountAdd"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountAdd"
-              }
-            },
-            "text/plain": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountAdd"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountAdd"
-              }
-            },
-            "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/AccountAdd"
               }
@@ -229,82 +154,7 @@
         ],
         "requestBody": {
           "content": {
-            "application/json;odata.metadata=minimal;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountMerge"
-              }
-            },
-            "application/json;odata.metadata=minimal;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountMerge"
-              }
-            },
-            "application/json;odata.metadata=minimal": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountMerge"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountMerge"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountMerge"
-              }
-            },
-            "application/json;odata.metadata=full": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountMerge"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountMerge"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountMerge"
-              }
-            },
-            "application/json;odata.metadata=none": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountMerge"
-              }
-            },
-            "application/json;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountMerge"
-              }
-            },
-            "application/json;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountMerge"
-              }
-            },
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountMerge"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountMerge"
-              }
-            },
-            "text/plain": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountMerge"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountMerge"
-              }
-            },
-            "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/AccountMerge"
               }
@@ -365,59 +215,6 @@
         "tags": [
           "Admin/Roles"
         ],
-        "parameters": [
-          {
-            "name": "$filter",
-            "in": "query",
-            "description": "Filter the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$select",
-            "in": "query",
-            "description": "Trim the fields returned using OData syntax",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$orderby",
-            "in": "query",
-            "description": "Order the results using OData syntax.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$skip",
-            "in": "query",
-            "description": "The number of results to skip.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$top",
-            "in": "query",
-            "description": "The number of results to return.",
-            "style": "form",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "$expand",
-            "in": "query",
-            "description": "Expand functionality can be used to query related data. For example, to get the Course data for each Enrollment entity, include ?$expand=course",
-            "style": "form"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -450,82 +247,7 @@
         ],
         "requestBody": {
           "content": {
-            "application/json;odata.metadata=minimal;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleAdd"
-              }
-            },
-            "application/json;odata.metadata=minimal;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleAdd"
-              }
-            },
-            "application/json;odata.metadata=minimal": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleAdd"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleAdd"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleAdd"
-              }
-            },
-            "application/json;odata.metadata=full": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleAdd"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleAdd"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleAdd"
-              }
-            },
-            "application/json;odata.metadata=none": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleAdd"
-              }
-            },
-            "application/json;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleAdd"
-              }
-            },
-            "application/json;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleAdd"
-              }
-            },
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleAdd"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleAdd"
-              }
-            },
-            "text/plain": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleAdd"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleAdd"
-              }
-            },
-            "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/RoleAdd"
               }
@@ -614,82 +336,7 @@
         ],
         "requestBody": {
           "content": {
-            "application/json;odata.metadata=minimal;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleMerge"
-              }
-            },
-            "application/json;odata.metadata=minimal;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleMerge"
-              }
-            },
-            "application/json;odata.metadata=minimal": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleMerge"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleMerge"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleMerge"
-              }
-            },
-            "application/json;odata.metadata=full": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleMerge"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleMerge"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleMerge"
-              }
-            },
-            "application/json;odata.metadata=none": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleMerge"
-              }
-            },
-            "application/json;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleMerge"
-              }
-            },
-            "application/json;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleMerge"
-              }
-            },
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleMerge"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleMerge"
-              }
-            },
-            "text/plain": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleMerge"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleMerge"
-              }
-            },
-            "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/RoleMerge"
               }
@@ -782,82 +429,7 @@
         ],
         "requestBody": {
           "content": {
-            "application/json;odata.metadata=minimal;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerAdd"
-              }
-            },
-            "application/json;odata.metadata=minimal;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerAdd"
-              }
-            },
-            "application/json;odata.metadata=minimal": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerAdd"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerAdd"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerAdd"
-              }
-            },
-            "application/json;odata.metadata=full": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerAdd"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerAdd"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerAdd"
-              }
-            },
-            "application/json;odata.metadata=none": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerAdd"
-              }
-            },
-            "application/json;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerAdd"
-              }
-            },
-            "application/json;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerAdd"
-              }
-            },
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerAdd"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerAdd"
-              }
-            },
-            "text/plain": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerAdd"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerAdd"
-              }
-            },
-            "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/FlowerAdd"
               }
@@ -955,82 +527,7 @@
         ],
         "requestBody": {
           "content": {
-            "application/json;odata.metadata=minimal;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerMerge"
-              }
-            },
-            "application/json;odata.metadata=minimal;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerMerge"
-              }
-            },
-            "application/json;odata.metadata=minimal": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerMerge"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerMerge"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerMerge"
-              }
-            },
-            "application/json;odata.metadata=full": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerMerge"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerMerge"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerMerge"
-              }
-            },
-            "application/json;odata.metadata=none": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerMerge"
-              }
-            },
-            "application/json;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerMerge"
-              }
-            },
-            "application/json;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerMerge"
-              }
-            },
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerMerge"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerMerge"
-              }
-            },
-            "text/plain": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerMerge"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FlowerMerge"
-              }
-            },
-            "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/FlowerMerge"
               }
@@ -1473,82 +970,7 @@
         ],
         "requestBody": {
           "content": {
-            "application/json;odata.metadata=minimal;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/PostAdd"
-              }
-            },
-            "application/json;odata.metadata=minimal;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/PostAdd"
-              }
-            },
-            "application/json;odata.metadata=minimal": {
-              "schema": {
-                "$ref": "#/components/schemas/PostAdd"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/PostAdd"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/PostAdd"
-              }
-            },
-            "application/json;odata.metadata=full": {
-              "schema": {
-                "$ref": "#/components/schemas/PostAdd"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/PostAdd"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/PostAdd"
-              }
-            },
-            "application/json;odata.metadata=none": {
-              "schema": {
-                "$ref": "#/components/schemas/PostAdd"
-              }
-            },
-            "application/json;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/PostAdd"
-              }
-            },
-            "application/json;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/PostAdd"
-              }
-            },
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostAdd"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/PostAdd"
-              }
-            },
-            "text/plain": {
-              "schema": {
-                "$ref": "#/components/schemas/PostAdd"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostAdd"
-              }
-            },
-            "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/PostAdd"
               }
@@ -1637,82 +1059,7 @@
         ],
         "requestBody": {
           "content": {
-            "application/json;odata.metadata=minimal;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/PostMerge"
-              }
-            },
-            "application/json;odata.metadata=minimal;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/PostMerge"
-              }
-            },
-            "application/json;odata.metadata=minimal": {
-              "schema": {
-                "$ref": "#/components/schemas/PostMerge"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/PostMerge"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/PostMerge"
-              }
-            },
-            "application/json;odata.metadata=full": {
-              "schema": {
-                "$ref": "#/components/schemas/PostMerge"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/PostMerge"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/PostMerge"
-              }
-            },
-            "application/json;odata.metadata=none": {
-              "schema": {
-                "$ref": "#/components/schemas/PostMerge"
-              }
-            },
-            "application/json;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/PostMerge"
-              }
-            },
-            "application/json;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/PostMerge"
-              }
-            },
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostMerge"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/PostMerge"
-              }
-            },
-            "text/plain": {
-              "schema": {
-                "$ref": "#/components/schemas/PostMerge"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostMerge"
-              }
-            },
-            "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/PostMerge"
               }
@@ -1868,7 +1215,7 @@
         ],
         "requestBody": {
           "content": {
-            "multipart/form-data": {
+            "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {

@@ -44,7 +44,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<PostDto>> GetPost(Guid id)
         {
-            var model = await _unitOfWork.Repository.GetByIdAsync(id);
+            var model = await _unitOfWork.Repository.GetByIdAsync(id, "Account");
             if (model == null)
             {
                 return NotFound();
