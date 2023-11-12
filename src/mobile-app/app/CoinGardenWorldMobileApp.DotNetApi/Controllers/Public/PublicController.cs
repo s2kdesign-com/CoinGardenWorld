@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.RateLimiting;
 
-namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
+namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Public
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
     [AllowAnonymous]
+    [EnableRateLimiting("Fixed")]
     public class PublicController : ControllerBase
     {
         private readonly GenericRepository<Flower> _flowerRepository;

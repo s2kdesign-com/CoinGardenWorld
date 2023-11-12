@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.CognitiveServices.Search.WebSearch.Models;
 using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
 
-namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
+namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Authorized
 {
 
     [Tags("Recognition/Flower")]

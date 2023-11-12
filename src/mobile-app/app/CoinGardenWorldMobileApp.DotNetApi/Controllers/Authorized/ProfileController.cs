@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
-namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
+namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Authorized
 {
     [Route("api/[controller]/[action]")]
     public class ProfileController : BaseAuthorizedController
@@ -69,6 +69,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
                     // User has existing account
                     if (accountFromDb == null)
                     {
+                        // TODO: Move magic strings for roles
                         var role = await _unitOfWorkRoles.Repository.List( e => e.Name == "Standard User").FirstOrDefaultAsync();
                         model.Account.Roles = new List<AccountRoleAdd>
                         {
@@ -80,6 +81,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
                             }
                         };
 
+                        // TODO: Move magic strings for roles
                         var badge = await _unitOfWorkBadges.Repository.List(b => b.Name == "Recruit Rosebud (Upon Registration)").FirstOrDefaultAsync();
                         model.Account.Badges = new List<AccountBadgeAdd>
                         {
@@ -156,7 +158,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
             if(accountFromDb != null)
             {
-                return Ok(accountFromDb.Roles.ToList());
+                return Ok(accountFromDb?.Roles?.ToList());
 
             }
 
@@ -175,7 +177,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
             if (accountFromDb != null)
             {
-                return Ok(accountFromDb.Badges.ToList());
+                return Ok(accountFromDb?.Badges?.ToList());
 
             }
 

@@ -6,57 +6,45 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CoinGardenWorldMobileApp.DotNetApi.Contexts;
-using CoinGardenWorldMobileApp.Models.Entities;
+using CoinGardenWorldMobileApp.Models.ViewModels;
 using CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer;
 using CoinGardenWorldMobileApp.Models.MapperExtensions;
-using CoinGardenWorldMobileApp.Models.ViewModels;
 using Microsoft.AspNetCore.OData.Query;
+using CoinGardenWorldMobileApp.Models.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web.Resource;
 
-namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
+namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Authorized
 {
-    [Tags("Admin/Roles")]
-    [Route("api/Admin/[controller]")]
-    public class RolesController : BaseAuthorizedController
+    [Route("api/[controller]")]
+    public class PostsController : BaseAuthorizedController
     {
-        private readonly UnitOfWork<Role> _unitOfWork;
+        private readonly UnitOfWork<Post> _unitOfWork;
 
-        public RolesController(
-            UnitOfWork<Account> unitOfWorkAccount, UnitOfWork<Role> unitOfWork) : base(unitOfWorkAccount)
+
+        public PostsController(
+            UnitOfWork<Account> unitOfWorkAccount, UnitOfWork<Post> unitOfWork) : base(unitOfWorkAccount)
         {
             _unitOfWork = unitOfWork;
         }
 
-        // GET: api/Roles
+        // GET: api/Posts
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<RoleList>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<PostList>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<RoleList>>> GetRoles()
+        public ActionResult<IEnumerable<PostList>> GetPosts()
         {
-            var isAdmin = await IsAccountInRole("Administrator");
-            if (!isAdmin)
-            {
-                return BadRequest("Account is not Administrator");
-            }
-
             return Ok(_unitOfWork.Repository.List().Select(e => e.AdaptToList()));
         }
 
 
-        // GET: api/Roles/5
+        // GET: api/Posts/5
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(RoleDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PostDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<RoleDto>> GetRole(Guid id)
+        public async Task<ActionResult<PostDto>> GetPost(Guid id)
         {
-            var isAdmin = await IsAccountInRole("Administrator");
-            if (!isAdmin)
-            {
-                return BadRequest("Account is not Administrator");
-            }
-
-            var model = await _unitOfWork.Repository.GetByIdAsync(id);
+            var model = await _unitOfWork.Repository.GetByIdAsync(id, "Account");
             if (model == null)
             {
                 return NotFound();
@@ -65,23 +53,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             return model.AdaptToDto();
         }
 
-        // PUT: api/Roles/5
+        // PUT: api/Posts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> PutRole(Guid id, RoleMerge post)
+        public async Task<IActionResult> PutPost(Guid id, PostMerge post)
         {
-
-            var isAdmin = await IsAccountInRole("Administrator");
-            if (!isAdmin)
-            {
-                return BadRequest("Account is not Administrator");
-            }
-
-
-            // TODO: On Role Update check all users and update their current role 
-
             var entity = await _unitOfWork.Repository
                 .GetByIdAsync(id);
 
@@ -98,7 +76,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!await RoleExists(id))
+                if (!await PostDtoExists(id))
                 {
                     return NotFound();
                 }
@@ -111,33 +89,21 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Roles
+        // POST: api/Posts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        [ProducesResponseType(typeof(RoleDto), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(PostDto),StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<RoleDto>> PostRole(RoleAdd roleAdd)
+        public async Task<ActionResult<PostDto>> PostPost(PostAdd postAdd)
         {
-
-            var isAdmin = await IsAccountInRole("Administrator");
-            if (!isAdmin)
-            {
-                return BadRequest("Account is not Administrator");
-            }
-
-
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var entityAdded = _unitOfWork.Repository.Insert(roleAdd.AdaptToRole());
+                    postAdd.AccountId = await GetUserId();
+                    var entityAdded = _unitOfWork.Repository.Insert(postAdd.AdaptToPost());
                     await _unitOfWork.SaveAsync();
-                    return CreatedAtAction("GetRole", new { id = entityAdded.Id }, entityAdded);
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Model is not valid!");
-
+                    return CreatedAtAction("GetPost", new { id = entityAdded.Id }, entityAdded.AdaptToDto());
                 }
 
             }
@@ -148,24 +114,16 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
                 throw;
             }
 
+            ModelState.AddModelError("", "Model is not valid!");
             return Problem();
         }
 
-
-        // DELETE: api/Roles/5
+        // DELETE: api/Posts/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> DeleteRole(Guid id)
+        public async Task<IActionResult> DeletePost(Guid id)
         {
-
-            var isAdmin = await IsAccountInRole("Administrator");
-            if (!isAdmin)
-            {
-                return BadRequest("Account is not Administrator");
-            }
-
-
             var entity = await _unitOfWork.Repository.GetByIdAsync(id);
             if (entity == null)
             {
@@ -178,7 +136,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             return NoContent(); ;
         }
 
-        private async Task<bool> RoleExists(Guid id)
+        private async Task<bool> PostDtoExists(Guid id)
         {
             return await _unitOfWork.Repository.ExistAsync(id);
         }

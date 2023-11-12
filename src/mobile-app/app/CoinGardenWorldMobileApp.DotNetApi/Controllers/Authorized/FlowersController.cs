@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.Identity.Web.Resource;
 
-namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
+namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Authorized
 {
     [Route("api/[controller]")]
     public class FlowersController : BaseAuthorizedController

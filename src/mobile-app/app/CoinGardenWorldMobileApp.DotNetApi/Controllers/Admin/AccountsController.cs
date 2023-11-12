@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using System.Collections;
 
-namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
+namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Admin
 {
     [Tags("Admin/Accounts")]
     [Route("api/Admin/[controller]")]

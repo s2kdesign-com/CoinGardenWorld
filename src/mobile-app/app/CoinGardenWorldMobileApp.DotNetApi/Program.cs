@@ -30,6 +30,7 @@ using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.AspNetCore.OData.Query.Expressions;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,11 +64,15 @@ builder.Services.AddCors(options =>
 
 #endregion
 
+#region Add Authentication
+
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
 
-#region Add ODData
+#endregion
+
+#region Add OData
 
 var modelBuilder = new ODataConventionModelBuilder();
 
@@ -93,7 +98,6 @@ builder.Services.AddControllers(cOptions =>
     );
 
 #endregion
-
 
 #region Add SignalR
 
@@ -195,7 +199,7 @@ builder.Services.AddSwaggerGen(options =>
 
 #endregion
 
-#region Add Sql Server And Azure Storage
+#region Add Sql Server
 
 // Add SQL Server Database
 builder.Services.AddDbContext<MobileAppDbContext>(opt =>
@@ -204,6 +208,9 @@ builder.Services.AddDbContext<MobileAppDbContext>(opt =>
 builder.Services.AddScoped(typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(UnitOfWork<>));
 
+#endregion
+
+#region Add Azure Blob Storage
 // Add Azure Storage
 var azureStorageConfiguration = new AzureStorageConfiguration();
 builder.Configuration.Bind("AzureStorage", azureStorageConfiguration);
@@ -260,6 +267,17 @@ builder.Services.AddHealthChecks()
 
 #endregion
 
+#region Add Rate Limiter
+
+builder.Services.AddRateLimiter(options => {
+    options.AddFixedWindowLimiter("Fixed", opt => {
+        opt.Window = TimeSpan.FromSeconds(60);
+        opt.PermitLimit = 20;
+    });
+});
+
+#endregion
+
 // TODO: Move to CoinGardenWorld.AzureAI
 builder.Services.AddAzureComputerVision();
 builder.Services.AddAzureWebSearch();
@@ -289,6 +307,8 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseRateLimiter();
 
 app.MapControllers();
 

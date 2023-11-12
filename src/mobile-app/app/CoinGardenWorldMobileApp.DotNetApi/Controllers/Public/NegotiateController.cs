@@ -1,9 +1,10 @@
 ﻿using CoinGardenWorldMobileApp.DotNetApi.SignalR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Azure.SignalR.Management;
 
-namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
+namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Public
 {
 
     /// <summary>
@@ -11,6 +12,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
     /// </summary>
     [Route("api")]
     [ApiController]
+    [EnableRateLimiting("Fixed")]
     public class NegotiateController : ControllerBase
     {
         private const string EnableDetailedErrors = "EnableDetailedErrors";

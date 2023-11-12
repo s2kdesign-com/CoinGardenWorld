@@ -2,15 +2,17 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System.Reflection;
 using System.Security.Principal;
 
-namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
+namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Public
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableRateLimiting("Fixed")]
     public class VersionController : ControllerBase
     {
 
@@ -21,7 +23,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         public ActionResult<string> Get()
         {
             Version version = Assembly.GetExecutingAssembly()?.GetName().Version ?? new Version(1, 0, 0);
-            return Ok(new DefaultResponse { Message = version.ToString() } );
+            return Ok(new DefaultResponse { Message = version.ToString() });
         }
         // GET: api/AuthorizedVersion
         [HttpGet]
@@ -33,7 +35,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         {
 
             var userName = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
-            return Ok(new DefaultResponse { Message = userName + " - Welcome to GardenAPP Mobile API!" }) ;
+            return Ok(new DefaultResponse { Message = userName + " - Welcome to GardenAPP Mobile API!" });
         }
 
         public class DefaultResponse

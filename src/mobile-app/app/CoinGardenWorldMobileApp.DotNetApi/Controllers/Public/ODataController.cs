@@ -5,14 +5,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Identity.Web.Resource;
 
-namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
+namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Public
 {
     [Tags("OData")]
     [ApiController]
     [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
-   // [Authorize()]
+    [EnableRateLimiting("Fixed")]
+    // [Authorize()]
     public class QueryableController : ODataController
     {
         private readonly UnitOfWork<Account> _unitOfWorkAccounts;

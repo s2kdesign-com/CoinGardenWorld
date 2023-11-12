@@ -3,6 +3,7 @@ using CoinGardenWorldMobileApp.Models.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web.Resource;
 using System.Net.Mime;
@@ -14,6 +15,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
     [Authorize]
     [Produces(MediaTypeNames.Application.Json)]
     [Consumes(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
+    [EnableRateLimiting("Fixed")]
+    // TODO: [RestrictDomain("localhost", "example.com")] // values must be constants https://stackoverflow.com/questions/67845087/how-do-you-restrict-requests-so-they-only-work-if-it-is-accessed-by-a-specific-d
     public class BaseAuthorizedController : ControllerBase
     {
 
