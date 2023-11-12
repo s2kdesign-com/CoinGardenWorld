@@ -12,6 +12,11 @@
 @inject ToastService toastService
 
 @inject IHybridStorage localStorage
+
+@inject NavigationManager navigationManager
+
+@inject MobileApiHttpClient mobileApiHttpClient
+
 <!-- Your Page Content Goes Here-->
 <div class="page-content header-clear-medium">
 
@@ -114,33 +119,48 @@
 
     private async void Submit()
     {
-        Console.WriteLine(Post.Content);
-
-        toastService.ShowToast("Toast?", ToastLevel.Warning);
-        return;
-
-        var accountId = localStorage.Get<string>(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME);
-        var i = 0;
-        if (Files != null)
+        try
         {
-            foreach (var file in Files)
+            toastService.ShowToast("Uploading Post!", ToastLevel.Success);
+
+            var accountId = localStorage.Get<string>(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME);
+            var i = 0;
+            if (Files != null)
             {
+                Post.Images = new List<BlobImageAdd>();
+                foreach (var file in Files)
+                {
 
-                var blobUrl = await blobStorageService.UploadFileToBlobAsync(
-                    accountId
-                   , imageIds[i] + "." + file.Name.Split(".").Last()
-                    , file.ContentType
-                    , file.OpenReadStream(20971520));
+                    var blobUrl = await blobStorageService.UploadFileToBlobAsync(
+                        accountId
+                       , imageIds[i] + "." + file.Name.Split(".").Last()
+                        , file.ContentType
+                        , file.OpenReadStream(20971520));
 
-                imageBlobUrls.Add(blobUrl);
+                    imageBlobUrls.Add(blobUrl);
 
-                Console.WriteLine(blobUrl);
-                i++;
+                    Post.Images.Add(new BlobImageAdd
+                    {
+                        ImageId = imageIds[i],
+                        ImageUrl = blobUrl
+                    });
+                    Console.WriteLine(blobUrl);
+                    i++;
+                }
+
+
             }
+
+            var response = await mobileApiHttpClient.MobileApiAuthorized.PostsPOSTAsync(Post);
+
+
+            navigationManager.NavigateTo(NavigationLinks.POSTS_URL);
         }
-        else
+        catch (Exception e)
         {
-            
+            Logger.LogError(e.Message);
+
+            toastService.ShowToast("Error when uploading post!", ToastLevel.Error);
         }
 
     }

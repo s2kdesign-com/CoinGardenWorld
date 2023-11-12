@@ -23,15 +23,12 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
     [Tags("Admin/Accounts")]
     [Route("api/Admin/[controller]")]
-    [ApiController]
-    [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
-    [Authorize()]
     // TODO: Add ApiVersion in the header
-    public class AccountsController : ControllerBase
+    public class AccountsController : BaseAuthorizedController
     {
         private readonly UnitOfWork<Account> _unitOfWork;
 
-        public AccountsController(UnitOfWork<Account> unitOfWork)
+        public AccountsController(UnitOfWork<Account> unitOfWork) : base(unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

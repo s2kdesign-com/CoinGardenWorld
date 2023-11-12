@@ -17,14 +17,12 @@ using Microsoft.Identity.Web.Resource;
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
-    [Authorize]
-    public class FlowersController : ControllerBase
+    public class FlowersController : BaseAuthorizedController
     {
         private readonly UnitOfWork<Flower> _unitOfWork;
 
-        public FlowersController(UnitOfWork<Flower> unitOfWork)
+        public FlowersController(
+            UnitOfWork<Account> unitOfWorkAccount, UnitOfWork<Flower> unitOfWork) : base(unitOfWorkAccount)
         {
             _unitOfWork = unitOfWork;
         }
@@ -103,6 +101,8 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             {
                 if (ModelState.IsValid)
                 {
+
+                    postAdd.AccountId = await GetUserId();
                     var entityAdded = _unitOfWork.Repository.Insert(postAdd.AdaptToFlower());
                     await _unitOfWork.SaveAsync();
                     return CreatedAtAction("GetFlower", new { id = entityAdded.Id }, entityAdded);

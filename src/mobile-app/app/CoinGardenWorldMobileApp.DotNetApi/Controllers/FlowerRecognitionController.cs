@@ -1,6 +1,8 @@
 ﻿using Azure;
 using CoinGardenWorld.AzureAI;
 using CoinGardenWorld.BingSearch;
+using CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer;
+using CoinGardenWorldMobileApp.Models.Entities;
 using CoinGardenWorldMobileApp.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -13,9 +15,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
     [Tags("Recognition/Flower")]
     [Route("api/[controller]/[action]")]
-    [Authorize]
-    [ApiController]
-    public class FlowerRecognitionController : ControllerBase
+    public class FlowerRecognitionController : BaseAuthorizedController
     {
         private readonly ILogger<FlowerRecognitionController> _logger;
 
@@ -23,10 +23,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         private readonly AzureComputerVision _azureComputerVision;
         private readonly AzureWebSearch _azureWebSearch;
 
-        public FlowerRecognitionController(ILogger<FlowerRecognitionController> logger,
+        public FlowerRecognitionController(
+            UnitOfWork<Account> unitOfWorkAccount, ILogger<FlowerRecognitionController> logger,
             AzureComputerVision azureComputerVision,
             AzureWebSearch azureWebSearch
-            )
+            ) : base(unitOfWorkAccount)
         {
             _logger = logger;
             _azureComputerVision = azureComputerVision;

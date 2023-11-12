@@ -13,22 +13,18 @@ using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
     [Route("api/[controller]/[action]")]
-    [ApiController]
-    [Authorize]
-    public class ProfileController : ControllerBase
+    public class ProfileController : BaseAuthorizedController
     {
-        private readonly UnitOfWork<Account> _unitOfWorkAccount;
         private readonly UnitOfWork<Role> _unitOfWorkRoles;
         private readonly UnitOfWork<Badge> _unitOfWorkBadges;
         private readonly UnitOfWork<AccountExternalLogins> _unitOfWorkExternalLogins;
 
         public ProfileController(
-            UnitOfWork<Account> unitOfWorkAccount, 
+            UnitOfWork<Account> unitOfWorkAccount,
             UnitOfWork<AccountExternalLogins> unitOfWorkExternalLogins
             , UnitOfWork<Role> unitOfWorkRoles
-            , UnitOfWork<Badge> unitOfWorkBadges)
+            , UnitOfWork<Badge> unitOfWorkBadges) : base(unitOfWorkAccount)
         {
-            _unitOfWorkAccount = unitOfWorkAccount;
             _unitOfWorkExternalLogins = unitOfWorkExternalLogins;
             _unitOfWorkRoles = unitOfWorkRoles;
             _unitOfWorkBadges = unitOfWorkBadges;
@@ -68,7 +64,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var accountFromDb = await _unitOfWorkAccount.Repository.List(a => a.Email == model.Account.Email).FirstOrDefaultAsync();
+                    var accountFromDb = await UnitOfWorkAccount.Repository.List(a => a.Email == model.Account.Email).FirstOrDefaultAsync();
 
                     // User has existing account
                     if (accountFromDb == null)
@@ -97,8 +93,8 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
                             }
                         };
 
-                        accountFromDb = _unitOfWorkAccount.Repository.Insert(model.Account.AdaptToAccount());
-                        await _unitOfWorkAccount.SaveAsync();
+                        accountFromDb = UnitOfWorkAccount.Repository.Insert(model.Account.AdaptToAccount());
+                        await UnitOfWorkAccount.SaveAsync();
                     }
 
                     var externalLogin = await _unitOfWorkExternalLogins.Repository.List(e => e.AccountId == accountFromDb.Id && e.IdentityProvider == model.ExternalLogins.IdentityProvider).FirstOrDefaultAsync();
@@ -156,7 +152,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         {
             var email = (HttpContext.User.Claims.FirstOrDefault(c => c.Type == "emails")?.Value!);
 
-            var accountFromDb = await _unitOfWorkAccount.Repository.List(a => a.Email == email).FirstOrDefaultAsync();
+            var accountFromDb = await UnitOfWorkAccount.Repository.List(a => a.Email == email).FirstOrDefaultAsync();
 
             if(accountFromDb != null)
             {
@@ -175,7 +171,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         {
             var email = (HttpContext.User.Claims.FirstOrDefault(c => c.Type == "emails")?.Value!);
 
-            var accountFromDb = await _unitOfWorkAccount.Repository.List(a => a.Email == email).FirstOrDefaultAsync();
+            var accountFromDb = await UnitOfWorkAccount.Repository.List(a => a.Email == email).FirstOrDefaultAsync();
 
             if (accountFromDb != null)
             {

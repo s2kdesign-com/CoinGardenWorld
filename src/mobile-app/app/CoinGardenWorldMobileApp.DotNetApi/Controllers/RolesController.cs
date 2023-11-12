@@ -18,14 +18,12 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
     [Tags("Admin/Roles")]
     [Route("api/Admin/[controller]")]
-    [ApiController]
-    [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
-    [Authorize]
-    public class RolesController : ControllerBase
+    public class RolesController : BaseAuthorizedController
     {
         private readonly UnitOfWork<Role> _unitOfWork;
 
-        public RolesController(UnitOfWork<Role> unitOfWork)
+        public RolesController(
+            UnitOfWork<Account> unitOfWorkAccount, UnitOfWork<Role> unitOfWork) : base(unitOfWorkAccount)
         {
             _unitOfWork = unitOfWork;
         }

@@ -3,5 +3,7 @@
     Info,
     Success,
     Warning,
-    Error
+    Error,
+
+    ChatMessage
 }

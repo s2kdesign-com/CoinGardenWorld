@@ -3,20 +3,29 @@
 
 
 <!-- Info Toast Bar-->
-<div id="toast-top-4" class="@(_isVisible ? "show" : null) toast  toast-bar toast-top rounded-l bg-blue-dark shadow-bg shadow-bg-s" data-bs-delay="3000">
+<div id="toast-top-4" class="@(_isVisible ? "show" : null) toast  toast-bar toast-top rounded-l @_backgroundCssClass-dark shadow-bg shadow-bg-s" data-bs-delay="3000">
     <div class="align-self-center">
-        <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/avatars/5s.png" width="30" class="bg-blue-light rounded-xl shadow-l icon icon-s me-2" alt="image">
+        @if (_isMessageToast)
+        {
+
+            <img src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/avatars/5s.png" width="30" class="@_backgroundCssClass-light rounded-xl shadow-l icon icon-s me-2" alt="image">
+        }
+        else
+        {
+
+            <i class="icon icon-s @_backgroundCssClass-light rounded-l bi @_iconCssClass font-28 me-2"></i>
+        }
     </div>
     <div class="align-self-center ps-1">
-        <strong class="font-13 mb-n2">Message from John</strong>
-        <span class="font-10 mt-n1 opacity-70">Tap to view and Reply</span>
+        <strong class="font-13 mb-n2">@_heading</strong>
+        <span class="font-10 mt-n1 opacity-70">@_message</span>
     </div>
     <div class="align-self-center ms-auto">
         <button type="button" class="btn-close btn-close-white me-2 m-auto font-9" data-bs-dismiss="toast"></button>
     </div>
-</div> 
+</div>
 
-@* 
+@*
 <div class="cs-toast @(_isVisible ? "cs-toast-visible" : null) @_backgroundCssClass">
     <div class="cs-toast-icon">
         <i class="fa fa-@_iconCssClass" aria-hidden="true"></i>
@@ -32,6 +41,8 @@
     private bool _isVisible;
     private string? _backgroundCssClass;
     private string? _iconCssClass;
+
+    private bool _isMessageToast = false;
 
     protected override void OnInitialized()
     {
@@ -51,30 +62,35 @@
         _isVisible = false;
         StateHasChanged();
     }
-    
+
     private void BuildToastSettings(ToastLevel level, string message)
     {
         switch (level)
         {
             case ToastLevel.Info:
-                _backgroundCssClass = $"bg-info";
-                _iconCssClass = "info";
+                _backgroundCssClass = $"bg-blue";
+                _iconCssClass = "bi-info";
                 _heading = "Info";
                 break;
             case ToastLevel.Success:
-                _backgroundCssClass = $"bg-success";
-                _iconCssClass = "check";
+                _backgroundCssClass = $"bg-green";
+                _iconCssClass = "bi-check";
                 _heading = "Success";
                 break;
             case ToastLevel.Warning:
-                _backgroundCssClass = $"bg-warning";
-                _iconCssClass = "exclamation";
+                _backgroundCssClass = $"bg-yellow";
+                _iconCssClass = "bi-exclamation-triangle";
                 _heading = "Warning";
                 break;
             case ToastLevel.Error:
-                _backgroundCssClass = "bg-danger";
-                _iconCssClass = "times";
+                _backgroundCssClass = "bg-red";
+                _iconCssClass = "bi-x";
                 _heading = "Error";
+                break;
+            case ToastLevel.ChatMessage:
+                _backgroundCssClass = $"bg-blue";
+                _heading = "Message from John";
+                _isMessageToast = true;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(level), level, null);

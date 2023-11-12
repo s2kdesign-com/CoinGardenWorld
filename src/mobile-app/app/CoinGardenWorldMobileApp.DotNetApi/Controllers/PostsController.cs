@@ -17,15 +17,13 @@ using Microsoft.Identity.Web.Resource;
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
-    [Authorize]
-    public class PostsController : ControllerBase
+    public class PostsController : BaseAuthorizedController
     {
         private readonly UnitOfWork<Post> _unitOfWork;
 
 
-        public PostsController(UnitOfWork<Post> unitOfWork) 
+        public PostsController(
+            UnitOfWork<Account> unitOfWorkAccount, UnitOfWork<Post> unitOfWork) : base(unitOfWorkAccount)
         {
             _unitOfWork = unitOfWork;
         }
@@ -94,6 +92,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
         // POST: api/Posts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Produces("application/json")]
         [ProducesResponseType(typeof(PostDto),StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<PostDto>> PostPost(PostAdd postAdd)
@@ -102,9 +101,10 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    postAdd.AccountId = await GetUserId();
                     var entityAdded = _unitOfWork.Repository.Insert(postAdd.AdaptToPost());
                     await _unitOfWork.SaveAsync();
-                    return CreatedAtAction("GetPost", new { id = entityAdded.Id }, entityAdded);
+                    return CreatedAtAction("GetPost", new { id = entityAdded.Id }, entityAdded.AdaptToDto());
                 }
                 else
                 {
