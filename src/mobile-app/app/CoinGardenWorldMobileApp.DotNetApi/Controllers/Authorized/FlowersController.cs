@@ -42,7 +42,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Authorized
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<FlowerDto>> GetFlower(
             Guid id, 
-            string includeProperties = "Garden,Account,Account.Roles")
+            string includeProperties = "Garden,Account")
         {
             var model = await _unitOfWork.Repository.GetByIdAsync(id, includeProperties);
             if (model == null)
@@ -102,7 +102,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Authorized
                 if (ModelState.IsValid)
                 {
 
-                    postAdd.AccountId = await GetUserId();
+                    postAdd.AccountId = await GetAccountId();
                     var entityAdded = _unitOfWork.Repository.Insert(postAdd.AdaptToFlower());
                     await _unitOfWork.SaveAsync();
                     return CreatedAtAction("GetFlower", new { id = entityAdded.Id }, entityAdded);

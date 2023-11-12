@@ -100,7 +100,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Authorized
             {
                 if (ModelState.IsValid)
                 {
-                    postAdd.AccountId = await GetUserId();
+                    postAdd.AccountId = await GetAccountId();
                     var entityAdded = _unitOfWork.Repository.Insert(postAdd.AdaptToPost());
                     await _unitOfWork.SaveAsync();
                     return CreatedAtAction("GetPost", new { id = entityAdded.Id }, entityAdded.AdaptToDto());

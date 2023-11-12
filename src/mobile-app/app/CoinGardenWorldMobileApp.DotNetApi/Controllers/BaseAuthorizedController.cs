@@ -30,7 +30,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
             UnitOfWorkAccount = unitOfWorkAccount;
         }
 
-        protected async Task<Guid> GetUserId()
+        protected async Task<Guid> GetAccountId()
         {
 
             var email = (HttpContext.User.Claims.FirstOrDefault(c => c.Type == "emails")?.Value!);
