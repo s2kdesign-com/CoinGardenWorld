@@ -11,5 +11,22 @@
 
 ## Infrastructure 
 
+### [OpenAPI Documentation with Swagger](https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-7.0)
+
+> URL : https://plant-api.azurewebsites.net/swagger/index.html
+
+![infrastructure](https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger/_static/swagger-ui.png?view=aspnetcore-7.0)  
+
+### [OData Protocol REST APIs](https://learn.microsoft.com/en-us/odata/overview)
+
+> URL : https://plant-api.azurewebsites.net/$odata
+
+![infrastructure](https://learn.microsoft.com/en-us/odata/assets/library-relationship.png)  
+
+### [Real Time Communication with Azure SignalR Management](https://learn.microsoft.com/en-us/azure/azure-signalr/signalr-overview)
+
+> URL : https://plant-api.azurewebsites.net/chathub
+> URL : https://plant-api.azurewebsites.net/notificationshub
 
 ![infrastructure](https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/docs/assets/signalr-mobile-app.png?raw=true)  
+

@@ -69,7 +69,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
                     // User has existing account
                     if (accountFromDb == null)
                     {
-                        var role = await _unitOfWorkRoles.Repository.List( e => e.Name == "StandardUser").FirstOrDefaultAsync();
+                        var role = await _unitOfWorkRoles.Repository.List( e => e.Name == "Standard User").FirstOrDefaultAsync();
                         model.Account.Roles = new List<AccountRoleAdd>
                         {
                             new AccountRoleAdd
