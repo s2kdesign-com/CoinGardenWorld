@@ -11,9 +11,7 @@ using System.Security.Principal;
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Public
 {
     [Route("api/[controller]")]
-    [ApiController]
-    [EnableRateLimiting("Fixed")]
-    public class VersionController : ControllerBase
+    public class VersionController : BasePublicController
     {
 
         // GET: api/Version

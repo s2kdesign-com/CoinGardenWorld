@@ -15,8 +15,8 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
     [Authorize]
     [Produces(MediaTypeNames.Application.Json)]
     [Consumes(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
-    [EnableRateLimiting("Fixed")]
+    [ProducesResponseType(StatusCodes.Status429TooManyRequests)]
+    [EnableRateLimiting("jwt")]
     // TODO: [RestrictDomain("localhost", "example.com")] // values must be constants https://stackoverflow.com/questions/67845087/how-do-you-restrict-requests-so-they-only-work-if-it-is-accessed-by-a-specific-d
     public class BaseAuthorizedController : ControllerBase
     {

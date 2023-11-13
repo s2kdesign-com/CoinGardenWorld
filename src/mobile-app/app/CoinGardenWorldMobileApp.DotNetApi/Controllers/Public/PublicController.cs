@@ -11,10 +11,7 @@ using Microsoft.AspNetCore.RateLimiting;
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Public
 {
     [Route("api/[controller]/[action]")]
-    [ApiController]
-    [AllowAnonymous]
-    [EnableRateLimiting("Fixed")]
-    public class PublicController : ControllerBase
+    public class PublicController : BasePublicController
     {
         private readonly GenericRepository<Flower> _flowerRepository;
         private readonly GenericRepository<Post> _postRepository;

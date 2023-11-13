@@ -12,8 +12,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Public
 {
     [Tags("OData")]
     [ApiController]
+    [AllowAnonymous]
     [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
-    [EnableRateLimiting("Fixed")]
+    [EnableRateLimiting("jwt")]
     // [Authorize()]
     public class QueryableController : ODataController
     {

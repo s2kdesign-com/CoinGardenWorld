@@ -9,6 +9,8 @@ using CoinGardenWorldMobileApp.DotNetApi.Contexts;
 using static System.Net.WebRequestMethods;
 using Microsoft.Extensions.Hosting;
 using System.Configuration;
+using System.Net;
+using System.Threading.RateLimiting;
 using CoinGardenWorld.AzureAI.Extensions;
 using CoinGardenWorldMobileApp.DotNetApi.Controllers;
 using CoinGardenWorldMobileApp.DotNetApi.SignalR;
@@ -31,10 +33,12 @@ using Microsoft.OData.ModelBuilder;
 using Microsoft.AspNetCore.OData.Query.Expressions;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.Extensions.Primitives;
 
 var builder = WebApplication.CreateBuilder(args);
 
 #region Add ApplicationInsights 
+// https://learn.microsoft.com/en-us/azure/azure-monitor/app/asp-net-core
 
 var appInsightsConnectionString = builder.Configuration["ApplicationInsights:ConnectionString"];
 
@@ -51,6 +55,7 @@ builder.Logging.AddApplicationInsights(configuration =>
 #endregion
 
 #region Add Cors
+// https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-7.0
 
 builder.Services.AddCors(options =>
 {
@@ -65,14 +70,15 @@ builder.Services.AddCors(options =>
 #endregion
 
 #region Add Authentication
+// https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-web-api-aspnet-core-protect-api
 
-// Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
 
 #endregion
 
 #region Add OData
+// https://learn.microsoft.com/en-us/odata/overview
 
 var modelBuilder = new ODataConventionModelBuilder();
 
@@ -90,20 +96,20 @@ builder.Services.AddControllers(cOptions =>
 
     cOptions.RespectBrowserAcceptHeader = true;
 })
-    .AddOData(options => {
-        options.EnableQueryFeatures(50).AddRouteComponents("odata",modelBuilder.GetEdmModel());
+    .AddOData(options =>
+    {
+        options.EnableQueryFeatures(50).AddRouteComponents("odata", modelBuilder.GetEdmModel());
         options.EnableNoDollarQueryOptions = true;
-        }
-    
+    }
+
     );
 
 #endregion
 
 #region Add SignalR
+// https://learn.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-7.0&tabs=visual-studio
 
-// Add signalr
-
-// TODO: This is not needed because we dont use serverless signalr, current hubs are directly resolved with the help of azure signalr and rooted 
+// TODO: This is not needed because we dont use serverless signalr, current hubs are directly resolved with the help of azure signalr and rooted
 //builder.Services
 //    .AddSingleton<SignalRService>()
 //    .AddHostedService(sp => sp.GetService<SignalRService>())
@@ -120,10 +126,9 @@ builder.Services.AddSignalR().AddAzureSignalR(configure =>
 #endregion
 
 #region Add Swagger
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
 
+builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -150,7 +155,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
     // Add Swagger Signalr
-   // options.AddSignalRSwaggerGen();
+    // options.AddSignalRSwaggerGen();
 
 
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -200,8 +205,8 @@ builder.Services.AddSwaggerGen(options =>
 #endregion
 
 #region Add Sql Server
+// https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/working-with-sql?view=aspnetcore-7.0&tabs=visual-studio
 
-// Add SQL Server Database
 builder.Services.AddDbContext<MobileAppDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("CGW-Mobile-App-DB")));
 
@@ -211,7 +216,8 @@ builder.Services.AddScoped(typeof(UnitOfWork<>));
 #endregion
 
 #region Add Azure Blob Storage
-// Add Azure Storage
+// https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet
+
 var azureStorageConfiguration = new AzureStorageConfiguration();
 builder.Configuration.Bind("AzureStorage", azureStorageConfiguration);
 
@@ -225,8 +231,8 @@ builder.Services.AddAzureClients(clientBuilder =>
 #endregion
 
 #region Add HealhChecks
+// https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-7.0
 
-// Add Health Checks
 var notificationHubUrl = "https://plant-api.azurewebsites.net/NotificationsHub";
 var chatHubUrl = "https://plant-api.azurewebsites.net/ChatHub";
 
@@ -240,8 +246,8 @@ hangfireUrl = "https://localhost:7249/hangfire";
 #endif
 
 var healthTags = new List<string> { "mobileapp", "api" };
-var healthTagsDatabase = new List<string> { "mobileapp", "database"  };
-var healthTagsSignalR = new List<string> { "mobileapp", "signalr"  };
+var healthTagsDatabase = new List<string> { "mobileapp", "database" };
+var healthTagsSignalR = new List<string> { "mobileapp", "signalr" };
 var healthTagsHangFire = new List<string> { "mobileapp", "hangfire" };
 var healthTagsAzureStorage = new List<string> { "mobileapp", "azurestorage" };
 
@@ -261,18 +267,80 @@ builder.Services.AddHealthChecks()
     .AddSignalRHub(notificationHubUrl, name: notificationHubUrl, tags: healthTagsSignalR)
 #if DEBUG
     // TODO: Signalr hub is authenticated so the check is failing 
-  //  .AddSignalRHub(chatHubUrl, name: chatHubUrl, tags: healthTagsSignalR)
+    //  .AddSignalRHub(chatHubUrl, name: chatHubUrl, tags: healthTagsSignalR)
 #endif
     ;
 
 #endregion
 
 #region Add Rate Limiter
+// https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit?view=aspnetcore-7.0
 
-builder.Services.AddRateLimiter(options => {
-    options.AddFixedWindowLimiter("Fixed", opt => {
-        opt.Window = TimeSpan.FromSeconds(60);
-        opt.PermitLimit = 20;
+var jwtPolicyName = "jwt";
+
+builder.Services.Configure<RateLimitOptions>(builder.Configuration.GetSection(RateLimitOptions.RateLimit));
+var myOptions = new RateLimitOptions();
+builder.Configuration.GetSection(RateLimitOptions.RateLimit).Bind(myOptions);
+
+builder.Services.AddRateLimiter(limiterOptions =>
+{
+    limiterOptions.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    // A GlobalLimiter that is applied to all requests. The global limiter will be executed first, followed by the endpoint-specific limiter, if one exists. The GlobalLimiter creates a partition for each IPAddress.
+    limiterOptions.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, IPAddress>(context =>
+    {
+        IPAddress? remoteIpAddress = context.Connection.RemoteIpAddress;
+
+        if (!IPAddress.IsLoopback(remoteIpAddress!))
+        {
+            return RateLimitPartition.GetTokenBucketLimiter
+            (remoteIpAddress!, _ =>
+                new TokenBucketRateLimiterOptions
+                {
+                    // We set the token limit for Authorized users because the Anon rate limit will catch them after that
+                    TokenLimit = myOptions.TokenLimit2,
+                    QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                    QueueLimit = myOptions.QueueLimit,
+                    ReplenishmentPeriod = TimeSpan.FromSeconds(myOptions.ReplenishmentPeriod),
+                    TokensPerPeriod = myOptions.TokensPerPeriod,
+                    AutoReplenishment = myOptions.AutoReplenishment
+                });
+        }
+
+        return RateLimitPartition.GetNoLimiter(IPAddress.Loopback);
+    });
+
+    // JWT Bearer Token limiter
+    limiterOptions.AddPolicy(policyName: jwtPolicyName, partitioner: httpContext =>
+    {
+        var accessToken = httpContext.Features.Get<IAuthenticateResultFeature>()?
+                              .AuthenticateResult?.Properties?.GetTokenValue("access_token")?.ToString()
+                          ?? string.Empty;
+
+        // Access token limiter , Double the user quota for requests if its authorized 
+        if (!StringValues.IsNullOrEmpty(accessToken))
+        {
+            return RateLimitPartition.GetTokenBucketLimiter(accessToken, _ =>
+                new TokenBucketRateLimiterOptions
+                {
+                    TokenLimit = myOptions.TokenLimit2,
+                    QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                    QueueLimit = myOptions.QueueLimit,
+                    ReplenishmentPeriod = TimeSpan.FromSeconds(myOptions.ReplenishmentPeriod),
+                    TokensPerPeriod = myOptions.TokensPerPeriod,
+                    AutoReplenishment = myOptions.AutoReplenishment
+                });
+        }
+
+        return RateLimitPartition.GetTokenBucketLimiter("Anon", _ =>
+            new TokenBucketRateLimiterOptions
+            {
+                TokenLimit = myOptions.TokenLimit,
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = myOptions.QueueLimit,
+                ReplenishmentPeriod = TimeSpan.FromSeconds(myOptions.ReplenishmentPeriod),
+                TokensPerPeriod = myOptions.TokensPerPeriod,
+                AutoReplenishment = true
+            });
     });
 });
 

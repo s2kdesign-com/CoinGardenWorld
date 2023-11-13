@@ -11,9 +11,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Public
     /// SignalR Controller for negotiating with Azure SignalR Management service  https://learn.microsoft.com/en-us/azure/azure-signalr/signalr-quickstart-dotnet
     /// </summary>
     [Route("api")]
-    [ApiController]
-    [EnableRateLimiting("Fixed")]
-    public class NegotiateController : ControllerBase
+    public class NegotiateController : BasePublicController
     {
         private const string EnableDetailedErrors = "EnableDetailedErrors";
         private readonly ServiceHubContext _notificationsHubContext;
