@@ -249,25 +249,25 @@ function init_template(isFirstTime) {
     }
 
     //File Upload
-    const inputArray = document.getElementsByClassName('upload-file');
-    if (inputArray.length) {
-        inputArray[0].addEventListener('change', prepareUpload, false);
-        function prepareUpload(event) {
-            if (this.files && this.files[0]) {
-                var img = document.getElementById('image-data');
-                img.src = URL.createObjectURL(this.files[0]);
-                img.classList.add('mt-4', 'mb-3', 'mx-auto');
-            }
-            const files = event.target.files;
-            const fileName = files[0].name;
-            const fileSize = (files[0].size / 1000).toFixed(2) + 'kb';
-            const textBefore = document.getElementsByClassName('upload-file-name')[0].getAttribute('data-text-before');
-            const textAfter = document.getElementsByClassName('upload-file-name')[0].getAttribute('data-text-after');
-            document.getElementsByClassName('upload-file-name')[0].innerHTML = textBefore + ' ' + fileName + ' - ' + fileSize + ' - ' + textAfter;
-            document.getElementsByClassName('upload-file-name')[0].classList.add('pb-3');
-        }
+    //const inputArray = document.getElementsByClassName('upload-file');
+    //if (inputArray.length) {
+    //    inputArray[0].addEventListener('change', prepareUpload, false);
+    //    function prepareUpload(event) {
+    //        if (this.files && this.files[0]) {
+    //            var img = document.getElementById('image-data');
+    //            img.src = URL.createObjectURL(this.files[0]);
+    //            img.classList.add('mt-4', 'mb-3', 'mx-auto');
+    //        }
+    //        const files = event.target.files;
+    //        const fileName = files[0].name;
+    //        const fileSize = (files[0].size / 1000).toFixed(2) + 'kb';
+    //        const textBefore = document.getElementsByClassName('upload-file-name')[0].getAttribute('data-text-before');
+    //        const textAfter = document.getElementsByClassName('upload-file-name')[0].getAttribute('data-text-after');
+    //        document.getElementsByClassName('upload-file-name')[0].innerHTML = textBefore + ' ' + fileName + ' - ' + fileSize + ' - ' + textAfter;
+    //        document.getElementsByClassName('upload-file-name')[0].classList.add('pb-3');
+    //    }
 
-    }
+    //}
 
     //Adding Local Storage for Visited Links
     var checkVisited = document.querySelectorAll('.check-visited');

@@ -8,14 +8,15 @@ namespace CoinGardenWorldMobileApp.Models.Entities.Enums
 {
     public enum PostType
     {
+        // No links no images, just plain text may be with some hash tags 
         Text,
-
+        // External link if any in the text
         Link,
-
+        // Single image
         Picture,
-
-        Clip,
-
+        // Single video
+        Video,
+        // Album is combination of pictures and videos
         Album
 
 

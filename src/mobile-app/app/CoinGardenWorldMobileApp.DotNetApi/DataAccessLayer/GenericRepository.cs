@@ -86,6 +86,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer
             }
             else
             {
+                query = query.OrderByDescending(e => e.CreatedOn);
                 return query;
             }
         }

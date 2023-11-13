@@ -21,7 +21,25 @@
 <!-- Your Page Content Goes Here-->
 <div class="page-content header-clear-medium">
 
-
+    @if(Id != null){
+        
+        <div class="card card-style">
+            <div class="content mb-0">
+                <h5 class="color-highlight font-13 mb-n1">
+                    Edit your post
+                </h5>
+                <h1 class="font-700 pb-0">
+                    What do you think today?
+                </h1>
+                <p class="mb-3">
+                   You can remove images, add links or change the text
+                </p>
+            </div>
+        </div>
+    }
+    else
+    {
+       
     <div class="card card-style">
         <div class="content mb-0">
             <h5 class="color-highlight font-13 mb-n1">
@@ -36,6 +54,7 @@
         </div>
     </div>
 
+    }
 
     <div class="card card-style">
         <div class="content">
@@ -64,12 +83,31 @@
             </div>
             <div class="divider mb-0"></div>
             <div class="file-data">
+                @if(Post.Images != null)
+                {
+                    foreach (var blobImageAdd in Post.Images)
+                    {
 
+                        <img id="@blobImageAdd.ImageId" src="@blobImageAdd.ImageUrl" class="img-fluid rounded-s" alt="img">
+                    }
+                    
+                }
+
+                @if (imageBrowserPreviews.Any())
+                {
+                    foreach (var browserImage in imageBrowserPreviews)
+                    {
+
+                        <img id="@browserImage.Key" src="@browserImage.Value" class="img-fluid rounded-s" alt="img">
+                    }
+                }
+
+            @* 
                 <img id="image-data" src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" class="img-fluid rounded-s" alt="img">
                 <span class="upload-file-name d-block text-center"
                       data-text-before="<i class='bi bi-check-circle-fill color-green-dark pe-2'></i> Image:"
                       data-text-after=" is ready.">
-                </span>
+                </span> *@
 
                 <div>
                     <InputFile type="file" class="upload-file" accept="image/*" OnChange=@OnInputFileChange multiple />
@@ -91,6 +129,8 @@
 
     private PostAdd Post { get; set; } = new();
     private IReadOnlyList<IBrowserFile>? Files { get; set; }
+
+    private Dictionary<string, string> imageBrowserPreviews = new Dictionary<string, string>();
 
     private long maxFileSize = 1024 * 15;
     private int maxAllowedFiles = 10;
@@ -145,22 +185,43 @@
 
     private async Task OnInputFileChange(InputFileChangeEventArgs e)
     {
-        imageIds.Clear();
-        foreach (var browserFile in e.GetMultipleFiles(maxAllowedFiles))
+        try
         {
-            if (Files != null)
+            
+            foreach (var browserFile in e.GetMultipleFiles(maxAllowedFiles))
             {
+                var imageId = Guid.NewGuid();
 
+                imageIds.Add(imageId);
+
+                var buffers = new byte[browserFile.Size];
+                await browserFile.OpenReadStream().ReadAsync(buffers);
+                string imageType = browserFile.ContentType;
+                string imgUrl = $"data:{imageType};base64,{Convert.ToBase64String(buffers)}";
+
+                imageBrowserPreviews.Add(imageId.ToString(), imgUrl);
             }
-            Console.WriteLine(browserFile.Name);
 
-            imageIds.Add(Guid.NewGuid());
+            Files = e.GetMultipleFiles(maxAllowedFiles);
         }
-
-        Files = e.GetMultipleFiles(maxAllowedFiles);
+        catch (Exception ex)
+        {
+            Logger.LogError(ex.Message);
+        }
     }
 
-
+    //   public enum PostType
+    // {// No links no images, just plain text may be with some hash tags 
+    // Text = 0,
+    // External link if any in the text
+    // Link = 1,
+    // Single image
+    // Picture = 2,
+    // Single video
+    // Video = 3,
+    // Album is combination of pictures and videos
+    // Album = 4
+    // }
 
     private async void Submit()
     {
@@ -170,6 +231,9 @@
 
             var accountId = localStorage.Get<string>(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME);
             var i = 0;
+            
+            Post.PostType = Models.Entities.Enums.PostType.Text.ToString();
+
             if (Files != null)
             {
                 Post.Images = new List<BlobImageAdd>();
@@ -192,8 +256,11 @@
                     Console.WriteLine(blobUrl);
                     i++;
                 }
+                // TODO: Check for image or video
+                Post.PostType = Models.Entities.Enums.PostType.Picture.ToString();
 
-
+                if (i > 1)
+                    Post.PostType = Models.Entities.Enums.PostType.Album.ToString();
             }
             if (Id != null)
             {
@@ -218,8 +285,16 @@
             {
 
                 var response = await mobileApiHttpClient.MobileApiAuthorized.PostsPOSTAsync(Post);
+                if(response != null)
+                {
+                    Id = response.Id;
+                }
+                else
+                {
+                    toastService.ShowToast("Error when uploading post!", ToastLevel.Error);
+                }
             }
-            navigationManager.NavigateTo(NavigationLinks.POSTS_URL);
+            navigationManager.NavigateTo(NavigationLinks.POSTS_URL + "/" + Id);
         }
         catch (Exception e)
         {

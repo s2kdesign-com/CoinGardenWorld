@@ -1,7 +1,7 @@
-﻿
-@* @page "/dashboard" *@
+﻿@* @page "/dashboard" *@
 
 @attribute [Route(NavigationLinks.POSTS_URL)]
+@attribute [Route(NavigationLinks.POSTS_SHOW_FIRST_URL)]
 
 @inject ILogger<Posts> Logger
 
@@ -34,30 +34,6 @@
                 </div>
             </div>
 
-
-            
-            @if (_latestPosts.Any())
-            {
-                @foreach (var post in _latestPosts)
-                {
-                    <DashboardCardImage>
-                        <Header>
-                            Picture
-                        </Header>
-
-                        <Content>
-                            Just copy the link to the service you want and add it inside a responsive-iframe div. We'll do the rest.
-                        </Content>
-                    </DashboardCardImage>
-
-                }
-
-            }
-            else
-            {
-
-                <!-- TODO: Add some kind of preloader -->
-            }
         </Authorized>
         <NotAuthorized>
 
@@ -73,57 +49,26 @@
                 </div>
             </div>
 
-
-            
-            @if (_latestPosts.Any())
-            {
-                @foreach (var post in _latestPosts)
-                {
-                    <DashboardCardImage>
-                        <Header>
-                            Picture
-                        </Header>
-
-                        <Content>
-                            Just copy the link to the service you want and add it inside a responsive-iframe div. We'll do the rest.
-                        </Content>
-                    </DashboardCardImage>
-
-                }
-
-            }
-            else
-            {
-
-                <!-- TODO: Add some kind of preloader -->
-            }
-
         </NotAuthorized>
     </AuthorizeView>
 
 
-    <DashboardCardImage EmbedLink="https://www.youtube.com/embed/ysIJUA8xF3A">
-        <Header>
-            YouTube
-        </Header>
 
-        <Content>
-            Just copy the link to the service you want and add it inside a responsive-iframe div. We'll do the rest.
-        </Content>
-    </DashboardCardImage>
+    @if (_latestPosts.Any())
+    {
+        @foreach (var post in _latestPosts)
+        {
+            <PostCard Post="@post" OnDeleteCallback="PostDeleted" />
 
-    <DashboardCardImage EmbedLink="https://www.youtube.com/embed/ekp_64XO16k">
-        <Header>
-            YouTube
-        </Header>
+        }
 
-        <Content>
-            Just copy the link to the service you want and add it inside a responsive-iframe div. We'll do the rest.
-        </Content>
-    </DashboardCardImage>
+    }
+    else
+    {
 
+        <!-- TODO: Add some kind of preloader -->
+    }
 
-    <DashboardCardText></DashboardCardText>
 
     <div class="col-12 pb-4">
         <div class="d-flex justify-content-center">
@@ -134,34 +79,33 @@
     </div>
 </div>
 <!-- End of Page Content-->
+
+
 <ThemeLoader></ThemeLoader>
 
 @code {
-    // TODO:
-    private List<Models.Entities.Post> _latestPosts = new ();
+
+    [Parameter]
+    public Guid? Id { get; set; }
+
+    private List<Models.Entities.Post> _latestPosts = new();
 
     [Inject]
     protected MobileApiODataClient? MobileApiODataClient { get; set; }
 
+
+    private void PostDeleted(Guid id)
+    {
+        Logger.LogInformation("Deleted Post id: " + id);
+        var post = _latestPosts.Find(p => p.Id == id);
+        if (post != null)
+            _latestPosts.Remove(post);
+     //   StateHasChanged();
+    }
+
     protected override async Task OnInitializedAsync()
     {
 
-        try
-        {
-            var result = await MobileApiODataClient.MobileApiOData.PostsOData.ExecuteAsync();
-
-            _latestPosts = result.ToList();
-
-            // var latestPosts = await MobileApiAuthorizedHttpClient.MobileApi.PostsODataAsync(null, null, null, null, 10, null);
-            // _latestPosts = latestPosts.ToList();
-            StateHasChanged();
-
-
-        }
-        catch (Exception e)
-        {
-            Logger.LogError(e.Message);
-        }
 
         await base.OnInitializedAsync();
     }
@@ -175,6 +119,22 @@
         if (firstRender)
         {
 
+            try
+            {
+                var result = await MobileApiODataClient.MobileApiOData.PostsOData.AddQueryOption("expand", "account").ExecuteAsync();
+
+                _latestPosts = result.ToList();
+
+                // var latestPosts = await MobileApiAuthorizedHttpClient.MobileApi.PostsODataAsync(null, null, null, null, 10, null);
+                // _latestPosts = latestPosts.ToList();
+                StateHasChanged();
+
+
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e.Message);
+            }
         }
 
     }

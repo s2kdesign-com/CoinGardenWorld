@@ -14,6 +14,7 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme
         public const string PROFILE_BADGES_URL = "/profile/badges";
 
         public const string POSTS_URL = "/posts";
+        public const string POSTS_SHOW_FIRST_URL = "/posts/{id:guid?}";
         public const string NEW_POST_URL = "/posts/new";
         public const string EDIT_POST_URL = "/posts/edit/{id:guid}";
 
