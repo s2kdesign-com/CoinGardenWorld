@@ -8,12 +8,17 @@ namespace CoinGardenWorldMobileApp.DotNetApi.OperationFilter
 
         public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
         {
-            //var pathsToRemove = swaggerDoc.Paths
-            //    .Where(pathItem => !pathItem.Key.Contains("api/"))
-            //    .ToList();
+#if !DEBUG
+            var pathsToRemove = swaggerDoc.Paths
+                .Where(pathItem => !pathItem.Key.Contains("api/"))
+                .ToList();
+#else
+
             var pathsToRemove = swaggerDoc.Paths
                 .Where(pathItem => pathItem.Key.Contains("$metadata"))
                 .ToList();
+#endif
+
             foreach (var item in pathsToRemove)
             {
                 swaggerDoc.Paths.Remove(item.Key);

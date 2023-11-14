@@ -63,7 +63,11 @@ namespace CoinGardenWorldMobileApp.DotNetApi.DataAccessLayer
             bool includeDeleted = false)
         {
             IQueryable<TEntity> query = dbSet;
-            
+
+            // Dont Track on list
+            context.ChangeTracker.QueryTrackingBehavior
+                = QueryTrackingBehavior.NoTracking;
+
             if (filter != null)
             {
                 query = query.Where(filter);

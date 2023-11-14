@@ -32,9 +32,13 @@ namespace CoinGardenWorld.HttpClientsExtensions.MobileApiClients
             MobileApiOData.HttpRequestTransportMode = HttpRequestTransportMode.HttpClient;
             MobileApiOData.Configurations.RequestPipeline.OnMessageCreating = OnMessageCreating;
 
+            MobileApiOData.Format.UseJson();
+
             MobileApiODataAuthorized = new Default.Container(odataUri);
             MobileApiODataAuthorized.HttpRequestTransportMode = HttpRequestTransportMode.HttpClient;
             MobileApiODataAuthorized.Configurations.RequestPipeline.OnMessageCreating = OnMessageCreatingAuthorized;
+
+            MobileApiODataAuthorized.Format.UseJson();
 
         }
         private CustomHttpClientRequestMessage OnMessageCreatingAuthorized(DataServiceClientRequestMessageArgs args)

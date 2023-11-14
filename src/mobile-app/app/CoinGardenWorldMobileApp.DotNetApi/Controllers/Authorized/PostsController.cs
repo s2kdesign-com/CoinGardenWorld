@@ -58,7 +58,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Authorized
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> PutPost(Guid id, PostMerge post)
+        public async Task<ActionResult> PutPost(Guid id, PostMerge post)
         {
             var entity = await _unitOfWork.Repository
                 .GetByIdAsync(id);
@@ -122,7 +122,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Authorized
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> DeletePost(Guid id)
+        public async Task<ActionResult> DeletePost(Guid id)
         {
             var entity = await _unitOfWork.Repository.GetByIdAsync(id);
             if (entity == null)

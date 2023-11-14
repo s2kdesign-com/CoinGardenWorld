@@ -69,11 +69,13 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Authorized
                     // User has existing account
                     if (accountFromDb == null)
                     {
+                        var entity = model.Account.AdaptToAccount();
                         // TODO: Move magic strings for roles
                         var role = await _unitOfWorkRoles.Repository.List( e => e.Name == "Standard User").FirstOrDefaultAsync();
-                        model.Account.Roles = new List<AccountRoleAdd>
+
+                        entity.Roles = new List<AccountRole>
                         {
-                            new AccountRoleAdd
+                            new AccountRole
                             {
                                 RoleId = role.Id,
                                 RoleName = role.Name,
@@ -83,9 +85,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Authorized
 
                         // TODO: Move magic strings for roles
                         var badge = await _unitOfWorkBadges.Repository.List(b => b.Name == "Recruit Rosebud (Upon Registration)").FirstOrDefaultAsync();
-                        model.Account.Badges = new List<AccountBadgeAdd>
+                        entity.Badges = new List<AccountBadge>
                         {
-                            new AccountBadgeAdd
+                            new AccountBadge
                             {
                                 BadgeId = badge.Id,
                                 BadgeName = badge.Name,
@@ -95,7 +97,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Authorized
                             }
                         };
 
-                        accountFromDb = UnitOfWorkAccount.Repository.Insert(model.Account.AdaptToAccount());
+                        accountFromDb = UnitOfWorkAccount.Repository.Insert(entity);
                         await UnitOfWorkAccount.SaveAsync();
                     }
 
