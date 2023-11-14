@@ -34,6 +34,8 @@ using Microsoft.AspNetCore.OData.Query.Expressions;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Primitives;
+using Microsoft.OData.Json;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -98,8 +100,14 @@ builder.Services.AddControllers(cOptions =>
 })
     .AddOData(options =>
     {
-        options.EnableQueryFeatures(50).AddRouteComponents("odata", modelBuilder.GetEdmModel());
+        options.EnableQueryFeatures(50).AddRouteComponents("odata", modelBuilder.GetEdmModel(), services =>
+        {
+            services.AddSingleton<IStreamBasedJsonWriterFactory>(_ => DefaultStreamBasedJsonWriterFactory.Default);
+
+        });
         options.EnableNoDollarQueryOptions = true;
+
+
     }
 
     );
@@ -132,6 +140,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(options =>
 {
+    // Tell Swagger where to find operation ID. (Used for ChatGPT)
+    options.CustomOperationIds(apiDesc => apiDesc.TryGetMethodInfo(out MethodInfo methodInfo) ? methodInfo.Name : null);
     // OData $metadata url is braking the generated HTTP clients so its better to ignore it in the docs
     options.DocumentFilter<HideInDocsFilter>();
 
@@ -152,7 +162,8 @@ builder.Services.AddSwaggerGen(options =>
         {
             Name = "GNU General Public License v3.0",
             Url = new Uri("https://github.com/s2kdesign-com/CoinGardenWorld/blob/main/LICENSE.txt")
-        }
+        },
+        
     });
     // Add Swagger Signalr
     // options.AddSignalRSwaggerGen();

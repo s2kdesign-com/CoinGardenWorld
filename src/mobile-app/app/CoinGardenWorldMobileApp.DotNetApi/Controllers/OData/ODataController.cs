@@ -35,7 +35,6 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Public
         // GET: api/Posts
         [HttpGet]
         [EnableQuery]
-        [Produces("application/json")]
         [Route("odata/PostsOData")]
         [ProducesResponseType(typeof(IEnumerable<Post>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -48,7 +47,6 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Public
 
         [HttpGet]
         [EnableQuery]
-        [Produces("application/json")]
         [Route("odata/AccountsOData")]
         [ProducesResponseType(typeof(IEnumerable<Account>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -66,7 +64,6 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Public
 
         [HttpGet]
         [EnableQuery]
-        [Produces("application/json")]
         [Route("odata/FlowersOData")]
         [ProducesResponseType(typeof(IEnumerable<Flower>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
