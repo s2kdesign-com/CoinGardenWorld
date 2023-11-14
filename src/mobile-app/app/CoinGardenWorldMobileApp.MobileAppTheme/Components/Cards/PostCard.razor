@@ -20,7 +20,10 @@
             </h5>
 
             <h6 class="ps-1 mb-0 font-400 opacity-40">
-                @String.Join(',', Post.Account.Badges.Select(b => b.BadgeName))
+                @foreach (var badge in Post.Account.Badges)
+                {
+                    <span class="badge bg-teal-dark color-teal-dark ms-2">@badge.BadgeName</span>
+                }
             </h6>
         </div>
         <div class="ms-auto">
@@ -204,7 +207,7 @@
 @code {
     // TODO: Check if Youtube or embed or picture
     [Parameter]
-    public Models.Entities.Post Post { get; set; }
+    public Models.Entities.Post Post { get; set; } = new();
 
     [Parameter]
     public EventCallback<Guid> OnDeleteCallback { get; set; }
@@ -215,13 +218,19 @@
         var accountIdString = localStorage.Get<string>(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME);
         if (!string.IsNullOrEmpty(accountIdString))
         {
-            
+
             _accountId = Guid.Parse(accountIdString);
         }
 
         return base.OnInitializedAsync();
     }
-
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+        }
+        return base.OnAfterRenderAsync(firstRender);
+    }
     public async Task DeletePost()
     {
         Console.WriteLine("Delete post " + Post.Id);

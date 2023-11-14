@@ -21,8 +21,9 @@
 <!-- Your Page Content Goes Here-->
 <div class="page-content header-clear-medium">
 
-    @if(Id != null){
-        
+    @if (Id != null)
+    {
+
         <div class="card card-style">
             <div class="content mb-0">
                 <h5 class="color-highlight font-13 mb-n1">
@@ -32,27 +33,27 @@
                     What do you think today?
                 </h1>
                 <p class="mb-3">
-                   You can remove images, add links or change the text
+                    You can remove images, add links or change the text
                 </p>
             </div>
         </div>
     }
     else
     {
-       
-    <div class="card card-style">
-        <div class="content mb-0">
-            <h5 class="color-highlight font-13 mb-n1">
-                Create new post
-            </h5>
-            <h1 class="font-700 pb-0">
-                What do you think today?
-            </h1>
-            <p class="mb-3">
-                Add picture text or link and preview of your post will be shown.
-            </p>
+
+        <div class="card card-style">
+            <div class="content mb-0">
+                <h5 class="color-highlight font-13 mb-n1">
+                    Create new post
+                </h5>
+                <h1 class="font-700 pb-0">
+                    What do you think today?
+                </h1>
+                <p class="mb-3">
+                    Add picture text or link and preview of your post will be shown.
+                </p>
+            </div>
         </div>
-    </div>
 
     }
 
@@ -63,7 +64,7 @@
 
                 <EditForm Model="@Post" OnSubmit="@Submit">
                     <i class="bi bi-pencil-fill font-12"></i>
-                    <InputTextArea @bind-Value="Post!.Content" class="form-control rounded-xs" placeholder="Leave a comment here" id="new-post-content" style="height: 48px; font-size: 20px !important; line-height: 15px !important;" />
+                    <InputTextArea @bind-Value="Post!.Content" @oninput="HandleInputTextInput" class="form-control rounded-xs" placeholder="Leave a comment here" id="new-post-content" style="height: 48px; font-size: 20px !important; line-height: 15px !important;" />
                     @*
                     <textarea class="form-control rounded-xs" placeholder="Leave a comment here" id="c7" style="height: 48px; font-size: 20px !important; line-height: 15px !important;"></textarea> *@
 
@@ -83,14 +84,14 @@
             </div>
             <div class="divider mb-0"></div>
             <div class="file-data">
-                @if(Post.Images != null)
+                @if (Post.Images != null)
                 {
                     foreach (var blobImageAdd in Post.Images)
                     {
 
                         <img id="@blobImageAdd.ImageId" src="@blobImageAdd.ImageUrl" class="img-fluid rounded-s" alt="img">
                     }
-                    
+
                 }
 
                 @if (imageBrowserPreviews.Any())
@@ -102,11 +103,11 @@
                     }
                 }
 
-            @* 
+                @*
                 <img id="image-data" src="./_content/CoinGardenWorldMobileApp.MobileAppTheme/images/empty.png" class="img-fluid rounded-s" alt="img">
                 <span class="upload-file-name d-block text-center"
-                      data-text-before="<i class='bi bi-check-circle-fill color-green-dark pe-2'></i> Image:"
-                      data-text-after=" is ready.">
+                data-text-before="<i class='bi bi-check-circle-fill color-green-dark pe-2'></i> Image:"
+                data-text-after=" is ready.">
                 </span> *@
 
                 <div>
@@ -139,6 +140,11 @@
     private List<Guid> imageIds = new List<Guid>();
 
     private List<string> imageBlobUrls = new();
+
+    private void HandleInputTextInput(ChangeEventArgs e)
+    {
+        Post!.Content = e.Value as string;
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -187,7 +193,7 @@
     {
         try
         {
-            
+
             foreach (var browserFile in e.GetMultipleFiles(maxAllowedFiles))
             {
                 var imageId = Guid.NewGuid();
@@ -211,7 +217,7 @@
     }
 
     //   public enum PostType
-    // {// No links no images, just plain text may be with some hash tags 
+    // {// No links no images, just plain text may be with some hash tags
     // Text = 0,
     // External link if any in the text
     // Link = 1,
@@ -231,8 +237,9 @@
 
             var accountId = localStorage.Get<string>(Constants.USER_ACCOUNT_ID_LOCAL_STORAGE_NAME);
             var i = 0;
-            
-            Post.PostType = Models.Entities.Enums.PostType.Text.ToString();
+
+            if (String.IsNullOrEmpty(Post.PostType))
+                Post.PostType = Models.Entities.Enums.PostType.Text.ToString();
 
             if (Files != null)
             {
@@ -278,14 +285,19 @@
                                 ImageUrl = image.ImageUrl
                             });
                     }
+                // TODO: Check for image or video
+                    Post.PostType = Models.Entities.Enums.PostType.Picture.ToString();
+
+                    if (i > 1)
+                        Post.PostType = Models.Entities.Enums.PostType.Album.ToString();
                 }
-                await mobileApiHttpClient.MobileApiAuthorized.PostsPUTAsync(Id??Guid.Empty, postMerge);
+                await mobileApiHttpClient.MobileApiAuthorized.PostsPUTAsync(Id ?? Guid.Empty, postMerge);
             }
             else
             {
 
                 var response = await mobileApiHttpClient.MobileApiAuthorized.PostsPOSTAsync(Post);
-                if(response != null)
+                if (response != null)
                 {
                     Id = response.Id;
                 }
