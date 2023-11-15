@@ -231,7 +231,7 @@
 
         try
         {
-            var response = await VersionHttpClient.MobileApi.VersionAsync();
+            var response = await VersionHttpClient.MobileApi.GetAsync();
             _apiIsAvailable = true;
             _testConnectedApiUrl = response.Message;
 

@@ -16,7 +16,7 @@ namespace CoinGardenWorldMobileApp.Models.Entities
         public Guid AccountId { get; set; }
 
         [IgnoreOnModify]
-        public Account Account { get; set; }
+        public Account Account { get; set; } = new Account();
 
         public Visibility Visibility { get; set; } = Visibility.Public;
 

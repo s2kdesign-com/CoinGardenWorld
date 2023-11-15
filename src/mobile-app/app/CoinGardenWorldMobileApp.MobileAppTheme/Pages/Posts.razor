@@ -105,12 +105,10 @@
 
     protected override async Task OnInitializedAsync()
     {
-        
+
+        await base.OnInitializedAsync();
         try
         {
-            var result = await MobileApiODataClient.MobileApiOData.PostsOData.AddQueryOption("expand", "account").ExecuteAsync();
-
-            _latestPosts = result.ToList();
 
     // var latestPosts = await MobileApiAuthorizedHttpClient.MobileApi.PostsODataAsync(null, null, null, null, 10, null);
     // _latestPosts = latestPosts.ToList();
@@ -123,7 +121,6 @@
             Logger.LogError(e.Message);
         }
 
-        await base.OnInitializedAsync();
     }
 
 
@@ -135,6 +132,10 @@
         if (firstRender)
         {
 
+            var result = await MobileApiODataClient.MobileApiOData.PostsOData.AddQueryOption("expand", "account").ExecuteAsync();
+
+            _latestPosts = result.ToList();
+            StateHasChanged();
         }
 
     }

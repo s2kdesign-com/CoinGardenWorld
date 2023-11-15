@@ -237,7 +237,7 @@
         try
         {
             
-            await mobileApiHttpClient.MobileApiAuthorized.PostsDELETEAsync(Post.Id);
+            await mobileApiHttpClient.MobileApiAuthorized.DeletePostAsync(Post.Id);
 
             toastService.ShowToast("Post is Deleted!", ToastLevel.Success);
         }

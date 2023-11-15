@@ -14,7 +14,7 @@ namespace CoinGardenWorldMobileApp.Models.Entities
     {
         [ForeignKey(nameof(Account))]
         public Guid AccountId { get; set; }
-        public Account Account { get; set; }
+        public Account Account { get; set; } = new Account();
 
         [StringLength(300, ErrorMessage = "{0} can have a max of {1} characters")]
         public string? Title { get; set; }

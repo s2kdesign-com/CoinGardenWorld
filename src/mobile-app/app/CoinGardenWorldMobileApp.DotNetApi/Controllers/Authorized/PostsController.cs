@@ -103,7 +103,9 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Authorized
                     postAdd.AccountId = await GetAccountId();
                     var entityAdded = _unitOfWork.Repository.Insert(postAdd.AdaptToPost());
                     await _unitOfWork.SaveAsync();
-                    return CreatedAtAction("GetPost", new { id = entityAdded.Id }, entityAdded.AdaptToDto());
+
+                    var entityWithAccount = await _unitOfWork.Repository.GetByIdAsync(entityAdded.Id);
+                    return CreatedAtAction("GetPost", new { id = entityAdded.Id }, entityWithAccount.AdaptToDto());
                 }
 
             }

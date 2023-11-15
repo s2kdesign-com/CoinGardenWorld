@@ -154,7 +154,7 @@
         {
             try
             {
-                var response = await mobileApiHttpClient.MobileApiAuthorized.PostsGETAsync(Id ?? Guid.Empty);
+                var response = await mobileApiHttpClient.MobileApiAuthorized.GetPostAsync(Id ?? Guid.Empty);
                 if (response == null)
                 {
                     navigationManager.NavigateTo("/NotFound");
@@ -291,12 +291,12 @@
                     if (i > 1)
                         Post.PostType = Models.Entities.Enums.PostType.Album.ToString();
                 }
-                await mobileApiHttpClient.MobileApiAuthorized.PostsPUTAsync(Id ?? Guid.Empty, postMerge);
+                await mobileApiHttpClient.MobileApiAuthorized.PutPostAsync(Id ?? Guid.Empty, postMerge);
             }
             else
             {
 
-                var response = await mobileApiHttpClient.MobileApiAuthorized.PostsPOSTAsync(Post);
+                var response = await mobileApiHttpClient.MobileApiAuthorized.PostPostAsync(Post);
                 if (response != null)
                 {
                     Id = response.Id;
@@ -310,7 +310,7 @@
         }
         catch (Exception e)
         {
-            Logger.LogError(e.Message);
+            Logger.LogError(e.Message + "" + e.InnerException.Message);
 
             toastService.ShowToast("Error when uploading post!", ToastLevel.Error);
         }
