@@ -14,6 +14,8 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
     [ProducesResponseType(StatusCodes.Status429TooManyRequests)]
     [Produces(MediaTypeNames.Application.Json)]
     [Consumes(MediaTypeNames.Application.Json)]
+
+    [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any, NoStore = false)]
     public class BasePublicController : ControllerBase
     {
     }

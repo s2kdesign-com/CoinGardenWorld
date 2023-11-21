@@ -11,6 +11,7 @@ using System.Net.Mime;
 namespace CoinGardenWorldMobileApp.DotNetApi.Controllers
 {
     [ApiController]
+    [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any, NoStore = false)]
     [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
     [Authorize]
     [Produces(MediaTypeNames.Application.Json)]

@@ -15,6 +15,7 @@ namespace CoinGardenWorldMobileApp.DotNetApi.Controllers.Public
     [AllowAnonymous]
     [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
     [EnableRateLimiting("jwt")]
+    [ResponseCache(Duration = 5, Location = ResponseCacheLocation.Any, NoStore = false)]
     // [Authorize()]
     public class QueryableController : ODataController
     {

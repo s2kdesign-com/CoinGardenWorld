@@ -34,7 +34,6 @@ namespace CoinGardenWorldMobileApp.MobileAppTheme.Extensions
                         
             services.AddLocalization(options => options.ResourcesPath = "Localization");
 
-
             #region LocalStorage
 
             // If Environment is Mobile

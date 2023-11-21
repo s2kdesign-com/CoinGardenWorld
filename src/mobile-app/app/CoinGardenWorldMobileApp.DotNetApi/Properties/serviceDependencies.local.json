@@ -31,6 +31,13 @@
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/microsoft.insights/components/coingardenworld-app-insights-localhost",
       "type": "appInsights.azure",
       "connectionId": "APPLICATIONINSIGHTS_CONNECTION_STRING"
+    },
+    "redis1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ServiceLinker/locations/eastus/connectors/RedisCacheConnection_6A3AA5BBFF",
+      "secretStore": null,
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Cache/Redis/coingardenworld",
+      "type": "redis.azure",
+      "connectionId": "RedisCacheConnection"
     }
   }
 }

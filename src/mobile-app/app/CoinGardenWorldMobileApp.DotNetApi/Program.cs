@@ -357,6 +357,32 @@ builder.Services.AddRateLimiter(limiterOptions =>
 
 #endregion
 
+#region Add OutputCache
+// https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-8.0
+
+// Not used, manual cache
+//builder.Services.AddStackExchangeRedisCache(option =>
+//{
+//    option.InstanceName = "CGW-MobileAPI";
+//    option.Configuration = builder.Configuration.GetConnectionString("RedisCacheConnection") ?? "";
+//});
+
+// Cache All Controllers and Actions output to redis
+builder.Services.AddStackExchangeRedisOutputCache(options =>
+{
+    options.Configuration =
+        builder.Configuration.GetConnectionString("RedisCacheConnection");
+    options.InstanceName = "CGW-MobileAPI";
+});
+builder.Services.AddOutputCache(options =>
+{
+    options.AddBasePolicy(builder =>
+        builder.Expire(TimeSpan.FromSeconds(10)));
+});
+
+
+#endregion
+
 // TODO: Move to CoinGardenWorld.AzureAI
 builder.Services.AddAzureComputerVision();
 builder.Services.AddAzureWebSearch();
@@ -424,6 +450,9 @@ app
     });
 
 #endregion
+
+
+app.UseResponseCaching().UseOutputCache();
 
 // TODO: Add Hangfire to another API , this will have a lot of traffic 
 //var options = new DashboardOptions { AppPath = "https://plant-api.azurewebsites.net/swagger/index.html" };
