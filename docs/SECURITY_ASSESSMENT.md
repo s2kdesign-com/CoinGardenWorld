@@ -23,7 +23,7 @@ This document details the security vulnerabilities identified in the .NET MAUI a
 - **Advisory:** [GHSA-m5vv-6r4h-3vj9](https://github.com/advisories/GHSA-m5vv-6r4h-3vj9)
 - **Location:** 
   - `src/mobile-app/app/CoinGardenWorldMobileApp.MobileAppTheme/`
-- **Recommendation:** Update to Microsoft.Identity.Client 4.61.0 or later
+- **Recommendation:** Update to Microsoft.Identity.Client 4.61.3 or later (minimum 4.61.0)
 - **Impact:** Authentication and authorization vulnerabilities
 
 ### 3. LOW SEVERITY - Microsoft.Identity.Client 4.57.0
@@ -32,7 +32,7 @@ This document details the security vulnerabilities identified in the .NET MAUI a
 - **Advisory:** [GHSA-x674-v45j-fwxw](https://github.com/advisories/GHSA-x674-v45j-fwxw)
 - **Location:** 
   - `src/mobile-app/app/CoinGardenWorldMobileApp.MobileAppTheme/`
-- **Recommendation:** Update to Microsoft.Identity.Client 4.61.0 or later
+- **Recommendation:** Update to Microsoft.Identity.Client 4.61.3 or later (minimum 4.61.0)
 - **Impact:** Minor authentication security issue
 
 ## Recommended Actions
