@@ -34,7 +34,7 @@ All islands are randomly distributed on a globe, with the size of the island gro
 
 By logging into the system every day, the player in the metaverse will have the opportunity to receive crypto currency, the amount of which is determined by how rare the flowers he grows in nature&#x20;
 
-### [Step 5 - Cryptocurrency](grdn-crypto-token/)&#x20;
+### [Step 5 - Cryptocurrency](cgw-crypto-token/)&#x20;
 
 All transactions and exchanges and rewards received in the system are done in GRDN token.&#x20;
 

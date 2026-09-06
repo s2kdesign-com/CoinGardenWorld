@@ -24,8 +24,8 @@
   * [3. Raise your level](architecture/metaverse/3.-raise-your-level.md)
   * [4. Earn cryptocurrency](architecture/metaverse/4.-earn-cryptocurrency.md)
   * [5. Decorate your island](architecture/metaverse/5.-decorate-your-island.md)
-* [GRDN - Crypto Token 🪙](architecture/grdn-crypto-token/README.md)
-  * [1. Tokenomics](architecture/grdn-crypto-token/1.-tokenomics.md)
+* [CGW - Crypto Token 🪙](architecture/cgw-crypto-token/README.md)
+  * [1. Tokenomics](architecture/cgw-crypto-token/1.-tokenomics.md)
 
 ## Flowers and gardens
 
