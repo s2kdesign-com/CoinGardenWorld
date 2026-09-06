@@ -24,8 +24,8 @@
   * [3. Вдигни нивото си](arkhitektura/metasvyat/3.-vdigni-nivoto-si.md)
   * [4. Печели криптовалута](arkhitektura/metasvyat/4.-pecheli-kriptovaluta.md)
   * [5. Украси острова си](arkhitektura/metasvyat/5.-ukrasi-ostrova-si.md)
-* [GRDN - Крипто Токен 🪙](arkhitektura/grdn-kripto-token/README.md)
-  * [1. Токеномика](arkhitektura/grdn-kripto-token/1.-tokenomika.md)
+* [CGW - Крипто Токен 🪙](arkhitektura/cgw-kripto-token/README.md)
+  * [1. Токеномика](arkhitektura/cgw-kripto-token/1.-tokenomika.md)
 
 ## Цветя и Градини
 
